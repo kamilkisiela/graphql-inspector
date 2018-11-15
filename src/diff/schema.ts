@@ -25,6 +25,7 @@ import {
 import { directiveRemoved, directiveAdded } from '../changes/directive';
 import { changesInEnum } from './enum';
 import { changesInUnion } from './union';
+import { changesInInputObject } from './input';
 
 export function diff(
   oldSchema: GraphQLSchema,
@@ -155,6 +156,9 @@ function changesInType(
     } else if (oldType instanceof GraphQLUnionType) {
       changes.push(...changesInUnion(oldType, newType as GraphQLUnionType));
     } else if (oldType instanceof GraphQLInputObjectType) {
+      changes.push(
+        ...changesInInputObject(oldType, newType as GraphQLInputObjectType),
+      );
     } else if (oldType instanceof GraphQLObjectType) {
     } else if (oldType instanceof GraphQLInterfaceType) {
     }

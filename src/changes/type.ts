@@ -1,11 +1,4 @@
-import {
-  GraphQLNamedType,
-  GraphQLEnumType,
-  GraphQLUnionType,
-  GraphQLInputObjectType,
-  GraphQLObjectType,
-  GraphQLInterfaceType,
-} from 'graphql';
+import { GraphQLNamedType } from 'graphql';
 
 import { Change, CriticalityLevel } from './change';
 
