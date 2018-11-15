@@ -2,8 +2,26 @@
   "name": "graphql-schema-comparator",
   "version": "1.0.0",
   "description": "Compare two GraphQL Schemas",
-  "main": "build/index.js",
+  "keywords": [
+    "graphql",
+    "tools",
+    "cli"
+  ],
+  "sideEffects": false,
+  "main": "dist/index.js",
+  "author": {
+    "name": "Kamil Kisiela",
+    "email": "kamil.kisiela@gmail.com",
+    "url": "https://github.com/kamilkisiela"
+  },
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "kamilkisiela/graphql-schema-comparator"
+  },
+  "scripts": {
+    "build": "tsc"
+  },
   "peerDependencies": {
     "graphql": "^0.13.0 || ^14.0.0"
   },
