@@ -126,16 +126,28 @@ function changesInSchema(
   newSchema: GraphQLSchema,
 ): Change[] {
   const changes: Change[] = [];
+  const oldRoot = {
+    query: (oldSchema.getQueryType() || ({} as GraphQLObjectType)).name,
+    mutation: (oldSchema.getMutationType() || ({} as GraphQLObjectType)).name,
+    subscription: (oldSchema.getSubscriptionType() || ({} as GraphQLObjectType))
+      .name,
+  };
+  const newRoot = {
+    query: (newSchema.getQueryType() || ({} as GraphQLObjectType)).name,
+    mutation: (newSchema.getMutationType() || ({} as GraphQLObjectType)).name,
+    subscription: (newSchema.getSubscriptionType() || ({} as GraphQLObjectType))
+      .name,
+  };
 
-  if (oldSchema.getQueryType() !== newSchema.getQueryType()) {
+  if (oldRoot.query !== newRoot.query) {
     changes.push(schemaQueryTypeChanged(oldSchema, newSchema));
   }
 
-  if (oldSchema.getMutationType() !== newSchema.getMutationType()) {
+  if (oldRoot.mutation !== newRoot.mutation) {
     changes.push(schemaMutationTypeChanged(oldSchema, newSchema));
   }
 
-  if (oldSchema.getSubscriptionType() !== newSchema.getSubscriptionType()) {
+  if (oldRoot.subscription !== newRoot.subscription) {
     changes.push(schemaSubscriptionTypeChanged(oldSchema, newSchema));
   }
 

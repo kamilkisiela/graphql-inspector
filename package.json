@@ -20,7 +20,11 @@
     "url": "kamilkisiela/graphql-schema-comparator"
   },
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "clean": "rm -rf dist/",
+    "prebuild": "npm run clean",
+    "prepublishOnly": "npm run build",
+    "test": "jest"
   },
   "peerDependencies": {
     "graphql": "^0.13.0 || ^14.0.0"
@@ -29,7 +33,9 @@
     "@types/graphql": "14.0.3",
     "@types/jest": "23.3.9",
     "graphql": "14.0.2",
+    "graphql-tag": "2.10.0",
     "jest": "23.6.0",
+    "ts-jest": "23.10.4",
     "typescript": "3.1.6"
   }
 }
