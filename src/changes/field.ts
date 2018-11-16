@@ -3,13 +3,14 @@ import {
   GraphQLField,
   GraphQLArgument,
   isNonNullType,
+  GraphQLInterfaceType,
 } from 'graphql';
 
 import { Change, CriticalityLevel } from './change';
 import { safeChangeForField } from '../utils/graphql';
 
 export function fieldRemoved(
-  type: GraphQLObjectType,
+  type: GraphQLObjectType | GraphQLInterfaceType,
   field: GraphQLField<any, any, any>,
 ): Change {
   return {
@@ -27,7 +28,7 @@ export function fieldRemoved(
 }
 
 export function fieldAdded(
-  type: GraphQLObjectType,
+  type: GraphQLObjectType | GraphQLInterfaceType,
   field: GraphQLField<any, any, any>,
 ): Change {
   return {
@@ -40,7 +41,7 @@ export function fieldAdded(
 }
 
 export function fieldDescriptionChanged(
-  type: GraphQLObjectType,
+  type: GraphQLObjectType | GraphQLInterfaceType,
   oldField: GraphQLField<any, any>,
   newField: GraphQLField<any, any>,
 ): Change {
@@ -56,7 +57,7 @@ export function fieldDescriptionChanged(
 }
 
 export function fieldDeprecationReasonChanged(
-  type: GraphQLObjectType,
+  type: GraphQLObjectType | GraphQLInterfaceType,
   oldField: GraphQLField<any, any>,
   newField: GraphQLField<any, any>,
 ): Change {
@@ -74,7 +75,7 @@ export function fieldDeprecationReasonChanged(
 }
 
 export function fieldTypeChanged(
-  type: GraphQLObjectType,
+  type: GraphQLObjectType | GraphQLInterfaceType,
   oldField: GraphQLField<any, any, any>,
   newField: GraphQLField<any, any, any>,
 ): Change {
@@ -92,7 +93,7 @@ export function fieldTypeChanged(
 }
 
 export function fieldArgumentAdded(
-  type: GraphQLObjectType,
+  type: GraphQLObjectType | GraphQLInterfaceType,
   field: GraphQLField<any, any, any>,
   arg: GraphQLArgument,
 ): Change {
@@ -113,7 +114,7 @@ export function fieldArgumentAdded(
 }
 
 export function fieldArgumentRemoved(
-  type: GraphQLObjectType,
+  type: GraphQLObjectType | GraphQLInterfaceType,
   field: GraphQLField<any, any, any>,
   arg: GraphQLArgument,
 ): Change {

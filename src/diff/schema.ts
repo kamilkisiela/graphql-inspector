@@ -11,6 +11,7 @@ import {
   isInputObjectType,
   isObjectType,
   isInterfaceType,
+  GraphQLInterfaceType,
 } from 'graphql';
 
 import { unionArrays, diffArrays } from '../utils/arrays';
@@ -32,6 +33,7 @@ import { changesInEnum } from './enum';
 import { changesInUnion } from './union';
 import { changesInInputObject } from './input';
 import { changesInObject } from './object';
+import { changesInInterface } from './interface';
 
 export function diff(
   oldSchema: GraphQLSchema,
@@ -184,7 +186,9 @@ function changesInType(
     } else if (isObjectType(oldType)) {
       changes.push(...changesInObject(oldType, newType as GraphQLObjectType));
     } else if (isInterfaceType(oldType)) {
-      // TODO: interface
+      changes.push(
+        ...changesInInterface(oldType, newType as GraphQLInterfaceType),
+      );
     }
   }
 

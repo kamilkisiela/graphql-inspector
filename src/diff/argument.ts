@@ -3,6 +3,7 @@ import {
   GraphQLObjectType,
   GraphQLField,
   isEqualType,
+  GraphQLInterfaceType,
 } from 'graphql';
 
 import { Change } from '../changes/change';
@@ -13,7 +14,7 @@ import {
 } from '../changes/argument';
 
 export function changesInArgument(
-  type: GraphQLObjectType,
+  type: GraphQLObjectType | GraphQLInterfaceType,
   field: GraphQLField<any, any, any>,
   oldArg: GraphQLArgument,
   newArg: GraphQLArgument,

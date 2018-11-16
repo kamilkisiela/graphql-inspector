@@ -1,10 +1,10 @@
-import { GraphQLArgument, GraphQLObjectType, GraphQLField } from 'graphql';
+import { GraphQLArgument, GraphQLObjectType, GraphQLField, GraphQLInterfaceType } from 'graphql';
 
 import { Change, CriticalityLevel } from './change';
 import { safeChangeForInputValue } from '../utils/graphql';
 
 export function fieldArgumentDescriptionChanged(
-  type: GraphQLObjectType,
+  type: GraphQLObjectType | GraphQLInterfaceType,
   field: GraphQLField<any, any, any>,
   oldArg: GraphQLArgument,
   newArg: GraphQLArgument,
@@ -23,7 +23,7 @@ export function fieldArgumentDescriptionChanged(
 }
 
 export function fieldArgumentDefaultChanged(
-  type: GraphQLObjectType,
+  type: GraphQLObjectType | GraphQLInterfaceType,
   field: GraphQLField<any, any, any>,
   oldArg: GraphQLArgument,
   newArg: GraphQLArgument,
@@ -47,7 +47,7 @@ export function fieldArgumentDefaultChanged(
 }
 
 export function fieldArgumentTypeChanged(
-  type: GraphQLObjectType,
+  type: GraphQLObjectType | GraphQLInterfaceType,
   field: GraphQLField<any, any, any>,
   oldArg: GraphQLArgument,
   newArg: GraphQLArgument,
