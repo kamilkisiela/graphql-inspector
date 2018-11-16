@@ -7,6 +7,8 @@
 
 GraphQL Schema Comparator ouputs a list of changes between two GraphQL schemas. Every change is precisely explained and marked as breaking, non-breaking or dangerous.
 
+![Example](./demo.gif)
+
 ## Installation
 
 ```bash
@@ -16,14 +18,14 @@ yarn add graphql-schema-comparator
 ## CLI Usage
 
 ```bash
-graphql-compare OLD_SCHEMA NEW_SCHEMA
-graphql-compare help
+graphql-diff OLD_SCHEMA NEW_SCHEMA
+graphql-diff help
 ```
 
 ### Examples
 
 ```bash
-$ graphql-compare OLD_SCHEMA NEW_SCHEMA
+$ graphql-diff OLD_SCHEMA NEW_SCHEMA
 
 Detected the following changes between schemas:
 

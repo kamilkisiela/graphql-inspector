@@ -3,6 +3,9 @@
   "compilerOptions": {
     "types": [
       "jest"
-    ],
-  }
+    ]
+  },
+  "include": [
+    "__tests__/**/*.ts"
+  ]
 }

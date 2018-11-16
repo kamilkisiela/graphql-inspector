@@ -9,6 +9,9 @@
   ],
   "sideEffects": false,
   "main": "dist/index.js",
+  "bin": {
+    "graphql-diff": "dist/cli/cli.js"
+  },
   "author": {
     "name": "Kamil Kisiela",
     "email": "kamil.kisiela@gmail.com",
@@ -36,6 +39,7 @@
     "@types/graphql": "14.0.3",
     "@types/jest": "23.3.9",
     "@types/log-symbols": "2.0.0",
+    "@types/node-fetch": "2.1.3",
     "graphql": "14.0.2",
     "graphql-tag": "2.10.0",
     "jest": "23.6.0",
@@ -47,6 +51,7 @@
   "dependencies": {
     "chalk": "2.4.1",
     "commander": "2.19.0",
-    "log-symbols": "2.2.0"
+    "log-symbols": "2.2.0",
+    "node-fetch": "2.3.0"
   }
 }

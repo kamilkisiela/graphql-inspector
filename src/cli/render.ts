@@ -24,3 +24,13 @@ export function bolderize(msg: string): string {
     chalk.bold(value),
   );
 }
+
+export interface Renderer {
+  emit(...msgs: string[]): void;
+}
+
+export class ConsoleRenderer implements Renderer {
+  emit(...msgs: string[]) {
+    console.log(...msgs);
+  }
+}

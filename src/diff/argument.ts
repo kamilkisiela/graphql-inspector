@@ -2,7 +2,6 @@ import {
   GraphQLArgument,
   GraphQLObjectType,
   GraphQLField,
-  isEqualType,
   GraphQLInterfaceType,
 } from 'graphql';
 
@@ -29,7 +28,7 @@ export function changesInArgument(
     changes.push(fieldArgumentDefaultChanged(type, field, oldArg, newArg));
   }
 
-  if (!isEqualType(oldArg.type, newArg.type)) {
+  if (oldArg.type.toString() !== newArg.type.toString()) {
     changes.push(fieldArgumentTypeChanged(type, field, oldArg, newArg));
   }
 

@@ -85,7 +85,7 @@ function removedFields(
   const newNames = Object.keys(newFields);
 
   return diffArrays(oldNames, newNames)
-    .map(name => newFields[name])
+    .map(name => oldFields[name])
     .map(f => fieldRemoved(oldType, f));
 }
 

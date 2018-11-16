@@ -2,7 +2,6 @@ import {
   GraphQLField,
   GraphQLObjectType,
   GraphQLArgument,
-  isEqualType,
   GraphQLInterfaceType,
 } from 'graphql';
 
@@ -32,7 +31,7 @@ export function changesInField(
     changes.push(fieldDeprecationReasonChanged(type, oldField, newField));
   }
 
-  if (!isEqualType(oldField.type, newField.type)) {
+  if (oldField.type.toString() !== newField.type.toString()) {
     changes.push(fieldTypeChanged(type, oldField, newField));
   }
 

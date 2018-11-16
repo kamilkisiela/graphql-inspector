@@ -6,14 +6,22 @@ import {CriticalityLevel, Change} from '../../src/changes/change';
 
 test('same schema', () => {
   const schemaA = buildASTSchema(gql`
+    type Post {
+      id: ID
+    }
+
     type Query {
-      fieldA: String!
+      fieldA: Post!
     }
   `);
 
   const schemaB = buildASTSchema(gql`
+    type Post {
+      id: ID
+    }
+    
     type Query {
-      fieldA: String!
+      fieldA: Post!
     }
   `);
 
