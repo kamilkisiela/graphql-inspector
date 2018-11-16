@@ -3,7 +3,7 @@
 [![CircleCI](https://circleci.com/gh/kamilkisiela/graphql-schema-comparator.svg?style=shield)](https://circleci.com/gh/kamilkisiela/graphql-schema-comparator)
 [![npm version](https://badge.fury.io/js/graphql-schema-comparator.svg)](https://npmjs.com/package/graphql-schema-comparator)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
-[![renovate-app badge][renovate-badge]][renovate-app]
+[![renovate-app badge](https://img.shields.io/badge/renovate-app-blue.svg)](https://renovateapp.com/)
 
 GraphQL Schema Comparator ouputs a list of changes between two GraphQL schemas. Every change is precisely explained and marked as breaking, non-breaking or dangerous.
 
