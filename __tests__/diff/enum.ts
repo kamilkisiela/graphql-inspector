@@ -1,8 +1,8 @@
 import {buildASTSchema} from 'graphql';
 import gql from 'graphql-tag';
 
-import {diff} from '../src/index';
-import {CriticalityLevel} from '../src/changes/change';
+import {diff} from '../../src/index';
+import {CriticalityLevel} from '../../src/changes/change';
 
 test('enum with new value', () => {
   const schemaA = buildASTSchema(gql`

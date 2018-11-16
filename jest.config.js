@@ -22,7 +22,7 @@ module.exports = {
   testEnvironment: 'node',
 
   // The glob patterns Jest uses to detect test files
-  testMatch: ['**/__tests__/*.+(ts|tsx|js)'],
+  testMatch: ['**/__tests__/**/*.+(ts|tsx|js)'],
 
   // A map from regular expressions to paths to transformers
   transform: {
