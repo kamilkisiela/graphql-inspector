@@ -4,8 +4,8 @@ import {
   isNonNullType,
 } from 'graphql';
 
-import { Change, CriticalityLevel } from './change';
-import { safeChangeForInputValue } from '../utils/graphql';
+import {Change, CriticalityLevel} from './change';
+import {safeChangeForInputValue} from '../utils/graphql';
 
 export function inputFieldRemoved(
   input: GraphQLInputObjectType,

@@ -1,8 +1,8 @@
-import { buildASTSchema } from 'graphql';
+import {buildASTSchema} from 'graphql';
 import gql from 'graphql-tag';
 
-import { diff } from '../src/index';
-import { CriticalityLevel, Change } from '../src/changes/change';
+import {diff} from '../src/index';
+import {CriticalityLevel, Change} from '../src/changes/change';
 
 test('same schema', () => {
   const schemaA = buildASTSchema(gql`

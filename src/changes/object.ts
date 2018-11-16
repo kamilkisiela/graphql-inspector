@@ -1,6 +1,6 @@
-import { GraphQLInterfaceType, GraphQLObjectType } from 'graphql';
+import {GraphQLInterfaceType, GraphQLObjectType} from 'graphql';
 
-import { Change, CriticalityLevel } from './change';
+import {Change, CriticalityLevel} from './change';
 
 export function objectTypeInterfaceAdded(
   iface: GraphQLInterfaceType,
@@ -27,7 +27,9 @@ export function objectTypeInterfaceRemoved(
       reason:
         'Removing an interface from an object type can cause existing queries that use this in a fragment spread to error.',
     },
-    message: `'${type.name}' object no longer implements '${iface.name}' interface`,
+    message: `'${type.name}' object no longer implements '${
+      iface.name
+    }' interface`,
     path: type.name,
   };
 }

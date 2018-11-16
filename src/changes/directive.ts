@@ -1,6 +1,6 @@
-import { GraphQLDirective } from 'graphql';
+import {GraphQLDirective} from 'graphql';
 
-import { Change, CriticalityLevel } from './change';
+import {Change, CriticalityLevel} from './change';
 
 export function directiveRemoved(directive: GraphQLDirective): Change {
   return {

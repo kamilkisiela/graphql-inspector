@@ -6,7 +6,7 @@ import {
   GraphQLInterfaceType,
 } from 'graphql';
 
-import { Change } from '../changes/change';
+import {Change} from '../changes/change';
 import {
   fieldDescriptionChanged,
   fieldDeprecationReasonChanged,
@@ -14,8 +14,8 @@ import {
   fieldArgumentAdded,
   fieldArgumentRemoved,
 } from '../changes/field';
-import { changesInArgument } from './argument';
-import { unionArrays, diffArrays } from '../utils/arrays';
+import {changesInArgument} from './argument';
+import {unionArrays, diffArrays} from '../utils/arrays';
 
 export function changesInField(
   type: GraphQLObjectType | GraphQLInterfaceType,
@@ -52,7 +52,7 @@ export function changesInField(
     inNew: newArgs.find(a => a.name === name) as GraphQLArgument,
   }));
 
-  common.forEach(({ inOld, inNew }) => {
+  common.forEach(({inOld, inNew}) => {
     changes.push(...changesInArgument(type, oldField, inOld, inNew));
   });
 

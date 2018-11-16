@@ -21,10 +21,12 @@
   },
   "scripts": {
     "build": "tsc",
+    "test": "jest",
+    "format": "prettier --config .prettierrc --write \"{src,__tests__}/**/*.ts\"",
     "clean": "rm -rf dist/",
+    "precommit": "lint-staged",
     "prebuild": "npm run clean",
-    "prepublishOnly": "npm run build",
-    "test": "jest"
+    "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
     "graphql": "^0.13.0 || ^14.0.0"
@@ -35,6 +37,8 @@
     "graphql": "14.0.2",
     "graphql-tag": "2.10.0",
     "jest": "23.6.0",
+    "lint-staged": "8.0.4",
+    "prettier": "1.15.2",
     "ts-jest": "23.10.4",
     "typescript": "3.1.6"
   }

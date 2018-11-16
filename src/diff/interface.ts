@@ -1,9 +1,9 @@
-import { GraphQLInterfaceType } from 'graphql';
+import {GraphQLInterfaceType} from 'graphql';
 
-import { Change } from '../changes/change';
-import { fieldRemoved, fieldAdded } from '../changes/field';
-import { changesInField } from './field';
-import { diffArrays, unionArrays } from '../utils/arrays';
+import {Change} from '../changes/change';
+import {fieldRemoved, fieldAdded} from '../changes/field';
+import {changesInField} from './field';
+import {diffArrays, unionArrays} from '../utils/arrays';
 
 export function changesInInterface(
   oldInterface: GraphQLInterfaceType,
@@ -13,7 +13,7 @@ export function changesInInterface(
 
   changes.push(...addedFields(oldInterface, newInterface));
   changes.push(...removedFields(oldInterface, newInterface));
-  changedFields(oldInterface, newInterface).forEach(({ inOld, inNew }) => {
+  changedFields(oldInterface, newInterface).forEach(({inOld, inNew}) => {
     changes.push(...changesInField(oldInterface, inOld, inNew));
   });
 

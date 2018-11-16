@@ -6,8 +6,8 @@ import {
   GraphQLInterfaceType,
 } from 'graphql';
 
-import { Change, CriticalityLevel } from './change';
-import { safeChangeForField } from '../utils/graphql';
+import {Change, CriticalityLevel} from './change';
+import {safeChangeForField} from '../utils/graphql';
 
 export function fieldRemoved(
   type: GraphQLObjectType | GraphQLInterfaceType,

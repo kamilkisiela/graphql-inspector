@@ -1,6 +1,6 @@
-import { GraphQLSchema } from 'graphql';
+import {GraphQLSchema} from 'graphql';
 
-import { Change, CriticalityLevel } from './change';
+import {Change, CriticalityLevel} from './change';
 
 export function schemaQueryTypeChanged(
   oldSchema: GraphQLSchema,

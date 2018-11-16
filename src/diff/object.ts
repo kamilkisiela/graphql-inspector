@@ -1,13 +1,13 @@
-import { GraphQLObjectType, GraphQLInterfaceType } from 'graphql';
+import {GraphQLObjectType, GraphQLInterfaceType} from 'graphql';
 
-import { Change } from '../changes/change';
+import {Change} from '../changes/change';
 import {
   objectTypeInterfaceAdded,
   objectTypeInterfaceRemoved,
 } from '../changes/object';
-import { fieldRemoved, fieldAdded } from '../changes/field';
-import { changesInField } from './field';
-import { diffArrays, unionArrays } from '../utils/arrays';
+import {fieldRemoved, fieldAdded} from '../changes/field';
+import {changesInField} from './field';
+import {diffArrays, unionArrays} from '../utils/arrays';
 
 export function changesInObject(
   oldType: GraphQLObjectType,
@@ -22,7 +22,7 @@ export function changesInObject(
   changes.push(...addedFields(oldType, newType));
   changes.push(...removedFields(oldType, newType));
 
-  changedFields(oldType, newType).forEach(({ inOld, inNew }) => {
+  changedFields(oldType, newType).forEach(({inOld, inNew}) => {
     changes.push(...changesInField(oldType, inOld, inNew));
   });
 

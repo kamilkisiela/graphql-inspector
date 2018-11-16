@@ -14,9 +14,9 @@ import {
   GraphQLInterfaceType,
 } from 'graphql';
 
-import { unionArrays, diffArrays } from '../utils/arrays';
-import { isPrimitive } from '../utils/graphql';
-import { Change } from '../changes/change';
+import {unionArrays, diffArrays} from '../utils/arrays';
+import {isPrimitive} from '../utils/graphql';
+import {Change} from '../changes/change';
 import {
   schemaQueryTypeChanged,
   schemaMutationTypeChanged,
@@ -28,12 +28,12 @@ import {
   typeKindChanged,
   typeDescriptionChanged,
 } from '../changes/type';
-import { directiveRemoved, directiveAdded } from '../changes/directive';
-import { changesInEnum } from './enum';
-import { changesInUnion } from './union';
-import { changesInInputObject } from './input';
-import { changesInObject } from './object';
-import { changesInInterface } from './interface';
+import {directiveRemoved, directiveAdded} from '../changes/directive';
+import {changesInEnum} from './enum';
+import {changesInUnion} from './union';
+import {changesInInputObject} from './input';
+import {changesInObject} from './object';
+import {changesInInterface} from './interface';
 
 export function diff(
   oldSchema: GraphQLSchema,
@@ -54,7 +54,7 @@ export function diff(
   // Changes in Schema
   changes.push(...changesInSchema(oldSchema, newSchema));
   // Changes in Type
-  types.common.forEach(({ inOld, inNew }) => {
+  types.common.forEach(({inOld, inNew}) => {
     changes.push(...changesInType(inOld, inNew));
   });
 

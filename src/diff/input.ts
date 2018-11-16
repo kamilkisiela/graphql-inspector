@@ -1,10 +1,6 @@
-import {
-  GraphQLInputObjectType,
-  GraphQLInputField,
-  isEqualType,
-} from 'graphql';
-import { Change } from '../changes/change';
-import { diffArrays, unionArrays } from '../utils/arrays';
+import {GraphQLInputObjectType, GraphQLInputField, isEqualType} from 'graphql';
+import {Change} from '../changes/change';
+import {diffArrays, unionArrays} from '../utils/arrays';
 import {
   inputFieldAdded,
   inputFieldRemoved,
@@ -29,7 +25,7 @@ export function changesInInputObject(
     inNew: newFields[name],
   }));
 
-  common.forEach(({ inOld, inNew }) => {
+  common.forEach(({inOld, inNew}) => {
     changes.push(...changesInInputField(oldInput, inOld, inNew));
   });
 

@@ -1,4 +1,4 @@
-import { GraphQLEnumType, GraphQLEnumValue } from 'graphql';
+import {GraphQLEnumType, GraphQLEnumValue} from 'graphql';
 
 import {
   enumValueRemoved,
@@ -6,8 +6,8 @@ import {
   enumValueDescriptionChanged,
   enumValueDeprecationReasonChanged,
 } from '../changes/enum';
-import { Change } from '../changes/change';
-import { unionArrays, diffArrays } from '../utils/arrays';
+import {Change} from '../changes/change';
+import {unionArrays, diffArrays} from '../utils/arrays';
 
 export function changesInEnum(
   oldEnum: GraphQLEnumType,
@@ -31,13 +31,15 @@ export function changesInEnum(
   changes.push(...added.map(v => enumValueAdded(newEnum, v)));
   changes.push(...removed.map(v => enumValueRemoved(oldEnum, v)));
 
-  common.forEach(({ oldValue, newValue }) => {
+  common.forEach(({oldValue, newValue}) => {
     if (oldValue.description !== newValue.description) {
       changes.push(enumValueDescriptionChanged(newEnum, oldValue, newValue));
     }
 
     if (oldValue.deprecationReason !== newValue.deprecationReason) {
-      changes.push(enumValueDeprecationReasonChanged(newEnum, oldValue, newValue));
+      changes.push(
+        enumValueDeprecationReasonChanged(newEnum, oldValue, newValue),
+      );
     }
   });
 

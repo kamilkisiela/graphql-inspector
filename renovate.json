@@ -1,0 +1,21 @@
+{
+  "extends": [
+    "config:js-lib"
+  ],
+  "timezone": "Europe/Warsaw",
+  "schedule": [
+    "after 11pm and before 6am on every weekday"
+  ],
+  "prCreation": "not-pending",
+  "automerge": true,
+  "major": {
+    "automerge": false
+  },
+  "assignees": [
+    "@kamilkisiela"
+  ],
+  "reviewers": [
+    "@kamilkisiela"
+  ],
+  "enabledManagers": ["yarn"]
+}

@@ -6,7 +6,7 @@ import {
   GraphQLInterfaceType,
 } from 'graphql';
 
-import { Change } from '../changes/change';
+import {Change} from '../changes/change';
 import {
   fieldArgumentDescriptionChanged,
   fieldArgumentDefaultChanged,
