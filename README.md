@@ -1,6 +1,6 @@
 # GraphQL Schema Comparator
 
-[![CircleCI](https://circleci.com/gh/kamilkisiela/graphql-schema-comparator.svg?style=svg&circle-token=d1cd06aba321ee2b7bf8bd2041104643639463b0)](https://circleci.com/gh/kamilkisiela/graphql-schema-comparator)
+[![CircleCI](https://circleci.com/gh/kamilkisiela/graphql-schema-comparator.svg?style=shield&circle-token=d1cd06aba321ee2b7bf8bd2041104643639463b0)](https://circleci.com/gh/kamilkisiela/graphql-schema-comparator)
 [![npm version](https://badge.fury.io/js/graphql-schema-comparator.svg)](https://npmjs.com/package/graphql-schema-comparator)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 [![renovate-app badge](https://img.shields.io/badge/renovate-app-blue.svg)](https://renovateapp.com/)
