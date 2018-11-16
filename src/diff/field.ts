@@ -26,7 +26,6 @@ export function changesInField(
     changes.push(fieldTypeChanged(type, oldField, newField));
   }
 
-  // https://github.com/xuorig/graphql-schema_comparator/blob/master/lib/graphql/schema_comparator/diff/field.rb
   // TODO: compare arguments
 
   return changes;
