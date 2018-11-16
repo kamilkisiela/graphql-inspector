@@ -10,7 +10,7 @@
   "sideEffects": false,
   "main": "dist/index.js",
   "bin": {
-    "graphql-diff": "dist/cli/cli.js"
+    "graphql-diff": "dist/cli.js"
   },
   "author": {
     "name": "Kamil Kisiela",
