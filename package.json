@@ -1,6 +1,6 @@
 {
   "name": "graphql-schema-comparator",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Compare two GraphQL Schemas",
   "keywords": [
     "graphql",
