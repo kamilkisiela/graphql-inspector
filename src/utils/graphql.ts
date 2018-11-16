@@ -4,6 +4,7 @@ import {
   isListType,
   isNonNullType,
   GraphQLOutputType,
+  GraphQLNamedType,
 } from 'graphql';
 
 export function safeChangeForField(
@@ -50,4 +51,12 @@ export function safeChangeForInputValue(
   }
 
   return false;
+}
+
+export function isPrimitive(type: GraphQLNamedType | string): boolean {
+  return (
+    ['String', 'Int', 'Float', 'Boolean', 'ID'].indexOf(
+      typeof type === 'string' ? type : type.name,
+    ) !== -1
+  );
 }

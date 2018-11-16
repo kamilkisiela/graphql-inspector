@@ -1,4 +1,8 @@
-import { GraphQLInputObjectType, GraphQLInputField } from 'graphql';
+import {
+  GraphQLInputObjectType,
+  GraphQLInputField,
+  isEqualType,
+} from 'graphql';
 import { Change } from '../changes/change';
 import { diffArrays, unionArrays } from '../utils/arrays';
 import {
@@ -50,7 +54,7 @@ function changesInInputField(
     changes.push(inputFieldDefaultValueChanged(input, oldField, newField));
   }
 
-  if (oldField.type !== newField.type) {
+  if (!isEqualType(oldField.type, newField.type)) {
     changes.push(inputFieldDefaultValueChanged(input, oldField, newField));
   }
 

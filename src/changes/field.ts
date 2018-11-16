@@ -1,4 +1,9 @@
-import { GraphQLObjectType, GraphQLField } from 'graphql';
+import {
+  GraphQLObjectType,
+  GraphQLField,
+  GraphQLArgument,
+  isNonNullType,
+} from 'graphql';
 
 import { Change, CriticalityLevel } from './change';
 import { safeChangeForField } from '../utils/graphql';
@@ -83,5 +88,43 @@ export function fieldTypeChanged(
       oldField.type
     }' to '${newField.type}'`,
     path: [type.name, oldField.name].join('.'),
+  };
+}
+
+export function fieldArgumentAdded(
+  type: GraphQLObjectType,
+  field: GraphQLField<any, any, any>,
+  arg: GraphQLArgument,
+): Change {
+  return {
+    criticality: isNonNullType(arg.type)
+      ? {
+          level: CriticalityLevel.Breaking,
+          reason: `Adding a required argument to an existing field is a breaking change because it will cause existing uses of this field to error.`,
+        }
+      : {
+          level: CriticalityLevel.NonBreaking,
+        },
+    message: `Argument '${arg.name}: ${arg.type}' added to field '${
+      type.name
+    }.${field.name}'`,
+    path: [type.name, field.name, arg.name].join('.'),
+  };
+}
+
+export function fieldArgumentRemoved(
+  type: GraphQLObjectType,
+  field: GraphQLField<any, any, any>,
+  arg: GraphQLArgument,
+): Change {
+  return {
+    criticality: {
+      level: CriticalityLevel.Breaking,
+      reason: `Removing a field argument is a breaking change because it will cause existing queries that use this argument to error.`,
+    },
+    message: `Argument '${arg.name}: ${arg.type}' was removed from field '${
+      type.name
+    }.${field.name}'`,
+    path: [type.name, field.name, arg.name].join('.'),
   };
 }

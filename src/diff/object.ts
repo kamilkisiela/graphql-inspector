@@ -9,7 +9,7 @@ import { fieldRemoved, fieldAdded } from '../changes/field';
 import { changesInField } from './field';
 import { diffArrays, unionArrays } from '../utils/arrays';
 
-export function changesInUnion(
+export function changesInObject(
   oldType: GraphQLObjectType,
   newType: GraphQLObjectType,
 ): Change[] {

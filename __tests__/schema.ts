@@ -2,33 +2,36 @@ import { buildASTSchema } from 'graphql';
 import gql from 'graphql-tag';
 
 import { diff } from '../src/index';
+import { CriticalityLevel, Change } from '../src/changes/change';
 
 test('same schema', () => {
   const schemaA = buildASTSchema(gql`
     type Query {
-      fieldA: String
+      fieldA: String!
     }
   `);
 
   const schemaB = buildASTSchema(gql`
     type Query {
-      fieldA: String
+      fieldA: String!
     }
   `);
 
-  expect(diff(schemaA, schemaB).length).toEqual(0);
+  const changes = diff(schemaA, schemaB);
+
+  expect(changes.length).toEqual(0);
 });
 
 test('renamed query', () => {
   const schemaA = buildASTSchema(gql`
     type Query {
-      fieldA: String
+      fieldA: String!
     }
   `);
 
   const schemaB = buildASTSchema(gql`
     type RootQuery {
-      fieldA: String
+      fieldA: String!
     }
 
     schema {
@@ -38,24 +41,62 @@ test('renamed query', () => {
 
   const changes = diff(schemaA, schemaB);
 
-  expect(changes.length).toEqual(3);
+  // Type Added
+  const added = changes.find(c => c.message.indexOf('added') !== -1) as Change;
+
+  expect(added).toBeDefined();
+  expect(added.criticality.level).toEqual(CriticalityLevel.NonBreaking);
+  expect(added.message).toEqual(`Type 'RootQuery' was added`);
+  expect(added.path).toEqual(`RootQuery`);
+
+  // Type Removed
+  const removed = changes.find(
+    c => c.message.indexOf('removed') !== -1,
+  ) as Change;
+
+  expect(removed).toBeDefined();
+  expect(removed.criticality.level).toEqual(CriticalityLevel.Breaking);
+  expect(removed.message).toEqual(`Type 'Query' was removed`);
+  expect(removed.path).toEqual(`Query`);
+
+  // Root Type Changed
+  const changed = changes.find(
+    c => c.message.indexOf('changed') !== -1,
+  ) as Change;
+
+  expect(changed).toBeDefined();
+  expect(changed.criticality.level).toEqual(CriticalityLevel.Breaking);
+  expect(changed.message).toEqual(
+    `Schema query root has changed from 'Query' to 'RootQuery'`,
+  );
 });
 
-test.skip('new field in Query', () => {
+test.only('new field and field changed in Query', () => {
   const schemaA = buildASTSchema(gql`
     type Query {
-      fieldA: String
+      fieldA: String!
     }
   `);
 
   const schemaB = buildASTSchema(gql`
     type Query {
-      fieldA: String
+      fieldA: Int
       fieldB: String
     }
   `);
 
   const changes = diff(schemaA, schemaB);
+  const changed = changes.find(c => c.message.includes('changed')) as Change;
+  const added = changes.find(c => c.message.includes('added')) as Change;
 
-  expect(changes.length).toEqual(1);
+  expect(changed).toBeDefined();
+  expect(changed.criticality.level).toEqual(CriticalityLevel.Breaking);
+  expect(changed.message).toEqual(
+    `Field 'Query.fieldA' changed type from 'String!' to 'Int'`,
+  );
+  expect(added).toBeDefined();
+  expect(added.criticality.level).toEqual(CriticalityLevel.NonBreaking);
+  expect(added.message).toEqual(
+    `Field 'fieldB' was added to object type 'Query'`,
+  );
 });

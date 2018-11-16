@@ -1,7 +1,7 @@
 import {
   GraphQLInputObjectType,
   GraphQLInputField,
-  GraphQLNonNull,
+  isNonNullType,
 } from 'graphql';
 
 import { Change, CriticalityLevel } from './change';
@@ -29,16 +29,15 @@ export function inputFieldAdded(
   field: GraphQLInputField,
 ): Change {
   return {
-    criticality:
-      field.type instanceof GraphQLNonNull
-        ? {
-            level: CriticalityLevel.Breaking,
-            reason:
-              'Adding a possible type to Unions may break existing clients that were not programming defensively against a new possible type.',
-          }
-        : {
-            level: CriticalityLevel.NonBreaking,
-          },
+    criticality: isNonNullType(field.type)
+      ? {
+          level: CriticalityLevel.Breaking,
+          reason:
+            'Adding a possible type to Unions may break existing clients that were not programming defensively against a new possible type.',
+        }
+      : {
+          level: CriticalityLevel.NonBreaking,
+        },
     message: `Member '${field.name}' was added to Union '${input.name}'`,
     path: [input.name, field.name].join('.'),
   };

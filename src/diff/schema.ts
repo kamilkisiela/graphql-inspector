@@ -6,10 +6,15 @@ import {
   GraphQLUnionType,
   GraphQLInputObjectType,
   GraphQLObjectType,
-  GraphQLInterfaceType,
+  isEnumType,
+  isUnionType,
+  isInputObjectType,
+  isObjectType,
+  isInterfaceType,
 } from 'graphql';
 
 import { unionArrays, diffArrays } from '../utils/arrays';
+import { isPrimitive } from '../utils/graphql';
 import { Change } from '../changes/change';
 import {
   schemaQueryTypeChanged,
@@ -26,6 +31,7 @@ import { directiveRemoved, directiveAdded } from '../changes/directive';
 import { changesInEnum } from './enum';
 import { changesInUnion } from './union';
 import { changesInInputObject } from './input';
+import { changesInObject } from './object';
 
 export function diff(
   oldSchema: GraphQLSchema,
@@ -66,8 +72,12 @@ function diffTypes(
 } {
   const oldTypeMap = oldSchema.getTypeMap();
   const newTypeMap = newSchema.getTypeMap();
-  const oldTypenames = Object.keys(oldTypeMap);
-  const newTypenames = Object.keys(newTypeMap);
+  const oldTypenames = Object.keys(oldTypeMap).filter(
+    name => !isPrimitive(name),
+  );
+  const newTypenames = Object.keys(newTypeMap).filter(
+    name => !isPrimitive(name),
+  );
 
   const added = diffArrays(newTypenames, oldTypenames).map(
     name => newTypeMap[name],
@@ -163,16 +173,18 @@ function changesInType(
   if ((oldType as any).kind !== (newType as any).kind) {
     changes.push(typeKindChanged(oldType, newType));
   } else {
-    if (oldType instanceof GraphQLEnumType) {
+    if (isEnumType(oldType)) {
       changes.push(...changesInEnum(oldType, newType as GraphQLEnumType));
-    } else if (oldType instanceof GraphQLUnionType) {
+    } else if (isUnionType(oldType)) {
       changes.push(...changesInUnion(oldType, newType as GraphQLUnionType));
-    } else if (oldType instanceof GraphQLInputObjectType) {
+    } else if (isInputObjectType(oldType)) {
       changes.push(
         ...changesInInputObject(oldType, newType as GraphQLInputObjectType),
       );
-    } else if (oldType instanceof GraphQLObjectType) {
-    } else if (oldType instanceof GraphQLInterfaceType) {
+    } else if (isObjectType(oldType)) {
+      changes.push(...changesInObject(oldType, newType as GraphQLObjectType));
+    } else if (isInterfaceType(oldType)) {
+      // TODO: interface
     }
   }
 
