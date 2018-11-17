@@ -6,6 +6,8 @@
     "validate": "node ../dist/cli.js validate ./documents/*.graphql ./schemas/schema.graphql",
     "validate:none": "node ../dist/cli.js validate ./no-documents/*.graphql ./schemas/schema.graphql",
     "similar": "node ../dist/cli.js similar ./schemas/similar.graphql",
+    "similar:type": "node ../dist/cli.js similar ./schemas/similar.graphql --type Post",
+    "similar:loose": "node ../dist/cli.js similar ./schemas/similar.graphql --threshold 0.1",
     "open-help": "node ../dist/cli.js --help"
   }
 }

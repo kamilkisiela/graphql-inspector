@@ -6,7 +6,7 @@
 [![renovate-app badge](https://img.shields.io/badge/renovate-app-blue.svg)](https://renovateapp.com/)
 
 GraphQL Inspector ouputs a list of changes between two GraphQL schemas. Every change is precisely explained and marked as breaking, non-breaking or dangerous.
-It also helps you validate documents and fragments.
+It helps you validate documents and fragments and find similar types.
 
 ![Example](./demo.gif)
 
@@ -21,6 +21,7 @@ yarn add graphql-inspector
 ```bash
 graphql-inspector diff OLD_SCHEMA NEW_SCHEMA
 graphql-inspector validate DOCUMENTS SCHEMA
+graphql-inspector similar SCHEMA
 graphql-inspector help
 ```
 
@@ -45,6 +46,12 @@ Detected 1 invalid document:
 
 🛑  ./documents/post.graphql:
   - Cannot query field createdAtSomePoint on type Post. Did you mean createdAt?
+
+
+$ graphql-inspector similar SCHEMA
+
+✅ Post
+Best match (60%): BlogPost
 
 ```
 
