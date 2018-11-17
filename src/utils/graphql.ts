@@ -60,3 +60,18 @@ export function isPrimitive(type: GraphQLNamedType | string): boolean {
     ) !== -1
   );
 }
+
+export function isCommon(type: GraphQLNamedType | string): boolean {
+  return (
+    [
+      '__Schema',
+      '__Type',
+      '__TypeKind',
+      '__Field',
+      '__InputValue',
+      '__EnumValue',
+      '__Directive',
+      '__DirectiveLocation',
+    ].indexOf(typeof type === 'string' ? type : type.name) !== -1
+  );
+}

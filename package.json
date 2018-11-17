@@ -50,7 +50,6 @@
     "jest": "23.6.0",
     "lint-staged": "8.0.4",
     "prettier": "1.15.2",
-    "string-similarity": "2.0.0",
     "ts-jest": "23.10.4",
     "typescript": "3.1.6"
   },
@@ -61,6 +60,7 @@
     "is-glob": "4.0.0",
     "is-valid-path": "0.1.1",
     "log-symbols": "2.2.0",
-    "node-fetch": "2.3.0"
+    "node-fetch": "2.3.0",
+    "string-similarity": "2.0.0"
   }
 }
