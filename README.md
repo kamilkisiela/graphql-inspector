@@ -58,12 +58,21 @@ Best match (60%): BlogPost
 ## Programatic Usage
 
 ```typescript
-import { diff, validate, Change, InvalidDocument } from 'graphql-inspector';
+import {
+  diff,
+  validate,
+  similar,
+  Change,
+  InvalidDocument,
+  SimilarMap,
+} from 'graphql-inspector';
 
 // diff
 const changes: Change[] = diff(schemaA, schemaB);
 // validate
 const invalid: InvalidDocument[] = validate(documentsGlob, schema);
+// similar
+const similar: SimilarMap = similar(schema, typename, threshold);
 // ...
 ```
 
