@@ -5,10 +5,21 @@
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 [![renovate-app badge](https://img.shields.io/badge/renovate-app-blue.svg)](https://renovateapp.com/)
 
-GraphQL Inspector ouputs a list of changes between two GraphQL schemas. Every change is precisely explained and marked as breaking, non-breaking or dangerous.
-It helps you validate documents and fragments and find similar types.
+**GraphQL Inspector** ouputs a list of changes between two GraphQL schemas. Every change is precisely explained and marked as breaking, non-breaking or dangerous.
+It helps you validate documents and fragments against a schema and even find similar or duplicated types.
 
 ![Example](./demo.gif)
+
+## Features
+
+Major features:
+
+- **Compares schemas**
+- **Finds breaking or dangerous changes**
+- **Validates documents against a schema**
+- **Finds similar / duplicated types**
+
+GraphQL Inspector has a **CLI** and also a **programatic API**, so you can use it however you want to and even build tools on top of it.
 
 ## Installation
 
@@ -19,15 +30,16 @@ yarn add graphql-inspector
 ## CLI Usage
 
 ```bash
-graphql-inspector diff OLD_SCHEMA NEW_SCHEMA
-graphql-inspector validate DOCUMENTS SCHEMA
-graphql-inspector similar SCHEMA
-graphql-inspector help
+graphql-inspector diff     <OLD_SCHEMA> <NEW_SCHEMA>
+graphql-inspector validate <DOCUMENTS>  <SCHEMA>
+graphql-inspector similar  <SCHEMA>
+graphql-inspector --help
 ```
 
 ### Examples
 
 ```bash
+# Compare schemas
 $ graphql-inspector diff OLD_SCHEMA NEW_SCHEMA
 
 Detected the following changes (4) between schemas:
@@ -39,7 +51,7 @@ Detected the following changes (4) between schemas:
 Detected 1 breaking change
 
 
-
+# Validate documents
 $ graphql-inspector validate DOCUMENTS SCHEMA
 
 Detected 1 invalid document:
@@ -48,6 +60,7 @@ Detected 1 invalid document:
   - Cannot query field createdAtSomePoint on type Post. Did you mean createdAt?
 
 
+# Find similar types
 $ graphql-inspector similar SCHEMA
 
 ✅ Post
