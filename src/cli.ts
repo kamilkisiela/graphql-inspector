@@ -4,7 +4,7 @@ import * as commander from 'commander';
 import {diff} from './cli/commands/diff';
 
 commander
-  .command('diff <old-schema> <new-schema>')
+  .command('diff <old> <new>')
   .description('Diff two GraphQL schemas')
   .action(diff);
 
