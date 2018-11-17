@@ -17,7 +17,7 @@ import {
 } from '../changes/directive';
 import {diffArrays, unionArrays} from '../utils/arrays';
 
-export function changesInEnum(
+export function changesInDirective(
   oldDirective: GraphQLDirective,
   newDirective: GraphQLDirective,
 ): Change[] {
@@ -61,7 +61,7 @@ export function changesInEnum(
   // arguments removed
   changes.push(
     ...diffArrays(oldNames, newNames).map(name =>
-      directiveArgumentRemoved(newDirective, newDirective.args.find(
+      directiveArgumentRemoved(oldDirective, oldDirective.args.find(
         a => a.name === name,
       ) as GraphQLArgument),
     ),
@@ -69,8 +69,12 @@ export function changesInEnum(
 
   // common arguments
   unionArrays(oldNames, newNames).forEach(name => {
-    const oldArg = oldDirective.args.find(a => a.name === name);
-    const newArg = newDirective.args.find(a => a.name === name);
+    const oldArg = oldDirective.args.find(
+      a => a.name === name,
+    ) as GraphQLArgument;
+    const newArg = newDirective.args.find(
+      a => a.name === name,
+    ) as GraphQLArgument;
 
     changes.push(...changesInDirectiveArgument(oldDirective, oldArg, newArg));
   });

@@ -2,6 +2,7 @@ import * as logSymbols from 'log-symbols';
 import chalk from 'chalk';
 
 import {Change, CriticalityLevel} from '../changes/change';
+import {InvalidDocument} from 'src/validate';
 
 export function getSymbol(level: CriticalityLevel): string {
   const symbols = {
@@ -18,11 +19,23 @@ export function renderChange(change: Change): string[] {
 }
 
 export function bolderize(msg: string): string {
-  const findQuotes = /\'([^']+)\'/gim;
+  const findSingleQuotes = /\'([^']+)\'/gim;
+  const findDoubleQuotes = /\"([^"]+)\"/gim;
 
-  return msg.replace(findQuotes, (_: string, value: string) =>
-    chalk.bold(value),
-  );
+  return msg
+    .replace(findSingleQuotes, (_: string, value: string) => chalk.bold(value))
+    .replace(findDoubleQuotes, (_: string, value: string) => chalk.bold(value));
+}
+
+export function renderInvalidDocument(invalidDoc: InvalidDocument): string[] {
+  const errors = invalidDoc.errors.map(e => ` - ${bolderize(e.message)}`).join('\n');
+
+  return [
+    logSymbols.error,
+    chalk.redBright(bolderize(invalidDoc.source.name + ':\n\n')),
+    errors,
+    '\n\n',
+  ];
 }
 
 export interface Renderer {

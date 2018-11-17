@@ -27,7 +27,7 @@ export function objectTypeInterfaceRemoved(
       reason:
         'Removing an interface from an object type can cause existing queries that use this in a fragment spread to error.',
     },
-    message: `'${type.name}' object no longer implements '${
+    message: `'${type.name}' object type no longer implements '${
       iface.name
     }' interface`,
     path: type.name,

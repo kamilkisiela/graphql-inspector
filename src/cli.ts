@@ -1,7 +1,9 @@
 #!/usr/bin/env node
 
 import * as commander from 'commander';
+
 import {diff} from './cli/commands/diff';
+import {validate} from './cli/commands/validate';
 
 commander
   .command('diff <old> <new>')
@@ -9,8 +11,8 @@ commander
   .action(diff);
 
 commander
-  .command('check <documents> <schema>')
-  .description('Check documents against the schema')
-  .action(diff);
+  .command('validate <documents> <schema>')
+  .description('Validate documents against the schema')
+  .action(validate);
 
 commander.parse(process.argv);

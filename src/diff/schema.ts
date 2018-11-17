@@ -2,16 +2,12 @@ import {
   GraphQLSchema,
   GraphQLNamedType,
   GraphQLDirective,
-  GraphQLEnumType,
-  GraphQLUnionType,
-  GraphQLInputObjectType,
   GraphQLObjectType,
   isEnumType,
   isUnionType,
   isInputObjectType,
   isObjectType,
   isInterfaceType,
-  GraphQLInterfaceType,
 } from 'graphql';
 
 import {unionArrays, diffArrays} from '../utils/arrays';
@@ -34,6 +30,7 @@ import {changesInUnion} from './union';
 import {changesInInputObject} from './input';
 import {changesInObject} from './object';
 import {changesInInterface} from './interface';
+import {changesInDirective} from './directive';
 
 export function diff(
   oldSchema: GraphQLSchema,
@@ -57,6 +54,10 @@ export function diff(
   types.common.forEach(({inOld, inNew}) => {
     changes.push(...changesInType(inOld, inNew));
   });
+  // Changes in Directives
+  directives.common.forEach(({inOld, inNew}) => {
+    changes.push(...changesInDirective(inOld, inNew));
+  })
 
   return changes;
 }
@@ -116,7 +117,7 @@ function diffDirectives(
   const newNames = newDirectives.map(d => d.name);
 
   const added = diffArrays(newNames, oldNames).map(name =>
-    oldDirectives.find(d => d.name === name),
+    newDirectives.find(d => d.name === name),
   ) as GraphQLDirective[];
   const removed = diffArrays(oldNames, newNames).map(name =>
     oldDirectives.find(d => d.name === name),
@@ -170,26 +171,20 @@ function changesInType(
   oldType: GraphQLNamedType,
   newType: GraphQLNamedType,
 ): Change[] {
-  const changes: Change[] = [];
+  let changes: Change[] = [];
 
-  if ((oldType as any).kind !== (newType as any).kind) {
-    changes.push(typeKindChanged(oldType, newType));
+  if (isEnumType(oldType) && isEnumType(newType)) {
+    changes = changesInEnum(oldType, newType);
+  } else if (isUnionType(oldType) && isUnionType(newType)) {
+    changes = changesInUnion(oldType, newType);
+  } else if (isInputObjectType(oldType) && isInputObjectType(newType)) {
+    changes = changesInInputObject(oldType, newType);
+  } else if (isObjectType(oldType) && isObjectType(newType)) {
+    changes = changesInObject(oldType, newType);
+  } else if (isInterfaceType(oldType) && isInterfaceType(newType)) {
+    changes = changesInInterface(oldType, newType);
   } else {
-    if (isEnumType(oldType)) {
-      changes.push(...changesInEnum(oldType, newType as GraphQLEnumType));
-    } else if (isUnionType(oldType)) {
-      changes.push(...changesInUnion(oldType, newType as GraphQLUnionType));
-    } else if (isInputObjectType(oldType)) {
-      changes.push(
-        ...changesInInputObject(oldType, newType as GraphQLInputObjectType),
-      );
-    } else if (isObjectType(oldType)) {
-      changes.push(...changesInObject(oldType, newType as GraphQLObjectType));
-    } else if (isInterfaceType(oldType)) {
-      changes.push(
-        ...changesInInterface(oldType, newType as GraphQLInterfaceType),
-      );
-    }
+    changes = [typeKindChanged(oldType, newType)];
   }
 
   if (oldType.description !== newType.description) {

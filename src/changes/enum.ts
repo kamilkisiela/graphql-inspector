@@ -41,9 +41,16 @@ export function enumValueDescriptionChanged(
     criticality: {
       level: CriticalityLevel.NonBreaking,
     },
-    message: `Description for enum value '${newEnum.name}.${
-      newValue.name
-    }' changed from '${oldValue.description}' to '${newValue.description}'`,
+    message:
+      typeof oldValue.description === 'undefined'
+        ? `Description '${newValue.description}' was added to enum value '${
+            newEnum.name
+          }.${newValue.name}'`
+        : `Description for enum value '${newEnum.name}.${
+            newValue.name
+          }' changed from '${oldValue.description}' to '${
+            newValue.description
+          }'`,
     path: [newEnum.name, oldValue.name].join('.'),
   };
 }
@@ -65,7 +72,7 @@ export function enumValueDeprecationReasonChanged(
         }' to '${newValue.deprecationReason}'`
       : `Enum value '${newEnum.name}.${
           newValue.name
-        }' was deprecated with reason`,
+        }' was deprecated with reason '${newValue.deprecationReason}'`,
     path: [newEnum.name, oldValue.name].join('.'),
   };
 }

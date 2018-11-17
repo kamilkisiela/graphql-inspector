@@ -6,6 +6,7 @@
     ]
   },
   "include": [
-    "__tests__/**/*.ts"
+    "src/typings.d.ts",
+    "__tests__/**/*.ts",
   ]
 }

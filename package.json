@@ -30,29 +30,40 @@
     "clean": "rm -rf dist/",
     "precommit": "lint-staged",
     "prebuild": "npm run clean",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "try:diff": "./dist/cli.js diff ./__tests__/assets/old.graphql ./__tests__/assets/new.graphql",
+    "try:validate": "./dist/cli.js validate ./__tests__/assets/document.graphql ./__tests__/assets/old.graphql"
   },
   "peerDependencies": {
     "graphql": "^0.13.0 || ^14.0.0"
   },
   "devDependencies": {
     "@types/commander": "2.12.2",
+    "@types/glob": "7.1.1",
     "@types/graphql": "14.0.3",
+    "@types/is-glob": "4.0.0",
     "@types/jest": "23.3.9",
     "@types/log-symbols": "2.0.0",
     "@types/node-fetch": "2.1.3",
+    "@types/string-similarity": "1.2.0",
+    "@types/uuid": "3.4.4",
     "graphql": "14.0.2",
     "graphql-tag": "2.10.0",
     "jest": "23.6.0",
     "lint-staged": "8.0.4",
     "prettier": "1.15.2",
+    "string-similarity": "2.0.0",
     "ts-jest": "23.10.4",
     "typescript": "3.1.6"
   },
   "dependencies": {
     "chalk": "2.4.1",
     "commander": "2.19.0",
+    "glob": "7.1.3",
+    "is-glob": "4.0.0",
+    "is-valid-path": "0.1.1",
     "log-symbols": "2.2.0",
-    "node-fetch": "2.3.0"
+    "node-fetch": "2.3.0",
+    "uuid": "3.3.2"
   }
 }

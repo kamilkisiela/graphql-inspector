@@ -40,7 +40,7 @@ export function fieldArgumentDefaultChanged(
         'Changing the default value for an argument may change the runtime behaviour of a field if it was never provided.',
     },
     message:
-      typeof newArg.defaultValue === 'undefined'
+      typeof oldArg.defaultValue === 'undefined'
         ? `Default value '${newArg.defaultValue}' was added to argument '${
             newArg.name
           }' on field '${type.name}.${field.name}'`

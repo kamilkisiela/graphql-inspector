@@ -42,8 +42,20 @@ export async function diff(
       });
 
       if (hasBreaking(changes)) {
-        renderer.emit(chalk.redBright('\nDetected some breaking changes\n'));
+        const breakingCount = changes.filter(
+          c => c.criticality.level === CriticalityLevel.Breaking,
+        ).length;
+
+        renderer.emit(
+          chalk.redBright(
+            `\nDetected ${breakingCount} breaking change${
+              breakingCount > 1 ? 's' : ''
+            }\n`,
+          ),
+        );
         process.exit(1);
+      } else {
+        renderer.emit(chalk.greenBright('\nNo breaking changes detected\n'));
       }
     }
   } catch (e) {

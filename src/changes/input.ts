@@ -17,7 +17,7 @@ export function inputFieldRemoved(
       reason:
         'Removing an input field will cause existing queries that use this input field to error.',
     },
-    message: `Input field '${field.name}' was removed from Input object type '${
+    message: `Input field '${field.name}' was removed from input object type '${
       input.name
     }'`,
     path: [input.name, field.name].join('.'),
@@ -38,7 +38,9 @@ export function inputFieldAdded(
       : {
           level: CriticalityLevel.NonBreaking,
         },
-    message: `Member '${field.name}' was added to Union '${input.name}'`,
+    message: `Input field '${field.name}' was added to input object type '${
+      input.name
+    }'`,
     path: [input.name, field.name].join('.'),
   };
 }
@@ -81,7 +83,7 @@ export function inputFieldDefaultValueChanged(
   };
 }
 
-export function ipnputFieldTypeChanged(
+export function inputFieldTypeChanged(
   input: GraphQLInputObjectType,
   oldField: GraphQLInputField,
   newField: GraphQLInputField,
@@ -98,9 +100,9 @@ export function ipnputFieldTypeChanged(
           reason:
             'Changing the type of an input field can cause existing queries that use this field to error.',
         },
-    message: `Input field '${input.name}.${oldField.name}' changed type from '${
-      oldField.type
-    }' to '${newField.type}'`,
+    message: `Input field '${input.name}.${
+      oldField.name
+    }' changed type from '${oldField.type.toString()}' to '${newField.type.toString()}'`,
     path: [input.name, oldField.name].join('.'),
   };
 }

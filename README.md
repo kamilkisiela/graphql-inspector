@@ -20,6 +20,7 @@ yarn add graphql-inspector
 
 ```bash
 graphql-inspector diff OLD_SCHEMA NEW_SCHEMA
+graphql-inspector validate DOCUMENTS SCHEMA
 graphql-inspector help
 ```
 
@@ -28,24 +29,40 @@ graphql-inspector help
 ```bash
 $ graphql-inspector diff OLD_SCHEMA NEW_SCHEMA
 
-Detected the following changes between schemas:
+Detected the following changes (4) between schemas:
 
 🛑  Field `name` was removed from object type `Post`
 ⚠️  Enum value `ARCHIVED` was added to enum `Status`
 ✅  Field `createdAt` was added to object type `Post`
+
+Detected 1 breaking change
+
+
+
+$ graphql-inspector validate DOCUMENTS SCHEMA
+
+Detected 1 invalid document:
+
+🛑  ./documents/post.graphql:
+  - Cannot query field createdAtSomePoint on type Post. Did you mean createdAt?
+
 ```
 
 ## Programatic Usage
 
 ```typescript
-import { diff } from 'graphql-inspector';
+import { diff, validate, Change, InvalidDocument } from 'graphql-inspector';
 
-const changes = diff(schemaA, schemaB);
+// diff
+const changes: Change[] = diff(schemaA, schemaB);
+// validate
+const invalid: InvalidDocument[] = validate(documentsGlob, schema);
+// ...
 ```
 
 ## Related
 
-This library was ported to NodeJS from [Ruby's GraphQL Schema Comparator](https://github.com/xuorig/graphql-schema_comparator)
+Some part of the library was ported to NodeJS from [Ruby's GraphQL Schema Comparator](https://github.com/xuorig/graphql-schema_comparator)
 
 ## License
 

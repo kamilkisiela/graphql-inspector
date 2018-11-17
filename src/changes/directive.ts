@@ -6,7 +6,7 @@ import {
 } from 'graphql';
 
 import {Change, CriticalityLevel} from './change';
-import {safeChangeForInputValue} from 'src/utils/graphql';
+import {safeChangeForInputValue} from '../utils/graphql';
 
 export function directiveRemoved(directive: GraphQLDirective): Change {
   return {
@@ -131,9 +131,14 @@ export function directiveArgumentDefaultValueChanged(
       reason:
         'Changing the default value for an argument may change the runtime behaviour of a field if it was never provided.',
     },
-    message: `Default value for argument '${oldArg.name}' on directive '${
-      directive.name
-    }' changed from '${oldArg.defaultValue}' to '${newArg.defaultValue}'`,
+    message:
+      typeof oldArg.defaultValue === 'undefined'
+        ? `Default value '${newArg.defaultValue}' was added to argument '${
+            newArg.name
+          }' on directive '${directive.name}'`
+        : `Default value for argument '${oldArg.name}' on directive '${
+            directive.name
+          }' changed from '${oldArg.defaultValue}' to '${newArg.defaultValue}'`,
     path: `@${directive.name}.${oldArg.name}`,
   };
 }

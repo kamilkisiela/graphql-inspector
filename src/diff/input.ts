@@ -6,6 +6,7 @@ import {
   inputFieldRemoved,
   inputFieldDescriptionChanged,
   inputFieldDefaultValueChanged,
+  inputFieldTypeChanged,
 } from '../changes/input';
 
 export function changesInInputObject(
@@ -51,7 +52,7 @@ function changesInInputField(
   }
 
   if (oldField.type.toString() !== newField.type.toString()) {
-    changes.push(inputFieldDefaultValueChanged(input, oldField, newField));
+    changes.push(inputFieldTypeChanged(input, oldField, newField));
   }
 
   // TODO: diff directives
