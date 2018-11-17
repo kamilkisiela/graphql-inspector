@@ -1,16 +1,17 @@
 {
-  "name": "graphql-schema-comparator",
-  "version": "0.0.2",
-  "description": "Compare two GraphQL Schemas",
+  "name": "graphql-inspector",
+  "version": "0.0.1",
+  "description": "Tooling for GraphQL. Compare GraphQL Schemas, check documents, find breaking changes.",
   "keywords": [
     "graphql",
+    "graphql-inspector",
     "tools",
     "cli"
   ],
   "sideEffects": false,
   "main": "dist/index.js",
   "bin": {
-    "graphql-diff": "dist/cli.js"
+    "graphql-inspector": "dist/cli.js"
   },
   "author": {
     "name": "Kamil Kisiela",
@@ -20,7 +21,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "kamilkisiela/graphql-schema-comparator"
+    "url": "kamilkisiela/graphql-inspector"
   },
   "scripts": {
     "build": "tsc",

@@ -1,11 +1,16 @@
 #!/usr/bin/env node
 
 import * as commander from 'commander';
-import {execute} from './cli/execute';
+import {diff} from './cli/commands/diff';
 
-const program = commander
-  .usage('<old> <new>')
-  .description('Compare two schemas')
-  .action(execute);
+commander
+  .command('diff <old-schema> <new-schema>')
+  .description('Diff two GraphQL schemas')
+  .action(diff);
 
-program.parse(process.argv);
+commander
+  .command('check <documents> <schema>')
+  .description('Check documents against the schema')
+  .action(diff);
+
+commander.parse(process.argv);

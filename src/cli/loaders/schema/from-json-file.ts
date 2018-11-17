@@ -3,7 +3,7 @@ import {existsSync, readFileSync} from 'fs';
 import {isAbsolute, resolve} from 'path';
 
 import {SchemaHandler} from './loader';
-import {parseBOM} from '../../utils/string';
+import {parseBOM} from '../../../utils/string';
 
 function isJSONFile(pointer: string): boolean {
   return /\.json$/i.test(pointer);

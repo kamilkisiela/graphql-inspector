@@ -1,16 +1,16 @@
 import chalk from 'chalk';
 import * as logSymbols from 'log-symbols';
 
-import {loadSchema} from '../cli/loaders';
-import {renderChange, Renderer, ConsoleRenderer} from '../cli/render';
-import {diff} from '../diff/schema';
-import {Change, CriticalityLevel} from '../changes/change';
+import {loadSchema} from '../loaders/schema';
+import {diff as diffSchema} from '../../diff/schema';
+import {renderChange, Renderer, ConsoleRenderer} from '../render';
+import {Change, CriticalityLevel} from '../../changes/change';
 
 function hasBreaking(changes: Change[]): boolean {
   return changes.some(c => c.criticality.level === CriticalityLevel.Breaking);
 }
 
-export async function execute(
+export async function diff(
   oldSchemaPointer: string,
   newSchemaPointer: string,
   options?: {
@@ -23,7 +23,7 @@ export async function execute(
     const oldSchema = await loadSchema(oldSchemaPointer);
     const newSchema = await loadSchema(newSchemaPointer);
 
-    const changes = diff(oldSchema, newSchema);
+    const changes = diffSchema(oldSchema, newSchema);
 
     if (!changes.length) {
       renderer.emit(

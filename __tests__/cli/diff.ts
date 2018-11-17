@@ -1,4 +1,4 @@
-import {execute} from '../../src/cli/execute';
+import {diff} from '../../src/cli/commands/diff';
 import {ConsoleRenderer} from '../../src/cli/render';
 
 const oldSchema = '../assets/old.graphql';
@@ -8,7 +8,7 @@ function hasMessage(msg: string) {
   return (args: string[]) => args.join('').indexOf(msg) !== -1;
 }
 
-describe('cli/execute', () => {
+describe('cli/diff', () => {
   const renderer = new ConsoleRenderer();
   let spyProcessExit: jest.SpyInstance;
   let spyProcessCwd: jest.SpyInstance;
@@ -31,7 +31,7 @@ describe('cli/execute', () => {
   });
 
   test('should load graphql file', async () => {
-    await execute(oldSchema, oldSchema, {
+    await diff(oldSchema, oldSchema, {
       renderer,
     });
 
@@ -47,7 +47,7 @@ describe('cli/execute', () => {
   });
 
   test('should load different schema from graphql file', async () => {
-    await execute(oldSchema, newSchema, {
+    await diff(oldSchema, newSchema, {
       renderer,
     });
 

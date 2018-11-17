@@ -3,7 +3,7 @@ import {existsSync, readFileSync} from 'fs';
 import {isAbsolute, resolve} from 'path';
 
 import {SchemaHandler} from './loader';
-import {stripBOM} from '../../utils/string';
+import {stripBOM} from '../../../utils/string';
 
 function isGraphQLFile(pointer: string): boolean {
   return /\.(graphql|gql|graphqls)$/i.test(pointer);
