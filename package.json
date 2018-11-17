@@ -1,6 +1,6 @@
 {
   "name": "graphql-inspector",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Tooling for GraphQL. Compare GraphQL Schemas, check documents, find breaking changes.",
   "keywords": [
     "graphql",
@@ -30,9 +30,7 @@
     "clean": "rm -rf dist/",
     "precommit": "lint-staged",
     "prebuild": "npm run clean",
-    "prepublishOnly": "npm run build",
-    "try:diff": "./dist/cli.js diff ./__tests__/assets/old.graphql ./__tests__/assets/new.graphql",
-    "try:validate": "./dist/cli.js validate ./__tests__/assets/document.graphql ./__tests__/assets/old.graphql"
+    "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
     "graphql": "^0.13.0 || ^14.0.0"

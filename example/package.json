@@ -1,0 +1,9 @@
+{
+  "name": "example",
+  "scripts": {
+    "diff": "node ../dist/cli.js diff ./schemas/schema.graphql ./schemas/new.graphql",
+    "diff:same": "node ../dist/cli.js diff ./schemas/schema.graphql ./schemas/schema.graphql",
+    "validate": "node ../dist/cli.js validate ./documents/*.graphql ./schemas/schema.graphql",
+    "validate:none": "node ../dist/cli.js validate ./no-documents/*.graphql ./schemas/schema.graphql"
+  }
+}
