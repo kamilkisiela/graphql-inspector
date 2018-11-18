@@ -1,5 +1,5 @@
 import {GraphQLInputObjectType, GraphQLInputField} from 'graphql';
-import {Change} from '../changes/change';
+import {Change} from './changes/change';
 import {diffArrays, unionArrays} from '../utils/arrays';
 import {
   inputFieldAdded,
@@ -7,7 +7,7 @@ import {
   inputFieldDescriptionChanged,
   inputFieldDefaultValueChanged,
   inputFieldTypeChanged,
-} from '../changes/input';
+} from './changes/input';
 
 export function changesInInputObject(
   oldInput: GraphQLInputObjectType,

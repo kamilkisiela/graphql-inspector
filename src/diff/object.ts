@@ -1,11 +1,11 @@
 import {GraphQLObjectType, GraphQLInterfaceType} from 'graphql';
 
-import {Change} from '../changes/change';
+import {Change} from './changes/change';
 import {
   objectTypeInterfaceAdded,
   objectTypeInterfaceRemoved,
-} from '../changes/object';
-import {fieldRemoved, fieldAdded} from '../changes/field';
+} from './changes/object';
+import {fieldRemoved, fieldAdded} from './changes/field';
 import {changesInField} from './field';
 import {diffArrays, unionArrays} from '../utils/arrays';
 

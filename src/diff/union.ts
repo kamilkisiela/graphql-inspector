@@ -1,7 +1,7 @@
 import {GraphQLUnionType, GraphQLObjectType} from 'graphql';
-import {Change} from '../changes/change';
+import {Change} from './changes/change';
 import {diffArrays} from '../utils/arrays';
-import {unionMemberAdded, unionMemberRemoved} from '../changes/union';
+import {unionMemberAdded, unionMemberRemoved} from './changes/union';
 
 export function changesInUnion(
   oldUnion: GraphQLUnionType,

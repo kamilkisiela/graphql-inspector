@@ -5,12 +5,12 @@ import {
   GraphQLInterfaceType,
 } from 'graphql';
 
-import {Change} from '../changes/change';
+import {Change} from './changes/change';
 import {
   fieldArgumentDescriptionChanged,
   fieldArgumentDefaultChanged,
   fieldArgumentTypeChanged,
-} from '../changes/argument';
+} from './changes/argument';
 
 export function changesInArgument(
   type: GraphQLObjectType | GraphQLInterfaceType,

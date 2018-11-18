@@ -5,8 +5,8 @@ import {
   enumValueAdded,
   enumValueDescriptionChanged,
   enumValueDeprecationReasonChanged,
-} from '../changes/enum';
-import {Change} from '../changes/change';
+} from './changes/enum';
+import {Change} from './changes/change';
 import {unionArrays, diffArrays} from '../utils/arrays';
 
 export function changesInEnum(

@@ -3,7 +3,7 @@ import gql from 'graphql-tag';
 import * as stringSimilarity from 'string-similarity';
 
 import {diff} from '../../src/index';
-import {CriticalityLevel, Change} from '../../src/changes/change';
+import {CriticalityLevel, Change} from '../../src/diff/changes/change';
 
 test('same schema', () => {
   const schemaA = buildASTSchema(gql`

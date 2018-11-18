@@ -1,6 +1,6 @@
 import {GraphQLEnumType, GraphQLEnumValue} from 'graphql';
 
-import {Change, CriticalityLevel} from '../changes/change';
+import {Change, CriticalityLevel} from './change';
 
 export function enumValueRemoved(
   oldEnum: GraphQLEnumType,

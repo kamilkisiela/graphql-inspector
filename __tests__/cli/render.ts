@@ -1,6 +1,6 @@
 import chalk from 'chalk';
 import {renderChange, getSymbol} from '../../src/cli/render';
-import {Change, CriticalityLevel} from '../../src/changes/change';
+import {Change, CriticalityLevel} from '../../src/diff/changes/change';
 
 test('render dangerous', () => {
   const change: Change = {

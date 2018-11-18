@@ -6,7 +6,7 @@ import {
 } from 'graphql';
 
 import {Change, CriticalityLevel} from './change';
-import {safeChangeForInputValue} from '../utils/graphql';
+import {safeChangeForInputValue} from '../../utils/graphql';
 
 export function directiveRemoved(directive: GraphQLDirective): Change {
   return {

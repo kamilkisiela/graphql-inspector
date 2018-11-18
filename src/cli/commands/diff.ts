@@ -4,7 +4,7 @@ import * as logSymbols from 'log-symbols';
 import {loadSchema} from '../loaders/schema';
 import {diff as diffSchema} from '../../diff/schema';
 import {renderChange, Renderer, ConsoleRenderer} from '../render';
-import {Change, CriticalityLevel} from '../../changes/change';
+import {Change, CriticalityLevel} from '../../diff/changes/change';
 
 function hasBreaking(changes: Change[]): boolean {
   return changes.some(c => c.criticality.level === CriticalityLevel.Breaking);

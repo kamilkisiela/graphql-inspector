@@ -1,8 +1,8 @@
 import * as logSymbols from 'log-symbols';
 import chalk from 'chalk';
 
-import {Change, CriticalityLevel} from '../changes/change';
-import {InvalidDocument} from 'src/validate';
+import {Change, CriticalityLevel} from '../diff/changes/change';
+import {InvalidDocument} from '../validate';
 
 export function getSymbol(level: CriticalityLevel): string {
   const symbols = {

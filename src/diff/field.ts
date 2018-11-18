@@ -5,14 +5,14 @@ import {
   GraphQLInterfaceType,
 } from 'graphql';
 
-import {Change} from '../changes/change';
+import {Change} from './changes/change';
 import {
   fieldDescriptionChanged,
   fieldDeprecationReasonChanged,
   fieldTypeChanged,
   fieldArgumentAdded,
   fieldArgumentRemoved,
-} from '../changes/field';
+} from './changes/field';
 import {changesInArgument} from './argument';
 import {unionArrays, diffArrays} from '../utils/arrays';
 

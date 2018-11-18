@@ -12,19 +12,19 @@ import {
 
 import {unionArrays, diffArrays} from '../utils/arrays';
 import {isPrimitive} from '../utils/graphql';
-import {Change} from '../changes/change';
+import {Change} from './changes/change';
 import {
   schemaQueryTypeChanged,
   schemaMutationTypeChanged,
   schemaSubscriptionTypeChanged,
-} from '../changes/schema';
+} from './changes/schema';
 import {
   typeRemoved,
   typeAdded,
   typeKindChanged,
   typeDescriptionChanged,
-} from '../changes/type';
-import {directiveRemoved, directiveAdded} from '../changes/directive';
+} from './changes/type';
+import {directiveRemoved, directiveAdded} from './changes/directive';
 import {changesInEnum} from './enum';
 import {changesInUnion} from './union';
 import {changesInInputObject} from './input';

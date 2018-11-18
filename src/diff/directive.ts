@@ -4,7 +4,7 @@ import {
   GraphQLArgument,
 } from 'graphql';
 
-import {Change} from '../changes/change';
+import {Change} from './changes/change';
 import {
   directiveDescriptionChanged,
   directiveLocationAdded,
@@ -14,7 +14,7 @@ import {
   directiveArgumentDescriptionChanged,
   directiveArgumentDefaultValueChanged,
   directiveArgumentTypeChanged,
-} from '../changes/directive';
+} from './changes/directive';
 import {diffArrays, unionArrays} from '../utils/arrays';
 
 export function changesInDirective(
