@@ -12,6 +12,7 @@
     "noUnusedParameters": true,
 
     "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
     "baseUrl": "./",
     "types": [],
     "lib": [

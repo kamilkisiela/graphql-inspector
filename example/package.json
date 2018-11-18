@@ -8,6 +8,7 @@
     "similar": "node ../dist/cli.js similar ./schemas/similar.graphql",
     "similar:type": "node ../dist/cli.js similar ./schemas/similar.graphql --type Post",
     "similar:loose": "node ../dist/cli.js similar ./schemas/similar.graphql --threshold 0.1",
+    "serve": "node ../dist/cli.js serve ./schemas/schema.graphql",
     "open-help": "node ../dist/cli.js --help"
   }
 }

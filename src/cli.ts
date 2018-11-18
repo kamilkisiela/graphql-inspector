@@ -5,6 +5,7 @@ import * as commander from 'commander';
 import {diff} from './cli/commands/diff';
 import {validate} from './cli/commands/validate';
 import {similar} from './cli/commands/similar';
+import {serve} from './cli/commands/serve';
 
 commander
   .command('diff <old> <new>')
@@ -24,5 +25,10 @@ commander
   .action((schema: string, cmd: commander.Command) => {
     similar(schema, cmd.type, cmd.threshold);
   });
+
+commander
+  .command('serve <schema>')
+  .description('Serves a GraphQL API with GraphQL Playground')
+  .action(serve);
 
 commander.parse(process.argv);
