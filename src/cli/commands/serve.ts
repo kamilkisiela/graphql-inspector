@@ -28,7 +28,7 @@ export async function serve(
     renderer.emit(
       chalk.greenBright(
         logSymbols.success,
-        `Serving the GraphQL Playground on ${url}`,
+        `Serving the GraphQL API on ${url}`,
       ),
     );
 

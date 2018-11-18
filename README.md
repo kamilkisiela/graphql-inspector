@@ -18,6 +18,7 @@ Major features:
 - **Finds breaking or dangerous changes**
 - **Validates documents against a schema**
 - **Finds similar / duplicated types**
+- **Serves a GraphQL server with faked data and GraphQL Playground**
 
 GraphQL Inspector has a **CLI** and also a **programatic API**, so you can use it however you want to and even build tools on top of it.
 
@@ -33,6 +34,7 @@ yarn add graphql-inspector
 graphql-inspector diff     <OLD_SCHEMA> <NEW_SCHEMA>
 graphql-inspector validate <DOCUMENTS>  <SCHEMA>
 graphql-inspector similar  <SCHEMA>
+graphql-inspector serve    <SCHEMA>
 graphql-inspector --help
 ```
 
@@ -65,6 +67,12 @@ $ graphql-inspector similar SCHEMA
 
 ✅ Post
 Best match (60%): BlogPost
+
+
+# Serve faked GraphQL API with Playground
+$ graphql-inspector serve SCHEMA
+
+✅ Serving the GraphQL API on http://localhost:4000/
 
 ```
 
