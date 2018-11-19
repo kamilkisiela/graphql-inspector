@@ -1,7 +1,7 @@
 import * as stringSimilarity from 'string-similarity';
 import {BestMatch} from 'string-similarity';
 
-import {isPrimitive, isCommon} from '../utils/graphql';
+import {isPrimitive, isForIntrospection} from '../utils/graphql';
 import {GraphQLNamedType, GraphQLSchema} from 'graphql';
 
 export interface SimilarMap {
@@ -14,7 +14,7 @@ export function similar(
   threshold: number = 0.4,
 ): SimilarMap {
   const types = Object.keys(schema.getTypeMap()).filter(
-    name => !isPrimitive(name) && !isCommon(name),
+    name => !isPrimitive(name) && !isForIntrospection(name),
   );
   const results: SimilarMap = {};
 

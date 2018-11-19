@@ -5,6 +5,8 @@ import {
   isNonNullType,
   GraphQLOutputType,
   GraphQLNamedType,
+  KindEnum,
+  Kind,
 } from 'graphql';
 
 export function safeChangeForField(
@@ -53,6 +55,21 @@ export function safeChangeForInputValue(
   return false;
 }
 
+export function getTypePrefix(type: GraphQLNamedType): string {
+  const kind: KindEnum = (type.astNode as any).kind;
+
+  const kindsMap: Record<string, string> = {
+    [Kind.SCALAR_TYPE_DEFINITION]: 'scalar',
+    [Kind.OBJECT_TYPE_DEFINITION]: 'type',
+    [Kind.INTERFACE_TYPE_DEFINITION]: 'interface',
+    [Kind.UNION_TYPE_DEFINITION]: 'union',
+    [Kind.ENUM_TYPE_DEFINITION]: 'enum',
+    [Kind.INPUT_OBJECT_TYPE_DEFINITION]: 'input',
+  };
+
+  return kindsMap[kind];
+}
+
 export function isPrimitive(type: GraphQLNamedType | string): boolean {
   return (
     ['String', 'Int', 'Float', 'Boolean', 'ID'].indexOf(
@@ -61,7 +78,7 @@ export function isPrimitive(type: GraphQLNamedType | string): boolean {
   );
 }
 
-export function isCommon(type: GraphQLNamedType | string): boolean {
+export function isForIntrospection(type: GraphQLNamedType | string): boolean {
   return (
     [
       '__Schema',

@@ -23,7 +23,7 @@ config:
   # Explicitly set the number of rows
   # or use `auto` to take the current
   # number of rows of your shell
-  rows: 12
+  rows: 15
   
   # Amount of times to repeat GIF
   # If value is -1, play once
@@ -156,5 +156,13 @@ records:
     content: "\r\n"
   - delay: 165
     content: "\r\n\r\n\e[32m✔\e[39m \e[92mPost\e[39m\r\nBest match (60%): \e[1mBlogPost\e[22m\r\n\r\n\r\n\e[32m✔\e[39m \e[92mBlogPost\e[39m\r\nBest match (60%): \e[1mPost\e[22m\r\n\r\n\r\n$ "
+  - delay: 3000
+    content: clear
+  - delay: 100
+    content: graphql-inspector coverage ./no-documents/*.graphql schema.graphql
+  - delay: 381
+    content: "\r\n"
+  - delay: 353
+    content: "\e[1m\e[92m\e[39m\e[22m\r\n\e[1m\e[92mSchema coverage\e[39m\e[22m\r\n\e[1m\e[92m\e[39m\e[22m\r\ntype \e[1mQuery\e[22m \e[3m{\e[23m\r\n  post \e[3m\e[90mx 1\e[39m\e[23m\r\n\e[3m}\e[23m\r\n\e[3m\e[23m\r\ntype \e[1mPost\e[22m \e[3m{\e[23m\r\n  id \e[3m\e[90mx 1\e[39m\e[23m\r\n  title \e[3m\e[90mx 1\e[39m\e[23m\r\n\e[91m  createdAt\e[39m \e[3m\e[90mx 0\e[39m\e[23m\r\n\e[91m  modifiedAt\e[39m \e[3m\e[90mx 0\e[39m\e[23m\r\n\e[3m}\e[23m\r\n\e[3m\e[23m\r\n"
   - delay: 2500
     content: "logout\r\n"
