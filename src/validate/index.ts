@@ -32,7 +32,6 @@ export function validate(
   });
 
   documents.forEach(doc => {
-    // doc.operations.forEach(op => {
     const errors = validateDocument(
       schema,
       // all fragments next to an operation? Stuuuupid
@@ -42,7 +41,6 @@ export function validate(
 
           ${fragments.map(print).join('\n\n')}
         `),
-      // parse([print(op), ...fragments.map(print)].join('\n\n')),
     );
 
     if (errors) {
@@ -51,7 +49,6 @@ export function validate(
         errors,
       });
     }
-    // });
   });
 
   return invalidDocuments;

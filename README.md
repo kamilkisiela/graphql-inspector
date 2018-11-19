@@ -18,6 +18,7 @@ Major features:
 - **Finds breaking or dangerous changes**
 - **Validates documents against a schema**
 - **Finds similar / duplicated types**
+- **Schema coverage based on documents**
 - **Serves a GraphQL server with faked data and GraphQL Playground**
 
 GraphQL Inspector has a **CLI** and also a **programatic API**, so you can use it however you want to and even build tools on top of it.
@@ -35,6 +36,7 @@ graphql-inspector diff     <OLD_SCHEMA> <NEW_SCHEMA>
 graphql-inspector validate <DOCUMENTS>  <SCHEMA>
 graphql-inspector similar  <SCHEMA>
 graphql-inspector serve    <SCHEMA>
+graphql-inspector coverage <DOCUMENTS>  <SCHEMA>
 graphql-inspector --help
 ```
 
@@ -74,6 +76,23 @@ $ graphql-inspector serve SCHEMA
 
 ✅ Serving the GraphQL API on http://localhost:4000/
 
+
+# Check coverage
+$ graphql-inspector coverage DOCUMENTS SCHEMA
+
+Schema coverage
+
+type Query {
+  post x 1
+}
+
+type Post {
+  id x 1
+  title x 1
+  🛑 createdAt x 0
+  🛑 modifiedAt x 0
+}
+
 ```
 
 ## Programatic Usage
@@ -83,9 +102,11 @@ import {
   diff,
   validate,
   similar,
+  coverage,
   Change,
   InvalidDocument,
   SimilarMap,
+  SchemaCoverage,
 } from 'graphql-inspector';
 
 // diff
@@ -94,6 +115,8 @@ const changes: Change[] = diff(schemaA, schemaB);
 const invalid: InvalidDocument[] = validate(documentsGlob, schema);
 // similar
 const similar: SimilarMap = similar(schema, typename, threshold);
+// coverage
+const schemaCoverage: SchemaCoverage = coverage(schema, documents);
 // ...
 ```
 

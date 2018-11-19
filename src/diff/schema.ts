@@ -57,7 +57,7 @@ export function diff(
   // Changes in Directives
   directives.common.forEach(({inOld, inNew}) => {
     changes.push(...changesInDirective(inOld, inNew));
-  })
+  });
 
   return changes;
 }

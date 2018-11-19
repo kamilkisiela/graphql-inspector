@@ -1,7 +1,9 @@
 query post {
   post {
-    id
-    title
+    ... on Post {
+      id
+      title
+    }
     createdAtSomePoint
   }
 }
