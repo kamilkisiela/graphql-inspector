@@ -1,9 +1,9 @@
 import {buildASTSchema} from 'graphql';
 import gql from 'graphql-tag';
-import * as stringSimilarity from 'string-similarity';
 
 import {diff} from '../../src/index';
 import {CriticalityLevel, Change} from '../../src/diff/changes/change';
+import {findBestMatch} from '../../src/utils/string';
 
 test('same schema', () => {
   const schemaA = buildASTSchema(gql`
@@ -313,13 +313,18 @@ test('', () => {
       expect(changes.some(c => c.message === msg)).toEqual(true);
     } catch (e) {
       console.log(`Couldn't find: ${msg}`);
-      const match = stringSimilarity.findBestMatch(
+      const match = findBestMatch(
         msg,
-        changes.map(c => c.message),
+        changes.map(c => ({
+          typeId: c.path || '',
+          value: c.message,
+        })),
       );
 
       if (match.bestMatch) {
-        console.log(`We found a similar change: ${match.bestMatch.target}`);
+        console.log(
+          `We found a similar change: ${match.bestMatch.target.value}`,
+        );
       }
 
       throw e;
