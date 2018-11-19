@@ -1,6 +1,6 @@
 import {GraphQLSchema} from 'graphql';
 
-import {Change, CriticalityLevel} from './change';
+import {Change, CriticalityLevel, ChangeType} from './change';
 
 export function schemaQueryTypeChanged(
   oldSchema: GraphQLSchema,
@@ -13,6 +13,7 @@ export function schemaQueryTypeChanged(
     criticality: {
       level: CriticalityLevel.Breaking,
     },
+    type: ChangeType.SchemaQueryTypeChanged,
     message: `Schema query root has changed from '${oldName}' to '${newName}'`,
   };
 }
@@ -29,6 +30,7 @@ export function schemaMutationTypeChanged(
     criticality: {
       level: CriticalityLevel.Breaking,
     },
+    type: ChangeType.SchemaMutationTypeChanged,
     message: `Schema mutation root has changed from '${oldName}' to '${newName}'`,
   };
 }
@@ -45,6 +47,7 @@ export function schemaSubscriptionTypeChanged(
     criticality: {
       level: CriticalityLevel.Breaking,
     },
+    type: ChangeType.SchemaSubscriptionTypeChanged,
     message: `Schema subscription root has changed from '${oldName}' to '${newName}'`,
   };
 }

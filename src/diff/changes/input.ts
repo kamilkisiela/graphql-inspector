@@ -4,7 +4,7 @@ import {
   isNonNullType,
 } from 'graphql';
 
-import {Change, CriticalityLevel} from './change';
+import {Change, CriticalityLevel, ChangeType} from './change';
 import {safeChangeForInputValue} from '../../utils/graphql';
 
 export function inputFieldRemoved(
@@ -17,6 +17,7 @@ export function inputFieldRemoved(
       reason:
         'Removing an input field will cause existing queries that use this input field to error.',
     },
+    type: ChangeType.InputFieldRemoved,
     message: `Input field '${field.name}' was removed from input object type '${
       input.name
     }'`,
@@ -38,6 +39,7 @@ export function inputFieldAdded(
       : {
           level: CriticalityLevel.NonBreaking,
         },
+    type: ChangeType.InputFieldAdded,
     message: `Input field '${field.name}' was added to input object type '${
       input.name
     }'`,
@@ -54,6 +56,7 @@ export function inputFieldDescriptionChanged(
     criticality: {
       level: CriticalityLevel.NonBreaking,
     },
+    type: ChangeType.InputFieldDescriptionChanged,
     message: `Input field '${input.name}.${
       oldField.name
     }' description changed from '${oldField.description}' to '${
@@ -74,6 +77,7 @@ export function inputFieldDefaultValueChanged(
       reason:
         'Changing the default value for an argument may change the runtime behaviour of a field if it was never provided.',
     },
+    type: ChangeType.InputFieldDefaultValueChanged,
     message: `Input field '${input.name}.${
       oldField.name
     }' default value changed from '${oldField.defaultValue}' to '${
@@ -100,6 +104,7 @@ export function inputFieldTypeChanged(
           reason:
             'Changing the type of an input field can cause existing queries that use this field to error.',
         },
+    type: ChangeType.InputFieldTypeChanged,
     message: `Input field '${input.name}.${
       oldField.name
     }' changed type from '${oldField.type.toString()}' to '${newField.type.toString()}'`,

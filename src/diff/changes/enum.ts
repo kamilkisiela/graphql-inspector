@@ -1,6 +1,6 @@
 import {GraphQLEnumType, GraphQLEnumValue} from 'graphql';
 
-import {Change, CriticalityLevel} from './change';
+import {Change, CriticalityLevel, ChangeType} from './change';
 
 export function enumValueRemoved(
   oldEnum: GraphQLEnumType,
@@ -11,6 +11,7 @@ export function enumValueRemoved(
       level: CriticalityLevel.Breaking,
       reason: `Removing an enum value will cause existing queries that use this enum value to error.`,
     },
+    type: ChangeType.EnumValueRemoved,
     message: `Enum value '${value.name}' was removed from enum '${
       oldEnum.name
     }'`,
@@ -27,6 +28,7 @@ export function enumValueAdded(
       level: CriticalityLevel.Dangerous,
       reason: `Adding an enum value may break existing clients that were not programming defensively against an added case when querying an enum.`,
     },
+    type: ChangeType.EnumValueAdded,
     message: `Enum value '${value.name}' was added to enum '${newEnum.name}'`,
     path: [newEnum.name, value.name].join('.'),
   };
@@ -41,6 +43,7 @@ export function enumValueDescriptionChanged(
     criticality: {
       level: CriticalityLevel.NonBreaking,
     },
+    type: ChangeType.EnumValueDescriptionChanged,
     message:
       typeof oldValue.description === 'undefined'
         ? `Description '${newValue.description}' was added to enum value '${
@@ -64,6 +67,7 @@ export function enumValueDeprecationReasonChanged(
     criticality: {
       level: CriticalityLevel.NonBreaking,
     },
+    type: ChangeType.EnumValueDescriptionChanged,
     message: oldValue.deprecationReason
       ? `Enum value '${newEnum.name}.${
           newValue.name

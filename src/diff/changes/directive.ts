@@ -5,7 +5,7 @@ import {
   isNonNullType,
 } from 'graphql';
 
-import {Change, CriticalityLevel} from './change';
+import {Change, CriticalityLevel, ChangeType} from './change';
 import {safeChangeForInputValue} from '../../utils/graphql';
 
 export function directiveRemoved(directive: GraphQLDirective): Change {
@@ -13,6 +13,7 @@ export function directiveRemoved(directive: GraphQLDirective): Change {
     criticality: {
       level: CriticalityLevel.Breaking,
     },
+    type: ChangeType.DirectiveRemoved,
     message: `Directive '${directive.name}' was removed`,
     path: `@${directive.name}`,
   };
@@ -22,6 +23,7 @@ export function directiveAdded(directive: GraphQLDirective): Change {
     criticality: {
       level: CriticalityLevel.NonBreaking,
     },
+    type: ChangeType.DirectiveAdded,
     message: `Directive '${directive.name}' was added`,
     path: `@${directive.name}`,
   };
@@ -35,6 +37,7 @@ export function directiveDescriptionChanged(
     criticality: {
       level: CriticalityLevel.NonBreaking,
     },
+    type: ChangeType.DirectiveDescriptionChanged,
     message: `Directive '${oldDirective.name}' description changed from '${
       oldDirective.description
     }' to '${newDirective.description}'`,
@@ -50,6 +53,7 @@ export function directiveLocationAdded(
     criticality: {
       level: CriticalityLevel.NonBreaking,
     },
+    type: ChangeType.DirectiveLocationAdded,
     message: `Location '${location}' was added to directive '${
       directive.name
     }'`,
@@ -65,6 +69,7 @@ export function directiveLocationRemoved(
     criticality: {
       level: CriticalityLevel.Breaking,
     },
+    type: ChangeType.DirectiveLocationRemoved,
     message: `Location '${location}' was removed from directive '${
       directive.name
     }'`,
@@ -82,6 +87,7 @@ export function directiveArgumentAdded(
         ? CriticalityLevel.Breaking
         : CriticalityLevel.NonBreaking,
     },
+    type: ChangeType.DirectiveArgumentAdded,
     message: `Argument '${arg.name}' was added to directive '${
       directive.name
     }'`,
@@ -97,6 +103,7 @@ export function directiveArgumentRemoved(
     criticality: {
       level: CriticalityLevel.Breaking,
     },
+    type: ChangeType.DirectiveArgumentRemoved,
     message: `Argument '${arg.name}' was removed from directive '${
       directive.name
     }'`,
@@ -113,6 +120,7 @@ export function directiveArgumentDescriptionChanged(
     criticality: {
       level: CriticalityLevel.NonBreaking,
     },
+    type: ChangeType.DirectiveArgumentDescriptionChanged,
     message: `Description for argument '${oldArg.name}' on directive '${
       directive.name
     }' changed from '${oldArg.description}' to '${newArg.description}'`,
@@ -131,6 +139,7 @@ export function directiveArgumentDefaultValueChanged(
       reason:
         'Changing the default value for an argument may change the runtime behaviour of a field if it was never provided.',
     },
+    type: ChangeType.DirectiveArgumentDefaultValueChanged,
     message:
       typeof oldArg.defaultValue === 'undefined'
         ? `Default value '${newArg.defaultValue}' was added to argument '${
@@ -158,6 +167,7 @@ export function directiveArgumentTypeChanged(
       : {
           level: CriticalityLevel.Breaking,
         },
+    type: ChangeType.DirectiveArgumentTypeChanged,
     message: `Type for argument '${oldArg.name}' on directive '${
       directive.name
     }' changed from '${oldArg.type}' to '${newArg.type}'`,

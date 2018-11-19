@@ -5,7 +5,7 @@ import {
   GraphQLInterfaceType,
 } from 'graphql';
 
-import {Change, CriticalityLevel} from './change';
+import {Change, CriticalityLevel, ChangeType} from './change';
 import {safeChangeForInputValue} from '../../utils/graphql';
 
 export function fieldArgumentDescriptionChanged(
@@ -18,6 +18,7 @@ export function fieldArgumentDescriptionChanged(
     criticality: {
       level: CriticalityLevel.NonBreaking,
     },
+    type: ChangeType.FieldArgumentDescriptionChanged,
     message: `Description for argument '${newArg.name}' on field '${
       type.name
     }.${field.name}' changed from '${oldArg.description}' to '${
@@ -39,6 +40,7 @@ export function fieldArgumentDefaultChanged(
       reason:
         'Changing the default value for an argument may change the runtime behaviour of a field if it was never provided.',
     },
+    type: ChangeType.FieldArgumentDefaultChanged,
     message:
       typeof oldArg.defaultValue === 'undefined'
         ? `Default value '${newArg.defaultValue}' was added to argument '${
@@ -67,6 +69,7 @@ export function fieldArgumentTypeChanged(
           level: CriticalityLevel.Breaking,
           reason: `Changing the type of a field's argument can cause existing queries that use this argument to error.`,
         },
+    type: ChangeType.FieldArgumentTypeChanged,
     message: `Type for argument '${newArg.name}' on field '${type.name}.${
       field.name
     }' changed from '${oldArg.type}' to '${newArg.type}'`,

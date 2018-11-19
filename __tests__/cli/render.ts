@@ -1,12 +1,13 @@
 import chalk from 'chalk';
 import {renderChange, getSymbol} from '../../src/cli/render';
-import {Change, CriticalityLevel} from '../../src/diff/changes/change';
+import {Change, CriticalityLevel, ChangeType} from '../../src/diff/changes/change';
 
 test('render dangerous', () => {
   const change: Change = {
     criticality: {
       level: CriticalityLevel.Dangerous,
     },
+    type: ChangeType.TypeRemoved,
     message: 'Ooo dangerous...',
     path: 'Type.field',
   };
@@ -25,6 +26,7 @@ test('render breaking', () => {
     criticality: {
       level: CriticalityLevel.Breaking,
     },
+    type: ChangeType.TypeRemoved,
     message: 'Boom, breaking',
     path: 'Type.field',
   };
@@ -43,6 +45,7 @@ test('render non-breaking', () => {
     criticality: {
       level: CriticalityLevel.NonBreaking,
     },
+    type: ChangeType.TypeRemoved,
     message: 'Chill, non breaking',
     path: 'Type.field',
   };
@@ -61,6 +64,7 @@ test('bold', () => {
     criticality: {
       level: CriticalityLevel.Dangerous,
     },
+    type: ChangeType.TypeDescriptionChanged,
     message: `Type 'Foo' changed its name to 'Bar'.`,
     path: 'Type.field',
   };
