@@ -1,9 +1,11 @@
 import chalk from 'chalk';
 import * as logSymbols from 'log-symbols';
+import {GraphQLNamedType} from 'graphql';
 
 import {loadSchema} from '../loaders/schema';
 import {Renderer, ConsoleRenderer} from '../render';
 import {similar as findSimilar} from '../../similar';
+import {getTypePrefix} from '../../utils/graphql';
 
 export async function similar(
   schemaPointer: string,
@@ -27,7 +29,14 @@ export async function similar(
           const matches = found[typeName];
 
           renderer.emit('\n');
-          renderer.emit(logSymbols.success, chalk.greenBright(`${typeName}`));
+          renderer.emit(
+            logSymbols.success,
+            chalk.greenBright(
+              `${getTypePrefix(schema.getType(
+                typeName,
+              ) as GraphQLNamedType)} ${typeName}`,
+            ),
+          );
           renderer.emit(
             'Best match',
             `(${formatRating(matches.bestMatch.rating)}%):`,

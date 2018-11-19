@@ -17,7 +17,7 @@ export function similar(
     .filter(name => !isPrimitive(name) && !isForIntrospection(name))
     .map(name => ({
       typeId: name,
-      value: stripType(printType(typeMap[name])),
+      value: stripType(typeMap[name]),
     }));
   const results: SimilarMap = {};
 
@@ -29,14 +29,19 @@ export function similar(
   }
 
   (typeName ? [{typeId: typeName, value: ''}] : targets).forEach(source => {
-    const found = similarTo(
-      schema.getType(source.typeId) as GraphQLNamedType,
-      targets,
-      threshold,
+    const sourceType = schema.getType(source.typeId) as GraphQLNamedType;
+    const matchWith = targets.filter(
+      target =>
+        (schema.getType(target.typeId) as any).astNode.kind ===
+          (sourceType.astNode as any).kind && target.typeId !== source.typeId,
     );
 
-    if (found) {
-      results[source.typeId] = found;
+    if (matchWith.length > 0) {
+      const found = similarTo(sourceType, matchWith, threshold);
+
+      if (found) {
+        results[source.typeId] = found;
+      }
     }
   });
 
@@ -49,7 +54,7 @@ function similarTo(
   threshold: number,
 ): BestMatch | undefined {
   const types = targets.filter(target => target.typeId !== type.name);
-  const result = findBestMatch(stripType(printType(type)), types);
+  const result = findBestMatch(stripType(type), types);
 
   if (result.bestMatch.rating < threshold) {
     return;
@@ -63,8 +68,8 @@ function similarTo(
   };
 }
 
-function stripType(type: string): string {
-  return type
+function stripType(type: GraphQLNamedType): string {
+  return printType(type)
     .trim()
     .replace(/^[a-z]+ [^\{]+\{/g, '')
     .replace(/\}$/g, '')
