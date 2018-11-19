@@ -36,7 +36,6 @@
     "graphql": "^0.13.0 || ^14.0.0"
   },
   "devDependencies": {
-    "@types/commander": "2.12.2",
     "@types/figures": "2.0.0",
     "@types/glob": "7.1.1",
     "@types/graphql": "14.0.3",
