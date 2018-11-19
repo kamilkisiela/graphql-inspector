@@ -31,13 +31,13 @@ export async function similar(
           renderer.emit(
             'Best match',
             `(${formatRating(matches.bestMatch.rating)}%):`,
-            chalk.bold(`${matches.bestMatch.target}`),
+            chalk.bold(`${matches.bestMatch.target.typeId}`),
           );
 
           matches.ratings.forEach(match => {
             renderer.emit(
               `(${formatRating(match.rating)}%):`,
-              chalk.bold(`${match.target}`),
+              chalk.bold(`${match.target.typeId}`),
             );
           });
         }

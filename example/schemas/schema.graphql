@@ -7,4 +7,5 @@ type Post {
 
 type Query {
   post: Post!
+  posts: [Post!]
 }

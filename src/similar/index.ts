@@ -1,8 +1,7 @@
-import * as stringSimilarity from 'string-similarity';
-import {BestMatch} from 'string-similarity';
+import {printType, GraphQLNamedType, GraphQLSchema} from 'graphql';
 
 import {isPrimitive, isForIntrospection} from '../utils/graphql';
-import {GraphQLNamedType, GraphQLSchema} from 'graphql';
+import {findBestMatch, BestMatch, Target} from '../utils/string';
 
 export interface SimilarMap {
   [name: string]: BestMatch;
@@ -13,25 +12,31 @@ export function similar(
   typeName: string | undefined,
   threshold: number = 0.4,
 ): SimilarMap {
-  const types = Object.keys(schema.getTypeMap()).filter(
-    name => !isPrimitive(name) && !isForIntrospection(name),
-  );
+  const typeMap = schema.getTypeMap();
+  const targets: Target[] = Object.keys(schema.getTypeMap())
+    .filter(name => !isPrimitive(name) && !isForIntrospection(name))
+    .map(name => ({
+      typeId: name,
+      value: stripType(printType(typeMap[name])),
+    }));
   const results: SimilarMap = {};
 
-  if (typeof typeName !== 'undefined' && types.indexOf(typeName) === -1) {
+  if (
+    typeof typeName !== 'undefined' &&
+    !targets.some(t => t.typeId === typeName)
+  ) {
     throw new Error(`Type '${typeName}' doesn't exist`);
   }
 
-  (typeName ? [typeName] : types).forEach(name => {
+  (typeName ? [{typeId: typeName, value: ''}] : targets).forEach(source => {
     const found = similarTo(
-      schema.getType(name) as GraphQLNamedType,
-      types,
-      schema,
+      schema.getType(source.typeId) as GraphQLNamedType,
+      targets,
       threshold,
     );
 
     if (found) {
-      results[name] = found;
+      results[source.typeId] = found;
     }
   });
 
@@ -40,26 +45,18 @@ export function similar(
 
 function similarTo(
   type: GraphQLNamedType,
-  typeNames: string[],
-  schema: GraphQLSchema,
+  targets: Target[],
   threshold: number,
 ): BestMatch | undefined {
-  const typeMap = schema.getTypeMap();
-  const types = typeNames
-    .filter(name => name !== type.name)
-    .map(name => stripType(typeMap[name].toString()));
-
-  const result = stringSimilarity.findBestMatch(
-    stripType(type.toString()),
-    types,
-  );
+  const types = targets.filter(target => target.typeId !== type.name);
+  const result = findBestMatch(stripType(printType(type)), types);
 
   if (result.bestMatch.rating < threshold) {
     return;
   }
 
   return {
-    ...result,
+    bestMatch: result.bestMatch,
     ratings: result.ratings.filter(
       r => r.rating >= threshold && r.target !== result.bestMatch.target,
     ),
@@ -69,6 +66,11 @@ function similarTo(
 function stripType(type: string): string {
   return type
     .trim()
-    .replace(/(^[a-z]+ [^\{]+{)|(\}$)g/, '')
-    .trim();
+    .replace(/^[a-z]+ [^\{]+\{/g, '')
+    .replace(/\}$/g, '')
+    .trim()
+    .split('\n')
+    .map(s => s.trim())
+    .sort((a, b) => a.localeCompare(b))
+    .join(' ');
 }
