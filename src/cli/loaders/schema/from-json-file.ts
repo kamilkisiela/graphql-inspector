@@ -1,9 +1,9 @@
 import {buildClientSchema} from 'graphql';
 import {existsSync, readFileSync} from 'fs';
-import {isAbsolute, resolve} from 'path';
 
 import {SchemaHandler} from './loader';
 import {parseBOM} from '../../../utils/string';
+import {ensureAbsolute} from '../../../utils/fs';
 
 function isJSONFile(pointer: string): boolean {
   return /\.json$/i.test(pointer);
@@ -12,9 +12,7 @@ function isJSONFile(pointer: string): boolean {
 export const fromJSONFile: SchemaHandler = function fromUrl(pointer) {
   if (isJSONFile(pointer) && existsSync(pointer)) {
     return async function load() {
-      const fullPath = isAbsolute(pointer)
-        ? pointer
-        : resolve(process.cwd(), pointer);
+      const fullPath = ensureAbsolute(pointer);
 
       if (existsSync(fullPath)) {
         try {

@@ -1,9 +1,9 @@
 import {parse, buildASTSchema} from 'graphql';
 import {existsSync, readFileSync} from 'fs';
-import {isAbsolute, resolve} from 'path';
 
 import {SchemaHandler} from './loader';
 import {stripBOM} from '../../../utils/string';
+import {ensureAbsolute} from '../../../utils/fs';
 
 function isGraphQLFile(pointer: string): boolean {
   return /\.(graphql|gql|graphqls)$/i.test(pointer);
@@ -11,9 +11,7 @@ function isGraphQLFile(pointer: string): boolean {
 
 export const fromGraphQLFile: SchemaHandler = function fromUrl(pointer) {
   if (isGraphQLFile(pointer)) {
-    const fullPath = isAbsolute(pointer)
-      ? pointer
-      : resolve(process.cwd(), pointer);
+    const fullPath = ensureAbsolute(pointer)
     if (existsSync(fullPath)) {
       return async function load() {
         if (existsSync(fullPath)) {

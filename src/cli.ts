@@ -34,6 +34,8 @@ commander
 
 commander
   .command('coverage <documents> <schema>')
+  .option('-s, --silent', 'Do not render any stats in the terminal')
+  .option('-w, --write <s>', 'Write a file with coverage stats')
   .description('Schema coverage based on documents')
   .action(coverage);
 

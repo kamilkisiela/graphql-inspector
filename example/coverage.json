@@ -1,0 +1,32 @@
+{
+  "Query": {
+    "hits": 1,
+    "type": "Query",
+    "children": {
+      "post": {
+        "hits": 1
+      },
+      "posts": {
+        "hits": 0
+      }
+    }
+  },
+  "Post": {
+    "hits": 2,
+    "type": "Post",
+    "children": {
+      "id": {
+        "hits": 1
+      },
+      "title": {
+        "hits": 1
+      },
+      "createdAt": {
+        "hits": 0
+      },
+      "modifiedAt": {
+        "hits": 0
+      }
+    }
+  }
+}
