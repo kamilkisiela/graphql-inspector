@@ -1,12 +1,3 @@
-// 1. Load and read documents
-// 1. Load schema
-// 1. Loop through every type and create a map of `Type.field`
-// 1. Go field by field both in operations and fragments
-// 1. Check the object type
-// 1. Check the resolve type
-// 1. Save `Parent.resolve` record (with a source) in the previously created map
-// 1. Make some stats out of it
-
 import {
   GraphQLSchema,
   GraphQLError,
