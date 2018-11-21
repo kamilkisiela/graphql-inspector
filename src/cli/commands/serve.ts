@@ -5,14 +5,17 @@ import opn = require('opn');
 
 import {loadSchema} from '../loaders/schema';
 import {Renderer, ConsoleRenderer} from '../render';
+import {useRequire} from '../utils/options';
 
 export async function serve(
   schemaPointer: string,
-  options?: {
+  options: {
     renderer?: Renderer;
+    require: string[];
   },
 ) {
-  const renderer = (options && options.renderer) || new ConsoleRenderer();
+  useRequire(options.require);
+  const renderer = options.renderer || new ConsoleRenderer();
   const schema = await loadSchema(schemaPointer);
   const PORT = process.env.PORT || '4000';
   const app = new ApolloServer({

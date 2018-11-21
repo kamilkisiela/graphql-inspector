@@ -5,17 +5,20 @@ import {loadSchema} from '../loaders/schema';
 import {loadDocuments} from '../loaders/documents';
 import {Renderer, ConsoleRenderer, renderInvalidDocument} from '../render';
 import {validate as validateDocuments} from '../../validate';
+import {useRequire} from '../utils/options';
 
 export async function validate(
   documentsPointer: string,
   schemaPointer: string,
-  options?: {
+  options: {
+    require: string[];
     renderer?: Renderer;
   },
 ) {
-  const renderer = (options && options.renderer) || new ConsoleRenderer();
+  const renderer = options.renderer || new ConsoleRenderer();
 
   try {
+    useRequire(options.require);
     const schema = await loadSchema(schemaPointer);
     const documents = await loadDocuments(documentsPointer);
 

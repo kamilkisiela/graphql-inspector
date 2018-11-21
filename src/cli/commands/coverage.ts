@@ -9,22 +9,26 @@ import {coverage as calculateCoverage} from '../../coverage';
 import {getTypePrefix} from '../../utils/graphql';
 import {writeFileSync} from 'fs';
 import {ensureAbsolute} from '../../utils/fs';
+import {useRequire} from '../utils/options';
 
 export async function coverage(
   documentsPointer: string,
   schemaPointer: string,
-  options?: {
+  options: {
+    require: string[];
     write?: string;
     silent?: boolean;
     renderer?: Renderer;
   },
 ) {
-  const renderer = (options && options.renderer) || new ConsoleRenderer();
-  const silent = options && options.silent === true;
-  const writePath = options && options.write;
+  const renderer = options.renderer || new ConsoleRenderer();
+  const silent = options.silent === true;
+  const writePath = options.write;
   const shouldWrite = typeof writePath !== 'undefined';
 
   try {
+    useRequire(options.require);
+
     const schema = await loadSchema(schemaPointer);
     const documents = await loadDocuments(documentsPointer);
     const coverage = calculateCoverage(schema, documents);
@@ -76,7 +80,7 @@ export async function coverage(
         encoding: 'utf-8',
       });
 
-      renderer.emit(chalk.bold.greenBright('\nAvailable at'), absPath, '\n')
+      renderer.emit(chalk.bold.greenBright('\nAvailable at'), absPath, '\n');
     }
   } catch (e) {
     console.log(e);

@@ -5,6 +5,7 @@ import {loadSchema} from '../loaders/schema';
 import {diff as diffSchema} from '../../diff/schema';
 import {renderChange, Renderer, ConsoleRenderer} from '../render';
 import {Change, CriticalityLevel} from '../../diff/changes/change';
+import {useRequire} from '../utils/options';
 
 function hasBreaking(changes: Change[]): boolean {
   return changes.some(c => c.criticality.level === CriticalityLevel.Breaking);
@@ -13,13 +14,16 @@ function hasBreaking(changes: Change[]): boolean {
 export async function diff(
   oldSchemaPointer: string,
   newSchemaPointer: string,
-  options?: {
+  options: {
     renderer?: Renderer;
+    require: string[];
   },
 ) {
   const renderer = (options && options.renderer) || new ConsoleRenderer();
 
   try {
+    useRequire(options.require);
+
     const oldSchema = await loadSchema(oldSchemaPointer);
     const newSchema = await loadSchema(newSchemaPointer);
 

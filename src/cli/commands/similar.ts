@@ -6,18 +6,21 @@ import {loadSchema} from '../loaders/schema';
 import {Renderer, ConsoleRenderer} from '../render';
 import {similar as findSimilar} from '../../similar';
 import {getTypePrefix} from '../../utils/graphql';
+import {useRequire} from '../utils/options';
 
 export async function similar(
   schemaPointer: string,
   name: string | undefined,
   threshold: number | undefined,
-  options?: {
+  options: {
+    require: string[];
     renderer?: Renderer;
   },
 ) {
-  const renderer = (options && options.renderer) || new ConsoleRenderer();
+  const renderer = options.renderer || new ConsoleRenderer();
 
   try {
+    useRequire(options.require);
     const schema = await loadSchema(schemaPointer);
     const found = findSimilar(schema, name, threshold);
 
