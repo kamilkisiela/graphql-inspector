@@ -1,11 +1,13 @@
 import * as isValidPath from 'is-valid-path';
+import {writeFileSync} from 'fs';
+import {extname} from 'path';
 
 import {loadSchema} from '../loaders/schema';
 import {loadDocuments} from '../loaders/documents';
 import {Renderer, ConsoleRenderer} from '../render';
 import {coverage as calculateCoverage} from '../../coverage';
-import {writeFileSync} from 'fs';
 import {ensureAbsolute} from '../../utils/fs';
+import {outputJSON} from '../../coverage/output/json';
 
 export async function coverage(
   documentsPointer: string,
@@ -37,12 +39,25 @@ export async function coverage(
       }
 
       const absPath = ensureAbsolute(writePath);
+      const ext = extname(absPath)
+        .replace('.', '')
+        .toLocaleLowerCase();
 
-      writeFileSync(absPath, JSON.stringify(coverage, null, 2), {
-        encoding: 'utf-8',
-      });
+      let output: string | undefined = undefined;
 
-      renderer.success('Available at', absPath, '\n');
+      if (ext === 'json') {
+        output = outputJSON(coverage);
+      }
+
+      if (output) {
+        writeFileSync(absPath, outputJSON(coverage), {
+          encoding: 'utf-8',
+        });
+
+        renderer.success('Available at', absPath, '\n');
+      } else {
+        throw new Error(`Extension ${ext} is not supported`);
+      }
     }
   } catch (e) {
     console.log(e);
