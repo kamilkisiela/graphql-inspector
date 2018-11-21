@@ -1,12 +1,11 @@
 import chalk from 'chalk';
-import * as logSymbols from 'log-symbols';
 import {GraphQLNamedType} from 'graphql';
+import indent = require('indent-string');
 
 import {loadSchema} from '../loaders/schema';
 import {Renderer, ConsoleRenderer} from '../render';
 import {similar as findSimilar} from '../../similar';
 import {getTypePrefix} from '../../utils/graphql';
-import {useRequire} from '../utils/options';
 
 export async function similar(
   schemaPointer: string,
@@ -20,7 +19,6 @@ export async function similar(
   const renderer = options.renderer || new ConsoleRenderer();
 
   try {
-    useRequire(options.require);
     const schema = await loadSchema(schemaPointer);
     const found = findSimilar(schema, name, threshold);
 
@@ -31,33 +29,30 @@ export async function similar(
         if (found.hasOwnProperty(typeName)) {
           const matches = found[typeName];
 
-          renderer.emit('\n');
-          renderer.emit(
-            logSymbols.success,
-            chalk.greenBright(
-              `${getTypePrefix(schema.getType(
-                typeName,
-              ) as GraphQLNamedType)} ${typeName}`,
-            ),
+          const prefix = getTypePrefix(schema.getType(
+            typeName,
+          ) as GraphQLNamedType);
+          const sourceType = chalk.bold(typeName);
+          const percentage = chalk.grey(
+            `(${formatRating(matches.bestMatch.rating)}%)`,
           );
-          renderer.emit(
-            'Best match',
-            `(${formatRating(matches.bestMatch.rating)}%):`,
-            chalk.bold(`${matches.bestMatch.target.typeId}`),
-          );
+          const name = chalk.bold(matches.bestMatch.target.typeId);
+
+          renderer.success(`${prefix} ${sourceType}`);
+          renderer.emit(indent(`Best match ${percentage}: ${name}`, 2));
 
           matches.ratings.forEach(match => {
-            renderer.emit(
-              `(${formatRating(match.rating)}%):`,
-              chalk.bold(`${match.target.typeId}`),
-            );
+            const percentage = chalk.grey(`(${formatRating(match.rating)}%)`);
+            const name = chalk.bold(match.target.typeId);
+
+            renderer.emit(indent(`${percentage}: ${name}`, 2));
           });
         }
       }
-      renderer.emit('\n');
+      renderer.emit();
     }
   } catch (e) {
-    renderer.emit(logSymbols.error, chalk.redBright(e.message || e));
+    renderer.error(e.message || e);
     process.exit(1);
   }
 

@@ -1,11 +1,8 @@
-import * as logSymbols from 'log-symbols';
-import chalk from 'chalk';
 import {ApolloServer} from 'apollo-server';
 import opn = require('opn');
 
 import {loadSchema} from '../loaders/schema';
 import {Renderer, ConsoleRenderer} from '../render';
-import {useRequire} from '../utils/options';
 
 export async function serve(
   schemaPointer: string,
@@ -14,7 +11,6 @@ export async function serve(
     require: string[];
   },
 ) {
-  useRequire(options.require);
   const renderer = options.renderer || new ConsoleRenderer();
   const schema = await loadSchema(schemaPointer);
   const PORT = process.env.PORT || '4000';
@@ -28,15 +24,10 @@ export async function serve(
   try {
     const {url} = await app.listen(PORT);
 
-    renderer.emit(
-      chalk.greenBright(
-        logSymbols.success,
-        `Serving the GraphQL API on ${url}`,
-      ),
-    );
+    renderer.success(`Serving the GraphQL API on ${url}`);
 
     await opn(url);
   } catch (e) {
-    renderer.emit(chalk.redBright(logSymbols.error, e.message || e));
+    renderer.error(e.message || e);
   }
 }

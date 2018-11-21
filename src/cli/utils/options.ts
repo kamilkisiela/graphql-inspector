@@ -7,8 +7,13 @@ export function pipe(...middlewares: any[]) {
   };
 }
 
-export function useRequire(mods: string[]): void {
-  mods.forEach(mod => require(isValidPath(mod) ? ensureAbsolute(mod) : mod));
+export function useRequire(options: any) {
+  if (options.require) {
+    options.require.forEach((mod: any) =>
+      require(isValidPath(mod) ? ensureAbsolute(mod) : mod),
+    );
+  }
+  return options;
 }
 
 function normalizeRequire(options: any) {
@@ -30,5 +35,5 @@ function normalizeRequire(options: any) {
 }
 
 export function normalizeOptions(options: any) {
-  return pipe(normalizeRequire)(options);
+  return pipe(normalizeRequire, useRequire)(options);
 }

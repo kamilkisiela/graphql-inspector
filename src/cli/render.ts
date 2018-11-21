@@ -1,8 +1,11 @@
 import * as logSymbols from 'log-symbols';
 import chalk from 'chalk';
+import indent = require('indent-string');
 
 import {Change, CriticalityLevel} from '../diff/changes/change';
 import {InvalidDocument} from '../validate';
+import {getTypePrefix} from '../utils/graphql';
+import {SchemaCoverage} from '../coverage';
 
 export function getSymbol(level: CriticalityLevel): string {
   const symbols = {
@@ -28,7 +31,9 @@ export function bolderize(msg: string): string {
 }
 
 export function renderInvalidDocument(invalidDoc: InvalidDocument): string[] {
-  const errors = invalidDoc.errors.map(e => ` - ${bolderize(e.message)}`).join('\n');
+  const errors = invalidDoc.errors
+    .map(e => ` - ${bolderize(e.message)}`)
+    .join('\n');
 
   return [
     logSymbols.error,
@@ -40,10 +45,57 @@ export function renderInvalidDocument(invalidDoc: InvalidDocument): string[] {
 
 export interface Renderer {
   emit(...msgs: string[]): void;
+  success(...msgs: string[]): void;
+  error(...msgs: string[]): void;
+  coverage(coverage: SchemaCoverage): void;
 }
 
 export class ConsoleRenderer implements Renderer {
   emit(...msgs: string[]) {
     console.log(...msgs);
+  }
+
+  coverage(coverage: SchemaCoverage) {
+    this.success('Schema coverage based on documents:\n');
+
+    for (const typeName in coverage.types) {
+      if (coverage.types.hasOwnProperty(typeName)) {
+        const typeCoverage = coverage.types[typeName];
+
+        this.emit(
+          chalk.grey(getTypePrefix(typeCoverage.type)),
+          chalk.bold(`${typeName}`),
+          chalk.grey('{'),
+        );
+
+        for (const childName in typeCoverage.children) {
+          if (typeCoverage.children.hasOwnProperty(childName)) {
+            const childCoverage = typeCoverage.children[childName];
+
+            if (childCoverage.hits) {
+              this.emit(
+                indent(childName, 2),
+                chalk.italic.grey(`x ${childCoverage.hits}`),
+              );
+            } else {
+              this.emit(
+                chalk.redBright(indent(childName, 2)),
+                chalk.italic.grey('x 0'),
+              );
+            }
+          }
+        }
+
+        this.emit(chalk.grey('}\n'));
+      }
+    }
+  }
+
+  success(...msgs: string[]) {
+    console.log(`\n${logSymbols.success} ${msgs.join(' ')}`);
+  }
+
+  error(...msgs: string[]) {
+    console.log(`\n${logSymbols.error} ${msgs.join(' ')}`);
   }
 }
