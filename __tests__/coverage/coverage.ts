@@ -34,13 +34,13 @@ test('coverage', () => {
   const results = coverage(schemaA, [new Source(print(doc))]);
 
   // Query
-  expect(results.Query.hits).toEqual(1);
-  expect(results.Query.children.posts.hits).toEqual(0);
-  expect(results.Query.children.post.hits).toEqual(1);
+  expect(results.types.Query.hits).toEqual(1);
+  expect(results.types.Query.children.posts.hits).toEqual(0);
+  expect(results.types.Query.children.post.hits).toEqual(1);
   // Post
-  expect(results.Post.hits).toEqual(2);
-  expect(results.Post.children.id.hits).toEqual(1);
-  expect(results.Post.children.title.hits).toEqual(1);
-  expect(results.Post.children.author.hits).toEqual(0);
-  expect(results.Post.children.createdAt.hits).toEqual(0);
+  expect(results.types.Post.hits).toEqual(2);
+  expect(results.types.Post.children.id.hits).toEqual(1);
+  expect(results.types.Post.children.title.hits).toEqual(1);
+  expect(results.types.Post.children.author.hits).toEqual(0);
+  expect(results.types.Post.children.createdAt.hits).toEqual(0);
 });
