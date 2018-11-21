@@ -13,6 +13,7 @@ describe('cli/diff', () => {
   let spyProcessExit: jest.SpyInstance;
   let spyProcessCwd: jest.SpyInstance;
   let spyEmit: jest.SpyInstance;
+  let spySuccess: jest.SpyInstance;
 
   beforeEach(() => {
     spyProcessExit = jest.spyOn(process, 'exit');
@@ -23,6 +24,8 @@ describe('cli/diff', () => {
       .mockImplementation(() => __dirname);
 
     spyEmit = jest.spyOn(renderer, 'emit').mockImplementation(() => {});
+    spySuccess = jest.spyOn(renderer, 'success').mockImplementation(() => {});
+    jest.spyOn(renderer, 'error').mockImplementation(() => {});
   });
 
   afterEach(() => {
@@ -33,10 +36,11 @@ describe('cli/diff', () => {
   test('should load graphql file', async () => {
     await diff(oldSchema, oldSchema, {
       renderer,
+      require: [],
     });
 
     expect(
-      spyEmit.mock.calls.find(hasMessage('No changes detected')),
+      spySuccess.mock.calls.find(hasMessage('No changes detected')),
     ).toBeDefined();
 
     expect(
@@ -49,6 +53,7 @@ describe('cli/diff', () => {
   test('should load different schema from graphql file', async () => {
     await diff(oldSchema, newSchema, {
       renderer,
+      require: [],
     });
 
     expect(
@@ -56,7 +61,9 @@ describe('cli/diff', () => {
     ).not.toBeDefined();
 
     expect(
-      spyEmit.mock.calls.find(hasMessage('Detected the following changes (4) between schemas:')),
+      spyEmit.mock.calls.find(
+        hasMessage('Detected the following changes (4) between schemas:'),
+      ),
     ).toBeDefined();
 
     expect(spyProcessExit).toHaveBeenCalledWith(1);
