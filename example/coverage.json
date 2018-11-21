@@ -1,31 +1,70 @@
 {
-  "Query": {
-    "hits": 1,
-    "type": "Query",
-    "children": {
-      "post": {
-        "hits": 1
-      },
-      "posts": {
-        "hits": 0
+  "sources": [
+    {
+      "body": "query post {\n  post {\n    ... on Post {\n      id\n      title\n    }\n    createdAtSomePoint\n  }\n}\n",
+      "name": "./documents/post.graphql",
+      "locationOffset": {
+        "line": 1,
+        "column": 1
       }
     }
-  },
-  "Post": {
-    "hits": 2,
-    "type": "Post",
-    "children": {
-      "id": {
-        "hits": 1
-      },
-      "title": {
-        "hits": 1
-      },
-      "createdAt": {
-        "hits": 0
-      },
-      "modifiedAt": {
-        "hits": 0
+  ],
+  "types": {
+    "Query": {
+      "hits": 1,
+      "type": "Query",
+      "children": {
+        "post": {
+          "hits": 1,
+          "locations": {
+            "./documents/post.graphql": [
+              {
+                "start": 15,
+                "end": 93
+              }
+            ]
+          }
+        },
+        "posts": {
+          "hits": 0,
+          "locations": {}
+        }
+      }
+    },
+    "Post": {
+      "hits": 2,
+      "type": "Post",
+      "children": {
+        "id": {
+          "hits": 1,
+          "locations": {
+            "./documents/post.graphql": [
+              {
+                "start": 46,
+                "end": 48
+              }
+            ]
+          }
+        },
+        "title": {
+          "hits": 1,
+          "locations": {
+            "./documents/post.graphql": [
+              {
+                "start": 55,
+                "end": 60
+              }
+            ]
+          }
+        },
+        "createdAt": {
+          "hits": 0,
+          "locations": {}
+        },
+        "modifiedAt": {
+          "hits": 0,
+          "locations": {}
+        }
       }
     }
   }

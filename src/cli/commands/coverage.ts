@@ -32,9 +32,9 @@ export async function coverage(
     if (!silent) {
       renderer.emit(chalk.bold.greenBright('\nSchema coverage\n'));
 
-      for (const typeName in coverage) {
+      for (const typeName in coverage.types) {
         if (coverage.hasOwnProperty(typeName)) {
-          const typeCoverage = coverage[typeName];
+          const typeCoverage = coverage.types[typeName];
 
           renderer.emit(
             getTypePrefix(typeCoverage.type),

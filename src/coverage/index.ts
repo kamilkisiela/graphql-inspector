@@ -15,6 +15,12 @@ import {isForIntrospection, isPrimitive} from '../utils/graphql';
 
 export interface TypeChildCoverage {
   hits: number;
+  locations: {
+    [name: string]: Array<{
+      start: number;
+      end: number;
+    }>;
+  };
 }
 
 export interface TypeCoverage {
@@ -26,7 +32,10 @@ export interface TypeCoverage {
 }
 
 export interface SchemaCoverage {
-  [typename: string]: TypeCoverage;
+  sources: Source[];
+  types: {
+    [typename: string]: TypeCoverage;
+  };
 }
 
 export interface InvalidDocument {
@@ -38,20 +47,30 @@ export function coverage(
   schema: GraphQLSchema,
   sources: Source[],
 ): SchemaCoverage {
-  const coverage: SchemaCoverage = {};
+  const coverage: SchemaCoverage = {
+    sources,
+    types: {},
+  };
   const typeMap = schema.getTypeMap();
   const typeInfo = new TypeInfo(schema);
-  const visitor: Visitor<any, any> = {
-    Field() {
+  const visitor: (source: Source) => Visitor<any, any> = source => ({
+    Field(node) {
       const fieldDef = typeInfo.getFieldDef();
       const parent = typeInfo.getParentType();
 
       if (parent && fieldDef) {
-        coverage[parent.name].hits++;
-        coverage[parent.name].children[fieldDef.name].hits++;
+        const locations =
+          coverage.types[parent.name].children[fieldDef.name].locations[
+            source.name
+          ];
+        coverage.types[parent.name].hits++;
+        coverage.types[parent.name].children[fieldDef.name].locations[
+          source.name
+        ] = [node.loc].concat(locations || []);
+        coverage.types[parent.name].children[fieldDef.name].hits++;
       }
     },
-  };
+  });
 
   for (const typename in typeMap) {
     if (!isForIntrospection(typename) && !isPrimitive(typename)) {
@@ -70,22 +89,24 @@ export function coverage(
 
           typeCoverage.children[field.name] = {
             hits: 0,
+            locations: {},
           };
         }
 
-        coverage[type.name] = typeCoverage;
+        coverage.types[type.name] = typeCoverage;
       }
     }
   }
 
-  const documents = sources.map(readDocument);
+  const documents = coverage.sources.map(readDocument);
 
-  documents.forEach(doc => {
+  documents.forEach((doc, i) => {
+    const source = coverage.sources[i];
     doc.operations.forEach(op => {
-      visit(op.node, visitWithTypeInfo(typeInfo, visitor));
+      visit(op.node, visitWithTypeInfo(typeInfo, visitor(source)));
     });
     doc.fragments.forEach(fr => {
-      visit(fr.node, visitWithTypeInfo(typeInfo, visitor));
+      visit(fr.node, visitWithTypeInfo(typeInfo, visitor(source)));
     });
   });
 
