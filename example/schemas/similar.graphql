@@ -11,6 +11,17 @@ type BlogPost {
   id: ID
 }
 
+type MailPost {
+  title: String
+  createdAt: String
+}
+
+type EmailPost {
+  title: String
+  createdAt: String
+  modifiedAt: String
+}
+
 type Comment {
   id: ID
 }

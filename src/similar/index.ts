@@ -1,7 +1,7 @@
 import {printType, GraphQLNamedType, GraphQLSchema} from 'graphql';
 
 import {isPrimitive, isForIntrospection} from '../utils/graphql';
-import {findBestMatch, BestMatch, Target} from '../utils/string';
+import {findBestMatch, BestMatch, Target, Rating} from '../utils/string';
 
 export interface SimilarMap {
   [name: string]: BestMatch;
@@ -64,7 +64,7 @@ function similarTo(
     bestMatch: result.bestMatch,
     ratings: result.ratings.filter(
       r => r.rating >= threshold && r.target !== result.bestMatch.target,
-    ),
+    ).sort((a: Rating, b: Rating) => a.rating + b.rating),
   };
 }
 
