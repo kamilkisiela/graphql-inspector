@@ -1,14 +1,11 @@
 # GraphQL Inspector
 
 [![CircleCI](https://circleci.com/gh/kamilkisiela/graphql-inspector.svg?style=shield&circle-token=d1cd06aba321ee2b7bf8bd2041104643639463b0)](https://circleci.com/gh/kamilkisiela/graphql-inspector)
-[![npm version](https://badge.fury.io/js/@graphql-inspector/cli.svg)](https://npmjs.com/package/@graphql-inspector/cli)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 [![renovate-app badge](https://img.shields.io/badge/renovate-app-blue.svg)](https://renovateapp.com/)
 
 **GraphQL Inspector** ouputs a list of changes between two GraphQL schemas. Every change is precisely explained and marked as breaking, non-breaking or dangerous.
 It helps you validate documents and fragments against a schema and even find similar or duplicated types.
-
-![Example](./demo.gif)
 
 ## Features
 
@@ -26,21 +23,10 @@ GraphQL Inspector has a **CLI** and also a **programatic API**, so you can use i
 ## Installation
 
 ```bash
-yarn add @graphql-inspector/cli
+yarn add @graphql-inspector/core
 ```
 
-## CLI Usage
-
-```bash
-graphql-inspector diff     <OLD_SCHEMA> <NEW_SCHEMA>
-graphql-inspector validate <DOCUMENTS>  <SCHEMA>
-graphql-inspector similar  <SCHEMA>
-graphql-inspector serve    <SCHEMA>
-graphql-inspector coverage <DOCUMENTS>  <SCHEMA>
-graphql-inspector --help
-```
-
-### Examples
+### CLI Usage
 
 ```bash
 # Compare schemas
@@ -94,6 +80,35 @@ type Post {
 }
 
 ```
+
+## Programatic Usage
+
+```typescript
+import {
+  diff,
+  validate,
+  similar,
+  coverage,
+  Change,
+  InvalidDocument,
+  SimilarMap,
+  SchemaCoverage,
+} from '@graphql-inspector/core';
+
+// diff
+const changes: Change[] = diff(schemaA, schemaB);
+// validate
+const invalid: InvalidDocument[] = validate(documentsGlob, schema);
+// similar
+const similar: SimilarMap = similar(schema, typename, threshold);
+// coverage
+const schemaCoverage: SchemaCoverage = coverage(schema, documents);
+// ...
+```
+
+## Related
+
+Some part of the library was ported to NodeJS from [Ruby's GraphQL Schema Comparator](https://github.com/xuorig/graphql-schema_comparator)
 
 ## License
 
