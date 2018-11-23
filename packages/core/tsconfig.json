@@ -22,8 +22,6 @@
     ]
   },
   "files": [
-    "src/typings.d.ts",
-    "src/index.ts",
-    "src/cli.ts"
+    "src/index.ts"
   ]
 }

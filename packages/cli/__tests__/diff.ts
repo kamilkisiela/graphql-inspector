@@ -1,14 +1,14 @@
-import {diff} from '../../src/cli/commands/diff';
-import {ConsoleRenderer} from '../../src/cli/render';
+import {diff} from '../src/commands/diff';
+import {ConsoleRenderer} from '../src/render';
 
-const oldSchema = '../assets/old.graphql';
-const newSchema = '../assets/new.graphql';
+const oldSchema = './assets/old.graphql';
+const newSchema = './assets/new.graphql';
 
 function hasMessage(msg: string) {
   return (args: string[]) => args.join('').indexOf(msg) !== -1;
 }
 
-describe('cli/diff', () => {
+describe('diff', () => {
   const renderer = new ConsoleRenderer();
   let spyProcessExit: jest.SpyInstance;
   let spyProcessCwd: jest.SpyInstance;

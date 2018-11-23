@@ -4,8 +4,8 @@ import indent = require('indent-string');
 
 import {loadSchema} from '../loaders/schema';
 import {Renderer, ConsoleRenderer} from '../render';
-import {similar as findSimilar} from '../../similar';
-import {getTypePrefix} from '../../utils/graphql';
+import {similar as findSimilar} from '@graphql-inspector/core';
+import {getTypePrefix} from '@graphql-inspector/core/dist/utils/graphql';
 
 export async function similar(
   schemaPointer: string,

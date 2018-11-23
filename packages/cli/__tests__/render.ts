@@ -1,6 +1,6 @@
 import chalk from 'chalk';
-import {renderChange, getSymbol} from '../../src/cli/render';
-import {Change, CriticalityLevel, ChangeType} from '../../src/diff/changes/change';
+import {Change, CriticalityLevel, ChangeType} from '@graphql-inspector/core';
+import {renderChange, getSymbol} from '../src/render';
 
 test('render dangerous', () => {
   const change: Change = {

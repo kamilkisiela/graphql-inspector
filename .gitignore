@@ -2,3 +2,7 @@ node_modules/
 dist/
 yarn.lock
 yarn-error.log
+**/*/node_modules/
+**/*/dist/
+**/*/yarn.lock
+**/*/yarn-error.log

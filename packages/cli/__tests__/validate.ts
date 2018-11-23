@@ -1,5 +1,5 @@
-import {validate} from '../../src/cli/commands/validate';
-import {ConsoleRenderer, bolderize} from '../../src/cli/render';
+import {validate} from '../src/commands/validate';
+import {ConsoleRenderer, bolderize} from '../src/render';
 
 const schema = './__tests__/assets/old.graphql';
 const documents = './__tests__/assets/document.graphql';
@@ -8,7 +8,7 @@ function hasMessage(msg: string) {
   return (args: string[]) => args.join('').indexOf(msg) !== -1;
 }
 
-describe('cli/validate', () => {
+describe('validate', () => {
   const renderer = new ConsoleRenderer();
   let spyProcessExit: jest.SpyInstance;
   let spyEmit: jest.SpyInstance;

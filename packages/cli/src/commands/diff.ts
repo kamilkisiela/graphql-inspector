@@ -1,7 +1,6 @@
 import {loadSchema} from '../loaders/schema';
-import {diff as diffSchema} from '../../diff/schema';
+import {diff as diffSchema, Change, CriticalityLevel} from '@graphql-inspector/core';
 import {renderChange, Renderer, ConsoleRenderer} from '../render';
-import {Change, CriticalityLevel} from '../../diff/changes/change';
 
 function hasBreaking(changes: Change[]): boolean {
   return changes.some(c => c.criticality.level === CriticalityLevel.Breaking);

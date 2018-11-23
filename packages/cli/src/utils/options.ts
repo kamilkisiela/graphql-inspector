@@ -1,5 +1,5 @@
 import * as isValidPath from 'is-valid-path';
-import {ensureAbsolute} from '../../utils/fs';
+import {ensureAbsolute} from './fs';
 
 export function pipe(...middlewares: any[]) {
   return (value: any) => {

@@ -2,12 +2,12 @@
 
 import * as commander from 'commander';
 
-import {diff} from './cli/commands/diff';
-import {validate} from './cli/commands/validate';
-import {similar} from './cli/commands/similar';
-import {serve} from './cli/commands/serve';
-import {coverage} from './cli/commands/coverage';
-import {normalizeOptions} from './cli/utils/options';
+import {diff} from './commands/diff';
+import {validate} from './commands/validate';
+import {similar} from './commands/similar';
+import {serve} from './commands/serve';
+import {coverage} from './commands/coverage';
+import {normalizeOptions} from './utils/options';
 
 commander.option('-r, --require <s...>', 'Require modules');
 

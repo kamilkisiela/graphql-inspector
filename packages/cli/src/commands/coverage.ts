@@ -1,13 +1,16 @@
 import * as isValidPath from 'is-valid-path';
 import {writeFileSync} from 'fs';
 import {extname} from 'path';
+import {coverage as calculateCoverage, SchemaCoverage} from '@graphql-inspector/core';
+import {ensureAbsolute} from '../utils/fs';
 
 import {loadSchema} from '../loaders/schema';
 import {loadDocuments} from '../loaders/documents';
 import {Renderer, ConsoleRenderer} from '../render';
-import {coverage as calculateCoverage} from '../../coverage';
-import {ensureAbsolute} from '../../utils/fs';
-import {outputJSON} from '../../coverage/output/json';
+
+export function outputJSON(coverage: SchemaCoverage): string {
+  return JSON.stringify(coverage, null, 2);
+}
 
 export async function coverage(
   documentsPointer: string,
