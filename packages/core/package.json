@@ -26,6 +26,9 @@
       "prebuild": "yarn clean",
       "prepublishOnly": "yarn build"
     },
+    "peerDependencies": {
+      "graphql": "^0.13.0 || ^14.0.0"
+    },
     "devDependencies": {
       "@types/graphql": "14.0.3",
       "@types/jest": "23.3.9",
@@ -34,9 +37,6 @@
       "prettier": "1.15.2",
       "ts-jest": "23.10.4",
       "typescript": "3.1.6"
-    },
-    "dependencies": {
-      "graphql": "14.0.2"
     }
   }
   
