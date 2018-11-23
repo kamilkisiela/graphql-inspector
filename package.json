@@ -38,7 +38,8 @@
   "workspaces": {
     "packages": [
       "packages/core",
-      "packages/cli"
+      "packages/cli",
+      "packages/ui"
     ]
   },
   "lint-staged": {

@@ -7,9 +7,19 @@ import {validate} from './commands/validate';
 import {similar} from './commands/similar';
 import {serve} from './commands/serve';
 import {coverage} from './commands/coverage';
+import {ui} from './commands/ui';
 import {normalizeOptions} from './utils/options';
 
 commander.option('-r, --require <s...>', 'Require modules');
+
+commander
+  .command('ui')
+  .description('Serves a GUI')
+  .action(() =>
+    ui({
+      port: 4000,
+    }),
+  );
 
 commander
   .command('diff <old> <new>')
