@@ -1,4 +1,5 @@
 import {validate as validateDocuments} from '@graphql-inspector/core';
+
 import {loadSchema} from '../loaders/schema';
 import {loadDocuments} from '../loaders/documents';
 import {Renderer, ConsoleRenderer, renderInvalidDocument} from '../render';

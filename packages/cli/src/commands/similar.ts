@@ -1,10 +1,10 @@
 import chalk from 'chalk';
 import {GraphQLNamedType} from 'graphql';
 import indent = require('indent-string');
+import {similar as findSimilar, getTypePrefix} from '@graphql-inspector/core';
 
 import {loadSchema} from '../loaders/schema';
 import {Renderer, ConsoleRenderer} from '../render';
-import {similar as findSimilar, getTypePrefix} from '@graphql-inspector/core';
 
 export async function similar(
   schemaPointer: string,

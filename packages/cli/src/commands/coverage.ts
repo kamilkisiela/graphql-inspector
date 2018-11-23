@@ -2,8 +2,8 @@ import * as isValidPath from 'is-valid-path';
 import {writeFileSync} from 'fs';
 import {extname} from 'path';
 import {coverage as calculateCoverage, SchemaCoverage} from '@graphql-inspector/core';
-import {ensureAbsolute} from '../utils/fs';
 
+import {ensureAbsolute} from '../utils/fs';
 import {loadSchema} from '../loaders/schema';
 import {loadDocuments} from '../loaders/documents';
 import {Renderer, ConsoleRenderer} from '../render';
