@@ -1,7 +1,6 @@
 {
   "name": "graphql-inspector",
   "private": true,
-  "version": "0.5.1",
   "description": "Tooling for GraphQL. Compare GraphQL Schemas, check documents, find breaking changes, find similar types.",
   "keywords": [
     "graphql",
