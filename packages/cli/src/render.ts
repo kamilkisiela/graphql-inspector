@@ -2,8 +2,7 @@ import * as logSymbols from 'log-symbols';
 import chalk from 'chalk';
 import indent = require('indent-string');
 
-import {Change, CriticalityLevel, InvalidDocument, SchemaCoverage} from '@graphql-inspector/core';
-import {getTypePrefix} from '@graphql-inspector/core/dist/utils/graphql';
+import {Change, CriticalityLevel, InvalidDocument, SchemaCoverage, getTypePrefix} from '@graphql-inspector/core';
 
 export function getSymbol(level: CriticalityLevel): string {
   const symbols = {
