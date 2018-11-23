@@ -1,12 +1,7 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "types": [
-      "jest"
-    ]
+    "types": ["jest"]
   },
-  "include": [
-    "src/typings.d.ts",
-    "__tests__/**/*.ts",
-  ]
+  "include": ["src/typings.d.ts", "__tests__/**/*.ts"]
 }

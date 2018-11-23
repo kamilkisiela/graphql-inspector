@@ -27,7 +27,7 @@ describe('validate', () => {
   test('should load graphql files', async () => {
     await validate(documents, schema, {
       renderer,
-      require: []
+      require: [],
     });
 
     expect(

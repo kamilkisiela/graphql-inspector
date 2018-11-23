@@ -35,5 +35,8 @@ function normalizeRequire(options: any) {
 }
 
 export function normalizeOptions(options: any) {
-  return pipe(normalizeRequire, useRequire)(options);
+  return pipe(
+    normalizeRequire,
+    useRequire,
+  )(options);
 }

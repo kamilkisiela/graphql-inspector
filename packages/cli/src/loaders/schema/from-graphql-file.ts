@@ -11,7 +11,7 @@ function isGraphQLFile(pointer: string): boolean {
 
 export const fromGraphQLFile: SchemaHandler = function fromUrl(pointer) {
   if (isGraphQLFile(pointer)) {
-    const fullPath = ensureAbsolute(pointer)
+    const fullPath = ensureAbsolute(pointer);
     if (existsSync(fullPath)) {
       return async function load() {
         if (existsSync(fullPath)) {

@@ -15,13 +15,7 @@
     "allowSyntheticDefaultImports": true,
     "baseUrl": "./",
     "types": [],
-    "lib": [
-      "es2015",
-      "esnext.asynciterable",
-      "dom"
-    ]
+    "lib": ["es2015", "esnext.asynciterable", "dom"]
   },
-  "files": [
-    "src/index.ts"
-  ]
+  "files": ["src/index.ts"]
 }

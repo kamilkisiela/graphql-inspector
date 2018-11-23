@@ -23,7 +23,7 @@
   "scripts": {
     "build": "lerna run build",
     "test": "lerna run test",
-    "format": "prettier --config .prettierrc --write \"packages/*/{src,__tests__}/**/*.ts\"",
+    "format": "prettier --config .prettierrc --write \"**/*.{js,json,md,ts,graphql}\"",
     "precommit": "lint-staged"
   },
   "devDependencies": {
@@ -37,6 +37,12 @@
     "packages": [
       "packages/core",
       "packages/cli"
+    ]
+  },
+  "lint-staged": {
+    "*.{js,json,md,ts,graphql}": [
+      "prettier --write",
+      "git add"
     ]
   }
 }

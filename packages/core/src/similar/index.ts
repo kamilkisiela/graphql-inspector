@@ -62,9 +62,11 @@ function similarTo(
 
   return {
     bestMatch: result.bestMatch,
-    ratings: result.ratings.filter(
-      r => r.rating >= threshold && r.target !== result.bestMatch.target,
-    ).sort((a: Rating, b: Rating) => a.rating + b.rating),
+    ratings: result.ratings
+      .filter(
+        r => r.rating >= threshold && r.target !== result.bestMatch.target,
+      )
+      .sort((a: Rating, b: Rating) => a.rating + b.rating),
   };
 }
 

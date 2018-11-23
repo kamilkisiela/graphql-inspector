@@ -14,17 +14,8 @@
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "baseUrl": "./",
-    "types": [
-      "node"
-    ],
-    "lib": [
-      "es2015",
-      "esnext.asynciterable",
-      "dom"
-    ]
+    "types": ["node"],
+    "lib": ["es2015", "esnext.asynciterable", "dom"]
   },
-  "files": [
-    "src/typings.d.ts",
-    "src/index.ts"
-  ]
+  "files": ["src/typings.d.ts", "src/index.ts"]
 }
