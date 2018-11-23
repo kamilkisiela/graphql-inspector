@@ -23,6 +23,10 @@ GraphQL Inspector has a **CLI** and also a **programatic API**, so you can use i
 ## Installation
 
 ```bash
+# CLI
+yarn add @graphql-inspector/cli
+
+# Core API for programatic usage
 yarn add @graphql-inspector/core
 ```
 
