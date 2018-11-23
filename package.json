@@ -24,6 +24,8 @@
     "build": "lerna run build",
     "test": "lerna run test",
     "format": "prettier --config .prettierrc --write \"**/*.{js,json,md,ts,graphql}\"",
+    "release": "lerna publish --exact --force-publish=\"*\"",
+    "release:canary": "lerna publish --force-publish=\"*\" --canary --exact",
     "precommit": "lint-staged"
   },
   "devDependencies": {
