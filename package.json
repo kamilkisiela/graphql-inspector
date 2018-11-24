@@ -39,6 +39,7 @@
     "packages": [
       "packages/core",
       "packages/cli",
+      "packages/api",
       "packages/ui"
     ]
   },

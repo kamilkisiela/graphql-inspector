@@ -24,7 +24,7 @@
     "build": "yarn build:ui && yarn build:server",
     "build:ui": "react-scripts build",
     "build:server": "tsc -p tsconfig.server.json",
-    "test": "react-scripts test",
+    "xtest": "react-scripts test",
     "clean": "rm -rf build/ dist/",
     "prebuild": "yarn clean",
     "prepublishOnly": "yarn build"
