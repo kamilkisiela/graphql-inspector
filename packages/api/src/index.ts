@@ -19,7 +19,7 @@ export function apply(
     path?: string;
   },
 ) {
-  const path = config.path || '/graphql';
+  const path = config.path || '/';
   const apollo = new ApolloServer({
     schema,
     mocks: true,

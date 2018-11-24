@@ -19,7 +19,7 @@ export async function ui(options: {
 
   // API
   apply(app, {
-    path: '/graphql',
+    path: '/api',
   });
 
   // UI
