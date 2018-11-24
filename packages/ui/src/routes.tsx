@@ -1,6 +1,10 @@
 import Empty from './Empty';
 import {MenuItem} from './ui/Menu';
-import Dashboard from './ui/features/dashboard/Dashboard'
+import Dashboard from './ui/features/dashboard/Dashboard';
+import Diff from './ui/features/diff/Diff';
+import Validate from './ui/features/validate/Validate';
+import Coverage from './ui/features/coverage/Coverage';
+import Similar from './ui/features/similar/Similar';
 
 const routes: MenuItem[] = [
   {
@@ -15,28 +19,28 @@ const routes: MenuItem[] = [
     to: '/diff',
     name: 'Diff Schemas',
     iconName: 'DiffSideBySide',
-    component: Empty,
+    component: Diff,
   },
   {
     key: 'similar',
     to: '/similar',
     name: 'Find Duplicates',
     iconName: 'MergeDuplicate',
-    component: Empty,
+    component: Similar,
   },
   {
     key: 'coverage',
     to: '/coverage',
     name: 'Schema Coverage',
     iconName: 'CompassNW',
-    component: Empty,
+    component: Coverage,
   },
   {
     key: 'validate',
     to: '/validate',
     name: 'Validate documents',
     iconName: 'Error',
-    component: Empty,
+    component: Validate,
   },
 ];
 
