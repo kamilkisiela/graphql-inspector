@@ -1,24 +1,25 @@
+import * as express from 'express';
 import opn = require('opn');
-import {serve} from '@graphql-inspector/ui';
+import {middleware as uiMiddleware} from '@graphql-inspector/ui';
 
 import {Renderer, ConsoleRenderer} from '../render';
 
 export async function ui(options: {
   renderer?: Renderer;
-  port?: string | number;
+  port: string | number;
 }) {
   const renderer = options.renderer || new ConsoleRenderer();
   const PORT =
     typeof options.port === 'number'
       ? options.port
-      : parseInt(options.port || '4000', 10);
+      : parseInt(options.port, 10);
   const url = `http://localhost:${PORT}`;
+  const app = express();
 
-  await serve({
-    port: PORT,
+  uiMiddleware(app);
+
+  app.listen(PORT, async () => {
+    renderer.success(`GraphQL Inspector is available on ${url}`);
+    await opn(url);
   });
-
-  renderer.success(`Serving the GraphQL API on ${url}`);
-
-  await opn(url);
 }

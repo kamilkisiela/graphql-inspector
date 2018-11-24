@@ -15,6 +15,7 @@ commander.option('-r, --require <s...>', 'Require modules');
 commander
   .command('ui')
   .description('Serves a GUI')
+  .option('-p, --port <n>', 'Run on a specific port', 4000)
   .action(() =>
     ui({
       port: 4000,

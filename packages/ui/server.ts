@@ -3,13 +3,26 @@ import {join} from 'path';
 
 export async function serve(options: {port: number}) {
   const app = express();
+
+  app.get('/', middleware(app));
+
+  return listen(app, options.port);
+}
+
+export function middleware(app: express.Application): express.Handler {
   const base = join(__dirname, '../build');
 
   app.use(express.static(base));
 
-  app.get('/', (_req, res) => {
+  return (_req, res) => {
     res.sendFile(join(base, 'index.html'));
-  });
+  };
+}
 
-  app.listen(options.port);
+function listen(app: express.Application, port: number): Promise<void> {
+  return new Promise<void>(resolve => {
+    app.listen(port, () => {
+      resolve();
+    });
+  });
 }
