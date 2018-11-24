@@ -1,5 +1,9 @@
 import React, {Component} from 'react';
 import styled from 'styled-components';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
+import Menu from './ui/Menu';
+import Content from './ui/Content';
+import routes from './routes';
 
 const Header = styled.h1`
   flex: 1;
@@ -26,74 +30,31 @@ const Left = styled.div`
   border-right: 1px solid rgb(234, 234, 234);
 `;
 
-const Menu = styled.nav`
-  flex-direction: row;
+const Center = styled.div`
   flex: 1;
-`;
-
-const MenuItem = styled.a`
-  display: flex;
-  flex-grow: 1;
-  flex-shrink: 0;
-  padding: 15px 0 15px 30px;
-  color: #333;
-  background-color: #fff;
-  vertical-align: middle;
-  text-overflow: ellipsis;
-  font-size: 14px;
-  font-weight: 400;
-  overflow: hidden;
-  cursor: pointer;
-
-  &:hover {
-    background-color: #f8f8f8;
-  }
 `;
 
 class App extends Component {
   render() {
     return (
-      <Body>
-        <Left>
-          <Header>GraphQL Inspector</Header>
-          <Menu>
-            {[
-              {
-                key: 'diff',
-                name: 'Diff Schemas',
-                onClick: () => {
-                  return;
-                },
-              },
-              {
-                key: 'similar',
-                name: 'Find Duplicates',
-                onClick: () => {
-                  return;
-                },
-              },
-              {
-                key: 'coverage',
-                name: 'Schema Coverage',
-                onClick: () => {
-                  return;
-                },
-              },
-              {
-                key: 'validate',
-                name: 'Validate documents',
-                onClick: () => {
-                  return;
-                },
-              },
-            ].map(item => (
-              <MenuItem key={item.key} onClick={item.onClick}>
-                {item.name}
-              </MenuItem>
+      <Router>
+        <Body>
+          <Left>
+            <Header>GraphQL Inspector</Header>
+            <Menu menu={routes} />
+          </Left>
+          <Center>
+            {routes.map(route => (
+              <Route
+                exact
+                path={route.to}
+                key={route.key}
+                render={() => <Content title={route.name}>{() => <route.component/>}</Content>}
+              />
             ))}
-          </Menu>
-        </Left>
-      </Body>
+          </Center>
+        </Body>
+      </Router>
     );
   }
 }
