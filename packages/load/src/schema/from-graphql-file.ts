@@ -2,8 +2,8 @@ import {parse, buildASTSchema} from 'graphql';
 import {existsSync, readFileSync} from 'fs';
 
 import {SchemaHandler} from './loader';
-import {stripBOM} from '../../utils/string';
-import {ensureAbsolute} from '../../utils/fs';
+import {stripBOM} from '../helpers/string';
+import {ensureAbsolute} from '../helpers/path';
 
 function isGraphQLFile(pointer: string): boolean {
   return /\.(graphql|gql|graphqls)$/i.test(pointer);
