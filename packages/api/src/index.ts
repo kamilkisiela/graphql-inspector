@@ -22,7 +22,6 @@ export function apply(
   const path = config.path || '/';
   const apollo = new ApolloServer({
     schema,
-    mocks: true,
     introspection: true,
   });
 

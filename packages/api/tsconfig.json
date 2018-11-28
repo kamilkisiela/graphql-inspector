@@ -8,8 +8,6 @@
     "rootDir": "./src",
 
     "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
 
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,

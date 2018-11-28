@@ -1,7 +1,19 @@
-import {buildSchema} from 'graphql';
+import {makeExecutableSchema} from 'apollo-server-express';
+import {mergeGraphQLSchemas} from '@graphql-modules/epoxy';
+import gql from 'graphql-tag';
+import * as coverage from './coverage';
 
-export const schema = buildSchema(`
+const base = gql`
   type Query {
-    greeting: String
+    ping: String!
   }
-`);
+
+  type Mutation {
+    ping: String!
+  }
+`;
+
+export const schema = makeExecutableSchema({
+  typeDefs: mergeGraphQLSchemas([base, coverage.typeDefs]),
+  resolvers: [coverage.resolvers] as any,
+});

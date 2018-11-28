@@ -1,7 +1,7 @@
 export {diff} from './diff/schema';
 export {validate, InvalidDocument} from './validate';
 export {similar, SimilarMap} from './similar';
-export {coverage, SchemaCoverage} from './coverage';
+export * from './coverage';
 export {
   Change,
   CriticalityLevel,
