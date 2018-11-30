@@ -9,3 +9,4 @@ export {
   ChangeType,
 } from './diff/changes/change';
 export {getTypePrefix} from './utils/graphql';
+export {Target, Rating, BestMatch} from './utils/string';

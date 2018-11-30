@@ -17,6 +17,9 @@ export async function ui(options: {
   const url = `http://localhost:${PORT}`;
   const app = express();
 
+  // This is used by ui
+  process.env.PORT = PORT + '';
+
   // API
   apply(app, {
     path: '/api',

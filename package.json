@@ -6,7 +6,9 @@
     "graphql",
     "graphql-inspector",
     "tools",
-    "cli"
+    "cli",
+    "api",
+    "ui"
   ],
   "sideEffects": false,
   "author": {
@@ -49,5 +51,8 @@
       "prettier --write",
       "git add"
     ]
+  },
+  "resoultions": {
+    "@types/react": "16.7.8"
   }
 }

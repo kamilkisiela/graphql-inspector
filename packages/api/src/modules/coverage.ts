@@ -5,24 +5,24 @@ import {
   QueryResolvers,
   SchemaCoverageResolvers,
   TypeCoverageResolvers,
-} from './generated/graphql';
+  TypeChildCoverageResolvers,
+} from '../generated/graphql';
 
 export const typeDefs = gql`
-  type DocumentSource {
-    body: String!
-    name: String!
-  }
-
   type Location {
-    name: String!
     start: Int!
     end: Int!
+  }
+
+  type DocumentLocation {
+    name: String!
+    locations: [Location!]
   }
 
   type TypeChildCoverage {
     name: String!
     hits: Int!
-    locations: [Location!]
+    locations: [DocumentLocation!]
   }
 
   type TypeCoverage {
@@ -69,8 +69,18 @@ const TypeCoverage: TypeCoverageResolvers.Resolvers = {
   },
 };
 
+const TypeChildCoverage: TypeChildCoverageResolvers.Resolvers = {
+  locations(typeChildCoverage) {
+    return Object.keys(typeChildCoverage.locations).map(name => ({
+      name,
+      locations: typeChildCoverage.locations[name],
+    }));
+  },
+};
+
 export const resolvers = {
   Query,
   SchemaCoverage,
   TypeCoverage,
+  TypeChildCoverage,
 };

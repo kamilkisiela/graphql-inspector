@@ -5,10 +5,13 @@ schema: ./src/schema.ts
 generates:
   ./src/generated/graphql.ts:
     config:
+      immutableTypes: true
       mappers:
         SchemaCoverage: core.SchemaCoverage
         TypeCoverage: ../types#ResolvedTypeCoverage
         TypeChildCoverage: ../types#ResolvedTypeChildCoverage
+        DocumentLocation: ../types#ResolvedDocumentLocation
+        Similar: ../types#ResolvedSimilar
     plugins:
       - add: import * as core from '@graphql-inspector/core';
       - typescript-common

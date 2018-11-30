@@ -1,7 +1,11 @@
 import {makeExecutableSchema} from 'apollo-server-express';
 import {mergeGraphQLSchemas} from '@graphql-modules/epoxy';
 import gql from 'graphql-tag';
-import * as coverage from './coverage';
+import * as common from './modules/common';
+import * as coverage from './modules/coverage';
+import * as diff from './modules/diff';
+import * as validate from './modules/validate';
+import * as similar from './modules/similar';
 
 const base = gql`
   type Query {
@@ -14,6 +18,18 @@ const base = gql`
 `;
 
 export const schema = makeExecutableSchema({
-  typeDefs: mergeGraphQLSchemas([base, coverage.typeDefs]),
-  resolvers: [coverage.resolvers] as any,
+  typeDefs: mergeGraphQLSchemas([
+    base,
+    common.typeDefs,
+    coverage.typeDefs,
+    diff.typeDefs,
+    validate.typeDefs,
+    similar.typeDefs,
+  ]),
+  resolvers: [
+    coverage.resolvers,
+    diff.resolvers,
+    validate.resolvers,
+    similar.resolvers,
+  ] as any,
 });
