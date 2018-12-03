@@ -13,6 +13,7 @@
     "serve": "yarn graphql-inspector serve ./schemas/schema.graphql",
     "coverage": "yarn graphql-inspector coverage ./documents/*.graphql ./schemas/schema.graphql",
     "coverage:write": "yarn graphql-inspector coverage ./documents/*.graphql ./schemas/schema.graphql --silent --write ./coverage.json",
+    "introspect": "yarn graphql-inspector introspect ./schemas/schema.graphql",
     "open-help": "yarn graphql-inspector --help"
   }
 }
