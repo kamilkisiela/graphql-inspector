@@ -4,6 +4,8 @@ import {join} from 'path';
 export async function serve(options: {port: number}) {
   const app = express();
 
+  process.env.PORT = options.port + '';
+
   app.get('/', middleware(app));
 
   return listen(app, options.port);
