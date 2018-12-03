@@ -7,9 +7,22 @@ import {validate} from './commands/validate';
 import {similar} from './commands/similar';
 import {serve} from './commands/serve';
 import {coverage} from './commands/coverage';
+import {ui} from './commands/ui';
 import {normalizeOptions} from './utils/options';
 
 commander.option('-r, --require <s...>', 'Require modules');
+
+const defaultPort = 4000;
+
+commander
+  .command('ui')
+  .description('Serves a GUI')
+  .option('-p, --port <n>', 'Run on a specific port', defaultPort)
+  .action((cmd: commander.Command) =>
+    ui({
+      port: cmd.port,
+    }),
+  );
 
 commander
   .command('diff <old> <new>')
@@ -50,4 +63,15 @@ commander
     coverage(documents, schema, normalizeOptions(cmd)),
   );
 
+commander.command('*').action(() => commander.help());
+
 commander.parse(process.argv);
+
+if (process.argv.length === 2) {
+  ui({
+    port: defaultPort,
+  }).catch(e => {
+    console.log(e);
+    process.exit(1);
+  });
+}

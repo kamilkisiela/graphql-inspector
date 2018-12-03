@@ -1,5 +1,6 @@
 {
   "files.exclude": {
-    "**/dist": true
+    "**/dist": true,
+    "**/build": false
   }
 }

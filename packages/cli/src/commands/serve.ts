@@ -1,7 +1,7 @@
 import {ApolloServer} from 'apollo-server';
 import opn = require('opn');
+import {loadSchema} from '@graphql-inspector/load';
 
-import {loadSchema} from '../loaders/schema';
 import {Renderer, ConsoleRenderer} from '../render';
 
 export async function serve(

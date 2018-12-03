@@ -1,8 +1,8 @@
 node_modules/
-dist/
 yarn.lock
 yarn-error.log
 **/*/node_modules/
 **/*/dist/
+**/*/build/
 **/*/yarn.lock
 **/*/yarn-error.log

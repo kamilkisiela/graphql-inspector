@@ -2,8 +2,8 @@ import {buildClientSchema} from 'graphql';
 import {existsSync, readFileSync} from 'fs';
 
 import {SchemaHandler} from './loader';
-import {parseBOM} from '../../utils/string';
-import {ensureAbsolute} from '../../utils/fs';
+import {parseBOM} from '../helpers/string';
+import {ensureAbsolute} from '../helpers/path';
 
 function isJSONFile(pointer: string): boolean {
   return /\.json$/i.test(pointer);

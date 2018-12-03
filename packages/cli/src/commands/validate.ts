@@ -1,7 +1,6 @@
 import {validate as validateDocuments} from '@graphql-inspector/core';
+import {loadSchema, loadDocuments} from '@graphql-inspector/load';
 
-import {loadSchema} from '../loaders/schema';
-import {loadDocuments} from '../loaders/documents';
 import {Renderer, ConsoleRenderer, renderInvalidDocument} from '../render';
 
 export async function validate(

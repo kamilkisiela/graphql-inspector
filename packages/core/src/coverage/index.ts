@@ -13,13 +13,15 @@ import {
 import {readDocument} from '../ast/document';
 import {isForIntrospection, isPrimitive} from '../utils/graphql';
 
+export interface Location {
+  start: number;
+  end: number;
+}
+
 export interface TypeChildCoverage {
   hits: number;
   locations: {
-    [name: string]: Array<{
-      start: number;
-      end: number;
-    }>;
+    [name: string]: Array<Location>;
   };
 }
 

@@ -6,7 +6,9 @@
     "graphql",
     "graphql-inspector",
     "tools",
-    "cli"
+    "cli",
+    "api",
+    "ui"
   ],
   "sideEffects": false,
   "author": {
@@ -38,7 +40,10 @@
   "workspaces": {
     "packages": [
       "packages/core",
-      "packages/cli"
+      "packages/cli",
+      "packages/api",
+      "packages/ui",
+      "packages/load"
     ]
   },
   "lint-staged": {
@@ -46,5 +51,8 @@
       "prettier --write",
       "git add"
     ]
+  },
+  "resoultions": {
+    "@types/react": "16.7.8"
   }
 }

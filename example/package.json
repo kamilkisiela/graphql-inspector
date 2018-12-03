@@ -2,6 +2,7 @@
   "name": "example",
   "scripts": {
     "graphql-inspector": "node ../packages/cli/dist/index.js",
+    "ui": "yarn graphql-inspector ui",
     "diff": "yarn graphql-inspector diff ./schemas/schema.graphql ./schemas/new.graphql",
     "diff:same": "yarn graphql-inspector diff ./schemas/schema.graphql ./schemas/schema.graphql",
     "validate": "yarn graphql-inspector validate ./documents/*.graphql ./schemas/schema.graphql",

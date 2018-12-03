@@ -12,7 +12,7 @@ import {readDocument} from '../ast/document';
 
 export interface InvalidDocument {
   source: Source;
-  errors: ReadonlyArray<GraphQLError>;
+  errors: GraphQLError[];
 }
 
 export function validate(
@@ -41,7 +41,7 @@ export function validate(
 
           ${fragments.map(print).join('\n\n')}
         `),
-    );
+    ) as GraphQLError[];
 
     if (errors) {
       invalidDocuments.push({

@@ -1,7 +1,7 @@
 export {diff} from './diff/schema';
 export {validate, InvalidDocument} from './validate';
 export {similar, SimilarMap} from './similar';
-export {coverage, SchemaCoverage} from './coverage';
+export * from './coverage';
 export {
   Change,
   CriticalityLevel,
@@ -9,3 +9,4 @@ export {
   ChangeType,
 } from './diff/changes/change';
 export {getTypePrefix} from './utils/graphql';
+export {Target, Rating, BestMatch} from './utils/string';

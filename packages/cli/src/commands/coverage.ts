@@ -5,10 +5,9 @@ import {
   coverage as calculateCoverage,
   SchemaCoverage,
 } from '@graphql-inspector/core';
+import {loadSchema, loadDocuments} from '@graphql-inspector/load';
 
 import {ensureAbsolute} from '../utils/fs';
-import {loadSchema} from '../loaders/schema';
-import {loadDocuments} from '../loaders/documents';
 import {Renderer, ConsoleRenderer} from '../render';
 
 export function outputJSON(coverage: SchemaCoverage): string {
