@@ -8,6 +8,7 @@ import {similar} from './commands/similar';
 import {serve} from './commands/serve';
 import {coverage} from './commands/coverage';
 import {ui} from './commands/ui';
+import {introspect} from './commands/introspect';
 import {normalizeOptions} from './utils/options';
 
 commander.option('-r, --require <s...>', 'Require modules');
@@ -61,6 +62,13 @@ commander
   .description('Schema coverage based on documents')
   .action((documents: string, schema: string, cmd: commander.Command) =>
     coverage(documents, schema, normalizeOptions(cmd)),
+  );
+
+commander
+  .command('introspect <schema>')
+  .description('Introspect a schema')
+  .action((schema: string, cmd: commander.Command) =>
+    introspect(schema, normalizeOptions(cmd)),
   );
 
 commander.command('*').action(() => commander.help());
