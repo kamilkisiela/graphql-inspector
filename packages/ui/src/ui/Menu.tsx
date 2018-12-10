@@ -45,12 +45,12 @@ const Label = styled.div`
 export default function Menu(props: {menu: MenuItem[]}) {
   return (
     <Container>
-      {props.menu.map(item => (
+      {/* {props.menu.map(item => (
         <Item to={item.to} key={item.key}>
           <Icon iconName={item.iconName} />
           <Label>{item.name}</Label>
         </Item>
-      ))}
+      ))} */}
     </Container>
   );
 }

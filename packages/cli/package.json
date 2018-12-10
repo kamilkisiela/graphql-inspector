@@ -47,7 +47,6 @@
   "dependencies": {
     "@graphql-inspector/api": "0.6.0-alpha.2",
     "@graphql-inspector/core": "0.6.0-alpha.2",
-    "@graphql-inspector/ui": "0.6.0-alpha.2",
     "@graphql-inspector/load": "0.6.0-alpha.2",
     "apollo-server": "2.2.2",
     "apollo-server-express": "2.2.2",

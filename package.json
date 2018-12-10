@@ -25,7 +25,7 @@
     "build": "lerna run build",
     "test": "lerna run test",
     "format": "prettier --config .prettierrc --write \"**/*.{js,json,md,ts,graphql}\"",
-    "release": "lerna publish --exact --force-publish=\"*\"",
+    "release": "lerna publish --exact --force-publish=\"*\" --skip-commit",
     "release:canary": "lerna publish --force-publish=\"*\" --canary --exact",
     "precommit": "lint-staged"
   },
@@ -42,7 +42,6 @@
       "packages/core",
       "packages/cli",
       "packages/api",
-      "packages/ui",
       "packages/load"
     ]
   },
@@ -53,6 +52,6 @@
     ]
   },
   "resoultions": {
-    "@types/react": "16.7.8"
+    "@types/react": "16.7.13"
   }
 }
