@@ -1,5 +1,5 @@
 import {introspectionQuery, buildClientSchema} from 'graphql';
-import * as fetch from 'node-fetch';
+import fetch from 'node-fetch';
 
 import {SchemaHandler} from './loader';
 

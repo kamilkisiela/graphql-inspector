@@ -30,12 +30,12 @@
     "precommit": "lint-staged"
   },
   "devDependencies": {
-    "lint-staged": "8.0.4",
-    "prettier": "1.15.2"
+    "lint-staged": "8.1.0",
+    "prettier": "1.15.3"
   },
   "dependencies": {
     "husky": "1.2.0",
-    "lerna": "3.4.3"
+    "lerna": "3.6.0"
   },
   "workspaces": {
     "packages": [
@@ -53,6 +53,7 @@
     ]
   },
   "resoultions": {
-    "@types/react": "16.7.8"
+    "@types/react": "16.7.13",
+    "@types/react-dom": "16.0.11"
   }
 }
