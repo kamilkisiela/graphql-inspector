@@ -1,6 +1,6 @@
 {
   "name": "@graphql-inspector/ui",
-  "version": "0.6.0-alpha.3",
+  "version": "0.6.0",
   "description": "GraphQL Inspector GUI",
   "keywords": [
     "graphql",
