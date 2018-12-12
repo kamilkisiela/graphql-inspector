@@ -4,7 +4,7 @@
     "graphql-inspector": "node ../packages/cli/dist/index.js",
     "ui": "yarn graphql-inspector ui",
     "diff": "yarn graphql-inspector diff ./schemas/schema.graphql ./schemas/new.graphql",
-    "diff:same": "yarn graphql-inspector diff ./schemas/schema.graphql ./schemas/schema.graphql",
+    "diff:same": "yarn graphql-inspector diff ./schemas/schema.js ./schemas/schema.graphql",
     "validate": "yarn graphql-inspector validate ./documents/*.graphql ./schemas/schema.graphql",
     "validate:none": "yarn graphql-inspector validate ./no-documents/*.graphql ./schemas/schema.graphql",
     "similar": "yarn graphql-inspector similar ./schemas/similar.graphql",
