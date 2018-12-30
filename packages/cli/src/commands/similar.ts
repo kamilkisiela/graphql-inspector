@@ -3,6 +3,7 @@ import {GraphQLNamedType} from 'graphql';
 import indent = require('indent-string');
 import {similar as findSimilar, getTypePrefix} from '@graphql-inspector/core';
 import {loadSchema} from '@graphql-inspector/load';
+import * as figures from 'figures';
 
 import {Renderer, ConsoleRenderer} from '../render';
 
@@ -27,24 +28,18 @@ export async function similar(
       for (const typeName in found) {
         if (found.hasOwnProperty(typeName)) {
           const matches = found[typeName];
-
           const prefix = getTypePrefix(schema.getType(
             typeName,
           ) as GraphQLNamedType);
           const sourceType = chalk.bold(typeName);
-          const percentage = chalk.grey(
-            `(${formatRating(matches.bestMatch.rating)}%)`,
-          );
-          const name = chalk.bold(matches.bestMatch.target.typeId);
+          const name = matches.bestMatch.target.typeId;
 
-          renderer.success(`${prefix} ${sourceType}`);
-          renderer.emit(indent(`Best match ${percentage}: ${name}`, 2));
+          renderer.emit('');
+          renderer.emit(`${prefix} ${sourceType}`);
+          renderer.emit(printResult(name, matches.bestMatch.rating));
 
           matches.ratings.forEach(match => {
-            const percentage = chalk.grey(`(${formatRating(match.rating)}%)`);
-            const name = chalk.bold(match.target.typeId);
-
-            renderer.emit(indent(`${percentage}: ${name}`, 2));
+            renderer.emit(printResult(match.target.typeId, match.rating));
           });
         }
       }
@@ -56,6 +51,22 @@ export async function similar(
   }
 
   process.exit(0);
+}
+
+function printResult(name: string, rating: number): string {
+  const percentage = chalk.grey(`(${formatRating(rating)}%)`);
+
+  return indent(`${printScale(rating)} ${percentage} ${name}`, 0);
+}
+
+function printScale(ratio: number): string {
+  const percentage = Math.floor(ratio * 100);
+  const levels = [0, 30, 50, 70, 90];
+
+  return levels
+    .map(level => percentage >= level)
+    .map(enabled => (enabled ? figures.bullet : chalk.gray(figures.bullet)))
+    .join('');
 }
 
 function formatRating(ratio: number): number {
