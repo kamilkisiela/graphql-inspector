@@ -38,8 +38,8 @@ export function renderInvalidDocument(invalidDoc: InvalidDocument): string[] {
     .join('\n');
 
   return [
-    logSymbols.error,
-    chalk.redBright(bolderize(invalidDoc.source.name + ':\n\n')),
+    chalk.redBright('error'),
+    `in ${invalidDoc.source.name}:\n\n`,
     errors,
     '\n\n',
   ];
@@ -94,10 +94,10 @@ export class ConsoleRenderer implements Renderer {
   }
 
   success(...msgs: string[]) {
-    console.log(`\n${logSymbols.success} ${msgs.join(' ')}`);
+    console.log(`\n${chalk.greenBright('success')} ${msgs.join(' ')}`);
   }
 
   error(...msgs: string[]) {
-    console.log(`\n${logSymbols.error} ${msgs.join(' ')}`);
+    console.log(`\n${chalk.redBright('error')} ${msgs.join(' ')}`);
   }
 }
