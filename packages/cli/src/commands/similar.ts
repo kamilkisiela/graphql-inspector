@@ -117,12 +117,7 @@ function transformMap(similarMap: SimilarMap): SimilarResults {
       }
 
       if (result.ratings) {
-        results[typename].push(
-          ...result.ratings
-            .sort((a, b) => a.rating - b.rating)
-            .reverse()
-            .map(trasformResult),
-        );
+        results[typename].push(...result.ratings.map(trasformResult));
       }
     }
   }
