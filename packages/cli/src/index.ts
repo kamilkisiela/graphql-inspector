@@ -43,10 +43,11 @@ commander
   .command('similar <schema>')
   .option('-n, --type <s>', 'Name of a type')
   .option('-t, --threshold <n>', 'Threshold of similarity ratio', parseFloat)
+  .option('-w, --write <s>', 'Write a file with stats')
   .description('Find similar types in a schema')
-  .action((schema: string, cmd: commander.Command) => {
-    similar(schema, cmd.type, cmd.threshold, normalizeOptions(cmd));
-  });
+  .action((schema: string, cmd: commander.Command) =>
+    similar(schema, cmd.type, cmd.threshold, normalizeOptions(cmd)),
+  );
 
 commander
   .command('serve <schema>')

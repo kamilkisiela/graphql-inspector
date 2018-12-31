@@ -55,7 +55,7 @@ export async function coverage(
       }
 
       if (output) {
-        writeFileSync(absPath, outputJSON(coverage), {
+        writeFileSync(absPath, output, {
           encoding: 'utf-8',
         });
 
