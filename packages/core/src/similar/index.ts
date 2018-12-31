@@ -66,7 +66,8 @@ function similarTo(
       .filter(
         r => r.rating >= threshold && r.target !== result.bestMatch.target,
       )
-      .sort((a: Rating, b: Rating) => a.rating + b.rating),
+      .sort((a: Rating, b: Rating) => a.rating - b.rating)
+      .reverse(),
   };
 }
 
