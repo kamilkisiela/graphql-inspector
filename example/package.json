@@ -8,6 +8,7 @@
     "validate": "yarn graphql-inspector validate ./documents/*.graphql ./schemas/schema.graphql",
     "validate:none": "yarn graphql-inspector validate ./no-documents/*.graphql ./schemas/schema.graphql",
     "similar": "yarn graphql-inspector similar ./schemas/similar.graphql",
+    "similar:write": "yarn graphql-inspector similar ./schemas/similar.graphql --write ./similar.json",
     "similar:type": "yarn graphql-inspector similar ./schemas/similar.graphql --type Post",
     "similar:loose": "yarn graphql-inspector similar ./schemas/similar.graphql --threshold 0.1",
     "serve": "yarn graphql-inspector serve ./schemas/schema.graphql",

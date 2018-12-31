@@ -1,11 +1,20 @@
 import chalk from 'chalk';
 import {GraphQLNamedType} from 'graphql';
 import indent = require('indent-string');
-import {similar as findSimilar, getTypePrefix} from '@graphql-inspector/core';
-import {loadSchema} from '@graphql-inspector/load';
+import * as isValidPath from 'is-valid-path';
 import * as figures from 'figures';
+import {extname} from 'path';
+import {writeFileSync} from 'fs';
+import {
+  similar as findSimilar,
+  getTypePrefix,
+  SimilarMap,
+  Rating,
+} from '@graphql-inspector/core';
+import {loadSchema} from '@graphql-inspector/load';
 
 import {Renderer, ConsoleRenderer} from '../render';
+import {ensureAbsolute} from '../utils/fs';
 
 export async function similar(
   schemaPointer: string,
@@ -13,28 +22,31 @@ export async function similar(
   threshold: number | undefined,
   options: {
     require: string[];
+    write?: string;
     renderer?: Renderer;
   },
 ) {
   const renderer = options.renderer || new ConsoleRenderer();
+  const writePath = options.write;
+  const shouldWrite = typeof writePath !== 'undefined';
 
   try {
     const schema = await loadSchema(schemaPointer);
-    const found = findSimilar(schema, name, threshold);
+    const similarMap = findSimilar(schema, name, threshold);
 
-    if (!Object.keys(found).length) {
+    if (!Object.keys(similarMap).length) {
       renderer.emit('No similar types found');
     } else {
-      for (const typeName in found) {
-        if (found.hasOwnProperty(typeName)) {
-          const matches = found[typeName];
+      for (const typeName in similarMap) {
+        if (similarMap.hasOwnProperty(typeName)) {
+          const matches = similarMap[typeName];
           const prefix = getTypePrefix(schema.getType(
             typeName,
           ) as GraphQLNamedType);
           const sourceType = chalk.bold(typeName);
           const name = matches.bestMatch.target.typeId;
 
-          renderer.emit('');
+          renderer.emit();
           renderer.emit(`${prefix} ${sourceType}`);
           renderer.emit(printResult(name, matches.bestMatch.rating));
 
@@ -43,6 +55,35 @@ export async function similar(
           });
         }
       }
+
+      if (shouldWrite) {
+        if (typeof writePath !== 'string' || !isValidPath(writePath)) {
+          throw new Error(`--write is not valid file path: ${writePath}`);
+        }
+
+        const absPath = ensureAbsolute(writePath);
+        const ext = extname(absPath)
+          .replace('.', '')
+          .toLocaleLowerCase();
+
+        let output: string | undefined = undefined;
+        const results = transformMap(similarMap);
+
+        if (ext === 'json') {
+          output = outputJSON(results);
+        }
+
+        if (output) {
+          writeFileSync(absPath, output, {
+            encoding: 'utf-8',
+          });
+
+          renderer.success('Available at', absPath, '\n');
+        } else {
+          throw new Error(`Extension ${ext} is not supported`);
+        }
+      }
+
       renderer.emit();
     }
   } catch (e) {
@@ -51,6 +92,53 @@ export async function similar(
   }
 
   process.exit(0);
+}
+
+interface SimilarRecord {
+  typename: string;
+  rating: number;
+}
+
+interface SimilarResults {
+  [typename: string]: SimilarRecord[];
+}
+
+function transformMap(similarMap: SimilarMap): SimilarResults {
+  const results: SimilarResults = {};
+
+  for (const typename in similarMap) {
+    if (similarMap.hasOwnProperty(typename)) {
+      const result = similarMap[typename];
+
+      results[typename] = [];
+
+      if (result.bestMatch) {
+        results[typename].push(trasformResult(result.bestMatch));
+      }
+
+      if (result.ratings) {
+        results[typename].push(
+          ...result.ratings
+            .sort((a, b) => a.rating - b.rating)
+            .reverse()
+            .map(trasformResult),
+        );
+      }
+    }
+  }
+
+  return results;
+}
+
+function trasformResult(record: Rating): SimilarRecord {
+  return {
+    typename: record.target.typeId,
+    rating: record.rating,
+  };
+}
+
+function outputJSON(results: SimilarResults): string {
+  return JSON.stringify(results);
 }
 
 function printResult(name: string, rating: number): string {
