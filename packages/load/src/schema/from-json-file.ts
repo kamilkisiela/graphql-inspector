@@ -30,7 +30,7 @@ export const fromJSONFile: SchemaHandler = function fromUrl(pointer) {
             introspection = introspection.data;
           }
 
-          return buildClientSchema(introspection.__schema);
+          return buildClientSchema(introspection);
         } catch (e) {
           throw e;
         }
