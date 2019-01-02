@@ -8,6 +8,7 @@ import {
   isInputObjectType,
   isObjectType,
   isInterfaceType,
+  isScalarType,
 } from 'graphql';
 
 import {unionArrays, diffArrays} from '../utils/arrays';
@@ -37,7 +38,6 @@ export function diff(
   newSchema: GraphQLSchema,
 ): Change[] {
   const changes: Change[] = [];
-
   const types = diffTypes(oldSchema, newSchema);
   const directives = diffDirectives(oldSchema, newSchema);
 
@@ -183,6 +183,8 @@ function changesInType(
     changes = changesInObject(oldType, newType);
   } else if (isInterfaceType(oldType) && isInterfaceType(newType)) {
     changes = changesInInterface(oldType, newType);
+  } else if (isScalarType(oldType) && isScalarType(newType)) {
+    // what to do with scalar types?
   } else {
     changes = [typeKindChanged(oldType, newType)];
   }
