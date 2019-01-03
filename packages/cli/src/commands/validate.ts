@@ -41,6 +41,8 @@ export async function validate(
         invalidDocuments.forEach(doc => {
           renderer.emit(...renderInvalidDocument(doc));
         });
+      } else {
+        renderer.success('All documents are valid');
       }
 
       if (deprecated) {
