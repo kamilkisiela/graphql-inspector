@@ -16,6 +16,7 @@ export async function validate(
   schemaPointer: string,
   options: {
     require: string[];
+    deprecated: boolean;
     renderer?: Renderer;
   },
 ) {
@@ -41,7 +42,7 @@ export async function validate(
         invalidDocuments.forEach(doc => {
           renderer.emit(...renderInvalidDocument(doc));
         });
-      } else {
+      } else if (!options.deprecated) {
         renderer.success('All documents are valid');
       }
 
@@ -53,11 +54,13 @@ export async function validate(
         );
 
         invalidDocuments.forEach(doc => {
-          renderer.emit(...renderDeprecatedUsageInDocument(doc));
+          renderer.emit(
+            ...renderDeprecatedUsageInDocument(doc, options.deprecated),
+          );
         });
       }
 
-      if (errors) {
+      if (errors || (deprecated && options.deprecated)) {
         process.exit(1);
       }
     }
