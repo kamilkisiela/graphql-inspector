@@ -28,6 +28,7 @@ describe('validate', () => {
     await validate(documents, schema, {
       renderer,
       require: [],
+      deprecated: false,
     });
 
     expect(
