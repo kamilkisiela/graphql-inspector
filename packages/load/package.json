@@ -1,6 +1,6 @@
 {
   "name": "@graphql-inspector/load",
-  "version": "0.6.2",
+  "version": "0.6.3",
   "description": "Load GraphQL Schema and Documents from any source",
   "keywords": [
     "graphql",
