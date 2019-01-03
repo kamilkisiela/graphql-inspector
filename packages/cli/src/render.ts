@@ -45,6 +45,22 @@ export function renderInvalidDocument(invalidDoc: InvalidDocument): string[] {
   ];
 }
 
+export function renderDeprecatedUsageInDocument(
+  invalidDoc: InvalidDocument,
+  isCritical = false,
+): string[] {
+  const deprecated = invalidDoc.deprecated
+    .map(e => ` - ${bolderize(e.message)}`)
+    .join('\n');
+
+  return [
+    isCritical ? chalk.redBright('error') : chalk.yellowBright('warn'),
+    `in ${invalidDoc.source.name}:\n\n`,
+    deprecated,
+    '\n\n',
+  ];
+}
+
 export interface Renderer {
   emit(...msgs: string[]): void;
   success(...msgs: string[]): void;

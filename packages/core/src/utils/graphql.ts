@@ -7,6 +7,13 @@ import {
   GraphQLNamedType,
   KindEnum,
   Kind,
+  GraphQLSchema,
+  GraphQLError,
+  DocumentNode,
+  TypeInfo,
+  visit,
+  visitWithTypeInfo,
+  getNamedType,
 } from 'graphql';
 
 export function safeChangeForField(
@@ -91,4 +98,54 @@ export function isForIntrospection(type: GraphQLNamedType | string): boolean {
       '__DirectiveLocation',
     ].indexOf(typeof type === 'string' ? type : type.name) !== -1
   );
+}
+
+export function findDeprecatedUsages(
+  schema: GraphQLSchema,
+  ast: DocumentNode,
+): Array<GraphQLError> {
+  const errors: GraphQLError[] = [];
+  const typeInfo = new TypeInfo(schema);
+
+  visit(
+    ast,
+    visitWithTypeInfo(typeInfo, {
+      Field(node) {
+        const fieldDef = typeInfo.getFieldDef();
+        if (fieldDef && fieldDef.isDeprecated) {
+          const parentType = typeInfo.getParentType();
+          if (parentType) {
+            const reason = fieldDef.deprecationReason;
+            errors.push(
+              new GraphQLError(
+                `The field '${parentType.name}.${
+                  fieldDef.name
+                }' is deprecated.${reason ? ' ' + reason : ''}`,
+                [node],
+              ),
+            );
+          }
+        }
+      },
+      EnumValue(node) {
+        const enumVal = typeInfo.getEnumValue();
+        if (enumVal && enumVal.isDeprecated) {
+          const type = getNamedType(typeInfo.getInputType()!);
+          if (type) {
+            const reason = enumVal.deprecationReason;
+            errors.push(
+              new GraphQLError(
+                `The enum value '${type.name}.${enumVal.name}' is deprecated.${
+                  reason ? ' ' + reason : ''
+                }`,
+                [node],
+              ),
+            );
+          }
+        }
+      },
+    }),
+  );
+
+  return errors;
 }

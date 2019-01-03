@@ -34,6 +34,7 @@ commander
 
 commander
   .command('validate <documents> <schema>')
+  .option('-d, --deprecated', 'Fail on deprecated usage', false)
   .description('Validate documents against a schema')
   .action((documents: string, schema: string, cmd: commander.Command) =>
     validate(documents, schema, normalizeOptions(cmd)),

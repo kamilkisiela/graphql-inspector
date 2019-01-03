@@ -9,10 +9,12 @@ import {
 } from 'graphql';
 
 import {readDocument} from '../ast/document';
+import {findDeprecatedUsages} from '../utils/graphql';
 
 export interface InvalidDocument {
   source: Source;
   errors: GraphQLError[];
+  deprecated: GraphQLError[];
 }
 
 export function validate(
@@ -42,11 +44,13 @@ export function validate(
           ${fragments.map(print).join('\n\n')}
         `),
     ) as GraphQLError[];
+    const deprecated = findDeprecatedUsages(schema, parse(doc.source.body));
 
-    if (errors) {
+    if (errors || deprecated) {
       invalidDocuments.push({
         source: doc.source,
         errors,
+        deprecated,
       });
     }
   });
