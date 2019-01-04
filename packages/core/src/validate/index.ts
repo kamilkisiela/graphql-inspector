@@ -41,7 +41,10 @@ export function validate(
       parse(`
           ${doc.source.body}
 
-          ${fragments.map(print).join('\n\n')}
+          ${fragments
+            .filter(f => doc.source.body.indexOf(`fragment ${f.name.value} on`))
+            .map(print)
+            .join('\n\n')}
         `),
     ) as GraphQLError[];
     const deprecated = findDeprecatedUsages(schema, parse(doc.source.body));
