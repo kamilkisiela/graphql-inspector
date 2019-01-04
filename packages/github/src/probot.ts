@@ -55,6 +55,7 @@ export default function handleProbot(app: probot.Application) {
 
     await handleAction({context, owner, repo, ref, action});
   });
+
   app.on('check_suite', async context => {
     const ref = context.payload.check_suite.head_sha;
     const action = context.payload.action;
@@ -64,7 +65,7 @@ export default function handleProbot(app: probot.Application) {
   });
 }
 
-async function handleAction({
+export async function handleAction({
   context,
   owner,
   repo,
@@ -77,7 +78,7 @@ async function handleAction({
   ref: string;
   action: string;
 }) {
-  if (['requested', 'rerequested'].indexOf(action) === -1) {
+  if (['requested', 'rerequested', 'gh-action'].indexOf(action) === -1) {
     return;
   }
 

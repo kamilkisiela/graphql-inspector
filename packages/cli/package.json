@@ -1,6 +1,6 @@
 {
   "name": "@graphql-inspector/cli",
-  "version": "0.6.5",
+  "version": "0.7.0",
   "description": "Tooling for GraphQL. Compare GraphQL Schemas, check documents, find breaking changes, find similar types.",
   "keywords": [
     "graphql",
@@ -45,10 +45,10 @@
     "typescript": "3.2.2"
   },
   "dependencies": {
-    "@graphql-inspector/api": "0.6.5",
-    "@graphql-inspector/core": "0.6.5",
-    "@graphql-inspector/load": "0.6.5",
-    "@graphql-inspector/ui": "0.6.5",
+    "@graphql-inspector/api": "0.7.0",
+    "@graphql-inspector/core": "0.7.0",
+    "@graphql-inspector/load": "0.7.0",
+    "@graphql-inspector/ui": "0.7.0",
     "apollo-server": "2.2.6",
     "apollo-server-express": "2.2.6",
     "chalk": "2.4.1",
