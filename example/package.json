@@ -7,7 +7,7 @@
     "diff:json": "yarn graphql-inspector diff ./schemas/schema.json ./schemas/new.json",
     "diff:same": "yarn graphql-inspector diff ./schemas/schema.js ./schemas/schema.graphql",
     "diff:same:json": "yarn graphql-inspector diff ./schemas/schema.json ./schemas/schema.json",
-    "diff:github": "yarn graphql-inspector diff ./schemas/schema.graphql github:kamilkisiela/graphql-inspector#master:example/schemas/new.json  --token PERSONAL_ACCESS_TOKEN",
+    "diff:github": "yarn graphql-inspector diff github:kamilkisiela/graphql-inspector#master:example/schemas/schema.json ./schemas/new.graphql  --token PERSONAL_ACCESS_TOKEN",
     "validate": "yarn graphql-inspector validate ./documents/*.graphql ./schemas/schema.graphql",
     "validate:none": "yarn graphql-inspector validate ./no-documents/*.graphql ./schemas/schema.graphql",
     "similar": "yarn graphql-inspector similar ./schemas/similar.graphql",
