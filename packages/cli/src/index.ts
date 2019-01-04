@@ -69,6 +69,7 @@ commander
 
 commander
   .command('introspect <schema>')
+  .option('-w, --write <s>', 'Write to a file')
   .description('Introspect a schema')
   .action((schema: string, cmd: commander.Command) =>
     introspect(schema, normalizeOptions(cmd)),
