@@ -12,7 +12,7 @@ LABEL com.github.actions.color="red"
 
 ENV LOG_LEVEL 'debug'
 
-RUN yarn global add @graphql-inspector/actions@0.6.6-alpha.6
+RUN yarn global add @graphql-inspector/actions@0.7.0
 
 COPY entrypoint.sh /entrypoint.sh
 
