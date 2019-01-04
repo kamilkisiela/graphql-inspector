@@ -1,6 +1,6 @@
 {
   "name": "@graphql-inspector/api",
-  "version": "0.6.3",
+  "version": "0.6.4",
   "description": "GraphQL Inspector API",
   "keywords": [
     "graphql",
@@ -28,8 +28,8 @@
     "prepublishOnly": "yarn build"
   },
   "dependencies": {
-    "@graphql-inspector/core": "0.6.3",
-    "@graphql-inspector/load": "0.6.3",
+    "@graphql-inspector/core": "0.6.4",
+    "@graphql-inspector/load": "0.6.4",
     "@graphql-modules/epoxy": "0.2.17",
     "apollo-server-express": "2.2.6",
     "graphql": "14.0.2",
