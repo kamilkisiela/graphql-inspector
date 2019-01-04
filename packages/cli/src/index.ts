@@ -12,6 +12,7 @@ import {introspect} from './commands/introspect';
 import {normalizeOptions} from './utils/options';
 
 commander.option('-r, --require <s...>', 'Require modules');
+commander.option('-t, --token <s>', 'Access Token');
 
 const defaultPort = 4000;
 

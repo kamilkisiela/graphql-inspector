@@ -16,6 +16,13 @@ export function useRequire(options: any) {
   return options;
 }
 
+function normalizeToken(options: any) {
+  return {
+    ...options,
+    token: options.parent.token,
+  };
+}
+
 function normalizeRequire(options: any) {
   if (typeof options.parent.require === 'undefined') {
     return {
@@ -38,5 +45,6 @@ export function normalizeOptions(options: any) {
   return pipe(
     normalizeRequire,
     useRequire,
+    normalizeToken,
   )(options);
 }
