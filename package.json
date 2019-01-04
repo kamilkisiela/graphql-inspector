@@ -43,7 +43,8 @@
       "packages/cli",
       "packages/api",
       "packages/ui",
-      "packages/load"
+      "packages/load",
+      "packages/github"
     ]
   },
   "lint-staged": {
