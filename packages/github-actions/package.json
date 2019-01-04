@@ -1,0 +1,46 @@
+{
+  "name": "@graphql-inspector/actions",
+  "version": "0.6.6-alpha.6",
+  "description": "Github Actions for GraphQL",
+  "sideEffects": false,
+  "author": {
+    "name": "Kamil Kisiela",
+    "email": "kamil.kisiela@gmail.com",
+    "url": "https://github.com/kamilkisiela"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "kamilkisiela/graphql-inspector"
+  },
+  "bin": {
+    "graphql-inspector-github": "./dist/index.js"
+  },
+  "keywords": [
+    "graphql",
+    "graphql-inspector",
+    "tools",
+    "probot",
+    "probot-plugin",
+    "github"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist/",
+    "deploy": "now --docker",
+    "prebuild": "yarn clean",
+    "prepublishOnly": "yarn build"
+  },
+  "dependencies": {
+    "@graphql-inspector/github": "0.6.6-alpha.4",
+    "graphql": "14.0.2",
+    "probot": "7.4.0",
+    "uuid": "3.3.2"
+  },
+  "devDependencies": {
+    "@types/graphql": "14.0.4",
+    "@types/node": "10.12.18",
+    "@types/uuid": "3.4.4",
+    "typescript": "3.2.2"
+  }
+}

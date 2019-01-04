@@ -1,6 +1,6 @@
 {
   "name": "@graphql-inspector/github",
-  "version": "0.6.5",
+  "version": "0.6.6-alpha.4",
   "description": "Probot for GraphQL. Compare GraphQL Schemas, check documents, find breaking changes, find similar types.",
   "keywords": [
     "graphql",
