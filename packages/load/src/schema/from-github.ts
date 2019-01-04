@@ -30,9 +30,7 @@ function extractData(
 
 export const fromGithub: SchemaHandler = function fromGithub(
   pointer,
-  {
-    token,
-  }: {
+  options: {
     token: string;
   },
 ) {
@@ -43,7 +41,7 @@ export const fromGithub: SchemaHandler = function fromGithub(
         method: 'POST',
         headers: {
           'Content-Type': 'application/json; charset=utf-8',
-          Authorization: `bearer ${token}`,
+          Authorization: `bearer ${options.token}`,
         },
         body: JSON.stringify({
           query: `
