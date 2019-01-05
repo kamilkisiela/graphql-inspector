@@ -2,10 +2,10 @@
 
 const {readFileSync, writeFileSync} = require('fs');
 const {resolve, join, relative} = require('path');
-const shell = require('shelljs');
+const {exec} = require('shelljs');
 const semver = require('semver');
 const detectIndent = require('detect-indent');
-const immer = require('immer');
+const immer = require('immer').default;
 
 const placeholder = '0.0.0-PLACEHOLDER';
 const [, , version] = process.argv;
@@ -26,7 +26,7 @@ if (!semver.valid(version)) {
 // !  lerna.json as the source of truth of a version number
 
 // 0. Branch out
-shell.exect(`git checkout -b release/v${version}`);
+exec(`git checkout -b release/v${version}`);
 
 // 1. Set version in lerna.json
 updateJSON(lerna, data => {
@@ -36,27 +36,27 @@ updateJSON(lerna, data => {
 // 2. Set version in packages
 packages.map(dir => {
   updateString(join(dir, 'package.json'), pkg =>
-    pkg.replace(placeholder, version),
+    pkg.replace(new RegExp(`${placeholder}`, 'g'), version),
   );
 });
 
 // 3. Set version in Dockerfile (both LABEL and RUN)
 updateString(join(rootDir, 'Dockerfile'), docker =>
-  docker.replace(current, version),
+  docker.replace(new RegExp(`${placeholder}`, 'g'), version),
 );
 
 // 4. Run npm publish in all libraries
 // packages.map(dir => {
-//   shell.exec(`(cd ${dir} && npm publish)`);
+//   exec(`(cd ${dir} && npm publish)`);
 // });
 
 // 5. Change version to a placeholder in all libraries
-shell.exec(
+exec(
   `git checkout -- ${packages.map(dir => relative(rootDir, dir)).join(' ')}`,
 );
 
 // 6. Commit as `Release vX.X.X`
-// shell.exec(`git commit -m "Release v${version}"`);
+// exec(`git commit -m "Release v${version}"`);
 
 // 7. git push origin release/vX.X.X
 // 8. git checkout master
