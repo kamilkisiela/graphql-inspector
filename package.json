@@ -35,7 +35,9 @@
   },
   "dependencies": {
     "husky": "1.2.0",
-    "lerna": "3.6.0"
+    "immer": "1.10.0",
+    "lerna": "3.6.0",
+    "shelljs": "0.8.3"
   },
   "workspaces": {
     "packages": [
