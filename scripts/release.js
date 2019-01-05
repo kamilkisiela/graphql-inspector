@@ -24,10 +24,6 @@ if (!semver.valid(version)) {
   throw new Error(`Version ${version} is not valid`);
 }
 
-// function exec(msg) {
-//   console.log(msg);
-// }
-
 // !  lerna.json as the source of truth of a version number
 
 // 0. Branch out
@@ -52,7 +48,7 @@ updateString(join(rootDir, 'Dockerfile'), docker =>
 
 // 4. Run npm publish in all libraries
 packages.map(dir => {
-  // exec(`(cd ${dir} && npm publish)`);
+  exec(`(cd ${dir} && npm publish --access public)`);
 });
 
 // 5. Revert changes in libraries (back to placeholders)
@@ -61,16 +57,16 @@ exec(
 );
 
 // 6. Add changes and commit as `Release vX.X.X`
-// exec(`git add . && git commit -m "Release v${version}"`);
+exec(`git add . && git commit -m "Release v${version}"`);
 
 // 7. git push origin release/vX.X.X
-// exec(`git push origin ${branch}`);
+exec(`git push origin ${branch}`);
 
 // 8. git checkout master
-// exec(`git checkout master`);
+exec(`git checkout master`);
 
 // 9. git branch -D release/vX.X.X
-// exec(`git branch -D ${branch}`);
+exec(`git branch -D ${branch}`);
 
 function updateJSON(filepath, updateFn) {
   const content = readFileSync(filepath, {encoding: 'utf-8'});
