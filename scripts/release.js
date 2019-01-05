@@ -23,6 +23,10 @@ if (!semver.valid(version)) {
   throw new Error(`Version ${version} is not valid`);
 }
 
+// function exec(msg) {
+//   console.log(msg);
+// }
+
 // !  lerna.json as the source of truth of a version number
 
 // 0. Branch out
@@ -36,34 +40,36 @@ updateJSON(lerna, data => {
 // 2. Set version in packages
 packages.map(dir => {
   updateString(join(dir, 'package.json'), pkg =>
-    pkg.replace(new RegExp(`${placeholder}`, 'g'), version),
+    pkg.replace(new RegExp(placeholder, 'g'), version),
   );
 });
 
 // 3. Set version in Dockerfile (both LABEL and RUN)
 updateString(join(rootDir, 'Dockerfile'), docker =>
-  docker.replace(new RegExp(`${placeholder}`, 'g'), version),
+  docker.replace(new RegExp(current, 'g'), version),
 );
 
 // 4. Run npm publish in all libraries
-// packages.map(dir => {
-//   exec(`(cd ${dir} && npm publish)`);
-// });
+packages.map(dir => {
+  exec(`(cd ${dir} && npm publish)`);
+});
 
-// 5. Change version to a placeholder in all libraries
+// 5. Revert changes in libraries (back to placeholders)
 exec(
   `git checkout -- ${packages.map(dir => relative(rootDir, dir)).join(' ')}`,
 );
 
 // 6. Commit as `Release vX.X.X`
-// exec(`git commit -m "Release v${version}"`);
+exec(`git commit -m "Release v${version}"`);
 
 // 7. git push origin release/vX.X.X
-// 8. git checkout master
-// 9. git branch -D release/vX.X.X
+// exec(`git push origin release/v${version}`);
 
-// LABEL version="1.0.1" <-
-// RUN yarn global add @graphql-inspector/actions@0.7.0 <-
+// 8. git checkout master
+// exec(`git checkout master`);
+
+// 9. git branch -D release/vX.X.X
+// exec(`git branch -D release/v${version}`);
 
 function updateJSON(filepath, updateFn) {
   const content = readFileSync(filepath, {encoding: 'utf-8'});
