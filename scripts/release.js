@@ -18,6 +18,7 @@ const packages = JSON.parse(
 ).workspaces.packages.map(p => join(rootDir, p));
 
 const current = JSON.parse(readFileSync(lerna, {encoding: 'utf-8'})).version;
+const branch = `release/v${version}`;
 
 if (!semver.valid(version)) {
   throw new Error(`Version ${version} is not valid`);
@@ -30,7 +31,7 @@ if (!semver.valid(version)) {
 // !  lerna.json as the source of truth of a version number
 
 // 0. Branch out
-exec(`git checkout -b release/v${version}`);
+exec(`git checkout -b ${branch}`);
 
 // 1. Set version in lerna.json
 updateJSON(lerna, data => {
@@ -51,7 +52,7 @@ updateString(join(rootDir, 'Dockerfile'), docker =>
 
 // 4. Run npm publish in all libraries
 packages.map(dir => {
-  exec(`(cd ${dir} && npm publish)`);
+  // exec(`(cd ${dir} && npm publish)`);
 });
 
 // 5. Revert changes in libraries (back to placeholders)
@@ -59,17 +60,17 @@ exec(
   `git checkout -- ${packages.map(dir => relative(rootDir, dir)).join(' ')}`,
 );
 
-// 6. Commit as `Release vX.X.X`
-exec(`git commit -m "Release v${version}"`);
+// 6. Add changes and commit as `Release vX.X.X`
+// exec(`git add . && git commit -m "Release v${version}"`);
 
 // 7. git push origin release/vX.X.X
-// exec(`git push origin release/v${version}`);
+// exec(`git push origin ${branch}`);
 
 // 8. git checkout master
 // exec(`git checkout master`);
 
 // 9. git branch -D release/vX.X.X
-// exec(`git branch -D release/v${version}`);
+// exec(`git branch -D ${branch}`);
 
 function updateJSON(filepath, updateFn) {
   const content = readFileSync(filepath, {encoding: 'utf-8'});
