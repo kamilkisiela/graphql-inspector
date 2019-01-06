@@ -23,7 +23,7 @@ config:
   # Explicitly set the number of rows
   # or use `auto` to take the current
   # number of rows of your shell
-  rows: 15
+  rows: 20
   
   # Amount of times to repeat GIF
   # If value is -1, play once
@@ -115,7 +115,9 @@ records:
   - delay: 761
     content: "\r\n"
   - delay: 159
-    content: "\r\nDetected the following changes (4) between schemas:\r\n\r\n\e[31m✖\e[39m Field \e[1mmodifiedAt\e[22m was removed from object type \e[1mPost\e[22m\r\n\e[32m✔\e[39m Field \e[1mPost.id\e[22m changed type from \e[1mID\e[22m to \e[1mID!\e[22m\r\n\e[32m✔\e[39m Field \e[1mPost.title\e[22m changed type from \e[1mString\e[22m to \e[1mString!\e[22m\r\n\e[32m✔\e[39m Field \e[1mPost.createdAt\e[22m changed type from \e[1mString\e[22m to \e[1mString!\e[22m\r\n\e[91m\e[39m\r\n\e[91mDetected 1 breaking change\e[39m\r\n\e[91m\e[39m\r\n$ "
+    content: "\r\nDetected the following changes (6) between schemas:\r\n\r\n\e[31m✖\e[39m Field \e[1mposts\e[22m was removed from object type \e[1mQuery\e[22m\r\n\e[31m✖\e[39m Field \e[1mmodifiedAt\e[22m was removed from object type \e[1mPost\e[22m\r\n\e[32m✔\e[39m Field \e[1mPost.id\e[22m changed type from \e[1mID\e[22m to \e[1mID!\e[22m\r\n\e[32m✔\e[39m Deprecation reason on field \e[1mPost.title\e[22m has changed from \e[1mNo more used\e[22m to \e[1mundefined\e[22m\r\n\e[32m✔\e[39m Field \e[1mPost.title\e[22m changed type from \e[1mString\e[22m to \e[1mString!\e[22m\r\n\e[32m✔\e[39m Field \e[1mPost.createdAt\e[22m changed type from \e[1mString\e[22m to \e[1mString!\e[22m\r\n\r\n\e[91merror\e[39m Detected 2 breaking changes\r\n\r\n"
+  - delay: 17
+    content: "\e[2K\e[1G\e[31merror\e[39m Command failed with exit code 1.\r\n\e[2K\e[1G\e[34minfo\e[39m Visit \e[1mhttps://yarnpkg.com/en/docs/cli/run\e[22m for documentation about this command.\r\n"
   - delay: 3000
     content: clear
   - delay: 100
@@ -125,7 +127,9 @@ records:
   - delay: 526
     content: "\r\n"
   - delay: 153
-    content: "\e[32m✔\e[39m \e[92mNo changes detected\e[39m\r\n$ "
+    content: "\r\n\e[92msuccess\e[39m No changes detected\r\n"
+  - delay: 13
+    content: "\e[2K\e[1G✨  Done in 0.75s.\r\n"
   - delay: 3000
     content: clear
   - delay: 100
@@ -135,7 +139,9 @@ records:
   - delay: 242
     content: "\r\n"
   - delay: 162
-    content: "\r\nDetected 1 invalid document:\r\n\r\n\e[31m✖\e[39m \e[91m./documents/post.graphql:\e[39m\r\n\e[91m\e[39m\r\n\e[91m\e[39m  - Cannot query field \e[1mcreatedAtSomePoint\e[22m on type \e[1mPost\e[22m. Did you mean \e[1mcreatedAt\e[22m? \r\n\r\n\r\n$ "
+    content: "\r\nDetected 1 invalid document:\r\n\r\n\e[91merror\e[39m in ./documents/post.graphql:\r\n\r\n  - Cannot query field \e[1mcreatedAtSomePoint\e[22m on type \e[1mPost\e[22m. Did you mean \e[1mcreatedAt\e[22m? \r\n\r\n\r\n\r\nDetected 1 document with deprecated fields:\r\n\r\n\e[93mwarn\e[39m in ./documents/post.graphql:\r\n\r\n  - The field \e[1mPost.title\e[22m is deprecated. No more used \r\n\r\n\r\n"
+  - delay: 18
+    content: "\e[2K\e[1G\e[31merror\e[39m Command failed with exit code 1.\r\n\e[2K\e[1G\e[34minfo\e[39m Visit \e[1mhttps://yarnpkg.com/en/docs/cli/run\e[22m for documentation about this command.\r\n"
   - delay: 3000
     content: clear
   - delay: 100
@@ -145,7 +151,9 @@ records:
   - delay: 140
     content: "\r\n"
   - delay: 155
-    content: "\e[32m✔\e[39m \e[92mAll documents are valid\e[39m\r\n$ "
+    content: "\r\n\e[92msuccess\e[39m All documents are valid\r\n"
+  - delay: 13
+    content: "\e[2K\e[1G✨  Done in 0.74s.\r\n"
   - delay: 3000
     content: clear
   - delay: 100
@@ -155,7 +163,9 @@ records:
   - delay: 381
     content: "\r\n"
   - delay: 165
-    content: "\r\n\r\n\e[32m✔\e[39m \e[92mPost\e[39m\r\nBest match (60%): \e[1mBlogPost\e[22m\r\n\r\n\r\n\e[32m✔\e[39m \e[92mBlogPost\e[39m\r\nBest match (60%): \e[1mPost\e[22m\r\n\r\n\r\n$ "
+    content: "\r\ntype \e[1mPost\e[22m\r\n●●●●● \e[90m(96%)\e[39m EmailPost\r\n●●●●\e[90m●\e[39m \e[90m(78%)\e[39m BlogPost\r\n●●●●\e[90m●\e[39m \e[90m(72%)\e[39m MailPost\r\n\r\ntype \e[1mBlogPost\e[22m\r\n●●●●● \e[90m(94%)\e[39m MailPost\r\n●●●●\e[90m●\e[39m \e[90m(78%)\e[39m Post\r\n●●●●\e[90m●\e[39m \e[90m(72%)\e[39m EmailPost\r\n\r\ntype \e[1mMailPost\e[22m\r\n●●●●● \e[90m(94%)\e[39m BlogPost\r\n●●●●\e[90m●\e[39m \e[90m(76%)\e[39m EmailPost\r\n●●●●\e[90m●\e[39m \e[90m(72%)\e[39m Post\r\n\r\ntype \e[1mEmailPost\e[22m\r\n●●●●● \e[90m(96%)\e[39m Post\r\n●●●●\e[90m●\e[39m \e[90m(76%)\e[39m MailPost\r\n●●●●\e[90m●\e[39m \e[90m(72%)\e[39m BlogPost\r\n\r\n"
+  - delay: 14
+    content: "\e[2K\e[1G✨  Done in 0.76s.\r\n"
   - delay: 3000
     content: clear
   - delay: 100
@@ -163,6 +173,8 @@ records:
   - delay: 381
     content: "\r\n"
   - delay: 353
-    content: "\e[1m\e[92m\e[39m\e[22m\r\n\e[1m\e[92mSchema coverage\e[39m\e[22m\r\n\e[1m\e[92m\e[39m\e[22m\r\ntype \e[1mQuery\e[22m \e[3m{\e[23m\r\n  post \e[3m\e[90mx 1\e[39m\e[23m\r\n\e[3m}\e[23m\r\n\e[3m\e[23m\r\ntype \e[1mPost\e[22m \e[3m{\e[23m\r\n  id \e[3m\e[90mx 1\e[39m\e[23m\r\n  title \e[3m\e[90mx 1\e[39m\e[23m\r\n\e[91m  createdAt\e[39m \e[3m\e[90mx 0\e[39m\e[23m\r\n\e[91m  modifiedAt\e[39m \e[3m\e[90mx 0\e[39m\e[23m\r\n\e[3m}\e[23m\r\n\e[3m\e[23m\r\n"
+    content: "\r\n\e[92msuccess\e[39m Schema coverage based on documents:\r\n\r\n\e[90mtype\e[39m \e[1mQuery\e[22m \e[90m{\e[39m\r\n  post \e[3m\e[90mx 1\e[39m\e[23m\r\n\e[91m  posts\e[39m \e[3m\e[90mx 0\e[39m\e[23m\r\n\e[90m}\e[39m\r\n\e[90m\e[39m\r\n\e[90mtype\e[39m \e[1mPost\e[22m \e[90m{\e[39m\r\n  id \e[3m\e[90mx 1\e[39m\e[23m\r\n  title \e[3m\e[90mx 1\e[39m\e[23m\r\n\e[91m  createdAt\e[39m \e[3m\e[90mx 0\e[39m\e[23m\r\n\e[91m  modifiedAt\e[39m \e[3m\e[90mx 0\e[39m\e[23m\r\n\e[90m}\e[39m\r\n\e[90m\e[39m\r\n"
+  - delay: 14
+    content: "\e[2K\e[1G✨  Done in 0.73s.\r\n"
   - delay: 2500
     content: "logout\r\n"
