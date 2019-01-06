@@ -49,7 +49,7 @@ import {diff, Change} from '@graphql-inspector/core';
 const changes: Change[] = diff(schemaA, schemaB);
 ```
 
-![Diff](./assets/diff.jpg)
+![Diff](https://raw.githubusercontent.com/kamilkisiela/graphql-inspector/master/assets/diff.jpg)
 
 ### Find similar types
 
@@ -67,7 +67,7 @@ import {similar, SimilarMap} from '@graphql-inspector/core';
 const similar: SimilarMap = similar(schema, typename, threshold);
 ```
 
-![Similar](./assets/similar.jpg)
+![Similar](https://raw.githubusercontent.com/kamilkisiela/graphql-inspector/master/assets/similar.jpg)
 
 ### Check coverage
 
@@ -85,7 +85,7 @@ import {coverage, SchemaCoverage} from '@graphql-inspector/core';
 const schemaCoverage: SchemaCoverage = coverage(schema, documents);
 ```
 
-![Coverage](./assets/coverage.jpg)
+![Coverage](https://raw.githubusercontent.com/kamilkisiela/graphql-inspector/master/assets/coverage.jpg)
 
 ### Validate documents
 
@@ -103,7 +103,7 @@ import {validate, InvalidDocument} from '@graphql-inspector/core';
 const invalid: InvalidDocument[] = validate(documentsGlob, schema);
 ```
 
-![Validate](./assets/validate.jpg)
+![Validate](https://raw.githubusercontent.com/kamilkisiela/graphql-inspector/master/assets/validate.jpg)
 
 ### Serve faked GraphQL API
 
@@ -160,7 +160,7 @@ $ graphql-inspector-github
 
 Get Github annotations in your PRs.
 
-![Github](./assets/github.jpg)
+![Github](https://raw.githubusercontent.com/kamilkisiela/graphql-inspector/master/assets/github.jpg)
 
 ### CLI in more details
 
