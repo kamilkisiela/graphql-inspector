@@ -17,8 +17,12 @@ Major features:
 - **Finds similar / duplicated types**
 - **Schema coverage based on documents**
 - **Serves a GraphQL server with faked data and GraphQL Playground**
+- **Github Bot**
+- **Github Actions**
 
 GraphQL Inspector has a **CLI** and also a **programatic API**, so you can use it however you want to and even build tools on top of it.
+
+![Example](./packages/cli/demo.gif)
 
 ## Installation
 
@@ -30,85 +34,83 @@ yarn add @graphql-inspector/cli
 yarn add @graphql-inspector/core
 ```
 
-### CLI Usage
+### Compare schemas
 
-```bash
-# Compare schemas
-$ graphql-inspector diff OLD_SCHEMA NEW_SCHEMA
+**CLI:**
 
-Detected the following changes (4) between schemas:
+    $ graphql-inspector diff OLD_SCHEMA NEW_SCHEMA
 
-🛑  Field `name` was removed from object type `Post`
-⚠️  Enum value `ARCHIVED` was added to enum `Status`
-✅  Field `createdAt` was added to object type `Post`
-
-Detected 1 breaking change
-
-
-# Validate documents
-$ graphql-inspector validate DOCUMENTS SCHEMA
-
-Detected 1 invalid document:
-
-🛑  ./documents/post.graphql:
-  - Cannot query field createdAtSomePoint on type Post. Did you mean createdAt?
-
-
-# Find similar types
-$ graphql-inspector similar SCHEMA
-
-✅ Post
-Best match (60%): BlogPost
-
-
-# Serve faked GraphQL API with Playground
-$ graphql-inspector serve SCHEMA
-
-✅ Serving the GraphQL API on http://localhost:4000/
-
-
-# Check coverage
-$ graphql-inspector coverage DOCUMENTS SCHEMA
-
-Schema coverage
-
-type Query {
-  post x 1
-}
-
-type Post {
-  id x 1
-  title x 1
-  🛑 createdAt x 0
-  🛑 modifiedAt x 0
-}
-
-```
-
-## Programatic Usage
+**API:**
 
 ```typescript
-import {
-  diff,
-  validate,
-  similar,
-  coverage,
-  Change,
-  InvalidDocument,
-  SimilarMap,
-  SchemaCoverage,
-} from '@graphql-inspector/core';
+import {diff, Change} from '@graphql-inspector/core';
 
-// diff
 const changes: Change[] = diff(schemaA, schemaB);
-// validate
-const invalid: InvalidDocument[] = validate(documentsGlob, schema);
-// similar
-const similar: SimilarMap = similar(schema, typename, threshold);
-// coverage
-const schemaCoverage: SchemaCoverage = coverage(schema, documents);
-// ...
 ```
+
+![Diff](./assets/diff.jpg)
+
+### Find similar types
+
+**CLI:**
+
+    $ graphql-inspector similar SCHEMA
+
+**API:**
+
+```typescript
+import {similar, SimilarMap} from '@graphql-inspector/core';
+
+const similar: SimilarMap = similar(schema, typename, threshold);
+```
+
+![Similar](./assets/similar.jpg)
+
+### Check coverage
+
+**CLI:**
+
+    $ graphql-inspector coverage DOCUMENTS SCHEMA
+
+**API:**
+
+```typescript
+import {coverage, SchemaCoverage} from '@graphql-inspector/core';
+
+const schemaCoverage: SchemaCoverage = coverage(schema, documents);
+```
+
+![Coverage](./assets/coverage.jpg)
+
+### Validate documents
+
+**CLI:**
+
+    $ graphql-inspector validate DOCUMENTS SCHEMA
+
+**API:**
+
+```typescript
+import {validate, InvalidDocument} from '@graphql-inspector/core';
+
+const invalid: InvalidDocument[] = validate(documentsGlob, schema);
+```
+
+![Validate](./assets/validate.jpg)
+
+## Serve faked GraphQL API with Playground
+
+**CLI:**
+
+    $ graphql-inspector serve SCHEMA
+
+```bash
+✅ Serving the GraphQL API on http://localhost:4000/
+```
+
+## Github Bot and Github Actions
+
+![Github](./assets/github.jpg)
 
 ## Related
 
