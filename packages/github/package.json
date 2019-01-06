@@ -1,7 +1,7 @@
 {
   "name": "@graphql-inspector/github",
   "version": "0.0.0-PLACEHOLDER",
-  "description": "Probot for GraphQL. Compare GraphQL Schemas, check documents, find breaking changes, find similar types.",
+  "description": "GraphQL Inspector's Probot. Compare GraphQL Schemas, check documents, find breaking changes, find similar types.",
   "keywords": [
     "graphql",
     "graphql-inspector",
