@@ -11,7 +11,7 @@
 const siteConfig = {
   title: 'GraphQL Inspector',
   tagline:
-    'Tooling for GraphQL. Compare schemas, validate documents, find breaking changes, find similar types, schema coverage',
+    'Compare schemas, validate documents, find breaking changes, find similar types, schema coverage',
   url: 'https://graphql-inspector.netlify.com',
   baseUrl: '/',
 
@@ -20,15 +20,22 @@ const siteConfig = {
   organizationName: 'kamilkisiela',
 
   // For no header links in the top nav bar -> headerLinks: [],
-  headerLinks: [{doc: 'index', label: 'Docs'}],
+  headerLinks: [
+    {doc: 'index', label: 'Docs'},
+    {href: 'https://github.com/apps/graphql-inspector', label: 'App'},
+    {
+      href: 'https://github.com/kamilkisiela/graphql-inspector',
+      label: 'Github',
+    },
+  ],
 
   headerIcon: 'img/docusaurus.svg',
   footerIcon: 'img/docusaurus.svg',
   favicon: 'img/favicon.png',
 
   colors: {
-    primaryColor: '#2E8555',
-    secondaryColor: '#205C3B',
+    primaryColor: '#E56457',
+    secondaryColor: '#B23D32',
   },
 
   copyright: `Copyright © ${new Date().getFullYear()} Kamil Kisiela`,

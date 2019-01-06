@@ -3,18 +3,44 @@
   "localized-strings": {
     "next": "Next",
     "previous": "Previous",
-    "tagline": "Tooling for GraphQL. Compare schemas, validate documents, find breaking changes, find similar types, schema coverage",
+    "tagline": "Compare schemas, validate documents, find breaking changes, find similar types, schema coverage",
     "docs": {
+      "essentials/coverage": {
+        "title": "Schema coverage"
+      },
+      "essentials/diff": {
+        "title": "Compare schemas"
+      },
+      "essentials/introspect": {
+        "title": "Introspection"
+      },
+      "essentials/serve": {
+        "title": "Serve with faked data"
+      },
+      "essentials/similar": {
+        "title": "Find similar types"
+      },
+      "essentials/validate": {
+        "title": "Validate documents"
+      },
       "index": {
-        "title": "What is GraphQL Inspector?",
-        "sidebar_label": "What is GraphQL Inspector?"
+        "title": "What is GraphQL Inspector?"
+      },
+      "installation": {
+        "title": "Getting Started"
+      },
+      "recipies/github": {
+        "title": "Github Application"
       }
     },
     "links": {
-      "Docs": "Docs"
+      "Docs": "Docs",
+      "Github": "Github"
     },
     "categories": {
-      "Introduction": "Introduction"
+      "Introduction": "Introduction",
+      "Essentials": "Essentials",
+      "Recipies": "Recipies"
     }
   },
   "pages-strings": {

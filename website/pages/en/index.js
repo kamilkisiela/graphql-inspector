@@ -9,7 +9,6 @@ const React = require('react');
 
 const CompLibrary = require('../../core/CompLibrary.js');
 
-const MarkdownBlock = CompLibrary.MarkdownBlock; /* Used to read markdown */
 const Container = CompLibrary.Container;
 const GridBlock = CompLibrary.GridBlock;
 
@@ -60,13 +59,10 @@ class HomeSplash extends React.Component {
 
     return (
       <SplashContainer>
-        <Logo img_src={`${baseUrl}img/docusaurus.svg`} />
         <div className="inner">
           <ProjectTitle siteConfig={siteConfig} />
           <PromoSection>
-            <Button href="#try">Try It Out</Button>
-            <Button href={docUrl('doc1.html')}>Example Link</Button>
-            <Button href={docUrl('doc2.html')}>Example Link 2</Button>
+            <Button href={docUrl('index.html')}>Get started</Button>
           </PromoSection>
         </div>
       </SplashContainer>
@@ -79,98 +75,77 @@ class Index extends React.Component {
     const {config: siteConfig, language = ''} = this.props;
     const {baseUrl} = siteConfig;
 
-    const Block = props => (
-      <Container
-        padding={['bottom', 'top']}
-        id={props.id}
-        background={props.background}
-      >
-        <GridBlock
-          align="center"
-          contents={props.children}
-          layout={props.layout}
-        />
-      </Container>
-    );
+    const Features = () => {
+      const features = [
+        {
+          title: 'Github integration',
+          image: `${baseUrl}img/cli/github.jpg`,
+          content:
+            'Have a per-repository, self-hosted GraphQL Inspector service or deploy it with Docker.',
+        },
+        {
+          title: 'Compare GraphQL Schemas',
+          image: `${baseUrl}img/cli/diff.jpg`,
+          content:
+            'Detects every change (both neutral, dangerous or breaking).',
+        },
+        {
+          title: 'Validate documents agains a schema',
+          image: `${baseUrl}img/cli/validate.jpg`,
+          content:
+            'Validates documents against a schema and looks for deprecated usage.',
+        },
+        {
+          title: 'Find duplicated types',
+          image: `${baseUrl}img/cli/similar.jpg`,
+          content: 'Finds similar / duplicated types.',
+        },
+        {
+          title: 'Schema coverage',
+          image: `${baseUrl}img/cli/coverage.jpg`,
+          content:
+            'Schema coverage based on documents. Find out how many times types and fields are used in your application.',
+        },
+      ];
 
-    const FeatureCallout = () => (
-      <div
-        className="productShowcaseSection paddingBottom"
-        style={{textAlign: 'center'}}
-      >
-        <h2>Feature Callout</h2>
-        <MarkdownBlock>These are features of this project</MarkdownBlock>
-      </div>
-    );
+      return (
+        <React.Fragment>
+          {features.map((feature, i) => {
+            const isLight = i % 2 === 0;
 
-    const TryOut = () => (
-      <Block id="try">
-        {[
-          {
-            content: 'Talk about trying this out',
-            image: `${baseUrl}img/docusaurus.svg`,
-            imageAlign: 'left',
-            title: 'Try it Out',
-          },
-        ]}
-      </Block>
-    );
-
-    const Description = () => (
-      <Block background="dark">
-        {[
-          {
-            content:
-              'This is another description of how this project is useful',
-            image: `${baseUrl}img/docusaurus.svg`,
-            imageAlign: 'right',
-            title: 'Description',
-          },
-        ]}
-      </Block>
-    );
-
-    const LearnHow = () => (
-      <Block background="light">
-        {[
-          {
-            content: 'Talk about learning how to use this',
-            image: `${baseUrl}img/docusaurus.svg`,
-            imageAlign: 'right',
-            title: 'Learn How',
-          },
-        ]}
-      </Block>
-    );
-
-    const Features = () => (
-      <Block layout="fourColumn">
-        {[
-          {
-            content: 'This is the content of my feature',
-            image: `${baseUrl}img/docusaurus.svg`,
-            imageAlign: 'top',
-            title: 'Feature One',
-          },
-          {
-            content: 'The content of my second feature',
-            image: `${baseUrl}img/docusaurus.svg`,
-            imageAlign: 'top',
-            title: 'Feature Two',
-          },
-        ]}
-      </Block>
-    );
+            return (
+              <Container
+                key={i}
+                padding={['bottom', 'top']}
+                background={isLight ? 'light' : ''}
+              >
+                <GridBlock
+                  contents={[
+                    {
+                      title: feature.title,
+                      content: feature.content,
+                      image: feature.image,
+                      imageAlign: isLight ? 'right' : 'left',
+                    },
+                  ]}
+                />
+              </Container>
+            );
+          })}
+        </React.Fragment>
+      );
+    };
 
     return (
       <div>
         <HomeSplash siteConfig={siteConfig} language={language} />
-        <div className="mainContainer">
+        <div
+          className="mainContainer"
+          style={{
+            paddingBottom: 0,
+          }}
+        >
           <Features />
-          <FeatureCallout />
-          <LearnHow />
-          <TryOut />
-          <Description />
         </div>
       </div>
     );
