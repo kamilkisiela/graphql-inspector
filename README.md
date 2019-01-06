@@ -118,6 +118,18 @@ Serves a GraphQL server with faked data and GraphQL Playground
 ✅ Serving the GraphQL API on http://localhost:4000/
 ```
 
+### Introspect GraphQL server
+
+Introspects a GraphQL Server and writes the result to a file
+
+**CLI:**
+
+    $ graphql-inspector introspect SCHEMA --write schema.json
+
+```bash
+✅ Introspection result saved to schema.json
+```
+
 ### Github Bot and Github Actions
 
 Have a per-repository, self-hosted GraphQL Inspector service or deploy it with Docker.
@@ -150,6 +162,94 @@ $ graphql-inspector-github
 Get Github annotations in your PRs.
 
 ![Github](./assets/github.jpg)
+
+### CLI in more details
+
+### `SCHEMA`
+
+**Path to a CommonJS or ES Module that exports an object**
+
+Example:
+
+    graphql-inspector coverage ./src/schema.js
+
+Example with TypeScript:
+
+    graphql-inspector coverage ./src/schema.ts --require ts-node/register
+
+```typescript
+// String
+export default `
+  type Query {
+    hello: String
+  }
+`
+
+// GraphQLSchema
+export default makeExecutableSchema({...});
+
+// GraphQL Document
+export default gql`
+  type Query {
+    hello: String
+  }
+`
+
+// IntrospectionQuery result
+export default {
+  data: {
+    __schema: {
+      ...
+    }
+  }
+}
+```
+
+**Pointer to a Github repository**
+
+Example:
+
+    graphql-inspector coverage github:kamilkisiela/graphql-inspector-example#master:schema.graphql
+
+Pattern:
+
+    github:owner/name#ref:path/to/file
+
+**GraphQL File**
+
+Example:
+
+    graphql-inspector coverage schema.graphql
+    graphql-inspector coverage schema.gql
+
+**JSON File**
+
+Example:
+
+    graphql-inspector coverage introspected-schema.json
+
+**URL to a GraphQL endpoint**
+
+Example:
+
+    graphql-inspector coverage https://localhost:3000/graphql
+
+### `DOCUMENTS`
+
+**Glob pattern**
+
+Example:
+
+    graphql-inspector validate ./src/**/*.{js,jsx,tsx,graphql} https://localhost:3000/graphql
+
+Supports TypeScript, JavaScript and GraphQL Files (_Extensions: ts,tsx,js,jsx,graphql,gql,graphqls_).
+
+### Help
+
+Find out what the CLI is capable of:
+
+    graphql-inspector --help
+    graphql-inspector similar --help
 
 ## Related
 
