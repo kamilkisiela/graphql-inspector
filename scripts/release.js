@@ -15,7 +15,7 @@ const lerna = join(rootDir, 'lerna.json');
 
 const packages = JSON.parse(
   readFileSync(rootPackage, {encoding: 'utf-8'}),
-).workspaces.packages.map(p => join(rootDir, p));
+).workspaces.map(p => join(rootDir, p));
 
 const current = JSON.parse(readFileSync(lerna, {encoding: 'utf-8'})).version;
 const branch = `release/v${version}`;

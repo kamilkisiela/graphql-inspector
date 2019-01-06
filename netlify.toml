@@ -1,0 +1,4 @@
+[build]
+  Command = "yarn build:netlify"
+  Functions = "dist/functions"
+  Publish = "website/build/graphql-inspector"
