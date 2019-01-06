@@ -106,7 +106,7 @@ const invalid: InvalidDocument[] = validate(documentsGlob, schema);
 
 ![Validate](./assets/validate.jpg)
 
-## Serve faked GraphQL API
+### Serve faked GraphQL API
 
 Serves a GraphQL server with faked data and GraphQL Playground
 
@@ -118,7 +118,7 @@ Serves a GraphQL server with faked data and GraphQL Playground
 ✅ Serving the GraphQL API on http://localhost:4000/
 ```
 
-## Github Bot and Github Actions
+### Github Bot and Github Actions
 
 Have a per-repository, self-hosted GraphQL Inspector service or deploy it with Docker.
 
