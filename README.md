@@ -1,8 +1,9 @@
 # GraphQL Inspector
 
-[![CircleCI](https://circleci.com/gh/kamilkisiela/graphql-inspector.svg?style=shield&circle-token=d1cd06aba321ee2b7bf8bd2041104643639463b0)](https://circleci.com/gh/kamilkisiela/graphql-inspector)
+[![npm version](https://badge.fury.io/js/%40graphql-inspector%2Fcli.svg)](https://npmjs.com/package/@graphql-inspector/cli)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 [![renovate-app badge](https://img.shields.io/badge/renovate-app-blue.svg)](https://renovateapp.com/)
+[![Join the community on Spectrum](https://withspectrum.github.io/badge/badge.svg)](https://spectrum.chat/graphql-inspector)
 
 **GraphQL Inspector** ouputs a list of changes between two GraphQL schemas. Every change is precisely explained and marked as breaking, non-breaking or dangerous.
 It helps you validate documents and fragments against a schema and even find similar or duplicated types.
@@ -118,6 +119,18 @@ Serves a GraphQL server with faked data and GraphQL Playground
 ✅ Serving the GraphQL API on http://localhost:4000/
 ```
 
+### Introspect GraphQL server
+
+Introspects a GraphQL Server and writes the result to a file
+
+**CLI:**
+
+    $ graphql-inspector introspect SCHEMA --write schema.json
+
+```bash
+✅ Introspection result saved to schema.json
+```
+
 ### Github Bot and Github Actions
 
 Have a per-repository, self-hosted GraphQL Inspector service or deploy it with Docker.
@@ -150,6 +163,94 @@ $ graphql-inspector-github
 Get Github annotations in your PRs.
 
 ![Github](./assets/github.jpg)
+
+### CLI in more details
+
+### `SCHEMA`
+
+**Path to a CommonJS or ES Module that exports an object**
+
+Example:
+
+    graphql-inspector coverage ./src/schema.js
+
+Example with TypeScript:
+
+    graphql-inspector coverage ./src/schema.ts --require ts-node/register
+
+```typescript
+// String
+export default `
+  type Query {
+    hello: String
+  }
+`
+
+// GraphQLSchema
+export default makeExecutableSchema({...});
+
+// GraphQL Document
+export default gql`
+  type Query {
+    hello: String
+  }
+`
+
+// IntrospectionQuery result
+export default {
+  data: {
+    __schema: {
+      ...
+    }
+  }
+}
+```
+
+**Pointer to a Github repository**
+
+Example:
+
+    graphql-inspector coverage github:kamilkisiela/graphql-inspector-example#master:schema.graphql
+
+Pattern:
+
+    github:owner/name#ref:path/to/file
+
+**GraphQL File**
+
+Example:
+
+    graphql-inspector coverage schema.graphql
+    graphql-inspector coverage schema.gql
+
+**JSON File**
+
+Example:
+
+    graphql-inspector coverage introspected-schema.json
+
+**URL to a GraphQL endpoint**
+
+Example:
+
+    graphql-inspector coverage https://localhost:3000/graphql
+
+### `DOCUMENTS`
+
+**Glob pattern**
+
+Example:
+
+    graphql-inspector validate ./src/**/*.{js,jsx,tsx,graphql} https://localhost:3000/graphql
+
+Supports TypeScript, JavaScript and GraphQL Files (_Extensions: ts,tsx,js,jsx,graphql,gql,graphqls_).
+
+### Help
+
+Find out what the CLI is capable of:
+
+    graphql-inspector --help
+    graphql-inspector similar --help
 
 ## Related
 
