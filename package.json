@@ -45,17 +45,15 @@
     "netlify-lambda": "1.1.1",
     "shelljs": "0.8.3"
   },
-  "workspaces": {
-    "packages": [
-      "packages/core",
-      "packages/cli",
-      "packages/api",
-      "packages/ui",
-      "packages/load",
-      "packages/github",
-      "packages/github-actions"
-    ]
-  },
+  "workspaces": [
+    "packages/core",
+    "packages/cli",
+    "packages/api",
+    "packages/ui",
+    "packages/load",
+    "packages/github",
+    "packages/github-actions"
+  ],
   "lint-staged": {
     "*.{js,json,md,ts,graphql}": [
       "prettier --write",
