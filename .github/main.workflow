@@ -4,18 +4,21 @@ workflow "Build and Test" {
 }
 
 action "Install" {
-  uses = "borales/actions-yarn@master"
+  uses = "actions/npm@master"
+  runs = "yarn"
   args = "install"
 }
 
 action "Build" {
   needs = "Install"
-  uses = "borales/actions-yarn@master"
+  uses = "actions/npm@master"
+  runs = "yarn"
   args = "build"
 }
 
 action "Test" {
   needs = "Build"
-  uses = "borales/actions-yarn@master"
+  uses = "actions/npm@master"
+  runs = "yarn"
   args = "test"
 }
