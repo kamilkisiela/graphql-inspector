@@ -1,7 +1,7 @@
 {
   "name": "@graphql-inspector/actions",
   "version": "0.0.0-PLACEHOLDER",
-  "description": "Github Actions for GraphQL",
+  "description": "GraphQL Inspector functionality for Github Actions",
   "sideEffects": false,
   "author": {
     "name": "Kamil Kisiela",
