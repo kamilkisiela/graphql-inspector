@@ -1,0 +1,4 @@
+[build]
+  Command = "yarn build && yarn netlify-lambda build functions && (cd website && npm install && npm run build)"
+  Functions = "dist/functions"
+  Publish = "website/build/graphql-inspector"
