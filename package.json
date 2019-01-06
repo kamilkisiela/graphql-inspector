@@ -24,6 +24,9 @@
   "scripts": {
     "build": "lerna run build",
     "test": "lerna run test",
+    "build:website": "(cd website && npm install && npm run build)",
+    "build:github": "yarn workspace @graphql-inspector/core build && yarn workspace @graphql-inspector/github build && yarn workspace @graphql-inspector/actions build",
+    "build:netlify": "yarn build:github && yarn netlify-lambda build functions && yarn build:website",
     "format": "prettier --config .prettierrc --write \"**/*.{js,json,md,ts,graphql}\"",
     "release": "lerna publish --exact --force-publish=\"*\"",
     "release:canary": "lerna publish --force-publish=\"*\" --canary --exact",
@@ -35,7 +38,7 @@
   },
   "dependencies": {
     "@probot/serverless-lambda": "0.2.0",
-    "babel-loader": "8.0.5",
+    "babel-loader": "8.0.4",
     "husky": "1.2.0",
     "immer": "1.10.0",
     "lerna": "3.6.0",
@@ -61,6 +64,7 @@
   },
   "resoultions": {
     "@types/react": "16.7.13",
-    "@types/react-dom": "16.0.11"
+    "@types/react-dom": "16.0.11",
+    "babel-loader": "8.0.4"
   }
 }
