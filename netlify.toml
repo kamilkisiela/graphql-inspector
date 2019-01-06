@@ -1,0 +1,3 @@
+[build]
+  Functions = "functions"
+  command = "netlify-lambda build functions"
