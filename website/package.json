@@ -1,0 +1,11 @@
+{
+  "scripts": {
+    "start": "docusaurus-start",
+    "build": "docusaurus-build",
+    "version": "docusaurus-version",
+    "rename-version": "docusaurus-rename-version"
+  },
+  "devDependencies": {
+    "docusaurus": "1.6.2"
+  }
+}
