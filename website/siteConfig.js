@@ -12,7 +12,7 @@ const siteConfig = {
   title: 'GraphQL Inspector',
   tagline:
     'Compare schemas, validate documents, find breaking changes, find similar types, schema coverage',
-  url: 'https://graphql-inspector.netlify.com',
+  url: 'https://graphql-inspector.com',
   baseUrl: '/',
 
   // Used for publishing and more
