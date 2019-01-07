@@ -34,8 +34,9 @@
       }
     },
     "links": {
-      "Docs": "Docs",
-      "Github": "Github"
+      "Documentation": "Documentation",
+      "Install App": "Install App",
+      "Visit Github": "Visit Github"
     },
     "categories": {
       "Introduction": "Introduction",
