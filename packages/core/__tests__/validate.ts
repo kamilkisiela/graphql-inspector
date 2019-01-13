@@ -41,3 +41,57 @@ test('validate', () => {
     `The field 'Post.title' is deprecated. BECAUSE`,
   );
 });
+
+test('multiple fragments across multiple files with nested fragments (#36)', async () => {
+  const schema = buildASTSchema(gql`
+    type Post {
+      id: ID
+      title: String @deprecated(reason: "BECAUSE")
+      author: User
+      createdAt: Int
+    }
+
+    type User {
+      id: ID
+      name: String
+    }
+
+    type Query {
+      post: Post
+    }
+
+    schema {
+      query: Query
+    }
+  `);
+
+  const docs = [
+    gql`
+      query getPost {
+        post {
+          ...PostInfo
+        }
+      }
+    `,
+    gql`
+      fragment PostInfo on Post {
+        id
+        author {
+          ...AuthorInfo
+        }
+      }
+    `,
+    gql`
+      fragment AuthorInfo on User {
+        id
+        name
+      }
+    `,
+  ];
+
+  const results = validate(schema, docs.map(doc => new Source(print(doc))));
+
+  expect(results.length).toEqual(1);
+  expect(results[0].errors.length).toEqual(0);
+  expect(results[0].deprecated.length).toEqual(0);
+});
