@@ -42,7 +42,9 @@ export function validate(
           ${doc.source.body}
 
           ${fragments
-            .filter(f => doc.source.body.indexOf(`fragment ${f.name.value} on`))
+            .filter(
+              f => doc.source.body.indexOf(`fragment ${f.name.value} on`) < -1,
+            )
             .map(print)
             .join('\n\n')}
         `),
