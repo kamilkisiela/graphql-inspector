@@ -95,3 +95,53 @@ test('multiple fragments across multiple files with nested fragments (#36)', asy
   expect(results[0].errors.length).toEqual(0);
   expect(results[0].deprecated.length).toEqual(0);
 });
+
+test('fail on non unique fragment names', async () => {
+  const schema = buildASTSchema(gql`
+    type Post {
+      id: ID
+      title: String
+      createdAt: Int
+    }
+
+    type Query {
+      post: Post
+    }
+
+    schema {
+      query: Query
+    }
+  `);
+
+  const docs = [
+    gql`
+      query getPost {
+        post {
+          ...PostInfo
+        }
+      }
+    `,
+    gql`
+      fragment PostInfo on Post {
+        id
+        title
+      }
+    `,
+    gql`
+      fragment PostInfo on Post {
+        id
+        title
+      }
+    `,
+  ];
+
+  const results = validate(schema, docs.map(doc => new Source(print(doc))));
+
+  expect(results.length).toEqual(1);
+  expect(results[0].errors.length).toEqual(1);
+  expect(results[0].deprecated.length).toEqual(0);
+
+  const error = results[0].errors[0];
+
+  expect(error.message).toMatch(`Name of 'PostInfo' fragment is not unique`);
+});
