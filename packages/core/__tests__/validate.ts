@@ -96,7 +96,7 @@ test('multiple fragments across multiple files with nested fragments (#36)', asy
   expect(results[0].deprecated.length).toEqual(0);
 });
 
-test('multiple fragments across multiple files with nested fragments (#36)', async () => {
+test('fail on non unique fragment names', async () => {
   const schema = buildASTSchema(gql`
     type Post {
       id: ID
