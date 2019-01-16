@@ -27,10 +27,12 @@ export function validate(
   const documents = sources.map(readDocument);
   // keep all named fragments
   const fragments: Array<{node: FragmentDefinitionNode; source: string}> = [];
+  const fragmentNames: string[] = [];
   const graph = new DepGraph<FragmentDefinitionNode>({circular: true});
 
   documents.forEach(doc => {
     doc.fragments.forEach(fragment => {
+      fragmentNames.push(fragment.node.name.value);
       fragments.push(fragment);
       graph.addNode(fragment.node.name.value, fragment.node);
     });
@@ -79,17 +81,24 @@ export function validate(
 
       const errors = validateDocument(schema, parse(merged)) as GraphQLError[];
       const deprecated = findDeprecatedUsages(schema, parse(doc.source.body));
+      const duplicatedFragments = findDuplicatedFragments(fragmentNames);
 
-      if (errors || deprecated) {
+      if (errors || deprecated || duplicatedFragments) {
         invalidDocuments.push({
           source: doc.source,
-          errors,
+          errors: [...errors, ...duplicatedFragments],
           deprecated,
         });
       }
     });
 
   return invalidDocuments;
+}
+
+function findDuplicatedFragments(fragmentNames: string[]) {
+  return fragmentNames
+    .filter((name, i, all) => all.indexOf(name) !== i)
+    .map(name => new GraphQLError(`Name of '${name}' fragment is not unique`));
 }
 
 //
