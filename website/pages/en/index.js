@@ -28,16 +28,10 @@ class HomeSplash extends React.Component {
       </div>
     );
 
-    const Logo = props => (
-      <div className="projectLogo">
-        <img src={props.img_src} alt="Project Logo" />
-      </div>
-    );
-
     const ProjectTitle = () => (
       <h2 className="projectTitle">
         {siteConfig.title}
-        <small>{siteConfig.tagline}</small>
+        <small>Bulletproof your GraphQL API</small>
       </h2>
     );
 

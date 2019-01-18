@@ -14,8 +14,8 @@ Run the following command:
 
 **Arguments**
 
-- `DOCUMENTS` - a glob pattern that points to GraphQL Documents / Operations
-- `SCHEMA` - point to a schema
+- [`DOCUMENTS`](../api/documents) - a glob pattern that points to GraphQL Documents / Operations
+- [`SCHEMA`](../api/schema) - point to a schema
 
 **Flags**
 

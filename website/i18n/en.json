@@ -5,6 +5,12 @@
     "previous": "Previous",
     "tagline": "Compare schemas, validate documents, find breaking changes, find similar types, schema coverage",
     "docs": {
+      "api/documents": {
+        "title": "Providing Documents"
+      },
+      "api/schema": {
+        "title": "Providing Schema"
+      },
       "essentials/coverage": {
         "title": "Schema coverage"
       },
@@ -41,6 +47,7 @@
     "categories": {
       "Introduction": "Introduction",
       "Essentials": "Essentials",
+      "API": "API",
       "Recipies": "Recipies"
     }
   },

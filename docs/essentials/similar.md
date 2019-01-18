@@ -14,7 +14,7 @@ Run the following command:
 
 **Arguments**
 
-- `SCHEMA` - point to a schema
+- [`SCHEMA`](../api/schema) - point to a schema
 
 **Flags**
 

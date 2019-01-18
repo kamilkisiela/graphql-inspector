@@ -27,7 +27,7 @@ Configure GraphQL Inspector in `package.json` (it must be placed in the root dir
 }
 ```
 
-> We recommend to automate the workflow and use `husky` to run `$ graphql-inspector introspect`:
+> We recommend to automate the workflow and use `husky` to run [`$ graphql-inspector introspect`](../essentials/introspect):
 
 ```json
 {
