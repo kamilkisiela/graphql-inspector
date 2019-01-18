@@ -14,8 +14,8 @@ Run the following command:
 
 **Arguments**
 
-- `OLD_SCHEMA` - point to an old schema
-- `NEW_SCHEMA` - point to a new schema
+- [`OLD_SCHEMA`](../api/schema) - point to an old schema
+- [`NEW_SCHEMA`](../api/schema) - point to a new schema
 
 **Flags**
 

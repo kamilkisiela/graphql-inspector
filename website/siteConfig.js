@@ -31,7 +31,7 @@ const siteConfig = {
 
   headerIcon: 'img/docusaurus.svg',
   footerIcon: 'img/docusaurus.svg',
-  favicon: 'img/favicon.png',
+  favicon: 'img/favicon/favicon.png',
 
   colors: {
     primaryColor: '#E56457',
@@ -53,9 +53,12 @@ const siteConfig = {
   // No .html extensions for paths.
   cleanUrl: true,
 
+  // Stats
+  gaTrackingId: 'UA-125180910-2',
+
   // Open Graph and Twitter card images.
-  ogImage: 'img/docusaurus.png',
-  twitterImage: 'img/docusaurus.png',
+  ogImage: 'img/og-image.png',
+  twitterImage: 'img/og-image.png',
 
   // Show documentation's last contributor's name.
   enableUpdateBy: true,

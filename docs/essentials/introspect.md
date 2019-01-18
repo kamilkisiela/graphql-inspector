@@ -14,7 +14,7 @@ It supports .graphql, .gql and .json extensions.
 
 **Arguments**
 
-- `SCHEMA` - point to a schema
+- [`SCHEMA`](../api/schema) - point to a schema
 
 **Flags**
 

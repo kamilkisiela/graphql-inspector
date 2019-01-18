@@ -9,6 +9,7 @@
       "essentials/serve",
       "essentials/introspect"
     ],
+    "API": ["api/schema", "api/documents"],
     "Recipies": ["recipies/github"]
   }
 }
