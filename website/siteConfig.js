@@ -52,6 +52,9 @@ const siteConfig = {
   onPageNav: 'separate',
   // No .html extensions for paths.
   cleanUrl: true,
+  
+  // Stats
+  gaTrackingId: 'UA-125180910-2',
 
   // Open Graph and Twitter card images.
   ogImage: 'img/docusaurus.png',
