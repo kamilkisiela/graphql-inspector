@@ -6,6 +6,7 @@ import {
   parse,
   validate as validateDocument,
   FragmentDefinitionNode,
+  DocumentNode,
 } from 'graphql';
 import {DepGraph} from 'dependency-graph';
 
@@ -52,38 +53,34 @@ export function validate(
     // since we include fragments, validate only operations
     .filter(doc => doc.hasOperations)
     .forEach(doc => {
-      const merged = `
-        ${doc.source.body}
+      const docWithOperations: DocumentNode = {
+        kind: 'Document',
+        definitions: doc.operations.map(d => d.node),
+      };
+      const extractedFragments = (
+        extractFragments(print(docWithOperations)) || []
+      )
+        // resolve all nested fragments
+        .map(fragmentName =>
+          resolveFragment(graph.getNodeData(fragmentName), graph),
+        )
+        // flatten arrays
+        .reduce((list, current) => list.concat(current), [])
+        // remove duplicates
+        .filter(
+          (def, i, all) =>
+            all.findIndex(item => item.name.value === def.name.value) === i,
+        );
+      const merged: DocumentNode = {
+        kind: 'Document',
+        definitions: [...docWithOperations.definitions, ...extractedFragments],
+      };
 
-        ${(extractFragments(doc.source.body) || [])
-          // resolve all nested fragments
-          .map(fragmentName =>
-            resolveFragment(graph.getNodeData(fragmentName), graph),
-          )
-          // flatten arrays
-          .reduce((list, current) => list.concat(current), [])
-          // remove duplicates
-          .filter(
-            (def, i, all) =>
-              all.findIndex(item => item.name.value === def.name.value) === i,
-          )
-          // does not include fragment definition
-          .filter(
-            fragment =>
-              doc.source.body.indexOf(`fragment ${fragment.name.value} on`) ===
-              -1,
-          )
-          // print
-          .map(print)
-          // merge
-          .join('\n\n')}
-      `;
-
-      const errors = validateDocument(schema, parse(merged)) as GraphQLError[];
+      const errors = validateDocument(schema, merged) as GraphQLError[];
       const deprecated = findDeprecatedUsages(schema, parse(doc.source.body));
       const duplicatedFragments = findDuplicatedFragments(fragmentNames);
 
-      if (errors || deprecated || duplicatedFragments) {
+      if (sumLengths(errors, duplicatedFragments, deprecated) > 0) {
         invalidDocuments.push({
           source: doc.source,
           errors: [...errors, ...duplicatedFragments],
@@ -124,4 +121,8 @@ function extractFragments(document: string): string[] | undefined {
   return (document.match(/[\.]{3}[a-z0-9\_]+\b/gi) || []).map(name =>
     name.replace('...', ''),
   );
+}
+
+function sumLengths(...arrays: any[][]): number {
+  return arrays.reduce((sum, {length}) => sum + length, 0);
 }
