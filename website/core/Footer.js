@@ -37,8 +37,14 @@ class Footer extends React.Component {
           </a>
           <div>
             <h5>Documentation</h5>
-            <a href={this.docUrl('index.html', this.props.language)}>
+            <a href={this.docUrl('', this.props.language)}>
               What is GraphQL Inspector
+            </a>
+            <a href={this.docUrl('installation', this.props.language)}>
+              Getting Started
+            </a>
+            <a href={this.docUrl('recipies/github', this.props.language)}>
+              Github Application
             </a>
           </div>
           <div>

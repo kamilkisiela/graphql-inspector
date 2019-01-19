@@ -10,8 +10,6 @@
 
 @media only screen and (min-width: 1500px) {}
 
-.logo,
-.nav-home {
-  display: none;
-  visibility: hidden;
+.projectTitle > small {
+  color: #999;
 }
