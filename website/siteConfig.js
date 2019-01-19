@@ -22,15 +22,15 @@ const siteConfig = {
   // For no header links in the top nav bar -> headerLinks: [],
   headerLinks: [
     {doc: 'index', label: 'Documentation'},
-    {href: '/install', label: 'Install App'},
+    {href: '/install', label: 'Install'},
     {
       href: 'https://github.com/kamilkisiela/graphql-inspector',
-      label: 'Visit Github',
+      label: 'Github',
     },
   ],
 
-  headerIcon: 'img/docusaurus.svg',
-  footerIcon: 'img/docusaurus.svg',
+  headerIcon: 'img/logo.svg',
+  footerIcon: 'img/logo.svg',
   favicon: 'img/favicon/favicon.png',
 
   colors: {
