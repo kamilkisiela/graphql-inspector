@@ -68,7 +68,7 @@ const Highlights = () => {
         <Hightlight
           title="Validate operations and fragments"
           image="/img/ui/features/validate.svg"
-          description="Detects every change (neutral, dangerous or breaking)."
+          description="Validates documents against a schema and looks for deprecated usage."
         />
       </div>
     </div>
