@@ -105,6 +105,10 @@ body.separateOnPageNav .headerTitleWithLogo {
   visibility: hidden;
 }
 
+.body.separateOnPageNav .navPusher {
+  padding-top: 50px;
+}
+
 body:not(.separateOnPageNav) .mainContainer {
   padding-bottom: 0;
   background-image: url(../img/ui/cover.svg);
