@@ -18,7 +18,7 @@ const Nav = () => {
         <div className="sep" />
         <a href="/install">Install</a>
         <div className="sep" />
-        <a href="/github">Github</a>
+        <a href="https://github.com/kamilkisiela/graphql-inspector">Github</a>
       </div>
     </div>
   );
