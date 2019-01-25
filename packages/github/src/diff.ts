@@ -77,15 +77,12 @@ function annotate({
   const loc = change.path
     ? getLocation({path: change.path, schema})
     : {line: 1, column: 1};
-  const message = change.criticality.reason
-    ? change.message + '\n\n' + change.criticality.reason
-    : change.message;
 
   return {
-    title: change.path,
+    title: change.message,
     annotation_level: levelMap[level],
     path,
-    message,
+    message: change.criticality.reason || '',
     start_line: loc.line,
     end_line: loc.line,
   };
