@@ -2,6 +2,8 @@
 
 ### vNEXT
 
+- **github**: Use message as a title and reason as a message [PR #66](https://github.com/kamilkisiela/graphql-inspector/pull/66)
+
 ### v0.10.0
 
 - **github**: Uses path as a title and includes a reason [PR #65](https://github.com/kamilkisiela/graphql-inspector/pull/65)
