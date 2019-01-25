@@ -2,7 +2,7 @@
 
 ### vNEXT
 
-- **github**: Use message as a title and reason as a message [PR #66](https://github.com/kamilkisiela/graphql-inspector/pull/66)
+- **github**: Use message as a title and reason as a message [PR #67](https://github.com/kamilkisiela/graphql-inspector/pull/67)
 
 ### v0.10.0
 
