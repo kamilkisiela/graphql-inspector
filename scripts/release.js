@@ -26,46 +26,51 @@ if (!semver.valid(version)) {
 
 // !  lerna.json as the source of truth of a version number
 
-// 0. Branch out
+// Create a release branch
 exec(`git checkout -b ${branch}`);
 
-// 1. Set version in lerna.json
+// Set version in lerna.json
 updateJSON(lerna, data => {
   data.version = version;
 });
 
-// 2. Set version in packages
+// Set version in packages
 packages.map(dir => {
   updateString(join(dir, 'package.json'), pkg =>
     pkg.replace(new RegExp(placeholder, 'g'), version),
   );
 });
 
-// 3. Set version in Dockerfile (both LABEL and RUN)
+// Set version in Dockerfile (both LABEL and RUN)
 updateString(join(rootDir, 'Dockerfile'), docker =>
   docker.replace(new RegExp(current, 'g'), version),
 );
 
-// 4. Run npm publish in all libraries
+// Bump version in changelog
+updateString(join(rootDir, 'CHANGELOG.md'), changelog =>
+  changelog.replace('### vNEXT', `### vNEXT` + '\n\n' + `### v${version}`),
+);
+
+// Run npm publish in all libraries
 packages.map(dir => {
   exec(`(cd ${dir} && npm publish --access public)`);
 });
 
-// 5. Revert changes in libraries (back to placeholders)
+// Revert changes in libraries (back to placeholders)
 exec(
   `git checkout -- ${packages.map(dir => relative(rootDir, dir)).join(' ')}`,
 );
 
-// 6. Add changes and commit as `Release vX.X.X`
+// Add changes and commit as `Release vX.X.X`
 exec(`git add . && git commit -m "Release v${version}"`);
 
-// 7. git push origin release/vX.X.X
+// Push the release branch to origin
 exec(`git push origin ${branch}`);
 
-// 8. git checkout master
+// Back to master
 exec(`git checkout master`);
 
-// 9. git branch -D release/vX.X.X
+// Remove the release branch
 exec(`git branch -D ${branch}`);
 
 function updateJSON(filepath, updateFn) {
