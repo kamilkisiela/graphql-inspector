@@ -1,6 +1,3 @@
-import * as isValidPath from 'is-valid-path';
-import {ensureAbsolute} from './fs';
-
 export function pipe(...middlewares: any[]) {
   return (value: any) => {
     return middlewares.reduce((val, fn) => fn(val), value);
@@ -9,9 +6,7 @@ export function pipe(...middlewares: any[]) {
 
 export function useRequire(options: any) {
   if (options.require) {
-    options.require.forEach((mod: any) =>
-      require(isValidPath(mod) ? ensureAbsolute(mod) : mod),
-    );
+    options.require.forEach((mod: any) => require(mod));
   }
   return options;
 }

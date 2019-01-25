@@ -176,7 +176,7 @@ export async function handleAction({
           summary: issueInfo,
         }
       : {
-          title: 'Schema looks good',
+          title: 'Everything looks good',
           summary: issueInfo,
         };
 
