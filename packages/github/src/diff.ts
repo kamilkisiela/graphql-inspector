@@ -79,6 +79,7 @@ function annotate({
     : {line: 1, column: 1};
 
   return {
+    title: change.path,
     annotation_level: levelMap[level],
     path,
     message: change.message,
