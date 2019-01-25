@@ -11,7 +11,13 @@ import {ui} from './commands/ui';
 import {introspect} from './commands/introspect';
 import {normalizeOptions} from './utils/options';
 
-commander.option('-r, --require <s...>', 'Require modules');
+function collect<T>(val: T, memo: T[]) {
+  memo.push(val);
+
+  return memo;
+}
+
+commander.option('-r, --require [require]', 'Require modules', collect, []);
 commander.option('-t, --token <s>', 'Access Token');
 
 const defaultPort = 4000;
