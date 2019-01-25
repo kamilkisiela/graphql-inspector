@@ -2,6 +2,8 @@
 
 ### vNEXT
 
+- **cli**: Make `--require` accept multiple values `--require a --require b` [PR #67](https://github.com/kamilkisiela/graphql-inspector/pull/67)
+- **cli**: Fix `--require` not loading modules [PR #67](https://github.com/kamilkisiela/graphql-inspector/pull/67)
 - **github**: Use message as a title and reason as a message [PR #67](https://github.com/kamilkisiela/graphql-inspector/pull/67)
 
 ### v0.10.0
