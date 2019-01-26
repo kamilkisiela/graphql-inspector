@@ -1,6 +1,7 @@
 import {GraphQLNamedType} from 'graphql';
 
 import {Change, CriticalityLevel, ChangeType} from './change';
+import {getKind} from '../../utils/graphql';
 
 export function typeRemoved(type: GraphQLNamedType): Change {
   return {
@@ -52,9 +53,4 @@ export function typeDescriptionChanged(
     }' has changed to '${newType.description}'`,
     path: oldType.name,
   };
-}
-
-export function getKind(type: GraphQLNamedType): string {
-  const node = type.astNode as any;
-  return (node && node.kind) || '';
 }
