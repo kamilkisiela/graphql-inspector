@@ -27,7 +27,7 @@
     "prepublishOnly": "yarn build"
   },
   "peerDependencies": {
-    "graphql": "14.0.2"
+    "graphql": "^0.13.0 || ^14.0.0"
   },
   "dependencies": {
     "glob": "7.1.3",

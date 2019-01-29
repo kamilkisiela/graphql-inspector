@@ -29,6 +29,9 @@
     "prebuild": "yarn clean",
     "prepublishOnly": "yarn build"
   },
+  "peerDependencies": {
+    "graphql": "^0.13.0 || ^14.0.0"
+  },
   "dependencies": {
     "express": "4.16.4",
     "react": "16.7.0-alpha.2",

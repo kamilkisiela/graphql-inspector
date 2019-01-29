@@ -30,19 +30,8 @@
     "prebuild": "yarn clean",
     "prepublishOnly": "yarn build"
   },
-  "devDependencies": {
-    "@types/express": "4.16.0",
-    "@types/figures": "2.0.0",
-    "@types/graphql": "14.0.3",
-    "@types/indent-string": "3.0.0",
-    "@types/jest": "23.3.10",
-    "@types/log-symbols": "2.0.0",
-    "@types/node": "10.12.12",
-    "@types/opn": "5.1.0",
-    "graphql-tag": "2.10.0",
-    "jest": "23.6.0",
-    "ts-jest": "23.10.5",
-    "typescript": "3.2.2"
+  "peerDependencies": {
+    "graphql": "^14.0.0"
   },
   "dependencies": {
     "@graphql-inspector/api": "0.0.0-PLACEHOLDER",
@@ -55,10 +44,24 @@
     "commander": "2.19.0",
     "express": "4.16.4",
     "figures": "2.0.0",
-    "graphql": "14.0.2",
     "indent-string": "3.2.0",
     "is-valid-path": "0.1.1",
     "log-symbols": "2.2.0",
     "opn": "5.4.0"
+  },
+  "devDependencies": {
+    "@types/express": "4.16.0",
+    "@types/figures": "2.0.0",
+    "@types/graphql": "14.0.3",
+    "@types/indent-string": "3.0.0",
+    "@types/jest": "23.3.10",
+    "@types/log-symbols": "2.0.0",
+    "@types/node": "10.12.12",
+    "@types/opn": "5.1.0",
+    "graphql": "14.0.2",
+    "graphql-tag": "2.10.0",
+    "jest": "23.6.0",
+    "ts-jest": "23.10.5",
+    "typescript": "3.2.2"
   }
 }

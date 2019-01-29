@@ -29,6 +29,9 @@
   "peerDependencies": {
     "graphql": "^0.13.0 || ^14.0.0"
   },
+  "dependencies": {
+    "dependency-graph": "0.8.0"
+  },
   "devDependencies": {
     "@types/graphql": "14.0.3",
     "@types/jest": "23.3.10",
@@ -36,8 +39,5 @@
     "jest": "23.6.0",
     "ts-jest": "23.10.5",
     "typescript": "3.2.2"
-  },
-  "dependencies": {
-    "dependency-graph": "0.8.0"
   }
 }
