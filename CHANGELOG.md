@@ -2,6 +2,10 @@
 
 ### vNEXT
 
+### v0.12.0
+
+- Move `graphql` to peer dependencies [PR #70](https://github.com/kamilkisiela/graphql-inspector/pull/70)
+
 ### v0.11.0
 
 - **cli**: Make `--require` accept multiple values `--require a --require b` [PR #67](https://github.com/kamilkisiela/graphql-inspector/pull/67)
