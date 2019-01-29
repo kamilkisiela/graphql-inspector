@@ -62,8 +62,13 @@ export function safeChangeForInputValue(
   return false;
 }
 
+export function getKind(type: GraphQLNamedType): KindEnum {
+  const node = type.astNode as any;
+  return (node && node.kind) || '';
+}
+
 export function getTypePrefix(type: GraphQLNamedType): string {
-  const kind: KindEnum = (type.astNode as any).kind;
+  const kind: KindEnum = getKind(type);
 
   const kindsMap: Record<string, string> = {
     [Kind.SCALAR_TYPE_DEFINITION]: 'scalar',

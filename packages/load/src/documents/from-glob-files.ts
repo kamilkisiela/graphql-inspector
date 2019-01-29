@@ -53,6 +53,8 @@ async function readFile(filepath: string): Promise<Source> {
 
       if (doc) {
         return new Source(doc, filepath);
+      } else {
+        // @TODO: Throw a warning and skip doc because we can't read it
       }
     }
 
