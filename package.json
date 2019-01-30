@@ -61,8 +61,6 @@
     ]
   },
   "resoultions": {
-    "@types/react": "16.7.13",
-    "@types/react-dom": "16.0.11",
     "babel-loader": "8.0.4"
   }
 }

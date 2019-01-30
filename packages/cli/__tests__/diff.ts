@@ -1,8 +1,9 @@
+import {resolve} from 'path';
 import {diff} from '../src/commands/diff';
 import {ConsoleRenderer} from '../src/render';
 
-const oldSchema = './assets/old.graphql';
-const newSchema = './assets/new.graphql';
+const oldSchema = resolve(__dirname, './assets/old.graphql');
+const newSchema = resolve(__dirname, './assets/new.graphql');
 
 function hasMessage(msg: string) {
   return (args: string[]) => args.join('').indexOf(msg) !== -1;
