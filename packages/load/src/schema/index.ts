@@ -1,44 +1,52 @@
-import {GraphQLSchema} from 'graphql';
+import {
+  GraphQLSchema,
+  isSchema,
+  DocumentNode,
+  buildASTSchema,
+  printSchema,
+  buildSchema,
+} from 'graphql';
+import {loadSchema as useSchema} from 'graphql-toolkit';
 
-import {SchemaHandler, SchemaLoader} from './loader';
-import {fromUrl} from './from-url';
 import {fromGithub} from './from-github';
-import {fromJSONFile} from './from-json-file';
-import {fromGraphQLFile} from './from-graphql-file';
-import {fromExport} from './from-export';
 
-const loaders: SchemaHandler[] = [
-  fromUrl,
-  fromGithub,
-  fromJSONFile,
-  fromGraphQLFile,
-  fromExport,
-];
-
-function isLoader(loader: any): loader is SchemaLoader {
-  return typeof loader !== 'undefined';
+function isUri(uri: string): boolean {
+  return uri.startsWith('http');
 }
 
-export function loadSchema(
+function normalizeSchema(schema: GraphQLSchema): GraphQLSchema {
+  return buildSchema(printSchema(schema));
+}
+
+export async function loadSchema(
   pointer: string,
   extra?: any,
 ): Promise<GraphQLSchema> {
-  let loader: SchemaLoader | undefined = undefined;
+  const useGithub = fromGithub(pointer, extra);
 
-  loaders.some(fn => {
-    const _loader = fn(pointer, extra);
+  if (useGithub) {
+    // quickfix of #73
+    return normalizeSchema(await useGithub());
+  }
 
-    if (_loader) {
-      loader = _loader;
-      return true;
+  const resolved = await useSchema(pointer, null);
+
+  if (isSchema(resolved)) {
+    // quickfix of #73
+    if (isUri(pointer)) {
+      return normalizeSchema(resolved);
     }
 
-    return false;
-  });
+    return resolved;
+  }
 
-  if (isLoader(loader)) {
-    return loader();
+  if (isDocumentNode(resolved)) {
+    return buildASTSchema(resolved);
   }
 
   throw new Error(`Couldn't handle ${pointer}`);
+}
+
+function isDocumentNode(doc: any): doc is DocumentNode {
+  return !!doc.kind;
 }

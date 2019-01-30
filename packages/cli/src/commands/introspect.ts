@@ -8,6 +8,7 @@ import {introspectionFromSchema, printSchema} from 'graphql';
 export async function introspect(
   schemaPointer: string,
   options: {
+    token?: string;
     write?: string;
     require: string[];
     renderer?: Renderer;
@@ -17,7 +18,9 @@ export async function introspect(
   const renderer = options.renderer || new ConsoleRenderer();
 
   try {
-    const schema = await loadSchema(schemaPointer);
+    const schema = await loadSchema(schemaPointer, {
+      token: options.token,
+    });
     const introspection = introspectionFromSchema(schema);
     const filepath = resolve(process.cwd(), output);
     let content: string;
