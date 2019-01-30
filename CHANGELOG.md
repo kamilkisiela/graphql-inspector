@@ -2,6 +2,10 @@
 
 ### vNEXT
 
+- **load**: use The Guild's `graphql-toolkit` [PR #77](https://github.com/kamilkisiela/graphql-inspector/pull/77)
+- **cli**: pass `--token` to introspection [PR #77](https://github.com/kamilkisiela/graphql-inspector/pull/77)
+- **cli**: pass `--token` to introspection command [PR #77](https://github.com/kamilkisiela/graphql-inspector/pull/77)
+
 ### v0.12.0
 
 - Move `graphql` to peer dependencies [PR #70](https://github.com/kamilkisiela/graphql-inspector/pull/70)
