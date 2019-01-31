@@ -34,9 +34,9 @@
   },
   "devDependencies": {
     "@types/graphql": "14.0.3",
-    "@types/jest": "23.3.10",
+    "@types/jest": "23.3.13",
     "graphql-tag": "2.10.0",
-    "jest": "23.6.0",
+    "jest": "24.0.0",
     "ts-jest": "23.10.5",
     "typescript": "3.2.2"
   }

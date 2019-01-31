@@ -54,13 +54,13 @@
     "@types/figures": "2.0.0",
     "@types/graphql": "14.0.3",
     "@types/indent-string": "3.0.0",
-    "@types/jest": "23.3.10",
+    "@types/jest": "23.3.13",
     "@types/log-symbols": "2.0.0",
     "@types/node": "10.12.12",
     "@types/opn": "5.1.0",
     "graphql": "14.0.2",
     "graphql-tag": "2.10.0",
-    "jest": "23.6.0",
+    "jest": "24.0.0",
     "ts-jest": "23.10.5",
     "typescript": "3.2.2"
   }
