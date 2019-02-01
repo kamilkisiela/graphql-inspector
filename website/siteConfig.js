@@ -38,15 +38,26 @@ const siteConfig = {
     secondaryColor: '#B23D32',
   },
 
+  scripts: [
+    'https://buttons.github.io/buttons.js',
+    'https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js',
+    '/js/code-block-buttons.js',
+  ],
+
+  stylesheets: ['https://fonts.googleapis.com/css?family=Lato:300,400,700,900'],
+
   copyright: `Copyright © ${new Date().getFullYear()} Kamil Kisiela`,
 
   highlight: {
-    // Highlight.js theme to use for syntax highlighting in code blocks.
-    theme: 'default',
+    theme: 'atom-one-dark',
   },
+
+  usePrism: true,
 
   // Add custom scripts here that would be placed in <script> tags.
   scripts: ['https://buttons.github.io/buttons.js'],
+
+  scrollToTop: true,
 
   // On page navigation for the current documentation page.
   onPageNav: 'separate',
@@ -69,6 +80,8 @@ const siteConfig = {
   // You may provide arbitrary config keys to be used as needed by your
   // template. For example, if you need your repo's URL...
   repoUrl: 'https://github.com/kamilkisiela/graphql-inspector',
+  editUrl:
+    'https://github.com/kamilkisiela/graphql-inspector/edit/master/docs/',
 };
 
 module.exports = siteConfig;

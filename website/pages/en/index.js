@@ -7,6 +7,16 @@
 
 const React = require('react');
 
+const Live = () => {
+  return (
+    <div className="live">
+      <div className="live-wrapper">
+        <iframe src={'/live/'} />
+      </div>
+    </div>
+  );
+};
+
 const Nav = () => {
   return (
     <div id="main-nav">
@@ -84,6 +94,7 @@ class Index extends React.Component {
           <Header />
         </div>
         <Highlights />
+        <Live />
       </div>
     );
   }

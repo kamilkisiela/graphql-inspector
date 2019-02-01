@@ -1,3 +1,7 @@
+body {
+  font-family: 'Lato', sans-serif;
+}
+
 @media only screen and (max-width: 1024px) {
   .mainContainer {
     padding-top: 20px;
@@ -44,6 +48,10 @@
     display: none;
     visibility: hidden;
   }
+
+  .live-wrapper {
+    height: 600px;
+  }
 }
 
 @media only screen and (min-width: 1024px) {
@@ -68,6 +76,35 @@
   #main-highlights .highlight {
     width: 30%;
   }
+
+  .live-wrapper {
+    height: 300px;
+  }
+}
+
+.live {
+  width: 100%;
+  padding: 25px 0;
+  background-color: #000;
+}
+
+.live-title {
+  max-width: 960px;
+  margin: 0 auto;
+  font-size: 40px;
+  letter-spacing: 1.2px;
+  color: #fff;
+  font-weight: 600;
+}
+
+.live-wrapper {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.live-wrapper>iframe {
+  width: 100%;
+  height: 100%;
 }
 
 .projectTitle>small {
@@ -269,4 +306,44 @@ body:not(.separateOnPageNav) .mainContainer {
 
 #main-footer .links a>img {
   height: 26px;
+}
+
+/* code-block-buttons */
+pre {
+  position: relative;
+}
+
+pre .btnIcon {
+  position: absolute;
+  top: 4px;
+  z-index: 2;
+  cursor: pointer;
+  border: 1px solid transparent;
+  padding: 0;
+  color: #fff;
+  background-color: transparent;
+  height: 30px;
+  transition: all .25s ease-out;
+}
+
+pre .btnIcon:hover {
+  text-decoration: none;
+}
+
+.btnIcon__body {
+  align-items: center;
+  display: flex;
+}
+
+.btnIcon svg {
+  fill: currentColor;
+  margin-right: .4em;
+}
+
+.btnIcon__label {
+  font-size: 11px;
+}
+
+.btnClipboard {
+  right: 10px;
 }
