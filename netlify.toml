@@ -1,5 +1,5 @@
 [build]
-  Command = "yarn build:netlify"
+  Command = "(cd website/live && yarn install) && yarn build:netlify"
   Functions = "dist/functions"
   Publish = "website/build/graphql-inspector"
 
