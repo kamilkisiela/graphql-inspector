@@ -1,11 +1,12 @@
 import React, {lazy, Suspense} from 'react';
+import Loading from './Loading';
 
-const Diff = lazy(async () => import('./diff/Diff'));
+const Diff = lazy(() => import('./diff/Diff'));
 
 function App() {
   return (
     <div>
-      <Suspense fallback={() => <div>Loading...</div>}>
+      <Suspense fallback={<Loading />}>
         <Diff />
       </Suspense>
     </div>
