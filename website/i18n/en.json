@@ -35,7 +35,7 @@
       "installation": {
         "title": "Getting Started"
       },
-      "recipies/github": {
+      "recipes/github": {
         "title": "Github Application"
       }
     },
@@ -48,7 +48,7 @@
       "Introduction": "Introduction",
       "Essentials": "Essentials",
       "API": "API",
-      "Recipies": "Recipies"
+      "Recipes": "Recipes"
     }
   },
   "pages-strings": {
