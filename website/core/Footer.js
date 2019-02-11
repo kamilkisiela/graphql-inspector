@@ -87,7 +87,7 @@ class Footer extends React.Component {
   //           <a href={this.docUrl('installation', this.props.language)}>
   //             Getting Started
   //           </a>
-  //           <a href={this.docUrl('recipies/github', this.props.language)}>
+  //           <a href={this.docUrl('recipes/github', this.props.language)}>
   //             Github Application
   //           </a>
   //         </div>
