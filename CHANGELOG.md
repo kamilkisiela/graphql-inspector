@@ -2,6 +2,8 @@
 
 ### vNEXT
 
+- **cli**: bump `apollo-server@2.4.0` [PR #86](https://github.com/kamilkisiela/graphql-inspector/pull/86)
+
 ### v0.13.0
 
 - **load**: use The Guild's `graphql-toolkit` [PR #77](https://github.com/kamilkisiela/graphql-inspector/pull/77)

@@ -39,7 +39,6 @@
     "@graphql-inspector/load": "0.0.0-PLACEHOLDER",
     "@graphql-inspector/ui": "0.0.0-PLACEHOLDER",
     "apollo-server": "2.4.0",
-    "apollo-server-express": "2.4.0",
     "chalk": "2.4.1",
     "commander": "2.19.0",
     "express": "4.16.4",
