@@ -2,6 +2,8 @@
 
 ### vNEXT
 
+### v0.13.1
+
 - **cli**: bump `apollo-server@2.4.0` [PR #86](https://github.com/kamilkisiela/graphql-inspector/pull/86)
 
 ### v0.13.0
