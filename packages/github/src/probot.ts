@@ -180,6 +180,8 @@ export async function handleAction({
           summary: issueInfo,
         };
 
+  context.log.info(`Sending annotations (${annotations.length})`);
+
   await check.annotations({
     url,
     context,
@@ -188,9 +190,13 @@ export async function handleAction({
     annotations,
   });
 
+  context.log.info(`Finishing check (${conclusion})`);
+
   await check.complete({
     url,
     context,
     conclusion,
   });
+
+  context.log.info(`Completed`);
 }

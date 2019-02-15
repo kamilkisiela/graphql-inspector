@@ -42,7 +42,7 @@
     "husky": "1.2.0",
     "immer": "1.10.0",
     "lerna": "3.6.0",
-    "netlify-lambda": "1.1.1",
+    "netlify-lambda": "1.4.2",
     "shelljs": "0.8.3"
   },
   "workspaces": [
