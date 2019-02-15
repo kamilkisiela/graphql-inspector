@@ -2,6 +2,8 @@
 
 ### vNEXT
 
+### v0.13.2
+
 - **github**: annotation's `message` was empty [PR #87](https://github.com/kamilkisiela/graphql-inspector/pull/87)
 
 ### v0.13.1
