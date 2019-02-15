@@ -82,7 +82,7 @@ function annotate({
     title: change.message,
     annotation_level: levelMap[level],
     path,
-    message: change.criticality.reason || '',
+    message: change.criticality.reason || change.message,
     start_line: loc.line,
     end_line: loc.line,
   };

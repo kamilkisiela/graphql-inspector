@@ -2,6 +2,8 @@
 
 ### vNEXT
 
+- **github**: annotation's `message` was empty [PR #87](https://github.com/kamilkisiela/graphql-inspector/pull/87)
+
 ### v0.13.1
 
 - **cli**: bump `apollo-server@2.4.0` [PR #86](https://github.com/kamilkisiela/graphql-inspector/pull/86)

@@ -34,7 +34,7 @@
   "dependencies": {
     "@graphql-inspector/github": "0.0.0-PLACEHOLDER",
     "graphql": "14.0.2",
-    "probot": "7.4.0",
+    "probot": "7.5.0",
     "uuid": "3.3.2"
   },
   "devDependencies": {

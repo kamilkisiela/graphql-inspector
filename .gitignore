@@ -5,3 +5,5 @@ yarn-error.log
 **/*/dist/
 **/*/build/
 **/*/yarn-error.log
+.env
+private-key.pem
