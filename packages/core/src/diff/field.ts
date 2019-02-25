@@ -5,6 +5,7 @@ import {
   GraphQLInterfaceType,
 } from 'graphql';
 
+import {notEqual} from './common/compare';
 import {Change} from './changes/change';
 import {
   fieldDescriptionChanged,
@@ -23,15 +24,15 @@ export function changesInField(
 ): Change[] {
   const changes: Change[] = [];
 
-  if (oldField.description !== newField.description) {
+  if (notEqual(oldField.description, newField.description)) {
     changes.push(fieldDescriptionChanged(type, oldField, newField));
   }
 
-  if (oldField.deprecationReason !== newField.deprecationReason) {
+  if (notEqual(oldField.deprecationReason, newField.deprecationReason)) {
     changes.push(fieldDeprecationReasonChanged(type, oldField, newField));
   }
 
-  if (oldField.type.toString() !== newField.type.toString()) {
+  if (notEqual(oldField.type.toString(), newField.type.toString())) {
     changes.push(fieldTypeChanged(type, oldField, newField));
   }
 

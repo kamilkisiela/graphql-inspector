@@ -1,4 +1,6 @@
 import {GraphQLInputObjectType, GraphQLInputField} from 'graphql';
+
+import {notEqual} from './common/compare';
 import {Change} from './changes/change';
 import {diffArrays, unionArrays} from '../utils/arrays';
 import {
@@ -43,15 +45,15 @@ function changesInInputField(
 ): Change[] {
   const changes: Change[] = [];
 
-  if (oldField.description !== newField.description) {
+  if (notEqual(oldField.description, newField.description)) {
     changes.push(inputFieldDescriptionChanged(input, oldField, newField));
   }
 
-  if (oldField.defaultValue !== newField.defaultValue) {
+  if (notEqual(oldField.defaultValue, newField.defaultValue)) {
     changes.push(inputFieldDefaultValueChanged(input, oldField, newField));
   }
 
-  if (oldField.type.toString() !== newField.type.toString()) {
+  if (notEqual(oldField.type.toString(), newField.type.toString())) {
     changes.push(inputFieldTypeChanged(input, oldField, newField));
   }
 

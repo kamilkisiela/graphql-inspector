@@ -1,4 +1,9 @@
-import {buildASTSchema} from 'graphql';
+import {
+  buildASTSchema,
+  buildSchema,
+  introspectionFromSchema,
+  buildClientSchema,
+} from 'graphql';
 import gql from 'graphql-tag';
 
 import {diff} from '../../src/index';
@@ -80,7 +85,7 @@ test('renamed query', () => {
   );
 });
 
-test('new field and field changed in Query', () => {
+test('new field and field changed', () => {
   const schemaA = buildASTSchema(gql`
     type Query {
       fieldA: String!
@@ -110,7 +115,22 @@ test('new field and field changed in Query', () => {
   );
 });
 
-test('', () => {
+test('schema from an introspection result should be the same', () => {
+  const typeDefsA = /* GraphQL */ `
+    type Query {
+      fieldA: String!
+      fieldB: String
+    }
+  `;
+  const schemaA = buildSchema(typeDefsA);
+  const schemaB = buildClientSchema(introspectionFromSchema(schemaA));
+
+  const changes = diff(schemaA, schemaB);
+
+  expect(changes.length).toEqual(0);
+});
+
+test('huge test', () => {
   const schemaA = buildASTSchema(gql`
     schema {
       query: Query

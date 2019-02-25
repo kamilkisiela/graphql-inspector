@@ -1,5 +1,6 @@
 import {GraphQLEnumType, GraphQLEnumValue} from 'graphql';
 
+import {notEqual} from './common/compare';
 import {
   enumValueRemoved,
   enumValueAdded,
@@ -32,11 +33,11 @@ export function changesInEnum(
   changes.push(...removed.map(v => enumValueRemoved(oldEnum, v)));
 
   common.forEach(({oldValue, newValue}) => {
-    if (oldValue.description !== newValue.description) {
+    if (notEqual(oldValue.description, newValue.description)) {
       changes.push(enumValueDescriptionChanged(newEnum, oldValue, newValue));
     }
 
-    if (oldValue.deprecationReason !== newValue.deprecationReason) {
+    if (notEqual(oldValue.deprecationReason, newValue.deprecationReason)) {
       changes.push(
         enumValueDeprecationReasonChanged(newEnum, oldValue, newValue),
       );
