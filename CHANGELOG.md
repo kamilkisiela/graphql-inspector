@@ -2,6 +2,10 @@
 
 ### vNEXT
 
+### v0.13.3
+
+- **load**: `graphql-toolkit` expects options to be a non-null value [PR #92](https://github.com/kamilkisiela/graphql-inspector/pull/92) [Issue #91](https://github.com/kamilkisiela/graphql-inspector/issues/91)
+
 ### v0.13.2
 
 - **github**: annotation's `message` was empty [PR #87](https://github.com/kamilkisiela/graphql-inspector/pull/87)
