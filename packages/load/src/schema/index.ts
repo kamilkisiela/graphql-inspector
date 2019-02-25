@@ -29,7 +29,7 @@ export async function loadSchema(
     return normalizeSchema(await useGithub());
   }
 
-  const resolved = await useSchema(pointer, null);
+  const resolved = await useSchema(pointer, {});
 
   if (isSchema(resolved)) {
     // quickfix of #73
