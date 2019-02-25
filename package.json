@@ -24,7 +24,7 @@
   "scripts": {
     "build": "lerna run build",
     "test": "lerna run test",
-    "build:website": "(cd website && npm install && npm run build)",
+    "build:website": "(cd website && yarn install && yarn build)",
     "build:github": "yarn workspace @graphql-inspector/core build && yarn workspace @graphql-inspector/github build && yarn workspace @graphql-inspector/actions build",
     "build:netlify": "yarn build:github && yarn netlify-lambda build functions && ./scripts/fix.js && yarn build:website",
     "format": "prettier --config .prettierrc --write \"**/*.{js,json,md,ts,graphql}\"",
