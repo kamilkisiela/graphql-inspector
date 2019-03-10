@@ -7,3 +7,4 @@ yarn-error.log
 **/*/yarn-error.log
 .env
 private-key.pem
+.DS_Store

@@ -382,3 +382,145 @@ test('', () => {
     }
   });
 });
+
+test('array as default value in argument (same)', () => {
+  const schemaA = buildASTSchema(gql`
+    interface MyInterface {
+      a(b: [String] = ["Hello"]): String!
+    }
+  `);
+
+  const schemaB = buildASTSchema(gql`
+    interface MyInterface {
+      a(b: [String] = ["Hello"]): String!
+    }
+  `);
+
+  const changes = diff(schemaA, schemaB);
+
+  expect(changes.length).toEqual(0);
+});
+
+test('array as default value in argument (different)', () => {
+  const schemaA = buildASTSchema(gql`
+    interface MyInterface {
+      a(b: [String] = ["Hello"]): String!
+    }
+  `);
+
+  const schemaB = buildASTSchema(gql`
+    interface MyInterface {
+      a(b: [String] = ["Goodbye"]): String!
+    }
+  `);
+
+  const changes = diff(schemaA, schemaB);
+
+  expect(changes.length).toEqual(1);
+  expect(changes[0]).toBeDefined();
+  expect(changes[0].criticality.level).toEqual(CriticalityLevel.Dangerous);
+  expect(changes[0].message).toEqual(
+    `Default value for argument 'b' on field 'MyInterface.a' changed from 'Hello' to 'Goodbye'`,
+  );
+  expect(changes[0].path).toEqual(`MyInterface.a.b`);
+});
+
+test('input as default value (same)', () => {
+  const schemaA = buildASTSchema(gql`
+    enum SortOrder {
+      ASC
+    }
+
+    input CommentQuery {
+      limit: Int!
+      sortOrder: SortOrder!
+    }
+
+    type Comment {
+      replies(query: CommentQuery = {sortOrder: ASC, limit: 3}): String!
+    }
+  `);
+
+  const schemaB = buildASTSchema(gql`
+    enum SortOrder {
+      ASC
+    }
+
+    input CommentQuery {
+      limit: Int!
+      sortOrder: SortOrder!
+    }
+
+    type Comment {
+      replies(query: CommentQuery = {sortOrder: ASC, limit: 3}): String!
+    }
+  `);
+
+  const changes = diff(schemaA, schemaB);
+
+  expect(changes.length).toEqual(0);
+});
+
+test('array as default value in input (same)', () => {
+  const schemaA = buildASTSchema(gql`
+    enum SortOrder {
+      ASC
+    }
+
+    input CommentQuery {
+      limit: Int!
+      sortOrder: [SortOrder] = [ASC]
+    }
+  `);
+
+  const schemaB = buildASTSchema(gql`
+    enum SortOrder {
+      ASC
+    }
+
+    input CommentQuery {
+      limit: Int!
+      sortOrder: [SortOrder] = [ASC]
+    }
+  `);
+
+  const changes = diff(schemaA, schemaB);
+
+  expect(changes.length).toEqual(0);
+});
+
+test('array as default value in input (different)', () => {
+  const schemaA = buildASTSchema(gql`
+    enum SortOrder {
+      ASC
+      DEC
+    }
+
+    input CommentQuery {
+      limit: Int!
+      sortOrder: [SortOrder] = [ASC]
+    }
+  `);
+
+  const schemaB = buildASTSchema(gql`
+    enum SortOrder {
+      ASC
+      DEC
+    }
+
+    input CommentQuery {
+      limit: Int!
+      sortOrder: [SortOrder] = [DEC]
+    }
+  `);
+
+  const changes = diff(schemaA, schemaB);
+
+  expect(changes.length).toEqual(1);
+  expect(changes[0]).toBeDefined();
+  expect(changes[0].criticality.level).toEqual(CriticalityLevel.Dangerous);
+  expect(changes[0].message).toEqual(
+    `Input field 'CommentQuery.sortOrder' default value changed from 'ASC' to 'DEC'`,
+  );
+  expect(changes[0].path).toEqual(`CommentQuery.sortOrder`);
+});
