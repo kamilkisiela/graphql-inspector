@@ -33,15 +33,15 @@
     "precommit": "lint-staged"
   },
   "devDependencies": {
-    "lint-staged": "8.1.0",
-    "prettier": "1.15.3"
+    "lint-staged": "8.1.5",
+    "prettier": "1.16.4"
   },
   "dependencies": {
     "@probot/serverless-lambda": "0.2.0",
-    "babel-loader": "8.0.4",
-    "husky": "1.2.0",
-    "immer": "1.10.0",
-    "lerna": "3.6.0",
+    "babel-loader": "8.0.5",
+    "husky": "1.3.1",
+    "immer": "2.1.3",
+    "lerna": "3.13.1",
     "netlify-lambda": "1.4.2",
     "shelljs": "0.8.3"
   },
@@ -61,6 +61,6 @@
     ]
   },
   "resoultions": {
-    "babel-loader": "8.0.4"
+    "babel-loader": "8.0.5"
   }
 }

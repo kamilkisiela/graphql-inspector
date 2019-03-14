@@ -32,13 +32,13 @@ function fileLoader({
   `;
 
   return async function loadFile(file: FileInfo): Promise<string> {
-    const result = await context.github.query(query, {
+    const result = await context.github.graphql(query, {
       repo,
       owner,
       expression: `${file.ref}:${file.path}`,
     });
 
-    return result.repository.object.text;
+    return result.data!.repository.object.text;
   };
 }
 

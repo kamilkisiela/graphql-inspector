@@ -37,7 +37,7 @@ function wrapAppFn(fn: ApplicationFunction) {
         return;
       }
 
-      const ref = context.payload.head_commit.id;
+      const ref = context.payload.after;
       const action = 'gh-action';
       const {owner, repo} = context.repo();
 
@@ -49,7 +49,7 @@ function wrapAppFn(fn: ApplicationFunction) {
 
 probot.setup([wrapAppFn(appFn)]);
 
-probot.receive({name: event, payload, id: uuid.v4()}).catch(() => {
+probot.receive({name: event!, payload, id: uuid.v4()}).catch(() => {
   // Process must exist non-zero to indicate that the action failed to run
   process.exit(1);
 });
