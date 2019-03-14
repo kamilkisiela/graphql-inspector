@@ -49,7 +49,7 @@ function wrapAppFn(fn: ApplicationFunction) {
 
 probot.setup([wrapAppFn(appFn)]);
 
-probot.receive({name: event, payload, id: uuid.v4()}).catch(() => {
+probot.receive({name: event!, payload, id: uuid.v4()}).catch(() => {
   // Process must exist non-zero to indicate that the action failed to run
   process.exit(1);
 });
