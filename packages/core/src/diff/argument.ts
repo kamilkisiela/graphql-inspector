@@ -12,6 +12,7 @@ import {
   fieldArgumentDefaultChanged,
   fieldArgumentTypeChanged,
 } from './changes/argument';
+import {diffArrays} from '../utils/arrays';
 
 export function changesInArgument(
   type: GraphQLObjectType | GraphQLInterfaceType,
@@ -26,7 +27,20 @@ export function changesInArgument(
   }
 
   if (notEqual(oldArg.defaultValue, newArg.defaultValue)) {
-    changes.push(fieldArgumentDefaultChanged(type, field, oldArg, newArg));
+    if (
+      Array.isArray(oldArg.defaultValue) &&
+      Array.isArray(newArg.defaultValue)
+    ) {
+      const diff = diffArrays(oldArg.defaultValue, newArg.defaultValue);
+      if (diff.length > 0) {
+        changes.push(fieldArgumentDefaultChanged(type, field, oldArg, newArg));
+      }
+    } else if (
+      JSON.stringify(oldArg.defaultValue) !==
+      JSON.stringify(newArg.defaultValue)
+    ) {
+      changes.push(fieldArgumentDefaultChanged(type, field, oldArg, newArg));
+    }
   }
 
   if (notEqual(oldArg.type.toString(), newArg.type.toString())) {

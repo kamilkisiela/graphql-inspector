@@ -50,7 +50,19 @@ function changesInInputField(
   }
 
   if (notEqual(oldField.defaultValue, newField.defaultValue)) {
-    changes.push(inputFieldDefaultValueChanged(input, oldField, newField));
+    if (
+      Array.isArray(oldField.defaultValue) &&
+      Array.isArray(newField.defaultValue)
+    ) {
+      if (diffArrays(oldField.defaultValue, newField.defaultValue).length > 0) {
+        changes.push(inputFieldDefaultValueChanged(input, oldField, newField));
+      }
+    } else if (
+      JSON.stringify(oldField.defaultValue) !==
+      JSON.stringify(newField.defaultValue)
+    ) {
+      changes.push(inputFieldDefaultValueChanged(input, oldField, newField));
+    }
   }
 
   if (notEqual(oldField.type.toString(), newField.type.toString())) {
