@@ -37,7 +37,7 @@ function wrapAppFn(fn: ApplicationFunction) {
         return;
       }
 
-      const ref = context.payload.head_commit.id;
+      const ref = context.payload.after;
       const action = 'gh-action';
       const {owner, repo} = context.repo();
 
