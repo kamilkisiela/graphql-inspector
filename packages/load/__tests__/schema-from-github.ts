@@ -32,7 +32,7 @@ function normalize(doc: string): string {
 }
 
 test('load schema from Github', async () => {
-  const mockedFetch: jest.SpyInstance<typeof fetch> = fetch as any;
+  const mockedFetch: jest.SpyInstance<any> = fetch as any;
 
   mockedFetch.mockReturnValue(
     Promise.resolve(
