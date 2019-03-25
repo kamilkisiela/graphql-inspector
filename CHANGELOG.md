@@ -2,6 +2,8 @@
 
 ### vNEXT
 
+- **code**: Added diff support for arrays and objects (arguments) [PR #95](https://github.com/kamilkisiela/graphql-inspector/pull/95)
+
 ### v0.13.3
 
 - **load**: `graphql-toolkit` expects options to be a non-null value [PR #92](https://github.com/kamilkisiela/graphql-inspector/pull/92) [Issue #91](https://github.com/kamilkisiela/graphql-inspector/issues/91)
