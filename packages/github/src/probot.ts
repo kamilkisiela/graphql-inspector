@@ -38,7 +38,11 @@ function fileLoader({
       expression: `${file.ref}:${file.path}`,
     });
 
-    return result.data!.repository.object.text;
+    if (result.data) {
+      return result.data.repository.object.text;
+    }
+
+    return (result as any).repository.object.text;
   };
 }
 
