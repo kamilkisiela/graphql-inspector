@@ -12,7 +12,16 @@ We strongly believe in Open Source and that's why we made it possible to have a 
 
 ## Usage
 
-Configure GraphQL Inspector in `package.json` (it must be placed in the root directory).
+Configure GraphQL Inspector in `.github/graphql-inspector.yaml`:
+
+```yaml
+diff: true # enables Schema Comparison (reject PR on breaking changes)
+schema:
+  ref: head/master # branch, SHA
+  path: schema.graphql # an output of `$ graphql-inspector introspect ...`
+```
+
+It's also possible to setup everything in `package.json` (it must be placed in the root directory).
 
 ```json
 {
