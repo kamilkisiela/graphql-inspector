@@ -1,9 +1,17 @@
 import * as probot from 'probot';
+import * as getGithubConfig from 'probot-config';
 import {buildSchema} from 'graphql';
 
 import {CheckConclusion, ActionResult, Annotation} from './types';
 import {diff} from './diff';
 import * as check from './check-runs';
+
+interface Config {
+  diff?: boolean;
+  // similar?: boolean;
+  // coverage?: boolean;
+  schema: SchemaPointer;
+}
 
 interface FileInfo {
   ref: string;
@@ -103,14 +111,9 @@ export async function handleAction({
     sha: ref,
   });
 
-  const pkg = JSON.parse(
-    await loadFile({
-      ref,
-      path: 'package.json',
-    }),
-  );
+  const config = await loadConfig();
 
-  if (!pkg['graphql-inspector']) {
+  if (!config) {
     context.log.error(`No config file - ${id}`);
     await check.complete({
       url,
@@ -119,13 +122,6 @@ export async function handleAction({
     });
     return;
   }
-
-  const config: {
-    diff?: boolean;
-    // similar?: boolean;
-    // coverage?: boolean;
-    schema: SchemaPointer;
-  } = pkg['graphql-inspector'];
 
   const oldPointer: SchemaPointer = config.schema;
   const newPointer: SchemaPointer = {
@@ -203,4 +199,23 @@ export async function handleAction({
   });
 
   context.log.info(`Completed`);
+
+  async function loadConfig(): Promise<Config | undefined> {
+    const yamlConfig = await getGithubConfig(context, 'graphql-inspector.yml');
+
+    if (yamlConfig) {
+      return yamlConfig;
+    } else {
+      const pkg = JSON.parse(
+        await loadFile({
+          ref,
+          path: 'package.json',
+        }),
+      );
+
+      if (pkg['graphql-inspector']) {
+        return pkg['graphql-inspector'];
+      }
+    }
+  }
 }
