@@ -2,6 +2,8 @@
 
 ### vNEXT
 
+- **github**: Fix location of a targeted entity[PR #104](https://github.com/kamilkisiela/graphql-inspector/pull/104)
+
 ### v1.14.0
 
 - **core**: Fix how GraphQL Schema is fetched [PR #101](https://github.com/kamilkisiela/graphql-inspector/pull/101)

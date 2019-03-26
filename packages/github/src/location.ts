@@ -1,6 +1,7 @@
 import {
   GraphQLSchema,
   printSchema,
+  buildSchema,
   isObjectType,
   isDirective,
   isEnumType,
@@ -10,6 +11,10 @@ import {
   getLocation as graphqlGetLocation,
 } from 'graphql';
 
+function normalizeSchema(schema: GraphQLSchema): GraphQLSchema {
+  return buildSchema(printSchema(schema));
+}
+
 export function getLocation({
   path,
   schema,
@@ -17,8 +22,9 @@ export function getLocation({
   path: string;
   schema: GraphQLSchema;
 }) {
-  const printed = printSchema(schema);
-  const loc = getNodeLocation({path, schema});
+  const normalizedSchema = normalizeSchema(schema);
+  const printed = printSchema(normalizedSchema);
+  const loc = getNodeLocation({path, schema: normalizedSchema});
   const source = new Source(printed);
 
   if (!loc) {
