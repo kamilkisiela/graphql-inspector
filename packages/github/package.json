@@ -25,6 +25,7 @@
   "scripts": {
     "start": "probot run ./dist/index.js",
     "dev": "yarn build && yarn start",
+    "test": "jest",
     "build": "tsc",
     "clean": "rm -rf dist/",
     "deploy": "now --docker",
