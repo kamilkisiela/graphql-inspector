@@ -8,6 +8,7 @@ import {
 } from '@graphql-inspector/github/dist/types';
 import {diff} from '@graphql-inspector/github/dist/diff';
 import {buildSchema} from 'graphql';
+import {safeLoad} from 'js-yaml';
 
 import {Toolkit} from 'actions-toolkit';
 
@@ -20,14 +21,7 @@ Toolkit.run(
     // env
     const ref = process.env.GITHUB_SHA!;
 
-    // config
-    const config = loadConfig(tools);
-
-    if (!config) {
-      tools.log.fatal(`No config file`);
-      return;
-    }
-
+    // repo
     const {owner, repo} = tools.context.repo();
 
     const loadFile = fileLoader({
@@ -35,6 +29,14 @@ Toolkit.run(
       owner,
       repo,
     });
+
+    // config
+    const config = await loadConfig(tools, loadFile);
+
+    if (!config) {
+      tools.log.fatal(`No config file`);
+      return tools.exit.failure('Failed to find any config file');
+    }
 
     const oldPointer: SchemaPointer = config.schema;
     const newPointer: SchemaPointer = {
@@ -98,7 +100,7 @@ Toolkit.run(
           name: 'GraphQL Inspector',
           head_sha: tools.context.sha,
           conclusion: conclusion,
-          completed_at: new Date().toString(),
+          completed_at: new Date().toISOString(),
           output: {
             title,
             summary,
@@ -125,18 +127,35 @@ Toolkit.run(
   {event: ['pull_request', 'push']},
 );
 
-function loadConfig(tools: Toolkit): Config | undefined {
-  const yamlCfg = tools.config(identifier + '.yaml') as (Config | undefined);
-  const ymlCfg = tools.config(identifier + '.yml') as (Config | undefined);
+async function loadConfig(
+  tools: Toolkit,
+  loadFile: (file: {ref: string; path: string}) => Promise<string>,
+): Promise<Config | undefined> {
+  const base = '.github';
+  const ref = process.env.GITHUB_SHA!;
 
-  if (yamlCfg || ymlCfg) {
-    return yamlCfg || ymlCfg;
+  try {
+    const text = await loadFile({ref, path: `${base}/${identifier}.yaml`});
+    return safeLoad(text);
+  } catch (e) {
+    tools.log.info(`Failed to find .github/${identifier}.yaml file`);
   }
 
-  const pkg: any = tools.getPackageJSON();
+  try {
+    const text = await loadFile({ref, path: `${base}/${identifier}.yml`});
+    return safeLoad(text);
+  } catch (e) {
+    tools.log.info(`Failed to find .github/${identifier}.yml file`);
+  }
 
-  if (pkg[identifier]) {
-    return pkg[identifier];
+  try {
+    const pkg: any = tools.getPackageJSON();
+
+    if (pkg[identifier]) {
+      return pkg[identifier];
+    }
+  } catch (e) {
+    tools.log.info(`Failed to find package.json`);
   }
 }
 
