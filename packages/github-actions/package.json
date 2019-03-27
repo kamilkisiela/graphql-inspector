@@ -33,14 +33,15 @@
   },
   "dependencies": {
     "@graphql-inspector/github": "0.0.0-PLACEHOLDER",
+    "actions-toolkit": "1.8.1",
     "graphql": "14.1.1",
-    "probot": "9.0.1",
-    "uuid": "3.3.2"
+    "js-yaml": "3.13.0",
+    "probot": "9.0.1"
   },
   "devDependencies": {
     "@types/graphql": "14.0.7",
     "@types/node": "11.11.3",
-    "@types/uuid": "3.4.4",
+    "@types/js-yaml": "3.12.0",
     "typescript": "3.3.3333"
   }
 }

@@ -6,7 +6,7 @@ import {CheckConclusion, ActionResult, Annotation} from './types';
 import {diff} from './diff';
 import * as check from './check-runs';
 
-interface Config {
+export interface Config {
   diff?: boolean;
   // similar?: boolean;
   // coverage?: boolean;
@@ -54,7 +54,7 @@ function fileLoader({
   };
 }
 
-interface SchemaPointer {
+export interface SchemaPointer {
   ref: string;
   path: string;
 }
@@ -141,7 +141,6 @@ export async function handleAction({
   if (config.diff) {
     actions.push(
       diff({
-        context,
         path: config.schema.path,
         schemas,
       }),
