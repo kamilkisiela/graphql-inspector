@@ -1102,14 +1102,13 @@
     graphql-tools "4.0.3"
     tslib "1.9.3"
 
-"@graphql-modules/epoxy@0.2.17":
-  version "0.2.17"
-  resolved "https://registry.yarnpkg.com/@graphql-modules/epoxy/-/epoxy-0.2.17.tgz#f93fd64baa7328f0f69da7a2aa226b3c6e296e31"
-  integrity sha512-bPUubY9S5DQR1Dnc2jvOsi1geCYzPfnLJBZJTd4oKYIYI9gRaRnOHi94o4oCV6uoUxJAGeVYL0+IEDlE8imKCw==
+"@graphql-modules/epoxy@0.4.0":
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/@graphql-modules/epoxy/-/epoxy-0.4.0.tgz#de46c09898f15eacad09a292d6d4f26e23c1aa4c"
+  integrity sha512-zvqrxycS+ualpbMVTIKThYyNnZwWdvBUn9PQ/TzS5t8+LpV+vPBE/1vthvZN2NcuX92zs+dQWe4yC1WbVSWplA==
   dependencies:
-    "@types/deepmerge" "2.1.0"
-    deepmerge "2.2.1"
-    graphql-tools "4.0.3"
+    deepmerge "3.1.0"
+    graphql-tools "4.0.4"
     tslib "1.9.3"
 
 "@jest/console@^24.3.0":
@@ -7323,7 +7322,7 @@ graphql-tools@4.0.3:
     iterall "^1.1.3"
     uuid "^3.1.0"
 
-graphql-tools@^4.0.0:
+graphql-tools@4.0.4, graphql-tools@^4.0.0:
   version "4.0.4"
   resolved "https://registry.yarnpkg.com/graphql-tools/-/graphql-tools-4.0.4.tgz#ca08a63454221fdde825fe45fbd315eb2a6d566b"
   integrity sha512-chF12etTIGVVGy3fCTJ1ivJX2KB7OSG4c6UOJQuqOHCmBQwTyNgCDuejZKvpYxNZiEx7bwIjrodDgDe9RIkjlw==
