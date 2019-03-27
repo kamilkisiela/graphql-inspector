@@ -201,10 +201,12 @@ export async function handleAction({
   context.log.info(`Completed`);
 
   async function loadConfig(): Promise<Config | undefined> {
-    const yamlConfig = await getGithubConfig(context, 'graphql-inspector.yml');
+    const identifier = 'graphql-inspector';
+    const yamlConfig = await getGithubConfig(context, identifier + '.yml');
+    const ymlConfig = await getGithubConfig(context, identifier + '.yml');
 
-    if (yamlConfig) {
-      return yamlConfig;
+    if (yamlConfig || ymlConfig) {
+      return yamlConfig || ymlConfig;
     } else {
       const pkg = JSON.parse(
         await loadFile({
@@ -213,8 +215,8 @@ export async function handleAction({
         }),
       );
 
-      if (pkg['graphql-inspector']) {
-        return pkg['graphql-inspector'];
+      if (pkg[identifier]) {
+        return pkg[identifier];
       }
     }
   }
