@@ -4,6 +4,8 @@
 
 ### v1.15.0
 
+- **action**: No double check [PR #111](https://github.com/kamilkisiela/graphql-inspector/pull/111)
+- **action**: Way more independent of the github package - uses `actions-toolkit` instead of `probot` [PR #111](https://github.com/kamilkisiela/graphql-inspector/pull/111)
 - **github**: Fix location of a targeted entity[PR #104](https://github.com/kamilkisiela/graphql-inspector/pull/104)
 - **github**: Support .github/graphql-inspector.yml config [PR #105](https://github.com/kamilkisiela/graphql-inspector/pull/105) [PR #109](https://github.com/kamilkisiela/graphql-inspector/pull/109)
 
