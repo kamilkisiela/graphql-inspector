@@ -17,7 +17,7 @@ Configure GraphQL Inspector in `.github/graphql-inspector.yaml`:
 ```yaml
 diff: true # enables Schema Comparison (reject PR on breaking changes)
 schema:
-  ref: head/master # branch, SHA
+  ref: master # branch, SHA
   path: schema.graphql # an output of `$ graphql-inspector introspect ...`
 ```
 
@@ -29,7 +29,7 @@ It's also possible to setup everything in `package.json` (it must be placed in t
   "graphql-inspector": {
     "diff": true, // enables Schema Comparison (reject PR on breaking changes)
     "schema": {
-      "ref": "head/master", // branch, SHA
+      "ref": "master", // branch, SHA
       "path": "schema.graphql" // an output of `$ graphql-inspector introspect ...`
     }
   }
