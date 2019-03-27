@@ -1,4 +1,3 @@
-import {Context} from 'probot';
 import {
   diff as diffSchemas,
   CriticalityLevel,
@@ -15,11 +14,9 @@ import {
 import {getLocation} from './location';
 
 export async function diff({
-  context,
   path,
   schemas,
 }: {
-  context: Context;
   path: string;
   schemas: {
     old: GraphQLSchema;
@@ -35,7 +32,7 @@ export async function diff({
   }
 
   const annotations = await Promise.all(
-    changes.map(change => annotate({context, path, change, schemas})),
+    changes.map(change => annotate({path, change, schemas})),
   );
   let conclusion: CheckConclusion = CheckConclusion.Success;
 
@@ -64,7 +61,6 @@ function annotate({
   change,
   schemas,
 }: {
-  context: Context;
   path: string;
   change: Change;
   schemas: {
