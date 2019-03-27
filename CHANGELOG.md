@@ -3,7 +3,7 @@
 ### vNEXT
 
 - **github**: Fix location of a targeted entity[PR #104](https://github.com/kamilkisiela/graphql-inspector/pull/104)
-- **github**: Support .github/graphql-inspector.yml config [PR #105](https://github.com/kamilkisiela/graphql-inspector/pull/105)
+- **github**: Support .github/graphql-inspector.yml config [PR #105](https://github.com/kamilkisiela/graphql-inspector/pull/105) [PR #109](https://github.com/kamilkisiela/graphql-inspector/pull/109)
 
 ### v1.14.0
 
