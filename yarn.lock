@@ -3163,22 +3163,22 @@ apollo-link-dedup@^1.0.0:
     apollo-link "^1.2.10"
     tslib "^1.9.3"
 
-apollo-link-http-common@^0.2.12:
-  version "0.2.12"
-  resolved "https://registry.yarnpkg.com/apollo-link-http-common/-/apollo-link-http-common-0.2.12.tgz#30cb42b6417076872d3e9e7699dbf79a9c9d7bee"
-  integrity sha512-jMgvp8ZURiaSivKLsB7J0uVKLNit5nPeFaxr85r6CsdS0HQB0tH+aqzblPQeMQ0zpR/EqX8YrogXFZ08y9kjYQ==
+apollo-link-http-common@^0.2.13:
+  version "0.2.13"
+  resolved "https://registry.yarnpkg.com/apollo-link-http-common/-/apollo-link-http-common-0.2.13.tgz#c688f6baaffdc7b269b2db7ae89dae7c58b5b350"
+  integrity sha512-Uyg1ECQpTTA691Fwx5e6Rc/6CPSu4TB4pQRTGIpwZ4l5JDOQ+812Wvi/e3IInmzOZpwx5YrrOfXrtN8BrsDXoA==
   dependencies:
-    apollo-link "^1.2.10"
+    apollo-link "^1.2.11"
     ts-invariant "^0.3.2"
     tslib "^1.9.3"
 
-apollo-link-http@1.5.13:
-  version "1.5.13"
-  resolved "https://registry.yarnpkg.com/apollo-link-http/-/apollo-link-http-1.5.13.tgz#f7d6e1fda0009e0b623df1cbd83902fd71d34f67"
-  integrity sha512-e8pU/omWPy3pI3v+UKktFuG5YcjbA4jT0jUHo59U51vKszqw5xsYjCOQhw7IPoixYN651vkn122CQEFgL6MuvA==
+apollo-link-http@1.5.14:
+  version "1.5.14"
+  resolved "https://registry.yarnpkg.com/apollo-link-http/-/apollo-link-http-1.5.14.tgz#ed6292248d1819ccd16523e346d35203a1b31109"
+  integrity sha512-XEoPXmGpxFG3wioovgAlPXIarWaW4oWzt8YzjTYZ87R4R7d1A3wKR/KcvkdMV1m5G7YSAHcNkDLe/8hF2nH6cg==
   dependencies:
-    apollo-link "^1.2.10"
-    apollo-link-http-common "^0.2.12"
+    apollo-link "^1.2.11"
+    apollo-link-http-common "^0.2.13"
     tslib "^1.9.3"
 
 apollo-link@^1.0.0, apollo-link@^1.2.10, apollo-link@^1.2.3:
@@ -3190,6 +3190,16 @@ apollo-link@^1.0.0, apollo-link@^1.2.10, apollo-link@^1.2.3:
     ts-invariant "^0.3.2"
     tslib "^1.9.3"
     zen-observable-ts "^0.8.17"
+
+apollo-link@^1.2.11:
+  version "1.2.11"
+  resolved "https://registry.yarnpkg.com/apollo-link/-/apollo-link-1.2.11.tgz#493293b747ad3237114ccd22e9f559e5e24a194d"
+  integrity sha512-PQvRCg13VduLy3X/0L79M6uOpTh5iHdxnxYuo8yL7sJlWybKRJwsv4IcRBJpMFbChOOaHY7Og9wgPo6DLKDKDA==
+  dependencies:
+    apollo-utilities "^1.2.1"
+    ts-invariant "^0.3.2"
+    tslib "^1.9.3"
+    zen-observable-ts "^0.8.18"
 
 apollo-server-caching@0.3.1:
   version "0.3.1"
@@ -7572,7 +7582,7 @@ hoist-non-react-statics@^2.5.0:
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-2.5.5.tgz#c5903cf409c0dfd908f388e619d86b9c1174cb47"
   integrity sha512-rqcy4pJo55FTTLWt+bU8ukscqHeE/e9KWvsOW2b/a3afxQZhwkQdT1rPPCJ0rYXdj4vNcasY8zHTH+jF/qStxw==
 
-hoist-non-react-statics@^3.0.0:
+hoist-non-react-statics@^3.3.0:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/hoist-non-react-statics/-/hoist-non-react-statics-3.3.0.tgz#b09178f0122184fb95acf525daaecb4d8f45958b"
   integrity sha512-0XsbTXxgiaCDYDIWFcwkmerZPSwywfUqYmwT4jzewKTQSWoE6FCMoUVOeBJWK3E/CrWbxRG3m5GzY4lnIwGRBA==
@@ -12445,7 +12455,7 @@ promzard@^0.3.0:
   dependencies:
     read "1"
 
-prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.6.0, prop-types@^15.6.1, prop-types@^15.6.2:
+prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.6.1, prop-types@^15.6.2, prop-types@^15.7.2:
   version "15.7.2"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
@@ -12686,16 +12696,16 @@ react-apollo-hooks@0.4.3:
   dependencies:
     lodash "^4.17.11"
 
-react-apollo@2.5.2:
-  version "2.5.2"
-  resolved "https://registry.yarnpkg.com/react-apollo/-/react-apollo-2.5.2.tgz#6732c6af55e6adc9ebf97bf189e867a893c449d3"
-  integrity sha512-lmglhG6NQ+lfAUDzx8ZgelWKUbvxBhhy1l7Z2ksgtQ8+FVqwX7i6p5O3zicAZZlIdKzdq82V0kqq5WkxEsffrA==
+react-apollo@2.5.3:
+  version "2.5.3"
+  resolved "https://registry.yarnpkg.com/react-apollo/-/react-apollo-2.5.3.tgz#9844a522894a6e0392f6a982c6052348d9a4ae12"
+  integrity sha512-sBh7M3h4xdbck8NFnn1nlUG0mD0hCTeIcvov4A8hagxjOyTVSakoum+DP6rYNaHuAZFDS3oNurNNSbGZmgoU6g==
   dependencies:
     apollo-utilities "^1.2.1"
-    hoist-non-react-statics "^3.0.0"
+    hoist-non-react-statics "^3.3.0"
     lodash.isequal "^4.5.0"
-    prop-types "^15.6.0"
-    ts-invariant "^0.3.0"
+    prop-types "^15.7.2"
+    ts-invariant "^0.3.2"
     tslib "^1.9.3"
 
 react-app-polyfill@^0.2.2:
@@ -14682,7 +14692,7 @@ ts-invariant@^0.2.1:
   dependencies:
     tslib "^1.9.3"
 
-ts-invariant@^0.3.0, ts-invariant@^0.3.2:
+ts-invariant@^0.3.2:
   version "0.3.2"
   resolved "https://registry.yarnpkg.com/ts-invariant/-/ts-invariant-0.3.2.tgz#89a2ffeb70879b777258df1df1c59383c35209b0"
   integrity sha512-QsY8BCaRnHiB5T6iE4DPlJMAKEG3gzMiUco9FEt1jUXQf0XP6zi0idT0i0rMTu8A326JqNSDsmlkA9dRSh1TRg==
@@ -15776,6 +15786,14 @@ zen-observable-ts@^0.8.17:
   version "0.8.17"
   resolved "https://registry.yarnpkg.com/zen-observable-ts/-/zen-observable-ts-0.8.17.tgz#b3183625fa55d3960c829e3a90061f82ec2d7863"
   integrity sha512-eVQH3UG5h4lMlD9HMMIsiMk3vsCW66QVOPJQMCSJhP4THswDW7r/BPHO6oCZbA/LZzntv2t8W/bv3vYO9NYh/g==
+  dependencies:
+    tslib "^1.9.3"
+    zen-observable "^0.8.0"
+
+zen-observable-ts@^0.8.18:
+  version "0.8.18"
+  resolved "https://registry.yarnpkg.com/zen-observable-ts/-/zen-observable-ts-0.8.18.tgz#ade44b1060cc4a800627856ec10b9c67f5f639c8"
+  integrity sha512-q7d05s75Rn1j39U5Oapg3HI2wzriVwERVo4N7uFGpIYuHB9ff02P/E92P9B8T7QVC93jCMHpbXH7X0eVR5LA7A==
   dependencies:
     tslib "^1.9.3"
     zen-observable "^0.8.0"
