@@ -157,7 +157,7 @@ $ graphql-inspector-github
   "graphql-inspector": {
     "diff": true,
     "schema": {
-      "ref": "head/master",
+      "ref": "master",
       "path": "schema.graphql"
     }
   }
