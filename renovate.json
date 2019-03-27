@@ -1,10 +1,14 @@
+
 {
-  "extends": ["config:js-lib"],
-  "automerge": true,
-  "major": {
-    "automerge": false
-  },
-  "assignees": ["@kamilkisiela"],
-  "reviewers": ["@kamilkisiela"],
-  "enabledManagers": ["yarn"]
+  "extends": ["config:base"],
+  "pathRules": [
+    {
+      "paths": ["website/package.json"],
+      "extends": ["config:base"]
+    },
+    {
+      "paths": ["website/live/package.json"],
+      "extends": ["config:base"]
+    }
+  ]
 }
