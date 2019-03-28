@@ -34,8 +34,8 @@
   },
   "dependencies": {
     "express": "4.16.4",
-    "react": "16.8.4",
-    "react-dom": "16.8.4"
+    "react": "16.8.6",
+    "react-dom": "16.8.6"
   },
   "devDependencies": {
     "@types/express": "4.16.1",
@@ -52,10 +52,10 @@
     "graphql": "14.2.0",
     "graphql-tag": "2.10.1",
     "jest": "24.5.0",
-    "office-ui-fabric-react": "6.162.0",
+    "office-ui-fabric-react": "6.162.1",
     "react-apollo": "2.5.3",
     "react-apollo-hooks": "0.4.4",
-    "react-router-dom": "4.3.1",
+    "react-router-dom": "5.0.0",
     "react-scripts": "2.1.8",
     "styled-components": "4.2.0",
     "ts-jest": "24.0.0",
