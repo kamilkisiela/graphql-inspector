@@ -21,7 +21,7 @@ export function safeChangeForField(
   newType: GraphQLOutputType,
 ): boolean {
   if (!isWrappingType(oldType) && !isWrappingType(newType)) {
-    return oldType === newType;
+    return oldType.toString() === newType.toString();
   }
 
   if (isNonNullType(newType)) {
@@ -46,7 +46,7 @@ export function safeChangeForInputValue(
   newType: GraphQLInputType,
 ): boolean {
   if (!isWrappingType(oldType) && !isWrappingType(newType)) {
-    return oldType === newType;
+    return oldType.toString() === newType.toString();
   }
 
   if (isListType(oldType) && isListType(newType)) {
