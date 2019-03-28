@@ -1991,10 +1991,10 @@
     buffer-equal-constant-time "^1.0.1"
     debug "^4.0.0"
 
-"@probot/serverless-lambda@0.2.0":
-  version "0.2.0"
-  resolved "https://registry.yarnpkg.com/@probot/serverless-lambda/-/serverless-lambda-0.2.0.tgz#09ec3c5b77486d8e5e406337b8d46a38418d1019"
-  integrity sha512-fVcmZpd5xF5HjjWJghHMngiRWgssGtEb0FP75XTWfQjHAq+joYSIPwGzXPpcG0vVUnLLsgyRj/fvBr9TQy45tQ==
+"@probot/serverless-lambda@0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@probot/serverless-lambda/-/serverless-lambda-0.3.0.tgz#08c6699b2b7dd501094adb902230eb0b2e8b49c7"
+  integrity sha512-fJmZwuCs0Z0G4L0ZI/e5WROb8z355Y9VUUHyDeDcH46DEbHa5HFrw8Ulx3DoWz7iYO36dNXOkjA6E+aik6yRLw==
 
 "@protobufjs/aspromise@^1.1.1", "@protobufjs/aspromise@^1.1.2":
   version "1.1.2"
