@@ -2946,10 +2946,10 @@ acorn@^6.0.1, acorn@^6.0.5, acorn@^6.0.7:
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-6.1.1.tgz#7d25ae05bb8ad1f9b699108e1094ecd7884adc1f"
   integrity sha512-jPTiwtOxaHNaAPg/dmrJ/beuzLRnXtB0kQPQ8JpotKJgTB6rX6c8mlf315941pyjBSaPg8NHXS9fhP4u17DpGA==
 
-actions-toolkit@1.8.1:
-  version "1.8.1"
-  resolved "https://registry.yarnpkg.com/actions-toolkit/-/actions-toolkit-1.8.1.tgz#f88abb8e5b0ab360add327c4c3ff5786ef04acbc"
-  integrity sha512-2ElTEzEsELNR249c7IBI7PP0CCk71bEw41bvt98KYv9FPlZ2uAAaZyMvDC3Ngoga6/AWE9qxBjfOjooCrMyo/Q==
+actions-toolkit@1.9.0:
+  version "1.9.0"
+  resolved "https://registry.yarnpkg.com/actions-toolkit/-/actions-toolkit-1.9.0.tgz#5779028ba84f53c6e6638b0a5f8cc7830d685784"
+  integrity sha512-YU9/4oqWaYXKaCS5kewlyL+SwB4qpWvK7duDvVnLOV+RJxqGFofVcFch9p87Ii3EBCAu01pPAcZrZMwhvjQB0g==
   dependencies:
     "@octokit/graphql" "^2.0.1"
     "@octokit/rest" "^16.15.0"
