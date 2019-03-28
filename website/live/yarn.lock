@@ -869,10 +869,10 @@
   resolved "https://registry.yarnpkg.com/@emotion/unitless/-/unitless-0.7.3.tgz#6310a047f12d21a1036fb031317219892440416f"
   integrity sha512-4zAPlpDEh2VwXswwr/t8xGNDGg8RQiPxtxZ3qQEXyQsBV39ptTdESCjuBvGze1nLMVrxmTIKmnO/nAV8Tqjjzg==
 
-"@graphql-inspector/core@0.13.3":
-  version "0.13.3"
-  resolved "https://registry.yarnpkg.com/@graphql-inspector/core/-/core-0.13.3.tgz#eeaee0d05e04dd8c1d8e9997bf044ecd416200fa"
-  integrity sha512-I3a2dRqpkA25o01p48KXH3N+lCgAhkSUGyWh1/SuC9PeTVswK38fpXg5RIVXAurHqNEKds0h+Ls8aojbd73IMw==
+"@graphql-inspector/core@1.15.0":
+  version "1.15.0"
+  resolved "https://registry.yarnpkg.com/@graphql-inspector/core/-/core-1.15.0.tgz#baa025d595388a262360324ac619ac17b53d95e1"
+  integrity sha512-/ABLPlgFOR0pAEsup2qW1AlY9dHaf1fI6ZoP077mTBUK8jGbh09pEELSXxxjysYlUjgMMNwkxsCx+bvvzstExg==
   dependencies:
     dependency-graph "0.8.0"
 
