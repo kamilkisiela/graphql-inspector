@@ -7864,10 +7864,10 @@ immer@1.10.0:
   resolved "https://registry.yarnpkg.com/immer/-/immer-1.10.0.tgz#bad67605ba9c810275d91e1c2a47d4582e98286d"
   integrity sha512-O3sR1/opvCDGLEVcvrGTMtLac8GJ5IwZC4puPrLuRj3l7ICKvkmA0vGuU9OW8mV9WIBRnaxp5GJh9IEAaNOoYg==
 
-immer@2.1.4:
-  version "2.1.4"
-  resolved "https://registry.yarnpkg.com/immer/-/immer-2.1.4.tgz#92545e07c2c28b94afe0752364a35f5693b6ffaa"
-  integrity sha512-6UPbG/DIXFSWp10oJJaCPl5/lp5GhGEscDH0QGYKc5EMT5PLZ9+L8hhyc44zRHksI7CQXJp8r6nlDR3n09X6SA==
+immer@2.1.3:
+  version "2.1.3"
+  resolved "https://registry.yarnpkg.com/immer/-/immer-2.1.3.tgz#56e2eeffc4eff5d15111a878041177cadcfc6f75"
+  integrity sha512-rlXI8sYY22/ykqFodL37W1/syMhYDVVEsui5HWrQezgmavV6f8oDbN2fKBH6XZkjH5qz9hapbpmgDPYOufJsfg==
 
 immutable-tuple@^0.4.9:
   version "0.4.10"
@@ -14791,12 +14791,12 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typescript@3.2.2:
-  version "3.2.2"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.2.2.tgz#fe8101c46aa123f8353523ebdcf5730c2ae493e5"
-  integrity sha512-VCj5UiSyHBjwfYacmDuc/NOk4QQixbE+Wn7MFJuS0nRuPQbof132Pw4u53dm264O8LPc2MVsc7RJNml5szurkg==
+typescript@3.3.4000:
+  version "3.3.4000"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.3.4000.tgz#76b0f89cfdbf97827e1112d64f283f1151d6adf0"
+  integrity sha512-jjOcCZvpkl2+z7JFn0yBOoLQyLoIkNZAs/fYJkUG6VKy6zLPHJGfQJYFHzibB6GJaF/8QrcECtlQ5cpvRHSMEA==
 
-typescript@3.3.3333, typescript@^3.2.2:
+typescript@^3.2.2:
   version "3.3.3333"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.3.3333.tgz#171b2c5af66c59e9431199117a3bcadc66fdcfd6"
   integrity sha512-JjSKsAfuHBE/fB2oZ8NxtRTk5iGcg6hkYXMnZ3Wc+b2RSqejEqTaem11mHASMnFilHrax3sLK0GDzcJrekZYLw==
