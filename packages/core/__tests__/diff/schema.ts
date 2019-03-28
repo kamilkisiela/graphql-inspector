@@ -605,6 +605,66 @@ test('Input fields becoming nullable is a non-breaking change', () => {
   );
 });
 
+test('Input fields becoming non-nullable is a breaking change', () => {
+  const schemaA = buildASTSchema(gql`
+    scalar CustomScalar
+
+    input CommentQuery {
+      limit: Int
+      query: String
+      detail: Detail
+      customScalar: CustomScalar
+    }
+
+    input Detail {
+      field: String!
+    }
+  `);
+
+  const schemaB = buildASTSchema(gql`
+    scalar CustomScalar
+
+    input CommentQuery {
+      limit: Int!
+      query: String!
+      detail: Detail!
+      customScalar: CustomScalar!
+    }
+
+    input Detail {
+      field: String!
+    }
+  `);
+
+  const changes = diff(schemaA, schemaB);
+
+  expect(changes.length).toEqual(4);
+
+  expect(changes[0]).toBeDefined();
+  expect(changes[0].criticality.level).toEqual(CriticalityLevel.Breaking);
+  expect(changes[0].message).toEqual(
+    `Input field 'CommentQuery.limit' changed type from 'Int' to 'Int!'`,
+  );
+
+  expect(changes[1]).toBeDefined();
+  expect(changes[1].criticality.level).toEqual(CriticalityLevel.Breaking);
+  expect(changes[1].message).toEqual(
+    `Input field 'CommentQuery.query' changed type from 'String' to 'String!'`,
+  );
+
+  expect(changes[2]).toBeDefined();
+  expect(changes[2].criticality.level).toEqual(CriticalityLevel.Breaking);
+  expect(changes[2].message).toEqual(
+    `Input field 'CommentQuery.detail' changed type from 'Detail' to 'Detail!'`,
+  );
+
+  expect(changes[3]).toBeDefined();
+  expect(changes[3].criticality.level).toEqual(CriticalityLevel.Breaking);
+  expect(changes[3].message).toEqual(
+    `Input field 'CommentQuery.customScalar' changed type from 'CustomScalar' to 'CustomScalar!'`,
+  );
+});
+
 test('Query fields becoming non-nullable is a non-breaking change', () => {
   const schemaA = buildASTSchema(gql`
     scalar CustomScalar
@@ -662,5 +722,65 @@ test('Query fields becoming non-nullable is a non-breaking change', () => {
   expect(changes[3].criticality.level).toEqual(CriticalityLevel.NonBreaking);
   expect(changes[3].message).toEqual(
     `Field 'Comment.customScalar' changed type from 'CustomScalar' to 'CustomScalar!'`,
+  );
+});
+
+test('Query fields becoming nullable is a breaking change', () => {
+  const schemaA = buildASTSchema(gql`
+    scalar CustomScalar
+
+    type Comment {
+      limit: Int!
+      query: String!
+      detail: Detail!
+      customScalar: CustomScalar!
+    }
+
+    type Detail {
+      field: String!
+    }
+  `);
+
+  const schemaB = buildASTSchema(gql`
+    scalar CustomScalar
+
+    type Comment {
+      limit: Int
+      query: String
+      detail: Detail
+      customScalar: CustomScalar
+    }
+
+    type Detail {
+      field: String!
+    }
+  `);
+
+  const changes = diff(schemaA, schemaB);
+
+  expect(changes.length).toEqual(4);
+
+  expect(changes[0]).toBeDefined();
+  expect(changes[0].criticality.level).toEqual(CriticalityLevel.Breaking);
+  expect(changes[0].message).toEqual(
+    `Field 'Comment.limit' changed type from 'Int!' to 'Int'`,
+  );
+
+  expect(changes[1]).toBeDefined();
+  expect(changes[1].criticality.level).toEqual(CriticalityLevel.Breaking);
+  expect(changes[1].message).toEqual(
+    `Field 'Comment.query' changed type from 'String!' to 'String'`,
+  );
+
+  expect(changes[2]).toBeDefined();
+  expect(changes[2].criticality.level).toEqual(CriticalityLevel.Breaking);
+  expect(changes[2].message).toEqual(
+    `Field 'Comment.detail' changed type from 'Detail!' to 'Detail'`,
+  );
+
+  expect(changes[3]).toBeDefined();
+  expect(changes[3].criticality.level).toEqual(CriticalityLevel.Breaking);
+  expect(changes[3].message).toEqual(
+    `Field 'Comment.customScalar' changed type from 'CustomScalar!' to 'CustomScalar'`,
   );
 });
