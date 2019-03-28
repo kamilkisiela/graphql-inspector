@@ -49,7 +49,7 @@
     "apollo-cache-inmemory": "1.5.1",
     "apollo-client": "2.5.1",
     "apollo-link-http": "1.5.14",
-    "graphql": "14.1.1",
+    "graphql": "14.2.0",
     "graphql-tag": "2.10.1",
     "jest": "24.5.0",
     "office-ui-fabric-react": "6.162.1",
