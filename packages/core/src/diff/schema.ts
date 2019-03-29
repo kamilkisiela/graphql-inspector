@@ -11,7 +11,7 @@ import {
   isScalarType,
 } from 'graphql';
 
-import {notEqual} from './common/compare';
+import {isNotEqual} from './common/compare';
 import {unionArrays, diffArrays} from '../utils/arrays';
 import {isPrimitive} from '../utils/graphql';
 import {Change} from './changes/change';
@@ -153,15 +153,15 @@ function changesInSchema(
       .name,
   };
 
-  if (notEqual(oldRoot.query, newRoot.query)) {
+  if (isNotEqual(oldRoot.query, newRoot.query)) {
     changes.push(schemaQueryTypeChanged(oldSchema, newSchema));
   }
 
-  if (notEqual(oldRoot.mutation, newRoot.mutation)) {
+  if (isNotEqual(oldRoot.mutation, newRoot.mutation)) {
     changes.push(schemaMutationTypeChanged(oldSchema, newSchema));
   }
 
-  if (notEqual(oldRoot.subscription, newRoot.subscription)) {
+  if (isNotEqual(oldRoot.subscription, newRoot.subscription)) {
     changes.push(schemaSubscriptionTypeChanged(oldSchema, newSchema));
   }
 
@@ -190,7 +190,7 @@ function changesInType(
     changes = [typeKindChanged(oldType, newType)];
   }
 
-  if (notEqual(oldType.description, newType.description)) {
+  if (isNotEqual(oldType.description, newType.description)) {
     changes.push(typeDescriptionChanged(oldType, newType));
   }
 

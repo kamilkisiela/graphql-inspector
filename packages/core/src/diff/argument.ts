@@ -5,7 +5,7 @@ import {
   GraphQLInterfaceType,
 } from 'graphql';
 
-import {notEqual} from './common/compare';
+import {isNotEqual} from './common/compare';
 import {Change} from './changes/change';
 import {
   fieldArgumentDescriptionChanged,
@@ -22,11 +22,11 @@ export function changesInArgument(
 ): Change[] {
   const changes: Change[] = [];
 
-  if (notEqual(oldArg.description, newArg.description)) {
+  if (isNotEqual(oldArg.description, newArg.description)) {
     changes.push(fieldArgumentDescriptionChanged(type, field, oldArg, newArg));
   }
 
-  if (notEqual(oldArg.defaultValue, newArg.defaultValue)) {
+  if (isNotEqual(oldArg.defaultValue, newArg.defaultValue)) {
     if (
       Array.isArray(oldArg.defaultValue) &&
       Array.isArray(newArg.defaultValue)
@@ -43,7 +43,7 @@ export function changesInArgument(
     }
   }
 
-  if (notEqual(oldArg.type.toString(), newArg.type.toString())) {
+  if (isNotEqual(oldArg.type.toString(), newArg.type.toString())) {
     changes.push(fieldArgumentTypeChanged(type, field, oldArg, newArg));
   }
 

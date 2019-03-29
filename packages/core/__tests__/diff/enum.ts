@@ -4,140 +4,142 @@ import {findFirstChangeByPath} from '../../utils/testing';
 import {diff} from '../../src/index';
 import {CriticalityLevel} from '../../src/diff/changes/change';
 
-test('value added', () => {
-  const a = buildSchema(/* GraphQL */ `
-    type Query {
-      fieldA: String
-    }
+describe('enum', () => {
+  test('value added', () => {
+    const a = buildSchema(/* GraphQL */ `
+      type Query {
+        fieldA: String
+      }
 
-    enum enumA {
-      A
-      B
-    }
-  `);
+      enum enumA {
+        A
+        B
+      }
+    `);
 
-  const b = buildSchema(/* GraphQL */ `
-    type Query {
-      fieldA: String
-    }
+    const b = buildSchema(/* GraphQL */ `
+      type Query {
+        fieldA: String
+      }
 
-    enum enumA {
-      A
-      B
-      C
-    }
-  `);
+      enum enumA {
+        A
+        B
+        C
+      }
+    `);
 
-  const changes = diff(a, b);
-  const change = findFirstChangeByPath(changes, 'enumA.C');
+    const changes = diff(a, b);
+    const change = findFirstChangeByPath(changes, 'enumA.C');
 
-  expect(changes.length).toEqual(1);
-  expect(change.criticality.level).toEqual(CriticalityLevel.Dangerous);
-  expect(change.criticality.reason).toBeDefined();
-  expect(change.message).toEqual(`Enum value 'C' was added to enum 'enumA'`);
-});
+    expect(changes.length).toEqual(1);
+    expect(change.criticality.level).toEqual(CriticalityLevel.Dangerous);
+    expect(change.criticality.reason).toBeDefined();
+    expect(change.message).toEqual(`Enum value 'C' was added to enum 'enumA'`);
+  });
 
-test('value removed', () => {
-  const a = buildSchema(/* GraphQL */ `
-    type Query {
-      fieldA: String
-    }
+  test('value removed', () => {
+    const a = buildSchema(/* GraphQL */ `
+      type Query {
+        fieldA: String
+      }
 
-    enum enumA {
-      A
-      B
-    }
-  `);
+      enum enumA {
+        A
+        B
+      }
+    `);
 
-  const b = buildSchema(/* GraphQL */ `
-    type Query {
-      fieldA: String
-    }
+    const b = buildSchema(/* GraphQL */ `
+      type Query {
+        fieldA: String
+      }
 
-    enum enumA {
-      A
-    }
-  `);
+      enum enumA {
+        A
+      }
+    `);
 
-  const changes = diff(a, b);
-  const change = findFirstChangeByPath(changes, 'enumA.B');
+    const changes = diff(a, b);
+    const change = findFirstChangeByPath(changes, 'enumA.B');
 
-  expect(changes.length).toEqual(1);
-  expect(change.criticality.level).toEqual(CriticalityLevel.Breaking);
-  expect(change.criticality.reason).toBeDefined();
-  expect(change.message).toEqual(
-    `Enum value 'B' was removed from enum 'enumA'`,
-  );
-});
+    expect(changes.length).toEqual(1);
+    expect(change.criticality.level).toEqual(CriticalityLevel.Breaking);
+    expect(change.criticality.reason).toBeDefined();
+    expect(change.message).toEqual(
+      `Enum value 'B' was removed from enum 'enumA'`,
+    );
+  });
 
-test('description changed', () => {
-  const a = buildSchema(/* GraphQL */ `
-    type Query {
-      fieldA: String
-    }
+  test('description changed', () => {
+    const a = buildSchema(/* GraphQL */ `
+      type Query {
+        fieldA: String
+      }
 
-    """
-    Old Description
-    """
-    enum enumA {
-      A
-      B
-    }
-  `);
+      """
+      Old Description
+      """
+      enum enumA {
+        A
+        B
+      }
+    `);
 
-  const b = buildSchema(/* GraphQL */ `
-    type Query {
-      fieldA: String
-    }
+    const b = buildSchema(/* GraphQL */ `
+      type Query {
+        fieldA: String
+      }
 
-    """
-    New Description
-    """
-    enum enumA {
-      A
-      B
-    }
-  `);
+      """
+      New Description
+      """
+      enum enumA {
+        A
+        B
+      }
+    `);
 
-  const changes = diff(a, b);
-  const change = findFirstChangeByPath(changes, 'enumA');
+    const changes = diff(a, b);
+    const change = findFirstChangeByPath(changes, 'enumA');
 
-  expect(changes.length).toEqual(1);
-  expect(change.criticality.level).toEqual(CriticalityLevel.NonBreaking);
-  expect(change.message).toEqual(
-    `Description 'Old Description' on type 'enumA' has changed to 'New Description'`,
-  );
-});
+    expect(changes.length).toEqual(1);
+    expect(change.criticality.level).toEqual(CriticalityLevel.NonBreaking);
+    expect(change.message).toEqual(
+      `Description 'Old Description' on type 'enumA' has changed to 'New Description'`,
+    );
+  });
 
-test('deprecation reason changed', () => {
-  const a = buildSchema(/* GraphQL */ `
-    type Query {
-      fieldA: String
-    }
+  test('deprecation reason changed', () => {
+    const a = buildSchema(/* GraphQL */ `
+      type Query {
+        fieldA: String
+      }
 
-    enum enumA {
-      A @deprecated(reason: "Old Reason")
-      B
-    }
-  `);
+      enum enumA {
+        A @deprecated(reason: "Old Reason")
+        B
+      }
+    `);
 
-  const b = buildSchema(/* GraphQL */ `
-    type Query {
-      fieldA: String
-    }
+    const b = buildSchema(/* GraphQL */ `
+      type Query {
+        fieldA: String
+      }
 
-    enum enumA {
-      A @deprecated(reason: "New Reason")
-      B
-    }
-  `);
+      enum enumA {
+        A @deprecated(reason: "New Reason")
+        B
+      }
+    `);
 
-  const changes = diff(a, b);
-  const change = findFirstChangeByPath(changes, 'enumA.A');
+    const changes = diff(a, b);
+    const change = findFirstChangeByPath(changes, 'enumA.A');
 
-  expect(changes.length).toEqual(1);
-  expect(change.criticality.level).toEqual(CriticalityLevel.NonBreaking);
-  expect(change.message).toEqual(
-    `Enum value 'enumA.A' deprecation reason changed from 'Old Reason' to 'New Reason'`,
-  );
+    expect(changes.length).toEqual(1);
+    expect(change.criticality.level).toEqual(CriticalityLevel.NonBreaking);
+    expect(change.message).toEqual(
+      `Enum value 'enumA.A' deprecation reason changed from 'Old Reason' to 'New Reason'`,
+    );
+  });
 });

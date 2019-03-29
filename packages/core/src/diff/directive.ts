@@ -4,7 +4,7 @@ import {
   GraphQLArgument,
 } from 'graphql';
 
-import {notEqual} from './common/compare';
+import {isNotEqual} from './common/compare';
 import {Change} from './changes/change';
 import {
   directiveDescriptionChanged,
@@ -24,7 +24,7 @@ export function changesInDirective(
 ): Change[] {
   const changes: Change[] = [];
 
-  if (notEqual(oldDirective.description, newDirective.description)) {
+  if (isNotEqual(oldDirective.description, newDirective.description)) {
     changes.push(directiveDescriptionChanged(oldDirective, newDirective));
   }
 
@@ -90,19 +90,19 @@ function changesInDirectiveArgument(
 ): Change[] {
   const changes: Change[] = [];
 
-  if (notEqual(oldArg.description, newArg.description)) {
+  if (isNotEqual(oldArg.description, newArg.description)) {
     changes.push(
       directiveArgumentDescriptionChanged(directive, oldArg, newArg),
     );
   }
 
-  if (notEqual(oldArg.defaultValue, newArg.defaultValue)) {
+  if (isNotEqual(oldArg.defaultValue, newArg.defaultValue)) {
     changes.push(
       directiveArgumentDefaultValueChanged(directive, oldArg, newArg),
     );
   }
 
-  if (notEqual(oldArg.type.toString(), newArg.type.toString())) {
+  if (isNotEqual(oldArg.type.toString(), newArg.type.toString())) {
     changes.push(directiveArgumentTypeChanged(directive, oldArg, newArg));
   }
 
