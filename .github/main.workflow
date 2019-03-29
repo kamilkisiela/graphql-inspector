@@ -22,3 +22,13 @@ action "Test" {
   runs = "yarn"
   args = "test"
 }
+
+workflow "Clean" {
+  on = "pull_request"
+  resolves = ["Clean after a PR"]
+}
+
+action "Clean after a PR" {
+  uses = "./actions/cleanup/"
+  secrets = ["GITHUB_TOKEN"]
+}
