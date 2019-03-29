@@ -25,7 +25,15 @@ action "Test" {
 
 workflow "Clean" {
   on = "pull_request"
-  resolves = ["Clean after a PR"]
+  resolves = [
+    "PR merged",
+    "Clean after a PR",
+  ]
+}
+
+action "PR merged" {
+  uses = "./actions/merged"
+  secrets = ["GITHUB_TOKEN"]
 }
 
 action "Clean after a PR" {
