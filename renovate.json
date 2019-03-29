@@ -8,6 +8,14 @@
     {
       "paths": ["website/live/package.json"],
       "extends": ["config:base"]
+    },
+    {
+      "paths": ["actions/cleanup/package.json"],
+      "extends": ["config:base"]
+    },
+    {
+      "paths": ["actions/merged/package.json"],
+      "extends": ["config:base"]
     }
   ]
 }
