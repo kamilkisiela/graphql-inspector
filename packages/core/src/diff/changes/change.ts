@@ -36,6 +36,8 @@ export enum ChangeType {
   // Input
   InputFieldRemoved = 'INPUT_FIELD_REMOVED',
   InputFieldAdded = 'INPUT_FIELD_ADDED',
+  InputFieldDescriptionAdded = 'INPUT_FIELD_DESCRIPTION_ADDED',
+  InputFieldDescriptionRemoved = 'INPUT_FIELD_DESCRIPTION_REMOVED',
   InputFieldDescriptionChanged = 'INPUT_FIELD_DESCRIPTION_CHANGED',
   InputFieldDefaultValueChanged = 'INPUT_FIELD_DEFAULT_VALUE_CHANGED',
   InputFieldTypeChanged = 'INPUT_FIELD_TYPE_CHANGED',

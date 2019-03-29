@@ -47,6 +47,38 @@ export function inputFieldAdded(
   };
 }
 
+export function inputFieldDescriptionAdded(
+  type: GraphQLInputObjectType,
+  field: GraphQLInputField,
+): Change {
+  return {
+    criticality: {
+      level: CriticalityLevel.NonBreaking,
+    },
+    type: ChangeType.InputFieldDescriptionAdded,
+    message: `Input field '${type.name}.${field.name}' has description '${
+      field.description
+    }'`,
+    path: [type.name, field.name].join('.'),
+  };
+}
+
+export function inputFieldDescriptionRemoved(
+  type: GraphQLInputObjectType,
+  field: GraphQLInputField,
+): Change {
+  return {
+    criticality: {
+      level: CriticalityLevel.NonBreaking,
+    },
+    type: ChangeType.InputFieldDescriptionRemoved,
+    message: `Description was removed from input field '${type.name}.${
+      field.name
+    }'`,
+    path: [type.name, field.name].join('.'),
+  };
+}
+
 export function inputFieldDescriptionChanged(
   input: GraphQLInputObjectType,
   oldField: GraphQLInputField,

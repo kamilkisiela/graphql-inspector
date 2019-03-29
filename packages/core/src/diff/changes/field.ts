@@ -4,6 +4,7 @@ import {
   GraphQLArgument,
   isNonNullType,
   GraphQLInterfaceType,
+  isInterfaceType,
 } from 'graphql';
 
 import {Change, CriticalityLevel, ChangeType} from './change';
@@ -13,6 +14,7 @@ export function fieldRemoved(
   type: GraphQLObjectType | GraphQLInterfaceType,
   field: GraphQLField<any, any, any>,
 ): Change {
+  const entity = isInterfaceType(type) ? 'interface' : 'object type';
   return {
     criticality: {
       level: CriticalityLevel.Breaking,
@@ -21,9 +23,7 @@ export function fieldRemoved(
         : `Removing a field is a breaking change. It is preferable to deprecate the field before removing it.`,
     },
     type: ChangeType.FieldRemoved,
-    message: `Field '${field.name}' was removed from object type '${
-      type.name
-    }'`,
+    message: `Field '${field.name}' was removed from ${entity} '${type.name}'`,
     path: [type.name, field.name].join('.'),
   };
 }
@@ -32,12 +32,13 @@ export function fieldAdded(
   type: GraphQLObjectType | GraphQLInterfaceType,
   field: GraphQLField<any, any, any>,
 ): Change {
+  const entity = isInterfaceType(type) ? 'interface' : 'object type';
   return {
     criticality: {
       level: CriticalityLevel.NonBreaking,
     },
     type: ChangeType.FieldAdded,
-    message: `Field '${field.name}' was added to object type '${type.name}'`,
+    message: `Field '${field.name}' was added to ${entity} '${type.name}'`,
     path: [type.name, field.name].join('.'),
   };
 }
