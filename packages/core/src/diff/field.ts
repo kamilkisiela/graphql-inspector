@@ -5,11 +5,17 @@ import {
   GraphQLInterfaceType,
 } from 'graphql';
 
-import {notEqual} from './common/compare';
+import {notEqual, isVoid} from './common/compare';
 import {Change} from './changes/change';
 import {
   fieldDescriptionChanged,
+  fieldDescriptionAdded,
+  fieldDescriptionRemoved,
+  fieldDeprecationAdded,
+  fieldDeprecationRemoved,
   fieldDeprecationReasonChanged,
+  fieldDeprecationReasonAdded,
+  fieldDeprecationReasonRemoved,
   fieldTypeChanged,
   fieldArgumentAdded,
   fieldArgumentRemoved,
@@ -25,11 +31,31 @@ export function changesInField(
   const changes: Change[] = [];
 
   if (notEqual(oldField.description, newField.description)) {
-    changes.push(fieldDescriptionChanged(type, oldField, newField));
+    if (isVoid(oldField.description)) {
+      changes.push(fieldDescriptionAdded(type, newField));
+    } else if (isVoid(newField.description)) {
+      changes.push(fieldDescriptionRemoved(type, oldField));
+    } else {
+      changes.push(fieldDescriptionChanged(type, oldField, newField));
+    }
+  }
+
+  if (notEqual(oldField.isDeprecated, newField.isDeprecated)) {
+    if (newField.isDeprecated) {
+      changes.push(fieldDeprecationAdded(type, newField));
+    } else {
+      changes.push(fieldDeprecationRemoved(type, oldField));
+    }
   }
 
   if (notEqual(oldField.deprecationReason, newField.deprecationReason)) {
-    changes.push(fieldDeprecationReasonChanged(type, oldField, newField));
+    if (isVoid(oldField.deprecationReason)) {
+      changes.push(fieldDeprecationReasonAdded(type, newField));
+    } else if (isVoid(newField.deprecationReason)) {
+      changes.push(fieldDeprecationReasonRemoved(type, oldField));
+    } else {
+      changes.push(fieldDeprecationReasonChanged(type, oldField, newField));
+    }
   }
 
   if (notEqual(oldField.type.toString(), newField.type.toString())) {
