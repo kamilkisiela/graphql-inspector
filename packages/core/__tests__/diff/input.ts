@@ -32,7 +32,7 @@ describe('fields', () => {
       "Input field 'c' was added to input object type 'Foo'",
     );
     // Nullable
-    expect(change.d.criticality.level).toEqual(CriticalityLevel.NonBreaking);
+    expect(change.d.criticality.level).toEqual(CriticalityLevel.Dangerous);
     expect(change.d.type).toEqual('INPUT_FIELD_ADDED');
     expect(change.d.message).toEqual(
       "Input field 'd' was added to input object type 'Foo'",

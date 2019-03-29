@@ -200,7 +200,7 @@ export function fieldArgumentAdded(
           reason: `Adding a required argument to an existing field is a breaking change because it will cause existing uses of this field to error.`,
         }
       : {
-          level: CriticalityLevel.NonBreaking,
+          level: CriticalityLevel.Dangerous,
         },
     type: ChangeType.FieldArgumentAdded,
     message: `Argument '${arg.name}: ${arg.type}' added to field '${

@@ -1,10 +1,9 @@
-import {buildASTSchema, Source, print} from 'graphql';
-import gql from 'graphql-tag';
+import {buildSchema, Source, print, parse} from 'graphql';
 
 import {validate} from '../src/index';
 
 test('validate', () => {
-  const schema = buildASTSchema(gql`
+  const schema = buildSchema(/* GraphQL */ `
     type Post {
       id: ID
       title: String @deprecated(reason: "BECAUSE")
@@ -21,14 +20,14 @@ test('validate', () => {
     }
   `);
 
-  const doc = gql`
+  const doc = parse(/* GraphQL */ `
     query getPost {
       post {
         id
         title
       }
     }
-  `;
+  `);
 
   const results = validate(schema, [new Source(print(doc))]);
 
@@ -43,7 +42,7 @@ test('validate', () => {
 });
 
 test('multiple fragments across multiple files with nested fragments (#36)', async () => {
-  const schema = buildASTSchema(gql`
+  const schema = buildSchema(/* GraphQL */ `
     type Post {
       id: ID
       title: String @deprecated(reason: "BECAUSE")
@@ -66,27 +65,27 @@ test('multiple fragments across multiple files with nested fragments (#36)', asy
   `);
 
   const docs = [
-    gql`
+    parse(/* GraphQL */ `
       query getPost {
         post {
           ...PostInfo
         }
       }
-    `,
-    gql`
+    `),
+    parse(/* GraphQL */ `
       fragment PostInfo on Post {
         id
         author {
           ...AuthorInfo
         }
       }
-    `,
-    gql`
+    `),
+    parse(/* GraphQL */ `
       fragment AuthorInfo on User {
         id
         name
       }
-    `,
+    `),
   ];
 
   const results = validate(schema, docs.map(doc => new Source(print(doc))));
@@ -95,7 +94,7 @@ test('multiple fragments across multiple files with nested fragments (#36)', asy
 });
 
 test('fail on non unique fragment names', async () => {
-  const schema = buildASTSchema(gql`
+  const schema = buildSchema(/* GraphQL */ `
     type Post {
       id: ID
       title: String
@@ -112,25 +111,25 @@ test('fail on non unique fragment names', async () => {
   `);
 
   const docs = [
-    gql`
+    parse(/* GraphQL */ `
       query getPost {
         post {
           ...PostInfo
         }
       }
-    `,
-    gql`
+    `),
+    parse(/* GraphQL */ `
       fragment PostInfo on Post {
         id
         title
       }
-    `,
-    gql`
+    `),
+    parse(/* GraphQL */ `
       fragment PostInfo on Post {
         id
         title
       }
-    `,
+    `),
   ];
 
   const results = validate(schema, docs.map(doc => new Source(print(doc))));
@@ -145,7 +144,7 @@ test('fail on non unique fragment names', async () => {
 });
 
 test('omit unused fragment from a document', async () => {
-  const schema = buildASTSchema(gql`
+  const schema = buildSchema(/* GraphQL */ `
     type Post {
       id: ID
       title: String
@@ -162,7 +161,7 @@ test('omit unused fragment from a document', async () => {
   `);
 
   const docs = [
-    gql`
+    parse(/* GraphQL */ `
       query getPost {
         post {
           ...PostInfo
@@ -173,13 +172,13 @@ test('omit unused fragment from a document', async () => {
         id
         createdAt
       }
-    `,
-    gql`
+    `),
+    parse(/* GraphQL */ `
       fragment PostInfo on Post {
         id
         title
       }
-    `,
+    `),
   ];
 
   const results = validate(schema, docs.map(doc => new Source(print(doc))));

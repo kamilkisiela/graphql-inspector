@@ -1,10 +1,10 @@
-import {buildASTSchema, Source, print} from 'graphql';
+import {buildSchema, Source, print} from 'graphql';
 import gql from 'graphql-tag';
 
 import {coverage} from '../../src/index';
 
 test('coverage', () => {
-  const schemaA = buildASTSchema(gql`
+  const a = buildSchema(/* GraphQL */ `
     type Post {
       id: ID
       title: String
@@ -31,7 +31,7 @@ test('coverage', () => {
     }
   `;
 
-  const results = coverage(schemaA, [new Source(print(doc))]);
+  const results = coverage(a, [new Source(print(doc))]);
 
   // Query
   expect(results.types.Query.hits).toEqual(1);

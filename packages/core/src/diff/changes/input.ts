@@ -37,7 +37,7 @@ export function inputFieldAdded(
             'Adding a possible type to Unions may break existing clients that were not programming defensively against a new possible type.',
         }
       : {
-          level: CriticalityLevel.NonBreaking,
+          level: CriticalityLevel.Dangerous,
         },
     type: ChangeType.InputFieldAdded,
     message: `Input field '${field.name}' was added to input object type '${

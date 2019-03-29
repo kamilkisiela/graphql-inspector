@@ -73,16 +73,13 @@ export default function Diff() {
   const [code, setCode] = useState(newSchemaString);
   const [changes, setChanges] = useState([]);
 
-  useEffect(
-    () => {
-      try {
-        setChanges(diff(oldSchema, buildSchema(code)));
-      } catch (e) {
-        console.error(e);
-      }
-    },
-    [code],
-  );
+  useEffect(() => {
+    try {
+      setChanges(diff(oldSchema, buildSchema(code)));
+    } catch (e) {
+      console.error(e);
+    }
+  }, [code]);
 
   return (
     <Container>

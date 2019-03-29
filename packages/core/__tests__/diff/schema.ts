@@ -1,17 +1,11 @@
-import {
-  buildASTSchema,
-  buildSchema,
-  introspectionFromSchema,
-  buildClientSchema,
-} from 'graphql';
-import gql from 'graphql-tag';
+import {buildSchema, introspectionFromSchema, buildClientSchema} from 'graphql';
 
 import {diff} from '../../src/index';
 import {CriticalityLevel, Change} from '../../src/diff/changes/change';
 import {findBestMatch} from '../../src/utils/string';
 
 test('same schema', () => {
-  const schemaA = buildASTSchema(gql`
+  const schemaA = buildSchema(/* GraphQL */ `
     type Post {
       id: ID
     }
@@ -21,7 +15,7 @@ test('same schema', () => {
     }
   `);
 
-  const schemaB = buildASTSchema(gql`
+  const schemaB = buildSchema(/* GraphQL */ `
     type Post {
       id: ID
     }
@@ -37,13 +31,13 @@ test('same schema', () => {
 });
 
 test('renamed query', () => {
-  const schemaA = buildASTSchema(gql`
+  const schemaA = buildSchema(/* GraphQL */ `
     type Query {
       fieldA: String!
     }
   `);
 
-  const schemaB = buildASTSchema(gql`
+  const schemaB = buildSchema(/* GraphQL */ `
     type RootQuery {
       fieldA: String!
     }
@@ -86,13 +80,13 @@ test('renamed query', () => {
 });
 
 test('new field and field changed', () => {
-  const schemaA = buildASTSchema(gql`
+  const schemaA = buildSchema(/* GraphQL */ `
     type Query {
       fieldA: String!
     }
   `);
 
-  const schemaB = buildASTSchema(gql`
+  const schemaB = buildSchema(/* GraphQL */ `
     type Query {
       fieldA: Int
       fieldB: String
@@ -131,7 +125,7 @@ test('schema from an introspection result should be the same', () => {
 });
 
 test('huge test', () => {
-  const schemaA = buildASTSchema(gql`
+  const schemaA = buildSchema(/* GraphQL */ `
     schema {
       query: Query
     }
@@ -204,7 +198,7 @@ test('huge test', () => {
     directive @willBeRemoved on FIELD
   `);
 
-  const schemaB = buildASTSchema(gql`
+  const schemaB = buildSchema(/* GraphQL */ `
     schema {
       query: Query
     }
@@ -404,13 +398,13 @@ test('huge test', () => {
 });
 
 test('array as default value in argument (same)', () => {
-  const schemaA = buildASTSchema(gql`
+  const schemaA = buildSchema(/* GraphQL */ `
     interface MyInterface {
       a(b: [String] = ["Hello"]): String!
     }
   `);
 
-  const schemaB = buildASTSchema(gql`
+  const schemaB = buildSchema(/* GraphQL */ `
     interface MyInterface {
       a(b: [String] = ["Hello"]): String!
     }
@@ -422,13 +416,13 @@ test('array as default value in argument (same)', () => {
 });
 
 test('array as default value in argument (different)', () => {
-  const schemaA = buildASTSchema(gql`
+  const schemaA = buildSchema(/* GraphQL */ `
     interface MyInterface {
       a(b: [String] = ["Hello"]): String!
     }
   `);
 
-  const schemaB = buildASTSchema(gql`
+  const schemaB = buildSchema(/* GraphQL */ `
     interface MyInterface {
       a(b: [String] = ["Goodbye"]): String!
     }
@@ -446,7 +440,7 @@ test('array as default value in argument (different)', () => {
 });
 
 test('input as default value (same)', () => {
-  const schemaA = buildASTSchema(gql`
+  const schemaA = buildSchema(/* GraphQL */ `
     enum SortOrder {
       ASC
     }
@@ -461,7 +455,7 @@ test('input as default value (same)', () => {
     }
   `);
 
-  const schemaB = buildASTSchema(gql`
+  const schemaB = buildSchema(/* GraphQL */ `
     enum SortOrder {
       ASC
     }
@@ -482,7 +476,7 @@ test('input as default value (same)', () => {
 });
 
 test('array as default value in input (same)', () => {
-  const schemaA = buildASTSchema(gql`
+  const schemaA = buildSchema(/* GraphQL */ `
     enum SortOrder {
       ASC
     }
@@ -493,7 +487,7 @@ test('array as default value in input (same)', () => {
     }
   `);
 
-  const schemaB = buildASTSchema(gql`
+  const schemaB = buildSchema(/* GraphQL */ `
     enum SortOrder {
       ASC
     }
@@ -510,7 +504,7 @@ test('array as default value in input (same)', () => {
 });
 
 test('array as default value in input (different)', () => {
-  const schemaA = buildASTSchema(gql`
+  const schemaA = buildSchema(/* GraphQL */ `
     enum SortOrder {
       ASC
       DEC
@@ -522,7 +516,7 @@ test('array as default value in input (different)', () => {
     }
   `);
 
-  const schemaB = buildASTSchema(gql`
+  const schemaB = buildSchema(/* GraphQL */ `
     enum SortOrder {
       ASC
       DEC
@@ -546,7 +540,7 @@ test('array as default value in input (different)', () => {
 });
 
 test('Input fields becoming nullable is a non-breaking change', () => {
-  const schemaA = buildASTSchema(gql`
+  const schemaA = buildSchema(/* GraphQL */ `
     scalar CustomScalar
 
     input CommentQuery {
@@ -561,7 +555,7 @@ test('Input fields becoming nullable is a non-breaking change', () => {
     }
   `);
 
-  const schemaB = buildASTSchema(gql`
+  const schemaB = buildSchema(/* GraphQL */ `
     scalar CustomScalar
 
     input CommentQuery {
@@ -606,7 +600,7 @@ test('Input fields becoming nullable is a non-breaking change', () => {
 });
 
 test('Input fields becoming non-nullable is a breaking change', () => {
-  const schemaA = buildASTSchema(gql`
+  const schemaA = buildSchema(/* GraphQL */ `
     scalar CustomScalar
 
     input CommentQuery {
@@ -621,7 +615,7 @@ test('Input fields becoming non-nullable is a breaking change', () => {
     }
   `);
 
-  const schemaB = buildASTSchema(gql`
+  const schemaB = buildSchema(/* GraphQL */ `
     scalar CustomScalar
 
     input CommentQuery {
@@ -666,7 +660,7 @@ test('Input fields becoming non-nullable is a breaking change', () => {
 });
 
 test('Query fields becoming non-nullable is a non-breaking change', () => {
-  const schemaA = buildASTSchema(gql`
+  const schemaA = buildSchema(/* GraphQL */ `
     scalar CustomScalar
 
     type Comment {
@@ -681,7 +675,7 @@ test('Query fields becoming non-nullable is a non-breaking change', () => {
     }
   `);
 
-  const schemaB = buildASTSchema(gql`
+  const schemaB = buildSchema(/* GraphQL */ `
     scalar CustomScalar
 
     type Comment {
@@ -726,7 +720,7 @@ test('Query fields becoming non-nullable is a non-breaking change', () => {
 });
 
 test('Query fields becoming nullable is a breaking change', () => {
-  const schemaA = buildASTSchema(gql`
+  const schemaA = buildSchema(/* GraphQL */ `
     scalar CustomScalar
 
     type Comment {
@@ -741,7 +735,7 @@ test('Query fields becoming nullable is a breaking change', () => {
     }
   `);
 
-  const schemaB = buildASTSchema(gql`
+  const schemaB = buildSchema(/* GraphQL */ `
     scalar CustomScalar
 
     type Comment {
