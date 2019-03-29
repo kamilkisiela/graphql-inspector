@@ -25,20 +25,18 @@ action "Test" {
 
 workflow "Clean" {
   on = "pull_request"
-  resolves = ["Clean after a PR"]
+  resolves = [
+    "PR merged",
+    "Clean after a PR",
+  ]
+}
+
+action "PR merged" {
+  uses = "./actions/merged"
+  secrets = ["GITHUB_TOKEN"]
 }
 
 action "Clean after a PR" {
   uses = "./actions/cleanup/"
-  secrets = ["GITHUB_TOKEN"]
-}
-
-workflow "Label" {
-  on = "pull_request"
-  resolves = ["Label issues"]
-}
-
-action "Label issues" {
-  uses = "./actions/merged/"
   secrets = ["GITHUB_TOKEN"]
 }
