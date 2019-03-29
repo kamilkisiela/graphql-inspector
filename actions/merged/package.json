@@ -1,0 +1,8 @@
+{
+  "name": "@actions/merged",
+  "version": "1.0.0",
+  "license": "MIT",
+  "dependencies": {
+    "actions-toolkit": "1.9.1"
+  }
+}
