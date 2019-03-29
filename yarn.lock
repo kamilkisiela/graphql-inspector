@@ -2230,7 +2230,7 @@
     "@types/history" "*"
     "@types/react" "*"
 
-"@types/react@16.8.10", "@types/react@*":
+"@types/react@*", "@types/react@16.8.10":
   version "16.8.10"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-16.8.10.tgz#1ccb6fde17f71a62ef055382ec68bdc379d4d8d9"
   integrity sha512-7bUQeZKP4XZH/aB4i7k1i5yuwymDu/hnLMhD9NjVZvQQH7ZUgRN3d6iu8YXzx4sN/tNr0bj8jgguk8hhObzGvA==
@@ -2740,10 +2740,10 @@ acorn@^6.0.1, acorn@^6.0.5, acorn@^6.0.7:
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-6.1.1.tgz#7d25ae05bb8ad1f9b699108e1094ecd7884adc1f"
   integrity sha512-jPTiwtOxaHNaAPg/dmrJ/beuzLRnXtB0kQPQ8JpotKJgTB6rX6c8mlf315941pyjBSaPg8NHXS9fhP4u17DpGA==
 
-actions-toolkit@1.9.0:
-  version "1.9.0"
-  resolved "https://registry.yarnpkg.com/actions-toolkit/-/actions-toolkit-1.9.0.tgz#5779028ba84f53c6e6638b0a5f8cc7830d685784"
-  integrity sha512-YU9/4oqWaYXKaCS5kewlyL+SwB4qpWvK7duDvVnLOV+RJxqGFofVcFch9p87Ii3EBCAu01pPAcZrZMwhvjQB0g==
+actions-toolkit@1.9.1:
+  version "1.9.1"
+  resolved "https://registry.yarnpkg.com/actions-toolkit/-/actions-toolkit-1.9.1.tgz#38a6547823d7a9ffd3f404d8ef3819cfbb49a7cb"
+  integrity sha512-GjDbpWZNMY9oio7xv/mCNJnrSy8yH1/YWYcCqJOaEEBCTKhHxCte3njjZ/V2xqnrcmnpuNFcgJw1Mzvg7rwtDw==
   dependencies:
     "@octokit/graphql" "^2.0.1"
     "@octokit/rest" "^16.15.0"
@@ -2752,7 +2752,7 @@ actions-toolkit@1.9.0:
     flat-cache "^2.0.1"
     js-yaml "^3.12.1"
     minimist "^1.2.0"
-    signale "^1.3.0"
+    signale "^1.4.0"
 
 address@1.0.3, address@^1.0.1:
   version "1.0.3"
@@ -13614,7 +13614,7 @@ signal-exit@^3.0.0, signal-exit@^3.0.2:
   resolved "https://registry.yarnpkg.com/signal-exit/-/signal-exit-3.0.2.tgz#b5fdc08f1287ea1178628e415e25132b73646c6d"
   integrity sha1-tf3AjxKH6hF4Yo5BXiUTK3NkbG0=
 
-signale@^1.3.0:
+signale@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/signale/-/signale-1.4.0.tgz#c4be58302fb0262ac00fc3d886a7c113759042f1"
   integrity sha512-iuh+gPf28RkltuJC7W5MRi6XAjTDCAPC/prJUpQoG4vIP3MJZ+GTydVnodXA7pwvTKb2cA0m9OFZW/cdWy/I/w==
