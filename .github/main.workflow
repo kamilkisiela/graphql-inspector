@@ -32,3 +32,13 @@ action "Clean after a PR" {
   uses = "./actions/cleanup/"
   secrets = ["GITHUB_TOKEN"]
 }
+
+workflow "Label" {
+  on = "pull_request"
+  resolves = ["Label issues"]
+}
+
+action "Label issues" {
+  uses = "./actions/merged/"
+  secrets = ["GITHUB_TOKEN"]
+}
