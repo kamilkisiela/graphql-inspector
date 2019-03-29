@@ -1,15 +1,8 @@
 import {buildSchema} from 'graphql';
 
 import {diff} from '../../src/index';
-import {Change, CriticalityLevel} from '../../src/diff/changes/change';
-
-function findChangesByPath(changes: Change[], path: string) {
-  return changes.filter(c => c.path === path);
-}
-
-function findFirstChangeByPath(changes: Change[], path: string) {
-  return findChangesByPath(changes, path)[0];
-}
+import {CriticalityLevel} from '../../src/diff/changes/change';
+import {findChangesByPath, findFirstChangeByPath} from '../../utils/testing';
 
 test('union member added', () => {
   const a = buildSchema(/* GraphQL */ `
