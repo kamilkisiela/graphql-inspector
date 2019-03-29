@@ -5,11 +5,17 @@ import {
   GraphQLInterfaceType,
 } from 'graphql';
 
-import {notEqual} from './common/compare';
+import {isNotEqual, isVoid} from './common/compare';
 import {Change} from './changes/change';
 import {
   fieldDescriptionChanged,
+  fieldDescriptionAdded,
+  fieldDescriptionRemoved,
+  fieldDeprecationAdded,
+  fieldDeprecationRemoved,
   fieldDeprecationReasonChanged,
+  fieldDeprecationReasonAdded,
+  fieldDeprecationReasonRemoved,
   fieldTypeChanged,
   fieldArgumentAdded,
   fieldArgumentRemoved,
@@ -24,15 +30,35 @@ export function changesInField(
 ): Change[] {
   const changes: Change[] = [];
 
-  if (notEqual(oldField.description, newField.description)) {
-    changes.push(fieldDescriptionChanged(type, oldField, newField));
+  if (isNotEqual(oldField.description, newField.description)) {
+    if (isVoid(oldField.description)) {
+      changes.push(fieldDescriptionAdded(type, newField));
+    } else if (isVoid(newField.description)) {
+      changes.push(fieldDescriptionRemoved(type, oldField));
+    } else {
+      changes.push(fieldDescriptionChanged(type, oldField, newField));
+    }
   }
 
-  if (notEqual(oldField.deprecationReason, newField.deprecationReason)) {
-    changes.push(fieldDeprecationReasonChanged(type, oldField, newField));
+  if (isNotEqual(oldField.isDeprecated, newField.isDeprecated)) {
+    if (newField.isDeprecated) {
+      changes.push(fieldDeprecationAdded(type, newField));
+    } else {
+      changes.push(fieldDeprecationRemoved(type, oldField));
+    }
   }
 
-  if (notEqual(oldField.type.toString(), newField.type.toString())) {
+  if (isNotEqual(oldField.deprecationReason, newField.deprecationReason)) {
+    if (isVoid(oldField.deprecationReason)) {
+      changes.push(fieldDeprecationReasonAdded(type, newField));
+    } else if (isVoid(newField.deprecationReason)) {
+      changes.push(fieldDeprecationReasonRemoved(type, oldField));
+    } else {
+      changes.push(fieldDeprecationReasonChanged(type, oldField, newField));
+    }
+  }
+
+  if (isNotEqual(oldField.type.toString(), newField.type.toString())) {
     changes.push(fieldTypeChanged(type, oldField, newField));
   }
 

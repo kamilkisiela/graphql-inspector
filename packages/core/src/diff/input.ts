@@ -1,12 +1,14 @@
 import {GraphQLInputObjectType, GraphQLInputField} from 'graphql';
 
-import {notEqual} from './common/compare';
+import {isNotEqual, isVoid} from './common/compare';
 import {Change} from './changes/change';
 import {diffArrays, unionArrays} from '../utils/arrays';
 import {
   inputFieldAdded,
   inputFieldRemoved,
   inputFieldDescriptionChanged,
+  inputFieldDescriptionAdded,
+  inputFieldDescriptionRemoved,
   inputFieldDefaultValueChanged,
   inputFieldTypeChanged,
 } from './changes/input';
@@ -45,11 +47,17 @@ function changesInInputField(
 ): Change[] {
   const changes: Change[] = [];
 
-  if (notEqual(oldField.description, newField.description)) {
-    changes.push(inputFieldDescriptionChanged(input, oldField, newField));
+  if (isNotEqual(oldField.description, newField.description)) {
+    if (isVoid(oldField.description)) {
+      changes.push(inputFieldDescriptionAdded(input, newField));
+    } else if (isVoid(newField.description)) {
+      changes.push(inputFieldDescriptionRemoved(input, oldField));
+    } else {
+      changes.push(inputFieldDescriptionChanged(input, oldField, newField));
+    }
   }
 
-  if (notEqual(oldField.defaultValue, newField.defaultValue)) {
+  if (isNotEqual(oldField.defaultValue, newField.defaultValue)) {
     if (
       Array.isArray(oldField.defaultValue) &&
       Array.isArray(newField.defaultValue)
@@ -65,7 +73,7 @@ function changesInInputField(
     }
   }
 
-  if (notEqual(oldField.type.toString(), newField.type.toString())) {
+  if (isNotEqual(oldField.type.toString(), newField.type.toString())) {
     changes.push(inputFieldTypeChanged(input, oldField, newField));
   }
 

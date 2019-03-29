@@ -1,7 +1,5 @@
 declare module 'is-valid-path' {
-  namespace isValidPath {
-
-  }
+  namespace isValidPath {}
   function isValidPath(val: string): boolean;
   export = isValidPath;
 }

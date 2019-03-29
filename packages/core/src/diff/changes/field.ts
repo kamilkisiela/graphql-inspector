@@ -4,6 +4,7 @@ import {
   GraphQLArgument,
   isNonNullType,
   GraphQLInterfaceType,
+  isInterfaceType,
 } from 'graphql';
 
 import {Change, CriticalityLevel, ChangeType} from './change';
@@ -13,6 +14,7 @@ export function fieldRemoved(
   type: GraphQLObjectType | GraphQLInterfaceType,
   field: GraphQLField<any, any, any>,
 ): Change {
+  const entity = isInterfaceType(type) ? 'interface' : 'object type';
   return {
     criticality: {
       level: CriticalityLevel.Breaking,
@@ -21,9 +23,7 @@ export function fieldRemoved(
         : `Removing a field is a breaking change. It is preferable to deprecate the field before removing it.`,
     },
     type: ChangeType.FieldRemoved,
-    message: `Field '${field.name}' was removed from object type '${
-      type.name
-    }'`,
+    message: `Field '${field.name}' was removed from ${entity} '${type.name}'`,
     path: [type.name, field.name].join('.'),
   };
 }
@@ -32,12 +32,13 @@ export function fieldAdded(
   type: GraphQLObjectType | GraphQLInterfaceType,
   field: GraphQLField<any, any, any>,
 ): Change {
+  const entity = isInterfaceType(type) ? 'interface' : 'object type';
   return {
     criticality: {
       level: CriticalityLevel.NonBreaking,
     },
     type: ChangeType.FieldAdded,
-    message: `Field '${field.name}' was added to object type '${type.name}'`,
+    message: `Field '${field.name}' was added to ${entity} '${type.name}'`,
     path: [type.name, field.name].join('.'),
   };
 }
@@ -59,6 +60,64 @@ export function fieldDescriptionChanged(
   };
 }
 
+export function fieldDescriptionAdded(
+  type: GraphQLObjectType | GraphQLInterfaceType,
+  field: GraphQLField<any, any>,
+): Change {
+  return {
+    criticality: {
+      level: CriticalityLevel.NonBreaking,
+    },
+    type: ChangeType.FieldDescriptionAdded,
+    message: `Field '${type.name}.${field.name}' has description '${
+      field.description
+    }'`,
+    path: [type.name, field.name].join('.'),
+  };
+}
+
+export function fieldDescriptionRemoved(
+  type: GraphQLObjectType | GraphQLInterfaceType,
+  field: GraphQLField<any, any>,
+): Change {
+  return {
+    criticality: {
+      level: CriticalityLevel.NonBreaking,
+    },
+    type: ChangeType.FieldDescriptionRemoved,
+    message: `Description was removed from field '${type.name}.${field.name}'`,
+    path: [type.name, field.name].join('.'),
+  };
+}
+
+export function fieldDeprecationAdded(
+  type: GraphQLObjectType | GraphQLInterfaceType,
+  field: GraphQLField<any, any>,
+): Change {
+  return {
+    criticality: {
+      level: CriticalityLevel.NonBreaking,
+    },
+    type: ChangeType.FieldDeprecationAdded,
+    message: `Field '${type.name}.${field.name}' is deprecated`,
+    path: [type.name, field.name].join('.'),
+  };
+}
+
+export function fieldDeprecationRemoved(
+  type: GraphQLObjectType | GraphQLInterfaceType,
+  field: GraphQLField<any, any>,
+): Change {
+  return {
+    criticality: {
+      level: CriticalityLevel.Dangerous,
+    },
+    type: ChangeType.FieldDeprecationRemoved,
+    message: `Field '${type.name}.${field.name}' is no longer deprecated`,
+    path: [type.name, field.name].join('.'),
+  };
+}
+
 export function fieldDeprecationReasonChanged(
   type: GraphQLObjectType | GraphQLInterfaceType,
   oldField: GraphQLField<any, any>,
@@ -75,6 +134,38 @@ export function fieldDeprecationReasonChanged(
       newField.deprecationReason
     }'`,
     path: [type.name, oldField.name].join('.'),
+  };
+}
+
+export function fieldDeprecationReasonAdded(
+  type: GraphQLObjectType | GraphQLInterfaceType,
+  field: GraphQLField<any, any>,
+): Change {
+  return {
+    criticality: {
+      level: CriticalityLevel.NonBreaking,
+    },
+    type: ChangeType.FieldDeprecationReasonAdded,
+    message: `Field '${type.name}.${field.name}' has deprecation reason '${
+      field.deprecationReason
+    }'`,
+    path: [type.name, field.name].join('.'),
+  };
+}
+
+export function fieldDeprecationReasonRemoved(
+  type: GraphQLObjectType | GraphQLInterfaceType,
+  field: GraphQLField<any, any>,
+): Change {
+  return {
+    criticality: {
+      level: CriticalityLevel.NonBreaking,
+    },
+    type: ChangeType.FieldDeprecationReasonRemoved,
+    message: `Deprecation reason was removed from field '${type.name}.${
+      field.name
+    }'`,
+    path: [type.name, field.name].join('.'),
   };
 }
 
@@ -109,7 +200,7 @@ export function fieldArgumentAdded(
           reason: `Adding a required argument to an existing field is a breaking change because it will cause existing uses of this field to error.`,
         }
       : {
-          level: CriticalityLevel.NonBreaking,
+          level: CriticalityLevel.Dangerous,
         },
     type: ChangeType.FieldArgumentAdded,
     message: `Argument '${arg.name}: ${arg.type}' added to field '${

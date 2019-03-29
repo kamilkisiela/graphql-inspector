@@ -37,13 +37,45 @@ export function inputFieldAdded(
             'Adding a possible type to Unions may break existing clients that were not programming defensively against a new possible type.',
         }
       : {
-          level: CriticalityLevel.NonBreaking,
+          level: CriticalityLevel.Dangerous,
         },
     type: ChangeType.InputFieldAdded,
     message: `Input field '${field.name}' was added to input object type '${
       input.name
     }'`,
     path: [input.name, field.name].join('.'),
+  };
+}
+
+export function inputFieldDescriptionAdded(
+  type: GraphQLInputObjectType,
+  field: GraphQLInputField,
+): Change {
+  return {
+    criticality: {
+      level: CriticalityLevel.NonBreaking,
+    },
+    type: ChangeType.InputFieldDescriptionAdded,
+    message: `Input field '${type.name}.${field.name}' has description '${
+      field.description
+    }'`,
+    path: [type.name, field.name].join('.'),
+  };
+}
+
+export function inputFieldDescriptionRemoved(
+  type: GraphQLInputObjectType,
+  field: GraphQLInputField,
+): Change {
+  return {
+    criticality: {
+      level: CriticalityLevel.NonBreaking,
+    },
+    type: ChangeType.InputFieldDescriptionRemoved,
+    message: `Description was removed from input field '${type.name}.${
+      field.name
+    }'`,
+    path: [type.name, field.name].join('.'),
   };
 }
 
