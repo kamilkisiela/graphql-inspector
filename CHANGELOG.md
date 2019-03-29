@@ -4,6 +4,10 @@
 
 - **core**: New optional argument or an optional input field is now treated as a dangerous change [PR #147](https://github.com/kamilkisiela/graphql-inspector/pull/147)
 
+### v1.16.0
+
+- **core**: Required field becoming nullable should be a non-breaking change [PR #139](https://github.com/kamilkisiela/graphql-inspector/pull/139)
+
 ### v1.15.0
 
 - **action**: No double check [PR #111](https://github.com/kamilkisiela/graphql-inspector/pull/111)
