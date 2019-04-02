@@ -51,7 +51,7 @@
     "apollo-link-http": "1.5.14",
     "graphql": "14.2.1",
     "graphql-tag": "2.10.1",
-    "jest": "24.5.0",
+    "jest": "24.6.0",
     "office-ui-fabric-react": "6.164.0",
     "react-apollo": "2.5.3",
     "react-apollo-hooks": "0.4.4",
