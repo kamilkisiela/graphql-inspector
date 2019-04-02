@@ -136,6 +136,10 @@ test('huge test', () => {
       a: String = "1"
       b: String!
     }
+    input ListInput {
+      a: [String] = ["foo"]
+      b: [String] = ["bar"]
+    }
     """
     The Query Root of this schema
     """
@@ -208,6 +212,10 @@ test('huge test', () => {
       """
       a: Int = 1
       c: String!
+    }
+    input ListInput {
+      a: [String] = ["bar"]
+      b: [String] = ["bar"]
     }
     """
     Query Root description changed
@@ -292,6 +300,7 @@ test('huge test', () => {
     `Input field 'c' was added to input object type 'AInput'`,
     `Input field 'AInput.a' description changed from 'a' to 'changed'`,
     `Input field 'AInput.a' default value changed from '1' to '1'`,
+    `Input field 'ListInput.a' default value changed from 'foo' to 'bar'`,
     `Input field 'AInput.a' changed type from 'String' to 'Int'`,
     `'CType' object implements 'AnInterface' interface`,
     `Field 'c' was removed from object type 'CType'`,
@@ -326,6 +335,7 @@ test('huge test', () => {
     try {
       expect(changes.some(c => c.message === msg)).toEqual(true);
     } catch (e) {
+      console.log(changes);
       console.log(`Couldn't find: ${msg}`);
       const match = findBestMatch(
         msg,
