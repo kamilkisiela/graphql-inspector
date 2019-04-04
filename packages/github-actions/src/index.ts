@@ -98,7 +98,6 @@ Toolkit.run(
     try {
       await updateCheckRun(tools, {
         conclusion,
-        status,
         output: {title, summary, annotations},
       });
     } catch (e) {
@@ -212,11 +211,9 @@ async function updateCheckRun(
 
   // Fail
   if (conclusion === CheckConclusion.Failure) {
-    tools.log.fatal(output.title);
     return tools.exit.failure(output.title);
   }
 
   // Success or Neutral
-  tools.log.success(output.title);
   return tools.exit.success(output.title);
 }
