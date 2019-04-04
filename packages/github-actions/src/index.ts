@@ -11,6 +11,7 @@ import {buildSchema} from 'graphql';
 import {safeLoad} from 'js-yaml';
 
 import {Toolkit} from 'actions-toolkit';
+import {ChecksUpdateParams} from '@octokit/rest';
 
 const identifier = 'graphql-inspector';
 
@@ -95,29 +96,11 @@ Toolkit.run(
           };
 
     try {
-      await tools.github.checks.create(
-        tools.context.repo({
-          name: 'GraphQL Inspector',
-          head_sha: tools.context.sha,
-          conclusion: conclusion,
-          completed_at: new Date().toISOString(),
-          output: {
-            title,
-            summary,
-            annotations: annotations,
-          },
-        }),
-      );
-
-      // Fail
-      if (conclusion === CheckConclusion.Failure) {
-        tools.log.fatal(title);
-        return tools.exit.failure(title);
-      }
-
-      // Success or Neutral
-      tools.log.success(title);
-      return tools.exit.success(title);
+      await updateCheckRun(tools, {
+        conclusion,
+        status,
+        output: {title, summary, annotations},
+      });
     } catch (e) {
       // Error
       tools.log.fatal(new Error(e));
@@ -196,4 +179,44 @@ function fileLoader({
 
     return (result as any).repository.object.text;
   };
+}
+
+type UpdateCheckRunOptions = Required<
+  Pick<ChecksUpdateParams, 'conclusion' | 'output'>
+>;
+async function updateCheckRun(
+  tools: Toolkit,
+  {conclusion, output}: UpdateCheckRunOptions,
+) {
+  const checkName = process.env.GITHUB_ACTION!;
+
+  const response = await tools.github.checks.listForRef({
+    check_name: checkName,
+    status: 'in_progress' as 'in_progress',
+    ref: tools.context.ref,
+    ...tools.context.repo(),
+  });
+
+  const check = response.data.check_runs.find(
+    check => check.name === checkName,
+  )!;
+
+  await tools.github.checks.update({
+    check_run_id: check.id,
+    completed_at: new Date().toISOString(),
+    status: 'completed',
+    ...tools.context.repo(),
+    conclusion,
+    output,
+  });
+
+  // Fail
+  if (conclusion === CheckConclusion.Failure) {
+    tools.log.fatal(output.title);
+    return tools.exit.failure(output.title);
+  }
+
+  // Success or Neutral
+  tools.log.success(output.title);
+  return tools.exit.success(output.title);
 }
