@@ -12604,10 +12604,10 @@ react-apollo-hooks@0.4.4:
   dependencies:
     lodash "^4.17.11"
 
-react-apollo@2.5.3:
-  version "2.5.3"
-  resolved "https://registry.yarnpkg.com/react-apollo/-/react-apollo-2.5.3.tgz#9844a522894a6e0392f6a982c6052348d9a4ae12"
-  integrity sha512-sBh7M3h4xdbck8NFnn1nlUG0mD0hCTeIcvov4A8hagxjOyTVSakoum+DP6rYNaHuAZFDS3oNurNNSbGZmgoU6g==
+react-apollo@2.5.4:
+  version "2.5.4"
+  resolved "https://registry.yarnpkg.com/react-apollo/-/react-apollo-2.5.4.tgz#4b5ad2e9e38001521d072445acdb5b3b5489b22d"
+  integrity sha512-olH9zYijOXVfj14hD7bQlZ0POBJchxg2e+mfnxEiEdqZra4+58SfIY0KPhmM9jqbeeusc6J/P4zzWIHt5DdNDg==
   dependencies:
     apollo-utilities "^1.2.1"
     hoist-non-react-statics "^3.3.0"
