@@ -59,7 +59,7 @@
     "react-scripts": "2.1.8",
     "styled-components": "4.2.0",
     "ts-jest": "24.0.1",
-    "typescript": "3.4.1"
+    "typescript": "3.4.2"
   },
   "browserslist": [
     ">0.2%",
