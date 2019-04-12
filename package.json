@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "lint-staged": "8.1.5",
-    "prettier": "1.16.4"
+    "prettier": "1.17.0"
   },
   "dependencies": {
     "@probot/serverless-lambda": "0.3.0",
