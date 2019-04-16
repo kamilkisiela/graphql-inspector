@@ -1710,12 +1710,13 @@
   resolved "https://registry.yarnpkg.com/@nodelib/fs.stat/-/fs.stat-1.1.3.tgz#2b5a3ab3f918cca48a8c754c08168e3f03eba61b"
   integrity sha512-shAmDyaQC4H92APFoIaVDHCx5bStIocgvbwQyxPRrbUY20V1EYTbSDchWbuwlMG3V17cprZhA6+78JfB+3DTPw==
 
-"@octokit/app@^2.1.0":
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/@octokit/app/-/app-2.2.1.tgz#69a0da2442fe1ba27da3860d9f250f39514fe49b"
-  integrity sha512-bngDco6DrPMn65mdcf+RhX8bdImrDaY1V/5VZFwYuYhZHRDFDecWSR6cusHwH7G2xjfXhNdIBxbb3PJPoRJxUw==
+"@octokit/app@^2.2.4":
+  version "2.2.4"
+  resolved "https://registry.yarnpkg.com/@octokit/app/-/app-2.2.4.tgz#5104696b7acde1a8310fd8f14106fb2805b2900a"
+  integrity sha512-f/DCK0d3o0qv/RXQUirQEhN91uUS8QRRxPg7vYvEei0TZh+M6SYGy8ZAa4e0gN9zo7T8K0rD99jwE64nV5lzyA==
   dependencies:
-    "@octokit/request" "^2.1.2"
+    "@octokit/request" "^3.0.0"
+    "@types/lru-cache" "^5.1.0"
     jsonwebtoken "^8.3.0"
     lru-cache "^5.1.1"
 
@@ -1779,7 +1780,7 @@
   dependencies:
     bottleneck "^2.15.3"
 
-"@octokit/request@2.4.2", "@octokit/request@^2.1.2", "@octokit/request@^2.4.0":
+"@octokit/request@2.4.2", "@octokit/request@^2.4.0":
   version "2.4.2"
   resolved "https://registry.yarnpkg.com/@octokit/request/-/request-2.4.2.tgz#87c36e820dd1e43b1629f4f35c95b00cd456320b"
   integrity sha512-lxVlYYvwGbKSHXfbPk5vxEA8w4zHOH1wobado4a9EfsyD3Cbhuhus1w0Ye9Ro0eMubGO8kNy5d+xNFisM3Tvaw==
@@ -2194,6 +2195,11 @@
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/@types/long/-/long-4.0.0.tgz#719551d2352d301ac8b81db732acb6bdc28dbdef"
   integrity sha512-1w52Nyx4Gq47uuu0EVcsHBxZFJgurQ+rTKS3qMHxR1GY2T8c2AJYd6vZoZ9q1rupaDjU0yT+Jc2XTyXkjeMA+Q==
+
+"@types/lru-cache@^5.1.0":
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/@types/lru-cache/-/lru-cache-5.1.0.tgz#57f228f2b80c046b4a1bd5cac031f81f207f4f03"
+  integrity sha512-RaE0B+14ToE4l6UqdarKPnXwVDuigfFv+5j9Dze/Nqr23yyuqdNvzcZi3xB+3Agvi5R4EOgAksfv3lXX4vBt9w==
 
 "@types/mime@*":
   version "2.0.1"
@@ -12378,12 +12384,12 @@ probot-config@1.0.1:
     deepmerge "^2.2.1"
     js-yaml "^3.10.0"
 
-probot@9.2.2:
-  version "9.2.2"
-  resolved "https://registry.yarnpkg.com/probot/-/probot-9.2.2.tgz#ff52133c23b6f16790f677c13eebfca59cdc7193"
-  integrity sha512-4+3PKOP1Kwgs9juBQyPCIFb6VRd5JZzCrbyIPOYs/Ivt7fnaFSZUq2KlEPnJvkQ1LvVibZDPtWfbqcb6wdS2XQ==
+probot@9.2.5:
+  version "9.2.5"
+  resolved "https://registry.yarnpkg.com/probot/-/probot-9.2.5.tgz#699097d57fba34a4be67234871db2662197253ed"
+  integrity sha512-V7S/rlkGxUHdxY7zNyzs5JTamDM7A5KJ7ct2JlRVWER11t6zWHm+s/moc1BlZ0bd6zfqyR3r9d7nqVRE3PW1qQ==
   dependencies:
-    "@octokit/app" "^2.1.0"
+    "@octokit/app" "^2.2.4"
     "@octokit/graphql" "2.1.1"
     "@octokit/plugin-enterprise-compatibility" "^1.0.0"
     "@octokit/plugin-retry" "^2.1.1"
