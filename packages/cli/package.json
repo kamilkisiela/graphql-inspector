@@ -45,7 +45,7 @@
     "figures": "2.0.0",
     "indent-string": "3.2.0",
     "is-valid-path": "0.1.1",
-    "log-symbols": "2.2.0",
+    "log-symbols": "3.0.0",
     "opn": "5.5.0"
   },
   "devDependencies": {
