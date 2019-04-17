@@ -7858,10 +7858,10 @@ immer@1.10.0:
   resolved "https://registry.yarnpkg.com/immer/-/immer-1.10.0.tgz#bad67605ba9c810275d91e1c2a47d4582e98286d"
   integrity sha512-O3sR1/opvCDGLEVcvrGTMtLac8GJ5IwZC4puPrLuRj3l7ICKvkmA0vGuU9OW8mV9WIBRnaxp5GJh9IEAaNOoYg==
 
-immer@2.1.5:
-  version "2.1.5"
-  resolved "https://registry.yarnpkg.com/immer/-/immer-2.1.5.tgz#0389947455c5a2c7a47f1e6f415c9d1a62a1ebed"
-  integrity sha512-xyjQyTBYIeiz6jd02Hg12jV+9QISwF1crLcwTlzHpWH4e0ryNWj1kacpTwimK3bJV5NKKXw458G2vpqoB/inFA==
+immer@2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/immer/-/immer-2.2.0.tgz#638efd0290145298a8307fba39539c0b3d6b60c0"
+  integrity sha512-35P92n2X7JI29Wame0Ts5vrACU2G0HSjCz1Yhpz+FTw86jt9nJKOpeiGw43Gpu8OryGB6dZWGFRy58zITzRnPQ==
 
 immutable-tuple@^0.4.9:
   version "0.4.10"
