@@ -2,23 +2,27 @@
 
 ### vNEXT
 
+### v1.17.0
+
+-**action**: Update Check Run instead of creating an extra one [PR #177](https://github.com/kamilkisiela/graphql-inspector/pull/177) - thanks to [@BeeeQueue](http://github.com/BeeeQueue)
+
 - **core**: New optional argument or an optional input field is now treated as a dangerous change [PR #147](https://github.com/kamilkisiela/graphql-inspector/pull/147)
 
 ### v1.16.0
 
-- **core**: Required field becoming nullable should be a non-breaking change [PR #139](https://github.com/kamilkisiela/graphql-inspector/pull/139)
+- **core**: Required field becoming nullable should be a non-breaking change [PR #139](https://github.com/kamilkisiela/graphql-inspector/pull/139) - thanks to [@filipncs](http://github.com/filipncs)
 
 ### v1.15.0
 
 - **action**: No double check [PR #111](https://github.com/kamilkisiela/graphql-inspector/pull/111)
 - **action**: Way more independent of the github package - uses `actions-toolkit` instead of `probot` [PR #111](https://github.com/kamilkisiela/graphql-inspector/pull/111)
-- **github**: Fix location of a targeted entity[PR #104](https://github.com/kamilkisiela/graphql-inspector/pull/104)
+- **github**: Fix location of a targeted entity [PR #104](https://github.com/kamilkisiela/graphql-inspector/pull/104)
 - **github**: Support .github/graphql-inspector.yml config [PR #105](https://github.com/kamilkisiela/graphql-inspector/pull/105) [PR #109](https://github.com/kamilkisiela/graphql-inspector/pull/109)
 
 ### v1.14.0
 
 - **core**: Fix how GraphQL Schema is fetched [PR #101](https://github.com/kamilkisiela/graphql-inspector/pull/101)
-- **core**: Added diff support for arrays and objects (arguments) [PR #95](https://github.com/kamilkisiela/graphql-inspector/pull/95)
+- **core**: Added diff support for arrays and objects (arguments) [PR #95](https://github.com/kamilkisiela/graphql-inspector/pull/95) - thanks to [@mkaradeniz](http://github.com/mkaradeniz)
 
 ### v0.13.3
 
