@@ -2,11 +2,15 @@
 
 ### vNEXT
 
+### v1.17.0
+
+-**action**: Update Check Run instead of creating an extra one [PR #177](https://github.com/kamilkisiela/graphql-inspector/pull/177) - thanks to @BeeeQueue
+
 - **core**: New optional argument or an optional input field is now treated as a dangerous change [PR #147](https://github.com/kamilkisiela/graphql-inspector/pull/147)
 
 ### v1.16.0
 
-- **core**: Required field becoming nullable should be a non-breaking change [PR #139](https://github.com/kamilkisiela/graphql-inspector/pull/139)
+- **core**: Required field becoming nullable should be a non-breaking change [PR #139](https://github.com/kamilkisiela/graphql-inspector/pull/139) - thanks to @filipncs
 
 ### v1.15.0
 
@@ -18,7 +22,7 @@
 ### v1.14.0
 
 - **core**: Fix how GraphQL Schema is fetched [PR #101](https://github.com/kamilkisiela/graphql-inspector/pull/101)
-- **core**: Added diff support for arrays and objects (arguments) [PR #95](https://github.com/kamilkisiela/graphql-inspector/pull/95)
+- **core**: Added diff support for arrays and objects (arguments) [PR #95](https://github.com/kamilkisiela/graphql-inspector/pull/95) - thanks to @mkaradeniz
 
 ### v0.13.3
 
