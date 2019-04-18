@@ -2,6 +2,8 @@
 
 ### vNEXT
 
+### v1.18.0
+
 - **github**: load `.yaml` file too [PR #216](https://github.com/kamilkisiela/graphql-inspector/pull/216)
 
 ### v1.17.0
