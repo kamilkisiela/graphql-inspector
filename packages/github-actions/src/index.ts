@@ -23,7 +23,7 @@ Toolkit.run(
     const ref = process.env.GITHUB_SHA!;
 
     // repo
-    const {owner, repo} = tools.context.repo();
+    const {owner, repo} = tools.context.repo;
 
     const loadFile = fileLoader({
       tools,
@@ -193,7 +193,7 @@ async function updateCheckRun(
     check_name: checkName,
     status: 'in_progress' as 'in_progress',
     ref: tools.context.ref,
-    ...tools.context.repo(),
+    ...tools.context.repo,
   });
 
   const check = response.data.check_runs.find(
@@ -204,7 +204,7 @@ async function updateCheckRun(
     check_run_id: check.id,
     completed_at: new Date().toISOString(),
     status: 'completed',
-    ...tools.context.repo(),
+    ...tools.context.repo,
     conclusion,
     output,
   });
