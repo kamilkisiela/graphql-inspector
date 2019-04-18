@@ -201,7 +201,7 @@ export async function handleAction({
 
   async function loadConfig(): Promise<Config | undefined> {
     const identifier = 'graphql-inspector';
-    const yamlConfig = await getGithubConfig(context, identifier + '.yml');
+    const yamlConfig = await getGithubConfig(context, identifier + '.yaml');
     const ymlConfig = await getGithubConfig(context, identifier + '.yml');
 
     if (yamlConfig || ymlConfig) {
