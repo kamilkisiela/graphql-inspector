@@ -4,7 +4,7 @@
 
 ### v1.17.0
 
--**action**: Update Check Run instead of creating an extra one [PR #177](https://github.com/kamilkisiela/graphql-inspector/pull/177) - thanks to [@BeeeQueue](http://github.com/BeeeQueue)
+- **action**: Update Check Run instead of creating an extra one [PR #177](https://github.com/kamilkisiela/graphql-inspector/pull/177) - thanks to [@BeeeQueue](http://github.com/BeeeQueue)
 
 - **core**: New optional argument or an optional input field is now treated as a dangerous change [PR #147](https://github.com/kamilkisiela/graphql-inspector/pull/147)
 
