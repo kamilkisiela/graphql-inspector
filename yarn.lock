@@ -2839,17 +2839,17 @@ acorn@^6.0.1, acorn@^6.0.5, acorn@^6.0.7:
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-6.1.1.tgz#7d25ae05bb8ad1f9b699108e1094ecd7884adc1f"
   integrity sha512-jPTiwtOxaHNaAPg/dmrJ/beuzLRnXtB0kQPQ8JpotKJgTB6rX6c8mlf315941pyjBSaPg8NHXS9fhP4u17DpGA==
 
-actions-toolkit@1.10.0:
-  version "1.10.0"
-  resolved "https://registry.yarnpkg.com/actions-toolkit/-/actions-toolkit-1.10.0.tgz#7cc77b64d42ffeb18e430b83c67828cf850e1610"
-  integrity sha512-moFSlCFnnyXTvUYwbF33QpderAj0GGu43tD+PhOEbQtlaxI7km77Rb+RFgUSNFqkatEwpFN3tLr2o9yd5SIisA==
+actions-toolkit@2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/actions-toolkit/-/actions-toolkit-2.0.0.tgz#9e79d1e4c0ca9a078d180193f176e19ad0a8934d"
+  integrity sha512-wzQa0KkN0IUrJdl72hLV1a/oOAUpKLriETV5+/85T6sLfCaIJJQ3YUMtKDc1ctjfsdRfvYO8Qst8OOVi64boKw==
   dependencies:
     "@octokit/graphql" "^2.0.1"
     "@octokit/rest" "^16.15.0"
     enquirer "^2.3.0"
     execa "^1.0.0"
     flat-cache "^2.0.1"
-    js-yaml "^3.12.1"
+    js-yaml "^3.13.0"
     minimist "^1.2.0"
     signale "^1.4.0"
 
@@ -9332,7 +9332,7 @@ js-tokens@^3.0.2:
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-3.0.2.tgz#9866df395102130e38f7f996bceb65443209c25b"
   integrity sha1-mGbfOVECEw449/mWvOtlRDIJwls=
 
-js-yaml@3.13.1:
+js-yaml@3.13.1, js-yaml@^3.13.0:
   version "3.13.1"
   resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-3.13.1.tgz#aff151b30bfdfa8e49e05da22e7415e9dfa37847"
   integrity sha512-YfbcO7jXDdyj0DGxYVSlSeQNHbD7XPWvrVWeVUujrQEoZzWJIRrCPoyk6kL6IAjAG2IolMK4T0hNUe0HOUs5Jw==
@@ -9344,14 +9344,6 @@ js-yaml@^3.10.0, js-yaml@^3.12.0, js-yaml@^3.7.0, js-yaml@^3.9.0, js-yaml@^3.9.1
   version "3.12.2"
   resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-3.12.2.tgz#ef1d067c5a9d9cb65bd72f285b5d8105c77f14fc"
   integrity sha512-QHn/Lh/7HhZ/Twc7vJYQTkjuCa0kaCcDcjK5Zlk2rvnUpy7DxMJ23+Jc2dcyvltwQVg1nygAVlB2oRDFHoRS5Q==
-  dependencies:
-    argparse "^1.0.7"
-    esprima "^4.0.0"
-
-js-yaml@^3.12.1:
-  version "3.13.0"
-  resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-3.13.0.tgz#38ee7178ac0eea2c97ff6d96fff4b18c7d8cf98e"
-  integrity sha512-pZZoSxcCYco+DIKBTimr67J6Hy+EYGZDY/HCWC+iAEA9h1ByhMXAIVUXMcMFpOCxQ/xjXmPI2MkDL5HRm5eFrQ==
   dependencies:
     argparse "^1.0.7"
     esprima "^4.0.0"
