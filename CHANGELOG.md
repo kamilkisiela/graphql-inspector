@@ -2,6 +2,8 @@
 
 ### vNEXT
 
+- **action**: show more details after file loading fails [PR #223](https://github.com/kamilkisiela/graphql-inspector/pull/223)
+
 ### v1.18.0
 
 - **github**: load `.yaml` file too [PR #216](https://github.com/kamilkisiela/graphql-inspector/pull/216)
