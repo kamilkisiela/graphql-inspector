@@ -46,11 +46,17 @@ function fileLoader({
       expression: `${file.ref}:${file.path}`,
     });
 
-    if (result.data) {
-      return result.data.repository.object.text;
-    }
+    try {
+      if (result.data) {
+        return result.data.repository.object.text;
+      }
 
-    return (result as any).repository.object.text;
+      return (result as any).repository.object.text;
+    } catch (error) {
+      console.log(result);
+      console.error(error);
+      throw new Error(`Failed to load '${file.path}' (ref: ${file.ref})`);
+    }
   };
 }
 
