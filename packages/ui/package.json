@@ -53,7 +53,7 @@
     "graphql-tag": "2.10.1",
     "jest": "24.7.1",
     "office-ui-fabric-react": "6.168.0",
-    "react-apollo": "2.5.4",
+    "react-apollo": "2.5.5",
     "react-apollo-hooks": "0.4.5",
     "react-router-dom": "5.0.0",
     "react-scripts": "2.1.8",
