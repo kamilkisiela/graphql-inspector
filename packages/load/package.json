@@ -39,7 +39,7 @@
     "@types/jest": "24.0.12",
     "@types/node": "11.13.7",
     "@types/node-fetch": "2.3.3",
-    "graphql": "14.2.1",
+    "graphql": "14.3.0",
     "jest": "24.8.0",
     "ts-jest": "24.0.2",
     "typescript": "3.4.5"
