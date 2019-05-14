@@ -40,7 +40,7 @@
     "@probot/serverless-lambda": "0.3.0",
     "babel-loader": "8.0.5",
     "husky": "2.2.0",
-    "immer": "3.1.1",
+    "immer": "3.1.2",
     "lerna": "3.13.4",
     "netlify-lambda": "1.4.7",
     "shelljs": "0.8.3"
