@@ -41,7 +41,7 @@
     "babel-loader": "8.0.6",
     "husky": "2.3.0",
     "immer": "3.1.2",
-    "lerna": "3.13.4",
+    "lerna": "3.14.0",
     "netlify-lambda": "1.4.7",
     "shelljs": "0.8.3"
   },
