@@ -8,7 +8,7 @@ Dumps an introspection file based on a schema.
 
 Run the following command:
 
-    graphql-inspector serve SCHEMA --write path/to/file
+    graphql-inspector introspect SCHEMA --write path/to/file
 
 It supports .graphql, .gql and .json extensions.
 
