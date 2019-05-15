@@ -13,7 +13,7 @@ export async function loadSchema(
     return useGithub();
   }
 
-  const resolved = await useSchema(pointer, {});
+  const resolved = await useSchema(pointer, extra || {});
 
   if (isSchema(resolved)) {
     return resolved;

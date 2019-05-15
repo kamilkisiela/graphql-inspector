@@ -21,6 +21,7 @@ export async function introspect(
   try {
     const schema = await loadSchema(schemaPointer, {
       token: options.token,
+      headers: options.headers,
     });
     const introspection = introspectionFromSchema(schema);
     const filepath = resolve(process.cwd(), output);

@@ -13,7 +13,9 @@ export async function serve(
   },
 ) {
   const renderer = options.renderer || new ConsoleRenderer();
-  const schema = await loadSchema(schemaPointer);
+  const schema = await loadSchema(schemaPointer, {
+    headers: options.headers,
+  });
   const PORT = process.env.PORT || '4000';
   const app = new ApolloServer({
     cors: true,

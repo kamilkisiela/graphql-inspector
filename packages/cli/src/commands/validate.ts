@@ -24,7 +24,9 @@ export async function validate(
   const renderer = options.renderer || new ConsoleRenderer();
 
   try {
-    const schema = await loadSchema(schemaPointer);
+    const schema = await loadSchema(schemaPointer, {
+      headers: options.headers,
+    });
     const documents = await loadDocuments(documentsPointer);
 
     const invalidDocuments = validateDocuments(schema, documents);

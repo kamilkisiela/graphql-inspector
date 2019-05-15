@@ -26,9 +26,11 @@ export async function diff(
   try {
     const oldSchema = await loadSchema(oldSchemaPointer, {
       token: options.token,
+      headers: options.headers,
     });
     const newSchema = await loadSchema(newSchemaPointer, {
       token: options.token,
+      headers: options.headers,
     });
 
     const changes = diffSchema(oldSchema, newSchema);
