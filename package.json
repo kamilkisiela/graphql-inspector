@@ -33,7 +33,7 @@
     "precommit": "lint-staged"
   },
   "devDependencies": {
-    "lint-staged": "8.1.6",
+    "lint-staged": "8.1.7",
     "prettier": "1.17.1"
   },
   "dependencies": {
