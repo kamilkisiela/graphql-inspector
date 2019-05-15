@@ -8,7 +8,8 @@ export async function serve(
   schemaPointer: string,
   options: {
     renderer?: Renderer;
-    require: string[];
+    require?: string[];
+    headers?: Record<string, string>;
   },
 ) {
   const renderer = options.renderer || new ConsoleRenderer();

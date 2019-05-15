@@ -17,7 +17,8 @@ export async function diff(
   options: {
     token?: string;
     renderer?: Renderer;
-    require: string[];
+    require?: string[];
+    headers?: Record<string, string>;
   },
 ) {
   const renderer = (options && options.renderer) || new ConsoleRenderer();

@@ -15,9 +15,10 @@ export async function validate(
   documentsPointer: string,
   schemaPointer: string,
   options: {
-    require: string[];
+    require?: string[];
     deprecated: boolean;
     renderer?: Renderer;
+    headers?: Record<string, string>;
   },
 ) {
   const renderer = options.renderer || new ConsoleRenderer();

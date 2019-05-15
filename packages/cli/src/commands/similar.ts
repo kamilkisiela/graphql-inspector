@@ -21,7 +21,8 @@ export async function similar(
   name: string | undefined,
   threshold: number | undefined,
   options: {
-    require: string[];
+    require?: string[];
+    headers?: Record<string, string>;
     write?: string;
     renderer?: Renderer;
   },

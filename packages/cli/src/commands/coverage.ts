@@ -22,6 +22,7 @@ export async function coverage(
     write?: string;
     silent?: boolean;
     renderer?: Renderer;
+    headers?: Record<string, string>;
   },
 ) {
   const renderer = options.renderer || new ConsoleRenderer();

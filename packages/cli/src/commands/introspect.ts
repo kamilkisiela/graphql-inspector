@@ -10,8 +10,9 @@ export async function introspect(
   options: {
     token?: string;
     write?: string;
-    require: string[];
+    require?: string[];
     renderer?: Renderer;
+    headers?: Record<string, string>;
   },
 ) {
   const output = options.write || 'graphql.schema.json';

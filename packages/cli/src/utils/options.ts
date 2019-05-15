@@ -18,6 +18,14 @@ function normalizeToken(options: any) {
   };
 }
 
+function normalizeHeaders(options: any) {
+  return {
+    ...options,
+    headers:
+      typeof options.parent.header === 'undefined' ? {} : options.parent.header,
+  };
+}
+
 function normalizeRequire(options: any) {
   if (typeof options.parent.require === 'undefined') {
     return {
@@ -38,6 +46,7 @@ function normalizeRequire(options: any) {
 
 export function normalizeOptions(options: any) {
   return pipe(
+    normalizeHeaders,
     normalizeRequire,
     useRequire,
     normalizeToken,
