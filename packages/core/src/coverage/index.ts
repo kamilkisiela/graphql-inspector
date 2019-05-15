@@ -2,6 +2,7 @@ import {
   GraphQLSchema,
   GraphQLError,
   Source,
+  isInterfaceType,
   isObjectType,
   visit,
   visitWithTypeInfo,
@@ -78,7 +79,7 @@ export function coverage(
     if (!isForIntrospection(typename) && !isPrimitive(typename)) {
       const type = typeMap[typename];
 
-      if (isObjectType(type)) {
+      if (isObjectType(type) || isInterfaceType(type)) {
         const typeCoverage: TypeCoverage = {
           hits: 0,
           type,
