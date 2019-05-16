@@ -2553,6 +2553,13 @@
   resolved "https://registry.yarnpkg.com/@types/events/-/events-3.0.0.tgz#2862f3f58a9a7f7c3e78d79f130dd4d71c25c2a7"
   integrity sha512-EaObqwIvayI5a8dCzhFrjKzVwKLxjoG9T6Ppd5CEo07LRKfQ8Yokw54r5+Wq7FaBQ+yXRvQAYPrHwya1/UFt9g==
 
+"@types/execa@^0.9.0":
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/@types/execa/-/execa-0.9.0.tgz#9b025d2755f17e80beaf9368c3f4f319d8b0fb93"
+  integrity sha512-mgfd93RhzjYBUHHV532turHC2j4l/qxsF/PbfDmprHDEUHmNZGlDn1CEsulGK3AfsPdhkWzZQT/S/k0UGhLGsA==
+  dependencies:
+    "@types/node" "*"
+
 "@types/express-serve-static-core@*":
   version "4.16.1"
   resolved "https://registry.yarnpkg.com/@types/express-serve-static-core/-/express-serve-static-core-4.16.1.tgz#35df7b302299a4ab138a643617bd44078e74d44e"
@@ -2574,6 +2581,11 @@
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@types/figures/-/figures-2.0.0.tgz#e624a9ad71db49b9c8b9bbd59fe1ad04c443913c"
   integrity sha512-mcRgJ+ncKuNI+Dwac7omO18B8C8u+YBS+AU/oyLhEyjAnT3cUUThhHgZpbiIvu5ZqSvdD30BXtrqg9nxc3OKMg==
+
+"@types/flat-cache@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@types/flat-cache/-/flat-cache-2.0.0.tgz#64e5d3b426c392b603a208a55bdcc7d920ce6e57"
+  integrity sha512-fHeEsm9hvmZ+QHpw6Fkvf19KIhuqnYLU6vtWLjd5BsMd/qVi7iTkMioDZl0mQmfNRA1A6NwvhrSRNr9hGYZGww==
 
 "@types/glob@7.1.1":
   version "7.1.1"
@@ -2670,6 +2682,11 @@
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/@types/minimatch/-/minimatch-3.0.3.tgz#3dca0e3f33b200fc7d1139c0cd96c1268cadfd9d"
   integrity sha512-tHq6qdbT9U1IRSGf14CL0pUlULksvY9OZ+5eEgl1N7t+OA3tGvNpxJCzuKQlsNgCVwbAs670L1vcVQi8j9HjnA==
+
+"@types/minimist@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@types/minimist/-/minimist-1.2.0.tgz#69a23a3ad29caf0097f06eda59b361ee2f0639f6"
+  integrity sha1-aaI6OtKcrwCX8G7aWbNh7i8GOfY=
 
 "@types/node-fetch@2.3.3":
   version "2.3.3"
@@ -2772,6 +2789,13 @@
   dependencies:
     "@types/express-serve-static-core" "*"
     "@types/mime" "*"
+
+"@types/signale@^1.2.1":
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/@types/signale/-/signale-1.2.1.tgz#7ff3d477e8d5983b7ecef544f5830c3cb271d1a8"
+  integrity sha512-mV6s2VgcBC16Jb+1EwulgRrrZBT93V4JCILkNPg31rvvSK6LRQQGU8R/SUivgHjDZ5LJZu/yL2kMF8j85YQTnA==
+  dependencies:
+    "@types/node" "*"
 
 "@types/stack-utils@^1.0.1":
   version "1.0.1"
@@ -3142,13 +3166,17 @@ acorn@^6.0.1, acorn@^6.0.4, acorn@^6.0.5, acorn@^6.0.7:
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-6.1.1.tgz#7d25ae05bb8ad1f9b699108e1094ecd7884adc1f"
   integrity sha512-jPTiwtOxaHNaAPg/dmrJ/beuzLRnXtB0kQPQ8JpotKJgTB6rX6c8mlf315941pyjBSaPg8NHXS9fhP4u17DpGA==
 
-actions-toolkit@2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/actions-toolkit/-/actions-toolkit-2.0.0.tgz#9e79d1e4c0ca9a078d180193f176e19ad0a8934d"
-  integrity sha512-wzQa0KkN0IUrJdl72hLV1a/oOAUpKLriETV5+/85T6sLfCaIJJQ3YUMtKDc1ctjfsdRfvYO8Qst8OOVi64boKw==
+actions-toolkit@2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/actions-toolkit/-/actions-toolkit-2.1.0.tgz#0bfd6813d2bf52c880e7587d698793b0b313f3e9"
+  integrity sha512-279cx0l9uTKzBvwDzvlPPPqI5ql4vkOrn6otZAnMIYF6llGMoDn7/HPf9RMjjbV9AKVDuDcNpRoNJ0JoYT2bOQ==
   dependencies:
     "@octokit/graphql" "^2.0.1"
     "@octokit/rest" "^16.15.0"
+    "@types/execa" "^0.9.0"
+    "@types/flat-cache" "^2.0.0"
+    "@types/minimist" "^1.2.0"
+    "@types/signale" "^1.2.1"
     enquirer "^2.3.0"
     execa "^1.0.0"
     flat-cache "^2.0.1"
