@@ -30,6 +30,8 @@ export async function introspect(
     switch (extname(output.toLowerCase())) {
       case '.graphql':
       case '.gql':
+      case '.gqls':
+      case '.graphqls':
         content = printSchema(schema, {
           commentDescriptions: true,
         });
