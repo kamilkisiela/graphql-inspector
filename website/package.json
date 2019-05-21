@@ -9,6 +9,6 @@
     "live:prod": "rm -rf build/graphql-inspector/live && cd live && npm run build && cp -r ./build ../build/graphql-inspector/live"
   },
   "devDependencies": {
-    "docusaurus": "1.9.0"
+    "docusaurus": "1.10.0"
   }
 }
