@@ -8,11 +8,14 @@ export async function serve(
   schemaPointer: string,
   options: {
     renderer?: Renderer;
-    require: string[];
+    require?: string[];
+    headers?: Record<string, string>;
   },
 ) {
   const renderer = options.renderer || new ConsoleRenderer();
-  const schema = await loadSchema(schemaPointer);
+  const schema = await loadSchema(schemaPointer, {
+    headers: options.headers,
+  });
   const PORT = process.env.PORT || '4000';
   const app = new ApolloServer({
     cors: true,

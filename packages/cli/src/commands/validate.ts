@@ -15,15 +15,18 @@ export async function validate(
   documentsPointer: string,
   schemaPointer: string,
   options: {
-    require: string[];
+    require?: string[];
     deprecated: boolean;
     renderer?: Renderer;
+    headers?: Record<string, string>;
   },
 ) {
   const renderer = options.renderer || new ConsoleRenderer();
 
   try {
-    const schema = await loadSchema(schemaPointer);
+    const schema = await loadSchema(schemaPointer, {
+      headers: options.headers,
+    });
     const documents = await loadDocuments(documentsPointer);
 
     const invalidDocuments = validateDocuments(schema, documents);

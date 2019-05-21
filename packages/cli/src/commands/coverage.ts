@@ -22,6 +22,7 @@ export async function coverage(
     write?: string;
     silent?: boolean;
     renderer?: Renderer;
+    headers?: Record<string, string>;
   },
 ) {
   const renderer = options.renderer || new ConsoleRenderer();
@@ -30,7 +31,9 @@ export async function coverage(
   const shouldWrite = typeof writePath !== 'undefined';
 
   try {
-    const schema = await loadSchema(schemaPointer);
+    const schema = await loadSchema(schemaPointer, {
+      headers: options.headers,
+    });
     const documents = await loadDocuments(documentsPointer);
     const coverage = calculateCoverage(schema, documents);
 

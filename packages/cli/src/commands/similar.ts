@@ -21,7 +21,8 @@ export async function similar(
   name: string | undefined,
   threshold: number | undefined,
   options: {
-    require: string[];
+    require?: string[];
+    headers?: Record<string, string>;
     write?: string;
     renderer?: Renderer;
   },
@@ -31,7 +32,9 @@ export async function similar(
   const shouldWrite = typeof writePath !== 'undefined';
 
   try {
-    const schema = await loadSchema(schemaPointer);
+    const schema = await loadSchema(schemaPointer, {
+      headers: options.headers,
+    });
     const similarMap = findSimilar(schema, name, threshold);
 
     if (!Object.keys(similarMap).length) {

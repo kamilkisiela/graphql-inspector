@@ -17,7 +17,8 @@ export async function diff(
   options: {
     token?: string;
     renderer?: Renderer;
-    require: string[];
+    require?: string[];
+    headers?: Record<string, string>;
   },
 ) {
   const renderer = (options && options.renderer) || new ConsoleRenderer();
@@ -25,9 +26,11 @@ export async function diff(
   try {
     const oldSchema = await loadSchema(oldSchemaPointer, {
       token: options.token,
+      headers: options.headers,
     });
     const newSchema = await loadSchema(newSchemaPointer, {
       token: options.token,
+      headers: options.headers,
     });
 
     const changes = diffSchema(oldSchema, newSchema);

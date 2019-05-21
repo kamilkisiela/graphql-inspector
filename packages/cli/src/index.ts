@@ -17,8 +17,21 @@ function collect<T>(val: T, memo: T[]) {
   return memo;
 }
 
+function collectObject(val: string, memo: Record<string, string>) {
+  if (/^[^\:]+\:/i.test(val)) {
+    const splitAt = val.indexOf(':');
+    const key = val.substring(0, splitAt).trim();
+    const value = val.substring(splitAt + 1).trim();
+
+    memo[key] = value;
+  }
+
+  return memo;
+}
+
 commander.option('-r, --require [require]', 'Require modules', collect, []);
 commander.option('-t, --token <s>', 'Access Token');
+commander.option('-h, --header <s>', 'HTTP Headers', collectObject, {});
 
 const defaultPort = 4000;
 
