@@ -44,7 +44,7 @@
     "@types/express": "4.16.1",
     "@types/graphql": "14.2.0",
     "graphql": "14.3.0",
-    "probot": "9.2.11",
+    "probot": "9.2.12",
     "smee-client": "1.1.0",
     "typescript": "3.4.5"
   }
