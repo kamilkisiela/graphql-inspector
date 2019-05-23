@@ -30,7 +30,7 @@
     "graphql": "^0.13.0 || ^14.0.0"
   },
   "dependencies": {
-    "graphql-toolkit": "0.2.12",
+    "graphql-toolkit": "0.2.13",
     "node-fetch": "2.6.0"
   },
   "devDependencies": {
