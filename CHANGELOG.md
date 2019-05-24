@@ -2,6 +2,12 @@
 
 ### vNEXT
 
+### v1.19.0
+
+- **core**: include Interfaces in schema coverage [PR #271](https://github.com/kamilkisiela/graphql-inspector/pull/271) - thanks to [@alx13](http://github.com/alx13)
+- **cli**: add http headers [PR #281](https://github.com/kamilkisiela/graphql-inspector/pull/281)
+- **cli**: support gql and graphqls files as an introspect output [PR #295](https://github.com/kamilkisiela/graphql-inspector/pull/295)
+
 ### v1.18.1
 
 - **action**: show more details after file load failed [PR #223](https://github.com/kamilkisiela/graphql-inspector/pull/223)
