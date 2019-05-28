@@ -1,5 +1,5 @@
 {
-  "name": "graphql-inspector",
+  "name": "@graphql-inspector/cli",
   "private": true,
   "description": "Tooling for GraphQL. Compare GraphQL Schemas, check documents, find breaking changes, find similar types.",
   "keywords": [
