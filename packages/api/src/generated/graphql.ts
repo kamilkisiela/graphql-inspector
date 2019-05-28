@@ -1,4 +1,5 @@
 import * as core from '@graphql-inspector/core';
+export type Maybe<T> = T | null;
 
 export enum CriticalityLevel {
   Breaking = 'BREAKING',
@@ -15,19 +16,19 @@ export interface Query {
 
   readonly coverage: SchemaCoverage;
 
-  readonly diff?: ReadonlyArray<Change> | null;
+  readonly diff?: Maybe<ReadonlyArray<Change>>;
 
-  readonly validate?: ReadonlyArray<InvalidDocument> | null;
+  readonly validate?: Maybe<ReadonlyArray<InvalidDocument>>;
 
-  readonly similar?: ReadonlyArray<Similar> | null;
+  readonly similar?: Maybe<ReadonlyArray<Similar>>;
 
   readonly similarTo: Similar;
 }
 
 export interface SchemaCoverage {
-  readonly sources?: ReadonlyArray<DocumentSource> | null;
+  readonly sources?: Maybe<ReadonlyArray<DocumentSource>>;
 
-  readonly types?: ReadonlyArray<TypeCoverage> | null;
+  readonly types?: Maybe<ReadonlyArray<TypeCoverage>>;
 }
 
 export interface DocumentSource {
@@ -41,7 +42,7 @@ export interface TypeCoverage {
 
   readonly hits: number;
 
-  readonly children?: ReadonlyArray<TypeChildCoverage> | null;
+  readonly children?: Maybe<ReadonlyArray<TypeChildCoverage>>;
 }
 
 export interface TypeChildCoverage {
@@ -49,13 +50,13 @@ export interface TypeChildCoverage {
 
   readonly hits: number;
 
-  readonly locations?: ReadonlyArray<DocumentLocation> | null;
+  readonly locations?: Maybe<ReadonlyArray<DocumentLocation>>;
 }
 
 export interface DocumentLocation {
   readonly name: string;
 
-  readonly locations?: ReadonlyArray<Location> | null;
+  readonly locations?: Maybe<ReadonlyArray<Location>>;
 }
 
 export interface Location {
@@ -67,7 +68,7 @@ export interface Location {
 export interface Change {
   readonly message: string;
 
-  readonly path?: string | null;
+  readonly path?: Maybe<string>;
 
   readonly type: string;
 
@@ -77,22 +78,22 @@ export interface Change {
 export interface Criticality {
   readonly level: CriticalityLevel;
 
-  readonly reason?: string | null;
+  readonly reason?: Maybe<string>;
 }
 
 export interface InvalidDocument {
   readonly source: DocumentSource;
 
-  readonly errors?: ReadonlyArray<GraphQlError> | null;
+  readonly errors?: Maybe<ReadonlyArray<GraphQlError>>;
 }
 
 export interface GraphQlError {
   /** A message describing the Error for debugging purposes. */
   readonly message: string;
-  /** An array of { line, column } locations within the source GraphQL documentwhich correspond to this error.Errors during validation often contain multiple locations, for example topoint out two things with the same name. Errors during execution include asingle location, the field which produced the error. */
-  readonly locations?: ReadonlyArray<SourceLocation> | null;
-  /** An array of character offsets within the source GraphQL documentwhich correspond to this error. */
-  readonly positions?: ReadonlyArray<number | null> | null;
+  /** An array of { line, column } locations within the source GraphQL document which correspond to this error. Errors during validation often contain multiple locations, for example to point out two things with the same name. Errors during execution include a single location, the field which produced the error. */
+  readonly locations?: Maybe<ReadonlyArray<SourceLocation>>;
+  /** An array of character offsets within the source GraphQL document which correspond to this error. */
+  readonly positions?: Maybe<ReadonlyArray<Maybe<number>>>;
 }
 
 export interface SourceLocation {
@@ -106,7 +107,7 @@ export interface Similar {
 
   readonly best: Match;
 
-  readonly types?: ReadonlyArray<Match> | null;
+  readonly types?: Maybe<ReadonlyArray<Match>>;
 }
 
 export interface Match {
@@ -141,17 +142,17 @@ export interface ValidateQueryArgs {
 export interface SimilarQueryArgs {
   schema: string;
 
-  threshold?: number | null;
+  threshold?: Maybe<number>;
 }
 export interface SimilarToQueryArgs {
   schema: string;
 
   name: string;
 
-  threshold?: number | null;
+  threshold?: Maybe<number>;
 }
 
-import {GraphQLResolveInfo, GraphQLScalarTypeConfig} from 'graphql';
+import {GraphQLResolveInfo} from 'graphql';
 
 import {
   ResolvedTypeCoverage,
@@ -160,24 +161,24 @@ import {
   ResolvedSimilar,
 } from '../types';
 
-export type Resolver<Result, Parent = {}, Context = {}, Args = {}> = (
+export type Resolver<Result, Parent = {}, TContext = {}, Args = {}> = (
   parent: Parent,
   args: Args,
-  context: Context,
+  context: TContext,
   info: GraphQLResolveInfo,
 ) => Promise<Result> | Result;
 
-export interface ISubscriptionResolverObject<Result, Parent, Context, Args> {
+export interface ISubscriptionResolverObject<Result, Parent, TContext, Args> {
   subscribe<R = Result, P = Parent>(
     parent: P,
     args: Args,
-    context: Context,
+    context: TContext,
     info: GraphQLResolveInfo,
   ): AsyncIterator<R | Result> | Promise<AsyncIterator<R | Result>>;
   resolve?<R = Result, P = Parent>(
     parent: P,
     args: Args,
-    context: Context,
+    context: TContext,
     info: GraphQLResolveInfo,
   ): R | Result | Promise<R | Result>;
 }
@@ -185,19 +186,17 @@ export interface ISubscriptionResolverObject<Result, Parent, Context, Args> {
 export type SubscriptionResolver<
   Result,
   Parent = {},
-  Context = {},
+  TContext = {},
   Args = {}
 > =
   | ((
       ...args: any[]
-    ) => ISubscriptionResolverObject<Result, Parent, Context, Args>)
-  | ISubscriptionResolverObject<Result, Parent, Context, Args>;
+    ) => ISubscriptionResolverObject<Result, Parent, TContext, Args>)
+  | ISubscriptionResolverObject<Result, Parent, TContext, Args>;
 
-type Maybe<T> = T | null | undefined;
-
-export type TypeResolveFn<Types, Parent = {}, Context = {}> = (
+export type TypeResolveFn<Types, Parent = {}, TContext = {}> = (
   parent: Parent,
-  context: Context,
+  context: TContext,
   info: GraphQLResolveInfo,
 ) => Maybe<Types>;
 
@@ -212,38 +211,38 @@ export type DirectiveResolverFn<TResult, TArgs = {}, TContext = {}> = (
 ) => TResult | Promise<TResult>;
 
 export namespace QueryResolvers {
-  export interface Resolvers<Context = {}, TypeParent = {}> {
-    ping?: PingResolver<string, TypeParent, Context>;
+  export interface Resolvers<TContext = {}, TypeParent = {}> {
+    ping?: PingResolver<string, TypeParent, TContext>;
 
-    coverage?: CoverageResolver<core.SchemaCoverage, TypeParent, Context>;
+    coverage?: CoverageResolver<core.SchemaCoverage, TypeParent, TContext>;
 
-    diff?: DiffResolver<ReadonlyArray<Change> | null, TypeParent, Context>;
+    diff?: DiffResolver<Maybe<ReadonlyArray<Change>>, TypeParent, TContext>;
 
     validate?: ValidateResolver<
-      ReadonlyArray<InvalidDocument> | null,
+      Maybe<ReadonlyArray<InvalidDocument>>,
       TypeParent,
-      Context
+      TContext
     >;
 
     similar?: SimilarResolver<
-      ReadonlyArray<ResolvedSimilar> | null,
+      Maybe<ReadonlyArray<ResolvedSimilar>>,
       TypeParent,
-      Context
+      TContext
     >;
 
-    similarTo?: SimilarToResolver<ResolvedSimilar, TypeParent, Context>;
+    similarTo?: SimilarToResolver<ResolvedSimilar, TypeParent, TContext>;
   }
 
-  export type PingResolver<R = string, Parent = {}, Context = {}> = Resolver<
+  export type PingResolver<R = string, Parent = {}, TContext = {}> = Resolver<
     R,
     Parent,
-    Context
+    TContext
   >;
   export type CoverageResolver<
     R = core.SchemaCoverage,
     Parent = {},
-    Context = {}
-  > = Resolver<R, Parent, Context, CoverageArgs>;
+    TContext = {}
+  > = Resolver<R, Parent, TContext, CoverageArgs>;
   export interface CoverageArgs {
     schema: string;
 
@@ -251,10 +250,10 @@ export namespace QueryResolvers {
   }
 
   export type DiffResolver<
-    R = ReadonlyArray<Change> | null,
+    R = Maybe<ReadonlyArray<Change>>,
     Parent = {},
-    Context = {}
-  > = Resolver<R, Parent, Context, DiffArgs>;
+    TContext = {}
+  > = Resolver<R, Parent, TContext, DiffArgs>;
   export interface DiffArgs {
     oldSchema: string;
 
@@ -262,10 +261,10 @@ export namespace QueryResolvers {
   }
 
   export type ValidateResolver<
-    R = ReadonlyArray<InvalidDocument> | null,
+    R = Maybe<ReadonlyArray<InvalidDocument>>,
     Parent = {},
-    Context = {}
-  > = Resolver<R, Parent, Context, ValidateArgs>;
+    TContext = {}
+  > = Resolver<R, Parent, TContext, ValidateArgs>;
   export interface ValidateArgs {
     schema: string;
 
@@ -273,367 +272,367 @@ export namespace QueryResolvers {
   }
 
   export type SimilarResolver<
-    R = ReadonlyArray<ResolvedSimilar> | null,
+    R = Maybe<ReadonlyArray<ResolvedSimilar>>,
     Parent = {},
-    Context = {}
-  > = Resolver<R, Parent, Context, SimilarArgs>;
+    TContext = {}
+  > = Resolver<R, Parent, TContext, SimilarArgs>;
   export interface SimilarArgs {
     schema: string;
 
-    threshold?: number | null;
+    threshold?: Maybe<number>;
   }
 
   export type SimilarToResolver<
     R = ResolvedSimilar,
     Parent = {},
-    Context = {}
-  > = Resolver<R, Parent, Context, SimilarToArgs>;
+    TContext = {}
+  > = Resolver<R, Parent, TContext, SimilarToArgs>;
   export interface SimilarToArgs {
     schema: string;
 
     name: string;
 
-    threshold?: number | null;
+    threshold?: Maybe<number>;
   }
 }
 
 export namespace SchemaCoverageResolvers {
-  export interface Resolvers<Context = {}, TypeParent = core.SchemaCoverage> {
+  export interface Resolvers<TContext = {}, TypeParent = core.SchemaCoverage> {
     sources?: SourcesResolver<
-      ReadonlyArray<DocumentSource> | null,
+      Maybe<ReadonlyArray<DocumentSource>>,
       TypeParent,
-      Context
+      TContext
     >;
 
     types?: TypesResolver<
-      ReadonlyArray<ResolvedTypeCoverage> | null,
+      Maybe<ReadonlyArray<ResolvedTypeCoverage>>,
       TypeParent,
-      Context
+      TContext
     >;
   }
 
   export type SourcesResolver<
-    R = ReadonlyArray<DocumentSource> | null,
+    R = Maybe<ReadonlyArray<DocumentSource>>,
     Parent = core.SchemaCoverage,
-    Context = {}
-  > = Resolver<R, Parent, Context>;
+    TContext = {}
+  > = Resolver<R, Parent, TContext>;
   export type TypesResolver<
-    R = ReadonlyArray<ResolvedTypeCoverage> | null,
+    R = Maybe<ReadonlyArray<ResolvedTypeCoverage>>,
     Parent = core.SchemaCoverage,
-    Context = {}
-  > = Resolver<R, Parent, Context>;
+    TContext = {}
+  > = Resolver<R, Parent, TContext>;
 }
 
 export namespace DocumentSourceResolvers {
-  export interface Resolvers<Context = {}, TypeParent = DocumentSource> {
-    body?: BodyResolver<string, TypeParent, Context>;
+  export interface Resolvers<TContext = {}, TypeParent = DocumentSource> {
+    body?: BodyResolver<string, TypeParent, TContext>;
 
-    name?: NameResolver<string, TypeParent, Context>;
+    name?: NameResolver<string, TypeParent, TContext>;
   }
 
   export type BodyResolver<
     R = string,
     Parent = DocumentSource,
-    Context = {}
-  > = Resolver<R, Parent, Context>;
+    TContext = {}
+  > = Resolver<R, Parent, TContext>;
   export type NameResolver<
     R = string,
     Parent = DocumentSource,
-    Context = {}
-  > = Resolver<R, Parent, Context>;
+    TContext = {}
+  > = Resolver<R, Parent, TContext>;
 }
 
 export namespace TypeCoverageResolvers {
-  export interface Resolvers<Context = {}, TypeParent = ResolvedTypeCoverage> {
-    name?: NameResolver<string, TypeParent, Context>;
+  export interface Resolvers<TContext = {}, TypeParent = ResolvedTypeCoverage> {
+    name?: NameResolver<string, TypeParent, TContext>;
 
-    hits?: HitsResolver<number, TypeParent, Context>;
+    hits?: HitsResolver<number, TypeParent, TContext>;
 
     children?: ChildrenResolver<
-      ReadonlyArray<ResolvedTypeChildCoverage> | null,
+      Maybe<ReadonlyArray<ResolvedTypeChildCoverage>>,
       TypeParent,
-      Context
+      TContext
     >;
   }
 
   export type NameResolver<
     R = string,
     Parent = ResolvedTypeCoverage,
-    Context = {}
-  > = Resolver<R, Parent, Context>;
+    TContext = {}
+  > = Resolver<R, Parent, TContext>;
   export type HitsResolver<
     R = number,
     Parent = ResolvedTypeCoverage,
-    Context = {}
-  > = Resolver<R, Parent, Context>;
+    TContext = {}
+  > = Resolver<R, Parent, TContext>;
   export type ChildrenResolver<
-    R = ReadonlyArray<ResolvedTypeChildCoverage> | null,
+    R = Maybe<ReadonlyArray<ResolvedTypeChildCoverage>>,
     Parent = ResolvedTypeCoverage,
-    Context = {}
-  > = Resolver<R, Parent, Context>;
+    TContext = {}
+  > = Resolver<R, Parent, TContext>;
 }
 
 export namespace TypeChildCoverageResolvers {
   export interface Resolvers<
-    Context = {},
+    TContext = {},
     TypeParent = ResolvedTypeChildCoverage
   > {
-    name?: NameResolver<string, TypeParent, Context>;
+    name?: NameResolver<string, TypeParent, TContext>;
 
-    hits?: HitsResolver<number, TypeParent, Context>;
+    hits?: HitsResolver<number, TypeParent, TContext>;
 
     locations?: LocationsResolver<
-      ReadonlyArray<ResolvedDocumentLocation> | null,
+      Maybe<ReadonlyArray<ResolvedDocumentLocation>>,
       TypeParent,
-      Context
+      TContext
     >;
   }
 
   export type NameResolver<
     R = string,
     Parent = ResolvedTypeChildCoverage,
-    Context = {}
-  > = Resolver<R, Parent, Context>;
+    TContext = {}
+  > = Resolver<R, Parent, TContext>;
   export type HitsResolver<
     R = number,
     Parent = ResolvedTypeChildCoverage,
-    Context = {}
-  > = Resolver<R, Parent, Context>;
+    TContext = {}
+  > = Resolver<R, Parent, TContext>;
   export type LocationsResolver<
-    R = ReadonlyArray<ResolvedDocumentLocation> | null,
+    R = Maybe<ReadonlyArray<ResolvedDocumentLocation>>,
     Parent = ResolvedTypeChildCoverage,
-    Context = {}
-  > = Resolver<R, Parent, Context>;
+    TContext = {}
+  > = Resolver<R, Parent, TContext>;
 }
 
 export namespace DocumentLocationResolvers {
   export interface Resolvers<
-    Context = {},
+    TContext = {},
     TypeParent = ResolvedDocumentLocation
   > {
-    name?: NameResolver<string, TypeParent, Context>;
+    name?: NameResolver<string, TypeParent, TContext>;
 
     locations?: LocationsResolver<
-      ReadonlyArray<Location> | null,
+      Maybe<ReadonlyArray<Location>>,
       TypeParent,
-      Context
+      TContext
     >;
   }
 
   export type NameResolver<
     R = string,
     Parent = ResolvedDocumentLocation,
-    Context = {}
-  > = Resolver<R, Parent, Context>;
+    TContext = {}
+  > = Resolver<R, Parent, TContext>;
   export type LocationsResolver<
-    R = ReadonlyArray<Location> | null,
+    R = Maybe<ReadonlyArray<Location>>,
     Parent = ResolvedDocumentLocation,
-    Context = {}
-  > = Resolver<R, Parent, Context>;
+    TContext = {}
+  > = Resolver<R, Parent, TContext>;
 }
 
 export namespace LocationResolvers {
-  export interface Resolvers<Context = {}, TypeParent = Location> {
-    start?: StartResolver<number, TypeParent, Context>;
+  export interface Resolvers<TContext = {}, TypeParent = Location> {
+    start?: StartResolver<number, TypeParent, TContext>;
 
-    end?: EndResolver<number, TypeParent, Context>;
+    end?: EndResolver<number, TypeParent, TContext>;
   }
 
   export type StartResolver<
     R = number,
     Parent = Location,
-    Context = {}
-  > = Resolver<R, Parent, Context>;
+    TContext = {}
+  > = Resolver<R, Parent, TContext>;
   export type EndResolver<
     R = number,
     Parent = Location,
-    Context = {}
-  > = Resolver<R, Parent, Context>;
+    TContext = {}
+  > = Resolver<R, Parent, TContext>;
 }
 
 export namespace ChangeResolvers {
-  export interface Resolvers<Context = {}, TypeParent = Change> {
-    message?: MessageResolver<string, TypeParent, Context>;
+  export interface Resolvers<TContext = {}, TypeParent = Change> {
+    message?: MessageResolver<string, TypeParent, TContext>;
 
-    path?: PathResolver<string | null, TypeParent, Context>;
+    path?: PathResolver<Maybe<string>, TypeParent, TContext>;
 
-    type?: TypeResolver<string, TypeParent, Context>;
+    type?: TypeResolver<string, TypeParent, TContext>;
 
-    criticality?: CriticalityResolver<Criticality, TypeParent, Context>;
+    criticality?: CriticalityResolver<Criticality, TypeParent, TContext>;
   }
 
   export type MessageResolver<
     R = string,
     Parent = Change,
-    Context = {}
-  > = Resolver<R, Parent, Context>;
+    TContext = {}
+  > = Resolver<R, Parent, TContext>;
   export type PathResolver<
-    R = string | null,
+    R = Maybe<string>,
     Parent = Change,
-    Context = {}
-  > = Resolver<R, Parent, Context>;
+    TContext = {}
+  > = Resolver<R, Parent, TContext>;
   export type TypeResolver<
     R = string,
     Parent = Change,
-    Context = {}
-  > = Resolver<R, Parent, Context>;
+    TContext = {}
+  > = Resolver<R, Parent, TContext>;
   export type CriticalityResolver<
     R = Criticality,
     Parent = Change,
-    Context = {}
-  > = Resolver<R, Parent, Context>;
+    TContext = {}
+  > = Resolver<R, Parent, TContext>;
 }
 
 export namespace CriticalityResolvers {
-  export interface Resolvers<Context = {}, TypeParent = Criticality> {
-    level?: LevelResolver<CriticalityLevel, TypeParent, Context>;
+  export interface Resolvers<TContext = {}, TypeParent = Criticality> {
+    level?: LevelResolver<CriticalityLevel, TypeParent, TContext>;
 
-    reason?: ReasonResolver<string | null, TypeParent, Context>;
+    reason?: ReasonResolver<Maybe<string>, TypeParent, TContext>;
   }
 
   export type LevelResolver<
     R = CriticalityLevel,
     Parent = Criticality,
-    Context = {}
-  > = Resolver<R, Parent, Context>;
+    TContext = {}
+  > = Resolver<R, Parent, TContext>;
   export type ReasonResolver<
-    R = string | null,
+    R = Maybe<string>,
     Parent = Criticality,
-    Context = {}
-  > = Resolver<R, Parent, Context>;
+    TContext = {}
+  > = Resolver<R, Parent, TContext>;
 }
 
 export namespace InvalidDocumentResolvers {
-  export interface Resolvers<Context = {}, TypeParent = InvalidDocument> {
-    source?: SourceResolver<DocumentSource, TypeParent, Context>;
+  export interface Resolvers<TContext = {}, TypeParent = InvalidDocument> {
+    source?: SourceResolver<DocumentSource, TypeParent, TContext>;
 
     errors?: ErrorsResolver<
-      ReadonlyArray<GraphQlError> | null,
+      Maybe<ReadonlyArray<GraphQlError>>,
       TypeParent,
-      Context
+      TContext
     >;
   }
 
   export type SourceResolver<
     R = DocumentSource,
     Parent = InvalidDocument,
-    Context = {}
-  > = Resolver<R, Parent, Context>;
+    TContext = {}
+  > = Resolver<R, Parent, TContext>;
   export type ErrorsResolver<
-    R = ReadonlyArray<GraphQlError> | null,
+    R = Maybe<ReadonlyArray<GraphQlError>>,
     Parent = InvalidDocument,
-    Context = {}
-  > = Resolver<R, Parent, Context>;
+    TContext = {}
+  > = Resolver<R, Parent, TContext>;
 }
 
 export namespace GraphQlErrorResolvers {
-  export interface Resolvers<Context = {}, TypeParent = GraphQlError> {
+  export interface Resolvers<TContext = {}, TypeParent = GraphQlError> {
     /** A message describing the Error for debugging purposes. */
-    message?: MessageResolver<string, TypeParent, Context>;
-    /** An array of { line, column } locations within the source GraphQL documentwhich correspond to this error.Errors during validation often contain multiple locations, for example topoint out two things with the same name. Errors during execution include asingle location, the field which produced the error. */
+    message?: MessageResolver<string, TypeParent, TContext>;
+    /** An array of { line, column } locations within the source GraphQL document which correspond to this error. Errors during validation often contain multiple locations, for example to point out two things with the same name. Errors during execution include a single location, the field which produced the error. */
     locations?: LocationsResolver<
-      ReadonlyArray<SourceLocation> | null,
+      Maybe<ReadonlyArray<SourceLocation>>,
       TypeParent,
-      Context
+      TContext
     >;
-    /** An array of character offsets within the source GraphQL documentwhich correspond to this error. */
+    /** An array of character offsets within the source GraphQL document which correspond to this error. */
     positions?: PositionsResolver<
-      ReadonlyArray<number | null> | null,
+      Maybe<ReadonlyArray<Maybe<number>>>,
       TypeParent,
-      Context
+      TContext
     >;
   }
 
   export type MessageResolver<
     R = string,
     Parent = GraphQlError,
-    Context = {}
-  > = Resolver<R, Parent, Context>;
+    TContext = {}
+  > = Resolver<R, Parent, TContext>;
   export type LocationsResolver<
-    R = ReadonlyArray<SourceLocation> | null,
+    R = Maybe<ReadonlyArray<SourceLocation>>,
     Parent = GraphQlError,
-    Context = {}
-  > = Resolver<R, Parent, Context>;
+    TContext = {}
+  > = Resolver<R, Parent, TContext>;
   export type PositionsResolver<
-    R = ReadonlyArray<number | null> | null,
+    R = Maybe<ReadonlyArray<Maybe<number>>>,
     Parent = GraphQlError,
-    Context = {}
-  > = Resolver<R, Parent, Context>;
+    TContext = {}
+  > = Resolver<R, Parent, TContext>;
 }
 
 export namespace SourceLocationResolvers {
-  export interface Resolvers<Context = {}, TypeParent = SourceLocation> {
-    line?: LineResolver<number, TypeParent, Context>;
+  export interface Resolvers<TContext = {}, TypeParent = SourceLocation> {
+    line?: LineResolver<number, TypeParent, TContext>;
 
-    column?: ColumnResolver<number, TypeParent, Context>;
+    column?: ColumnResolver<number, TypeParent, TContext>;
   }
 
   export type LineResolver<
     R = number,
     Parent = SourceLocation,
-    Context = {}
-  > = Resolver<R, Parent, Context>;
+    TContext = {}
+  > = Resolver<R, Parent, TContext>;
   export type ColumnResolver<
     R = number,
     Parent = SourceLocation,
-    Context = {}
-  > = Resolver<R, Parent, Context>;
+    TContext = {}
+  > = Resolver<R, Parent, TContext>;
 }
 
 export namespace SimilarResolvers {
-  export interface Resolvers<Context = {}, TypeParent = ResolvedSimilar> {
-    name?: NameResolver<string, TypeParent, Context>;
+  export interface Resolvers<TContext = {}, TypeParent = ResolvedSimilar> {
+    name?: NameResolver<string, TypeParent, TContext>;
 
-    best?: BestResolver<Match, TypeParent, Context>;
+    best?: BestResolver<Match, TypeParent, TContext>;
 
-    types?: TypesResolver<ReadonlyArray<Match> | null, TypeParent, Context>;
+    types?: TypesResolver<Maybe<ReadonlyArray<Match>>, TypeParent, TContext>;
   }
 
   export type NameResolver<
     R = string,
     Parent = ResolvedSimilar,
-    Context = {}
-  > = Resolver<R, Parent, Context>;
+    TContext = {}
+  > = Resolver<R, Parent, TContext>;
   export type BestResolver<
     R = Match,
     Parent = ResolvedSimilar,
-    Context = {}
-  > = Resolver<R, Parent, Context>;
+    TContext = {}
+  > = Resolver<R, Parent, TContext>;
   export type TypesResolver<
-    R = ReadonlyArray<Match> | null,
+    R = Maybe<ReadonlyArray<Match>>,
     Parent = ResolvedSimilar,
-    Context = {}
-  > = Resolver<R, Parent, Context>;
+    TContext = {}
+  > = Resolver<R, Parent, TContext>;
 }
 
 export namespace MatchResolvers {
-  export interface Resolvers<Context = {}, TypeParent = Match> {
-    name?: NameResolver<string, TypeParent, Context>;
+  export interface Resolvers<TContext = {}, TypeParent = Match> {
+    name?: NameResolver<string, TypeParent, TContext>;
 
-    rating?: RatingResolver<number, TypeParent, Context>;
+    rating?: RatingResolver<number, TypeParent, TContext>;
   }
 
-  export type NameResolver<R = string, Parent = Match, Context = {}> = Resolver<
-    R,
-    Parent,
-    Context
-  >;
+  export type NameResolver<
+    R = string,
+    Parent = Match,
+    TContext = {}
+  > = Resolver<R, Parent, TContext>;
   export type RatingResolver<
     R = number,
     Parent = Match,
-    Context = {}
-  > = Resolver<R, Parent, Context>;
+    TContext = {}
+  > = Resolver<R, Parent, TContext>;
 }
 
 export namespace MutationResolvers {
-  export interface Resolvers<Context = {}, TypeParent = {}> {
-    ping?: PingResolver<string, TypeParent, Context>;
+  export interface Resolvers<TContext = {}, TypeParent = {}> {
+    ping?: PingResolver<string, TypeParent, TContext>;
   }
 
-  export type PingResolver<R = string, Parent = {}, Context = {}> = Resolver<
+  export type PingResolver<R = string, Parent = {}, TContext = {}> = Resolver<
     R,
     Parent,
-    Context
+    TContext
   >;
 }
 
@@ -667,5 +666,29 @@ export type DeprecatedDirectiveResolver<Result> = DirectiveResolverFn<
 >;
 export interface DeprecatedDirectiveArgs {
   /** Explains why this element was deprecated, usually also including a suggestion for how to access supported similar data. Formatted using the Markdown syntax (as specified by [CommonMark](https://commonmark.org/). */
-  reason?: string | null;
+  reason?: string;
 }
+
+export type IResolvers<TContext = {}> = {
+  Query?: QueryResolvers.Resolvers<TContext>;
+  SchemaCoverage?: SchemaCoverageResolvers.Resolvers<TContext>;
+  DocumentSource?: DocumentSourceResolvers.Resolvers<TContext>;
+  TypeCoverage?: TypeCoverageResolvers.Resolvers<TContext>;
+  TypeChildCoverage?: TypeChildCoverageResolvers.Resolvers<TContext>;
+  DocumentLocation?: DocumentLocationResolvers.Resolvers<TContext>;
+  Location?: LocationResolvers.Resolvers<TContext>;
+  Change?: ChangeResolvers.Resolvers<TContext>;
+  Criticality?: CriticalityResolvers.Resolvers<TContext>;
+  InvalidDocument?: InvalidDocumentResolvers.Resolvers<TContext>;
+  GraphQlError?: GraphQlErrorResolvers.Resolvers<TContext>;
+  SourceLocation?: SourceLocationResolvers.Resolvers<TContext>;
+  Similar?: SimilarResolvers.Resolvers<TContext>;
+  Match?: MatchResolvers.Resolvers<TContext>;
+  Mutation?: MutationResolvers.Resolvers<TContext>;
+} & {[typeName: string]: never};
+
+export type IDirectiveResolvers<Result> = {
+  skip?: SkipDirectiveResolver<Result>;
+  include?: IncludeDirectiveResolver<Result>;
+  deprecated?: DeprecatedDirectiveResolver<Result>;
+} & {[directiveName: string]: never};
