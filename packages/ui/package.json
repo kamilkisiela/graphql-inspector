@@ -57,7 +57,7 @@
     "react-apollo-hooks": "0.4.5",
     "react-router-dom": "5.0.0",
     "react-scripts": "3.0.1",
-    "styled-components": "4.2.0",
+    "styled-components": "4.2.1",
     "ts-jest": "24.0.2",
     "typescript": "3.5.1"
   },
