@@ -19,10 +19,21 @@ export interface InvalidDocument {
   deprecated: GraphQLError[];
 }
 
+export interface ValidateOptions {
+  strictFragments?: boolean;
+  strictDeprecated?: boolean;
+}
+
 export function validate(
   schema: GraphQLSchema,
   sources: Source[],
+  options?: ValidateOptions,
 ): InvalidDocument[] {
+  const config: ValidateOptions = {
+    strictDeprecated: true,
+    strictFragments: true,
+    ...options,
+  };
   const invalidDocuments: InvalidDocument[] = [];
   // read documents
   const documents = sources.map(readDocument);
@@ -77,8 +88,13 @@ export function validate(
       };
 
       const errors = validateDocument(schema, merged) as GraphQLError[];
-      const deprecated = findDeprecatedUsages(schema, parse(doc.source.body));
-      const duplicatedFragments = findDuplicatedFragments(fragmentNames);
+
+      const deprecated = config.strictDeprecated
+        ? findDeprecatedUsages(schema, parse(doc.source.body))
+        : [];
+      const duplicatedFragments = config.strictFragments
+        ? findDuplicatedFragments(fragmentNames)
+        : [];
 
       if (sumLengths(errors, duplicatedFragments, deprecated) > 0) {
         invalidDocuments.push({

@@ -17,6 +17,7 @@ export async function validate(
   options: {
     require?: string[];
     deprecated: boolean;
+    noStrictFragments: boolean;
     renderer?: Renderer;
     headers?: Record<string, string>;
   },
@@ -29,7 +30,9 @@ export async function validate(
     });
     const documents = await loadDocuments(documentsPointer);
 
-    const invalidDocuments = validateDocuments(schema, documents);
+    const invalidDocuments = validateDocuments(schema, documents, {
+      strictFragments: !options.noStrictFragments,
+    });
 
     if (!invalidDocuments.length) {
       renderer.success('All documents are valid');

@@ -2,6 +2,9 @@
 
 ### vNEXT
 
+- **core**: `strictFragments` and `strictDeprecated` falgs in `validate()`
+- **cli**: `noStrictFragments` flag
+
 ### v1.19.0
 
 - **core**: include Interfaces in schema coverage [PR #271](https://github.com/kamilkisiela/graphql-inspector/pull/271) - thanks to [@alx13](http://github.com/alx13)
