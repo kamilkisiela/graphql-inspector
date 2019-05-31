@@ -29,6 +29,7 @@ describe('validate', () => {
       renderer,
       require: [],
       deprecated: false,
+      noStrictFragments: false,
     });
 
     expect(

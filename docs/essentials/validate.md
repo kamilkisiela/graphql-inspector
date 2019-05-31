@@ -20,6 +20,7 @@ Run the following command:
 **Flags**
 
 - `-d, --deprecated` - Fail on deprecated usage (default: _false_)
+- `--noStrictFragments` - Do not fail on duplicated fragment names (default: _false_)
 - `-r, --require <s...>` - require modules
 - `-t, --token <s>` - an access token
 
