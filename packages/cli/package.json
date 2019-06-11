@@ -55,7 +55,7 @@
     "@types/indent-string": "3.2.0",
     "@types/jest": "24.0.13",
     "@types/log-symbols": "2.0.0",
-    "@types/node": "11.13.13",
+    "@types/node": "11.13.14",
     "@types/opn": "5.1.0",
     "graphql": "14.3.1",
     "graphql-tag": "2.10.1",
