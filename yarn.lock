@@ -3069,7 +3069,16 @@
     "@uifabric/utilities" "^6.41.0"
     tslib "^1.7.1"
 
-"@uifabric/icons@6.5.2", "@uifabric/icons@^6.5.2":
+"@uifabric/icons@6.5.3":
+  version "6.5.3"
+  resolved "https://registry.yarnpkg.com/@uifabric/icons/-/icons-6.5.3.tgz#e9c8d9bffa4f9ba99d91b878932fe90104d61efa"
+  integrity sha512-baqA8QGP68RD2IsKfsd40hVK1/GyweOvAKYcxkCIFXGz0mGtBVhSy8hs1jHdU9cdZeo4ebDkkn11TizCm/b00A==
+  dependencies:
+    "@uifabric/set-version" "^1.1.3"
+    "@uifabric/styling" "^6.49.1"
+    tslib "^1.7.1"
+
+"@uifabric/icons@^6.5.2":
   version "6.5.2"
   resolved "https://registry.yarnpkg.com/@uifabric/icons/-/icons-6.5.2.tgz#88524fa4fcc55b96b26e174798b0f362485df9b8"
   integrity sha512-YgKNXqBRX/MJeqoPwN2n2IHyCckAgVeFKFfmO4PX6P8lcR2CJIDh967y4QybfTnO752QYh0fN07zOG7bOa9/uw==
@@ -3090,6 +3099,14 @@
   version "6.18.1"
   resolved "https://registry.yarnpkg.com/@uifabric/merge-styles/-/merge-styles-6.18.1.tgz#214198cd52ca5b1129b0107ae016b2bef1d95173"
   integrity sha512-aqYwm5jaLOIqVrelwqoyuzQu4sHgC8JaklX3mKsL6jYJfo34KOqlkSg3oSiVc1cGegtM+f9XwAtSsNmoB2pkUA==
+  dependencies:
+    "@uifabric/set-version" "^1.1.3"
+    tslib "^1.7.1"
+
+"@uifabric/merge-styles@^6.19.1":
+  version "6.19.1"
+  resolved "https://registry.yarnpkg.com/@uifabric/merge-styles/-/merge-styles-6.19.1.tgz#61439a090bd7d08c8cc77776bab2b46585ac1c05"
+  integrity sha512-D59Aqd+Fq88K7aPKPhRh9rzfnBWxJ2sMG1qOTFLW6PCfQrlsfRStyJBemIuKLk/DUEsqp7h6FFwGCapgc92QOw==
   dependencies:
     "@uifabric/set-version" "^1.1.3"
     tslib "^1.7.1"
@@ -3123,6 +3140,17 @@
     "@uifabric/utilities" "^6.41.0"
     tslib "^1.7.1"
 
+"@uifabric/styling@^6.49.1":
+  version "6.49.1"
+  resolved "https://registry.yarnpkg.com/@uifabric/styling/-/styling-6.49.1.tgz#56e526df6a8eb370b5c312c62427f09e1901e3e8"
+  integrity sha512-rKhPob9QNlwdF8d5ShYIj4aW2oF10pXnLg8tyNviBYvgDji5Qb4gJlkh9hCjJi2rSwPiHDjSwC2cH2Bqe7+KfA==
+  dependencies:
+    "@microsoft/load-themed-styles" "^1.7.13"
+    "@uifabric/merge-styles" "^6.19.1"
+    "@uifabric/set-version" "^1.1.3"
+    "@uifabric/utilities" "^6.41.1"
+    tslib "^1.7.1"
+
 "@uifabric/utilities@^6.38.3":
   version "6.38.3"
   resolved "https://registry.yarnpkg.com/@uifabric/utilities/-/utilities-6.38.3.tgz#ea0b34a685ddc90341cff11239d5c0cd7e6dbd9e"
@@ -3139,6 +3167,16 @@
   integrity sha512-l1292s9uww3hJs/aNCfBqUKVr/5tiFfpKXy2csplJkRP5TVdMwFfyI92Y/1THAVk1Q7mojo2cpYltnk7wC3uLQ==
   dependencies:
     "@uifabric/merge-styles" "^6.18.1"
+    "@uifabric/set-version" "^1.1.3"
+    prop-types "^15.5.10"
+    tslib "^1.7.1"
+
+"@uifabric/utilities@^6.41.1":
+  version "6.41.1"
+  resolved "https://registry.yarnpkg.com/@uifabric/utilities/-/utilities-6.41.1.tgz#1a0b06ec575377417c4bf27613d0a85ae9e8649d"
+  integrity sha512-aYFqPrfAsO4ShzcNE51bzI383VD37Nh69kntEsVVtaAcFQ+ZcV9FBLP9D+xzPCTBvzfsfSq4DUWiateIGMwJgQ==
+  dependencies:
+    "@uifabric/merge-styles" "^6.19.1"
     "@uifabric/set-version" "^1.1.3"
     prop-types "^15.5.10"
     tslib "^1.7.1"
