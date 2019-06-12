@@ -2287,10 +2287,10 @@
   resolved "https://registry.yarnpkg.com/@nodelib/fs.stat/-/fs.stat-1.1.3.tgz#2b5a3ab3f918cca48a8c754c08168e3f03eba61b"
   integrity sha512-shAmDyaQC4H92APFoIaVDHCx5bStIocgvbwQyxPRrbUY20V1EYTbSDchWbuwlMG3V17cprZhA6+78JfB+3DTPw==
 
-"@octokit/app@^3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@octokit/app/-/app-3.0.0.tgz#c2f83f302805299b46ac40cbfea568e1297e583c"
-  integrity sha512-zCj5u37H1DOhedVVVI4C/kpxXO5S/nxM25O+KnC7DT1Hf3rFWO+SDLz757IPRu9j6Br4L23YbmDpV5bvCL85eA==
+"@octokit/app@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@octokit/app/-/app-3.0.1.tgz#072e48127eb3c004f9a8ae9c81bfbf8c1850b41d"
+  integrity sha512-uUN1XCzHJTqiKbeTKAuTYAiu/IYV5uN606smwGZsg//8xVHvlwdv7x9nwpYAs32addRk+TZB55nitwgQlzt1jw==
   dependencies:
     "@octokit/request" "^4.1.0"
     jsonwebtoken "^8.3.0"
@@ -12551,12 +12551,12 @@ probot-config@1.0.1:
     deepmerge "^2.2.1"
     js-yaml "^3.10.0"
 
-probot@9.2.14:
-  version "9.2.14"
-  resolved "https://registry.yarnpkg.com/probot/-/probot-9.2.14.tgz#1395eb6ccec5027f910c9aada1515468350c641a"
-  integrity sha512-3uTK4sgHuLHIFMnR8vtGwPRg4NaCelDx80OF0c/YRSXN2/XX2sfVaJudpQLZDgwzsqddZtj4phtrfAWeq+TAhw==
+probot@9.2.15:
+  version "9.2.15"
+  resolved "https://registry.yarnpkg.com/probot/-/probot-9.2.15.tgz#9ce82213d78860866773b092531ca78ece09214b"
+  integrity sha512-tZF1IdpbigwODWSGZEvO+6xGKemzNhRtNJMYs2sa8nPajfhZsQ0NX/g04bfX9YYWuBjC2gn7yNHRLG2+DLSzzw==
   dependencies:
-    "@octokit/app" "^3.0.0"
+    "@octokit/app" "^3.0.1"
     "@octokit/graphql" "2.1.2"
     "@octokit/plugin-enterprise-compatibility" "^1.0.0"
     "@octokit/plugin-retry" "^2.1.1"
