@@ -2,8 +2,11 @@
 
 ### vNEXT
 
-- **core**: `strictFragments` and `strictDeprecated` falgs in `validate()`
-- **cli**: `noStrictFragments` flag
+### v1.20.0
+
+- **core**: `strictFragments` and `strictDeprecated` falgs in `validate()` [PR #321](https://github.com/kamilkisiela/graphql-inspector/pull/321)
+- **cli**: `noStrictFragments` flag [PR #321](https://github.com/kamilkisiela/graphql-inspector/pull/321)
+- **core**: fix schema coverage by skipping `__typename` [PR #353](https://github.com/kamilkisiela/graphql-inspector/pull/353) - thanks to [@loremaps](http://github.com/loremaps)
 
 ### v1.19.0
 
