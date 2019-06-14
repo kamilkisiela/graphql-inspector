@@ -61,7 +61,7 @@ export function coverage(
       const fieldDef = typeInfo.getFieldDef();
       const parent = typeInfo.getParentType();
 
-      if (parent && fieldDef) {
+      if (parent && fieldDef && fieldDef.name !== '__typename') {
         const locations =
           coverage.types[parent.name].children[fieldDef.name].locations[
             source.name
