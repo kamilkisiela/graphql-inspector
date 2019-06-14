@@ -19,8 +19,9 @@ It supports .graphql, .gql and .json extensions.
 **Flags**
 
 - `-w, --write <s>` - overwrite the output (_default: graphql.schema.json_)
-- `-r, --require <s...>` - require modules
+- `-r, --require <s>` - require a module
 - `-t, --token <s>` - an access token
+- `-h, --header <s>` - set http header (`--header 'Auth: Basic 123')
 
 **Output**
 
