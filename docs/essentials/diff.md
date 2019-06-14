@@ -19,8 +19,9 @@ Run the following command:
 
 **Flags**
 
-- `-r, --require <s...>` - require modules
+- `-r, --require <s>` - require a module
 - `-t, --token <s>` - an access token
+- `-h, --header <s>` - set http header (`--header 'Auth: Basic 123')
 
 **Output**
 

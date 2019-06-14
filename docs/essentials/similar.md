@@ -21,8 +21,9 @@ Run the following command:
 - `-n, --type <s>` - Check only a single type (_checks all types by default_)
 - `-t, --threshold <n>` - Threshold of similarity ratio (_default: 0.4_)
 - `-w, --write <s>` - Write a file with results
-- `-r, --require <s...>` - require modules
+- `-r, --require <s>` - require a module
 - `-t, --token <s>` - an access token
+- `-h, --header <s>` - set http header (`--header 'Auth: Basic 123')
 
 **Output**
 
