@@ -21,8 +21,9 @@ Run the following command:
 
 - `-d, --deprecated` - Fail on deprecated usage (default: _false_)
 - `--noStrictFragments` - Do not fail on duplicated fragment names (default: _false_)
-- `-r, --require <s...>` - require modules
+- `-r, --require <s>` - require a module
 - `-t, --token <s>` - an access token
+- `-h, --header <s>` - set http header (`--header 'Auth: Basic 123')
 
 **Output**
 
