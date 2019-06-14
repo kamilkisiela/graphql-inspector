@@ -33,6 +33,7 @@ describe('coverage', () => {
       query getPost {
         post {
           id
+          __typename
           title
         }
       }
