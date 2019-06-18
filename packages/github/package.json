@@ -42,7 +42,7 @@
   },
   "devDependencies": {
     "@types/express": "4.17.0",
-    "@types/graphql": "14.2.0",
+    "@types/graphql": "14.2.1",
     "graphql": "14.3.1",
     "probot": "9.2.14",
     "smee-client": "1.1.0",
