@@ -43,7 +43,7 @@
     "@types/node": "11.13.14",
     "@types/react": "16.8.13",
     "@types/react-dom": "16.8.4",
-    "@types/react-router-dom": "4.3.3",
+    "@types/react-router-dom": "4.3.4",
     "@types/styled-components": "4.1.15",
     "@uifabric/icons": "7.0.2",
     "apollo-cache-inmemory": "1.6.2",
