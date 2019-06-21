@@ -2,6 +2,7 @@ import {GraphQLSchema, isSchema, DocumentNode, buildASTSchema} from 'graphql';
 import {loadSchema as useSchema} from 'graphql-toolkit';
 
 import {fromGithub} from './from-github';
+import {fromGit} from './from-git';
 
 export async function loadSchema(
   pointer: string,
@@ -11,6 +12,12 @@ export async function loadSchema(
 
   if (useGithub) {
     return useGithub();
+  }
+
+  const useGit = fromGit(pointer);
+
+  if (useGit) {
+    return useGit();
   }
 
   const resolved = await useSchema(pointer, extra || {});

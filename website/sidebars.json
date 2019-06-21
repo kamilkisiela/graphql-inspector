@@ -10,6 +10,6 @@
       "essentials/introspect"
     ],
     "API": ["api/schema", "api/documents"],
-    "Recipes": ["recipes/github"]
+    "Recipes": ["recipes/ci", "recipes/github"]
   }
 }

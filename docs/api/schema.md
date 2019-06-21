@@ -44,6 +44,16 @@ GraphQL Inspector can also introspect your GraphQL server:
 
     $ graphql-inspector diff http://api.com/graphql ./new-schema.json
 
+## Git repository
+
+Get GraphQL Schema file from any branch or commit of your git repository:
+
+    git:origin/branch:path/to/file
+
+For example, you want to get `schema.graphql` from `origin/master`:
+
+    git:origin/master:./schema.graphql
+
 ## Github repository
 
 Yes, GraphQL Inspector can also do that, here's the pattern:

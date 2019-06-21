@@ -31,7 +31,8 @@
   },
   "dependencies": {
     "graphql-toolkit": "0.2.14",
-    "node-fetch": "2.6.0"
+    "node-fetch": "2.6.0",
+    "simple-git": "1.116.0"
   },
   "devDependencies": {
     "@types/express": "4.17.0",
