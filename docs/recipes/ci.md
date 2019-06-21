@@ -34,3 +34,19 @@ Now, when you push your changes you would see the following:
 ![Schema Diff in CircleCI](/img/cli/diff-ci.jpg)
 
 > Remember, you can use any command the CLI offers.
+
+We recommend to automate the workflow and use `husky` to run [`$ graphql-inspector introspect`](../essentials/introspect):
+
+```json
+{
+  // ...
+  "scripts": {
+    "graphql:dump": "graphql-inspector introspect schema.js --write schema.graphql"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn graphql:dump && git add schema.graphql"
+    }
+  }
+}
+```
