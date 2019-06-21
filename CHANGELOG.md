@@ -2,6 +2,9 @@
 
 ### vNEXT
 
+- **load**: allow to load schema entirely based on `git` [PR #366](https://github.com/kamilkisiela/graphql-inspector/pull/366)
+- **cli**: open up for every CI solution out there! [PR #366](https://github.com/kamilkisiela/graphql-inspector/pull/366)
+
 ### v1.20.0
 
 - **core**: `strictFragments` and `strictDeprecated` falgs in `validate()` [PR #321](https://github.com/kamilkisiela/graphql-inspector/pull/321)
