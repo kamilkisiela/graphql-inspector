@@ -31,7 +31,7 @@ jobs:
 
 Now, when you push your changes you would see the following:
 
-![Schema Diff in CircleCI](/img/cli/diff-ci.jpg)
+![Schema Diff in CircleCI](/img/ci/diff.jpg)
 
 > Remember, you can use any command the CLI offers.
 
