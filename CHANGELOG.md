@@ -2,6 +2,8 @@
 
 ### vNEXT
 
+### v1.21.0
+
 - **load**: allow to load schema entirely based on `git` [PR #366](https://github.com/kamilkisiela/graphql-inspector/pull/366)
 - **cli**: open up for every CI solution out there! [PR #366](https://github.com/kamilkisiela/graphql-inspector/pull/366)
 

@@ -210,6 +210,16 @@ export default {
 }
 ```
 
+**Pointer to a Git repository**
+
+Example:
+
+    graphql-inspector diff git:origin/master:schema.graphql
+
+Pattern:
+
+    git:ref:path/to/file
+
 **Pointer to a Github repository**
 
 Example:
