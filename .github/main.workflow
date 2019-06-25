@@ -41,13 +41,12 @@ action "Clean after a PR" {
   secrets = ["GITHUB_TOKEN"]
 }
 
-
-workflow "Auto-merge Dependabot And Renovate" {
+workflow "Auto-Merge Dependabot And Renovate" {
   on = "status"
-  resolves = "automerge"
+  resolves = ["Auto Merge"]
 }
 
-action "automerge" {
+action "Auto Merge" {
   uses = "pascalgn/automerge-action@master"
   secrets = ["GITHUB_TOKEN"]
   env = {
@@ -56,4 +55,5 @@ action "automerge" {
     AUTOREBASE = "rebase"
     MERGE_METHOD = "squash"
   }
+  args = "--debug"
 }
