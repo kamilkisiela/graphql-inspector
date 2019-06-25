@@ -40,3 +40,20 @@ action "Clean after a PR" {
   uses = "./actions/cleanup/"
   secrets = ["GITHUB_TOKEN"]
 }
+
+
+workflow "Auto-merge Dependabot And Renovate" {
+  on = "status"
+  resolves = "automerge"
+}
+
+action "automerge" {
+  uses = "pascalgn/automerge-action@master"
+  secrets = ["GITHUB_TOKEN"]
+  env = {
+    LABELS = "!wip,dependencies"
+    AUTOMERGE = "dependencies"
+    AUTOREBASE = "rebase"
+    MERGE_METHOD = "squash"
+  }
+}
