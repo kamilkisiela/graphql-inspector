@@ -12601,10 +12601,10 @@ private@^0.1.6:
   resolved "https://registry.yarnpkg.com/private/-/private-0.1.8.tgz#2381edb3689f7a53d653190060fcf822d2f368ff"
   integrity sha512-VvivMrbvd2nKkiG38qjULzlc+4Vx4wm/whI9pQD35YrARNnhxeiRktSOhSukRLFNlzg6Br/cJPet5J/u19r/mg==
 
-probot-config@1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/probot-config/-/probot-config-1.0.1.tgz#8d4f5eae7f0b0777e0386de8c55a173a434c0dad"
-  integrity sha512-xfQ+Fw8KuxSLj9kET/FN4kdgduVDWpibGP/vNueuhq1bmzRosiFbs/XsB3uUjpm+TWdt37TuwAvFOfvAJm7Sig==
+probot-config@1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/probot-config/-/probot-config-1.1.0.tgz#f8131c9f4f3e499e7bfc5c79284d012e4a8d2f25"
+  integrity sha512-FkTWzitDzkmGG3Pt7zLl2sTRpHuRbrUnKUbxs+7ruqoLv2dOEdc+sU1+uk0EP+fRR84sBkQfv8UjGASdeKT5lg==
   dependencies:
     deepmerge "^2.2.1"
     js-yaml "^3.10.0"
