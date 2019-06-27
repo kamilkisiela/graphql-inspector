@@ -3086,10 +3086,10 @@
   dependencies:
     tslib "^1.7.1"
 
-"@uifabric/styling@^7.0.2":
-  version "7.0.2"
-  resolved "https://registry.yarnpkg.com/@uifabric/styling/-/styling-7.0.2.tgz#bfa60750962bdff2408a642aab373e5cac73ee19"
-  integrity sha512-05hYiFWTTal85/H5AYwShveA0nyJ0DpEpjArXbGVd98o2L1oZk9L0YQygTHU86YWtgwOAjnUjef0oYSdUm6rYw==
+"@uifabric/styling@^7.0.2", "@uifabric/styling@^7.0.3":
+  version "7.0.3"
+  resolved "https://registry.yarnpkg.com/@uifabric/styling/-/styling-7.0.3.tgz#434cbed7b56e2686d5390b1b7fd8c86df6a6135a"
+  integrity sha512-hW+Zjug1NTvfkWnAMKfak/hFTnUHybLnF2YYLeRA1ab4mAoRGXYh/7Pj18FTzmpED2U/3utJk7tdKvNbm++h3Q==
   dependencies:
     "@microsoft/load-themed-styles" "^1.7.13"
     "@uifabric/merge-styles" "^7.0.2"
@@ -11318,17 +11318,17 @@ octokit-pagination-methods@1.1.0, octokit-pagination-methods@^1.1.0:
   resolved "https://registry.yarnpkg.com/octokit-pagination-methods/-/octokit-pagination-methods-1.1.0.tgz#cf472edc9d551055f9ef73f6e42b4dbb4c80bea4"
   integrity sha512-fZ4qZdQ2nxJvtcasX7Ghl+WlWS/d9IgnBIwFZXVNNZUmzpno91SX5bc5vuxiuKoCtK78XxGGNuSCrDC7xYB3OQ==
 
-office-ui-fabric-react@7.5.0:
-  version "7.5.0"
-  resolved "https://registry.yarnpkg.com/office-ui-fabric-react/-/office-ui-fabric-react-7.5.0.tgz#ebd35e763be4a72a6ebbaff25ff54d7d08c055ae"
-  integrity sha512-+gDTRL+GyTjMlFIYJZpRfWMRmw+ddQoP6CxWEDxVPG1K8l6LB1oUe6QADbXpSkMnG9RETLdSoS+mGYuWGDO6dg==
+office-ui-fabric-react@7.6.0:
+  version "7.6.0"
+  resolved "https://registry.yarnpkg.com/office-ui-fabric-react/-/office-ui-fabric-react-7.6.0.tgz#432758ec328744b7a5c1b0e8b49fb5219643f566"
+  integrity sha512-DYD1qJXgjRDRURjvMXLZzWMLdmF7KqL9LlFoMlH1DHJIoUOFwgTyeIM6gERLn8lGKOSk14sR369R8jEkZUMi5g==
   dependencies:
     "@microsoft/load-themed-styles" "^1.7.13"
     "@uifabric/foundation" "^7.0.1"
     "@uifabric/icons" "^7.0.2"
     "@uifabric/merge-styles" "^7.0.2"
     "@uifabric/set-version" "^7.0.0"
-    "@uifabric/styling" "^7.0.2"
+    "@uifabric/styling" "^7.0.3"
     "@uifabric/utilities" "^7.0.3"
     prop-types "^15.5.10"
     tslib "^1.7.1"
