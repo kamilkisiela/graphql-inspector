@@ -2287,12 +2287,12 @@
   resolved "https://registry.yarnpkg.com/@nodelib/fs.stat/-/fs.stat-1.1.3.tgz#2b5a3ab3f918cca48a8c754c08168e3f03eba61b"
   integrity sha512-shAmDyaQC4H92APFoIaVDHCx5bStIocgvbwQyxPRrbUY20V1EYTbSDchWbuwlMG3V17cprZhA6+78JfB+3DTPw==
 
-"@octokit/app@^3.0.1":
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/@octokit/app/-/app-3.0.1.tgz#072e48127eb3c004f9a8ae9c81bfbf8c1850b41d"
-  integrity sha512-uUN1XCzHJTqiKbeTKAuTYAiu/IYV5uN606smwGZsg//8xVHvlwdv7x9nwpYAs32addRk+TZB55nitwgQlzt1jw==
+"@octokit/app@^4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@octokit/app/-/app-4.0.0.tgz#82888587f6b4f7d7eb4fa157df19771b46ff8d91"
+  integrity sha512-nc362rJnqWYu2MYVv93+fSiKs2kTfXzZKWbaOMGpikvjZyF+fvQ+uPoDCGqpITgVSXVvhPU8s0aiIvzI4kX/CA==
   dependencies:
-    "@octokit/request" "^4.1.0"
+    "@octokit/request" "^5.0.0"
     jsonwebtoken "^8.3.0"
     lru-cache "^5.1.1"
 
@@ -2326,13 +2326,13 @@
     universal-user-agent "^2.1.0"
     url-template "^2.0.8"
 
-"@octokit/graphql@2.1.2":
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/@octokit/graphql/-/graphql-2.1.2.tgz#220bc814fbebd35b3796db4788b353b491dd6575"
-  integrity sha512-Vq+Ypj0rQNpeyvh3dhqyyOItyr4KUW4Zu/tdg00PQdlH/iOX+RJQBcDMRMg1oGwY5g2zVtXuhSMFCgR6QoujxA==
+"@octokit/graphql@3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@octokit/graphql/-/graphql-3.0.1.tgz#7559c3bb606a2aab7ba91e82633c044642b354c0"
+  integrity sha512-TiegCo0jueDPlkpcYlx8KSYa3ybs13ePBteoJutEHou0hu8sJHHhvIaQWvDH5jj4mHfJwZwD4r6/Xbl33UHLUw==
   dependencies:
-    "@octokit/request" "^4.1.0"
-    universal-user-agent "^2.0.3"
+    "@octokit/request" "^5.0.0"
+    universal-user-agent "^3.0.0"
 
 "@octokit/graphql@^2.0.1":
   version "2.0.2"
@@ -2398,10 +2398,10 @@
     once "^1.4.0"
     universal-user-agent "^2.0.1"
 
-"@octokit/request@^4.1.0":
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/@octokit/request/-/request-4.1.0.tgz#e85dc377113baf2fe24433af8feb20e8a32e21b0"
-  integrity sha512-RvpQAba4i+BNH0z8i0gPRc1ShlHidj4puQjI/Tno6s+Q3/Mzb0XRSHJiOhpeFrZ22V7Mwjq1E7QS27P5CgpWYA==
+"@octokit/request@^5.0.0":
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/@octokit/request/-/request-5.0.1.tgz#6705c9a883db0ac0f58cee717e806b6575d4a199"
+  integrity sha512-SHOk/APYpfrzV1RNf7Ux8SZi+vZXhMIB2dBr4TQR6ExMX8R4jcy/0gHw26HLe1dWV7Wxe9WzYyDSEC0XwnoCSQ==
   dependencies:
     "@octokit/endpoint" "^5.1.0"
     "@octokit/request-error" "^1.0.1"
@@ -2409,7 +2409,7 @@
     is-plain-object "^3.0.0"
     node-fetch "^2.3.0"
     once "^1.4.0"
-    universal-user-agent "^2.1.0"
+    universal-user-agent "^3.0.0"
 
 "@octokit/rest@^16.15.0":
   version "16.21.0"
@@ -12609,13 +12609,13 @@ probot-config@1.0.1:
     deepmerge "^2.2.1"
     js-yaml "^3.10.0"
 
-probot@9.2.15:
-  version "9.2.15"
-  resolved "https://registry.yarnpkg.com/probot/-/probot-9.2.15.tgz#9ce82213d78860866773b092531ca78ece09214b"
-  integrity sha512-tZF1IdpbigwODWSGZEvO+6xGKemzNhRtNJMYs2sa8nPajfhZsQ0NX/g04bfX9YYWuBjC2gn7yNHRLG2+DLSzzw==
+probot@9.2.19:
+  version "9.2.19"
+  resolved "https://registry.yarnpkg.com/probot/-/probot-9.2.19.tgz#310dfe3283fc09e46408926651b67990d08381a8"
+  integrity sha512-ccUgs/r0c8w3jh+UTZcM9HlbPOufgXOjtBglwrvV14JNPXyLIKVVwLnE63swpXRPbImSR7oaM2sR0dO9xeIfrQ==
   dependencies:
-    "@octokit/app" "^3.0.1"
-    "@octokit/graphql" "2.1.2"
+    "@octokit/app" "^4.0.0"
+    "@octokit/graphql" "3.0.1"
     "@octokit/plugin-enterprise-compatibility" "^1.0.0"
     "@octokit/plugin-retry" "^2.1.1"
     "@octokit/plugin-throttling" "^2.3.0"
@@ -15173,6 +15173,13 @@ universal-user-agent@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/universal-user-agent/-/universal-user-agent-2.1.0.tgz#5abfbcc036a1ba490cb941f8fd68c46d3669e8e4"
   integrity sha512-8itiX7G05Tu3mGDTdNY2fB4KJ8MgZLS54RdG6PkkfwMAavrXu1mV/lls/GABx9O3Rw4PnTtasxrvbMQoBYY92Q==
+  dependencies:
+    os-name "^3.0.0"
+
+universal-user-agent@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/universal-user-agent/-/universal-user-agent-3.0.0.tgz#4cc88d68097bffd7ac42e3b7c903e7481424b4b9"
+  integrity sha512-T3siHThqoj5X0benA5H0qcDnrKGXzU8TKoX15x/tQHw1hQBvIEBHjxQ2klizYsqBOO/Q+WuxoQUihadeeqDnoA==
   dependencies:
     os-name "^3.0.0"
 
