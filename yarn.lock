@@ -13979,10 +13979,10 @@ signale@^1.4.0:
     figures "^2.0.0"
     pkg-conf "^2.1.0"
 
-simple-git@1.116.0:
-  version "1.116.0"
-  resolved "https://registry.yarnpkg.com/simple-git/-/simple-git-1.116.0.tgz#ea6e533466f1e0152186e306e004d4eefa6e3e00"
-  integrity sha512-Pbo3tceqMYy0j3U7jzMKabOWcx5+67GdgQUjpK83XUxGhA+1BX93UPvlWNzbCRoFwd7EJTyDSCC2XCoT4NTLYQ==
+simple-git@1.121.0:
+  version "1.121.0"
+  resolved "https://registry.yarnpkg.com/simple-git/-/simple-git-1.121.0.tgz#4bdf0828cd1b0bb3cb7ed9bead2771982ef5876a"
+  integrity sha512-LyYri/nuAX8+cx9nZw38mWO6oHNi//CmiPlkBL7aVjZIsdldve7eeDwXu9L4wP/74MpNHucXkXc/BOuIQShhPg==
   dependencies:
     debug "^4.0.1"
 
