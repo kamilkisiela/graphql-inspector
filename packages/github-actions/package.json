@@ -40,7 +40,7 @@
   },
   "devDependencies": {
     "@types/graphql": "14.2.2",
-    "@types/node": "11.13.14",
+    "@types/node": "12.6.3",
     "@types/js-yaml": "3.12.1",
     "typescript": "3.5.3"
   }
