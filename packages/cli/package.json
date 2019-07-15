@@ -57,7 +57,7 @@
     "@types/log-symbols": "3.0.0",
     "@types/node": "11.13.14",
     "@types/opn": "5.5.0",
-    "graphql": "14.3.1",
+    "graphql": "14.4.2",
     "graphql-tag": "2.10.1",
     "jest": "24.8.0",
     "ts-jest": "24.0.2",
