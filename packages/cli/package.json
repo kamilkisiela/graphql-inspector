@@ -46,7 +46,7 @@
     "indent-string": "4.0.0",
     "is-valid-path": "0.1.1",
     "log-symbols": "3.0.0",
-    "opn": "5.5.0"
+    "opn": "6.0.0"
   },
   "devDependencies": {
     "@types/express": "4.17.0",
