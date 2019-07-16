@@ -1,1 +1,1 @@
-declare module 'probot-config';
+// declare module 'probot-config';
