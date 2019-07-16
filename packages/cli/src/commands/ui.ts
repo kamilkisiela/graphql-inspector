@@ -1,5 +1,5 @@
 import * as express from 'express';
-import opn = require('opn');
+import opn = require('open');
 import {middleware as uiMiddleware} from '@graphql-inspector/ui';
 import {apply} from '@graphql-inspector/api';
 

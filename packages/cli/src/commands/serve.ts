@@ -1,5 +1,5 @@
 import {ApolloServer} from 'apollo-server';
-import opn = require('opn');
+import opn = require('open');
 import {loadSchema} from '@graphql-inspector/load';
 
 import {Renderer, ConsoleRenderer} from '../render';
