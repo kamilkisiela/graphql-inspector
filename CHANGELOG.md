@@ -2,6 +2,9 @@
 
 ### vNEXT
 
+- **cli**: maximum depth of operations
+- **core**: maximum depth of operations
+
 ### v1.21.0
 
 - **load**: allow to load schema entirely based on `git` [PR #366](https://github.com/kamilkisiela/graphql-inspector/pull/366)

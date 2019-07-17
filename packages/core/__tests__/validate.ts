@@ -186,4 +186,165 @@ describe('validate', () => {
 
     expect(results.length).toEqual(0);
   });
+
+  test('fail when exceeded max query depth (inline fragment)', async () => {
+    const schema = buildSchema(/* GraphQL */ `
+      type Post {
+        id: ID
+        title: String
+        createdAt: Int
+        author: User
+      }
+
+      type User {
+        id: ID
+        name: String
+        posts: [Post]
+      }
+
+      type Query {
+        post: Post
+      }
+
+      schema {
+        query: Query
+      }
+    `);
+
+    const docs = [
+      parse(/* GraphQL */ `
+        query getPost {
+          post {
+            ...PostInfo
+          }
+        }
+      `),
+      parse(/* GraphQL */ `
+        fragment PostInfo on Post {
+          id
+          author {
+            ... on User {
+              id
+            }
+          }
+        }
+      `),
+    ];
+
+    const results = validate(schema, docs.map(doc => new Source(print(doc))), {
+      maxDepth: 1,
+    });
+
+    expect(results.length).toEqual(1);
+  });
+
+  test('fail when exceeded max query depth (spread fragments)', async () => {
+    const schema = buildSchema(/* GraphQL */ `
+      type Post {
+        id: ID
+        title: String
+        createdAt: Int
+        author: User
+      }
+
+      type User {
+        id: ID
+        name: String
+        posts: [Post]
+      }
+
+      type Query {
+        post: Post
+      }
+
+      schema {
+        query: Query
+      }
+    `);
+
+    const docs = [
+      parse(/* GraphQL */ `
+        query getPost {
+          post {
+            ...PostInfo
+          }
+        }
+      `),
+      parse(/* GraphQL */ `
+        fragment PostInfo on Post {
+          id
+          title
+          author {
+            ...UserInfo
+          }
+        }
+      `),
+      parse(/* GraphQL */ `
+        fragment UserInfo on User {
+          id
+          name
+        }
+      `),
+    ];
+
+    const results = validate(schema, docs.map(doc => new Source(print(doc))), {
+      maxDepth: 1,
+    });
+
+    expect(results.length).toEqual(1);
+  });
+
+  test('pass when not exceeded max query depth', async () => {
+    const schema = buildSchema(/* GraphQL */ `
+      type Post {
+        id: ID
+        title: String
+        createdAt: Int
+        author: User
+      }
+
+      type User {
+        id: ID
+        name: String
+        posts: [Post]
+      }
+
+      type Query {
+        post: Post
+      }
+
+      schema {
+        query: Query
+      }
+    `);
+
+    const docs = [
+      parse(/* GraphQL */ `
+        query getPost {
+          post {
+            ...PostInfo
+          }
+        }
+      `),
+      parse(/* GraphQL */ `
+        fragment PostInfo on Post {
+          id
+          author {
+            ...UserInfo
+          }
+        }
+      `),
+      parse(/* GraphQL */ `
+        fragment UserInfo on User {
+          id
+        }
+      `),
+    ];
+
+    const results = validate(schema, docs.map(doc => new Source(print(doc))), {
+      maxDepth: 2,
+    });
+
+    expect(results.length).toEqual(0);
+  });
 });

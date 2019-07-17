@@ -18,6 +18,7 @@ export async function validate(
     require?: string[];
     deprecated: boolean;
     noStrictFragments: boolean;
+    maxDepth?: number;
     renderer?: Renderer;
     headers?: Record<string, string>;
   },
@@ -32,21 +33,26 @@ export async function validate(
 
     const invalidDocuments = validateDocuments(schema, documents, {
       strictFragments: !options.noStrictFragments,
+      maxDepth: options.maxDepth || undefined,
     });
 
     if (!invalidDocuments.length) {
       renderer.success('All documents are valid');
     } else {
-      const errors = countErrors(invalidDocuments);
+      const errorsCount = countErrors(invalidDocuments);
       const deprecated = countDeprecated(invalidDocuments);
 
-      if (errors) {
+      if (errorsCount) {
         renderer.emit(
-          `\nDetected ${errors} invalid document${errors > 1 ? 's' : ''}:\n`,
+          `\nDetected ${errorsCount} invalid document${
+            errorsCount > 1 ? 's' : ''
+          }:\n`,
         );
 
         invalidDocuments.forEach(doc => {
-          renderer.emit(...renderInvalidDocument(doc));
+          if (doc.errors.length) {
+            renderer.emit(...renderInvalidDocument(doc));
+          }
         });
       } else if (!options.deprecated) {
         renderer.success('All documents are valid');
@@ -60,13 +66,15 @@ export async function validate(
         );
 
         invalidDocuments.forEach(doc => {
-          renderer.emit(
-            ...renderDeprecatedUsageInDocument(doc, options.deprecated),
-          );
+          if (doc.deprecated.length) {
+            renderer.emit(
+              ...renderDeprecatedUsageInDocument(doc, options.deprecated),
+            );
+          }
         });
       }
 
-      if (errors || (deprecated && options.deprecated)) {
+      if (errorsCount || (deprecated && options.deprecated)) {
         process.exit(1);
       }
     }

@@ -60,6 +60,9 @@ commander
     'Do not fail on duplicated fragment names',
     false,
   )
+  .option('--maxDepth <n>', 'Fail on deep operations', (val: string) =>
+    parseInt(val, 10),
+  )
   .description('Validate documents against a schema')
   .action((documents: string, schema: string, cmd: commander.Command) =>
     validate(documents, schema, normalizeOptions(cmd)),

@@ -12,6 +12,7 @@ import {DepGraph} from 'dependency-graph';
 
 import {readDocument} from '../ast/document';
 import {findDeprecatedUsages} from '../utils/graphql';
+import {validateQueryDepth} from './query-depth';
 
 export interface InvalidDocument {
   source: Source;
@@ -22,6 +23,7 @@ export interface InvalidDocument {
 export interface ValidateOptions {
   strictFragments?: boolean;
   strictDeprecated?: boolean;
+  maxDepth?: number;
 }
 
 export function validate(
@@ -87,7 +89,20 @@ export function validate(
         definitions: [...docWithOperations.definitions, ...extractedFragments],
       };
 
-      const errors = validateDocument(schema, merged) as GraphQLError[];
+      const errors = (validateDocument(schema, merged) as GraphQLError[]) || [];
+
+      if (config.maxDepth) {
+        const depthError = validateQueryDepth({
+          source: doc.source,
+          doc: merged,
+          maxDepth: config.maxDepth,
+          fragmentGraph: graph,
+        });
+
+        if (depthError) {
+          errors.push(depthError);
+        }
+      }
 
       const deprecated = config.strictDeprecated
         ? findDeprecatedUsages(schema, parse(doc.source.body))
