@@ -2,8 +2,8 @@
 
 ### vNEXT
 
-- **cli**: maximum depth of operations
-- **core**: maximum depth of operations
+- **cli**: maximum depth of operations [PR #432](https://github.com/kamilkisiela/graphql-inspector/pull/432)
+- **core**: maximum depth of operations [PR #432](https://github.com/kamilkisiela/graphql-inspector/pull/432)
 
 ### v1.21.0
 
