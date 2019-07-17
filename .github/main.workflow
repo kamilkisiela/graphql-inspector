@@ -55,5 +55,5 @@ action "Auto Merge" {
     AUTOREBASE = "rebase"
     MERGE_METHOD = "squash"
   }
-  args = "--debug"
+  args = "--debug --trace"
 }
