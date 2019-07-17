@@ -47,7 +47,7 @@ workflow "Auto-Merge Dependabot And Renovate" {
 }
 
 action "Auto Merge" {
-  uses = "pascalgn/automerge-action@master"
+  uses = "kamilkisiela/automerge-action@master"
   secrets = ["GITHUB_TOKEN"]
   env = {
     LABELS = "!wip,dependencies"
