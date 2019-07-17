@@ -1,0 +1,10 @@
+query depthPost {
+  post {
+    id
+    title
+    author {
+      id
+      name
+    }
+  }
+}
