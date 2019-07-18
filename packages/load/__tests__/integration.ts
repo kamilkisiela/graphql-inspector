@@ -1,7 +1,7 @@
 import {GraphQLSchema, printSchema, buildSchema} from 'graphql';
 import {loadSchema} from '../src';
 
-const SAMPLES_DIR = `__tests__/samples`;
+const SAMPLES_DIR = `samples`;
 
 function matchSchema(schema: GraphQLSchema) {
   expect(printSchema(schema)).toBe(
