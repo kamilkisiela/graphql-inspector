@@ -36,7 +36,7 @@
     "actions-toolkit": "2.1.0",
     "graphql": "14.4.2",
     "js-yaml": "3.13.1",
-    "probot": "9.2.19"
+    "probot": "9.2.20"
   },
   "devDependencies": {
     "@types/graphql": "14.2.3",
