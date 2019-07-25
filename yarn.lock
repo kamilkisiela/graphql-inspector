@@ -2650,10 +2650,10 @@
   dependencies:
     tslib "^1.7.1"
 
-"@uifabric/styling@^7.2.1", "@uifabric/styling@^7.3.0":
-  version "7.3.0"
-  resolved "https://registry.yarnpkg.com/@uifabric/styling/-/styling-7.3.0.tgz#4c9a84b50be02d18a0dcf1526fbe717dea013e9c"
-  integrity sha512-2U4DYI4jn7yGaYuYeC+1w7SKdX7pS4Imwds8NQzGAXBg34kDtEZicTWnLaX28SAFIpMS6FlHqvjQfccbyhdhfQ==
+"@uifabric/styling@^7.2.1", "@uifabric/styling@^7.3.1":
+  version "7.3.1"
+  resolved "https://registry.yarnpkg.com/@uifabric/styling/-/styling-7.3.1.tgz#f188b96dd27232e0c172a65f34683c269b67a838"
+  integrity sha512-vjeB3WsqiR/pcTbxkhUNX66H/BYlwblc+D4weUwKH55spSAxAb4ih0HiMAsSEPVns5rzdIqPzZWjNZtA0wki1Q==
   dependencies:
     "@microsoft/load-themed-styles" "^1.7.13"
     "@uifabric/merge-styles" "^7.2.0"
@@ -10344,17 +10344,17 @@ octokit-pagination-methods@1.1.0, octokit-pagination-methods@^1.1.0:
   resolved "https://registry.yarnpkg.com/octokit-pagination-methods/-/octokit-pagination-methods-1.1.0.tgz#cf472edc9d551055f9ef73f6e42b4dbb4c80bea4"
   integrity sha512-fZ4qZdQ2nxJvtcasX7Ghl+WlWS/d9IgnBIwFZXVNNZUmzpno91SX5bc5vuxiuKoCtK78XxGGNuSCrDC7xYB3OQ==
 
-office-ui-fabric-react@7.14.1:
-  version "7.14.1"
-  resolved "https://registry.yarnpkg.com/office-ui-fabric-react/-/office-ui-fabric-react-7.14.1.tgz#1c3dfc7b558bce4d89328f3d94bc4c5cf072ca6b"
-  integrity sha512-LXAW68eyvqvf0P3pOt88Hfh0ECs78wbFXx23IjqQIbIHr1mTyxiKEWGD2YT0AtmyjjNcTIJvYG2Ls8xoP+QiTA==
+office-ui-fabric-react@7.15.0:
+  version "7.15.0"
+  resolved "https://registry.yarnpkg.com/office-ui-fabric-react/-/office-ui-fabric-react-7.15.0.tgz#a9ece7182dbe19fdfe99456cece5676ae07f2455"
+  integrity sha512-NfkCDpQQvfUvbBBYvouMa2D1Xka2zylQdjipKt0J5qL40iOhN/nz/p86m7t2bfRIZ2i78SsdXUe5DXF1xViH5A==
   dependencies:
     "@microsoft/load-themed-styles" "^1.7.13"
     "@uifabric/foundation" "^7.0.3"
     "@uifabric/icons" "^7.1.1"
     "@uifabric/merge-styles" "^7.2.0"
     "@uifabric/set-version" "^7.0.1"
-    "@uifabric/styling" "^7.3.0"
+    "@uifabric/styling" "^7.3.1"
     "@uifabric/utilities" "^7.0.7"
     prop-types "^15.5.10"
     tslib "^1.7.1"
