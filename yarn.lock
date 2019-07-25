@@ -2048,26 +2048,7 @@
     once "^1.4.0"
     universal-user-agent "^3.0.0"
 
-"@octokit/rest@^16.15.0", "@octokit/rest@^16.25.0":
-  version "16.28.4"
-  resolved "https://registry.yarnpkg.com/@octokit/rest/-/rest-16.28.4.tgz#2f8ef08305033bc91256530d6a3c98eada700660"
-  integrity sha512-ZBsfD46t3VNkwealxm5zloVgQta8d8o4KYBR/hMAZ582IgjmSDKZdkjyv5w37IUCM3tcPZWKUT+kml9pEIC2GA==
-  dependencies:
-    "@octokit/request" "^5.0.0"
-    "@octokit/request-error" "^1.0.2"
-    atob-lite "^2.0.0"
-    before-after-hook "^2.0.0"
-    btoa-lite "^1.0.0"
-    deprecation "^2.0.0"
-    lodash.get "^4.4.2"
-    lodash.set "^4.3.2"
-    lodash.uniq "^4.5.0"
-    octokit-pagination-methods "^1.1.0"
-    once "^1.4.0"
-    universal-user-agent "^3.0.0"
-    url-template "^2.0.8"
-
-"@octokit/rest@^16.28.4":
+"@octokit/rest@^16.15.0", "@octokit/rest@^16.25.0", "@octokit/rest@^16.28.4":
   version "16.28.5"
   resolved "https://registry.yarnpkg.com/@octokit/rest/-/rest-16.28.5.tgz#56a5a37fc45a6520199189ac3e5eb09420c0ef6f"
   integrity sha512-W8hHSm6103c+lNdTuQBMKdZNDCOFFXJdatj92g2d6Hqk134EMDHRc02QWI/Fs1WGnWZ8Leb0QFbXPKO2njeevQ==
@@ -7358,7 +7339,7 @@ hash.js@^1.0.0, hash.js@^1.0.3:
     inherits "^2.0.3"
     minimalistic-assert "^1.0.1"
 
-hbs@^4.0.3:
+hbs@^4.0.4:
   version "4.0.4"
   resolved "https://registry.yarnpkg.com/hbs/-/hbs-4.0.4.tgz#6139e8dcdec83d6352da3303337457823bca2c45"
   integrity sha512-esVlyV/V59mKkwFai5YmPRSNIWZzhqL5YMN0++ueMxyK1cCfPa5f6JiHtapPKAIVAhQR6rpGxow0troav9WMEg==
@@ -11743,10 +11724,10 @@ probot-config@1.1.0:
     deepmerge "^2.2.1"
     js-yaml "^3.10.0"
 
-probot@9.2.19:
-  version "9.2.19"
-  resolved "https://registry.yarnpkg.com/probot/-/probot-9.2.19.tgz#310dfe3283fc09e46408926651b67990d08381a8"
-  integrity sha512-ccUgs/r0c8w3jh+UTZcM9HlbPOufgXOjtBglwrvV14JNPXyLIKVVwLnE63swpXRPbImSR7oaM2sR0dO9xeIfrQ==
+probot@9.2.20:
+  version "9.2.20"
+  resolved "https://registry.yarnpkg.com/probot/-/probot-9.2.20.tgz#302a85a937266f028398885571e25662ade74ddc"
+  integrity sha512-GDzyR+yNqMKneRfpwnAku099sIGpJ5b2Zxqncw9/QvdM13DmDLNN0hL9dC6QJR2WefcXjjMbQOIO65GhnLSOVQ==
   dependencies:
     "@octokit/app" "^4.0.0"
     "@octokit/graphql" "3.0.1"
@@ -11766,7 +11747,7 @@ probot@9.2.19:
     eventsource "^1.0.7"
     express "^4.16.2"
     express-async-errors "^3.0.0"
-    hbs "^4.0.3"
+    hbs "^4.0.4"
     ioredis "^4.5.1"
     is-base64 "0.1.0"
     js-yaml "^3.13.1"
