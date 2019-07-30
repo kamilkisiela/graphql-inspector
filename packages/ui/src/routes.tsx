@@ -1,4 +1,3 @@
-import Empty from './Empty';
 import {MenuItem} from './ui/Menu';
 import Dashboard from './ui/features/dashboard/Dashboard';
 import Diff from './ui/features/diff/Diff';
