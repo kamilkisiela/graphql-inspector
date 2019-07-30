@@ -3128,18 +3128,6 @@ apollo-engine-reporting-protobuf@0.4.0:
   dependencies:
     protobufjs "^6.8.6"
 
-apollo-engine-reporting@1.4.1:
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/apollo-engine-reporting/-/apollo-engine-reporting-1.4.1.tgz#42c282c1fbed13af1bc8a01cea2b7e63033b6249"
-  integrity sha512-WFzC/aVRJPXrQCTQ8mrSePFYEAcUaX/YxLTHgX+A0CGadDmIGHXv3ea28MgbxwXcUr1AmSpJm+R8l/EZ68TeKA==
-  dependencies:
-    apollo-engine-reporting-protobuf "0.4.0"
-    apollo-graphql "^0.3.3"
-    apollo-server-env "2.4.1"
-    apollo-server-types "0.2.1"
-    async-retry "^1.2.1"
-    graphql-extensions "0.8.1"
-
 apollo-engine-reporting@1.4.2:
   version "1.4.2"
   resolved "https://registry.yarnpkg.com/apollo-engine-reporting/-/apollo-engine-reporting-1.4.2.tgz#f6c1e964c3c2c09bdb25c449f6b7ab05952ff459"
@@ -3204,32 +3192,6 @@ apollo-server-caching@0.5.0:
   dependencies:
     lru-cache "^5.0.0"
 
-apollo-server-core@2.7.1:
-  version "2.7.1"
-  resolved "https://registry.yarnpkg.com/apollo-server-core/-/apollo-server-core-2.7.1.tgz#259273dc627179f9dbfba215620656753cc93add"
-  integrity sha512-e6ix4Qz6551D35IqvXEa+7N7qRNN7RiBQxmgmfs28AYgtjWqGux/LTcCPZqBtRu5setlkTrBVFXRZRN5wZndaQ==
-  dependencies:
-    "@apollographql/apollo-tools" "^0.4.0"
-    "@apollographql/graphql-playground-html" "1.6.24"
-    "@types/ws" "^6.0.0"
-    apollo-cache-control "0.8.1"
-    apollo-datasource "0.6.1"
-    apollo-engine-reporting "1.4.1"
-    apollo-server-caching "0.5.0"
-    apollo-server-env "2.4.1"
-    apollo-server-errors "2.3.1"
-    apollo-server-plugin-base "0.6.1"
-    apollo-server-types "0.2.1"
-    apollo-tracing "0.8.1"
-    fast-json-stable-stringify "^2.0.0"
-    graphql-extensions "0.8.1"
-    graphql-tag "^2.9.2"
-    graphql-tools "^4.0.0"
-    graphql-upload "^8.0.2"
-    sha.js "^2.4.11"
-    subscriptions-transport-ws "^0.9.11"
-    ws "^6.0.0"
-
 apollo-server-core@2.7.2:
   version "2.7.2"
   resolved "https://registry.yarnpkg.com/apollo-server-core/-/apollo-server-core-2.7.2.tgz#4acd9f4d0d235bef0e596e2a821326dfc07ae7b2"
@@ -3268,26 +3230,6 @@ apollo-server-errors@2.3.1:
   version "2.3.1"
   resolved "https://registry.yarnpkg.com/apollo-server-errors/-/apollo-server-errors-2.3.1.tgz#033cf331463ebb99a563f8354180b41ac6714eb6"
   integrity sha512-errZvnh0vUQChecT7M4A/h94dnBSRL213dNxpM5ueMypaLYgnp4hiCTWIEaooo9E4yMGd1qA6WaNbLDG2+bjcg==
-
-apollo-server-express@2.7.1:
-  version "2.7.1"
-  resolved "https://registry.yarnpkg.com/apollo-server-express/-/apollo-server-express-2.7.1.tgz#a835e9c83688de7005174ccf6a4ce9cdfdf04987"
-  integrity sha512-U0McZhLYgBvhaPZR3hicR1xJclooxhM3AQ1Ecf1lA9dV4a5PBhfbbY0Kirv8l9S1IXaS58LdtDSs7V+NhnvFVw==
-  dependencies:
-    "@apollographql/graphql-playground-html" "1.6.24"
-    "@types/accepts" "^1.3.5"
-    "@types/body-parser" "1.17.0"
-    "@types/cors" "^2.8.4"
-    "@types/express" "4.17.0"
-    accepts "^1.3.5"
-    apollo-server-core "2.7.1"
-    apollo-server-types "0.2.1"
-    body-parser "^1.18.3"
-    cors "^2.8.4"
-    graphql-subscriptions "^1.0.0"
-    graphql-tools "^4.0.0"
-    subscriptions-transport-ws "^0.9.16"
-    type-is "^1.6.16"
 
 apollo-server-express@2.7.2:
   version "2.7.2"
@@ -10460,10 +10402,10 @@ octokit-pagination-methods@1.1.0, octokit-pagination-methods@^1.1.0:
   resolved "https://registry.yarnpkg.com/octokit-pagination-methods/-/octokit-pagination-methods-1.1.0.tgz#cf472edc9d551055f9ef73f6e42b4dbb4c80bea4"
   integrity sha512-fZ4qZdQ2nxJvtcasX7Ghl+WlWS/d9IgnBIwFZXVNNZUmzpno91SX5bc5vuxiuKoCtK78XxGGNuSCrDC7xYB3OQ==
 
-office-ui-fabric-react@7.17.0:
-  version "7.17.0"
-  resolved "https://registry.yarnpkg.com/office-ui-fabric-react/-/office-ui-fabric-react-7.17.0.tgz#f202f03c56e12c061e02962ba276c6ee84828381"
-  integrity sha512-wK/F2Sxijm3/RnjRGaxVThSVJqAzRpavewRxtxkRl8q7nanmcb3qgNqBNrE6I0unjiccJHCiMi+MKkjB/6oqYA==
+office-ui-fabric-react@7.18.0:
+  version "7.18.0"
+  resolved "https://registry.yarnpkg.com/office-ui-fabric-react/-/office-ui-fabric-react-7.18.0.tgz#9329d3dda429f1f40fb4551e8ca3fb45fbb1e8f6"
+  integrity sha512-HolUKvWGXZr6IklKYcBa/ZAsOJQQR+p49/CQ/qKdafs4EGSYS3Z2lT5G0ApgIOBXjh9QF1UejnNrNUF34RScLw==
   dependencies:
     "@microsoft/load-themed-styles" "^1.7.13"
     "@uifabric/foundation" "^7.0.3"
