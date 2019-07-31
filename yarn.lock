@@ -3375,13 +3375,13 @@ apollo-server-types@0.2.1:
     apollo-server-caching "0.5.0"
     apollo-server-env "2.4.1"
 
-apollo-server@2.8.0:
-  version "2.8.0"
-  resolved "https://registry.yarnpkg.com/apollo-server/-/apollo-server-2.8.0.tgz#c57261f02f9f2865778ad8e0cdb3c6a80307beb5"
-  integrity sha512-WtHbP8/C7WkFBCA44V2uTiyuefgqlVSAb6di4XcCPLyopcg9XGKHYRPyp5uOOKlMDTfryNqV59DWHn5/oXkZmQ==
+apollo-server@2.8.1:
+  version "2.8.1"
+  resolved "https://registry.yarnpkg.com/apollo-server/-/apollo-server-2.8.1.tgz#e86733d74d91000694f5c27117a6f756de51b5a5"
+  integrity sha512-PILoFNKoRfC6pqVVQ42hYwFjM49l+9jjPeb+kqVmmcSDAwQIlcq3EPK5x65E3pmkPSaEOhGxU9a47cyu/PdJvg==
   dependencies:
-    apollo-server-core "2.8.0"
-    apollo-server-express "2.8.0"
+    apollo-server-core "2.8.1"
+    apollo-server-express "2.8.1"
     express "^4.0.0"
     graphql-subscriptions "^1.0.0"
     graphql-tools "^4.0.0"
