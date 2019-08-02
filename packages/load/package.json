@@ -30,7 +30,7 @@
     "graphql": "^0.13.0 || ^14.0.0"
   },
   "dependencies": {
-    "graphql-toolkit": "0.5.0",
+    "graphql-toolkit": "0.5.1",
     "node-fetch": "2.6.0",
     "simple-git": "1.124.0"
   },
