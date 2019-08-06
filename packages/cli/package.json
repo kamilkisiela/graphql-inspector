@@ -53,7 +53,7 @@
     "@types/figures": "3.0.1",
     "@types/graphql": "14.2.3",
     "@types/indent-string": "4.0.1",
-    "@types/jest": "24.0.16",
+    "@types/jest": "24.0.17",
     "@types/log-symbols": "3.0.0",
     "@types/node": "12.6.9",
     "graphql": "14.4.2",
