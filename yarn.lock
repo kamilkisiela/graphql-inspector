@@ -2734,10 +2734,10 @@
     "@uifabric/styling" "^7.2.1"
     tslib "^1.7.1"
 
-"@uifabric/merge-styles@^7.2.0":
-  version "7.2.0"
-  resolved "https://registry.yarnpkg.com/@uifabric/merge-styles/-/merge-styles-7.2.0.tgz#1ad604368066dc801f584de6c23c072680ec97dd"
-  integrity sha512-EA2aNl7jn3nUxwFZSausAr1MU8/C1pjLwyuLIQ4t0u86QW+MJuagXZY2X//oLPzvnACDrA5Z3SOcVbi+uzfTXA==
+"@uifabric/merge-styles@^7.2.0", "@uifabric/merge-styles@^7.3.0":
+  version "7.3.0"
+  resolved "https://registry.yarnpkg.com/@uifabric/merge-styles/-/merge-styles-7.3.0.tgz#a851fd19a9e82acd1cffdcd122eec46388f4646f"
+  integrity sha512-n8Edoum0yiBsddyUaiosVMTKItImnkErlOsVosPidTOVYK+4YdRZIQJl2jVEAlxhXkGwzppSsYcvnd/IIqaK8A==
   dependencies:
     "@uifabric/set-version" "^7.0.1"
     tslib "^1.7.1"
@@ -10501,15 +10501,15 @@ octokit-pagination-methods@1.1.0, octokit-pagination-methods@^1.1.0:
   resolved "https://registry.yarnpkg.com/octokit-pagination-methods/-/octokit-pagination-methods-1.1.0.tgz#cf472edc9d551055f9ef73f6e42b4dbb4c80bea4"
   integrity sha512-fZ4qZdQ2nxJvtcasX7Ghl+WlWS/d9IgnBIwFZXVNNZUmzpno91SX5bc5vuxiuKoCtK78XxGGNuSCrDC7xYB3OQ==
 
-office-ui-fabric-react@7.20.1:
-  version "7.20.1"
-  resolved "https://registry.yarnpkg.com/office-ui-fabric-react/-/office-ui-fabric-react-7.20.1.tgz#dd30f387999feae28a80edc3f716c126aff7c367"
-  integrity sha512-qwhc4j+eKXcfET6syorv4+OVAGP+KEVxcU76r0cqmv5NhAmXyjAtwoqUJ8SHali3fr4jdg0QITb+MUKL8yXrKQ==
+office-ui-fabric-react@7.21.0:
+  version "7.21.0"
+  resolved "https://registry.yarnpkg.com/office-ui-fabric-react/-/office-ui-fabric-react-7.21.0.tgz#a463422f9cc1d5284cff6a151071f031fefc8259"
+  integrity sha512-EgP96DUCC6MtzlaMTIhobefLkvVoKYvGJtUVSNrSnUpUww2t1ZGfusqKba9S+Q7jYPtvkyYtrrtDwAbWQFmTzg==
   dependencies:
     "@microsoft/load-themed-styles" "^1.7.13"
     "@uifabric/foundation" "^7.0.3"
     "@uifabric/icons" "^7.1.1"
-    "@uifabric/merge-styles" "^7.2.0"
+    "@uifabric/merge-styles" "^7.3.0"
     "@uifabric/set-version" "^7.0.1"
     "@uifabric/styling" "^7.4.0"
     "@uifabric/utilities" "^7.0.7"
