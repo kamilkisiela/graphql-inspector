@@ -46,6 +46,11 @@ updateString(join(rootDir, 'Dockerfile'), docker =>
   docker.replace(new RegExp(current, 'g'), version),
 );
 
+// Set version in Dockerfile (both LABEL and RUN)
+updateString(join(rootDir, 'Dockerfile-cli'), docker =>
+  docker.replace(new RegExp(current, 'g'), version),
+);
+
 // Bump version in changelog
 updateString(join(rootDir, 'CHANGELOG.md'), changelog =>
   changelog.replace('### vNEXT', `### vNEXT` + '\n\n' + `### v${version}`),
