@@ -57,13 +57,3 @@ action "Auto Merge" {
   }
   args = "--debug"
 }
-
-workflow "Automatic Rebase" {
-  on = "issue_comment"
-  resolves = "Rebase"
-}
-
-action "Rebase" {
-  uses = "cirrus-actions/rebase@1.0"
-  secrets = ["GITHUB_TOKEN"]
-}
