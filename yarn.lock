@@ -990,6 +990,11 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
+"@chadfawcett/probot-serverless-now@1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@chadfawcett/probot-serverless-now/-/probot-serverless-now-1.0.0.tgz#5044ad72343cf8a946a8415596526106ce10b872"
+  integrity sha512-n69PzPtDIyG124x1IVpWOBay3YN3xz3JbnDg8g/m8yNet7eNXgYwbvEe8FUdc9SOKd/0jyW4sj5ikGIyyuaCqw==
+
 "@cnakazawa/watch@^1.0.3":
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/@cnakazawa/watch/-/watch-1.0.3.tgz#099139eaec7ebf07a27c1786a3ff64f39464d2ef"
@@ -2556,7 +2561,7 @@
   dependencies:
     "@types/node" "*"
 
-"@types/node@*", "@types/node@12.7.1", "@types/node@>=6":
+"@types/node@*", "@types/node@12.7.1", "@types/node@>=6", "@types/node@^12.0.7":
   version "12.7.1"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-12.7.1.tgz#3b5c3a26393c19b400844ac422bd0f631a94d69d"
   integrity sha512-aK9jxMypeSrhiYofWWBf/T7O+KwaiAHzM4sveCdWPn71lzUSMimRnKzhXDKfKwV1kWoBo2P1aGgaIYGLf9/ljw==
@@ -11836,7 +11841,15 @@ probot-config@1.1.0:
     deepmerge "^2.2.1"
     js-yaml "^3.10.0"
 
-probot@9.3.0:
+probot-serverless-now@2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/probot-serverless-now/-/probot-serverless-now-2.1.1.tgz#173730abd51608992d715ee6a3deef6587976f9e"
+  integrity sha512-X5v+hGoZnwjxvk6DD5t1b7GpjE6F+9LycYZ4LFmaqrV/OSOAsLuTX3j53zMtGI9OJJKOVgMQHhbyo9m+WhpEEg==
+  dependencies:
+    "@types/node" "^12.0.7"
+    probot "^9.2.13"
+
+probot@9.3.0, probot@^9.2.13:
   version "9.3.0"
   resolved "https://registry.yarnpkg.com/probot/-/probot-9.3.0.tgz#fba8330f185b83fd9fbba9d551cce67b9b3f6b62"
   integrity sha512-4vqBC6EHidCeEcodZyVvRyrpjkotUx59jDdxVOaB2m8dlHi60di+EydFrY2EHHz9xxQIkPXDgcQEeNKGxD+eDA==
