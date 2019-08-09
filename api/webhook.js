@@ -1,6 +1,7 @@
 const {createProbot} = require('probot');
 const {resolve} = require('probot/lib/resolver');
 const {findPrivateKey} = require('probot/lib/private-key');
+import {GraphQLClient} from 'graphql-request';
 
 const githubApp = require('@graphql-inspector/github').default;
 
@@ -52,13 +53,12 @@ function serverless(appFn) {
     // Determine incoming webhook event type
     const headers = lowerCaseKeys(req.headers);
     const e = headers['x-github-event'];
+    const event = `${e}${req.body.action ? '.' + req.body.action : ''}`;
 
     req.body = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
 
     // Do the thing
-    console.log(
-      `Received event ${e}${req.body.action ? '.' + req.body.action : ''}`,
-    );
+    console.log(`Received event ${event}`);
 
     if (req) {
       try {
@@ -66,22 +66,86 @@ function serverless(appFn) {
           name: e,
           payload: req.body,
         });
+
+        await logEvent({
+          event,
+          ok: true,
+        });
+
         res.status(200);
         res.json({
           message: `Received ${e}.${req.body.action}`,
         });
+
         return;
       } catch (err) {
         console.error(err);
+
+        await logEvent({
+          event,
+          ok: false,
+        });
+
         res.status(500);
         res.json(err);
+
         return;
       }
     } else {
       console.error({req, res});
+
+      await logEvent({
+        event,
+        ok: false,
+      });
+
       res.status(500);
       res.send('unknown error');
+
       return;
     }
   };
+}
+
+async function logEvent({event, ok}) {
+  const secret = process.env.FAUNADB_SECRET;
+
+  if (!secret) {
+    return;
+  }
+
+  const status = ok === true ? 'success' : 'failure';
+
+  console.log('log', {event, status});
+
+  try {
+    const graphQLClient = new GraphQLClient(
+      'https://graphql.fauna.com/graphql',
+      {
+        headers: {
+          Authorization: `Basic ${secret}`,
+        },
+      },
+    );
+
+    const query = /* GraphQL */ `
+      mutation invocation($event: String, $status: Status!) {
+        createInvocation(data: {event: $event, status: $status}) {
+          _id
+          _ts
+        }
+      }
+    `;
+
+    const result = await graphQLClient.request(query, {
+      event,
+      status,
+    });
+
+    console.log('LOG SENT');
+    console.log(result);
+  } catch (e) {
+    console.log('FAILED TO SEND LOG');
+    console.error(e);
+  }
 }
