@@ -14,6 +14,7 @@ import {
   visit,
   visitWithTypeInfo,
   getNamedType,
+  FieldNode,
 } from 'graphql';
 
 export function safeChangeForField(
@@ -153,4 +154,19 @@ export function findDeprecatedUsages(
   );
 
   return errors;
+}
+
+export function removeFieldIfDirectives(
+  node: FieldNode,
+  directiveNames: string[],
+): FieldNode | null {
+  if (node.directives) {
+    if (
+      node.directives.some(d => directiveNames.indexOf(d.name.value) !== -1)
+    ) {
+      return null;
+    }
+  }
+
+  return node;
 }

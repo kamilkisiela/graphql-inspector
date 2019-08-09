@@ -13,6 +13,10 @@ import {DepGraph} from 'dependency-graph';
 import {readDocument} from '../ast/document';
 import {findDeprecatedUsages} from '../utils/graphql';
 import {validateQueryDepth} from './query-depth';
+import {
+  transformSchemaWithApollo,
+  transformDocumentWithApollo,
+} from '../utils/apollo';
 
 export interface InvalidDocument {
   source: Source;
@@ -23,6 +27,7 @@ export interface InvalidDocument {
 export interface ValidateOptions {
   strictFragments?: boolean;
   strictDeprecated?: boolean;
+  apollo?: boolean;
   maxDepth?: number;
 }
 
@@ -34,6 +39,7 @@ export function validate(
   const config: ValidateOptions = {
     strictDeprecated: true,
     strictFragments: true,
+    apollo: false,
     ...options,
   };
   const invalidDocuments: InvalidDocument[] = [];
@@ -89,12 +95,23 @@ export function validate(
         definitions: [...docWithOperations.definitions, ...extractedFragments],
       };
 
-      const errors = (validateDocument(schema, merged) as GraphQLError[]) || [];
+      const transformedSchema = config.apollo
+        ? transformSchemaWithApollo(schema)
+        : schema;
+      const transformedDoc = config.apollo
+        ? transformDocumentWithApollo(merged)
+        : merged;
+
+      const errors =
+        (validateDocument(
+          transformedSchema,
+          transformedDoc,
+        ) as GraphQLError[]) || [];
 
       if (config.maxDepth) {
         const depthError = validateQueryDepth({
           source: doc.source,
-          doc: merged,
+          doc: transformedDoc,
           maxDepth: config.maxDepth,
           fragmentGraph: graph,
         });
@@ -105,7 +122,7 @@ export function validate(
       }
 
       const deprecated = config.strictDeprecated
-        ? findDeprecatedUsages(schema, parse(doc.source.body))
+        ? findDeprecatedUsages(transformedSchema, parse(doc.source.body))
         : [];
       const duplicatedFragments = config.strictFragments
         ? findDuplicatedFragments(fragmentNames)
