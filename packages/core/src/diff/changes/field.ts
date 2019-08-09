@@ -23,7 +23,9 @@ export function fieldRemoved(
         : `Removing a field is a breaking change. It is preferable to deprecate the field before removing it.`,
     },
     type: ChangeType.FieldRemoved,
-    message: `Field '${field.name}' was removed from ${entity} '${type.name}'`,
+    message: `Field '${field.name}' ${
+      field.isDeprecated ? '(deprecated) ' : ''
+    }was removed from ${entity} '${type.name}'`,
     path: [type.name, field.name].join('.'),
   };
 }
@@ -53,9 +55,7 @@ export function fieldDescriptionChanged(
       level: CriticalityLevel.NonBreaking,
     },
     type: ChangeType.FieldDescriptionChanged,
-    message: `Field '${type.name}.${oldField.name}' description changed from '${
-      oldField.description
-    }' to '${newField.description}'`,
+    message: `Field '${type.name}.${oldField.name}' description changed from '${oldField.description}' to '${newField.description}'`,
     path: [type.name, oldField.name].join('.'),
   };
 }
@@ -69,9 +69,7 @@ export function fieldDescriptionAdded(
       level: CriticalityLevel.NonBreaking,
     },
     type: ChangeType.FieldDescriptionAdded,
-    message: `Field '${type.name}.${field.name}' has description '${
-      field.description
-    }'`,
+    message: `Field '${type.name}.${field.name}' has description '${field.description}'`,
     path: [type.name, field.name].join('.'),
   };
 }
@@ -128,11 +126,7 @@ export function fieldDeprecationReasonChanged(
       level: CriticalityLevel.NonBreaking,
     },
     type: ChangeType.FieldDeprecationReasonChanged,
-    message: `Deprecation reason on field '${type.name}.${
-      newField.name
-    }' has changed from '${oldField.deprecationReason}' to '${
-      newField.deprecationReason
-    }'`,
+    message: `Deprecation reason on field '${type.name}.${newField.name}' has changed from '${oldField.deprecationReason}' to '${newField.deprecationReason}'`,
     path: [type.name, oldField.name].join('.'),
   };
 }
@@ -146,9 +140,7 @@ export function fieldDeprecationReasonAdded(
       level: CriticalityLevel.NonBreaking,
     },
     type: ChangeType.FieldDeprecationReasonAdded,
-    message: `Field '${type.name}.${field.name}' has deprecation reason '${
-      field.deprecationReason
-    }'`,
+    message: `Field '${type.name}.${field.name}' has deprecation reason '${field.deprecationReason}'`,
     path: [type.name, field.name].join('.'),
   };
 }
@@ -162,9 +154,7 @@ export function fieldDeprecationReasonRemoved(
       level: CriticalityLevel.NonBreaking,
     },
     type: ChangeType.FieldDeprecationReasonRemoved,
-    message: `Deprecation reason was removed from field '${type.name}.${
-      field.name
-    }'`,
+    message: `Deprecation reason was removed from field '${type.name}.${field.name}'`,
     path: [type.name, field.name].join('.'),
   };
 }
@@ -181,9 +171,7 @@ export function fieldTypeChanged(
         : CriticalityLevel.Breaking,
     },
     type: ChangeType.FieldTypeChanged,
-    message: `Field '${type}.${oldField.name}' changed type from '${
-      oldField.type
-    }' to '${newField.type}'`,
+    message: `Field '${type}.${oldField.name}' changed type from '${oldField.type}' to '${newField.type}'`,
     path: [type.name, oldField.name].join('.'),
   };
 }
@@ -203,9 +191,7 @@ export function fieldArgumentAdded(
           level: CriticalityLevel.Dangerous,
         },
     type: ChangeType.FieldArgumentAdded,
-    message: `Argument '${arg.name}: ${arg.type}' added to field '${
-      type.name
-    }.${field.name}'`,
+    message: `Argument '${arg.name}: ${arg.type}' added to field '${type.name}.${field.name}'`,
     path: [type.name, field.name, arg.name].join('.'),
   };
 }
@@ -221,9 +207,7 @@ export function fieldArgumentRemoved(
       reason: `Removing a field argument is a breaking change because it will cause existing queries that use this argument to error.`,
     },
     type: ChangeType.FieldArgumentRemoved,
-    message: `Argument '${arg.name}: ${arg.type}' was removed from field '${
-      type.name
-    }.${field.name}'`,
+    message: `Argument '${arg.name}: ${arg.type}' was removed from field '${type.name}.${field.name}'`,
     path: [type.name, field.name, arg.name].join('.'),
   };
 }
