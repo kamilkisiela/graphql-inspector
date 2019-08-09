@@ -2,6 +2,8 @@
 
 ### vNEXT
 
+### v1.23.0
+
 - **action**: fail on missing check [PR #504](https://github.com/kamilkisiela/graphql-inspector/pull/504)
 - **cli**: Allow to supress removal of deprecated fields [PR #506](https://github.com/kamilkisiela/graphql-inspector/pull/506)
 - **cli**: Support Apollo directives [PR #505](https://github.com/kamilkisiela/graphql-inspector/pull/505)
