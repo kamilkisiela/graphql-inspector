@@ -204,7 +204,13 @@ async function updateCheckRun(
 
   const check = response.data.check_runs.find(
     check => check.name === checkName,
-  )!;
+  );
+
+  if (!check) {
+    return tools.exit.failure(
+      `Couldn't match the action '${checkName}' with a running check`,
+    );
+  }
 
   await tools.github.checks.update({
     check_run_id: check.id,
