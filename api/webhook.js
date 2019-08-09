@@ -2,7 +2,7 @@ const {createProbot} = require('probot');
 const {resolve} = require('probot/lib/resolver');
 const {findPrivateKey} = require('probot/lib/private-key');
 
-const appFn = require('@graphql-inspector/github').default;
+const githubApp = require('@graphql-inspector/github').default;
 
 let probot;
 
@@ -31,7 +31,7 @@ const lowerCaseKeys = obj =>
     {},
   );
 
-module.exports = serverless(appFn);
+module.exports = serverless(githubApp);
 
 function serverless(appFn) {
   console.log('Created');
