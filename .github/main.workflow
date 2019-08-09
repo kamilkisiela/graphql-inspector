@@ -57,3 +57,13 @@ action "Auto Merge" {
   }
   args = "--debug"
 }
+
+workflow "Use area labels" {
+  on = "pull_request"
+  resolves = ["actions/labeler"]
+}
+
+action "actions/labeler" {
+  uses = "actions/labeler@v2"
+  secrets = ["GITHUB_TOKEN"]
+}
