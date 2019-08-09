@@ -18,6 +18,7 @@ export async function validate(
     require?: string[];
     deprecated: boolean;
     noStrictFragments: boolean;
+    apollo?: boolean;
     maxDepth?: number;
     renderer?: Renderer;
     headers?: Record<string, string>;
@@ -34,6 +35,7 @@ export async function validate(
     const invalidDocuments = validateDocuments(schema, documents, {
       strictFragments: !options.noStrictFragments,
       maxDepth: options.maxDepth || undefined,
+      apollo: options.apollo || false,
     });
 
     if (!invalidDocuments.length) {

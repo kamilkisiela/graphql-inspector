@@ -21,6 +21,7 @@ Run the following command:
 
 - `-d, --deprecated` - Fail on deprecated usage (default: _false_)
 - `--noStrictFragments` - Do not fail on duplicated fragment names (default: _false_)
+- `--apollo` - Support Apollo directives (@client and @connection) (default: _false_)
 - `--maxDepth <n>` - Fail when operation depth exceeds maximum depth (default: _false_)
 - `-r, --require <s>` - require a module
 - `-t, --token <s>` - an access token

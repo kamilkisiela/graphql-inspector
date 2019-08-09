@@ -63,6 +63,7 @@ commander
   .option('--maxDepth <n>', 'Fail on deep operations', (val: string) =>
     parseInt(val, 10),
   )
+  .option('--apollo', 'Support Apollo directives', false)
   .description('Validate documents against a schema')
   .action((documents: string, schema: string, cmd: commander.Command) =>
     validate(documents, schema, normalizeOptions(cmd)),
