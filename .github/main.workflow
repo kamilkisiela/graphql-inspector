@@ -64,6 +64,6 @@ workflow "Use area labels" {
 }
 
 action "actions/labeler" {
-  uses = "actions/labeler@v2"
+  uses = "actions/labeler@v1"
   secrets = ["GITHUB_TOKEN"]
 }
