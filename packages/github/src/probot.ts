@@ -1,5 +1,5 @@
 import * as probot from 'probot';
-import getGithubConfig from 'probot-config';
+import * as getGithubConfig from 'probot-config';
 import {buildSchema} from 'graphql';
 
 import {CheckConclusion, ActionResult, Annotation} from './types';
@@ -207,12 +207,10 @@ export async function handleAction({
 
   async function loadConfig(): Promise<Config | undefined> {
     const identifier = 'graphql-inspector';
-    const yamlConfig: Config | undefined = await getGithubConfig(
-      context,
+    const yamlConfig: Config | undefined = await loadGithubConfig(
       identifier + '.yaml',
     );
-    const ymlConfig: Config | undefined = await getGithubConfig(
-      context,
+    const ymlConfig: Config | undefined = await loadGithubConfig(
       identifier + '.yml',
     );
 
@@ -230,5 +228,15 @@ export async function handleAction({
         return pkg[identifier];
       }
     }
+  }
+
+  function loadGithubConfig(identifier: string) {
+    const loader: any = getGithubConfig;
+
+    if (typeof loader !== 'function' && typeof loader.default !== 'undefined') {
+      loader.default(context, identifier);
+    }
+
+    return loader(context, identifier);
   }
 }
