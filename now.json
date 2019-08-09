@@ -11,13 +11,20 @@
   },
   "build": {
     "env": {
-      "SKIP_PREFLIGHT_CHECK": true
+      "SKIP_PREFLIGHT_CHECK": "true"
     }
   },
   "public": false,
   "builds": [
     {
-      "src": "package.json",
+      "src": "api/*.js",
+      "use": "@now/node",
+      "config": {
+        "debug": true
+      }
+    },
+    {
+      "src": "build.sh",
       "use": "@now/static-build",
       "config": {
         "zeroConfig": false,
@@ -31,7 +38,14 @@
       "status": 301,
       "headers": {"Location": "https://github.com/apps/graphql-inspector"}
     },
-    { "src": "/(.*)", "dest": "website/build/graphql-inspector/$1" }
+    {
+      "src": "/api/ping",
+      "dest": "/api/ping.js"
+    },
+    {
+      "src": "/api/webhook",
+      "dest": "/api/webhook.js"
+    }
   ],
   "github": {
     "enabled": true,

@@ -6,7 +6,7 @@
     "version": "docusaurus-version",
     "rename-version": "docusaurus-rename-version",
     "live:dev": "rm -rf static/live && cd live && npm run build && cp -r ./build ../static/live",
-    "live:prod": "rm -rf build/graphql-inspector/live && cd live && npm run build && cp -r ./build ../build/graphql-inspector/live"
+    "live:prod": "rm -rf build/graphql-inspector/live && cd live && npm install && npm run build && cp -r ./build ../build/graphql-inspector/live"
   },
   "devDependencies": {
     "docusaurus": "1.11.1"
