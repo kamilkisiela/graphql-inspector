@@ -1,4 +1,4 @@
-export {diff} from './diff/schema';
+export {diff, DiffRule} from './diff';
 export {validate, InvalidDocument} from './validate';
 export {similar, SimilarMap} from './similar';
 export * from './coverage';

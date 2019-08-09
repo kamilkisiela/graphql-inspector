@@ -48,6 +48,7 @@ commander
 commander
   .command('diff <old> <new>')
   .description('Diff two schemas')
+  .option('--rule [name]', 'Add rules', collect, [])
   .action((oldSchema: string, newSchema: string, cmd: commander.Command) =>
     diff(oldSchema, newSchema, normalizeOptions(cmd)),
   );

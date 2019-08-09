@@ -1,6 +1,6 @@
 import {buildSchema} from 'graphql';
 
-import {diff, CriticalityLevel} from '../../src/index';
+import {diff, DiffRule, CriticalityLevel} from '../../src/index';
 import {findFirstChangeByPath, findChangesByPath} from '../../utils/testing';
 
 describe('object', () => {
@@ -324,6 +324,43 @@ describe('object', () => {
       expect(change.b.criticality.level).toEqual(CriticalityLevel.NonBreaking);
       expect(change.b.type).toEqual('FIELD_DEPRECATION_ADDED');
       expect(change.b.message).toEqual("Field 'Foo.b' is deprecated");
+    });
+
+    test('removal of a deprecated field', () => {
+      const a = buildSchema(/* GraphQL */ `
+        type Foo {
+          a: String!
+          b: String! @deprecated
+        }
+      `);
+      const b = buildSchema(/* GraphQL */ `
+        type Foo {
+          a: String!
+        }
+      `);
+
+      const change = findFirstChangeByPath(diff(a, b), 'Foo.b');
+
+      expect(change.criticality.level).toEqual(CriticalityLevel.Breaking);
+      expect(change.type).toEqual('FIELD_REMOVED');
+      expect(change.message).toEqual(
+        "Field 'b' (deprecated) was removed from object type 'Foo'",
+      );
+
+      // suppressRemovalOfDeprecatedField rule should make it only Dangerous
+
+      const changeWithRule = findFirstChangeByPath(
+        diff(a, b, [DiffRule.suppressRemovalOfDeprecatedField]),
+        'Foo.b',
+      );
+
+      expect(changeWithRule.criticality.level).toEqual(
+        CriticalityLevel.Dangerous,
+      );
+      expect(changeWithRule.type).toEqual('FIELD_REMOVED');
+      expect(changeWithRule.message).toEqual(
+        "Field 'b' (deprecated) was removed from object type 'Foo'",
+      );
     });
   });
 

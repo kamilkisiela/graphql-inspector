@@ -34,7 +34,7 @@ import {changesInObject} from './object';
 import {changesInInterface} from './interface';
 import {changesInDirective} from './directive';
 
-export function diff(
+export function diffSchema(
   oldSchema: GraphQLSchema,
   newSchema: GraphQLSchema,
 ): Change[] {

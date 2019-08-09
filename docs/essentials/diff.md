@@ -43,3 +43,13 @@ Compare your local schema against a remote server:
 Compare your local schema against a schema on a master branch (github):
 
     graphql-inspector diff github:user/repo#master:schema.graphql schema.graphql
+
+## Rules
+
+In order to customize the diff's behavior, you're able to use a set of rules:
+
+**suppressRemovalOfDeprecatedField**
+
+Every removal of a deprecated field is considered as a breaking change. With that flag you can turn it into a dangerous change so it won't fail a process or a CI check.
+
+    graphql-inspector diff https://api.com/graphql schema.graphql --rule suppressRemovalOfDeprecatedField
