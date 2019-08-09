@@ -1,0 +1,8 @@
+area/api: packages/api/**
+area/cli: packages/cli/**
+area/core: packages/core/**
+area/github: 
+  - packages/github/**
+  - packages/github-actions/**
+area/load: packages/load/**
+area/ui: packages/ui/**
