@@ -35,6 +35,9 @@
       "installation": {
         "title": "Getting Started"
       },
+      "recipes/ci": {
+        "title": "Continuous Integration"
+      },
       "recipes/github": {
         "title": "Github Application"
       }
