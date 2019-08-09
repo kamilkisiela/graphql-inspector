@@ -8,3 +8,6 @@ yarn-error.log
 .env
 private-key.pem
 .DS_Store
+yarn.lock
+website/**/yarn.lock
+website/**/package-lock.json
