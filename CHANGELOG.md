@@ -2,6 +2,8 @@
 
 ### vNEXT
 
+### v1.23.1
+
 ### v1.23.0
 
 - **action**: fail on missing check [PR #504](https://github.com/kamilkisiela/graphql-inspector/pull/504)
