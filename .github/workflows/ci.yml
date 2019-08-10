@@ -10,17 +10,13 @@ jobs:
       matrix:
         node_version: [10, 12]
 
-   steps:
+    steps:
     - uses: actions/checkout@master
 
     - name: Use Node.js ${{ matrix.node_version }}
       uses: actions/setup-node@master
       with:
         version: ${{ matrix.node_version }}
-        
-    - name: Use Yarn
-      run: |
-        npm install -g yarn
     
     - name: Install
       run: |
