@@ -17,10 +17,6 @@ jobs:
       uses: actions/setup-node@master
       with:
         version: ${{ matrix.nodejs_version }}
-        
-    - name: Use Yarn
-      run: |
-        npm install -g yarn
     
     - name: Install
       run: |
