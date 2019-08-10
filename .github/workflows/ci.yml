@@ -1,0 +1,35 @@
+name: CI
+
+on: [push]
+
+jobs:
+  test:
+    name: Test on node ${{ matrix.node_version }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node_version: [10, 12]
+
+   steps:
+    - uses: actions/checkout@master
+
+    - name: Use Node.js ${{ matrix.node_version }}
+      uses: actions/setup-node@master
+      with:
+        version: ${{ matrix.node_version }}
+        
+    - name: Use Yarn
+      run: |
+        npm install -g yarn
+    
+    - name: Install
+      run: |
+        yarn
+    
+    - name: Build
+      run: |
+        yarn build
+    
+    - name: Test
+      run: |
+        yarn test
