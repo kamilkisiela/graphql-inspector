@@ -7,8 +7,8 @@ jobs:
       uses: kamilkisiela/automerge-action@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        LABELS = "!wip,dependencies"
-        AUTOMERGE = "dependencies"
-        AUTOREBASE = "rebase"
-        MERGE_METHOD = "squash"
+        LABELS: "!wip,dependencies"
+        AUTOMERGE: "dependencies"
+        AUTOREBASE: "rebase"
+        MERGE_METHOD: "squash"
     - run: echo All Done!
