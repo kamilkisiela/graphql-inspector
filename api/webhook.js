@@ -84,6 +84,7 @@ function serverless(appFn) {
         await logEvent({
           event,
           ok: false,
+          error,
         });
 
         res.status(500);
@@ -97,6 +98,7 @@ function serverless(appFn) {
       await logEvent({
         event,
         ok: false,
+        error: 'No req object...',
       });
 
       res.status(500);
@@ -107,7 +109,7 @@ function serverless(appFn) {
   };
 }
 
-async function logEvent({event, ok}) {
+async function logEvent({event, ok, error}) {
   const secret = process.env.FAUNADB_SECRET;
 
   if (!secret) {
@@ -129,17 +131,23 @@ async function logEvent({event, ok}) {
     );
 
     const query = /* GraphQL */ `
-      mutation invocation($event: String, $status: Status!) {
-        createInvocation(data: {event: $event, status: $status}) {
+      mutation invocation($event: String!, $status: Status!, $error: String) {
+        createInvocation(
+          data: {event: $event, status: $status, error: $error}
+        ) {
           _id
           _ts
         }
       }
     `;
 
+    const errorAsString =
+      typeof error.toString !== 'undefined' ? error.toString() : `${error}`;
+
     const result = await graphQLClient.request(query, {
       event,
       status,
+      error: errorAsString,
     });
 
     console.log('LOG SENT');
