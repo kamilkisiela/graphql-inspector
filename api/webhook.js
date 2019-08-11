@@ -1,7 +1,7 @@
 const {createProbot} = require('probot');
 const {resolve} = require('probot/lib/resolver');
 const {findPrivateKey} = require('probot/lib/private-key');
-import {GraphQLClient} from 'graphql-request';
+const {GraphQLClient} = require('graphql-request');
 
 const githubApp = require('@graphql-inspector/github').default;
 
