@@ -141,14 +141,15 @@ async function logEvent({event, ok, error}) {
       }
     `;
 
-    const errorAsString =
-      typeof error.toString !== 'undefined' ? error.toString() : `${error}`;
+    const variables = { event, status };
 
-    const result = await graphQLClient.request(query, {
-      event,
-      status,
-      error: errorAsString,
-    });
+    if (error) {
+
+      variables.error = typeof error.toString !== 'undefined' ? error.toString() : `${error}`;
+      
+    }
+
+    const result = await graphQLClient.request(query, variables);
 
     console.log('LOG SENT');
     console.log(result);
