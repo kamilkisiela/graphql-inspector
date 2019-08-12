@@ -1,13 +1,18 @@
 import * as probot from 'probot';
 import * as getGithubConfig from 'probot-config';
 import {buildSchema} from 'graphql';
+import {DiffRules} from '@graphql-inspector/core';
 
 import {CheckConclusion, ActionResult, Annotation} from './types';
 import {diff} from './diff';
 import * as check from './check-runs';
 
+interface DiffConfig {
+  rules: Array<keyof typeof DiffRules>;
+}
+
 export interface Config {
-  diff?: boolean;
+  diff?: boolean | DiffConfig;
   // similar?: boolean;
   // coverage?: boolean;
   schema: SchemaPointer;
@@ -149,6 +154,7 @@ export async function handleAction({
       diff({
         path: config.schema.path,
         schemas,
+        rules: typeof config.diff === 'object' ? config.diff.rules : [],
       }),
     );
   }

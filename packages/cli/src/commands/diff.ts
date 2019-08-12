@@ -1,6 +1,7 @@
 import {
   diff as diffSchema,
   DiffRule,
+  DiffRules,
   Change,
   CriticalityLevel,
 } from '@graphql-inspector/core';
@@ -19,7 +20,7 @@ export async function diff(
     token?: string;
     renderer?: Renderer;
     require?: string[];
-    rule?: Array<keyof typeof DiffRule>;
+    rule?: DiffRule[];
     headers?: Record<string, string>;
   },
 ) {
@@ -38,12 +39,12 @@ export async function diff(
     const rules = options.rule
       ? options.rule
           .map(rule => {
-            if (!DiffRule[rule]) {
+            if (!DiffRules[rule]) {
               renderer.error(`\Rule '${rule}' does not exist!\n`);
               process.exit(1);
             }
 
-            return DiffRule[rule];
+            return DiffRules[rule];
           })
           .filter(f => f)
       : [];

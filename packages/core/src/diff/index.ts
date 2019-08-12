@@ -5,7 +5,8 @@ import {Change} from './changes/change';
 import {Rule} from './rules/types';
 import * as rules from './rules';
 
-export const DiffRule = rules;
+export const DiffRules = rules;
+export type DiffRule = Rule;
 
 export function diff(
   oldSchema: GraphQLSchema,

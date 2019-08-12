@@ -1,5 +1,6 @@
 import {
   diff as diffSchemas,
+  DiffRules,
   CriticalityLevel,
   Change,
 } from '@graphql-inspector/core';
@@ -13,17 +14,23 @@ import {
 } from './types';
 import {getLocation} from './location';
 
-export async function diff({
+export async function diff<TRule extends keyof typeof DiffRules>({
   path,
   schemas,
+  rules,
 }: {
   path: string;
   schemas: {
     old: GraphQLSchema;
     new: GraphQLSchema;
   };
+  rules?: TRule[];
 }): Promise<ActionResult> {
-  const changes = diffSchemas(schemas.old, schemas.new);
+  const changes = diffSchemas(
+    schemas.old,
+    schemas.new,
+    rules ? rules.map(name => DiffRules[name]) : [],
+  );
 
   if (!changes || !changes.length) {
     return {
