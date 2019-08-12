@@ -24,9 +24,9 @@
   "scripts": {
     "build": "lerna run build",
     "test": "lerna run test",
-    "build:website": "(cd website && npm install && npm run build)",
+    "build:website": "(cd website && npm install && npm run build) && mv website/build/graphql-inspector public",
     "build:github": "yarn workspace @graphql-inspector/core build && yarn workspace @graphql-inspector/github build && yarn workspace @graphql-inspector/actions build",
-    "now-build": "yarn workspace @graphql-inspector/core build && yarn workspace @graphql-inspector/github build",
+    "now-build": "yarn workspace @graphql-inspector/core build && yarn workspace @graphql-inspector/github build && yarn build:website",
     "format": "prettier --config .prettierrc --write \"**/*.{js,json,md,ts,graphql}\"",
     "release": "lerna publish --exact --force-publish=\"*\"",
     "release:canary": "lerna publish --force-publish=\"*\" --canary --exact",
