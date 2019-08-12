@@ -10,42 +10,12 @@
     "WEBHOOK_SECRET": "@graphql-inspector-webhook-secret",
     "FAUNADB_SECRET": "@graphql-inspector-faunadb"
   },
-  "build": {
-    "env": {
-      "SKIP_PREFLIGHT_CHECK": "true"
-    }
-  },
   "public": false,
-  "builds": [
-    {
-      "src": "api/*.js",
-      "use": "@now/node",
-      "config": {
-        "debug": true
-      }
-    },
-    {
-      "src": "build.sh",
-      "use": "@now/static-build",
-      "config": {
-        "zeroConfig": false,
-        "distDir": "website/build/graphql-inspector"
-      }
-    }
-  ],
   "routes": [
     {
       "src": "/install",
       "status": 301,
       "headers": {"Location": "https://github.com/apps/graphql-inspector"}
-    },
-    {
-      "src": "/api/ping",
-      "dest": "/api/ping.js"
-    },
-    {
-      "src": "/api/webhook",
-      "dest": "/api/webhook.js"
     }
   ],
   "github": {
