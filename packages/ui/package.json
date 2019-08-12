@@ -47,7 +47,7 @@
     "@types/styled-components": "4.1.18",
     "@uifabric/icons": "7.1.1",
     "apollo-cache-inmemory": "1.6.2",
-    "apollo-client": "2.6.3",
+    "apollo-client": "2.6.4",
     "apollo-link-http": "1.5.15",
     "graphql": "14.4.2",
     "graphql-tag": "2.10.1",
