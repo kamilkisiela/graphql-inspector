@@ -5803,10 +5803,10 @@ dotenv@6.2.0:
   resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-6.2.0.tgz#941c0410535d942c8becf28d3f357dbd9d476064"
   integrity sha512-HygQCKUBSFl8wKQZBSemMywRWcEDNidvNbjGVyZu3nbZ8qq9ubiPoGLMdRDpfSrpkkm9BXYFkpKxxFX38o/76w==
 
-dotenv@~8.0.0:
-  version "8.0.0"
-  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-8.0.0.tgz#ed310c165b4e8a97bb745b0a9d99c31bda566440"
-  integrity sha512-30xVGqjLjiUOArT4+M5q9sYdvuR4riM6yK9wMcas9Vbp6zZa+ocC9dp6QoftuhTPhFAiLK/0C5Ni2nou/Bk8lg==
+dotenv@~8.1.0:
+  version "8.1.0"
+  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-8.1.0.tgz#d811e178652bfb8a1e593c6dd704ec7e90d85ea2"
+  integrity sha512-GUE3gqcDCaMltj2++g6bRQ5rBJWtkWTmqmD0fo1RnnMuUqHNCt2oTPeDnS9n6fKYvlhn7AeBkb38lymBtWBQdA==
 
 dtrace-provider@~0.8:
   version "0.8.7"
@@ -11863,10 +11863,10 @@ probot-config@1.1.0:
     deepmerge "^2.2.1"
     js-yaml "^3.10.0"
 
-probot@9.3.1:
-  version "9.3.1"
-  resolved "https://registry.yarnpkg.com/probot/-/probot-9.3.1.tgz#7bebd2da696fd81cf04ffee0d58c376b53e51c55"
-  integrity sha512-ddSTMxafSoUilr6LMGVeOmdxiUjiffdNokPljdZ2zXcUWR6OwKzpDpfRBTxvtsALgPj/HLzk9IZZp8yG1mVbMQ==
+probot@9.3.2:
+  version "9.3.2"
+  resolved "https://registry.yarnpkg.com/probot/-/probot-9.3.2.tgz#73288263992ea42df35aae46113abda2524837a2"
+  integrity sha512-CH/uraugXWMlNqZeHwUeECfloj+MX6I1coRZP3HZN9H8qjd4cnsUyAPvMX3v47EkgpX7nKSgTTGQPzJrDXByWA==
   dependencies:
     "@octokit/app" "^4.0.0"
     "@octokit/graphql" "3.0.1"
@@ -11883,7 +11883,7 @@ probot@9.3.1:
     cache-manager "^2.4.0"
     commander "^3.0.0"
     deepmerge "^3.2.0"
-    dotenv "~8.0.0"
+    dotenv "~8.1.0"
     eventsource "^1.0.7"
     express "^4.16.2"
     express-async-errors "^3.0.0"
