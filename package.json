@@ -46,13 +46,14 @@
     "shelljs": "0.8.3"
   },
   "workspaces": [
-    "packages/core",
-    "packages/cli",
     "packages/api",
-    "packages/ui",
-    "packages/load",
+    "packages/cli",
+    "packages/core",
+    "packages/data",
     "packages/github",
-    "packages/github-actions"
+    "packages/github-actions",
+    "packages/load",
+    "packages/ui"
   ],
   "lint-staged": {
     "*.{js,json,md,ts,graphql}": [
