@@ -84,7 +84,7 @@ function serverless(appFn) {
         await logEvent({
           event,
           ok: false,
-          error,
+          error: err,
         });
 
         res.status(500);
