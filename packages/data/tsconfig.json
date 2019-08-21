@@ -16,7 +16,10 @@
     "allowSyntheticDefaultImports": true,
     "baseUrl": "./",
     "types": ["node"],
-    "lib": ["es2015", "esnext.asynciterable", "dom"]
+    "lib": ["es2015", "esnext.asynciterable", "dom"],
+
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
   },
   "files": ["src/index.ts"]
 }

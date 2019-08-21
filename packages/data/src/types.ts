@@ -14,6 +14,12 @@ export interface Trace {
   id: string;
   operationName?: string;
   query?: string;
+
+  // phases
+  parsing?: number;
+  validation?: number;
+  execution?: number;
+
   startTime: number;
   duration: number;
   entry: TraceNode;
@@ -26,6 +32,6 @@ export interface Report {
 
 export interface TraceError {
   message: string;
-  locations: readonly SourceLocation[] | undefined;
+  locations: ReadonlyArray<SourceLocation> | undefined;
   json: string;
 }

@@ -1,9 +1,10 @@
 import {GraphQLExtension, EndHandler} from 'graphql-extensions';
-import {DocumentNode, print} from 'graphql';
+import {DocumentNode, parse} from 'graphql';
 
 import {Builder, ErrorTransform} from './builder';
-import {Trace} from './types';
-import {uuid} from './helpers';
+import {Trace} from '../types';
+import {uuid} from '../helpers';
+import {normalizeOperation} from '../normalize/operation';
 
 type FirstParam<K extends keyof GraphQLExtension> = Parameters<
   NonNullable<GraphQLExtension[K]>
@@ -41,24 +42,38 @@ export class InspectorExtension implements GraphQLExtension {
       this.onTrace({
         id: uuid(),
         operationName: this.operationName,
-        query: this.normalizeQuery(
-          this.documentString || print(this.document!),
-        ),
+        query: normalizeOperation({
+          operationName: this.operationName,
+          document: this.document! || parse(this.documentString!),
+        }),
         startTime: this.builder.startTime!,
         duration: this.builder.duration!,
+        execution: this.builder.execution,
+        validation: this.builder.validation,
+        parsing: this.builder.parsing,
         entry: this.builder.entry,
       });
     };
   }
 
-  public executionDidStart(o: FirstParam<'executionDidStart'>) {
+  parsingDidStart() {
+    return this.builder.parsingDidStart();
+  }
+
+  validationDidStart() {
+    return this.builder.validationDidStart();
+  }
+
+  executionDidStart(o: FirstParam<'executionDidStart'>) {
     if (o.executionArgs.operationName) {
       this.operationName = o.executionArgs.operationName;
     }
     this.document = o.executionArgs.document;
+
+    return this.builder.executionDidStart();
   }
 
-  public willResolveField(
+  willResolveField(
     _parent: Params<'willResolveField'>[0],
     _args: Params<'willResolveField'>[1],
     _context: Params<'willResolveField'>[2],
@@ -67,11 +82,11 @@ export class InspectorExtension implements GraphQLExtension {
     return this.builder.willResolveField(info);
   }
 
-  public didEncounterErrors(errors: FirstParam<'didEncounterErrors'>) {
+  didEncounterErrors(errors: FirstParam<'didEncounterErrors'>) {
     this.builder.didEncounterErrors(errors);
   }
 
-  private normalizeQuery(query: string): string {
-    return query.replace(/\s+/g, ' ');
-  }
+  // private normalizeQuery(query: string): string {
+  //   return query.replace(/\s+/g, ' ');
+  // }
 }

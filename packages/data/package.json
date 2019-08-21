@@ -30,9 +30,12 @@
     "graphql": "^0.13.0 || ^14.0.0"
   },
   "dependencies": {
+    "apollo-graphql": "0.3.3",
     "async-retry": "1.2.3",
     "axios": "0.19.0",
-    "graphql-extensions": "0.9.1"
+    "graphql-extensions": "0.9.1",
+    "knex": "0.19.2",
+    "pg": "7.12.1"
   },
   "devDependencies": {
     "@types/async-retry": "1.4.1",

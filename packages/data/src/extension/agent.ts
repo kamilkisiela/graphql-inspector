@@ -1,19 +1,12 @@
-import {
-  GraphQLSchema,
-  DocumentNode,
-  Source,
-  isSchema,
-  printSchema,
-  print,
-} from 'graphql';
-import {createHash} from 'crypto';
+import {GraphQLSchema, DocumentNode, Source} from 'graphql';
 import axios from 'axios';
 import * as os from 'os';
 import * as retry from 'async-retry';
 
-import {isSource, compress} from './helpers';
+import {compress} from '../helpers';
 import {InspectorExtension, InspectorExtensionOptions} from './extension';
-import {Trace, Metadata, Report} from './types';
+import {Trace, Metadata, Report} from '../types';
+import {hashSchema} from '../normalize/schema';
 
 export interface InspectorAgentOptions {
   schema: GraphQLSchema | DocumentNode | Source | string;
@@ -75,9 +68,7 @@ export class InspectorAgent {
       ...options,
     };
 
-    this.schemaHash = this.generateSchemaHash(
-      this.stringifySchema(options.schema),
-    );
+    this.schemaHash = hashSchema(options.schema);
 
     this.metadata = {
       agent: `1.2.3`,
@@ -181,30 +172,6 @@ export class InspectorAgent {
       metadata: this.report!.metadata,
       traces: [],
     };
-  }
-
-  private generateSchemaHash(schema: string) {
-    return createHash('sha512')
-      .update(schema)
-      .digest('hex');
-  }
-
-  private stringifySchema(
-    schema: GraphQLSchema | DocumentNode | Source | string,
-  ): string {
-    if (typeof schema === 'string') {
-      return schema;
-    }
-
-    if (isSchema(schema)) {
-      return printSchema(schema);
-    }
-
-    if (isSource(schema)) {
-      return schema.body;
-    }
-
-    return print(schema);
   }
 
   private debugLog(msg: string) {

@@ -1,5 +1,12 @@
 import {Source} from 'graphql';
 import {gzip} from 'zlib';
+import {createHash} from 'crypto';
+
+export function hash(data: string): string {
+  return createHash('sha512')
+    .update(data)
+    .digest('hex');
+}
 
 export function hrTimeToNs(hrtime: [number, number]) {
   return hrtime[0] * 1e9 + hrtime[1];
@@ -27,4 +34,8 @@ export function compress<T extends object>(obj: T): Promise<Buffer> {
       }
     });
   });
+}
+
+export function flatten<T>(list: T[][]): T[] {
+  return Array.prototype.concat(...list);
 }

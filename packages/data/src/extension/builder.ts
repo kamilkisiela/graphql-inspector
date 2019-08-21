@@ -1,15 +1,19 @@
 import {ResponsePath, GraphQLResolveInfo, GraphQLError} from 'graphql';
 import {responsePathAsArray} from 'graphql/execution';
 
-import {TraceNode} from './node';
-import {hrTimeToNs} from './helpers';
+import {TraceNode} from '../node';
+import {hrTimeToNs} from '../helpers';
 
 export type ErrorTransform = (error: GraphQLError) => GraphQLError | null;
 
 export class Builder {
+  time?: Date;
   startTime?: number;
   startHrTime?: [number, number];
   duration?: number;
+  parsing?: number;
+  validation?: number;
+  execution?: number;
   entry = new TraceNode();
   transformError: ErrorTransform;
 
@@ -26,6 +30,30 @@ export class Builder {
 
   stop() {
     this.duration = hrTimeToNs(process.hrtime(this.startHrTime));
+  }
+
+  parsingDidStart() {
+    const start = process.hrtime();
+
+    return () => {
+      this.parsing = hrTimeToNs(process.hrtime(start));
+    };
+  }
+
+  validationDidStart() {
+    const start = process.hrtime();
+
+    return () => {
+      this.validation = hrTimeToNs(process.hrtime(start));
+    };
+  }
+
+  executionDidStart() {
+    const start = process.hrtime();
+
+    return () => {
+      this.execution = hrTimeToNs(process.hrtime(start));
+    };
   }
 
   willResolveField(
