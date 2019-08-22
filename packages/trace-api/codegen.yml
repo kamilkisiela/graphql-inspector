@@ -7,12 +7,14 @@ generates:
       useIndexSignature: true
       contextType: ../context#InspectorApiContext
       maybeValue: T | undefined
+      scalars:
+        ID: number
       mappers:
         Operation: models.OperationModel
         Field: models.FieldModel
         OperationTrace: models.OperationTraceModel
         FieldTrace: models.FieldTraceModel
     plugins:
-      - add: import * as models from '../../db/postgresql/models'
+      - add: import * as models from '../../db/models'
       - typescript
       - typescript-resolvers

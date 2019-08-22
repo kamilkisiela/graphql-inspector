@@ -29,13 +29,6 @@ export async function createTables(client: knex) {
   }
 }
 
-export interface OperationModel {
-  id: number;
-  name: string;
-  operation: string;
-  signature: string;
-}
-
 function createOperationsTable(client: knex) {
   return client.schema.createTableIfNotExists(Tables.Operations, t => {
     t.increments('id').primary();
@@ -45,23 +38,12 @@ function createOperationsTable(client: knex) {
   });
 }
 
-export interface FieldModel {
-  id: number;
-  name: string;
-  type: string;
-}
-
 function createFieldsTable(client: knex) {
   return client.schema.createTableIfNotExists(Tables.Fields, t => {
     t.increments('id').primary();
     t.string('name');
     t.string('type');
   });
-}
-
-export interface OperationFieldModel {
-  operationId: number;
-  fieldId: number;
 }
 
 function createOperationsFieldsTable(client: knex) {
@@ -73,16 +55,6 @@ function createOperationsFieldsTable(client: knex) {
       .references('id')
       .inTable(Tables.Fields);
   });
-}
-
-export interface OperationTraceModel {
-  id: number;
-  operationId: number;
-  startTime: number;
-  duration: number;
-  parsing: number;
-  validation: number;
-  execution: number;
 }
 
 function createOperationTracesTable(client: knex) {
@@ -100,15 +72,6 @@ function createOperationTracesTable(client: knex) {
   });
 }
 
-export interface FieldTraceModel {
-  id: number;
-  path: string;
-  fieldId: number;
-  operationTraceId: number;
-  startTime: number;
-  endTime: number;
-}
-
 function createFieldTracesTable(client: knex) {
   return client.schema.createTableIfNotExists(Tables.FieldTraces, t => {
     t.increments('id').primary();
@@ -123,14 +86,6 @@ function createFieldTracesTable(client: knex) {
     t.bigInteger('startTime');
     t.bigInteger('endTime');
   });
-}
-
-export interface ErrorModel {
-  id: number;
-  message: string;
-  json: string;
-  fieldTraceId?: number;
-  operationTraceId?: number;
 }
 
 function createErrorsTable(client: knex) {

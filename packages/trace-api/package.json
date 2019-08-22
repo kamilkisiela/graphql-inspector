@@ -1,0 +1,53 @@
+{
+  "name": "@graphql-inspector/trace-api",
+  "version": "0.0.0-PLACEHOLDER",
+  "description": "Tooling for GraphQL. Compare GraphQL Schemas, check documents, find breaking changes, find similar types.",
+  "keywords": [
+    "graphql",
+    "graphql-inspector",
+    "tools"
+  ],
+  "sideEffects": false,
+  "main": "dist/index.js",
+  "author": {
+    "name": "Kamil Kisiela",
+    "email": "kamil.kisiela@gmail.com",
+    "url": "https://github.com/kamilkisiela"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "kamilkisiela/graphql-inspector"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "jest",
+    "types": "graphql-codegen --config codegen.yml",
+    "clean": "rm -rf dist/",
+    "prebuild": "yarn clean && yarn types",
+    "prepublishOnly": "yarn build"
+  },
+  "peerDependencies": {
+    "graphql": "^0.13.0 || ^14.0.0"
+  },
+  "dependencies": {
+    "@graphql-inspector/trace": "0.0.0-PLACEHOLDER",
+    "graphql-scalars": "1.0.1",
+    "graphql-tools": "4.0.5",
+    "ms": "2.1.2"
+  },
+  "devDependencies": {
+    "@graphql-codegen/add": "1.6.1",
+    "@graphql-codegen/cli": "1.6.1",
+    "@graphql-codegen/typescript": "1.6.1",
+    "@graphql-codegen/typescript-resolvers": "1.6.1",
+    "@types/async-retry": "1.4.1",
+    "@types/graphql": "14.2.3",
+    "@types/jest": "24.0.17",
+    "@types/ms": "0.7.30",
+    "@types/node": "12.7.2",
+    "jest": "24.8.0",
+    "ts-jest": "24.0.2",
+    "typescript": "3.5.3"
+  }
+}

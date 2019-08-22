@@ -1,30 +1,34 @@
 import * as knex from 'knex';
-import ms = require('ms');
+
 import {
-  createTables,
-  Tables,
   OperationModel,
   FieldModel,
   OperationFieldModel,
   OperationTraceModel,
   FieldTraceModel,
   ErrorModel,
-} from './models';
-import {Report, Trace} from '../../types';
-import {operationSignature} from '../../normalize/operation';
+  Adapter,
+  AdapterConfig,
+  translatePeriod,
+} from '@graphql-inspector/trace-api';
+
 import {
+  Report,
+  Trace,
+  operationSignature,
   normalizeTraceNode,
   NormalizedTraceNodeMap,
-} from '../../normalize/trace';
-import {flatten} from '../../helpers';
-import {Adapter, AdapterConfig} from '../adapter';
+} from '@graphql-inspector/trace';
+
+import {Tables, createTables} from './tables';
+import {flatten} from './helpers';
 
 export interface PostgreSQLAdapterConfig extends AdapterConfig {
   connection: knex.ConnectionConfig | string;
 }
 
 export class PostgreSQLAdapter implements Adapter {
-  private _client!: knex;
+  private client!: knex;
   private config: PostgreSQLAdapterConfig;
 
   constructor(config: PostgreSQLAdapterConfig) {
@@ -32,19 +36,12 @@ export class PostgreSQLAdapter implements Adapter {
       debug: false,
       ...config,
     };
+
+    this.client = knex({client: 'pg', connection: this.config.connection});
   }
 
-  async init(): Promise<void> {
-    this._client = knex({client: 'pg', connection: this.config.connection});
-    await createTables(this.client);
-  }
-
-  get client() {
-    if (!this._client) {
-      throw new Error('Remember to init()');
-    }
-
-    return this._client;
+  async createTables() {
+    return createTables(this.client);
   }
 
   async writeReport(report: Report): Promise<void> {
@@ -156,7 +153,7 @@ export class PostgreSQLAdapter implements Adapter {
         return query.andWhere(
           `${Tables.OperationTraces}.startTime`,
           '>=',
-          new Date().getTime() - ms(period),
+          new Date().getTime() - translatePeriod(period),
         );
       }
       return query;

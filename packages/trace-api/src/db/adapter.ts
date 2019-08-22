@@ -1,10 +1,16 @@
-import {Report} from '../types';
+import ms = require('ms');
+import {Report} from '@graphql-inspector/trace';
 import {
   OperationModel,
   FieldModel,
   OperationTraceModel,
   FieldTraceModel,
-} from './postgresql/models';
+  FieldUsageModel,
+} from './models';
+
+export function translatePeriod(period: string): number {
+  return ms(period);
+}
 
 export interface AdapterConfig {
   /**
@@ -14,8 +20,6 @@ export interface AdapterConfig {
 }
 
 export interface Adapter {
-  init(): Promise<void>;
-
   // write
   writeReport(report: Report): Promise<void>;
 
@@ -33,5 +37,5 @@ export interface Adapter {
     field: string;
     type: string;
     period?: string;
-  }): Promise<any[]>;
+  }): Promise<FieldUsageModel[]>;
 }

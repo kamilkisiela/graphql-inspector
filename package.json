@@ -49,10 +49,12 @@
     "packages/api",
     "packages/cli",
     "packages/core",
-    "packages/data",
     "packages/github",
     "packages/github-actions",
     "packages/load",
+    "packages/trace",
+    "packages/trace-api",
+    "packages/trace-api-postgresql",
     "packages/ui"
   ],
   "lint-staged": {

@@ -1,4 +1,4 @@
-import * as models from '../../db/postgresql/models';
+import * as models from '../../db/models';
 import {
   GraphQLResolveInfo,
   GraphQLScalarType,
@@ -12,7 +12,7 @@ export type RequireFields<T, K extends keyof T> = {
   {[P in K]-?: NonNullable<T[P]>};
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-  ID: string;
+  ID: number;
   String: string;
   Boolean: boolean;
   Int: number;
@@ -35,10 +35,6 @@ export type FieldTrace = {
   readonly startTime: Scalars['Long'];
   readonly endTime: Scalars['Long'];
   readonly duration: Scalars['Long'];
-};
-
-export type FieldTraceFilter = {
-  readonly lastDays?: Maybe<Scalars['Int']>;
 };
 
 export type Operation = {
@@ -205,8 +201,6 @@ export type ResolversTypes = ResolversObject<{
   UsageResult: ResolverTypeWrapper<UsageResult>;
   Float: ResolverTypeWrapper<Scalars['Float']>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
-  FieldTraceFilter: FieldTraceFilter;
-  Int: ResolverTypeWrapper<Scalars['Int']>;
 }>;
 
 /** Mapping between all available schema types and the resolvers parents */
@@ -223,8 +217,6 @@ export type ResolversParentTypes = ResolversObject<{
   UsageResult: UsageResult;
   Float: Scalars['Float'];
   Boolean: Scalars['Boolean'];
-  FieldTraceFilter: FieldTraceFilter;
-  Int: Scalars['Int'];
 }>;
 
 export type FieldResolvers<
