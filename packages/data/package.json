@@ -22,8 +22,9 @@
   "scripts": {
     "build": "tsc",
     "test": "jest",
+    "types": "graphql-codegen --config codegen.yml",
     "clean": "rm -rf dist/",
-    "prebuild": "yarn clean",
+    "prebuild": "yarn clean && yarn types",
     "prepublishOnly": "yarn build"
   },
   "peerDependencies": {
@@ -34,10 +35,16 @@
     "async-retry": "1.2.3",
     "axios": "0.19.0",
     "graphql-extensions": "0.9.1",
+    "graphql-scalars": "1.0.1",
+    "graphql-tools": "4.0.5",
     "knex": "0.19.2",
     "pg": "7.12.1"
   },
   "devDependencies": {
+    "@graphql-codegen/add": "1.6.1",
+    "@graphql-codegen/cli": "1.6.1",
+    "@graphql-codegen/typescript": "1.6.1",
+    "@graphql-codegen/typescript-resolvers": "1.6.1",
     "@types/async-retry": "1.4.1",
     "@types/graphql": "14.2.3",
     "@types/jest": "24.0.17",

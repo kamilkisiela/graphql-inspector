@@ -1,0 +1,17 @@
+overwrite: true
+schema: ./src/api/schema/*.ts
+generates:
+  ./src/api/generated/graphql.ts:
+    config:
+      immutableTypes: true
+      useIndexSignature: true
+      contextType: ../context#InspectorApiContext
+      mappers:
+        Operation: models.OperationModel
+        Field: models.FieldModel
+        OperationTrace: models.OperationTraceModel
+        FieldTrace: models.FieldTraceModel
+    plugins:
+      - add: import * as models from '../../db/postgresql/models'
+      - typescript
+      - typescript-resolvers

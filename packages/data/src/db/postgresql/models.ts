@@ -78,7 +78,6 @@ function createOperationsFieldsTable(client: knex) {
 export interface OperationTraceModel {
   id: number;
   operationId: number;
-  time: number;
   startTime: number;
   duration: number;
   parsing: number;

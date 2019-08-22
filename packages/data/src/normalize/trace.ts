@@ -38,7 +38,7 @@ function createNormalizeTraceNode(
     {
       ...node,
       children: undefined,
-      path,
+      path: [...path, index],
     },
     ...children,
   ];

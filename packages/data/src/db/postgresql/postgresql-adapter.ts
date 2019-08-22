@@ -16,13 +16,13 @@ import {
   NormalizedTraceNodeMap,
 } from '../../normalize/trace';
 import {flatten} from '../../helpers';
+import {Adapter, AdapterConfig} from '../adapter';
 
-export interface PostgreSQLAdapterConfig {
+export interface PostgreSQLAdapterConfig extends AdapterConfig {
   connection: knex.ConnectionConfig | string;
-  debug?: boolean;
 }
 
-export class PostgreSQLAdapter {
+export class PostgreSQLAdapter implements Adapter {
   private _client!: knex;
   private config: PostgreSQLAdapterConfig;
 
@@ -68,8 +68,25 @@ export class PostgreSQLAdapter {
     return this.client<FieldModel>(Tables.Fields).select('*');
   }
 
+  async readFieldById(fieldId: number): Promise<FieldModel> {
+    const [field] = await this.client<FieldModel>(Tables.Fields)
+      .select('*')
+      .where({id: fieldId});
+
+    return field;
+  }
+
   async readOperations(): Promise<OperationModel[]> {
     return this.client<OperationModel>(Tables.Operations).select('*');
+  }
+
+  async readOperationById(operationId: number): Promise<OperationModel> {
+    const [result] = await this.client<OperationModel>(Tables.Operations)
+      .select('*')
+      .where({id: operationId})
+      .limit(1);
+
+    return result;
   }
 
   async readOperationTraces(): Promise<OperationTraceModel[]> {
@@ -78,6 +95,16 @@ export class PostgreSQLAdapter {
 
   async readFieldTraces(): Promise<FieldTraceModel[]> {
     return this.client<FieldTraceModel>(Tables.FieldTraces).select('*');
+  }
+
+  async readFieldTracesByOperationTraceId(
+    operationTraceId: number,
+  ): Promise<FieldTraceModel[]> {
+    return this.client<FieldTraceModel>(Tables.FieldTraces)
+      .select('*')
+      .where({
+        operationTraceId,
+      });
   }
 
   async readErrors(): Promise<ErrorModel[]> {
@@ -107,6 +134,7 @@ export class PostgreSQLAdapter {
       operationId = existingOperation.id;
     } else {
       // create one if not
+      this.debug('Creating a new operation');
       const [newOperationId] = await this.client<OperationModel>(
         Tables.Operations,
       )
@@ -118,8 +146,6 @@ export class PostgreSQLAdapter {
         .returning('id');
 
       operationId = newOperationId;
-
-      this.debug('Created a new operation');
     }
 
     const traceNodeMap = normalizeTraceNode(trace.entry);
@@ -228,7 +254,7 @@ export class PostgreSQLAdapter {
         }
 
         // create new one
-        this.debug('Inserting a new field');
+        this.debug(`Inserting a new field: ${type}.${field}`);
         const [newFieldId] = await this.client<FieldModel>(Tables.Fields)
           .insert({
             type,
