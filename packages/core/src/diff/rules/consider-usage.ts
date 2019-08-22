@@ -52,6 +52,7 @@ export const considerUsage: Rule<ConsiderUsageConfig> = async ({
           ...change.criticality,
           level: CriticalityLevel.Dangerous,
         },
+        message: `${change.message} (no longer breaking)`,
       };
     }
 

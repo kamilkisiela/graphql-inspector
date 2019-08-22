@@ -28,5 +28,6 @@ describe('considerUsage rule', () => {
     const removed = findFirstChangeByPath(changes, 'Foo.b');
 
     expect(removed.criticality.level).toBe(CriticalityLevel.Dangerous);
+    expect(removed.message).toContain(`no longer breaking`);
   });
 });
