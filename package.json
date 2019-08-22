@@ -37,8 +37,6 @@
     "prettier": "1.18.2"
   },
   "dependencies": {
-    "@probot/serverless-lambda": "0.3.0",
-    "babel-loader": "8.0.6",
     "graphql-request": "1.8.2",
     "husky": "3.0.4",
     "immer": "3.2.0",
@@ -64,8 +62,7 @@
     ]
   },
   "resoultions": {
-    "@types/react": "16.8.23",
-    "babel-loader": "8.0.6"
+    "@types/react": "16.8.23"
   },
   "engines": {
     "node": ">= 10.x"
