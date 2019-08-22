@@ -1,5 +1,5 @@
 import * as simplegit from 'simple-git/promise';
-import {buildSchema} from 'graphql';
+import {buildSchema, buildClientSchema} from 'graphql';
 
 import {SchemaHandler} from './loader';
 
@@ -44,6 +44,14 @@ export const fromGit: SchemaHandler = function fromGit(pointer) {
 
       if (/\.(gql|graphql)$/i.test(path)) {
         return buildSchema(schemaString);
+      }
+
+      if (/\.json$/i.test(path)) {
+        try {
+          return buildClientSchema(JSON.parse(schemaString));
+        } catch (error) {
+          throw new Error('unable to build schema from introspection result');
+        }
       }
 
       throw new Error('Unable to build schema from git');
