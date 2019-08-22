@@ -49,6 +49,8 @@ commander
   .command('diff <old> <new>')
   .description('Diff two schemas')
   .option('--rule [name]', 'Add rules', collect, [])
+  .option('--tracingEndpoint <s>', 'Inspector Tracing API endpoint')
+  .option('--tracingPeriod <s>', 'Fetch tracing data from a specific period')
   .action((oldSchema: string, newSchema: string, cmd: commander.Command) =>
     diff(oldSchema, newSchema, normalizeOptions(cmd)),
   );

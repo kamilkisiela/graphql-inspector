@@ -4,7 +4,7 @@ import {CriticalityLevel, ChangeType} from './../changes/change';
 import {Rule} from './types';
 import {parsePath} from '../common/path';
 
-export const suppressRemovalOfDeprecatedField: Rule = ({
+export const suppressRemovalOfDeprecatedField: Rule = async ({
   changes,
   oldSchema,
 }) => {

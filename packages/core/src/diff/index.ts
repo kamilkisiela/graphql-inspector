@@ -3,24 +3,27 @@ import {GraphQLSchema} from 'graphql';
 import {diffSchema} from './schema';
 import {Change} from './changes/change';
 import {Rule} from './rules/types';
-import * as rules from './rules';
+import {Config} from './rules/config';
+import * as rulesRegistry from './rules';
 
-export const DiffRule = rules;
+export const DiffRule = rulesRegistry;
 
-export function diff(
+export async function diff(
   oldSchema: GraphQLSchema,
   newSchema: GraphQLSchema,
   rules: Rule[] = [],
-): Change[] {
+  config?: Config,
+): Promise<Change[]> {
   const changes = diffSchema(oldSchema, newSchema);
 
-  return rules.reduce(
-    (prev, rule) =>
-      rule({
-        changes: prev,
-        oldSchema,
-        newSchema,
-      }),
-    changes,
-  );
+  return rules.reduce(async (accPromise, rule) => {
+    const prev = await accPromise;
+
+    return rule({
+      changes: prev,
+      oldSchema,
+      newSchema,
+      config,
+    });
+  }, Promise.resolve(changes));
 }

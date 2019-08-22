@@ -46,7 +46,8 @@
     "indent-string": "4.0.0",
     "is-valid-path": "0.1.1",
     "log-symbols": "3.0.0",
-    "open": "6.4.0"
+    "open": "6.4.0",
+    "phin": "3.4.0"
   },
   "devDependencies": {
     "@types/express": "4.17.1",
@@ -56,6 +57,7 @@
     "@types/jest": "24.0.17",
     "@types/log-symbols": "3.0.0",
     "@types/node": "12.7.1",
+    "@types/phin": "3.3.0",
     "graphql": "14.4.2",
     "graphql-tag": "2.10.1",
     "jest": "24.8.0",

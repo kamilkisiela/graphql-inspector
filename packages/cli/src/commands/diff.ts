@@ -5,6 +5,7 @@ import {
   CriticalityLevel,
 } from '@graphql-inspector/core';
 import {loadSchema} from '@graphql-inspector/load';
+import * as phin from 'phin';
 
 import {renderChange, Renderer, ConsoleRenderer} from '../render';
 
@@ -21,6 +22,8 @@ export async function diff(
     require?: string[];
     rule?: Array<keyof typeof DiffRule>;
     headers?: Record<string, string>;
+    tracingEndpoint?: string;
+    tracingPeriod?: string;
   },
 ) {
   const renderer = (options && options.renderer) || new ConsoleRenderer();
@@ -47,13 +50,48 @@ export async function diff(
           })
           .filter(f => f)
       : [];
-    const changes = diffSchema(oldSchema, newSchema, rules);
+
+    const considerUsage =
+      (options.rule && options.rule.includes('considerUsage')) || false;
+    const changes = await diffSchema(
+      oldSchema,
+      newSchema,
+      rules,
+      considerUsage
+        ? {
+            async checkUsage({type, field}) {
+              const response = await phin({
+                url: options.tracingEndpoint!,
+                parse: 'json',
+                method: 'POST',
+                data: {
+                  operationName: 'usageInInspectorDiffCLI',
+                  query: `query usageInInspectorDiffCLI($type: String!, $field: String!, $period: String) { usage(input: { field: $field, type: $type, period: $period }) { count percentage } }`,
+                  variables: {
+                    type,
+                    field,
+                    period: options.tracingPeriod,
+                  },
+                },
+              });
+
+              if (response.body.errors && response.body.errors.length) {
+                throw new Error(`Failed to fetch usage of ${type}.${field}`);
+              }
+
+              return response.body.data.usage;
+            },
+          }
+        : undefined,
+    );
 
     if (!changes.length) {
       renderer.success('No changes detected');
     } else {
       renderer.emit(
-        `\nDetected the following changes (${changes.length}) between schemas:\n`,
+        `\nDetected the following changes (${
+          changes.length
+        }) between schemas:\n`,
       );
 
       changes.forEach(change => {
