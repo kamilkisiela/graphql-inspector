@@ -6,6 +6,7 @@ generates:
       immutableTypes: true
       useIndexSignature: true
       contextType: ../context#InspectorApiContext
+      maybeValue: T | undefined
       mappers:
         Operation: models.OperationModel
         Field: models.FieldModel

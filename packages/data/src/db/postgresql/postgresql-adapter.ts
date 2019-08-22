@@ -1,4 +1,5 @@
 import * as knex from 'knex';
+import ms = require('ms');
 import {
   createTables,
   Tables,
@@ -109,6 +110,81 @@ export class PostgreSQLAdapter implements Adapter {
 
   async readErrors(): Promise<ErrorModel[]> {
     return this.client<ErrorModel>(Tables.Errors).select('*');
+  }
+
+  async readFieldUsage({
+    type,
+    field,
+    period,
+  }: {
+    type: string;
+    field: string;
+    period?: string;
+  }): Promise<any[]> {
+    // Get a list of all operations
+    // and the total number of runs
+    // grouped by operation
+    // where field and type both match
+    const query = this.client<OperationTraceModel>(Tables.OperationTraces)
+      .select(
+        `${Tables.OperationTraces}.operationId`,
+        `${Tables.Operations}.operation`,
+        this.client.count(`${Tables.OperationTraces}.id`).as('total'),
+      )
+      .innerJoin(
+        Tables.OperationsFields,
+        `${Tables.OperationsFields}.operationId`,
+        `${Tables.OperationTraces}.operationId`,
+      )
+      .innerJoin(
+        Tables.Fields,
+        `${Tables.Fields}.id`,
+        `${Tables.OperationsFields}.fieldId`,
+      )
+      .innerJoin(
+        Tables.Operations,
+        `${Tables.Operations}.id`,
+        `${Tables.OperationTraces}.operationId`,
+      )
+      .groupBy(
+        `${Tables.OperationTraces}.operationId`,
+        `${Tables.Operations}.operation`,
+      );
+
+    function withPeriod(query: knex.QueryBuilder) {
+      if (period) {
+        return query.andWhere(
+          `${Tables.OperationTraces}.startTime`,
+          '>=',
+          new Date().getTime() - ms(period),
+        );
+      }
+      return query;
+    }
+
+    const queryWithField = query
+      .where(`${Tables.Fields}.name`, '=', field)
+      .andWhere(`${Tables.Fields}.type`, '=', type);
+
+    const usage = await withPeriod(queryWithField);
+    const totalUsage = await withPeriod(query);
+
+    const sum: number = totalUsage.reduce(
+      (acc, obj) => acc + parseInt(obj.total, 10),
+      0,
+    );
+
+    return usage.map(obj => {
+      const count = parseInt(obj.total, 10);
+      const percentage = (100 * count) / sum;
+
+      return {
+        id: obj.operationId,
+        operation: obj.operation,
+        count,
+        percentage: Math.round(percentage * 100) / 100,
+      };
+    });
   }
 
   private async writeTrace(trace: Trace) {

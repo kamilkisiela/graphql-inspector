@@ -1,3 +1,6 @@
+import {LongResolver} from 'graphql-scalars';
+import {Resolvers} from '../generated/graphql';
+
 export const typeDefs = /* GraphQL */ `
   scalar Long
 
@@ -5,3 +8,7 @@ export const typeDefs = /* GraphQL */ `
     _: String
   }
 `;
+
+export const resolvers: Resolvers = {
+  Long: LongResolver,
+};

@@ -5,7 +5,11 @@ import {
   GraphQLScalarTypeConfig,
 } from 'graphql';
 import {InspectorApiContext} from '../context';
-export type Maybe<T> = T | null;
+export type Maybe<T> = T | undefined;
+export type RequireFields<T, K extends keyof T> = {
+  [X in Exclude<keyof T, K>]?: T[X]
+} &
+  {[P in K]-?: NonNullable<T[P]>};
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -31,6 +35,10 @@ export type FieldTrace = {
   readonly startTime: Scalars['Long'];
   readonly endTime: Scalars['Long'];
   readonly duration: Scalars['Long'];
+};
+
+export type FieldTraceFilter = {
+  readonly lastDays?: Maybe<Scalars['Int']>;
 };
 
 export type Operation = {
@@ -59,6 +67,25 @@ export type Query = {
   readonly fields?: Maybe<ReadonlyArray<Field>>;
   readonly operations?: Maybe<ReadonlyArray<Operation>>;
   readonly operationTraces?: Maybe<ReadonlyArray<Maybe<OperationTrace>>>;
+  readonly usage?: Maybe<ReadonlyArray<UsageResult>>;
+};
+
+export type QueryUsageArgs = {
+  input: UsageInput;
+};
+
+export type UsageInput = {
+  readonly field: Scalars['String'];
+  readonly type: Scalars['String'];
+  readonly period?: Maybe<Scalars['String']>;
+};
+
+export type UsageResult = {
+  __typename?: 'UsageResult';
+  readonly id: Scalars['ID'];
+  readonly operation: Scalars['String'];
+  readonly count: Scalars['Long'];
+  readonly percentage: Scalars['Float'];
 };
 export type WithIndex<TObject> = TObject & Record<string, any>;
 export type ResolversObject<TObject> = WithIndex<TObject>;
@@ -174,7 +201,12 @@ export type ResolversTypes = ResolversObject<{
   OperationTrace: ResolverTypeWrapper<models.OperationTraceModel>;
   Long: ResolverTypeWrapper<Scalars['Long']>;
   FieldTrace: ResolverTypeWrapper<models.FieldTraceModel>;
+  UsageInput: UsageInput;
+  UsageResult: ResolverTypeWrapper<UsageResult>;
+  Float: ResolverTypeWrapper<Scalars['Float']>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
+  FieldTraceFilter: FieldTraceFilter;
+  Int: ResolverTypeWrapper<Scalars['Int']>;
 }>;
 
 /** Mapping between all available schema types and the resolvers parents */
@@ -187,7 +219,12 @@ export type ResolversParentTypes = ResolversObject<{
   OperationTrace: models.OperationTraceModel;
   Long: Scalars['Long'];
   FieldTrace: models.FieldTraceModel;
+  UsageInput: UsageInput;
+  UsageResult: UsageResult;
+  Float: Scalars['Float'];
   Boolean: Scalars['Boolean'];
+  FieldTraceFilter: FieldTraceFilter;
+  Int: Scalars['Int'];
 }>;
 
 export type FieldResolvers<
@@ -264,6 +301,22 @@ export type QueryResolvers<
     ParentType,
     ContextType
   >;
+  usage?: Resolver<
+    Maybe<ReadonlyArray<ResolversTypes['UsageResult']>>,
+    ParentType,
+    ContextType,
+    RequireFields<QueryUsageArgs, 'input'>
+  >;
+}>;
+
+export type UsageResultResolvers<
+  ContextType = InspectorApiContext,
+  ParentType extends ResolversParentTypes['UsageResult'] = ResolversParentTypes['UsageResult']
+> = ResolversObject<{
+  id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
+  operation?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  count?: Resolver<ResolversTypes['Long'], ParentType, ContextType>;
+  percentage?: Resolver<ResolversTypes['Float'], ParentType, ContextType>;
 }>;
 
 export type Resolvers<ContextType = InspectorApiContext> = ResolversObject<{
@@ -273,6 +326,7 @@ export type Resolvers<ContextType = InspectorApiContext> = ResolversObject<{
   Operation?: OperationResolvers<ContextType>;
   OperationTrace?: OperationTraceResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
+  UsageResult?: UsageResultResolvers<ContextType>;
 }>;
 
 /**
