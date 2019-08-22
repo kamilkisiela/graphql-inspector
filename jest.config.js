@@ -30,4 +30,6 @@ module.exports = {
   },
 
   errorOnDeprecated: true,
+
+  maxConcurrency: 10,
 };
