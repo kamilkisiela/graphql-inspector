@@ -24,7 +24,7 @@
   },
   "scripts": {
     "build": "tsc",
-    "test": "jest",
+    "xtest": "jest",
     "clean": "rm -rf dist/",
     "prebuild": "yarn clean",
     "prepublishOnly": "yarn build"

@@ -21,7 +21,7 @@
   },
   "scripts": {
     "build": "tsc",
-    "test": "jest",
+    "xtest": "jest",
     "types": "graphql-codegen --config codegen.yml",
     "clean": "rm -rf dist/",
     "prebuild": "yarn clean && yarn types",
