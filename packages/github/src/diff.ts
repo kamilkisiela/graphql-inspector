@@ -23,7 +23,7 @@ export async function diff({
     new: GraphQLSchema;
   };
 }): Promise<ActionResult> {
-  const changes = diffSchemas(schemas.old, schemas.new);
+  const changes = await diffSchemas(schemas.old, schemas.new);
 
   if (!changes || !changes.length) {
     return {
