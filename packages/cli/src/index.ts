@@ -51,6 +51,16 @@ commander
   .option('--rule [name]', 'Add rules', collect, [])
   .option('--tracingEndpoint <s>', 'Inspector Tracing API endpoint')
   .option('--tracingPeriod <s>', 'Fetch tracing data from a specific period')
+  .option(
+    '--tracingCount <n>',
+    'Consider operations that have run at least n times',
+    val => parseInt(val, 10),
+  )
+  .option(
+    '--tracingPercentage <n>',
+    'Consider operations that have run at least n% of total operation runs',
+    parseFloat,
+  )
   .action((oldSchema: string, newSchema: string, cmd: commander.Command) =>
     diff(oldSchema, newSchema, normalizeOptions(cmd)),
   );

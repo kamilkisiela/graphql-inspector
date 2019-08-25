@@ -40,6 +40,9 @@
       },
       "recipes/github": {
         "title": "Github Application"
+      },
+      "recipes/monitor": {
+        "title": "Monitoring"
       }
     },
     "links": {

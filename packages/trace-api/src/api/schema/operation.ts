@@ -2,7 +2,7 @@ import {Resolvers} from '../generated/graphql';
 
 export const typeDefs = /* GraphQL */ `
   extend type Query {
-    operations: [Operation!]
+    operations(filter: OperationFilter): [Operation!]
   }
 
   type Operation {
@@ -11,12 +11,28 @@ export const typeDefs = /* GraphQL */ `
     signature: String!
     operation: String!
   }
+
+  input OperationFilter {
+    limit: Int
+    period: String
+    where: OperationFilterWhere
+  }
+
+  input OperationFilterWhere {
+    operationName: String
+    hasField: HasField
+  }
+
+  input HasField {
+    name: String
+    type: String
+  }
 `;
 
 export const resolvers: Resolvers = {
   Query: {
-    operations(_, _args, context) {
-      return context.inspectorAdapter.readOperations();
+    operations(_, {filter}, context) {
+      return context.inspectorAdapter.readOperations(filter);
     },
   },
 };

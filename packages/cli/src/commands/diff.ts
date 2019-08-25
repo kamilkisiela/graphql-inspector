@@ -24,6 +24,8 @@ export async function diff(
     headers?: Record<string, string>;
     tracingEndpoint?: string;
     tracingPeriod?: string;
+    tracingCount?: number;
+    tracingPercentage?: number;
   },
 ) {
   const renderer = (options && options.renderer) || new ConsoleRenderer();
@@ -66,7 +68,26 @@ export async function diff(
                 method: 'POST',
                 data: {
                   operationName: 'usageInInspectorDiffCLI',
-                  query: `query usageInInspectorDiffCLI($type: String!, $field: String!, $period: String) { usage(input: { field: $field, type: $type, period: $period }) { count percentage } }`,
+                  query: /* GraphQL */ `
+                    query usageInInspectorDiffCLI(
+                      $type: String!
+                      $field: String!
+                      $period: String
+                    ) {
+                      usage(
+                        input: {field: $field, type: $type, period: $period}
+                      ) {
+                        count {
+                          max
+                        }
+                        percentage {
+                          max
+                        }
+                      }
+                    }
+                  `
+                    .trim()
+                    .replace(/\s+/g, ' '),
                   variables: {
                     type,
                     field,
@@ -79,7 +100,24 @@ export async function diff(
                 throw new Error(`Failed to fetch usage of ${type}.${field}`);
               }
 
-              return response.body.data.usage;
+              const usage: {
+                count: {
+                  max: number;
+                };
+                percentage: {
+                  max: number;
+                };
+              } = response.body.data.usage;
+
+              if (options.tracingCount) {
+                return usage.count.max < options.tracingCount;
+              }
+
+              if (options.tracingPercentage) {
+                return usage.percentage.max < options.tracingPercentage;
+              }
+
+              return usage.count.max === 0;
             },
           }
         : undefined,
@@ -89,9 +127,7 @@ export async function diff(
       renderer.success('No changes detected');
     } else {
       renderer.emit(
-        `\nDetected the following changes (${
-          changes.length
-        }) between schemas:\n`,
+        `\nDetected the following changes (${changes.length}) between schemas:\n`,
       );
 
       changes.forEach(change => {

@@ -60,6 +60,7 @@ Toolkit.run(
         diff({
           path: config.schema.path,
           schemas,
+          tracing: config.tracing,
         }),
       );
     }

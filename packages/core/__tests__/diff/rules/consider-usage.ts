@@ -21,7 +21,7 @@ describe('considerUsage rule', () => {
 
     const changes = await diff(a, b, [considerUsage], {
       async checkUsage() {
-        return [];
+        return true;
       },
     });
 

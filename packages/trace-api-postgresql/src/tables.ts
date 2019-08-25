@@ -24,7 +24,6 @@ export async function createTables(client: knex) {
   ];
 
   for (const createTable of tables) {
-    console.log('creating tables');
     await createTable(client);
   }
 }
@@ -92,7 +91,7 @@ function createErrorsTable(client: knex) {
   return client.schema.createTableIfNotExists(Tables.Errors, t => {
     t.increments('id').primary();
     t.string('message');
-    t.json('json');
+    t.text('json');
     t.integer('fieldTraceId')
       .references('id')
       .inTable(Tables.FieldTraces);

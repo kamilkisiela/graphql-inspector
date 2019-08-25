@@ -6,11 +6,19 @@ import {CheckConclusion, ActionResult, Annotation} from './types';
 import {diff} from './diff';
 import * as check from './check-runs';
 
+export interface TracingConfig {
+  endpoint: string;
+  period?: string;
+  count?: number;
+  percentage?: number;
+}
+
 export interface Config {
   diff?: boolean;
   // similar?: boolean;
   // coverage?: boolean;
   schema: SchemaPointer;
+  tracing?: TracingConfig;
 }
 
 interface FileInfo {
@@ -60,6 +68,7 @@ function fileLoader({
   };
 }
 
+// TODO: make it possible to
 export interface SchemaPointer {
   ref: string;
   path: string;

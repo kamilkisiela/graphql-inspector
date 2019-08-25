@@ -2,7 +2,7 @@ import {Resolvers} from '../generated/graphql';
 
 export const typeDefs = /* GraphQL */ `
   extend type Query {
-    operationTraces: [OperationTrace]
+    operationTraces: [OperationTrace!]
   }
 
   type OperationTrace {
@@ -13,7 +13,8 @@ export const typeDefs = /* GraphQL */ `
     parsing: Long
     validation: Long
     execution: Long
-    fieldTraces: [FieldTrace]
+    fieldTraces: [FieldTrace!]
+    errors: [TraceError!]
   }
 
   type FieldTrace {
@@ -23,6 +24,26 @@ export const typeDefs = /* GraphQL */ `
     startTime: Long!
     endTime: Long!
     duration: Long!
+    errors: [TraceError!]
+  }
+
+  type TraceError {
+    message: String!
+    locations: [TraceErrorLocation!]
+    json: String
+  }
+
+  type TraceErrorLocation {
+    line: Int!
+    column: Int!
+  }
+
+  extend type Field {
+    traces: [FieldTrace!]
+  }
+
+  extend type Operation {
+    traces: [OperationTrace!]
   }
 `;
 
@@ -41,6 +62,9 @@ export const resolvers: Resolvers = {
         trace.id,
       );
     },
+    errors(trace, _args, context) {
+      return context.inspectorAdapter.readErrorsByOperationTraceId(trace.id);
+    },
   },
   FieldTrace: {
     duration(trace) {
@@ -48,6 +72,21 @@ export const resolvers: Resolvers = {
     },
     field(trace, _args, context) {
       return context.inspectorAdapter.readFieldById(trace.fieldId);
+    },
+    errors(trace, _args, context) {
+      return context.inspectorAdapter.readErrorsByFieldTraceId(trace.id);
+    },
+  },
+  Operation: {
+    traces(operation, _args, context) {
+      return context.inspectorAdapter.readOperationTracesByOperationId(
+        operation.id,
+      );
+    },
+  },
+  Field: {
+    traces(field, _args, context) {
+      return context.inspectorAdapter.readFieldTracesByFieldId(field.id);
     },
   },
 };

@@ -10,12 +10,21 @@ export const typeDefs = /* GraphQL */ `
     name: String!
     type: String!
   }
+
+  extend type Operation {
+    fields: [Field!]
+  }
 `;
 
 export const resolvers: Resolvers = {
   Query: {
     fields(_, _args, context) {
       return context.inspectorAdapter.readFields();
+    },
+  },
+  Operation: {
+    fields(operation, _args, context) {
+      return context.inspectorAdapter.readFieldsByOperationId(operation.id);
     },
   },
 };

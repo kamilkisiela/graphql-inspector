@@ -7,6 +7,8 @@ import {
   OperationTraceModel,
   FieldTraceModel,
   ErrorModel,
+  FieldUsageModel,
+  OperationFilter,
   Adapter,
   AdapterConfig,
   translatePeriod,
@@ -23,8 +25,14 @@ import {
 import {Tables, createTables} from './tables';
 import {flatten} from './helpers';
 
+interface Logger {
+  log(msg: string): void;
+  debug(msg: string): void;
+}
+
 export interface PostgreSQLAdapterConfig extends AdapterConfig {
   connection: knex.ConnectionConfig | string;
+  logger?: Logger;
 }
 
 export class PostgreSQLAdapter implements Adapter {
@@ -34,6 +42,14 @@ export class PostgreSQLAdapter implements Adapter {
   constructor(config: PostgreSQLAdapterConfig) {
     this.config = {
       debug: false,
+      logger: {
+        log(msg) {
+          console.log(msg);
+        },
+        debug(msg) {
+          console.debug(msg);
+        },
+      },
       ...config,
     };
 
@@ -66,6 +82,17 @@ export class PostgreSQLAdapter implements Adapter {
     return this.client<FieldModel>(Tables.Fields).select('*');
   }
 
+  async readFieldsByOperationId(operationId: number): Promise<FieldModel[]> {
+    return this.client<FieldModel>(Tables.Fields)
+      .select(`${Tables.Fields}.*`)
+      .innerJoin(
+        Tables.OperationsFields,
+        `${Tables.OperationsFields}.fieldId`,
+        `${Tables.Fields}.id`,
+      )
+      .where(`${Tables.OperationsFields}.operationId`, '=', operationId);
+  }
+
   async readFieldById(fieldId: number): Promise<FieldModel> {
     const [field] = await this.client<FieldModel>(Tables.Fields)
       .select('*')
@@ -74,8 +101,42 @@ export class PostgreSQLAdapter implements Adapter {
     return field;
   }
 
-  async readOperations(): Promise<OperationModel[]> {
-    return this.client<OperationModel>(Tables.Operations).select('*');
+  async readOperations(filter?: OperationFilter): Promise<OperationModel[]> {
+    const query = this.client<OperationModel>(Tables.Operations)
+      .select(`${Tables.Operations}.*`)
+      .leftJoin(
+        Tables.OperationsFields,
+        `${Tables.OperationsFields}.operationId`,
+        `${Tables.Operations}.id`,
+      )
+      .leftJoin(
+        Tables.Fields,
+        `${Tables.Fields}.id`,
+        `${Tables.OperationsFields}.fieldId`,
+      )
+      .groupBy(`${Tables.Operations}.id`);
+
+    if (filter) {
+      if (filter.limit) {
+        query.limit(filter.limit);
+      }
+
+      if (filter.where && filter.where.operationName) {
+        query.andWhere(
+          `${Tables.Operations}.name`,
+          '=',
+          filter.where.operationName,
+        );
+      }
+
+      if (filter.where && filter.where.hasField) {
+        query
+          .andWhere(`${Tables.Fields}.name`, '=', filter.where.hasField!.name)
+          .andWhere(`${Tables.Fields}.type`, '=', filter.where.hasField!.type);
+      }
+    }
+
+    return query;
   }
 
   async readOperationById(operationId: number): Promise<OperationModel> {
@@ -91,8 +152,22 @@ export class PostgreSQLAdapter implements Adapter {
     return this.client<OperationTraceModel>(Tables.OperationTraces).select('*');
   }
 
+  async readOperationTracesByOperationId(
+    operationId: number,
+  ): Promise<OperationTraceModel[]> {
+    return this.client<OperationTraceModel>(Tables.OperationTraces)
+      .select('*')
+      .where({operationId});
+  }
+
   async readFieldTraces(): Promise<FieldTraceModel[]> {
     return this.client<FieldTraceModel>(Tables.FieldTraces).select('*');
+  }
+
+  async readFieldTracesByFieldId(fieldId: number): Promise<FieldTraceModel[]> {
+    return this.client<FieldTraceModel>(Tables.FieldTraces)
+      .select('*')
+      .where({fieldId});
   }
 
   async readFieldTracesByOperationTraceId(
@@ -100,13 +175,29 @@ export class PostgreSQLAdapter implements Adapter {
   ): Promise<FieldTraceModel[]> {
     return this.client<FieldTraceModel>(Tables.FieldTraces)
       .select('*')
-      .where({
-        operationTraceId,
-      });
+      .where({operationTraceId});
   }
 
   async readErrors(): Promise<ErrorModel[]> {
     return this.client<ErrorModel>(Tables.Errors).select('*');
+  }
+
+  readErrorsByFieldTraceId(fieldTraceId: number): Promise<ErrorModel[]> {
+    return this.client<ErrorModel>(Tables.Errors)
+      .select('*')
+      .where({
+        fieldTraceId,
+      });
+  }
+
+  readErrorsByOperationTraceId(
+    operationTraceId: number,
+  ): Promise<ErrorModel[]> {
+    return this.client<ErrorModel>(Tables.Errors)
+      .select('*')
+      .where({
+        operationTraceId,
+      });
   }
 
   async readFieldUsage({
@@ -117,12 +208,14 @@ export class PostgreSQLAdapter implements Adapter {
     type: string;
     field: string;
     period?: string;
-  }): Promise<any[]> {
+  }): Promise<FieldUsageModel> {
     // Get a list of all operations
     // and the total number of runs
     // grouped by operation
     // where field and type both match
-    const query = this.client<OperationTraceModel>(Tables.OperationTraces)
+    const queryWithField = this.client<OperationTraceModel>(
+      Tables.OperationTraces,
+    )
       .select(
         `${Tables.OperationTraces}.operationId`,
         `${Tables.Operations}.operation`,
@@ -146,42 +239,98 @@ export class PostgreSQLAdapter implements Adapter {
       .groupBy(
         `${Tables.OperationTraces}.operationId`,
         `${Tables.Operations}.operation`,
-      );
-
-    function withPeriod(query: knex.QueryBuilder) {
-      if (period) {
-        return query.andWhere(
-          `${Tables.OperationTraces}.startTime`,
-          '>=',
-          new Date().getTime() - translatePeriod(period),
-        );
-      }
-      return query;
-    }
-
-    const queryWithField = query
+      )
       .where(`${Tables.Fields}.name`, '=', field)
       .andWhere(`${Tables.Fields}.type`, '=', type);
 
-    const usage = await withPeriod(queryWithField);
-    const totalUsage = await withPeriod(query);
+    const queryTotal = this.client<OperationTraceModel>(Tables.OperationTraces)
+      .select(
+        `${Tables.OperationTraces}.operationId`,
+        this.client.count(`${Tables.OperationTraces}.id`).as('total'),
+      )
+      .groupBy(`${Tables.OperationTraces}.operationId`);
+
+    if (period) {
+      const startedAt = new Date().getTime() - translatePeriod(period);
+
+      queryWithField.andWhere(
+        `${Tables.OperationTraces}.startTime`,
+        '>=',
+        startedAt,
+      );
+
+      queryTotal.andWhere(
+        `${Tables.OperationTraces}.startTime`,
+        '>=',
+        startedAt,
+      );
+    }
+
+    const usage = await queryWithField;
+    const totalUsage = await queryTotal;
 
     const sum: number = totalUsage.reduce(
       (acc, obj) => acc + parseInt(obj.total, 10),
       0,
     );
 
-    return usage.map(obj => {
+    const countSummary = {
+      total: 0,
+      min: 0,
+      max: 0,
+      average: 0,
+    };
+    const percentageSummary = {
+      min: 0,
+      max: 0,
+    };
+
+    const records = usage.map((obj, i) => {
       const count = parseInt(obj.total, 10);
-      const percentage = (100 * count) / sum;
+      const percentage = Math.round(((100 * count) / sum) * 100) / 100;
+
+      if (i === 0) {
+        countSummary.min = count;
+        countSummary.max = count;
+        percentageSummary.min = percentage;
+        percentageSummary.max = percentage;
+      }
+
+      countSummary.total += count;
+
+      if (countSummary.min > count) {
+        countSummary.min = count;
+      }
+
+      if (countSummary.max < count) {
+        countSummary.max = count;
+      }
+
+      if (percentageSummary.min > percentage) {
+        percentageSummary.min = percentage;
+      }
+
+      if (percentageSummary.max < percentage) {
+        percentageSummary.max = percentage;
+      }
 
       return {
         id: obj.operationId,
         operation: obj.operation,
         count,
-        percentage: Math.round(percentage * 100) / 100,
+        percentage,
       };
     });
+
+    if (records.length) {
+      countSummary.average = countSummary.total / records.length;
+    }
+
+    return {
+      count: countSummary,
+      percentage: percentageSummary,
+      nodes: records,
+    };
   }
 
   private async writeTrace(trace: Trace) {
@@ -307,25 +456,27 @@ export class PostgreSQLAdapter implements Adapter {
     );
   }
 
-  private async ensureFieldIdMap(traceNodeMap: NormalizedTraceNodeMap) {
-    const typeFieldPairs = Object.keys(traceNodeMap).map<[string, string]>(
-      i => i.split('.') as [string, string],
-    );
+  private async ensureFieldIdMap(
+    traceNodeMap: NormalizedTraceNodeMap,
+  ): Promise<Record<string, number>> {
+    const result: Record<string, number> = {};
+    const keys = Object.keys(traceNodeMap);
 
-    const ids = await Promise.all(
-      typeFieldPairs.map(async ([type, field]) => {
-        // check if field is there
-        const [fieldResult] = await this.client<FieldModel>(Tables.Fields)
-          .select('id')
-          .where({
-            type,
-            name: field,
-          });
+    for (const index of keys) {
+      const [type, field] = index.split('.') as [string, string];
+      let fieldId: number;
 
-        if (fieldResult) {
-          return fieldResult.id;
-        }
+      // check if exists
+      const [fieldResult] = await this.client<FieldModel>(Tables.Fields)
+        .select('id')
+        .where({
+          type,
+          name: field,
+        });
 
+      if (fieldResult) {
+        fieldId = fieldResult.id;
+      } else {
         // create new one
         this.debug(`Inserting a new field: ${type}.${field}`);
         const [newFieldId] = await this.client<FieldModel>(Tables.Fields)
@@ -335,24 +486,18 @@ export class PostgreSQLAdapter implements Adapter {
           })
           .returning('id');
 
-        return newFieldId;
-      }),
-    );
+        fieldId = newFieldId;
+      }
 
-    return typeFieldPairs.reduce<Record<string, number>>(
-      (acc, [type, field], i) => {
-        return {
-          ...acc,
-          [`${type}.${field}`]: ids[i],
-        };
-      },
-      {},
-    );
+      result[index] = fieldId;
+    }
+
+    return result;
   }
 
   private debug(msg: string) {
     if (this.config.debug) {
-      console.log(msg);
+      this.config.logger!.log(msg);
     }
   }
 }

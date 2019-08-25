@@ -25,6 +25,7 @@ export type Field = {
   readonly id: Scalars['ID'];
   readonly name: Scalars['String'];
   readonly type: Scalars['String'];
+  readonly traces?: Maybe<ReadonlyArray<FieldTrace>>;
 };
 
 export type FieldTrace = {
@@ -35,14 +36,33 @@ export type FieldTrace = {
   readonly startTime: Scalars['Long'];
   readonly endTime: Scalars['Long'];
   readonly duration: Scalars['Long'];
+  readonly errors?: Maybe<ReadonlyArray<TraceError>>;
+};
+
+export type HasField = {
+  readonly name?: Maybe<Scalars['String']>;
+  readonly type?: Maybe<Scalars['String']>;
 };
 
 export type Operation = {
   __typename?: 'Operation';
+  readonly fields?: Maybe<ReadonlyArray<Field>>;
   readonly id: Scalars['ID'];
   readonly name: Scalars['String'];
   readonly signature: Scalars['String'];
   readonly operation: Scalars['String'];
+  readonly traces?: Maybe<ReadonlyArray<OperationTrace>>;
+};
+
+export type OperationFilter = {
+  readonly limit?: Maybe<Scalars['Int']>;
+  readonly period?: Maybe<Scalars['String']>;
+  readonly where?: Maybe<OperationFilterWhere>;
+};
+
+export type OperationFilterWhere = {
+  readonly operationName?: Maybe<Scalars['String']>;
+  readonly hasField?: Maybe<HasField>;
 };
 
 export type OperationTrace = {
@@ -54,7 +74,8 @@ export type OperationTrace = {
   readonly parsing?: Maybe<Scalars['Long']>;
   readonly validation?: Maybe<Scalars['Long']>;
   readonly execution?: Maybe<Scalars['Long']>;
-  readonly fieldTraces?: Maybe<ReadonlyArray<Maybe<FieldTrace>>>;
+  readonly fieldTraces?: Maybe<ReadonlyArray<FieldTrace>>;
+  readonly errors?: Maybe<ReadonlyArray<TraceError>>;
 };
 
 export type Query = {
@@ -62,12 +83,37 @@ export type Query = {
   readonly _?: Maybe<Scalars['String']>;
   readonly fields?: Maybe<ReadonlyArray<Field>>;
   readonly operations?: Maybe<ReadonlyArray<Operation>>;
-  readonly operationTraces?: Maybe<ReadonlyArray<Maybe<OperationTrace>>>;
-  readonly usage?: Maybe<ReadonlyArray<UsageResult>>;
+  readonly operationTraces?: Maybe<ReadonlyArray<OperationTrace>>;
+  readonly usage: UsageResult;
+};
+
+export type QueryOperationsArgs = {
+  filter?: Maybe<OperationFilter>;
 };
 
 export type QueryUsageArgs = {
   input: UsageInput;
+};
+
+export type TraceError = {
+  __typename?: 'TraceError';
+  readonly message: Scalars['String'];
+  readonly locations?: Maybe<ReadonlyArray<TraceErrorLocation>>;
+  readonly json?: Maybe<Scalars['String']>;
+};
+
+export type TraceErrorLocation = {
+  __typename?: 'TraceErrorLocation';
+  readonly line: Scalars['Int'];
+  readonly column: Scalars['Int'];
+};
+
+export type UsageCountSummary = {
+  __typename?: 'UsageCountSummary';
+  readonly min: Scalars['Long'];
+  readonly max: Scalars['Long'];
+  readonly average: Scalars['Long'];
+  readonly total: Scalars['Long'];
 };
 
 export type UsageInput = {
@@ -76,12 +122,25 @@ export type UsageInput = {
   readonly period?: Maybe<Scalars['String']>;
 };
 
-export type UsageResult = {
-  __typename?: 'UsageResult';
+export type UsageNode = {
+  __typename?: 'UsageNode';
   readonly id: Scalars['ID'];
   readonly operation: Scalars['String'];
   readonly count: Scalars['Long'];
   readonly percentage: Scalars['Float'];
+};
+
+export type UsagePercentageSummary = {
+  __typename?: 'UsagePercentageSummary';
+  readonly min: Scalars['Float'];
+  readonly max: Scalars['Float'];
+};
+
+export type UsageResult = {
+  __typename?: 'UsageResult';
+  readonly count: UsageCountSummary;
+  readonly percentage?: Maybe<UsagePercentageSummary>;
+  readonly nodes?: Maybe<ReadonlyArray<UsageNode>>;
 };
 export type WithIndex<TObject> = TObject & Record<string, any>;
 export type ResolversObject<TObject> = WithIndex<TObject>;
@@ -193,13 +252,22 @@ export type ResolversTypes = ResolversObject<{
   String: ResolverTypeWrapper<Scalars['String']>;
   Field: ResolverTypeWrapper<models.FieldModel>;
   ID: ResolverTypeWrapper<Scalars['ID']>;
+  FieldTrace: ResolverTypeWrapper<models.FieldTraceModel>;
+  Long: ResolverTypeWrapper<Scalars['Long']>;
+  TraceError: ResolverTypeWrapper<TraceError>;
+  TraceErrorLocation: ResolverTypeWrapper<TraceErrorLocation>;
+  Int: ResolverTypeWrapper<Scalars['Int']>;
+  OperationFilter: OperationFilter;
+  OperationFilterWhere: OperationFilterWhere;
+  HasField: HasField;
   Operation: ResolverTypeWrapper<models.OperationModel>;
   OperationTrace: ResolverTypeWrapper<models.OperationTraceModel>;
-  Long: ResolverTypeWrapper<Scalars['Long']>;
-  FieldTrace: ResolverTypeWrapper<models.FieldTraceModel>;
   UsageInput: UsageInput;
   UsageResult: ResolverTypeWrapper<UsageResult>;
+  UsageCountSummary: ResolverTypeWrapper<UsageCountSummary>;
+  UsagePercentageSummary: ResolverTypeWrapper<UsagePercentageSummary>;
   Float: ResolverTypeWrapper<Scalars['Float']>;
+  UsageNode: ResolverTypeWrapper<UsageNode>;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
 }>;
 
@@ -209,13 +277,22 @@ export type ResolversParentTypes = ResolversObject<{
   String: Scalars['String'];
   Field: models.FieldModel;
   ID: Scalars['ID'];
+  FieldTrace: models.FieldTraceModel;
+  Long: Scalars['Long'];
+  TraceError: TraceError;
+  TraceErrorLocation: TraceErrorLocation;
+  Int: Scalars['Int'];
+  OperationFilter: OperationFilter;
+  OperationFilterWhere: OperationFilterWhere;
+  HasField: HasField;
   Operation: models.OperationModel;
   OperationTrace: models.OperationTraceModel;
-  Long: Scalars['Long'];
-  FieldTrace: models.FieldTraceModel;
   UsageInput: UsageInput;
   UsageResult: UsageResult;
+  UsageCountSummary: UsageCountSummary;
+  UsagePercentageSummary: UsagePercentageSummary;
   Float: Scalars['Float'];
+  UsageNode: UsageNode;
   Boolean: Scalars['Boolean'];
 }>;
 
@@ -226,6 +303,11 @@ export type FieldResolvers<
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   type?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  traces?: Resolver<
+    Maybe<ReadonlyArray<ResolversTypes['FieldTrace']>>,
+    ParentType,
+    ContextType
+  >;
 }>;
 
 export type FieldTraceResolvers<
@@ -238,6 +320,11 @@ export type FieldTraceResolvers<
   startTime?: Resolver<ResolversTypes['Long'], ParentType, ContextType>;
   endTime?: Resolver<ResolversTypes['Long'], ParentType, ContextType>;
   duration?: Resolver<ResolversTypes['Long'], ParentType, ContextType>;
+  errors?: Resolver<
+    Maybe<ReadonlyArray<ResolversTypes['TraceError']>>,
+    ParentType,
+    ContextType
+  >;
 }>;
 
 export interface LongScalarConfig
@@ -249,10 +336,20 @@ export type OperationResolvers<
   ContextType = InspectorApiContext,
   ParentType extends ResolversParentTypes['Operation'] = ResolversParentTypes['Operation']
 > = ResolversObject<{
+  fields?: Resolver<
+    Maybe<ReadonlyArray<ResolversTypes['Field']>>,
+    ParentType,
+    ContextType
+  >;
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   name?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   signature?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   operation?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  traces?: Resolver<
+    Maybe<ReadonlyArray<ResolversTypes['OperationTrace']>>,
+    ParentType,
+    ContextType
+  >;
 }>;
 
 export type OperationTraceResolvers<
@@ -267,7 +364,12 @@ export type OperationTraceResolvers<
   validation?: Resolver<Maybe<ResolversTypes['Long']>, ParentType, ContextType>;
   execution?: Resolver<Maybe<ResolversTypes['Long']>, ParentType, ContextType>;
   fieldTraces?: Resolver<
-    Maybe<ReadonlyArray<Maybe<ResolversTypes['FieldTrace']>>>,
+    Maybe<ReadonlyArray<ResolversTypes['FieldTrace']>>,
+    ParentType,
+    ContextType
+  >;
+  errors?: Resolver<
+    Maybe<ReadonlyArray<ResolversTypes['TraceError']>>,
     ParentType,
     ContextType
   >;
@@ -286,29 +388,90 @@ export type QueryResolvers<
   operations?: Resolver<
     Maybe<ReadonlyArray<ResolversTypes['Operation']>>,
     ParentType,
-    ContextType
+    ContextType,
+    QueryOperationsArgs
   >;
   operationTraces?: Resolver<
-    Maybe<ReadonlyArray<Maybe<ResolversTypes['OperationTrace']>>>,
+    Maybe<ReadonlyArray<ResolversTypes['OperationTrace']>>,
     ParentType,
     ContextType
   >;
   usage?: Resolver<
-    Maybe<ReadonlyArray<ResolversTypes['UsageResult']>>,
+    ResolversTypes['UsageResult'],
     ParentType,
     ContextType,
     RequireFields<QueryUsageArgs, 'input'>
   >;
 }>;
 
-export type UsageResultResolvers<
+export type TraceErrorResolvers<
   ContextType = InspectorApiContext,
-  ParentType extends ResolversParentTypes['UsageResult'] = ResolversParentTypes['UsageResult']
+  ParentType extends ResolversParentTypes['TraceError'] = ResolversParentTypes['TraceError']
+> = ResolversObject<{
+  message?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
+  locations?: Resolver<
+    Maybe<ReadonlyArray<ResolversTypes['TraceErrorLocation']>>,
+    ParentType,
+    ContextType
+  >;
+  json?: Resolver<Maybe<ResolversTypes['String']>, ParentType, ContextType>;
+}>;
+
+export type TraceErrorLocationResolvers<
+  ContextType = InspectorApiContext,
+  ParentType extends ResolversParentTypes['TraceErrorLocation'] = ResolversParentTypes['TraceErrorLocation']
+> = ResolversObject<{
+  line?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+  column?: Resolver<ResolversTypes['Int'], ParentType, ContextType>;
+}>;
+
+export type UsageCountSummaryResolvers<
+  ContextType = InspectorApiContext,
+  ParentType extends ResolversParentTypes['UsageCountSummary'] = ResolversParentTypes['UsageCountSummary']
+> = ResolversObject<{
+  min?: Resolver<ResolversTypes['Long'], ParentType, ContextType>;
+  max?: Resolver<ResolversTypes['Long'], ParentType, ContextType>;
+  average?: Resolver<ResolversTypes['Long'], ParentType, ContextType>;
+  total?: Resolver<ResolversTypes['Long'], ParentType, ContextType>;
+}>;
+
+export type UsageNodeResolvers<
+  ContextType = InspectorApiContext,
+  ParentType extends ResolversParentTypes['UsageNode'] = ResolversParentTypes['UsageNode']
 > = ResolversObject<{
   id?: Resolver<ResolversTypes['ID'], ParentType, ContextType>;
   operation?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   count?: Resolver<ResolversTypes['Long'], ParentType, ContextType>;
   percentage?: Resolver<ResolversTypes['Float'], ParentType, ContextType>;
+}>;
+
+export type UsagePercentageSummaryResolvers<
+  ContextType = InspectorApiContext,
+  ParentType extends ResolversParentTypes['UsagePercentageSummary'] = ResolversParentTypes['UsagePercentageSummary']
+> = ResolversObject<{
+  min?: Resolver<ResolversTypes['Float'], ParentType, ContextType>;
+  max?: Resolver<ResolversTypes['Float'], ParentType, ContextType>;
+}>;
+
+export type UsageResultResolvers<
+  ContextType = InspectorApiContext,
+  ParentType extends ResolversParentTypes['UsageResult'] = ResolversParentTypes['UsageResult']
+> = ResolversObject<{
+  count?: Resolver<
+    ResolversTypes['UsageCountSummary'],
+    ParentType,
+    ContextType
+  >;
+  percentage?: Resolver<
+    Maybe<ResolversTypes['UsagePercentageSummary']>,
+    ParentType,
+    ContextType
+  >;
+  nodes?: Resolver<
+    Maybe<ReadonlyArray<ResolversTypes['UsageNode']>>,
+    ParentType,
+    ContextType
+  >;
 }>;
 
 export type Resolvers<ContextType = InspectorApiContext> = ResolversObject<{
@@ -318,6 +481,11 @@ export type Resolvers<ContextType = InspectorApiContext> = ResolversObject<{
   Operation?: OperationResolvers<ContextType>;
   OperationTrace?: OperationTraceResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
+  TraceError?: TraceErrorResolvers<ContextType>;
+  TraceErrorLocation?: TraceErrorLocationResolvers<ContextType>;
+  UsageCountSummary?: UsageCountSummaryResolvers<ContextType>;
+  UsageNode?: UsageNodeResolvers<ContextType>;
+  UsagePercentageSummary?: UsagePercentageSummaryResolvers<ContextType>;
   UsageResult?: UsageResultResolvers<ContextType>;
 }>;
 

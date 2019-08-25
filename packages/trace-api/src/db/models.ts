@@ -1,3 +1,5 @@
+export {OperationFilter} from '../api/generated/graphql';
+
 export interface OperationModel {
   id: number;
   name: string;
@@ -43,7 +45,25 @@ export interface ErrorModel {
   operationTraceId?: number;
 }
 
+interface UsageCountSummary {
+  min: number;
+  max: number;
+  average: number;
+  total: number;
+}
+
+interface UsagePercentageSummary {
+  min: number;
+  max: number;
+}
+
 export interface FieldUsageModel {
+  count: UsageCountSummary;
+  percentage: UsagePercentageSummary;
+  nodes: UsageRecord[];
+}
+
+interface UsageRecord {
   id: number;
   operation: string;
   count: number;

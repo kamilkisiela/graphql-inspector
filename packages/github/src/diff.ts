@@ -2,8 +2,10 @@ import {
   diff as diffSchemas,
   CriticalityLevel,
   Change,
+  DiffRule,
 } from '@graphql-inspector/core';
 import {GraphQLSchema} from 'graphql';
+import * as phin from 'phin';
 
 import {
   CheckConclusion,
@@ -12,18 +14,88 @@ import {
   AnnotationLevel,
 } from './types';
 import {getLocation} from './location';
+import {TracingConfig} from './probot';
 
 export async function diff({
   path,
   schemas,
+  tracing,
 }: {
   path: string;
   schemas: {
     old: GraphQLSchema;
     new: GraphQLSchema;
   };
+  tracing?: TracingConfig;
 }): Promise<ActionResult> {
-  const changes = await diffSchemas(schemas.old, schemas.new);
+  const useTracing = !!tracing;
+  const changes = await diffSchemas(
+    schemas.old,
+    schemas.new,
+    useTracing ? [DiffRule.considerUsage] : [],
+    useTracing
+      ? {
+          async checkUsage({type, field}) {
+            const response = await phin({
+              url: tracing!.endpoint!,
+              parse: 'json',
+              method: 'POST',
+              data: {
+                operationName: 'usageInInspectorDiffCLI',
+                query: /* GraphQL */ `
+                  query usageInInspectorDiffCLI(
+                    $type: String!
+                    $field: String!
+                    $period: String
+                  ) {
+                    usage(
+                      input: {field: $field, type: $type, period: $period}
+                    ) {
+                      count {
+                        max
+                      }
+                      percentage {
+                        max
+                      }
+                    }
+                  }
+                `,
+                variables: {
+                  type,
+                  field,
+                  period: tracing!.period,
+                },
+              },
+            });
+
+            if (response.body.errors && response.body.errors.length) {
+              throw new Error(`Failed to fetch usage of ${type}.${field}`);
+            }
+
+            const usage: {
+              count: {
+                max: number;
+              };
+              percentage: {
+                max: number;
+              };
+            } = response.body.data.usage;
+
+            console.log(usage);
+
+            if (tracing!.count) {
+              return usage.count.max < tracing!.count;
+            }
+
+            if (tracing!.percentage) {
+              return usage.percentage.max < tracing!.percentage;
+            }
+
+            return usage.count.max === 0;
+          },
+        }
+      : undefined,
+  );
 
   if (!changes || !changes.length) {
     return {
