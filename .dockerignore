@@ -2,3 +2,4 @@
 *
 # include required files with an exception
 !entrypoint.sh
+!entrypoint-cli.sh
