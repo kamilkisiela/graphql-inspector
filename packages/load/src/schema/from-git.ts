@@ -42,16 +42,12 @@ export const fromGit: SchemaHandler = function fromGit(pointer) {
         throw new Error('Unable to load schema from git: ' + error);
       }
 
-      if (/\.(gql|graphql)$/i.test(path)) {
+      if (/\.(gql|graphql)s?$/i.test(path)) {
         return buildSchema(schemaString);
       }
 
       if (/\.json$/i.test(path)) {
-        try {
-          return buildClientSchema(JSON.parse(schemaString));
-        } catch (error) {
-          throw new Error('unable to build schema from introspection result');
-        }
+        return buildClientSchema(JSON.parse(schemaString));
       }
 
       throw new Error('Unable to build schema from git');

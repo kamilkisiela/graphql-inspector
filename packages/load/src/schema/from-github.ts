@@ -83,9 +83,11 @@ export const fromGithub: SchemaHandler = function fromGithub(
 
       const text = response.data.repository.object.text;
 
-      if (/\.(gql|graphql)$/i.test(path)) {
+      if (/\.(gql|graphql)s?$/i.test(path)) {
         return buildSchema(text);
-      } else if (/\.json$/i.test(path)) {
+      }
+
+      if (/\.json$/i.test(path)) {
         return buildClientSchema(JSON.parse(text));
       }
 

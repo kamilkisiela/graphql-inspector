@@ -8,7 +8,7 @@ const {Response} = jest.requireActual('node-fetch');
 const owner = 'kamilkisiela';
 const name = 'graphql-inspector-example';
 const ref = 'master';
-const path = 'example/schemas/schema.graphql';
+const path = 'example/schemas/schema.graphqls';
 const token = 'MY-SECRET-TOKEN';
 
 const pointer = `github:${owner}/${name}#${ref}:${path}`;
