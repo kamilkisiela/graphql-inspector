@@ -2,6 +2,13 @@
 
 ### vNEXT
 
+### v1.24.0
+
+- **load**: support `.graphqls` and `.gqls` extensions [PR #576](https://github.com/kamilkisiela/graphql-inspector/pull/576)
+- **load**: include `graphql-tag-pluck` [PR #577](https://github.com/kamilkisiela/graphql-inspector/pull/577)
+- **cli**: [available in Docker](https://cloud.docker.com/repository/docker/kamilkisiela/graphql-inspector) [PR #578](https://github.com/kamilkisiela/graphql-inspector/pull/578) [PR #518](https://github.com/kamilkisiela/graphql-inspector/pull/518)
+- **load**: make git and github loaders accept introspection results file [PR #556](https://github.com/kamilkisiela/graphql-inspector/pull/556)
+
 ### v1.23.1
 
 ### v1.23.0
