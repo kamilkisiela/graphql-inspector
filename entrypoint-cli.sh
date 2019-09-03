@@ -1,5 +1,5 @@
-#!/bin/sh -l
+#!/bin/sh
 
-set -eu
+set -e
 
 sh -c "graphql-inspector $*"

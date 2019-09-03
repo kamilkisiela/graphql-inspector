@@ -7,9 +7,11 @@ LABEL maintainer="Kamil Kisiela <kamil.kisiela@gmail.com>"
 
 ENV LOG_LEVEL "debug"
 
-RUN yarn global add @graphql-inspector/cli@1.23.1
+RUN yarn global add @graphql-inspector/cli@1.23.1 graphql
 
-COPY entrypoint-cli.sh /entrypoint-cli.sh
+COPY ./entrypoint-cli.sh .
+
+RUN ["chmod", "+x", "/entrypoint-cli.sh"]
 
 ENTRYPOINT ["/entrypoint-cli.sh"]
 
