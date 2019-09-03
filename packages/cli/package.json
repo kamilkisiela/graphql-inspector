@@ -58,7 +58,7 @@
     "@types/node": "12.7.1",
     "graphql": "14.4.2",
     "graphql-tag": "2.10.1",
-    "jest": "24.8.0",
+    "jest": "24.9.0",
     "ts-jest": "24.0.2",
     "typescript": "3.5.3"
   }
