@@ -7578,10 +7578,10 @@ graphql-toolkit@0.2.0:
     tslib "^1.9.3"
     valid-url "1.0.9"
 
-graphql-toolkit@0.5.10:
-  version "0.5.10"
-  resolved "https://registry.yarnpkg.com/graphql-toolkit/-/graphql-toolkit-0.5.10.tgz#7b4d5e84c421ca72801d436084478d4a7ac06444"
-  integrity sha512-mMHNezD9oT0IlM/vkZd/aeoIKtXqKnZq3ipJIMcHZPmMDPcZEf7BMzbB8naKWSWPaB1Iskg426DrfzQDUgU25A==
+graphql-toolkit@0.5.12-a80120d.0:
+  version "0.5.12-a80120d.0"
+  resolved "https://registry.yarnpkg.com/graphql-toolkit/-/graphql-toolkit-0.5.12-a80120d.0.tgz#e59975dc66fcfbd23d2247c0e0c2b08e13f5a242"
+  integrity sha512-p+gCN4wMMbWT5UGfjrjxeZZDvrq16bUATtbDaVzyEncKLRbsOQGEwJQq340W7QtL0M7mmlQBKO+VmtlqEA8gkA==
   dependencies:
     "@kamilkisiela/graphql-tools" "4.0.6"
     "@types/glob" "7.1.1"
