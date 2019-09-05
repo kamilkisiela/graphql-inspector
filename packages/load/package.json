@@ -33,7 +33,7 @@
     "graphql-tag-pluck": "0.8.4",
     "graphql-toolkit": "0.5.10",
     "node-fetch": "2.6.0",
-    "simple-git": "1.124.0"
+    "simple-git": "1.126.0"
   },
   "devDependencies": {
     "@types/express": "4.17.1",
