@@ -42,6 +42,6 @@
     "@types/graphql": "14.2.3",
     "@types/node": "12.7.4",
     "@types/js-yaml": "3.12.1",
-    "typescript": "3.5.3"
+    "typescript": "3.6.2"
   }
 }
