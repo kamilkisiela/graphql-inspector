@@ -39,7 +39,7 @@
     "probot": "9.3.3"
   },
   "devDependencies": {
-    "@types/graphql": "14.2.3",
+    "@types/graphql": "14.5.0",
     "@types/node": "12.7.4",
     "@types/js-yaml": "3.12.1",
     "typescript": "3.6.2"
