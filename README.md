@@ -210,7 +210,7 @@ export default {
 
 Example:
 
-    graphql-inspector diff git:origin/master:schema.graphql
+    graphql-inspector diff git:origin/master:schema.graphql ./schema.graphql
 
 Pattern:
 
