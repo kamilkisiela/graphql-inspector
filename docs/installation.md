@@ -13,7 +13,7 @@ yarn global add @graphql-inspector/cli
 Or [`npm`](https://www.npmjs.com/):
 
 ```bash
-npm install --save-global @graphql-inspector/cli
+npm install --global @graphql-inspector/cli
 ```
 
 ### Usage
