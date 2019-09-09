@@ -172,11 +172,11 @@ Get Github annotations in your PRs.
 
 Example:
 
-    graphql-inspector coverage ./src/schema.js
+    graphql-inspector coverage ./src/documents.js ./src/schema.js
 
 Example with TypeScript:
 
-    graphql-inspector coverage ./src/schema.ts --require ts-node/register
+    graphql-inspector coverage ./src/documents.ts ./src/schema.ts --require ts-node/register
 
 ```typescript
 // String
@@ -220,7 +220,7 @@ Pattern:
 
 Example:
 
-    graphql-inspector coverage github:kamilkisiela/graphql-inspector-example#master:schema.graphql
+    graphql-inspector coverage ./src/documents.ts github:kamilkisiela/graphql-inspector-example#master:schema.graphql
 
 Pattern:
 
@@ -230,20 +230,20 @@ Pattern:
 
 Example:
 
-    graphql-inspector coverage schema.graphql
-    graphql-inspector coverage schema.gql
+    graphql-inspector coverage documents.js schema.graphql
+    graphql-inspector coverage documents.js schema.gql
 
 **JSON File**
 
 Example:
 
-    graphql-inspector coverage introspected-schema.json
+    graphql-inspector coverage documents.js introspected-schema.json
 
 **URL to a GraphQL endpoint**
 
 Example:
 
-    graphql-inspector coverage https://localhost:3000/graphql
+    graphql-inspector coverage documents.js https://localhost:3000/graphql
 
 ### `DOCUMENTS`
 
