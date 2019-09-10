@@ -2,6 +2,8 @@
 
 ### vNEXT
 
+- **action**: log more errors (in loadConfig)
+
 ### v1.24.0
 
 - **load**: support `.graphqls` and `.gqls` extensions [PR #576](https://github.com/kamilkisiela/graphql-inspector/pull/576)
