@@ -47,6 +47,10 @@ function fileLoader({
     });
 
     try {
+      if (!result) {
+        throw new Error(`No result :(`);
+      }
+
       if (result.data) {
         return result.data.repository.object.text;
       }
