@@ -120,6 +120,7 @@ async function loadConfig(
     const text = await loadFile({ref, path: `${base}/${identifier}.yaml`});
     return safeLoad(text);
   } catch (e) {
+    tools.log.info(e);
     tools.log.info(`Failed to find .github/${identifier}.yaml file`);
   }
 
@@ -127,6 +128,7 @@ async function loadConfig(
     const text = await loadFile({ref, path: `${base}/${identifier}.yml`});
     return safeLoad(text);
   } catch (e) {
+    tools.log.info(e);
     tools.log.info(`Failed to find .github/${identifier}.yml file`);
   }
 
@@ -137,6 +139,7 @@ async function loadConfig(
       return pkg[identifier];
     }
   } catch (e) {
+    tools.log.info(e);
     tools.log.info(`Failed to find package.json`);
   }
 }
