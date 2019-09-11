@@ -41,7 +41,7 @@
     "babel-loader": "8.0.6",
     "graphql-request": "1.8.2",
     "husky": "3.0.5",
-    "immer": "3.2.0",
+    "immer": "3.3.0",
     "lerna": "3.16.4",
     "shelljs": "0.8.3"
   },
