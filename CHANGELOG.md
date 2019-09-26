@@ -2,7 +2,10 @@
 
 ### vNEXT
 
-- **action**: log more errors (in loadConfig)
+### v1.25.0
+
+- **action**: log more errors (in loadConfig) [PR #606](https://github.com/kamilkisiela/graphql-inspector/pull/606)
+- **docker**: make the docker image suitable for CI and document usage [PR #633](https://github.com/kamilkisiela/graphql-inspector/pull/633)
 
 ### v1.24.0
 
