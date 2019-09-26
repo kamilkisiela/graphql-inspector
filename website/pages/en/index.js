@@ -11,7 +11,28 @@ const Live = () => {
   return (
     <div className="live">
       <div className="live-wrapper">
-        <iframe src={'/live/'} />
+        <iframe src={'/live/#diff'} />
+      </div>
+    </div>
+  );
+};
+
+const Contact = () => {
+  return (
+    <div id="contact-us">
+      <div id="main-header">
+        <div className="container">
+          <h1>
+            <span>Contact us!</span>
+          </h1>
+          <h2>
+            Need help? Want to start using GraphQL Inspector? We would love to
+            help you and hear how you use GraphQL Inspector today!
+          </h2>
+          <div className="contact-wrapper">
+            <iframe src={'/live/#contact'} />
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -29,6 +50,10 @@ const Nav = () => {
         <a href="/install">Install</a>
         <div className="sep" />
         <a href="https://github.com/kamilkisiela/graphql-inspector">Github</a>
+        <div className="sep" />
+        <a href="#contact-us" className="scroll-to">
+          Contact
+        </a>
       </div>
     </div>
   );
@@ -95,6 +120,7 @@ class Index extends React.Component {
         </div>
         <Highlights />
         <Live />
+        <Contact />
       </div>
     );
   }

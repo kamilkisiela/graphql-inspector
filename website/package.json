@@ -1,14 +1,17 @@
 {
   "scripts": {
     "start": "docusaurus-start",
-    "prestart": "npm run live:dev",
-    "build": "docusaurus-build && npm run live:prod",
+    "prestart": "yarn live:dev",
+    "deploy": "yarn global add concurrently && concurrently \"yarn\" \"(cd live && yarn)\" && yarn build",
+    "prebuild": "rm -rf build && mkdir build",
+    "build": "concurrently \"yarn website:build\" \"yarn live:build\"",
     "version": "docusaurus-version",
     "rename-version": "docusaurus-rename-version",
-    "live:dev": "rm -rf static/live && cd live && npm run build && cp -r ./build ../static/live",
-    "live:prod": "rm -rf build/graphql-inspector/live && cd live && npm install && npm run build && cp -r ./build ../build/graphql-inspector/live"
+    "website:build": "docusaurus-build",
+    "live:dev": "rm -rf static/live && cd live && yarn build && cp -r ./build ../static/live",
+    "live:build": "rm -rf build/graphql-inspector/live && cd live && yarn build && cp -r ./build ../build/graphql-inspector/live"
   },
   "devDependencies": {
-    "docusaurus": "1.11.1"
+    "docusaurus": "1.13.0"
   }
 }

@@ -22,6 +22,11 @@ body {
     padding-bottom: 350px;
   }
 
+  #contact-us #main-header {
+    padding-top: 70px;
+    padding-bottom: 70px;
+  }
+
   #main-header .container {
     margin: 0 auto;
     text-align: center;
@@ -102,9 +107,14 @@ body {
   margin: 0 auto;
 }
 
-.live-wrapper>iframe {
+.live-wrapper > iframe {
   width: 100%;
   height: 100%;
+}
+
+.contact-wrapper > iframe {
+  min-width: 310px;
+  height: 75px;
 }
 
 .projectTitle>small {
