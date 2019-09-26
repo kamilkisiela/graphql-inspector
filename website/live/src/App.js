@@ -9,7 +9,7 @@ function App() {
   const isContact = page === 'contact';
 
   return (
-    <Suspense fallback={<Loading />}>
+    <Suspense fallback={<Loading color={isContact ? '#000' : '#fff'} />}>
       {isContact && <Contact />}
       {!isContact && <Diff />}
     </Suspense>

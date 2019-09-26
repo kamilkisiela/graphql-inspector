@@ -8,12 +8,12 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
   font-size: 16px;
-  color: #fff;
+  color: ${props => props.color};
 `;
 
-export default function Loading() {
+export default function Loading({color}) {
   return (
-    <Container>
+    <Container color={color}>
       <div>Loading...</div>
     </Container>
   );
