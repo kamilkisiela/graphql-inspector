@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const Container = styled.div`
   width: 100%;
-  height: 300px;
+  height: ${props => props.height};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -11,9 +11,9 @@ const Container = styled.div`
   color: ${props => props.color};
 `;
 
-export default function Loading({color}) {
+export default function Loading({color, height}) {
   return (
-    <Container color={color}>
+    <Container color={color} height={height}>
       <div>Loading...</div>
     </Container>
   );
