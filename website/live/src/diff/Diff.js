@@ -10,6 +10,7 @@ import Change from './Change';
 const height = 300;
 
 const Container = styled.div`
+  background-color: #000;
   display: flex;
 
   @media only screen and (max-width: 950px) {
