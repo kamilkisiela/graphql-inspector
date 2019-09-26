@@ -11,7 +11,7 @@ const Live = () => {
   return (
     <div className="live">
       <div className="live-wrapper">
-        <iframe src={'/live/diff'} />
+        <iframe src={'/live/#diff'} />
       </div>
     </div>
   );
@@ -29,7 +29,7 @@ const Contact = () => {
           help you and hear how you use GraphQL Inspector today!
         </h2>
         <div className="contact-wrapper">
-          <iframe src={'/live/contact'} />
+          <iframe src={'/live/#contact'} />
         </div>
       </div>
     </div>
