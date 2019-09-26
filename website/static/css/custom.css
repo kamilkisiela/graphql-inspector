@@ -22,6 +22,11 @@ body {
     padding-bottom: 350px;
   }
 
+  #contact-us #main-header {
+    padding-top: 70px;
+    padding-bottom: 70px;
+  }
+
   #main-header .container {
     margin: 0 auto;
     text-align: center;

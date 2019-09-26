@@ -19,17 +19,19 @@ const Live = () => {
 
 const Contact = () => {
   return (
-    <div id="main-header">
-      <div className="container">
-        <h1>
-          <span>Contact us!</span>
-        </h1>
-        <h2>
-          Need help? Want to start using GraphQL Inspector? We would love to
-          help you and hear how you use GraphQL Inspector today!
-        </h2>
-        <div className="contact-wrapper">
-          <iframe src={'/live/#contact'} />
+    <div id="contact-us">
+      <div id="main-header">
+        <div className="container">
+          <h1>
+            <span>Contact us!</span>
+          </h1>
+          <h2>
+            Need help? Want to start using GraphQL Inspector? We would love to
+            help you and hear how you use GraphQL Inspector today!
+          </h2>
+          <div className="contact-wrapper">
+            <iframe src={'/live/#contact'} />
+          </div>
         </div>
       </div>
     </div>
@@ -49,18 +51,7 @@ const Nav = () => {
         <div className="sep" />
         <a href="https://github.com/kamilkisiela/graphql-inspector">Github</a>
         <div className="sep" />
-        <a
-          href="#contact-us"
-          onClick={e => {
-            e.preventDefault();
-            const el = document.getElementById('contact-us');
-
-            window.scrollTo({
-              behavior: 'smooth',
-              top: el.offsetTop,
-            });
-          }}
-        >
+        <a href="#contact-us" className="scroll-to">
           Contact
         </a>
       </div>
@@ -129,7 +120,7 @@ class Index extends React.Component {
         </div>
         <Highlights />
         <Live />
-        <Contact id="contact-us" />
+        <Contact />
       </div>
     );
   }
