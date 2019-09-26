@@ -9,8 +9,11 @@ const Contact = lazy(() => import('./contact/Contact'));
 function App() {
   const {isRoute} = useRouter();
 
+  console.log('got to App');
+
   return (
     <Suspense fallback={<Loading />}>
+      working!
       {isRoute(routes.diff) && <Diff />}
       {isRoute(routes.contact) && <Contact />}
     </Suspense>
