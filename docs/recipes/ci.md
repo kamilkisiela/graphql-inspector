@@ -18,12 +18,9 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:12.4.0
+      - image: kamilkisiela/graphql-inspector
     steps:
       - checkout
-      - run:
-          name: Install
-          command: yarn install
       - run:
           name: GraphQL Inspector
           command: 'graphql-inspector diff "git:origin/master:./schema.graphql" "schema.graphql"'

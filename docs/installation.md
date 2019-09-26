@@ -41,3 +41,21 @@ npm install --save @graphql-inspector/core
 ```typescript
 import { ... } from '@graphql-inspector/core';
 ```
+
+## Docker
+
+```bash
+docker run kamilkisiela/graphql-inspector --help
+```
+
+Bind volumes to `/app` for working with local files, for example:
+
+```bash
+docker run -v $PWD:/app kamilkisiela/graphql-inspector graphql-inspector diff old.graphql new.graphql
+```
+
+To run commands interactively inside of the container, use the following:
+
+```bash
+docker run -it kamilkisiela/graphql-inspector
+```

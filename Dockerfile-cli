@@ -9,9 +9,5 @@ ENV LOG_LEVEL "debug"
 
 RUN yarn global add @graphql-inspector/cli@1.24.0 graphql
 
-COPY ./entrypoint-cli.sh .
-
-RUN ["chmod", "+x", "/entrypoint-cli.sh"]
-
-ENTRYPOINT ["/entrypoint-cli.sh"]
-
+RUN mkdir /app
+WORKDIR /app
