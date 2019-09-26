@@ -49,7 +49,20 @@ const Nav = () => {
         <div className="sep" />
         <a href="https://github.com/kamilkisiela/graphql-inspector">Github</a>
         <div className="sep" />
-        <a href="#contact-us">Contact</a>
+        <a
+          href="#contact-us"
+          onClick={e => {
+            e.preventDefault();
+            const el = document.getElementById('contact-us');
+
+            window.scrollTo({
+              behavior: 'smooth',
+              top: el.offsetTop,
+            });
+          }}
+        >
+          Contact
+        </a>
       </div>
     </div>
   );
