@@ -58,7 +58,7 @@
     "react-router-dom": "5.0.1",
     "react-scripts": "3.1.2",
     "styled-components": "4.4.0",
-    "ts-jest": "24.0.2",
+    "ts-jest": "24.1.0",
     "typescript": "3.6.3"
   },
   "browserslist": [
