@@ -1,6 +1,6 @@
 FROM node:10-slim
 
-LABEL version="1.24.0"
+LABEL version="1.25.0"
 LABEL repository="http://github.com/kamilkisiela/graphql-inspector"
 LABEL homepage="http://github.com/kamilkisiela/graphql-inspector"
 LABEL maintainer="Kamil Kisiela <kamil.kisiela@gmail.com>"
@@ -12,7 +12,7 @@ LABEL com.github.actions.color="orange"
 
 ENV LOG_LEVEL "debug"
 
-RUN yarn global add @graphql-inspector/actions@1.24.0
+RUN yarn global add @graphql-inspector/actions@1.25.0
 
 COPY entrypoint.sh /entrypoint.sh
 
