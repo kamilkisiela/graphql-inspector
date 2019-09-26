@@ -67,7 +67,7 @@ const Error = styled(Status)`
 `;
 
 const Success = styled(Status)`
-  color: #00eaff;
+  color: #4b5ff7;
 `;
 
 export default function Contact({className}) {
