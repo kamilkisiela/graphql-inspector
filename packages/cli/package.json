@@ -40,7 +40,7 @@
     "@graphql-inspector/ui": "0.0.0-PLACEHOLDER",
     "apollo-server": "2.9.3",
     "chalk": "2.4.2",
-    "commander": "3.0.1",
+    "commander": "3.0.2",
     "express": "4.17.1",
     "figures": "3.0.0",
     "indent-string": "4.0.0",
