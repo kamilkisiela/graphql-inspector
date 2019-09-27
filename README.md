@@ -1,7 +1,7 @@
 [![Inspector](https://user-images.githubusercontent.com/25294569/64163641-50cc9f80-ce4a-11e9-89b0-248c7d12142f.gif)](https://graphql-inspector.com/)
 
 [![npm version](https://badge.fury.io/js/%40graphql-inspector%2Fcli.svg)](https://npmjs.com/package/@graphql-inspector/cli)
-![Docker Pulls](https://img.shields.io/docker/pulls/kamilkisiela/graphql-inspector)
+[![Docker Pulls](https://img.shields.io/docker/pulls/kamilkisiela/graphql-inspector)](https://hub.docker.com/r/kamilkisiela/graphql-inspector)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 [![renovate-app badge](https://img.shields.io/badge/renovate-app-blue.svg)](https://renovateapp.com/)
 [![Join the community on Spectrum](https://withspectrum.github.io/badge/badge.svg)](https://spectrum.chat/graphql-inspector)
