@@ -15,6 +15,7 @@ describe('diff', () => {
   let spyProcessCwd: jest.SpyInstance;
   let spyEmit: jest.SpyInstance;
   let spySuccess: jest.SpyInstance;
+  let spyError: jest.SpyInstance;
 
   beforeEach(() => {
     spyProcessExit = jest.spyOn(process, 'exit');
@@ -26,7 +27,7 @@ describe('diff', () => {
 
     spyEmit = jest.spyOn(renderer, 'emit').mockImplementation(() => {});
     spySuccess = jest.spyOn(renderer, 'success').mockImplementation(() => {});
-    jest.spyOn(renderer, 'error').mockImplementation(() => {});
+    spyError = jest.spyOn(renderer, 'error').mockImplementation(() => {});
   });
 
   afterEach(() => {
@@ -68,5 +69,49 @@ describe('diff', () => {
     ).toBeDefined();
 
     expect(spyProcessExit).toHaveBeenCalledWith(1);
+  });
+
+  test('should load rule by name', async () => {
+    await diff(oldSchema, newSchema, {
+      renderer,
+      rule: ['suppressRemovalOfDeprecatedField'],
+    });
+
+    expect(
+      spyError.mock.calls.find(hasMessage('does not exist')),
+    ).not.toBeDefined();
+  });
+
+  test('should load rules with local path from fs', async () => {
+    await diff(oldSchema, newSchema, {
+      renderer,
+      rule: ['assets/rule.js'],
+    });
+
+    expect(
+      spyError.mock.calls.find(hasMessage('does not exist')),
+    ).not.toBeDefined();
+  });
+
+  test('should load rules with absolute path from fs', async () => {
+    await diff(oldSchema, newSchema, {
+      renderer,
+      rule: [resolve(__dirname, 'assets/rule.js')],
+    });
+
+    expect(
+      spyError.mock.calls.find(hasMessage('does not exist')),
+    ).not.toBeDefined();
+  });
+
+  test('should render error if file does not exist', async () => {
+    await diff(oldSchema, newSchema, {
+      renderer,
+      rule: ['noop.js'],
+    });
+
+    expect(
+      spyError.mock.calls.find(hasMessage('does not exist')),
+    ).toBeDefined();
   });
 });

@@ -3,13 +3,30 @@ import {
   DiffRule,
   Change,
   CriticalityLevel,
+  Rule,
 } from '@graphql-inspector/core';
+
 import {loadSchema} from '@graphql-inspector/load';
+import {existsSync} from 'fs';
+import {join, isAbsolute} from 'path';
 
 import {renderChange, Renderer, ConsoleRenderer} from '../render';
 
 function hasBreaking(changes: Change[]): boolean {
   return changes.some(c => c.criticality.level === CriticalityLevel.Breaking);
+}
+
+function resolveRule(name: string): Rule | undefined {
+  try {
+    const filepath = isAbsolute(name) ? name : join(process.cwd(), name);
+    if (existsSync(filepath)) {
+      return require(filepath);
+    }
+  } catch (error) {
+    /** noop */
+  }
+
+  return DiffRule[name as keyof typeof DiffRule];
 }
 
 export async function diff(
@@ -19,7 +36,7 @@ export async function diff(
     token?: string;
     renderer?: Renderer;
     require?: string[];
-    rule?: Array<keyof typeof DiffRule>;
+    rule?: Array<string>;
     headers?: Record<string, string>;
   },
 ) {
@@ -34,17 +51,20 @@ export async function diff(
       token: options.token,
       headers: options.headers,
     });
-
     const rules = options.rule
       ? options.rule
-          .map(rule => {
-            if (!DiffRule[rule]) {
-              renderer.error(`\Rule '${rule}' does not exist!\n`);
-              process.exit(1);
-            }
+          .map(
+            (name): Rule => {
+              const rule = resolveRule(name);
 
-            return DiffRule[rule];
-          })
+              if (!rule) {
+                renderer.error(`\Rule '${name}' does not exist!\n`);
+                return process.exit(1);
+              }
+
+              return rule;
+            },
+          )
           .filter(f => f)
       : [];
     const changes = diffSchema(oldSchema, newSchema, rules);
