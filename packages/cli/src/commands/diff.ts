@@ -17,13 +17,9 @@ function hasBreaking(changes: Change[]): boolean {
 }
 
 function resolveRule(name: string): Rule | undefined {
-  try {
-    const filepath = isAbsolute(name) ? name : join(process.cwd(), name);
-    if (existsSync(filepath)) {
-      return require(filepath);
-    }
-  } catch (error) {
-    /** noop */
+  const filepath = isAbsolute(name) ? name : join(process.cwd(), name);
+  if (existsSync(filepath)) {
+    return require(filepath);
   }
 
   return DiffRule[name as keyof typeof DiffRule];
