@@ -40,7 +40,7 @@
     "@probot/serverless-lambda": "0.3.0",
     "babel-loader": "8.0.6",
     "graphql-request": "1.8.2",
-    "husky": "3.0.7",
+    "husky": "3.0.8",
     "immer": "4.0.0",
     "lerna": "3.16.4",
     "shelljs": "0.8.3"
