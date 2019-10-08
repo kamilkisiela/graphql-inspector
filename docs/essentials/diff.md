@@ -59,3 +59,21 @@ Every removal of a deprecated field is considered as a breaking change. With tha
 Changes of descriptions are filtered out and are not displayed in the CLI result.
 
     graphql-inspector diff https://api.com/graphql schema.graphql --rule ignoreDescriptionChanges
+
+## Custom rules
+
+It's possible to write your own rules.
+
+First, you need a module:
+
+```javascript
+// custom-rule.js
+
+module.exports = changes => {
+  return changes.filter(myCustomFilter);
+};
+```
+
+Now, you can use that module as a rule:
+
+    graphql-inspector diff https://api.com/graphql schema.graphql --rule './custom-rule.js'
