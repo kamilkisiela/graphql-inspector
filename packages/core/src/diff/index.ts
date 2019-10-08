@@ -5,6 +5,7 @@ import {Change} from './changes/change';
 import {Rule} from './rules/types';
 import * as rules from './rules';
 
+export * from './rules/types';
 export const DiffRule = rules;
 
 export function diff(

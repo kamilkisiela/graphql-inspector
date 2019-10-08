@@ -24,6 +24,8 @@ module.exports = {
   // The glob patterns Jest uses to detect test files
   testMatch: ['**/__tests__/**/*.+(ts|tsx|js)'],
 
+  testPathIgnorePatterns: ['__tests__/assets/'],
+
   // A map from regular expressions to paths to transformers
   transform: {
     '^.+\\.(ts|tsx)$': 'ts-jest',
