@@ -60,10 +60,6 @@
       "git add"
     ]
   },
-  "resoultions": {
-    "@types/react": "16.8.23",
-    "babel-loader": "8.0.6"
-  },
   "engines": {
     "node": ">= 10.x"
   }

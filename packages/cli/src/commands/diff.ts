@@ -5,19 +5,18 @@ import {
   CriticalityLevel,
   Rule,
 } from '@graphql-inspector/core';
-
 import {loadSchema} from '@graphql-inspector/load';
 import {existsSync} from 'fs';
-import {join, isAbsolute} from 'path';
 
 import {renderChange, Renderer, ConsoleRenderer} from '../render';
+import {ensureAbsolute} from '../utils/fs';
 
 function hasBreaking(changes: Change[]): boolean {
   return changes.some(c => c.criticality.level === CriticalityLevel.Breaking);
 }
 
 function resolveRule(name: string): Rule | undefined {
-  const filepath = isAbsolute(name) ? name : join(process.cwd(), name);
+  const filepath = ensureAbsolute(name);
   if (existsSync(filepath)) {
     return require(filepath);
   }
