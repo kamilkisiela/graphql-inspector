@@ -2,6 +2,11 @@
 
 ### vNEXT
 
+### v1.26.0
+
+-- **core**: add rule to ignore description changes [PR #687](https://github.com/kamilkisiela/graphql-inspector/pull/687) [@fabsrc](https://github.com/fabsrc)
+-- **cli**: custom rules from local fs [PR #665](https://github.com/kamilkisiela/graphql-inspector/pull/665) [@chunksnbits](https://github.com/chunksnbits)
+
 ### v1.25.0
 
 - **action**: log more errors (in loadConfig) [PR #606](https://github.com/kamilkisiela/graphql-inspector/pull/606)
