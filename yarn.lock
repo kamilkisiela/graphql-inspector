@@ -7384,10 +7384,10 @@ handle-thing@^2.0.0:
   resolved "https://registry.yarnpkg.com/handle-thing/-/handle-thing-2.0.0.tgz#0e039695ff50c93fc288557d696f3c1dc6776754"
   integrity sha512-d4sze1JNC454Wdo2fkuyzCr6aHcbL6PGGuFAz0Li/NcOm1tCHGnWDRmJP85dh9IhQErTc2svWFEX5xHIOo//kQ==
 
-handlebars@4.3.3:
-  version "4.3.3"
-  resolved "https://registry.yarnpkg.com/handlebars/-/handlebars-4.3.3.tgz#56dd05fe33d6bd8a7d797351c39a0cdcfd576be5"
-  integrity sha512-VupOxR91xcGojfINrzMqrvlyYbBs39sXIrWa7YdaQWeBudOlvKEGvCczMfJPgnuwHE/zyH1M6J+IUP6cgDVyxg==
+handlebars@4.3.5:
+  version "4.3.5"
+  resolved "https://registry.yarnpkg.com/handlebars/-/handlebars-4.3.5.tgz#d6c2d0a0f08b4479e3949f8321c0f3893bb691be"
+  integrity sha512-I16T/l8X9DV3sEkY9sK9lsPRgDsj82ayBY/4pAZyP2BcX5WeRM3O06bw9kIs2GLrHvFB/DNzWWJyFvof8wQGqw==
   dependencies:
     neo-async "^2.6.0"
     optimist "^0.6.1"
@@ -7505,12 +7505,12 @@ hash.js@^1.0.0, hash.js@^1.0.3:
     inherits "^2.0.3"
     minimalistic-assert "^1.0.1"
 
-hbs@^4.0.4:
-  version "4.0.5"
-  resolved "https://registry.yarnpkg.com/hbs/-/hbs-4.0.5.tgz#284e77f9ad579c1051388094b5ea7060dee478b9"
-  integrity sha512-lzyXY0HalmVqHyhty05cLoPqxY51gNnCI6cMlXiPbrIKvB3BTJh3waQ9de86x25jX9QhU/tkAojsOO4KB6vPfg==
+hbs@^4.0.6:
+  version "4.0.6"
+  resolved "https://registry.yarnpkg.com/hbs/-/hbs-4.0.6.tgz#3054144dbd399cc7d351a39c016b3a52c9e19f5d"
+  integrity sha512-KFt3Y4zOvVQOp84TmqVaFTpBTYO1sVenBoBY712MI3vPkKxVoO6AsuEyDayIRPRAHRYZHHWnmc4spFa8fhQpLw==
   dependencies:
-    handlebars "4.3.3"
+    handlebars "4.3.5"
     walk "2.3.14"
 
 he@1.2.x:
@@ -11909,10 +11909,10 @@ probot-config@1.1.0:
     deepmerge "^2.2.1"
     js-yaml "^3.10.0"
 
-probot@9.5.2:
-  version "9.5.2"
-  resolved "https://registry.yarnpkg.com/probot/-/probot-9.5.2.tgz#cfe00123f3bb08808a6af735687b0dcf3f791c1e"
-  integrity sha512-cWqtgoJGdmyW0reC3nu0B9tNp8GqUC7lFZRbLRXo/i27StOH4FHFJl3wneL8nWiGgYog7iJocvySTaB7hf7iyQ==
+probot@9.5.3:
+  version "9.5.3"
+  resolved "https://registry.yarnpkg.com/probot/-/probot-9.5.3.tgz#7f24ca25152047710207ac2c22f7ba2ff8c467f4"
+  integrity sha512-K9jG7i2ANpVC2R+dlRoprU9pDz+mz/GXaM0i96X/tewX5SBQkFxT00AdETsi40aJXnrg6UUxpEcFBo/OeARiHA==
   dependencies:
     "@octokit/app" "^4.0.0"
     "@octokit/graphql" "^4.2.0"
@@ -11934,7 +11934,7 @@ probot@9.5.2:
     eventsource "^1.0.7"
     express "^4.16.2"
     express-async-errors "^3.0.0"
-    hbs "^4.0.4"
+    hbs "^4.0.6"
     ioredis "^4.5.1"
     is-base64 "1.0.0"
     js-yaml "^3.13.1"
