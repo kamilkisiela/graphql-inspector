@@ -2719,10 +2719,10 @@
     "@uifabric/styling" "^7.7.1"
     tslib "^1.7.1"
 
-"@uifabric/merge-styles@^7.7.0":
-  version "7.7.0"
-  resolved "https://registry.yarnpkg.com/@uifabric/merge-styles/-/merge-styles-7.7.0.tgz#10caa72dd5fb9c63e22214f3a53856aa049bdb10"
-  integrity sha512-VMLSHKNp4dFDOZTdXeXhNvkrdmxjTwP4MaUf6yLeMkD1qf36/uFAN4nQ7jVAr6RC5cVMklmxN6FtNj+6+bHGfA==
+"@uifabric/merge-styles@^7.7.0", "@uifabric/merge-styles@^7.8.0":
+  version "7.8.0"
+  resolved "https://registry.yarnpkg.com/@uifabric/merge-styles/-/merge-styles-7.8.0.tgz#d3deb2e1fa8185480af4a9958590c2e677407f69"
+  integrity sha512-NISbWaU7msRBNTuVglLRRyhAwnXaOUc+7xWoP5Y9m4npaAfbDl9OtgYp5pGeNr9o07kiuZ3Dqt5NHot3idtIlw==
   dependencies:
     "@uifabric/set-version" "^7.0.2"
     tslib "^1.7.1"
@@ -10557,16 +10557,16 @@ octokit-pagination-methods@1.1.0, octokit-pagination-methods@^1.1.0:
   resolved "https://registry.yarnpkg.com/octokit-pagination-methods/-/octokit-pagination-methods-1.1.0.tgz#cf472edc9d551055f9ef73f6e42b4dbb4c80bea4"
   integrity sha512-fZ4qZdQ2nxJvtcasX7Ghl+WlWS/d9IgnBIwFZXVNNZUmzpno91SX5bc5vuxiuKoCtK78XxGGNuSCrDC7xYB3OQ==
 
-office-ui-fabric-react@7.53.0:
-  version "7.53.0"
-  resolved "https://registry.yarnpkg.com/office-ui-fabric-react/-/office-ui-fabric-react-7.53.0.tgz#2c2006a04260e05ac603d37eeed1c604960957a3"
-  integrity sha512-fjLBVRKzdKjx0GO5+40zi2x7kDgc/RDc0WwIF4wIP1sDEg6HaOH3pDvwc7z7SVt6wvBb0MOv9vvb4Hxc8Z236w==
+office-ui-fabric-react@7.53.1:
+  version "7.53.1"
+  resolved "https://registry.yarnpkg.com/office-ui-fabric-react/-/office-ui-fabric-react-7.53.1.tgz#ce55f41f52833296bcf0a450e68e2acd3a243c75"
+  integrity sha512-f5xaArgs2BCphD3rhAOUBgdusKpBqLU/MLBCsG69ZQGm9u4y1JRQCgUmF1VPfXM+etGyTTtmJS4kigFeDhhSWg==
   dependencies:
     "@microsoft/load-themed-styles" "^1.7.13"
     "@uifabric/example-data" "^7.0.1"
     "@uifabric/foundation" "^7.4.4"
     "@uifabric/icons" "^7.3.0"
-    "@uifabric/merge-styles" "^7.7.0"
+    "@uifabric/merge-styles" "^7.8.0"
     "@uifabric/react-hooks" "^7.0.1"
     "@uifabric/set-version" "^7.0.2"
     "@uifabric/styling" "^7.7.2"
