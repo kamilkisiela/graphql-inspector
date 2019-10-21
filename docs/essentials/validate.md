@@ -4,6 +4,8 @@ title: Validate documents
 
 Validates documents against a schema and looks for deprecated usage.
 
+`graphql-inspector validate './documents/*.graphql' http://localhost:3000/graphql`
+
 ![Validate](/img/cli/validate.jpg)
 
 ## Usage
