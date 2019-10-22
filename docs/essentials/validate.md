@@ -11,6 +11,10 @@ Validates documents against a schema and looks for deprecated usage.
 Run the following command:
 
     graphql-inspector validate DOCUMENTS SCHEMA
+    
+**Example**
+
+    graphql-inspector validate './documents/*.graphql' http://localhost:3000/graphql
 
 **Arguments**
 
