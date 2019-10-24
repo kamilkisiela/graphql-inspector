@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "graphql-tag-pluck": "0.8.6",
-    "graphql-toolkit": "0.6.0",
+    "graphql-toolkit": "0.6.2",
     "node-fetch": "2.6.0",
     "simple-git": "1.126.0"
   },
