@@ -1,34 +1,33 @@
-import {buildSchema, Source, print} from 'graphql';
+import {buildSchema, Source, print, getIntrospectionQuery} from 'graphql';
 import gql from 'graphql-tag';
 
 import {coverage} from '../../src/index';
 
 describe('coverage', () => {
+  const schema = buildSchema(/* GraphQL */ `
+    interface Identifiable {
+      id: ID
+      createdAt: Int
+    }
+
+    type Post implements Identifiable {
+      id: ID
+      createdAt: Int
+      title: String
+      author: String
+    }
+
+    type Query {
+      post: Post
+      posts: [Post!]
+      objectById(id: ID!): Identifiable
+    }
+
+    schema {
+      query: Query
+    }
+  `);
   test('basic', () => {
-    const a = buildSchema(/* GraphQL */ `
-      interface Identifiable {
-        id: ID
-        createdAt: Int
-      }
-
-      type Post implements Identifiable {
-        id: ID
-        createdAt: Int
-        title: String
-        author: String
-      }
-
-      type Query {
-        post: Post
-        posts: [Post!]
-        objectById(id: ID!): Identifiable
-      }
-
-      schema {
-        query: Query
-      }
-    `);
-
     const doc = gql`
       query getPost {
         post {
@@ -48,7 +47,7 @@ describe('coverage', () => {
       }
     `;
 
-    const results = coverage(a, [new Source(print(doc))]);
+    const results = coverage(schema, [new Source(print(doc))]);
 
     // Query
     expect(results.types.Query.hits).toEqual(2);
@@ -64,5 +63,12 @@ describe('coverage', () => {
     expect(results.types.Identifiable.hits).toEqual(1);
     expect(results.types.Identifiable.children.id.hits).toEqual(1);
     expect(results.types.Identifiable.children.createdAt.hits).toEqual(0);
+  });
+
+  test('introspection', () => {
+    const introspectionQuery = getIntrospectionQuery();
+    expect(() =>
+      coverage(schema, [new Source(introspectionQuery)]),
+    ).not.toThrowError();
   });
 });
