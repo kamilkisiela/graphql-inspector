@@ -54,9 +54,9 @@ class Footer extends React.Component {
             </a>
             <a
               href="https://github.com/kamilkisiela/graphql-inspector"
-              title="Give us a star on Github"
+              title="Give us a star on GitHub"
             >
-              <img src="/img/ui/social/github.svg" alt="Link to Github" />
+              <img src="/img/ui/social/github.svg" alt="Link to GitHub" />
             </a>
           </div>
           <div className="copyrights">{this.props.config.copyright}</div>
@@ -88,7 +88,7 @@ class Footer extends React.Component {
   //             Getting Started
   //           </a>
   //           <a href={this.docUrl('recipes/github', this.props.language)}>
-  //             Github Application
+  //             GitHub Application
   //           </a>
   //         </div>
   //         <div>

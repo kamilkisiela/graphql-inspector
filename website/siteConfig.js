@@ -25,7 +25,7 @@ const siteConfig = {
     {href: '/install', label: 'Install'},
     {
       href: 'https://github.com/kamilkisiela/graphql-inspector',
-      label: 'Github',
+      label: 'GitHub',
     },
   ],
 

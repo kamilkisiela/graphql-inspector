@@ -54,7 +54,7 @@ For example, you want to get `schema.graphql` from `origin/master`:
 
     git:origin/master:./schema.graphql
 
-## Github repository
+## GitHub repository
 
 Yes, GraphQL Inspector can also do that, here's the pattern:
 
