@@ -2768,13 +2768,6 @@
     lodash.unescape "4.0.1"
     semver "^6.3.0"
 
-"@uifabric/example-data@^7.0.1":
-  version "7.0.1"
-  resolved "https://registry.yarnpkg.com/@uifabric/example-data/-/example-data-7.0.1.tgz#8d5104ffbfa5c5b2589fa60f753932e536fd1003"
-  integrity sha512-HWw2lAbF5Fn1NhmxxEpzgWrprEsQ7+Ut71zpAHdCJoVCVeesHl03gY/obBIz8ogrufW0RIlkrNSredy6uRzYDQ==
-  dependencies:
-    tslib "^1.7.1"
-
 "@uifabric/foundation@^7.4.4":
   version "7.4.4"
   resolved "https://registry.yarnpkg.com/@uifabric/foundation/-/foundation-7.4.4.tgz#f9e01b37710ee95b3f2e82418f480b8b3fd879a2"
@@ -10623,13 +10616,12 @@ octokit-pagination-methods@1.1.0, octokit-pagination-methods@^1.1.0:
   resolved "https://registry.yarnpkg.com/octokit-pagination-methods/-/octokit-pagination-methods-1.1.0.tgz#cf472edc9d551055f9ef73f6e42b4dbb4c80bea4"
   integrity sha512-fZ4qZdQ2nxJvtcasX7Ghl+WlWS/d9IgnBIwFZXVNNZUmzpno91SX5bc5vuxiuKoCtK78XxGGNuSCrDC7xYB3OQ==
 
-office-ui-fabric-react@7.55.3:
-  version "7.55.3"
-  resolved "https://registry.yarnpkg.com/office-ui-fabric-react/-/office-ui-fabric-react-7.55.3.tgz#2ea78a2529fdd34a25d5dc45db2dc18745fa53ae"
-  integrity sha512-S+vOpyWdkC+6wCcyhSWoLMdN/jgDOuiM/etl4GWRhnNJg+JsbjKaQy19WSqyqhci2gaKMmG5Rbv7uBmNIvOw3A==
+office-ui-fabric-react@7.56.0:
+  version "7.56.0"
+  resolved "https://registry.yarnpkg.com/office-ui-fabric-react/-/office-ui-fabric-react-7.56.0.tgz#71d6e5dbae641d39c9a550b604ea2db61e477cf9"
+  integrity sha512-H8DudF+nhTgIUwD82kSlvAK9pB1iLW6QF8QH5C3K3NIoiA3SOOi702Bbq5TwRwdRxwghw6c0hlV8aHDzrMMPUw==
   dependencies:
     "@microsoft/load-themed-styles" "^1.7.13"
-    "@uifabric/example-data" "^7.0.1"
     "@uifabric/foundation" "^7.4.4"
     "@uifabric/icons" "^7.3.0"
     "@uifabric/merge-styles" "^7.8.0"
