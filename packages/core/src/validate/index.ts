@@ -49,7 +49,7 @@ export interface ValidateOptions {
    * Fails when operation depth exceeds maximum depth
    * @default false
    */
-  maxDepth?: number | boolean;
+  maxDepth?: number;
 }
 
 export function validate(
