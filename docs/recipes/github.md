@@ -56,24 +56,27 @@ You don't have to host your own instance of GraphQL Inspector, we got you covere
 
 ## Use GitHub Actions
 
-If you're lucky to have an access to GitHub Actions, you don't have to host GraphQL Inspector anywhere on your own. Here's an example workflow:
+With GitHub Actions, you don't have to host GraphQL Inspector anywhere on your own. Here's an example workflow:
 
-```hcl
-workflow "On Push" {
-  on = "push"
-  resolves = "Check GraphQL with Inspector"
-}
+```yaml
+name: CI
 
-workflow "On Pull Request" {
-  on = "pull_request"
-  resolves = "Check GraphQL with Inspector"
-}
+on: [push]
 
-# Deploy and Host GraphQL Inspector
-action "Check GraphQL with Inspector" {
-  uses = "kamilkisiela/graphql-inspector@master"
-  secrets = ["GITHUB_TOKEN"]
-}
+jobs:
+  test:
+    name: Check Schema
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+
+      - uses: kamilkisiela/graphql-inspector@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          schema: 'master:schema.graphql'
 ```
 
 Here's how it looks like:
