@@ -1,14 +1,14 @@
 ---
-title: Github Application
+title: GitHub Application
 ---
 
-[GraphQL Inspector App](https://github.com/apps/graphql-inspector) is a Github Application that you can install in any of your repositories.
+[GraphQL Inspector App](https://github.com/apps/graphql-inspector) is a GitHub Application that you can install in any of your repositories.
 
 GraphQL Inspector App checks your Pull Request in order to find breaking changes (and others) in a GraphQL Schema, against your `master` branch.
 
-We strongly believe in Open Source and that's why we made it possible to have a per-repository, self-hosted GraphQL Inspector App thanks to Github Actions or to host your own instance in the Cloud.
+We strongly believe in Open Source and that's why we made it possible to have a per-repository, self-hosted GraphQL Inspector App thanks to GitHub Actions or to host your own instance in the Cloud.
 
-![Github](/img/cli/github.jpg)
+![GitHub](/img/cli/github.jpg)
 
 ## Usage
 
@@ -50,13 +50,13 @@ It's also possible to setup everything in `package.json` (it must be placed in t
 
 This way your schema file is always up to date with your actual schema.
 
-## Github Application
+## GitHub Application
 
 You don't have to host your own instance of GraphQL Inspector, we got you covered. Simply install [GraphQL Inspector App](https://github.com/apps/graphql-inspector) in a repository and enjoy having a solid workflow.
 
-## Use Github Actions
+## Use GitHub Actions
 
-If you're lucky to have an access to Github Actions, you don't have to host GraphQL Inspector anywhere on your own. Here's an example workflow:
+If you're lucky to have an access to GitHub Actions, you don't have to host GraphQL Inspector anywhere on your own. Here's an example workflow:
 
 ```hcl
 workflow "On Push" {
@@ -78,7 +78,7 @@ action "Check GraphQL with Inspector" {
 
 Here's how it looks like:
 
-![Github](/img/github/workflow.jpg)
+![GitHub](/img/github/workflow.jpg)
 
 Now on every commit or every Pull Request the GraphQL Inspector App will annotate every change, next to the line in code where it happened.
 
@@ -86,6 +86,6 @@ Now on every commit or every Pull Request the GraphQL Inspector App will annotat
 
 We strongly believe in Open Source and that's why we made it possible to host your own instances of GraphQL Inspector App.
 
-> Under the hood, the GraphQL Inspector uses [Probot](https://probot.github.io) a bot made by Github team.
+> Under the hood, the GraphQL Inspector uses [Probot](https://probot.github.io) a bot made by GitHub team.
 
 There's a well written ["Deployment" chapter](https://probot.github.io/docs/deployment/) on Probot's documentation.

@@ -22,11 +22,11 @@ Validates documents against a schema and looks for deprecated usage.
 
 ![Validate](/img/cli/validate.jpg)
 
-### Github Bot and Github Actions
+### GitHub Bot and GitHub Actions
 
 Have a per-repository, self-hosted GraphQL Inspector service or deploy it with Docker.
 
-![Github](/img/cli/github.jpg)
+![GitHub](/img/cli/github.jpg)
 
 ### Find duplicated types
 

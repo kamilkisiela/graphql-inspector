@@ -17,8 +17,8 @@ Major features:
 - **Finds similar / duplicated types**
 - **Schema coverage based on documents**
 - **Serves a GraphQL server with faked data and GraphQL Playground**
-- **Github Bot**
-- **Github Actions**
+- **GitHub Bot**
+- **GitHub Actions**
 
 GraphQL Inspector has a **CLI** and also a **programatic API**, so you can use it however you want to and even build tools on top of it.
 
@@ -128,7 +128,7 @@ Introspects a GraphQL Server and writes the result to a file
 ✅ Introspection result saved to schema.json
 ```
 
-### Github Bot and Github Actions
+### GitHub Bot and GitHub Actions
 
 Have a per-repository, self-hosted GraphQL Inspector service or deploy it with Docker.
 
@@ -157,9 +157,9 @@ $ graphql-inspector-github
 }
 ```
 
-Get Github annotations in your PRs.
+Get GitHub annotations in your PRs.
 
-![Github](https://raw.githubusercontent.com/kamilkisiela/graphql-inspector/master/assets/github.jpg)
+![GitHub](https://raw.githubusercontent.com/kamilkisiela/graphql-inspector/master/assets/github.jpg)
 
 ### CLI in more details
 
@@ -213,7 +213,7 @@ Pattern:
 
     git:ref:path/to/file
 
-**Pointer to a Github repository**
+**Pointer to a GitHub repository**
 
 Example:
 

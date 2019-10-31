@@ -49,7 +49,7 @@ const Nav = () => {
         <div className="sep" />
         <a href="/install">Install</a>
         <div className="sep" />
-        <a href="https://github.com/kamilkisiela/graphql-inspector">Github</a>
+        <a href="https://github.com/kamilkisiela/graphql-inspector">GitHub</a>
         <div className="sep" />
         <a href="#contact-us" className="scroll-to">
           Contact
@@ -91,7 +91,7 @@ const Highlights = () => {
     <div id="main-highlights">
       <div className="container">
         <Hightlight
-          title="Github integration"
+          title="GitHub integration"
           image="/img/ui/features/github.svg"
           description="Have a per-repository, self-hosted GraphQL Inspector service or deploy it with Docker."
         />

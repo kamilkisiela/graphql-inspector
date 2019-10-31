@@ -39,13 +39,13 @@
         "title": "Continuous Integration"
       },
       "recipes/github": {
-        "title": "Github Application"
+        "title": "GitHub Application"
       }
     },
     "links": {
       "Docs": "Docs",
       "Install": "Install",
-      "Github": "Github"
+      "GitHub": "GitHub"
     },
     "categories": {
       "Introduction": "Introduction",
