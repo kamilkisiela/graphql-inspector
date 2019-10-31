@@ -31,6 +31,8 @@
     "action": "yarn build:github && yarn bundle",
     "bundle": "webpack",
     "format": "prettier --config .prettierrc --write \"**/*.{js,json,md,ts,graphql}\"",
+    "prerelease": "yarn action",
+    "prerelease:canary": "yarn prerelease",
     "release": "lerna publish --exact --force-publish=\"*\"",
     "release:canary": "lerna publish --force-publish=\"*\" --canary --exact",
     "precommit": "lint-staged"
