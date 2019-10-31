@@ -25,9 +25,30 @@ export interface InvalidDocument {
 }
 
 export interface ValidateOptions {
+  /**
+   * Fails on duplicated fragment names
+   * @default true
+   */
   strictFragments?: boolean;
+  /**
+   * Fails on deprecated usage
+   * @default true
+   */
   strictDeprecated?: boolean;
+  /**
+   * Works only with combination of `apollo`
+   * @default false
+   */
+  keepClientFields?: boolean;
+  /**
+   * Supports Apollo directives (`@client` and `@connection`)
+   * @default false
+   */
   apollo?: boolean;
+  /**
+   * Fails when operation depth exceeds maximum depth
+   * @default false
+   */
   maxDepth?: number;
 }
 
@@ -39,6 +60,7 @@ export function validate(
   const config: ValidateOptions = {
     strictDeprecated: true,
     strictFragments: true,
+    keepClientFields: false,
     apollo: false,
     ...options,
   };
@@ -99,7 +121,9 @@ export function validate(
         ? transformSchemaWithApollo(schema)
         : schema;
       const transformedDoc = config.apollo
-        ? transformDocumentWithApollo(merged)
+        ? transformDocumentWithApollo(merged, {
+            keepClientFields: config.keepClientFields!,
+          })
         : merged;
 
       const errors =

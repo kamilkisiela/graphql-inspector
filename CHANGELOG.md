@@ -2,6 +2,8 @@
 
 ### vNEXT
 
+- **core** **cli** introduce `keepClientFields` flag in `validate` [PR #783](https://github.com/kamilkisiela/graphql-inspector/pull/783)
+
 ### v1.26.0
 
 -- **core**: add rule to ignore description changes [PR #687](https://github.com/kamilkisiela/graphql-inspector/pull/687) [@fabsrc](https://github.com/fabsrc)

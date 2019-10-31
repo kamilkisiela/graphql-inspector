@@ -65,6 +65,11 @@ commander
     parseInt(val, 10),
   )
   .option('--apollo', 'Support Apollo directives', false)
+  .option(
+    '--keepClientFields',
+    'Keeps the fields with @client, but removes @client directive from them',
+    false,
+  )
   .description('Validate documents against a schema')
   .action((documents: string, schema: string, cmd: commander.Command) =>
     validate(documents, schema, normalizeOptions(cmd)),

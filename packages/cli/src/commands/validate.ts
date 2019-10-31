@@ -19,6 +19,7 @@ export async function validate(
     deprecated: boolean;
     noStrictFragments: boolean;
     apollo?: boolean;
+    keepClientFields?: boolean;
     maxDepth?: number;
     renderer?: Renderer;
     headers?: Record<string, string>;
@@ -36,6 +37,7 @@ export async function validate(
       strictFragments: !options.noStrictFragments,
       maxDepth: options.maxDepth || undefined,
       apollo: options.apollo || false,
+      keepClientFields: options.keepClientFields || false,
     });
 
     if (!invalidDocuments.length) {
