@@ -5,9 +5,6 @@ branding:
   icon: 'search'
   color: 'orange'
 inputs:
-  token:
-    description: 'GitHub Token'
-    required: true
   schema:
     description: 'Ref and Path to GraphQL Schema (e.g. "master:schema.graphql")'
     required: true
