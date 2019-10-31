@@ -170,3 +170,19 @@ export function removeFieldIfDirectives(
 
   return node;
 }
+
+export function removeDirectives(
+  node: FieldNode,
+  directiveNames: string[],
+): FieldNode {
+  if (node.directives) {
+    return {
+      ...node,
+      directives: node.directives.filter(
+        d => directiveNames.indexOf(d.name.value) === -1,
+      ),
+    };
+  }
+
+  return node;
+}

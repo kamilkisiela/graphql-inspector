@@ -1,11 +1,16 @@
 import {DocumentNode, visit, parse, GraphQLSchema, extendSchema} from 'graphql';
 
-import {removeFieldIfDirectives} from './graphql';
+import {removeFieldIfDirectives, removeDirectives} from './graphql';
 
-export function transformDocumentWithApollo(doc: DocumentNode): DocumentNode {
+export function transformDocumentWithApollo(
+  doc: DocumentNode,
+  {keepClientFields}: {keepClientFields: boolean},
+): DocumentNode {
   return visit(doc, {
     Field(node) {
-      return removeFieldIfDirectives(node, ['client']);
+      return keepClientFields
+        ? removeDirectives(node, ['client'])
+        : removeFieldIfDirectives(node, ['client']);
     },
   });
 }

@@ -11,7 +11,7 @@ Validates documents against a schema and looks for deprecated usage.
 Run the following command:
 
     graphql-inspector validate DOCUMENTS SCHEMA
-    
+
 **Example**
 
     graphql-inspector validate './documents/*.graphql' http://localhost:3000/graphql
@@ -26,6 +26,7 @@ Run the following command:
 - `-d, --deprecated` - Fail on deprecated usage (default: _false_)
 - `--noStrictFragments` - Do not fail on duplicated fragment names (default: _false_)
 - `--apollo` - Support Apollo directives (@client and @connection) (default: _false_)
+- `--keepClientFields <b>` - Keeps the fields with @client, but removes @client directive from them - works only with combination of `--apollo` (default: _false_)
 - `--maxDepth <n>` - Fail when operation depth exceeds maximum depth (default: _false_)
 - `-r, --require <s>` - require a module
 - `-t, --token <s>` - an access token

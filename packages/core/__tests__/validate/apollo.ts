@@ -61,4 +61,45 @@ describe('apollo', () => {
 
     expect(results).toHaveLength(0);
   });
+
+  test('should not remove fields with @client directive (on demand)', () => {
+    const schema = buildSchema(/* GraphQL */ `
+      type Query {
+        random(seed: Int): Int!
+      }
+    `);
+
+    const doc = parse(/* GraphQL */ `
+      query Random($seed: Int) {
+        random(seed: $seed) @client
+      }
+    `);
+
+    const results = validate(schema, [new Source(print(doc))], {
+      apollo: true,
+      keepClientFields: true,
+    });
+
+    expect(results).toHaveLength(0);
+  });
+
+  test('should remove fields with @client directive by default', () => {
+    const schema = buildSchema(/* GraphQL */ `
+      type Query {
+        random(seed: Int): Int!
+      }
+    `);
+
+    const doc = parse(/* GraphQL */ `
+      query Random($seed: Int) {
+        random(seed: $seed) @client
+      }
+    `);
+
+    const results = validate(schema, [new Source(print(doc))], {
+      apollo: true,
+    });
+
+    expect(results).toHaveLength(1);
+  });
 });
