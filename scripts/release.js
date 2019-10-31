@@ -8,10 +8,18 @@ const detectIndent = require('detect-indent');
 const immer = require('immer').default;
 
 const placeholder = '0.0.0-PLACEHOLDER';
-const [, , version] = process.argv;
+const [, , versionOrCanary] = process.argv;
 const rootDir = resolve(__dirname, '../');
 const rootPackage = join(rootDir, 'package.json');
 const lerna = join(rootDir, 'lerna.json');
+
+const isCanary = versionOrCanary === 'canary';
+
+const version = isCanary
+  ? `0.0.0-${Math.random()
+      .toString(16)
+      .substring(2, 9)}.0`
+  : versionOrCanary;
 
 const packages = JSON.parse(
   readFileSync(rootPackage, {encoding: 'utf-8'}),
@@ -24,10 +32,12 @@ if (!semver.valid(version)) {
   throw new Error(`Version ${version} is not valid`);
 }
 
-// !  lerna.json as the source of truth of a version number
+if (!isCanary) {
+  // Create a release branch
+  exec(`git checkout -b ${branch}`);
+}
 
-// Create a release branch
-exec(`git checkout -b ${branch}`);
+// ! lerna.json as the source of truth of a version number
 
 // Set version in lerna.json
 updateJSON(lerna, data => {
@@ -51,32 +61,38 @@ updateString(join(rootDir, 'Dockerfile-cli'), docker =>
   docker.replace(new RegExp(current, 'g'), version),
 );
 
-// Bump version in changelog
-updateString(join(rootDir, 'CHANGELOG.md'), changelog =>
-  changelog.replace('### vNEXT', `### vNEXT` + '\n\n' + `### v${version}`),
-);
+if (!isCanary) {
+  // Bump version in changelog
+  updateString(join(rootDir, 'CHANGELOG.md'), changelog =>
+    changelog.replace('### vNEXT', `### vNEXT` + '\n\n' + `### v${version}`),
+  );
+}
+
+const cmd = `npm publish${isCanary ? ' --tag canary' : ''}`;
 
 // Run npm publish in all libraries
 packages.map(dir => {
-  exec(`(cd ${dir} && npm publish --access public)`);
+  exec(`(cd ${dir} && ${cmd} --access public)`);
 });
 
-// Revert changes in libraries (back to placeholders)
-exec(
-  `git checkout -- ${packages.map(dir => relative(rootDir, dir)).join(' ')}`,
-);
+if (!isCanary) {
+  // Revert changes in libraries (back to placeholders)
+  exec(
+    `git checkout -- ${packages.map(dir => relative(rootDir, dir)).join(' ')}`,
+  );
 
-// Add changes and commit as `Release vX.X.X`
-exec(`git add . && git commit -m "Release v${version}"`);
+  // Add changes and commit as `Release vX.X.X`
+  exec(`git add . && git commit -m "Release v${version}"`);
 
-// Push the release branch to origin
-exec(`git push origin ${branch}`);
+  // Push the release branch to origin
+  exec(`git push origin ${branch}`);
 
-// Back to master
-exec(`git checkout master`);
+  // Back to master
+  exec(`git checkout master`);
 
-// Remove the release branch
-exec(`git branch -D ${branch}`);
+  // Remove the release branch
+  exec(`git branch -D ${branch}`);
+}
 
 function updateJSON(filepath, updateFn) {
   const content = readFileSync(filepath, {encoding: 'utf-8'});

@@ -19,11 +19,7 @@ export function fieldArgumentDescriptionChanged(
       level: CriticalityLevel.NonBreaking,
     },
     type: ChangeType.FieldArgumentDescriptionChanged,
-    message: `Description for argument '${newArg.name}' on field '${
-      type.name
-    }.${field.name}' changed from '${oldArg.description}' to '${
-      newArg.description
-    }'`,
+    message: `Description for argument '${newArg.name}' on field '${type.name}.${field.name}' changed from '${oldArg.description}' to '${newArg.description}'`,
     path: [type.name, field.name, oldArg.name].join('.'),
   };
 }
@@ -43,12 +39,8 @@ export function fieldArgumentDefaultChanged(
     type: ChangeType.FieldArgumentDefaultChanged,
     message:
       typeof oldArg.defaultValue === 'undefined'
-        ? `Default value '${newArg.defaultValue}' was added to argument '${
-            newArg.name
-          }' on field '${type.name}.${field.name}'`
-        : `Default value for argument '${newArg.name}' on field '${type.name}.${
-            field.name
-          }' changed from '${oldArg.defaultValue}' to '${newArg.defaultValue}'`,
+        ? `Default value '${newArg.defaultValue}' was added to argument '${newArg.name}' on field '${type.name}.${field.name}'`
+        : `Default value for argument '${newArg.name}' on field '${type.name}.${field.name}' changed from '${oldArg.defaultValue}' to '${newArg.defaultValue}'`,
     path: [type.name, field.name, oldArg.name].join('.'),
   };
 }
@@ -70,9 +62,7 @@ export function fieldArgumentTypeChanged(
           reason: `Changing the type of a field's argument can cause existing queries that use this argument to error.`,
         },
     type: ChangeType.FieldArgumentTypeChanged,
-    message: `Type for argument '${newArg.name}' on field '${type.name}.${
-      field.name
-    }' changed from '${oldArg.type}' to '${newArg.type}'`,
+    message: `Type for argument '${newArg.name}' on field '${type.name}.${field.name}' changed from '${oldArg.type}' to '${newArg.type}'`,
     path: [type.name, field.name, oldArg.name].join('.'),
   };
 }

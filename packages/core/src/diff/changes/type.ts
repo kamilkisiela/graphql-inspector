@@ -48,9 +48,7 @@ export function typeDescriptionChanged(
       level: CriticalityLevel.NonBreaking,
     },
     type: ChangeType.TypeDescriptionChanged,
-    message: `Description '${oldType.description}' on type '${
-      oldType.name
-    }' has changed to '${newType.description}'`,
+    message: `Description '${oldType.description}' on type '${oldType.name}' has changed to '${newType.description}'`,
     path: oldType.name,
   };
 }

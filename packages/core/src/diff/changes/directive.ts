@@ -38,9 +38,7 @@ export function directiveDescriptionChanged(
       level: CriticalityLevel.NonBreaking,
     },
     type: ChangeType.DirectiveDescriptionChanged,
-    message: `Directive '${oldDirective.name}' description changed from '${
-      oldDirective.description
-    }' to '${newDirective.description}'`,
+    message: `Directive '${oldDirective.name}' description changed from '${oldDirective.description}' to '${newDirective.description}'`,
     path: `@${oldDirective.name}`,
   };
 }
@@ -54,9 +52,7 @@ export function directiveLocationAdded(
       level: CriticalityLevel.NonBreaking,
     },
     type: ChangeType.DirectiveLocationAdded,
-    message: `Location '${location}' was added to directive '${
-      directive.name
-    }'`,
+    message: `Location '${location}' was added to directive '${directive.name}'`,
     path: `@${directive.name}`,
   };
 }
@@ -70,9 +66,7 @@ export function directiveLocationRemoved(
       level: CriticalityLevel.Breaking,
     },
     type: ChangeType.DirectiveLocationRemoved,
-    message: `Location '${location}' was removed from directive '${
-      directive.name
-    }'`,
+    message: `Location '${location}' was removed from directive '${directive.name}'`,
     path: `@${directive.name}`,
   };
 }
@@ -88,9 +82,7 @@ export function directiveArgumentAdded(
         : CriticalityLevel.NonBreaking,
     },
     type: ChangeType.DirectiveArgumentAdded,
-    message: `Argument '${arg.name}' was added to directive '${
-      directive.name
-    }'`,
+    message: `Argument '${arg.name}' was added to directive '${directive.name}'`,
     path: `@${directive.name}`,
   };
 }
@@ -104,9 +96,7 @@ export function directiveArgumentRemoved(
       level: CriticalityLevel.Breaking,
     },
     type: ChangeType.DirectiveArgumentRemoved,
-    message: `Argument '${arg.name}' was removed from directive '${
-      directive.name
-    }'`,
+    message: `Argument '${arg.name}' was removed from directive '${directive.name}'`,
     path: `@${directive.name}.${arg.name}`,
   };
 }
@@ -121,9 +111,7 @@ export function directiveArgumentDescriptionChanged(
       level: CriticalityLevel.NonBreaking,
     },
     type: ChangeType.DirectiveArgumentDescriptionChanged,
-    message: `Description for argument '${oldArg.name}' on directive '${
-      directive.name
-    }' changed from '${oldArg.description}' to '${newArg.description}'`,
+    message: `Description for argument '${oldArg.name}' on directive '${directive.name}' changed from '${oldArg.description}' to '${newArg.description}'`,
     path: `@${directive.name}.${oldArg.name}`,
   };
 }
@@ -142,12 +130,8 @@ export function directiveArgumentDefaultValueChanged(
     type: ChangeType.DirectiveArgumentDefaultValueChanged,
     message:
       typeof oldArg.defaultValue === 'undefined'
-        ? `Default value '${newArg.defaultValue}' was added to argument '${
-            newArg.name
-          }' on directive '${directive.name}'`
-        : `Default value for argument '${oldArg.name}' on directive '${
-            directive.name
-          }' changed from '${oldArg.defaultValue}' to '${newArg.defaultValue}'`,
+        ? `Default value '${newArg.defaultValue}' was added to argument '${newArg.name}' on directive '${directive.name}'`
+        : `Default value for argument '${oldArg.name}' on directive '${directive.name}' changed from '${oldArg.defaultValue}' to '${newArg.defaultValue}'`,
     path: `@${directive.name}.${oldArg.name}`,
   };
 }
@@ -168,9 +152,7 @@ export function directiveArgumentTypeChanged(
           level: CriticalityLevel.Breaking,
         },
     type: ChangeType.DirectiveArgumentTypeChanged,
-    message: `Type for argument '${oldArg.name}' on directive '${
-      directive.name
-    }' changed from '${oldArg.type}' to '${newArg.type}'`,
+    message: `Type for argument '${oldArg.name}' on directive '${directive.name}' changed from '${oldArg.type}' to '${newArg.type}'`,
     path: `@${directive.name}.${oldArg.name}`,
   };
 }

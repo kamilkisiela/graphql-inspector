@@ -12,9 +12,7 @@ export function enumValueRemoved(
       reason: `Removing an enum value will cause existing queries that use this enum value to error.`,
     },
     type: ChangeType.EnumValueRemoved,
-    message: `Enum value '${value.name}' was removed from enum '${
-      oldEnum.name
-    }'`,
+    message: `Enum value '${value.name}' was removed from enum '${oldEnum.name}'`,
     path: [oldEnum.name, value.name].join('.'),
   };
 }
@@ -46,14 +44,8 @@ export function enumValueDescriptionChanged(
     type: ChangeType.EnumValueDescriptionChanged,
     message:
       typeof oldValue.description === 'undefined'
-        ? `Description '${newValue.description}' was added to enum value '${
-            newEnum.name
-          }.${newValue.name}'`
-        : `Description for enum value '${newEnum.name}.${
-            newValue.name
-          }' changed from '${oldValue.description}' to '${
-            newValue.description
-          }'`,
+        ? `Description '${newValue.description}' was added to enum value '${newEnum.name}.${newValue.name}'`
+        : `Description for enum value '${newEnum.name}.${newValue.name}' changed from '${oldValue.description}' to '${newValue.description}'`,
     path: [newEnum.name, oldValue.name].join('.'),
   };
 }
@@ -69,14 +61,8 @@ export function enumValueDeprecationReasonChanged(
     },
     type: ChangeType.EnumValueDescriptionChanged,
     message: oldValue.deprecationReason
-      ? `Enum value '${newEnum.name}.${
-          newValue.name
-        }' deprecation reason changed from '${
-          oldValue.deprecationReason
-        }' to '${newValue.deprecationReason}'`
-      : `Enum value '${newEnum.name}.${
-          newValue.name
-        }' was deprecated with reason '${newValue.deprecationReason}'`,
+      ? `Enum value '${newEnum.name}.${newValue.name}' deprecation reason changed from '${oldValue.deprecationReason}' to '${newValue.deprecationReason}'`
+      : `Enum value '${newEnum.name}.${newValue.name}' was deprecated with reason '${newValue.deprecationReason}'`,
     path: [newEnum.name, oldValue.name].join('.'),
   };
 }
