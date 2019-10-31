@@ -1,0 +1,13 @@
+name: 'GraphQL Inspector'
+author: 'Kamil Kisiela <kamil.kisiela@gmail.com>'
+description: 'Tooling for GraphQL. Compare schemas, find breaking changes, find similar types.'
+branding:
+  icon: 'search'
+  color: 'orange'
+inputs:
+  schema:
+    description: 'Ref and Path to GraphQL Schema (e.g. "master:schema.graphql")'
+    required: true
+runs:
+  using: 'node12'
+  main: 'lib/action.js'

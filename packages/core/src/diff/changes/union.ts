@@ -12,9 +12,7 @@ export function unionMemberRemoved(
         'Removing a union member from a union can cause existing queries that use this union member in a fragment spread to error.',
     },
     type: ChangeType.UnionMemberRemoved,
-    message: `Member '${type.name}' was removed from Union type '${
-      union.name
-    }'`,
+    message: `Member '${type.name}' was removed from Union type '${union.name}'`,
     path: union.name,
   };
 }

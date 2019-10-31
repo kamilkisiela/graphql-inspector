@@ -1,4 +1,6 @@
-#!/usr/bin/env node
+(global as any).navigator = {
+  userAgent: 'node.js',
+};
 
 import * as core from '@actions/core';
 import {run} from './run';

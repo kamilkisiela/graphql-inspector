@@ -1,1 +1,6 @@
 packages/*/dist
+dist/functions/
+website/live/build/
+website/build/
+public/
+lib/

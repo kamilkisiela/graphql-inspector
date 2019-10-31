@@ -29,9 +29,7 @@ export function objectTypeInterfaceRemoved(
         'Removing an interface from an object type can cause existing queries that use this in a fragment spread to error.',
     },
     type: ChangeType.ObjectTypeInterfaceRemoved,
-    message: `'${type.name}' object type no longer implements '${
-      iface.name
-    }' interface`,
+    message: `'${type.name}' object type no longer implements '${iface.name}' interface`,
     path: type.name,
   };
 }

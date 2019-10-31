@@ -18,9 +18,7 @@ export function inputFieldRemoved(
         'Removing an input field will cause existing queries that use this input field to error.',
     },
     type: ChangeType.InputFieldRemoved,
-    message: `Input field '${field.name}' was removed from input object type '${
-      input.name
-    }'`,
+    message: `Input field '${field.name}' was removed from input object type '${input.name}'`,
     path: [input.name, field.name].join('.'),
   };
 }
@@ -40,9 +38,7 @@ export function inputFieldAdded(
           level: CriticalityLevel.Dangerous,
         },
     type: ChangeType.InputFieldAdded,
-    message: `Input field '${field.name}' was added to input object type '${
-      input.name
-    }'`,
+    message: `Input field '${field.name}' was added to input object type '${input.name}'`,
     path: [input.name, field.name].join('.'),
   };
 }
@@ -56,9 +52,7 @@ export function inputFieldDescriptionAdded(
       level: CriticalityLevel.NonBreaking,
     },
     type: ChangeType.InputFieldDescriptionAdded,
-    message: `Input field '${type.name}.${field.name}' has description '${
-      field.description
-    }'`,
+    message: `Input field '${type.name}.${field.name}' has description '${field.description}'`,
     path: [type.name, field.name].join('.'),
   };
 }
@@ -72,9 +66,7 @@ export function inputFieldDescriptionRemoved(
       level: CriticalityLevel.NonBreaking,
     },
     type: ChangeType.InputFieldDescriptionRemoved,
-    message: `Description was removed from input field '${type.name}.${
-      field.name
-    }'`,
+    message: `Description was removed from input field '${type.name}.${field.name}'`,
     path: [type.name, field.name].join('.'),
   };
 }
@@ -89,11 +81,7 @@ export function inputFieldDescriptionChanged(
       level: CriticalityLevel.NonBreaking,
     },
     type: ChangeType.InputFieldDescriptionChanged,
-    message: `Input field '${input.name}.${
-      oldField.name
-    }' description changed from '${oldField.description}' to '${
-      newField.description
-    }'`,
+    message: `Input field '${input.name}.${oldField.name}' description changed from '${oldField.description}' to '${newField.description}'`,
     path: [input.name, oldField.name].join('.'),
   };
 }
@@ -110,11 +98,7 @@ export function inputFieldDefaultValueChanged(
         'Changing the default value for an argument may change the runtime behaviour of a field if it was never provided.',
     },
     type: ChangeType.InputFieldDefaultValueChanged,
-    message: `Input field '${input.name}.${
-      oldField.name
-    }' default value changed from '${oldField.defaultValue}' to '${
-      newField.defaultValue
-    }'`,
+    message: `Input field '${input.name}.${oldField.name}' default value changed from '${oldField.defaultValue}' to '${newField.defaultValue}'`,
     path: [input.name, oldField.name].join('.'),
   };
 }
