@@ -1086,15 +1086,6 @@
     "@graphql-toolkit/common" "0.6.6"
     graphql-tag-pluck "0.8.6"
 
-"@graphql-toolkit/common@0.6.5":
-  version "0.6.5"
-  resolved "https://registry.yarnpkg.com/@graphql-toolkit/common/-/common-0.6.5.tgz#12d64462ab05c3d88eea249408bf9ff7965c4331"
-  integrity sha512-8jZJx+s+zrY/dWV2yaQrr0is3GvMsHZwzsy/HMKpgOKmd7BUW8i5psHvtGJ2/0a103MtluNtXTcgT7SzDn7x2g==
-  dependencies:
-    "@kamilkisiela/graphql-tools" "4.0.6"
-    aggregate-error "3.0.1"
-    lodash "4.17.15"
-
 "@graphql-toolkit/common@0.6.6":
   version "0.6.6"
   resolved "https://registry.yarnpkg.com/@graphql-toolkit/common/-/common-0.6.6.tgz#78e40a60eff843497140abf18733e170de4a1a40"
@@ -10702,10 +10693,10 @@ octokit-pagination-methods@1.1.0, octokit-pagination-methods@^1.1.0:
   resolved "https://registry.yarnpkg.com/octokit-pagination-methods/-/octokit-pagination-methods-1.1.0.tgz#cf472edc9d551055f9ef73f6e42b4dbb4c80bea4"
   integrity sha512-fZ4qZdQ2nxJvtcasX7Ghl+WlWS/d9IgnBIwFZXVNNZUmzpno91SX5bc5vuxiuKoCtK78XxGGNuSCrDC7xYB3OQ==
 
-office-ui-fabric-react@7.56.2:
-  version "7.56.2"
-  resolved "https://registry.yarnpkg.com/office-ui-fabric-react/-/office-ui-fabric-react-7.56.2.tgz#a5aa0f2030080742134d41952f623cff5a7ecf6f"
-  integrity sha512-F9G2h7pfSaqVnhexL8bc63V0lZNqx92fc4cTwNq07MZkmOHYzt0moNhbVKrQLZkV/cRCfXDT6tYDmWrbng0Obw==
+office-ui-fabric-react@7.56.3:
+  version "7.56.3"
+  resolved "https://registry.yarnpkg.com/office-ui-fabric-react/-/office-ui-fabric-react-7.56.3.tgz#94e8070d11adea5f5e2f2620d3616507e9c94e03"
+  integrity sha512-Vo2BfcrIoZc35GmB4/x8CAwcQ4plAe34X0oad/U7nhKlMr0pI25x/ps2ph3GQcIRrAIexBgvgsA1sT95tq3Yww==
   dependencies:
     "@microsoft/load-themed-styles" "^1.7.13"
     "@uifabric/foundation" "^7.4.4"
