@@ -1143,12 +1143,12 @@
     "@graphql-toolkit/common" "0.6.5"
     graphql-import "0.7.1"
 
-"@graphql-toolkit/json-file-loader@0.6.4":
-  version "0.6.4"
-  resolved "https://registry.yarnpkg.com/@graphql-toolkit/json-file-loader/-/json-file-loader-0.6.4.tgz#beb4fad69915dee39bffa7681fae7034a828ea42"
-  integrity sha512-H12upMcjjTf+9eFOLgJkqnpqQTZKwdRo2z3aeiARu/Xq/6V5XUY5Cu67Mvqi7p7R3L8fMmmuxoAi2uAL/cBDvA==
+"@graphql-toolkit/json-file-loader@0.6.5":
+  version "0.6.5"
+  resolved "https://registry.yarnpkg.com/@graphql-toolkit/json-file-loader/-/json-file-loader-0.6.5.tgz#c60feef8cf7038da9fe16163fdc4d753fb72724a"
+  integrity sha512-E+O4Mu1Te71wiepgp/seE/EZu+NTgssAWs1hI7262LjhwM+V+qzFsCS9b+dOT1439QvHL0My4EiWGqn9+h2/Bw==
   dependencies:
-    "@graphql-toolkit/common" "0.6.4"
+    "@graphql-toolkit/common" "0.6.5"
 
 "@graphql-toolkit/schema-merging@0.6.5":
   version "0.6.5"
