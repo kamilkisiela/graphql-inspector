@@ -1078,12 +1078,12 @@
     graphql-tools "4.0.4"
     tslib "1.9.3"
 
-"@graphql-toolkit/code-file-loader@0.6.4":
-  version "0.6.4"
-  resolved "https://registry.yarnpkg.com/@graphql-toolkit/code-file-loader/-/code-file-loader-0.6.4.tgz#99a0a8fd623c8183a910cc6b3cc7c931da6385a9"
-  integrity sha512-jilNwaO2ZhCJAphLcJ19KaHwcu2wfIWXONLBIO+84n/YGzw7ZU+mcKFebFmLbOkLimHbW63DgmmHElkEDKaxYw==
+"@graphql-toolkit/code-file-loader@0.6.5":
+  version "0.6.5"
+  resolved "https://registry.yarnpkg.com/@graphql-toolkit/code-file-loader/-/code-file-loader-0.6.5.tgz#ecded6c68c57688f10fe29f11d4d986464e7325e"
+  integrity sha512-LbSPSa08XDTl0gkgq1L4Fc8R/wYbmgsu608fIkF/4Qe0BkfufH2Kq+0WLyrE1JE3DZDlNmtxXW5fMikZlAN9Bg==
   dependencies:
-    "@graphql-toolkit/common" "0.6.4"
+    "@graphql-toolkit/common" "0.6.5"
     graphql-tag-pluck "0.8.6"
 
 "@graphql-toolkit/common@0.6.4":
