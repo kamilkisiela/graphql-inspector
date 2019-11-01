@@ -39,7 +39,7 @@
     "@graphql-toolkit/url-loader": "0.6.6"
   },
   "devDependencies": {
-    "@types/express": "4.17.1",
+    "@types/express": "4.17.2",
     "@types/jest": "24.0.21",
     "@types/node": "12.12.4",
     "@types/node-fetch": "2.5.3",
