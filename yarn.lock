@@ -1086,19 +1086,19 @@
     "@graphql-toolkit/common" "0.6.5"
     graphql-tag-pluck "0.8.6"
 
-"@graphql-toolkit/common@0.6.4":
-  version "0.6.4"
-  resolved "https://registry.yarnpkg.com/@graphql-toolkit/common/-/common-0.6.4.tgz#fc24e370b0e7b369f555cf8a11881819866810b6"
-  integrity sha512-nwJzmlgGu/CKAZTL7G2aTEEzrg1iiebQbTXs6yRPJAP0BX7Nw7nmiTA2xvcmEAg7Qa+5l+Z1vXE7eyXNEaNS6A==
+"@graphql-toolkit/common@0.6.5":
+  version "0.6.5"
+  resolved "https://registry.yarnpkg.com/@graphql-toolkit/common/-/common-0.6.5.tgz#12d64462ab05c3d88eea249408bf9ff7965c4331"
+  integrity sha512-8jZJx+s+zrY/dWV2yaQrr0is3GvMsHZwzsy/HMKpgOKmd7BUW8i5psHvtGJ2/0a103MtluNtXTcgT7SzDn7x2g==
   dependencies:
     "@kamilkisiela/graphql-tools" "4.0.6"
     aggregate-error "3.0.1"
     lodash "4.17.15"
 
-"@graphql-toolkit/common@0.6.5":
-  version "0.6.5"
-  resolved "https://registry.yarnpkg.com/@graphql-toolkit/common/-/common-0.6.5.tgz#12d64462ab05c3d88eea249408bf9ff7965c4331"
-  integrity sha512-8jZJx+s+zrY/dWV2yaQrr0is3GvMsHZwzsy/HMKpgOKmd7BUW8i5psHvtGJ2/0a103MtluNtXTcgT7SzDn7x2g==
+"@graphql-toolkit/common@0.6.6":
+  version "0.6.6"
+  resolved "https://registry.yarnpkg.com/@graphql-toolkit/common/-/common-0.6.6.tgz#78e40a60eff843497140abf18733e170de4a1a40"
+  integrity sha512-6el8vYdtwO+LCZTfrpBsblsCYFFeUQ7W/KMGz2K/paE2V6mn93T0lzGkyGTSjxknqvqaTJOUMejzK719wAoQdQ==
   dependencies:
     "@kamilkisiela/graphql-tools" "4.0.6"
     aggregate-error "3.0.1"
@@ -1159,12 +1159,12 @@
     "@kamilkisiela/graphql-tools" "4.0.6"
     deepmerge "4.2.2"
 
-"@graphql-toolkit/url-loader@0.6.5":
-  version "0.6.5"
-  resolved "https://registry.yarnpkg.com/@graphql-toolkit/url-loader/-/url-loader-0.6.5.tgz#50f5e6b29a52ab7c430a1d9c292070bd03315d2f"
-  integrity sha512-YBGP5W58urpX7mzRur5IAbIcMVo03a3M8FRKum0nz1U9ASGbUB68wyZLpL9x4vrxRrbYusivwFkWbjUarKPFtw==
+"@graphql-toolkit/url-loader@0.6.6":
+  version "0.6.6"
+  resolved "https://registry.yarnpkg.com/@graphql-toolkit/url-loader/-/url-loader-0.6.6.tgz#b0dbca04d1a133ad36f0d2e697a0ea25fd6c8ba8"
+  integrity sha512-0XKZyNX2d1v313PVFrZvLwGKk0ZCKKUVfsgtNLScP4p5K/4+dvCk0JKYFr5IBONoN5yonXApjJUzjZoTt6QC0g==
   dependencies:
-    "@graphql-toolkit/common" "0.6.5"
+    "@graphql-toolkit/common" "0.6.6"
     cross-fetch "3.0.4"
     valid-url "1.0.9"
 
