@@ -38,7 +38,7 @@
     "graphql-tag": "2.10.1"
   },
   "devDependencies": {
-    "@types/express": "4.17.1",
+    "@types/express": "4.17.2",
     "@types/jest": "24.0.21",
     "graphql": "14.5.8",
     "graphql-code-generator": "0.18.2",
