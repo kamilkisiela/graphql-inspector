@@ -1086,19 +1086,19 @@
     "@graphql-toolkit/common" "0.6.5"
     graphql-tag-pluck "0.8.6"
 
-"@graphql-toolkit/common@0.6.4":
-  version "0.6.4"
-  resolved "https://registry.yarnpkg.com/@graphql-toolkit/common/-/common-0.6.4.tgz#fc24e370b0e7b369f555cf8a11881819866810b6"
-  integrity sha512-nwJzmlgGu/CKAZTL7G2aTEEzrg1iiebQbTXs6yRPJAP0BX7Nw7nmiTA2xvcmEAg7Qa+5l+Z1vXE7eyXNEaNS6A==
+"@graphql-toolkit/common@0.6.5":
+  version "0.6.5"
+  resolved "https://registry.yarnpkg.com/@graphql-toolkit/common/-/common-0.6.5.tgz#12d64462ab05c3d88eea249408bf9ff7965c4331"
+  integrity sha512-8jZJx+s+zrY/dWV2yaQrr0is3GvMsHZwzsy/HMKpgOKmd7BUW8i5psHvtGJ2/0a103MtluNtXTcgT7SzDn7x2g==
   dependencies:
     "@kamilkisiela/graphql-tools" "4.0.6"
     aggregate-error "3.0.1"
     lodash "4.17.15"
 
-"@graphql-toolkit/common@0.6.5":
-  version "0.6.5"
-  resolved "https://registry.yarnpkg.com/@graphql-toolkit/common/-/common-0.6.5.tgz#12d64462ab05c3d88eea249408bf9ff7965c4331"
-  integrity sha512-8jZJx+s+zrY/dWV2yaQrr0is3GvMsHZwzsy/HMKpgOKmd7BUW8i5psHvtGJ2/0a103MtluNtXTcgT7SzDn7x2g==
+"@graphql-toolkit/common@0.6.6":
+  version "0.6.6"
+  resolved "https://registry.yarnpkg.com/@graphql-toolkit/common/-/common-0.6.6.tgz#78e40a60eff843497140abf18733e170de4a1a40"
+  integrity sha512-6el8vYdtwO+LCZTfrpBsblsCYFFeUQ7W/KMGz2K/paE2V6mn93T0lzGkyGTSjxknqvqaTJOUMejzK719wAoQdQ==
   dependencies:
     "@kamilkisiela/graphql-tools" "4.0.6"
     aggregate-error "3.0.1"
@@ -1135,12 +1135,12 @@
     "@graphql-toolkit/common" "0.6.5"
     cross-fetch "3.0.4"
 
-"@graphql-toolkit/graphql-file-loader@0.6.5":
-  version "0.6.5"
-  resolved "https://registry.yarnpkg.com/@graphql-toolkit/graphql-file-loader/-/graphql-file-loader-0.6.5.tgz#3c56e8a19b5d23acee988bdec3bbf5dc7a7308e7"
-  integrity sha512-YNndABAKAMD1idodqqKvsTqXLhlIqAIatoXXldmOyjUirdXhWCG1QZbV+I2IihCKbOjrF/gOKHVDFOL8PJYELQ==
+"@graphql-toolkit/graphql-file-loader@0.6.6":
+  version "0.6.6"
+  resolved "https://registry.yarnpkg.com/@graphql-toolkit/graphql-file-loader/-/graphql-file-loader-0.6.6.tgz#76cf528355fb1747b2b20b44cd1d9f3a2024ca92"
+  integrity sha512-hpk+zVgf+UgAQLDbYQ3/Zz6hhUdzfRjKvKOpTSdLNOW7S5ptOB0B76SYHVsjClFjyphanLwx1UraZzjoU7/Dhg==
   dependencies:
-    "@graphql-toolkit/common" "0.6.5"
+    "@graphql-toolkit/common" "0.6.6"
     graphql-import "0.7.1"
 
 "@graphql-toolkit/json-file-loader@0.6.5":
