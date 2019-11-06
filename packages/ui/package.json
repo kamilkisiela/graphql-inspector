@@ -42,7 +42,7 @@
     "@types/jest": "24.0.22",
     "@types/node": "12.12.6",
     "@types/react": "16.9.11",
-    "@types/react-dom": "16.9.3",
+    "@types/react-dom": "16.9.4",
     "@types/react-router-dom": "5.1.2",
     "@types/styled-components": "4.1.21",
     "@uifabric/icons": "7.3.0",
