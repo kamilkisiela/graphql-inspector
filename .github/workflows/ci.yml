@@ -17,6 +17,16 @@ jobs:
       uses: actions/setup-node@master
       with:
         version: ${{ matrix.node_version }}
+        
+    - name: Cache node modules
+      uses: actions/cache@master
+      with:
+        path: node_modules
+        key: ${{ runner.OS }}-build-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          ${{ runner.OS }}-build-${{ env.cache-name }}-
+          ${{ runner.OS }}-build-
+          ${{ runner.OS }}-:  
     
     - name: Install
       run: |
