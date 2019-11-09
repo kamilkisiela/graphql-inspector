@@ -1,4 +1,4 @@
-import chalk from 'chalk';
+import * as chalk from 'chalk';
 import {Change, CriticalityLevel, ChangeType} from '@graphql-inspector/core';
 import {renderChange, getSymbol} from '../src/render';
 

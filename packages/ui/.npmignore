@@ -3,3 +3,6 @@ src/
 server.ts
 tsconfig.json
 tsconfig.server.json
+*.zip
+*.tar.gz
+*.tar

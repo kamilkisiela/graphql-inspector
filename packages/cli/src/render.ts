@@ -1,5 +1,5 @@
 import * as logSymbols from 'log-symbols';
-import chalk from 'chalk';
+import * as chalk from 'chalk';
 import indent = require('indent-string');
 import {
   Change,
