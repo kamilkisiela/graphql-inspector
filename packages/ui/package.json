@@ -44,7 +44,7 @@
     "@types/react": "16.9.11",
     "@types/react-dom": "16.9.4",
     "@types/react-router-dom": "5.1.2",
-    "@types/styled-components": "4.1.22",
+    "@types/styled-components": "4.4.0",
     "@uifabric/icons": "7.3.0",
     "apollo-cache-inmemory": "1.6.3",
     "apollo-client": "2.6.4",
