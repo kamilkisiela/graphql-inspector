@@ -30,7 +30,7 @@
     "graphql": "^0.13.0 || ^14.0.0"
   },
   "dependencies": {
-    "@graphql-toolkit/code-file-loader": "0.6.8",
+    "@graphql-toolkit/code-file-loader": "0.7.0",
     "@graphql-toolkit/core": "0.6.8",
     "@graphql-toolkit/git-loader": "0.6.8",
     "@graphql-toolkit/github-loader": "0.6.8",
