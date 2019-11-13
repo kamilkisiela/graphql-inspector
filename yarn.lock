@@ -1088,15 +1088,6 @@
     is-valid-path "0.1.1"
     tslib "1.10.0"
 
-"@graphql-toolkit/common@0.6.8":
-  version "0.6.8"
-  resolved "https://registry.yarnpkg.com/@graphql-toolkit/common/-/common-0.6.8.tgz#7e80f4821d8484970d768b7cb19a0bc1e7a90784"
-  integrity sha512-vvxLMumGhFsSU/SPbMHsHPtr1WpD98EngSVzDoH4EfiobT8O9RKCaK/Nr57nWxbk1+A0iAC3OrHYugp46au5sQ==
-  dependencies:
-    "@kamilkisiela/graphql-tools" "4.0.6"
-    aggregate-error "3.0.1"
-    lodash "4.17.15"
-
 "@graphql-toolkit/common@0.7.1":
   version "0.7.1"
   resolved "https://registry.yarnpkg.com/@graphql-toolkit/common/-/common-0.7.1.tgz#1c938d30e355639b0d67900f63bdeac96e8afc75"
@@ -9428,10 +9419,10 @@ lines-and-columns@^1.1.6:
   resolved "https://registry.yarnpkg.com/lines-and-columns/-/lines-and-columns-1.1.6.tgz#1c00c743b433cd0a4e80758f7b64a57440d9ff00"
   integrity sha1-HADHQ7QzzQpOgHWPe2SldEDZ/wA=
 
-lint-staged@9.4.2:
-  version "9.4.2"
-  resolved "https://registry.yarnpkg.com/lint-staged/-/lint-staged-9.4.2.tgz#14cb577a9512f520691f8b5aefce6a8f7ead6c04"
-  integrity sha512-OFyGokJSWTn2M6vngnlLXjaHhi8n83VIZZ5/1Z26SULRUWgR3ITWpAEQC9Pnm3MC/EpCxlwts/mQWDHNji2+zA==
+lint-staged@9.4.3:
+  version "9.4.3"
+  resolved "https://registry.yarnpkg.com/lint-staged/-/lint-staged-9.4.3.tgz#f55ad5f94f6e105294bfd6499b23142961f7b982"
+  integrity sha512-PejnI+rwOAmKAIO+5UuAZU9gxdej/ovSEOAY34yMfC3OS4Ac82vCBPzAWLReR9zCPOMqeVwQRaZ3bUBpAsaL2Q==
   dependencies:
     chalk "^2.4.2"
     commander "^2.20.0"
