@@ -1120,12 +1120,12 @@
     tslib "^1.9.3"
     valid-url "1.0.9"
 
-"@graphql-toolkit/git-loader@0.6.8":
-  version "0.6.8"
-  resolved "https://registry.yarnpkg.com/@graphql-toolkit/git-loader/-/git-loader-0.6.8.tgz#6052090608bc63eb0e7e87fa40309bb4ce85c8f7"
-  integrity sha512-9FBZ5oF9fOzvpFdDdFrC2pKLzcxe+I7zy83muloQc3rOJeFHau5KDKJvIJGFoixAKwzOUCwrIkDjVxeHXuxrpA==
+"@graphql-toolkit/git-loader@0.7.1":
+  version "0.7.1"
+  resolved "https://registry.yarnpkg.com/@graphql-toolkit/git-loader/-/git-loader-0.7.1.tgz#f8fddc94a5494eb3bd584968c3572f7895fb813c"
+  integrity sha512-Nv6fVhh8SRm59xe7zk7DjjMPQ/Vt6p496liYjHMPYuZ/UVtWZBA9QHG0OLy4PX1clOBtKS2w/3PkXp55alJ9qQ==
   dependencies:
-    "@graphql-toolkit/common" "0.6.8"
+    "@graphql-toolkit/common" "0.7.1"
     simple-git "1.126.0"
 
 "@graphql-toolkit/github-loader@0.7.1":
