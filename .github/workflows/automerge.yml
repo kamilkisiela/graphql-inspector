@@ -22,5 +22,4 @@ jobs:
         uses: "pascalgn/automerge-action@master"
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-          LABELS: "!wip"
           MERGE_METHOD: "squash"
