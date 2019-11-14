@@ -1146,12 +1146,12 @@
     is-valid-path "0.1.1"
     tslib "1.10.0"
 
-"@graphql-toolkit/json-file-loader@0.7.1":
-  version "0.7.1"
-  resolved "https://registry.yarnpkg.com/@graphql-toolkit/json-file-loader/-/json-file-loader-0.7.1.tgz#4fdea7893e584776485b6a87c3b3ad218fb4f610"
-  integrity sha512-vknZx+FEzmdIHLskx0JyTTpJO9MjPg7pwufFo1U7CKX4qUpvF5BWcssu+qBBExPpyAvvMrU+yYrsg3t5HAkyDw==
+"@graphql-toolkit/json-file-loader@0.7.2":
+  version "0.7.2"
+  resolved "https://registry.yarnpkg.com/@graphql-toolkit/json-file-loader/-/json-file-loader-0.7.2.tgz#93ed06c7cf5f4a27080604f8875463791d35b46a"
+  integrity sha512-pGMAXOgc9kEW5xB6QCCr8J/kmeInrFg+YKk7cs942wyQQ2agPujmbPewRIecn4FMr+HPctCZuO4JHN1UIV+UPw==
   dependencies:
-    "@graphql-toolkit/common" "0.7.1"
+    "@graphql-toolkit/common" "0.7.2"
     is-valid-path "0.1.1"
     tslib "1.10.0"
 
