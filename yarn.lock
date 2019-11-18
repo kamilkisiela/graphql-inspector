@@ -4334,10 +4334,10 @@ cache-base@^1.0.1:
     union-value "^1.0.0"
     unset-value "^1.0.0"
 
-cache-manager@^2.4.0:
-  version "2.10.0"
-  resolved "https://registry.yarnpkg.com/cache-manager/-/cache-manager-2.10.0.tgz#278e9f8784e5d7e6617bfe350358c8ccd17387bf"
-  integrity sha512-IuPx05r5L0uZyBDYicB2Llld1o+/1WYjoHUnrC0TNQejMAnkoYxYS9Y8Uwr+lIBytDiyu7dwwmBCup2M9KugwQ==
+cache-manager@^2.10.1:
+  version "2.10.1"
+  resolved "https://registry.yarnpkg.com/cache-manager/-/cache-manager-2.10.1.tgz#d8f312381255966cfc19c990bc8834c8d24edb2a"
+  integrity sha512-bk17v9IkLqNcbCzggEh82LEJhjHp+COnL57L7a0ESbM/cOuXIIBatdVjD/ps7vOsofI48++zAC14Ye+8v50flg==
   dependencies:
     async "1.5.2"
     lru-cache "4.0.0"
@@ -12096,10 +12096,10 @@ probot-config@1.1.0:
     deepmerge "^2.2.1"
     js-yaml "^3.10.0"
 
-probot@9.6.4:
-  version "9.6.4"
-  resolved "https://registry.yarnpkg.com/probot/-/probot-9.6.4.tgz#e125cd0f127c4d35803096836a76cb8f390b76be"
-  integrity sha512-RYIcczJArPNSF9D4piZi6S5KZ67V+As+Jr6ymYlVb7BBREaaFluLblKb69xT/AvSAoDq6L66gJtC5k/dAc9rCw==
+probot@9.6.5:
+  version "9.6.5"
+  resolved "https://registry.yarnpkg.com/probot/-/probot-9.6.5.tgz#81cff77184c93a0e39243ac825b1bf1c1c077164"
+  integrity sha512-UpMENjV8qVyZwSy0XjLphmWELqwN1qxRq0KHADkvd4xBybbV08Y/6KZYfUt0l7CIVjVkNQJXRQ/J7bvNfXpu9g==
   dependencies:
     "@octokit/app" "^4.0.0"
     "@octokit/graphql" "^4.2.0"
@@ -12114,7 +12114,7 @@ probot@9.6.4:
     bunyan "^1.8.12"
     bunyan-format "^0.2.1"
     bunyan-sentry-stream "^1.1.0"
-    cache-manager "^2.4.0"
+    cache-manager "^2.10.1"
     commander "^4.0.0"
     deepmerge "^4.1.0"
     dotenv "~8.2.0"
