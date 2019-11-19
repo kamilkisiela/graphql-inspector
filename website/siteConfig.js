@@ -55,8 +55,6 @@ const siteConfig = {
 
   usePrism: true,
 
-  scrollToTop: true,
-
   // On page navigation for the current documentation page.
   onPageNav: 'separate',
   // No .html extensions for paths.
