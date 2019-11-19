@@ -43,6 +43,7 @@ const siteConfig = {
     'https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.0/clipboard.min.js',
     '/js/code-block-buttons.js',
     '/js/scroll-to.js',
+    '/js/drift.js',
   ],
 
   stylesheets: ['https://fonts.googleapis.com/css?family=Lato:300,400,700,900'],
