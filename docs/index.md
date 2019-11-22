@@ -2,7 +2,7 @@
 title: What is GraphQL Inspector?
 ---
 
-GraphQL Inspector outputs a list of changes between two GraphQL schemas. Every change is precisely explained and marked as breaking, non-breaking or dangerous. It helps you validate documents and fragments against a schema and even find similar or duplicated types.
+GraphQL Inspector outputs a list of changes between two GraphQL schemas. Every change is precisely explained and marked as breaking, non-breaking or dangerous. It will help you validate documents and fragments against a schema and even find similar or duplicated types.
 
 ![Example](/img/cli/demo.gif)
 
