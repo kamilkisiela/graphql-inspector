@@ -37,7 +37,7 @@
     "@types/jest": "24.0.23",
     "graphql-tag": "2.10.1",
     "jest": "24.9.0",
-    "ts-jest": "24.1.0",
+    "ts-jest": "24.2.0",
     "typescript": "3.7.2"
   }
 }
