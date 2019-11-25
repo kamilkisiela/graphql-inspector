@@ -10758,10 +10758,10 @@ octokit-pagination-methods@1.1.0, octokit-pagination-methods@^1.1.0:
   resolved "https://registry.yarnpkg.com/octokit-pagination-methods/-/octokit-pagination-methods-1.1.0.tgz#cf472edc9d551055f9ef73f6e42b4dbb4c80bea4"
   integrity sha512-fZ4qZdQ2nxJvtcasX7Ghl+WlWS/d9IgnBIwFZXVNNZUmzpno91SX5bc5vuxiuKoCtK78XxGGNuSCrDC7xYB3OQ==
 
-office-ui-fabric-react@7.64.1:
-  version "7.64.1"
-  resolved "https://registry.yarnpkg.com/office-ui-fabric-react/-/office-ui-fabric-react-7.64.1.tgz#cac3df3415edfaecb7450556e4a5a6eb1fe0430f"
-  integrity sha512-8ajx+l/sTjmF0/0LD5u33pe7L+Z89NUyZNPf1dADlyMpJgyGtLYJKZ5sEwmuU/2XiBTY3EbNpEET4/BmC1iqXw==
+office-ui-fabric-react@7.64.2:
+  version "7.64.2"
+  resolved "https://registry.yarnpkg.com/office-ui-fabric-react/-/office-ui-fabric-react-7.64.2.tgz#07a20941ced07a3cc82ba82dca0a07abb2650760"
+  integrity sha512-k3HJ2Sg7E/VkmlJ/JVTReUEKfTDSyo2yd9NDdwtU2rTzgtaDaAJv8/tuQZMcJJzxaKvjtVDmXS2gcPyquX6WAQ==
   dependencies:
     "@microsoft/load-themed-styles" "^1.7.13"
     "@uifabric/foundation" "^7.5.0"
