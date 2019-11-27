@@ -1201,10 +1201,10 @@
     aggregate-error "3.0.1"
     lodash "4.17.15"
 
-"@graphql-toolkit/core@0.7.2":
-  version "0.7.2"
-  resolved "https://registry.yarnpkg.com/@graphql-toolkit/core/-/core-0.7.2.tgz#7e2ce10c3944c928a2f9e579152f7d8cb6b6c445"
-  integrity sha512-FTKv9EqT1gXvTGT42KYP9yfoZcoKRpgYSk/L2XuXTrgk2pvZaFxnuLd2WZhax5QUAuOVh4hlmA5v458xSyk4ag==
+"@graphql-toolkit/core@0.7.3":
+  version "0.7.3"
+  resolved "https://registry.yarnpkg.com/@graphql-toolkit/core/-/core-0.7.3.tgz#cbb90de2cecc43caf061296b03ce7d1b6f47a557"
+  integrity sha512-v/mI/fpUgKbE+nfqmPXO5t3MniQY8dMrvWtAziw07eNCPhczTXy6FqBAtTZBF1y5AlsGfKcworUIcjD8Cryadg==
   dependencies:
     "@graphql-toolkit/common" "0.7.2"
     "@graphql-toolkit/schema-merging" "0.7.2"
