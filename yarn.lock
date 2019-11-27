@@ -1223,10 +1223,10 @@
     "@graphql-toolkit/common" "0.7.2"
     simple-git "1.126.0"
 
-"@graphql-toolkit/github-loader@0.7.2":
-  version "0.7.2"
-  resolved "https://registry.yarnpkg.com/@graphql-toolkit/github-loader/-/github-loader-0.7.2.tgz#43fbb7cd82b37901ee599b67d9fcc3fc30e27556"
-  integrity sha512-ziZ15M3JgFFAkndSEBxWsJWfTCTzlthX+i2Z/eoWjJmGBbvKX5zgBz/n2xuQsRtjnzD/2pcgCV6Jpuw/o6Tu6w==
+"@graphql-toolkit/github-loader@0.7.3":
+  version "0.7.3"
+  resolved "https://registry.yarnpkg.com/@graphql-toolkit/github-loader/-/github-loader-0.7.3.tgz#b9ec983727c9e2b0784e79d45a94f839532a43e7"
+  integrity sha512-HbRci3QErYlWymuZMA/RGej/+epahjIIdByd7/zzSZ/qNm+eqZ3o74M7WIaGVzFB6+mKVLeQJsH84J4y57juBg==
   dependencies:
     "@graphql-toolkit/common" "0.7.2"
     cross-fetch "3.0.4"
