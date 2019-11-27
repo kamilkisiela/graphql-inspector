@@ -1245,12 +1245,12 @@
     "@babel/traverse" "7.7.4"
     "@babel/types" "7.7.4"
 
-"@graphql-toolkit/json-file-loader@0.7.3":
-  version "0.7.3"
-  resolved "https://registry.yarnpkg.com/@graphql-toolkit/json-file-loader/-/json-file-loader-0.7.3.tgz#73260a85984ae8b74b4ac575a5e4db176dc85a61"
-  integrity sha512-wSqrLt+HUH8AnxbRKEVlc4SezmqP/lfpV4ETSCW8IuEG9gG0b2NMpqZ+9JQmSX0JSWYb9oJXSJt3zeqbuYSRBA==
+"@graphql-toolkit/json-file-loader@0.7.4":
+  version "0.7.4"
+  resolved "https://registry.yarnpkg.com/@graphql-toolkit/json-file-loader/-/json-file-loader-0.7.4.tgz#85d740bd1d673d9dcf3960260d1ee9264539bab2"
+  integrity sha512-0FFg/Poap5hmeBwye3A21vU+B7QcP7w9l3yM3WGR/oILGbLfQNFYcAstxLA8aAMeSgwUmRIbPdmqEM057ARXvw==
   dependencies:
-    "@graphql-toolkit/common" "0.7.2"
+    "@graphql-toolkit/common" "0.7.4"
     is-valid-path "0.1.1"
     tslib "1.10.0"
 
