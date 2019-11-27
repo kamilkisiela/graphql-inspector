@@ -1264,12 +1264,12 @@
     deepmerge "4.2.2"
     tslib "1.10.0"
 
-"@graphql-toolkit/url-loader@0.7.3":
-  version "0.7.3"
-  resolved "https://registry.yarnpkg.com/@graphql-toolkit/url-loader/-/url-loader-0.7.3.tgz#69889906cd3ea56d1dd8ae8cf5d4f684a651c82b"
-  integrity sha512-HvV8cxKQo8XagmC8V2LLdcImLQzNL5kcOEkOSQ22f0XXNQsHi+t/+1Ot+/qel7nsSWd933tkDlV5NI1zzWrDiA==
+"@graphql-toolkit/url-loader@0.7.4":
+  version "0.7.4"
+  resolved "https://registry.yarnpkg.com/@graphql-toolkit/url-loader/-/url-loader-0.7.4.tgz#8398823c450ccf86bc5b49c62600ea38c50f19cc"
+  integrity sha512-utFzkKFR98C5G3imj3+pKg28JqePgP5oKBFN/s7GiIoYYhhV9rnwb778E04F1PvlBHyh5LiOiTjC5bxGg1Gt9g==
   dependencies:
-    "@graphql-toolkit/common" "0.7.2"
+    "@graphql-toolkit/common" "0.7.4"
     cross-fetch "3.0.4"
     tslib "1.10.0"
     valid-url "1.0.9"
