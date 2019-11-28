@@ -1178,15 +1178,6 @@
     is-valid-path "0.1.1"
     tslib "1.10.0"
 
-"@graphql-toolkit/common@0.7.2":
-  version "0.7.2"
-  resolved "https://registry.yarnpkg.com/@graphql-toolkit/common/-/common-0.7.2.tgz#10d5ea0a73aac483fba1bf7b1c1274a0ec1da195"
-  integrity sha512-VXbyoaEtWIJVyld/XAysWCcdU20VFckAhTRjsf/H5IvqZy89LvVJiPgzVkJqWfYVVT1UxGJSLEnIIFyfk6V9SQ==
-  dependencies:
-    "@kamilkisiela/graphql-tools" "4.0.6"
-    aggregate-error "3.0.1"
-    lodash "4.17.15"
-
 "@graphql-toolkit/common@0.7.4":
   version "0.7.4"
   resolved "https://registry.yarnpkg.com/@graphql-toolkit/common/-/common-0.7.4.tgz#abf995268572c83da6e093e8578a67add73d2d51"
@@ -14534,10 +14525,10 @@ ts-log@2.1.4:
   resolved "https://registry.yarnpkg.com/ts-log/-/ts-log-2.1.4.tgz#063c5ad1cbab5d49d258d18015963489fb6fb59a"
   integrity sha512-P1EJSoyV+N3bR/IWFeAqXzKPZwHpnLY6j7j58mAvewHRipo+BQM2Y1f9Y9BjEQznKwgqqZm7H8iuixmssU7tYQ==
 
-ts-node@8.5.2:
-  version "8.5.2"
-  resolved "https://registry.yarnpkg.com/ts-node/-/ts-node-8.5.2.tgz#434f6c893bafe501a30b32ac94ee36809ba2adce"
-  integrity sha512-W1DK/a6BGoV/D4x/SXXm6TSQx6q3blECUzd5TN+j56YEMX3yPVMpHsICLedUw3DvGF3aTQ8hfdR9AKMaHjIi+A==
+ts-node@8.5.3:
+  version "8.5.3"
+  resolved "https://registry.yarnpkg.com/ts-node/-/ts-node-8.5.3.tgz#f0bcacbfda8a70188f3a5c561b2dab546cb0abbb"
+  integrity sha512-B4dYs62o9ioIilzh7Npby5grYvw3lLwttTSIzf7QObf1FWUCzt+ELtyZJd+xYgxJ/n3A5nQJ2oG6VaZgwMMcjA==
   dependencies:
     arg "^4.1.0"
     diff "^4.0.1"
