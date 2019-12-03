@@ -2281,10 +2281,10 @@
   dependencies:
     debug "^4.0.0"
 
-"@probot/serverless-lambda@0.3.0":
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/@probot/serverless-lambda/-/serverless-lambda-0.3.0.tgz#08c6699b2b7dd501094adb902230eb0b2e8b49c7"
-  integrity sha512-fJmZwuCs0Z0G4L0ZI/e5WROb8z355Y9VUUHyDeDcH46DEbHa5HFrw8Ulx3DoWz7iYO36dNXOkjA6E+aik6yRLw==
+"@probot/serverless-lambda@0.4.0":
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/@probot/serverless-lambda/-/serverless-lambda-0.4.0.tgz#d23ab7637336580b4e957c146ec80e2728ef52e6"
+  integrity sha512-7TBLim0SlG8pbsho4xaXPRyR8K5hLFT+DKTPOG4jIanPKGfNvjew6s2kaz7ir0VB+c12/lTr84PfaxXcYdh50Q==
 
 "@protobufjs/aspromise@^1.1.1", "@protobufjs/aspromise@^1.1.2":
   version "1.1.2"
