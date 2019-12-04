@@ -69,7 +69,7 @@ First, you need a module:
 ```javascript
 // custom-rule.js
 
-module.exports = changes => {
+module.exports = ({changes}) => {
   return changes.filter(myCustomFilter);
 };
 ```
