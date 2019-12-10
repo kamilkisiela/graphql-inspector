@@ -43,7 +43,7 @@
   "devDependencies": {
     "@types/graphql": "14.5.0",
     "@types/js-yaml": "3.12.1",
-    "@types/node": "12.12.16",
+    "@types/node": "12.12.17",
     "typescript": "3.7.3"
   }
 }
