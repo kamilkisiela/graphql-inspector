@@ -1726,6 +1726,16 @@
     aggregate-error "3.0.1"
     lodash "4.17.15"
 
+"@graphql-toolkit/common@0.7.5":
+  version "0.7.5"
+  resolved "https://registry.yarnpkg.com/@graphql-toolkit/common/-/common-0.7.5.tgz#4fbca5a2bb562ff4bc7adc0e494cb6d21283472b"
+  integrity sha512-pu7tKY6KW7+4noJQPCbIxKzv54tSl/FME9wU0rNSwcr4O3By+pv7VCYXxkhCSnftJcXsXAuAcdjcV2CBsjnZNg==
+  dependencies:
+    "@kamilkisiela/graphql-tools" "4.0.6"
+    aggregate-error "3.0.1"
+    is-glob "4.0.1"
+    lodash "4.17.15"
+
 "@graphql-toolkit/core@0.7.4":
   version "0.7.4"
   resolved "https://registry.yarnpkg.com/@graphql-toolkit/core/-/core-0.7.4.tgz#aebccd6acbe504bda91f7e21b2d296efeb2b09f8"
@@ -1740,13 +1750,13 @@
     tslib "^1.9.3"
     valid-url "1.0.9"
 
-"@graphql-toolkit/git-loader@0.7.4":
-  version "0.7.4"
-  resolved "https://registry.yarnpkg.com/@graphql-toolkit/git-loader/-/git-loader-0.7.4.tgz#24b109a9c2f2729aa3560f7fd044e3fcc02814e2"
-  integrity sha512-x3L8WxChVi4oWI02OQQrm7TGi6imzDne/kxek2q0ZR2+xPKteEDHK3YfmWlKPhXWS/2MnVbnC2NIBhxgu4JX6g==
+"@graphql-toolkit/git-loader@0.7.5":
+  version "0.7.5"
+  resolved "https://registry.yarnpkg.com/@graphql-toolkit/git-loader/-/git-loader-0.7.5.tgz#4c1dec37c8b51c5a67527857e8f3fe84458ced71"
+  integrity sha512-bg5N3Kf+Gk5M0Ofw31GyKSVql3D/a1nVUWE25Chonbs5tbx/afQ+m5tlVoute0u5ShK/NK8qC21Q9Vs80C5UcQ==
   dependencies:
-    "@graphql-toolkit/common" "0.7.4"
-    simple-git "1.126.0"
+    "@graphql-toolkit/common" "0.7.5"
+    simple-git "1.129.0"
 
 "@graphql-toolkit/github-loader@0.7.4":
   version "0.7.4"
@@ -14306,10 +14316,10 @@ signale@^1.4.0:
     figures "^2.0.0"
     pkg-conf "^2.1.0"
 
-simple-git@1.126.0:
-  version "1.126.0"
-  resolved "https://registry.yarnpkg.com/simple-git/-/simple-git-1.126.0.tgz#0c345372275139c8433b8277f4b3e155092aa434"
-  integrity sha512-47mqHxgZnN8XRa9HbpWprzUv3Ooqz9RY/LSZgvA7jCkW8jcwLahMz7LKugY91KZehfG0sCVPtgXiU72hd6b1Bw==
+simple-git@1.129.0:
+  version "1.129.0"
+  resolved "https://registry.yarnpkg.com/simple-git/-/simple-git-1.129.0.tgz#eddd2611d2bf41c77e1d08cd70c0b7f3af785040"
+  integrity sha512-XbzNmugMTeV2crZnPl+b1ZJn+nqXCUNyrZxDXpLM0kHL3B85sbPlpd8q9I4qtAHI9D2FxTB6w4BuiAGKYtyzKw==
   dependencies:
     debug "^4.0.1"
 
