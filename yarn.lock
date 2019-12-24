@@ -1721,15 +1721,6 @@
     "@graphql-toolkit/graphql-tag-pluck" "0.7.5"
     tslib "1.10.0"
 
-"@graphql-toolkit/common@0.7.4":
-  version "0.7.4"
-  resolved "https://registry.yarnpkg.com/@graphql-toolkit/common/-/common-0.7.4.tgz#abf995268572c83da6e093e8578a67add73d2d51"
-  integrity sha512-uRNF8JT52CVQ4SWM0lbIL+y44G8WSSZ+MIPNoYq6guT4wbwYDMHWPk/6QXyfBN8N5kZePg/Xa9tTyzWF9SLC1w==
-  dependencies:
-    "@kamilkisiela/graphql-tools" "4.0.6"
-    aggregate-error "3.0.1"
-    lodash "4.17.15"
-
 "@graphql-toolkit/common@0.7.5":
   version "0.7.5"
   resolved "https://registry.yarnpkg.com/@graphql-toolkit/common/-/common-0.7.5.tgz#4fbca5a2bb562ff4bc7adc0e494cb6d21283472b"
@@ -3533,18 +3524,18 @@
   dependencies:
     tslib "^1.7.1"
 
-"@uifabric/styling@^7.7.1", "@uifabric/styling@^7.7.2", "@uifabric/styling@^7.7.4":
-  version "7.7.4"
-  resolved "https://registry.yarnpkg.com/@uifabric/styling/-/styling-7.7.4.tgz#1a5e19b85da459f780700490deca821f99a9efa6"
-  integrity sha512-lwua0sNRHOaNgf5b8l8y3SQNir+k2WhT61ycXXvTqdWCoPw4O8MJjiGgdAtymSJsxD4RG0ES5AIUYxbE4K8Lqg==
+"@uifabric/styling@^7.7.1", "@uifabric/styling@^7.7.2", "@uifabric/styling@^7.8.0":
+  version "7.8.0"
+  resolved "https://registry.yarnpkg.com/@uifabric/styling/-/styling-7.8.0.tgz#d0247ad460c7492b4f9965cda37d554e8da1a235"
+  integrity sha512-mRNQUvfasOWW0/RJARA5mPHmPMORJXrNDoOpjoTNt+J6uj1/sA8km0l/AQtZ6b36bqo6kkaQgB9+msRobmdpiQ==
   dependencies:
     "@microsoft/load-themed-styles" "^1.7.13"
     "@uifabric/merge-styles" "^7.8.1"
     "@uifabric/set-version" "^7.0.2"
-    "@uifabric/utilities" "^7.6.0"
+    "@uifabric/utilities" "^7.8.0"
     tslib "^1.7.1"
 
-"@uifabric/utilities@^7.0.10", "@uifabric/utilities@^7.5.0", "@uifabric/utilities@^7.6.0", "@uifabric/utilities@^7.8.0":
+"@uifabric/utilities@^7.0.10", "@uifabric/utilities@^7.5.0", "@uifabric/utilities@^7.8.0":
   version "7.8.0"
   resolved "https://registry.yarnpkg.com/@uifabric/utilities/-/utilities-7.8.0.tgz#02933aae8121571cb072a0e1c04770f29bbc6ca8"
   integrity sha512-ow3v9arBhe5C8GvklIuqD3PZMSNnY04HC7JoQVW301Q/gH+BGVECLTBzrFm/m66GCetMksDOMnkoBQSk0poPOQ==
@@ -11596,10 +11587,10 @@ octokit-pagination-methods@1.1.0, octokit-pagination-methods@^1.1.0:
   resolved "https://registry.yarnpkg.com/octokit-pagination-methods/-/octokit-pagination-methods-1.1.0.tgz#cf472edc9d551055f9ef73f6e42b4dbb4c80bea4"
   integrity sha512-fZ4qZdQ2nxJvtcasX7Ghl+WlWS/d9IgnBIwFZXVNNZUmzpno91SX5bc5vuxiuKoCtK78XxGGNuSCrDC7xYB3OQ==
 
-office-ui-fabric-react@7.76.1:
-  version "7.76.1"
-  resolved "https://registry.yarnpkg.com/office-ui-fabric-react/-/office-ui-fabric-react-7.76.1.tgz#1b2c7715470a22861feb6e081c4a0f1c5cce2937"
-  integrity sha512-wOsnQYXfoxkbp7AVDxZv2NOMER3/OAWoRRXt68j4AVarF+KGygrjAMtpun/1J2ewAGOsPlo6IEZc5/9uiu53fg==
+office-ui-fabric-react@7.76.2:
+  version "7.76.2"
+  resolved "https://registry.yarnpkg.com/office-ui-fabric-react/-/office-ui-fabric-react-7.76.2.tgz#dce33715b0242b853638e8f2e0f3ed1794cf650f"
+  integrity sha512-rWQrkv1o4jOdYhNk3GsLDxJw8mo1+6HspGNILiodRj7RfJx/OmSyVM4KT2gGJ5k2PZGNCdp7f7kp1JuICd31Mg==
   dependencies:
     "@microsoft/load-themed-styles" "^1.7.13"
     "@uifabric/foundation" "^7.5.0"
@@ -11607,7 +11598,7 @@ office-ui-fabric-react@7.76.1:
     "@uifabric/merge-styles" "^7.8.1"
     "@uifabric/react-hooks" "^7.0.1"
     "@uifabric/set-version" "^7.0.2"
-    "@uifabric/styling" "^7.7.4"
+    "@uifabric/styling" "^7.8.0"
     "@uifabric/utilities" "^7.8.0"
     prop-types "^15.5.10"
     tslib "^1.7.1"
