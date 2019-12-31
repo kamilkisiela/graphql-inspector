@@ -9,7 +9,7 @@ module.exports = {
     filename: 'action.js',
   },
   resolve: {
-    extensions: ['.ts', '.ts', '.js', '.json'],
+    extensions: ['.ts', '.js', '.json'],
   },
   module: {
     rules: [
@@ -17,10 +17,12 @@ module.exports = {
         test: /\.ts$/,
         exclude: /node_modules/,
         loader: 'ts-loader',
+        options: {
+          transpileOnly: true,
+        },
       },
       {
         test: /\.mjs$/,
-        include: /node_modules/,
         type: 'javascript/auto',
       },
     ],

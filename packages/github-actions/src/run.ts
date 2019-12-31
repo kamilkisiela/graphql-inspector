@@ -1,14 +1,14 @@
-import {SchemaPointer} from '@graphql-inspector/github/dist/probot';
 import {
+  SchemaPointer,
   ActionResult,
   CheckConclusion,
   Annotation,
-} from '@graphql-inspector/github/dist/types';
-import {diff} from '@graphql-inspector/github/dist/diff';
+  diff,
+} from '@graphql-inspector/github';
 import {buildSchema} from 'graphql';
 
-import * as core from '@actions/core';
-import * as github from '@actions/github';
+import core from '@actions/core';
+import github from '@actions/github';
 import {ChecksUpdateParams} from '@octokit/rest';
 
 const CHECK_NAME = 'GraphQL Inspector';

@@ -37,7 +37,7 @@ describe('union', () => {
 
     const change = findFirstChangeByPath(changes, 'Foo');
 
-    expect(change.criticality.level).toEqual(CriticalityLevel.Breaking);
+    expect(change.criticality.level).toEqual(CriticalityLevel.Dangerous);
     expect(change.type).toEqual('UNION_MEMBER_ADDED');
     expect(change.message).toEqual("Member 'C' was added to Union type 'Foo'");
   });

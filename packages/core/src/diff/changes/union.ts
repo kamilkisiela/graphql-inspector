@@ -23,7 +23,7 @@ export function unionMemberAdded(
 ): Change {
   return {
     criticality: {
-      level: CriticalityLevel.Breaking,
+      level: CriticalityLevel.Dangerous,
       reason:
         'Adding a possible type to Unions may break existing clients that were not programming defensively against a new possible type.',
     },
