@@ -35,13 +35,11 @@
     "@actions/core": "1.2.0",
     "@actions/github": "2.0.0",
     "@graphql-inspector/github": "0.0.0-PLACEHOLDER",
-    "actions-toolkit": "2.2.0",
     "graphql": "14.5.8",
     "js-yaml": "3.13.1",
     "probot": "9.8.0"
   },
   "devDependencies": {
-    "@types/graphql": "14.5.0",
     "@types/js-yaml": "3.12.1",
     "@types/node": "13.1.2",
     "typescript": "3.7.4"

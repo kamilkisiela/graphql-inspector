@@ -1,5 +1,5 @@
 import {GraphQLSchema, isSchema} from 'graphql';
-import {loadSchemaUsingLoaders} from '@graphql-toolkit/core';
+import {loadSchema as toolkitLoadSchema} from '@graphql-toolkit/core';
 import {GraphQLFileLoader} from '@graphql-toolkit/graphql-file-loader';
 import {CodeFileLoader} from '@graphql-toolkit/code-file-loader';
 import {GitLoader} from '@graphql-toolkit/git-loader';
@@ -11,8 +11,8 @@ export async function loadSchema(
   pointer: string,
   extra?: any,
 ): Promise<GraphQLSchema> {
-  const resolved = await loadSchemaUsingLoaders(
-    [
+  const resolved = await toolkitLoadSchema(pointer, {
+    loaders: [
       new GitLoader(),
       new GithubLoader(),
       new GraphQLFileLoader(),
@@ -20,9 +20,8 @@ export async function loadSchema(
       new UrlLoader(),
       new CodeFileLoader(),
     ],
-    pointer,
-    extra || {},
-  );
+    ...(extra || {}),
+  });
 
   if (isSchema(resolved)) {
     return resolved;
