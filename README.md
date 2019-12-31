@@ -6,7 +6,7 @@
 [![renovate-app badge](https://img.shields.io/badge/renovate-app-blue.svg)](https://renovateapp.com/)
 [![Discord Chat](https://img.shields.io/discord/625400653321076807)](https://discord.gg/xud7bH9)
 
-**GraphQL Inspector** ouputs a list of changes between two GraphQL schemas. Every change is precisely explained and marked as breaking, non-breaking or dangerous.
+**GraphQL Inspector** outputs a list of changes between two GraphQL schemas. Every change is precisely explained and marked as breaking, non-breaking or dangerous.
 It helps you validate documents and fragments against a schema and even find similar or duplicated types.
 
 ## Features
@@ -23,7 +23,7 @@ Major features:
 - **GitHub Actions**
 - **Docker Image**
 
-GraphQL Inspector has a **CLI** and also a **programatic API**, so you can use it however you want to and even build tools on top of it.
+GraphQL Inspector has a **CLI** and also a **programmatic API**, so you can use it however you want to and even build tools on top of it.
 
 ![Example](./packages/cli/demo.gif)
 
@@ -33,7 +33,7 @@ GraphQL Inspector has a **CLI** and also a **programatic API**, so you can use i
 # CLI
 yarn add @graphql-inspector/cli
 
-# Core API for programatic usage
+# Core API for programmatic usage
 yarn add @graphql-inspector/core
 ```
 
