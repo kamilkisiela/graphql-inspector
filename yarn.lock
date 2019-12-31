@@ -1756,12 +1756,12 @@
     unixify "1.0.0"
     valid-url "1.0.9"
 
-"@graphql-toolkit/git-loader@0.7.5":
-  version "0.7.5"
-  resolved "https://registry.yarnpkg.com/@graphql-toolkit/git-loader/-/git-loader-0.7.5.tgz#4c1dec37c8b51c5a67527857e8f3fe84458ced71"
-  integrity sha512-bg5N3Kf+Gk5M0Ofw31GyKSVql3D/a1nVUWE25Chonbs5tbx/afQ+m5tlVoute0u5ShK/NK8qC21Q9Vs80C5UcQ==
+"@graphql-toolkit/git-loader@0.8.0":
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/@graphql-toolkit/git-loader/-/git-loader-0.8.0.tgz#7e5758d0bd9a6fdb2cfb940911ac12a8cd219e75"
+  integrity sha512-p2s1N4X8JyXngCCmNpsgJO+IFdt/5EcSA0IxwDGf0soQJftp75DQqShjZfuL2kq+otSqO0RUKuFztzXCi/OGtA==
   dependencies:
-    "@graphql-toolkit/common" "0.7.5"
+    "@graphql-toolkit/common" "0.8.0"
     simple-git "1.129.0"
 
 "@graphql-toolkit/github-loader@0.8.0":
