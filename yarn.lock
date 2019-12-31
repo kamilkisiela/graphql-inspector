@@ -1792,12 +1792,12 @@
   optionalDependencies:
     vue-template-compiler "^2.6.10"
 
-"@graphql-toolkit/json-file-loader@0.7.5":
-  version "0.7.5"
-  resolved "https://registry.yarnpkg.com/@graphql-toolkit/json-file-loader/-/json-file-loader-0.7.5.tgz#89ff5ec195fd04f1adb0b5da6bb647ebe0461c1e"
-  integrity sha512-JRoqNV4FBsV0t2qo3nb++wfWgQzfToEERrnJc11EWCXgMkn0jMfWFHYru+gqCvSvzcoa3fymD3ceDUxZ4ERlgw==
+"@graphql-toolkit/json-file-loader@0.8.0":
+  version "0.8.0"
+  resolved "https://registry.yarnpkg.com/@graphql-toolkit/json-file-loader/-/json-file-loader-0.8.0.tgz#a63450ce409ff3e0d92647e483d1980f01d64601"
+  integrity sha512-KbX5N1EulKdbeKMwoLy870Dce+jyop6Bapys39J0fqzl4lFj+eXdodSSgG4zpo/PRs4YhlEwpD+6Ij6gS0nsGw==
   dependencies:
-    "@graphql-toolkit/common" "0.7.5"
+    "@graphql-toolkit/common" "0.8.0"
     tslib "1.10.0"
 
 "@graphql-toolkit/schema-merging@0.8.0":
