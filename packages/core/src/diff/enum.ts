@@ -16,7 +16,7 @@ export function changesInEnum(
 ): Change[] {
   const changes: Change[] = [];
   const oldNames = oldEnum.getValues().map(v => v.value);
-  const newNames = newEnum.getValues().map(v => v.name);
+  const newNames = newEnum.getValues().map(v => v.value);
 
   const added = diffArrays(newNames, oldNames).map(
     name => newEnum.getValue(name) as GraphQLEnumValue,
