@@ -8,7 +8,7 @@ const detectIndent = require('detect-indent');
 const immer = require('immer').default;
 
 const placeholder = '0.0.0-PLACEHOLDER';
-const [, , versionOrCanary] = process.argv;
+const [, , versionOrCanary, code] = process.argv;
 const rootDir = resolve(__dirname, '../');
 const rootPackage = join(rootDir, 'package.json');
 const lerna = join(rootDir, 'lerna.json');
@@ -52,11 +52,6 @@ packages.map(dir => {
 });
 
 // Set version in Dockerfile (both LABEL and RUN)
-updateString(join(rootDir, 'Dockerfile'), docker =>
-  docker.replace(new RegExp(current, 'g'), version),
-);
-
-// Set version in Dockerfile (both LABEL and RUN)
 updateString(join(rootDir, 'Dockerfile-cli'), docker =>
   docker.replace(new RegExp(current, 'g'), version),
 );
@@ -72,7 +67,7 @@ const cmd = `npm publish${isCanary ? ' --tag canary' : ''}`;
 
 // Run npm publish in all libraries
 packages.map(dir => {
-  exec(`(cd ${dir} && ${cmd} --access public)`);
+  exec(`(cd ${dir} && ${cmd} --access public --otp=${code})`);
 });
 
 if (!isCanary) {
