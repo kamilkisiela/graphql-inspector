@@ -1721,16 +1721,6 @@
     "@graphql-toolkit/graphql-tag-pluck" "0.8.1"
     tslib "1.10.0"
 
-"@graphql-toolkit/common@0.8.0":
-  version "0.8.0"
-  resolved "https://registry.yarnpkg.com/@graphql-toolkit/common/-/common-0.8.0.tgz#2bc21effaea0c35a65d464ba35bca24bae5c40d9"
-  integrity sha512-Dhr5dt5HbQe63t8teo0MEt1YnYQhfIKfbm25lZLCXxwR6aPfetzRUEfTDFrrlP+ltTA7JU7ujk9DjsEZM4uxAw==
-  dependencies:
-    "@kamilkisiela/graphql-tools" "4.0.6"
-    aggregate-error "3.0.1"
-    is-glob "4.0.1"
-    lodash "4.17.15"
-
 "@graphql-toolkit/common@0.8.1":
   version "0.8.1"
   resolved "https://registry.yarnpkg.com/@graphql-toolkit/common/-/common-0.8.1.tgz#b0417af357e7d4edc70fff2ba66435a0a4e8033b"
@@ -12927,10 +12917,10 @@ probot-config@1.1.0:
     deepmerge "^2.2.1"
     js-yaml "^3.10.0"
 
-probot@9.8.0:
-  version "9.8.0"
-  resolved "https://registry.yarnpkg.com/probot/-/probot-9.8.0.tgz#7bd1469dadf0232955df1a54cce43ca04fc5d543"
-  integrity sha512-isEGOfNgsBUi47sh7C9ZhkSPRIRr6b4i8JwtyDpJI6YZH++zB+tDogMsdvFj5EOZxwgeqfXfZKnVtOGRdByhFQ==
+probot@9.8.1:
+  version "9.8.1"
+  resolved "https://registry.yarnpkg.com/probot/-/probot-9.8.1.tgz#91b1f558ea52a33013d11bbbc4f27b3644b2fd29"
+  integrity sha512-TmECaaLWNkG+mvOdD+JlWsSi4z6PrF+wMtta4GZRRR24vd+ZCvwIkI2njGucMdGU5zsHSGnD6tv4CQ92fyEMfg==
   dependencies:
     "@octokit/app" "^4.0.0"
     "@octokit/graphql" "^4.2.0"
