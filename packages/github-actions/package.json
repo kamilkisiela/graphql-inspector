@@ -41,7 +41,7 @@
   },
   "devDependencies": {
     "@types/js-yaml": "3.12.1",
-    "@types/node": "13.1.5",
+    "@types/node": "13.1.6",
     "typescript": "3.7.4"
   }
 }
