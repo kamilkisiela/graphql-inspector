@@ -67,11 +67,6 @@ function serverless(appFn) {
           payload: req.body,
         });
 
-        await logEvent({
-          event,
-          ok: true,
-        });
-
         res.status(200);
         res.json({
           message: `Received ${e}.${req.body.action}`,
