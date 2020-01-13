@@ -3514,10 +3514,10 @@
     "@uifabric/utilities" "^7.10.0"
     tslib "^1.7.1"
 
-"@uifabric/utilities@^7.0.10", "@uifabric/utilities@^7.10.0", "@uifabric/utilities@^7.5.0":
-  version "7.10.0"
-  resolved "https://registry.yarnpkg.com/@uifabric/utilities/-/utilities-7.10.0.tgz#3b9ef507aed4ac805a3ee41d3edc4e79abface65"
-  integrity sha512-VPuxNTKDl6QVFpwy1fNrULgA3pR5RCPH7LMtutVoLpMxWKM9DzqEq3QNLQ7qSj3UVsbP5hTUgC3vVoNy43nYFQ==
+"@uifabric/utilities@^7.0.10", "@uifabric/utilities@^7.10.0", "@uifabric/utilities@^7.11.0", "@uifabric/utilities@^7.5.0":
+  version "7.11.0"
+  resolved "https://registry.yarnpkg.com/@uifabric/utilities/-/utilities-7.11.0.tgz#9144f8db540b60685fc212d2e0552def3150747d"
+  integrity sha512-d0fyG7lGhTGQM2cas2nt8foqaO8RQWHsmg8uAh3fzK3EfXIEhHL2D0CaYrjByCOya4a7Vpd7Md78sa3HWoVTLg==
   dependencies:
     "@uifabric/merge-styles" "^7.8.1"
     "@uifabric/set-version" "^7.0.2"
@@ -11758,10 +11758,10 @@ octokit-pagination-methods@1.1.0, octokit-pagination-methods@^1.1.0:
   resolved "https://registry.yarnpkg.com/octokit-pagination-methods/-/octokit-pagination-methods-1.1.0.tgz#cf472edc9d551055f9ef73f6e42b4dbb4c80bea4"
   integrity sha512-fZ4qZdQ2nxJvtcasX7Ghl+WlWS/d9IgnBIwFZXVNNZUmzpno91SX5bc5vuxiuKoCtK78XxGGNuSCrDC7xYB3OQ==
 
-office-ui-fabric-react@7.80.0:
-  version "7.80.0"
-  resolved "https://registry.yarnpkg.com/office-ui-fabric-react/-/office-ui-fabric-react-7.80.0.tgz#0401d142ef72653835fd7d8a6dee4be29d46cbd1"
-  integrity sha512-yIC8yy4m/L7feUsMB3KSAFqWu64LY365b6ndCw/TXVFqPRILmqF4hCRi7bTxEePlnbHiyVCoR7ToSZcTIkRJNg==
+office-ui-fabric-react@7.81.0:
+  version "7.81.0"
+  resolved "https://registry.yarnpkg.com/office-ui-fabric-react/-/office-ui-fabric-react-7.81.0.tgz#e2332c3c05cf1c2a44bbde74c95b477747289fef"
+  integrity sha512-Kls33eLVgZ61alRrSNbYzIx8i8U8tymLMhslUyaKTFUJtgcmg6j11qIyMon1mCKCjBUudosit1epV8KriDtprg==
   dependencies:
     "@microsoft/load-themed-styles" "^1.10.26"
     "@uifabric/foundation" "^7.5.0"
@@ -11770,7 +11770,7 @@ office-ui-fabric-react@7.80.0:
     "@uifabric/react-hooks" "^7.0.1"
     "@uifabric/set-version" "^7.0.2"
     "@uifabric/styling" "^7.10.0"
-    "@uifabric/utilities" "^7.10.0"
+    "@uifabric/utilities" "^7.11.0"
     prop-types "^15.5.10"
     tslib "^1.7.1"
 
