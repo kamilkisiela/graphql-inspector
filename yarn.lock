@@ -3564,14 +3564,14 @@
     "@uifabric/utilities" "^7.11.1"
     tslib "^1.7.1"
 
-"@uifabric/icons@7.3.0", "@uifabric/icons@^7.3.0":
-  version "7.3.0"
-  resolved "https://registry.yarnpkg.com/@uifabric/icons/-/icons-7.3.0.tgz#db5b418d1db1e3f05e92d71f2dc829aa6e239bdb"
-  integrity sha512-wbcR8fJce20sPjsK2bbTC/cAZfAOFuE4dd4LHw194+8H+/dqotsowrQVp5Lu8aaHGQk+fXoiZmUy30WA9cAG4Q==
+"@uifabric/icons@7.3.1", "@uifabric/icons@^7.3.0":
+  version "7.3.1"
+  resolved "https://registry.yarnpkg.com/@uifabric/icons/-/icons-7.3.1.tgz#40f8bd1d3f63326d6d02713d5aa33d3f5028a231"
+  integrity sha512-Jb2KjC6s+nY75H7U8/i23iKRwYFS3cavTXVYDz69guwLEhWh0aZ1QZqbAbUfF+YikVabJQmT8YT0Pup8/VbeWA==
   dependencies:
-    "@uifabric/set-version" "^7.0.2"
-    "@uifabric/styling" "^7.7.1"
-    tslib "^1.7.1"
+    "@uifabric/set-version" "^7.0.3"
+    "@uifabric/styling" "^7.10.1"
+    tslib "^1.10.0"
 
 "@uifabric/merge-styles@^7.8.1":
   version "7.8.1"
@@ -3580,6 +3580,14 @@
   dependencies:
     "@uifabric/set-version" "^7.0.2"
     tslib "^1.7.1"
+
+"@uifabric/merge-styles@^7.8.2":
+  version "7.8.2"
+  resolved "https://registry.yarnpkg.com/@uifabric/merge-styles/-/merge-styles-7.8.2.tgz#3fb00da3dc5ce44701ba9a89566af5da309a2999"
+  integrity sha512-CiGZkOQegNdrXIaVvgd8pumeHLm3odSRE21rsrA7HiqdyF+fh6ArQ0RWsKTlJRIQklCUJjMkXaO54QIWNOlQyg==
+  dependencies:
+    "@uifabric/set-version" "^7.0.3"
+    tslib "^1.10.0"
 
 "@uifabric/react-hooks@^7.0.1":
   version "7.0.1"
@@ -3590,25 +3598,25 @@
     "@uifabric/utilities" "^7.0.10"
     tslib "^1.7.1"
 
-"@uifabric/set-version@^7.0.2":
-  version "7.0.2"
-  resolved "https://registry.yarnpkg.com/@uifabric/set-version/-/set-version-7.0.2.tgz#9e2aede95e5cad58151e6ab0f94cc6efaef68c13"
-  integrity sha512-3mQp7gqPOqphwX74j+N/lJEFeivKPv8ryY9QFXUxVPnrXNwpIkDW9Wk6CPqArzgGvQngRRKYD/PcyP5iuHN52A==
+"@uifabric/set-version@^7.0.2", "@uifabric/set-version@^7.0.3":
+  version "7.0.3"
+  resolved "https://registry.yarnpkg.com/@uifabric/set-version/-/set-version-7.0.3.tgz#3a82be857bbdc984dc74e9761e4bc48d268c9374"
+  integrity sha512-03A68Fyfx3y75dUW9rjQ2fZv/9zmGgMeovVLAQa0wc/oVjQ++eVDlAEK0AjfgnOaujYmhk79lXbYAuW3n+YUXw==
   dependencies:
-    tslib "^1.7.1"
+    tslib "^1.10.0"
 
-"@uifabric/styling@^7.10.0", "@uifabric/styling@^7.7.1":
-  version "7.10.0"
-  resolved "https://registry.yarnpkg.com/@uifabric/styling/-/styling-7.10.0.tgz#fb4580874fd6d4d650b0b63b62aa81a8796a2ac3"
-  integrity sha512-Yr5YqxfRMtJ1TIw/oNIKsI2aoWrPHUWGwJdfz5VZ0cbPwJSVgIDMmORdktuFJmd51C765FS2Lp+Nf16cOuacFw==
+"@uifabric/styling@^7.10.0", "@uifabric/styling@^7.10.1":
+  version "7.10.1"
+  resolved "https://registry.yarnpkg.com/@uifabric/styling/-/styling-7.10.1.tgz#219bed906be5105cdf95eeeb9100e9bc53abcacd"
+  integrity sha512-/G0BbIS1tI1SEiUD4mNxfNXq6dLyff6Ey5YqeMGx6v1AyQ2dWBolhGSYK8l7XGlBQCNZ+gR+AV4M6+8gWOkAaw==
   dependencies:
     "@microsoft/load-themed-styles" "^1.10.26"
-    "@uifabric/merge-styles" "^7.8.1"
-    "@uifabric/set-version" "^7.0.2"
-    "@uifabric/utilities" "^7.10.0"
-    tslib "^1.7.1"
+    "@uifabric/merge-styles" "^7.8.2"
+    "@uifabric/set-version" "^7.0.3"
+    "@uifabric/utilities" "^7.11.2"
+    tslib "^1.10.0"
 
-"@uifabric/utilities@^7.0.10", "@uifabric/utilities@^7.10.0", "@uifabric/utilities@^7.11.1":
+"@uifabric/utilities@^7.0.10", "@uifabric/utilities@^7.11.1":
   version "7.11.1"
   resolved "https://registry.yarnpkg.com/@uifabric/utilities/-/utilities-7.11.1.tgz#7428a22b2cc7c651865f72677a1bb317164e0a56"
   integrity sha512-fIyTgDvI1hiDPIxz8wBehcHiCOJJ4r9Ph5SV1KkHKxX0R+5Mggi7vtDcwDs8qvbdv6G9rdi4dpRMaicprd3JOw==
@@ -3617,6 +3625,16 @@
     "@uifabric/set-version" "^7.0.2"
     prop-types "^15.5.10"
     tslib "^1.7.1"
+
+"@uifabric/utilities@^7.11.2":
+  version "7.11.2"
+  resolved "https://registry.yarnpkg.com/@uifabric/utilities/-/utilities-7.11.2.tgz#e0b980e7cb6d1c5bc0643040ac056beb20b4c91b"
+  integrity sha512-PZnBsV3fyS6FiqZlP7byBosRNvmiIg9B8TLRl0YVQYr4LDDpLE05HKYxLLrp7SepPX9sxOh5AXgwrgDPojAkpg==
+  dependencies:
+    "@uifabric/merge-styles" "^7.8.2"
+    "@uifabric/set-version" "^7.0.3"
+    prop-types "^15.5.10"
+    tslib "^1.10.0"
 
 "@webassemblyjs/ast@1.8.5":
   version "1.8.5"
