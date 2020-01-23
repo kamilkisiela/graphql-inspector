@@ -7,13 +7,21 @@
   resolved "https://registry.yarnpkg.com/@actions/core/-/core-1.2.2.tgz#3c4848d50378f9e3bcb67bcf97813382ec7369ee"
   integrity sha512-IbCx7oefq+Gi6FWbSs2Fnw8VkEI6Y4gvjrYprY3RV//ksq/KPMlClOerJ4jRosyal6zkUIc8R9fS/cpRMlGClg==
 
-"@actions/github@2.0.1":
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/@actions/github/-/github-2.0.1.tgz#2870f56c28f042effc04e9ebf0df1f1af23715f7"
-  integrity sha512-C7dAsCkpPi1HxTzLldz+oY+9c5G+nnaK7xgk8KA83VVGlrGK7d603E3snUAFocWrqEu/uvdYD82ytggjcpYSQA==
+"@actions/github@2.1.0":
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/@actions/github/-/github-2.1.0.tgz#ca36cfb146b4c8955f3d5f88d8dde5f89194de21"
+  integrity sha512-G4ncMlh4pLLAvNgHUYUtpWQ1zPf/VYqmRH9oshxLabdaOOnp7i1hgSgzr2xne2YUaSND3uqemd3YYTIsm2f/KQ==
   dependencies:
+    "@actions/http-client" "^1.0.3"
     "@octokit/graphql" "^4.3.1"
     "@octokit/rest" "^16.15.0"
+
+"@actions/http-client@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@actions/http-client/-/http-client-1.0.3.tgz#b5239d3d8c72378bdcef4d26bb15fa2a01d537fd"
+  integrity sha512-wFwh1U4adB/Zsk4cc9kVqaBOHoknhp/pJQk+aWTocbAZWpIl4Zx/At83WFRLXvxB+5HVTWOACM6qjULMZfQSfw==
+  dependencies:
+    tunnel "0.0.6"
 
 "@apollo/protobufjs@^1.0.3":
   version "1.0.3"
@@ -16636,6 +16644,11 @@ tunnel-agent@^0.6.0:
   integrity sha1-J6XeoGs2sEoKmWZ3SykIaPD8QP0=
   dependencies:
     safe-buffer "^5.0.1"
+
+tunnel@0.0.6:
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/tunnel/-/tunnel-0.0.6.tgz#72f1314b34a5b192db012324df2cc587ca47f92c"
+  integrity sha512-1h/Lnq9yajKY2PEbBadPXj3VxsDDu844OnaAo52UVmIzIvwwtBPIuNvkjuzBlTWpfJyUbG3ez0KSBibQkj4ojg==
 
 tweetnacl@^0.14.3, tweetnacl@~0.14.0:
   version "0.14.5"
