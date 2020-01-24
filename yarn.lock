@@ -1967,12 +1967,12 @@
     "@babel/types" "7.8.3"
     "@graphql-toolkit/common" "0.9.4"
 
-"@graphql-toolkit/json-file-loader@0.9.1":
-  version "0.9.1"
-  resolved "https://registry.yarnpkg.com/@graphql-toolkit/json-file-loader/-/json-file-loader-0.9.1.tgz#7fb917e4f3311f09d3a94db1bdc2d7a882803bea"
-  integrity sha512-B+1oPQ+8+w4JrpbtMSgrR1ncBzdcYQi83WgmFR+2tf862zJKmekgou5SQ7qPXsCbC64r5NkVZ6o2VXzTGvbIyQ==
+"@graphql-toolkit/json-file-loader@0.9.4":
+  version "0.9.4"
+  resolved "https://registry.yarnpkg.com/@graphql-toolkit/json-file-loader/-/json-file-loader-0.9.4.tgz#7a3b4c6ed103e9997b792ea8debe0e5bb949f65c"
+  integrity sha512-O94OxLeu5B07yeW95XZpiEzLH9pHqsutwqIGPH5I0AQ3gmbAxrUAPTaCkFUwXQKRVB8m+13DF+wipSUmp0rbTQ==
   dependencies:
-    "@graphql-toolkit/common" "0.9.1"
+    "@graphql-toolkit/common" "0.9.4"
     tslib "1.10.0"
 
 "@graphql-toolkit/schema-merging@0.9.3":
