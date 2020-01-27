@@ -1969,12 +1969,13 @@
     graphql-tools "4.0.6"
     tslib "1.10.0"
 
-"@graphql-toolkit/url-loader@0.9.4":
-  version "0.9.4"
-  resolved "https://registry.yarnpkg.com/@graphql-toolkit/url-loader/-/url-loader-0.9.4.tgz#b8d5095dd9bfe842005121decfeddac8f3e67929"
-  integrity sha512-gBV7JQyxCMZHpGuSaXBaNVfPwR0U5DB4IHkHb0d95N/M814gPcFacxPvHejavG6W6XrlMBD+J3IeFpCVJcDsxg==
+"@graphql-toolkit/url-loader@0.9.5":
+  version "0.9.5"
+  resolved "https://registry.yarnpkg.com/@graphql-toolkit/url-loader/-/url-loader-0.9.5.tgz#3e7161bc5adea1b07f31381bfc8f8b18ba801664"
+  integrity sha512-cPs5tN8j7jB1AAjgePFJ23YN7K35peSi39CpPQd79H4XlP75KuzgFdCgJ7xdYwOYOEtXfPvVMAYfsD7NcoenmQ==
   dependencies:
-    "@graphql-toolkit/common" "0.9.4"
+    "@ardatan/graphql-tools" "4.1.0"
+    "@graphql-toolkit/common" "0.9.5"
     cross-fetch "3.0.4"
     tslib "1.10.0"
     valid-url "1.0.9"
