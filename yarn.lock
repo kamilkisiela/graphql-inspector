@@ -1913,13 +1913,13 @@
     "@graphql-toolkit/graphql-tag-pluck" "0.9.5"
     simple-git "1.131.0"
 
-"@graphql-toolkit/github-loader@0.9.4":
-  version "0.9.4"
-  resolved "https://registry.yarnpkg.com/@graphql-toolkit/github-loader/-/github-loader-0.9.4.tgz#412794bbf4c8464aacf912e0ba4b09d570ae3894"
-  integrity sha512-P1ACuWgOywN+uQArWCUFCcV72A++vlCm0NanY/huuLrhg/Ky5nw3H2AFcdHRRGbWAHwIMeBwxPmhfGYegWzicg==
+"@graphql-toolkit/github-loader@0.9.5":
+  version "0.9.5"
+  resolved "https://registry.yarnpkg.com/@graphql-toolkit/github-loader/-/github-loader-0.9.5.tgz#399dd786c7a344fed33d9e9bb0befad2c4d445d4"
+  integrity sha512-no3WD7Ai38BxvTSsAFFwGIcBfHTKC9IiOmJoDRVd78DviC8vMFzKAJNo9yc78HLCu/8GoXSgaE2nldTaZy91SA==
   dependencies:
-    "@graphql-toolkit/common" "0.9.4"
-    "@graphql-toolkit/graphql-tag-pluck" "0.9.4"
+    "@graphql-toolkit/common" "0.9.5"
+    "@graphql-toolkit/graphql-tag-pluck" "0.9.5"
     cross-fetch "3.0.4"
 
 "@graphql-toolkit/graphql-file-loader@0.9.5":
@@ -1929,16 +1929,6 @@
   dependencies:
     "@graphql-toolkit/common" "0.9.5"
     tslib "1.10.0"
-
-"@graphql-toolkit/graphql-tag-pluck@0.9.4":
-  version "0.9.4"
-  resolved "https://registry.yarnpkg.com/@graphql-toolkit/graphql-tag-pluck/-/graphql-tag-pluck-0.9.4.tgz#f21cd6eba4a106c3f373d8d7e3428abbcdcbd033"
-  integrity sha512-oNugYqToq72xWT5wCZ/uyljo95eBDYKodZBudkb/+dBPNZN5fuxG5Ls59MPw3jPoKc33xCZWUpAhMXhW9G3ZbQ==
-  dependencies:
-    "@babel/parser" "7.8.3"
-    "@babel/traverse" "7.8.3"
-    "@babel/types" "7.8.3"
-    "@graphql-toolkit/common" "0.9.4"
 
 "@graphql-toolkit/graphql-tag-pluck@0.9.5":
   version "0.9.5"
