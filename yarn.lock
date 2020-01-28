@@ -1878,6 +1878,15 @@
     aggregate-error "3.0.1"
     lodash "4.17.15"
 
+"@graphql-toolkit/common@0.9.7":
+  version "0.9.7"
+  resolved "https://registry.yarnpkg.com/@graphql-toolkit/common/-/common-0.9.7.tgz#63bc6233c4fd88bc94dfe6a3ec85b8f961f780f9"
+  integrity sha512-dpSRBMLeIiRct2gkjj24bp0EV7hbK/7dpJAPqNgvDH2535LhOkprYiCXQJyP4N1LODAEkpN/zzlJfKMVn773MQ==
+  dependencies:
+    "@ardatan/graphql-tools" "4.1.0"
+    aggregate-error "3.0.1"
+    lodash "4.17.15"
+
 "@graphql-toolkit/core@0.9.6":
   version "0.9.6"
   resolved "https://registry.yarnpkg.com/@graphql-toolkit/core/-/core-0.9.6.tgz#42a27bd6edd68d01d8402a8cd3c632a251f636da"
@@ -1895,13 +1904,13 @@
     unixify "1.0.0"
     valid-url "1.0.9"
 
-"@graphql-toolkit/git-loader@0.9.6":
-  version "0.9.6"
-  resolved "https://registry.yarnpkg.com/@graphql-toolkit/git-loader/-/git-loader-0.9.6.tgz#1ca05f73000c82e79e9afc3136e4b80072a64e35"
-  integrity sha512-eRdkoZq5hUpwz3ihr1wDMV8gHIQPupNeGsi3dygAG+60rH0ZK0ypNSHKkaO3OnFVPfjNAO7nIPw1+O7vD7IbsA==
+"@graphql-toolkit/git-loader@0.9.7":
+  version "0.9.7"
+  resolved "https://registry.yarnpkg.com/@graphql-toolkit/git-loader/-/git-loader-0.9.7.tgz#c2a7c354581e224fbedfaac89120751f8e0d317f"
+  integrity sha512-/uJa6kudtPv/M8iPlGpm87mnJIAYQ5hcNG8wPY4frgol5a13Jvq9ro8jvaCueTa+kpybgUtVl4ZuCqsGa2P6CA==
   dependencies:
-    "@graphql-toolkit/common" "0.9.6"
-    "@graphql-toolkit/graphql-tag-pluck" "0.9.6"
+    "@graphql-toolkit/common" "0.9.7"
+    "@graphql-toolkit/graphql-tag-pluck" "0.9.7"
     simple-git "1.131.0"
 
 "@graphql-toolkit/github-loader@0.9.6":
@@ -1930,6 +1939,18 @@
     "@babel/traverse" "7.8.3"
     "@babel/types" "7.8.3"
     "@graphql-toolkit/common" "0.9.6"
+  optionalDependencies:
+    vue-template-compiler "^2.6.11"
+
+"@graphql-toolkit/graphql-tag-pluck@0.9.7":
+  version "0.9.7"
+  resolved "https://registry.yarnpkg.com/@graphql-toolkit/graphql-tag-pluck/-/graphql-tag-pluck-0.9.7.tgz#772c5f15fb9b8e5f61d2816c4cfb1dcd1e3ba34e"
+  integrity sha512-hfHs9m/6rK0JRPrZg9LW8fPmQiNy7zvueey+TUH+qLHOkQiklDVDtQ/2yje35B16bwiyk3axxmHZ/H3fb5nWiQ==
+  dependencies:
+    "@babel/parser" "7.8.3"
+    "@babel/traverse" "7.8.3"
+    "@babel/types" "7.8.3"
+    "@graphql-toolkit/common" "0.9.7"
   optionalDependencies:
     vue-template-compiler "^2.6.11"
 
