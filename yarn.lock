@@ -1869,15 +1869,6 @@
     "@graphql-toolkit/graphql-tag-pluck" "0.9.6"
     tslib "1.10.0"
 
-"@graphql-toolkit/common@0.9.5":
-  version "0.9.5"
-  resolved "https://registry.yarnpkg.com/@graphql-toolkit/common/-/common-0.9.5.tgz#6eec9804627eaf2b686b47330037a20fa5020873"
-  integrity sha512-yot36v0ytePfHuG9o0R19VHxGykz3GlmzxWCMqbhvXMf/4N5exIw81iwBReB95fuEv0mu/EqmT29NEu50Ve/zg==
-  dependencies:
-    "@ardatan/graphql-tools" "4.1.0"
-    aggregate-error "3.0.1"
-    lodash "4.17.15"
-
 "@graphql-toolkit/common@0.9.6":
   version "0.9.6"
   resolved "https://registry.yarnpkg.com/@graphql-toolkit/common/-/common-0.9.6.tgz#8335cdcbfbc6b593098bd9ab47de2c8b661f22a6"
@@ -1960,13 +1951,13 @@
     deepmerge "4.2.2"
     tslib "1.10.0"
 
-"@graphql-toolkit/url-loader@0.9.5":
-  version "0.9.5"
-  resolved "https://registry.yarnpkg.com/@graphql-toolkit/url-loader/-/url-loader-0.9.5.tgz#3e7161bc5adea1b07f31381bfc8f8b18ba801664"
-  integrity sha512-cPs5tN8j7jB1AAjgePFJ23YN7K35peSi39CpPQd79H4XlP75KuzgFdCgJ7xdYwOYOEtXfPvVMAYfsD7NcoenmQ==
+"@graphql-toolkit/url-loader@0.9.6":
+  version "0.9.6"
+  resolved "https://registry.yarnpkg.com/@graphql-toolkit/url-loader/-/url-loader-0.9.6.tgz#f5d71f703ebdb3f353bcb7a7bd011b2794360101"
+  integrity sha512-jvwNARD4xe7tTkby80W2nGJ8J0itgOyZ0THG2evnSzYhXmrQhRVGuIA6jDwhnV0YI2a4uWK/hnbCVMAPorO6tw==
   dependencies:
     "@ardatan/graphql-tools" "4.1.0"
-    "@graphql-toolkit/common" "0.9.5"
+    "@graphql-toolkit/common" "0.9.6"
     cross-fetch "3.0.4"
     tslib "1.10.0"
     valid-url "1.0.9"
