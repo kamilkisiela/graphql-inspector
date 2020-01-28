@@ -1972,13 +1972,13 @@
     deepmerge "4.2.2"
     tslib "1.10.0"
 
-"@graphql-toolkit/url-loader@0.9.6":
-  version "0.9.6"
-  resolved "https://registry.yarnpkg.com/@graphql-toolkit/url-loader/-/url-loader-0.9.6.tgz#f5d71f703ebdb3f353bcb7a7bd011b2794360101"
-  integrity sha512-jvwNARD4xe7tTkby80W2nGJ8J0itgOyZ0THG2evnSzYhXmrQhRVGuIA6jDwhnV0YI2a4uWK/hnbCVMAPorO6tw==
+"@graphql-toolkit/url-loader@0.9.7":
+  version "0.9.7"
+  resolved "https://registry.yarnpkg.com/@graphql-toolkit/url-loader/-/url-loader-0.9.7.tgz#222af4f8bb6d87735760555dd100c55fd3d36281"
+  integrity sha512-cOT2XJVZLWOKG4V9ucVtUTqJMW0BJqEqrHvpR8YcIWffrEChmzZQX+ug3BkRNomaUe8ywgExJ80aZuKWeSHvew==
   dependencies:
     "@ardatan/graphql-tools" "4.1.0"
-    "@graphql-toolkit/common" "0.9.6"
+    "@graphql-toolkit/common" "0.9.7"
     cross-fetch "3.0.4"
     tslib "1.10.0"
     valid-url "1.0.9"
