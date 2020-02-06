@@ -40,7 +40,7 @@
   },
   "devDependencies": {
     "@types/express": "4.17.2",
-    "@types/jest": "25.1.1",
+    "@types/jest": "25.1.2",
     "@types/node": "13.7.0",
     "@types/node-fetch": "2.5.4",
     "graphql": "14.6.0",
