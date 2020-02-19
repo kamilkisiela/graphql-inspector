@@ -47,7 +47,7 @@
     "graphql-codegen-typescript-resolvers": "0.18.2",
     "graphql-codegen-typescript-server": "0.18.2",
     "jest": "25.1.0",
-    "ts-jest": "25.2.0",
+    "ts-jest": "25.2.1",
     "ts-node": "8.6.2",
     "typescript": "3.7.5"
   }
