@@ -45,6 +45,6 @@
     "graphql": "14.6.0",
     "probot": "9.9.4",
     "smee-client": "1.1.0",
-    "typescript": "3.7.5"
+    "typescript": "3.8.2"
   }
 }
