@@ -37,7 +37,7 @@
     "@graphql-inspector/github": "0.0.0-PLACEHOLDER",
     "graphql": "14.6.0",
     "js-yaml": "3.13.1",
-    "probot": "9.9.4"
+    "probot": "9.9.5"
   },
   "devDependencies": {
     "@types/js-yaml": "3.12.2",
