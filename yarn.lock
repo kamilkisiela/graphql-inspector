@@ -3836,16 +3836,7 @@
     "@uifabric/utilities" "^7.12.5"
     tslib "^1.10.0"
 
-"@uifabric/icons@7.3.12":
-  version "7.3.12"
-  resolved "https://registry.yarnpkg.com/@uifabric/icons/-/icons-7.3.12.tgz#e54d57ea66a8a43cb613daa5655d59a47be1f142"
-  integrity sha512-JTiyac93yC8NneC2bE4kHv8DwIYPuJ3RdXLep35g1Z7b2Pnn4tbiFhJiPldeMSaRlbrubRv7yytcPZeffRDPUQ==
-  dependencies:
-    "@uifabric/set-version" "^7.0.5"
-    "@uifabric/styling" "^7.10.13"
-    tslib "^1.10.0"
-
-"@uifabric/icons@^7.3.13":
+"@uifabric/icons@7.3.13", "@uifabric/icons@^7.3.13":
   version "7.3.13"
   resolved "https://registry.yarnpkg.com/@uifabric/icons/-/icons-7.3.13.tgz#d23fb48d9b3a91ddda01379883c90d2c1f922bde"
   integrity sha512-7qGvZq4opm6OU/0MN1JWIEW+I7i+/mX3FqcZDo1nMxW0o1aZx0bFEm90iorMesZ9srh4yV+WPExOtwfpz6AFaQ==
@@ -3878,7 +3869,7 @@
   dependencies:
     tslib "^1.10.0"
 
-"@uifabric/styling@^7.10.13", "@uifabric/styling@^7.10.14":
+"@uifabric/styling@^7.10.14":
   version "7.10.14"
   resolved "https://registry.yarnpkg.com/@uifabric/styling/-/styling-7.10.14.tgz#94314e66d9d1e23177de71e2de45f4e563e573d5"
   integrity sha512-jpw9k9JMVf+75+N5TIcEI4K6h17s5DcxwXGcqO/wM28arp+gRK5uPe+xt4htEDND2pmbUXVyOAPksCZpIDtEvg==
