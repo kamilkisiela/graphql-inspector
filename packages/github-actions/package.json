@@ -32,7 +32,7 @@
     "prepublishOnly": "yarn build"
   },
   "dependencies": {
-    "@actions/core": "1.2.2",
+    "@actions/core": "1.2.3",
     "@actions/github": "2.1.1",
     "@graphql-inspector/github": "0.0.0-PLACEHOLDER",
     "graphql": "14.6.0",
