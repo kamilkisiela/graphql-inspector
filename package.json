@@ -41,7 +41,7 @@
     "lint-staged": "10.0.8",
     "prettier": "1.19.1",
     "ts-loader": "6.2.1",
-    "webpack": "4.41.6",
+    "webpack": "4.42.0",
     "webpack-cli": "3.3.11"
   },
   "dependencies": {
