@@ -9766,10 +9766,10 @@ is-arrayish@^0.3.1:
   resolved "https://registry.yarnpkg.com/is-arrayish/-/is-arrayish-0.3.2.tgz#4574a2ae56f7ab206896fb431eaeed066fdf8f03"
   integrity sha512-eVRqCvVlZbuw3GrM63ovNSNAeA1K16kaR/LRY/92w0zxQ5/1YzwblUX652i4Xs9RwAGjW9d9y6X88t8OaAJfWQ==
 
-is-base64@1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/is-base64/-/is-base64-1.0.0.tgz#0bdda1a758fcfac6d78df8bb95960512bb42db61"
-  integrity sha512-7McBWBgGDHS8OHvCnPVVxl3HdzitV6XyjM1x7vVxbzXIKJUzxphU5MDL986aZ/oKf/Q+j4Vh4m54Fjwi88n75g==
+is-base64@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/is-base64/-/is-base64-1.1.0.tgz#8ce1d719895030a457c59a7dcaf39b66d99d56b4"
+  integrity sha512-Nlhg7Z2dVC4/PTvIFkgVVNvPHSO2eR/Yd0XzhGiXCXEvWnptXlXa/clQ8aePPiMuxEGcWfzWbGw2Fe3d+Y3v1g==
 
 is-binary-path@^1.0.0:
   version "1.0.1"
@@ -14287,10 +14287,10 @@ probot-config@1.1.0:
     deepmerge "^2.2.1"
     js-yaml "^3.10.0"
 
-probot@9.9.6:
-  version "9.9.6"
-  resolved "https://registry.yarnpkg.com/probot/-/probot-9.9.6.tgz#ccb60fe915b7df39e85f4208069c3e5684e002da"
-  integrity sha512-13Ay90LBqlGC0OXb3xFm1+uQmKErYjVEt9tUDknfDgqSJ5NKSHW4O706ft6OMW/uH8ujr9ynZRy5yloEE+LCsA==
+probot@9.9.7:
+  version "9.9.7"
+  resolved "https://registry.yarnpkg.com/probot/-/probot-9.9.7.tgz#708e7b3b35219b194de145e67772947e2638816c"
+  integrity sha512-fd2cvI4if3xz+lW0gAygczeDEGGF8B6opNrkRupGB5FXpOTClPQ6HjtEBCVni+2WLv4U0vcqHa+801gXnAA0KQ==
   dependencies:
     "@octokit/app" "^4.0.0"
     "@octokit/graphql" "^4.2.0"
@@ -14314,7 +14314,7 @@ probot@9.9.6:
     express-async-errors "^3.0.0"
     hbs "^4.1.0"
     ioredis "^4.5.1"
-    is-base64 "1.0.0"
+    is-base64 "^1.1.0"
     js-yaml "^3.13.1"
     jsonwebtoken "^8.1.0"
     octokit-pagination-methods "1.1.0"
