@@ -14296,10 +14296,10 @@ probot-config@1.1.0:
     deepmerge "^2.2.1"
     js-yaml "^3.10.0"
 
-probot@9.10.0:
-  version "9.10.0"
-  resolved "https://registry.yarnpkg.com/probot/-/probot-9.10.0.tgz#47e088836ca1c44d63545537df44521d600f0ee2"
-  integrity sha512-8mtgne8SE2ho9o1DMapTWo8fq338x11GMVg8v8+Jcu3+2D79CHior1TMkmvJtYXGf7Oh6ZHSikh/AAnp/W4rtw==
+probot@9.10.1:
+  version "9.10.1"
+  resolved "https://registry.yarnpkg.com/probot/-/probot-9.10.1.tgz#6557798f4b7633783ecb2081a5ae6389b88a8171"
+  integrity sha512-Y1R0IWiH0jErUJ4Mye+Qjg5rEgTZepMZSNp9CBNzOYbJkWYS7yfQ7/saDIrj44Fldj6XbpHtlRdWm2188FhPpg==
   dependencies:
     "@octokit/app" "^4.0.0"
     "@octokit/graphql" "^4.2.0"
