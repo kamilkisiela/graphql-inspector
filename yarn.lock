@@ -6002,7 +6002,7 @@ commander@2.20.0:
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.20.0.tgz#d58bb2b5c1ee8f87b0d340027e9e94e222c5a422"
   integrity sha512-7j2y+40w61zy6YC2iRNpUe/NwhNyoXrYpHMrSunaMG64nRnaf96zO/KMQR4OyN/UnE5KLyEBnKHd4aG3rskjpQ==
 
-commander@5.0.0:
+commander@5.0.0, commander@^5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/commander/-/commander-5.0.0.tgz#dbf1909b49e5044f8fdaf0adc809f0c0722bdfd0"
   integrity sha512-JrDGPAKjMGSP1G0DUoaceEJ3DZgAfr/q6X7FVk4+U5KxUSKviYGM2k6zWkfyyBHy5rAtzgYJFa1ro2O9PtoxwQ==
@@ -14292,10 +14292,10 @@ probot-config@1.1.0:
     deepmerge "^2.2.1"
     js-yaml "^3.10.0"
 
-probot@9.10.1:
-  version "9.10.1"
-  resolved "https://registry.yarnpkg.com/probot/-/probot-9.10.1.tgz#6557798f4b7633783ecb2081a5ae6389b88a8171"
-  integrity sha512-Y1R0IWiH0jErUJ4Mye+Qjg5rEgTZepMZSNp9CBNzOYbJkWYS7yfQ7/saDIrj44Fldj6XbpHtlRdWm2188FhPpg==
+probot@9.10.2:
+  version "9.10.2"
+  resolved "https://registry.yarnpkg.com/probot/-/probot-9.10.2.tgz#a8c27c39862caf6de1fc34427d2d2193c2116e4b"
+  integrity sha512-7oir5mEK7W2uYSDlKunBfXkjoB3AuftIIw6eTxuDkeAYQlzKOV12kHYTk1SJZQJJqjzf7zgT5SW/1o+6Qo2NwQ==
   dependencies:
     "@octokit/app" "^4.0.0"
     "@octokit/graphql" "^4.2.0"
@@ -14311,7 +14311,7 @@ probot@9.10.1:
     bunyan-format "^0.2.1"
     bunyan-sentry-stream "^1.1.0"
     cache-manager "^3.0.0"
-    commander "^4.0.0"
+    commander "^5.0.0"
     deepmerge "^4.1.0"
     dotenv "~8.2.0"
     eventsource "^1.0.7"
