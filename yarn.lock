@@ -12889,10 +12889,10 @@ octokit-pagination-methods@1.1.0, octokit-pagination-methods@^1.1.0:
   resolved "https://registry.yarnpkg.com/octokit-pagination-methods/-/octokit-pagination-methods-1.1.0.tgz#cf472edc9d551055f9ef73f6e42b4dbb4c80bea4"
   integrity sha512-fZ4qZdQ2nxJvtcasX7Ghl+WlWS/d9IgnBIwFZXVNNZUmzpno91SX5bc5vuxiuKoCtK78XxGGNuSCrDC7xYB3OQ==
 
-office-ui-fabric-react@7.104.1:
-  version "7.104.1"
-  resolved "https://registry.yarnpkg.com/office-ui-fabric-react/-/office-ui-fabric-react-7.104.1.tgz#734555ee1176fd11161767546c8c5869b2ec0649"
-  integrity sha512-cCtywXoufWmTRM8GULaRp9Sx3F3HlSojDOcOs4buiRWZdkf4tpLsmXEX37xMawaUtvb2GXJjH14mmjSceuiX/A==
+office-ui-fabric-react@7.105.0:
+  version "7.105.0"
+  resolved "https://registry.yarnpkg.com/office-ui-fabric-react/-/office-ui-fabric-react-7.105.0.tgz#631db1cab5199f99fe2df8ae37e3289902c99ebe"
+  integrity sha512-RB2aHlE77SEI/B8cVem/CWfb6xiMmOXv40dlGK8ojWB6iBi8+252mtbeaExcVZJQkJHnt+uWiHvH4VMgjovDgA==
   dependencies:
     "@fluentui/react-focus" "^7.1.7"
     "@microsoft/load-themed-styles" "^1.10.26"
