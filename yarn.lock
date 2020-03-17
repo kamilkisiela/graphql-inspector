@@ -1878,13 +1878,13 @@
     graphql-tools-fork "8.9.6"
     lodash "4.17.15"
 
-"@graphql-toolkit/core@0.9.8":
-  version "0.9.8"
-  resolved "https://registry.yarnpkg.com/@graphql-toolkit/core/-/core-0.9.8.tgz#56927c175787bcd5759eec88729bcae65812448d"
-  integrity sha512-8uSWTVKByf9L6yEWA5KOUb4rZ6Zj5akBeeIjRiHIHort84bBdCzQLXJgfGwE5BcQlykqYeYs+8egp+aLkVJPxw==
+"@graphql-toolkit/core@0.9.9":
+  version "0.9.9"
+  resolved "https://registry.yarnpkg.com/@graphql-toolkit/core/-/core-0.9.9.tgz#27867f4455730460c53812fbc95d6bdcb6d1de27"
+  integrity sha512-dBF7li142ngThwfGHMCPPkNVQyUF/rfJFkXI7SpFshGJ/GfBh3yoocI745obP7ELEkxiWq/CSgVDqjX5Hjzvqg==
   dependencies:
-    "@graphql-toolkit/common" "0.9.8"
-    "@graphql-toolkit/schema-merging" "0.9.8"
+    "@graphql-toolkit/common" "0.9.9"
+    "@graphql-toolkit/schema-merging" "0.9.9"
     aggregate-error "3.0.1"
     globby "11.0.0"
     import-from "^3.0.0"
@@ -1953,12 +1953,12 @@
     "@graphql-toolkit/common" "0.9.9"
     tslib "1.11.1"
 
-"@graphql-toolkit/schema-merging@0.9.8":
-  version "0.9.8"
-  resolved "https://registry.yarnpkg.com/@graphql-toolkit/schema-merging/-/schema-merging-0.9.8.tgz#a1f5ed404b7dbad06bf249d1a8c6e5f1213d9be4"
-  integrity sha512-01prrR0HV2kF8GCP6XugEEWTbouTo5tWJCFkxESbP6nJHziQDntvbltLuYiKoitcn0PyI8Q6JLjQPQZe7mJbjQ==
+"@graphql-toolkit/schema-merging@0.9.9":
+  version "0.9.9"
+  resolved "https://registry.yarnpkg.com/@graphql-toolkit/schema-merging/-/schema-merging-0.9.9.tgz#3912f94aa4adca8fbc776c07926a73890762cf7e"
+  integrity sha512-Y3lMlvI32nqFF9yZpVOAoJ8H/0l2CU9hMV3XyRhRC3hfk1vUotYmg5BqSZvjqZP57wo6fk1TDB93VXGef8ttQg==
   dependencies:
-    "@graphql-toolkit/common" "0.9.8"
+    "@graphql-toolkit/common" "0.9.9"
     deepmerge "4.2.2"
     graphql-tools-fork "8.9.6"
     tslib "1.11.1"
