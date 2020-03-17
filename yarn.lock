@@ -1949,13 +1949,13 @@
     "@graphql-toolkit/graphql-tag-pluck" "0.9.7"
     cross-fetch "3.0.4"
 
-"@graphql-toolkit/graphql-file-loader@0.9.7":
-  version "0.9.7"
-  resolved "https://registry.yarnpkg.com/@graphql-toolkit/graphql-file-loader/-/graphql-file-loader-0.9.7.tgz#1f15dfcf50342ab9e480fbbe2b16896395f36c45"
-  integrity sha512-t7CfYjghuXAtIqzwHhkUoE/u0a918UTOOVtHdLHh8rojjIUfsSeLeqMcFacRv+/z+kyKl9lgi4TE/qiyIpyR5A==
+"@graphql-toolkit/graphql-file-loader@0.9.8":
+  version "0.9.8"
+  resolved "https://registry.yarnpkg.com/@graphql-toolkit/graphql-file-loader/-/graphql-file-loader-0.9.8.tgz#aa32c293baf9f52c610220c8f10f3d006c4bfa1e"
+  integrity sha512-XiEYh7wZRuCqJg1+HulKEdjAwcMqpw7Q4c7Dh9nryDRN8gtZVLGGdK6oSiygyjzc50OjLzujl0j/0sOcyfTU4Q==
   dependencies:
-    "@graphql-toolkit/common" "0.9.7"
-    tslib "1.10.0"
+    "@graphql-toolkit/common" "0.9.8"
+    tslib "1.11.1"
 
 "@graphql-toolkit/graphql-tag-pluck@0.9.7":
   version "0.9.7"
