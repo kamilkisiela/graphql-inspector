@@ -35,7 +35,7 @@
     "@graphql-toolkit/git-loader": "0.9.7",
     "@graphql-toolkit/github-loader": "0.9.7",
     "@graphql-toolkit/graphql-file-loader": "0.9.7",
-    "@graphql-toolkit/json-file-loader": "0.9.7",
+    "@graphql-toolkit/json-file-loader": "0.9.8",
     "@graphql-toolkit/url-loader": "0.9.7"
   },
   "devDependencies": {
