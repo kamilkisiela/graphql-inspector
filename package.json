@@ -39,7 +39,7 @@
   },
   "devDependencies": {
     "lint-staged": "10.0.8",
-    "prettier": "1.19.1",
+    "prettier": "2.0.0",
     "ts-loader": "6.2.1",
     "webpack": "4.42.0",
     "webpack-cli": "3.3.11"
