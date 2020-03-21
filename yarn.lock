@@ -14371,10 +14371,10 @@ probot-config@1.1.0:
     deepmerge "^2.2.1"
     js-yaml "^3.10.0"
 
-probot@9.10.2:
-  version "9.10.2"
-  resolved "https://registry.yarnpkg.com/probot/-/probot-9.10.2.tgz#a8c27c39862caf6de1fc34427d2d2193c2116e4b"
-  integrity sha512-7oir5mEK7W2uYSDlKunBfXkjoB3AuftIIw6eTxuDkeAYQlzKOV12kHYTk1SJZQJJqjzf7zgT5SW/1o+6Qo2NwQ==
+probot@9.11.0:
+  version "9.11.0"
+  resolved "https://registry.yarnpkg.com/probot/-/probot-9.11.0.tgz#bd54517c5b00c6b20414a32788fa3429cda61cb2"
+  integrity sha512-oYgV2Yp+83XWvjI9WGepeWuDJKJ6fo5Xx8VeUWLKYwbWZv9K9+QDOBy5BTwL9OSL6u+vbuSv3uSSUgAxyllfIg==
   dependencies:
     "@octokit/app" "^4.0.0"
     "@octokit/graphql" "^4.2.0"
@@ -17292,12 +17292,7 @@ uuid@^3.0.1, uuid@^3.1.0, uuid@^3.3.2:
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.3.3.tgz#4568f0216e78760ee1dbf3a4d2cf53e224112866"
   integrity sha512-pW0No1RGHgzlpHJO1nsVrHKpOEIxkGg1xB+v0ZmdNH5OAeAwzAVrCnI2/6Mtx+Uys6iaylxa+D3g4j63IKKjSQ==
 
-uuid@^7.0.0:
-  version "7.0.0"
-  resolved "https://registry.yarnpkg.com/uuid/-/uuid-7.0.0.tgz#1833d4b9ce50b732bfaa271f9cb74e974d303c79"
-  integrity sha512-LNUrNsXdI/fUsypJbWM8Jt4DgQdFAZh41p9C7WE9Cn+CULOEkoG2lgQyH68v3wnIy5K3fN4jdSt270K6IFA3MQ==
-
-uuid@^7.0.1:
+uuid@^7.0.0, uuid@^7.0.1:
   version "7.0.2"
   resolved "https://registry.yarnpkg.com/uuid/-/uuid-7.0.2.tgz#7ff5c203467e91f5e0d85cfcbaaf7d2ebbca9be6"
   integrity sha512-vy9V/+pKG+5ZTYKf+VcphF5Oc6EFiu3W8Nv3P3zIh0EqVI80ZxOzuPfe9EHjkFNvf8+xuTHVeei4Drydlx4zjw==
