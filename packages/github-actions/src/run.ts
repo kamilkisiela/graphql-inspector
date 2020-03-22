@@ -9,7 +9,7 @@ import {buildSchema} from 'graphql';
 
 import core from '@actions/core';
 import github from '@actions/github';
-import {ChecksUpdateParams} from '@octokit/rest';
+import {Octokit} from '@octokit/rest';
 
 const CHECK_NAME = 'GraphQL Inspector';
 
@@ -87,7 +87,7 @@ export async function run() {
   const results = await Promise.all(actions);
 
   const conclusion = results.some(
-    action => action.conclusion === CheckConclusion.Failure,
+    (action) => action.conclusion === CheckConclusion.Failure,
   )
     ? CheckConclusion.Failure
     : CheckConclusion.Success;
@@ -179,7 +179,7 @@ function fileLoader({
 }
 
 type UpdateCheckRunOptions = Required<
-  Pick<ChecksUpdateParams, 'conclusion' | 'output'>
+  Pick<Octokit.ChecksUpdateParams, 'conclusion' | 'output'>
 >;
 async function updateCheckRun(
   octokit: github.GitHub,
