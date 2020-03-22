@@ -28,7 +28,7 @@ export const typeDefs = gql`
   }
 `;
 
-const Query: QueryResolvers.Resolvers = {
+const Query: QueryResolvers = {
   async diff(_, args) {
     const [oldSchema, newSchema] = await Promise.all([
       loadSchema(args.oldSchema),

@@ -15,7 +15,7 @@ export const typeDefs = gql`
   }
 `;
 
-const Query: QueryResolvers.Resolvers = {
+const Query: QueryResolvers = {
   async validate(_, args) {
     const [schema, documents] = await Promise.all([
       loadSchema(args.schema),
@@ -26,7 +26,7 @@ const Query: QueryResolvers.Resolvers = {
   },
 };
 
-const InvalidDocument: InvalidDocumentResolvers.Resolvers = {
+const InvalidDocument: InvalidDocumentResolvers = {
   errors(doc) {
     if (doc.errors) {
       return doc.errors.map(error => ({
