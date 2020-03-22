@@ -42,7 +42,7 @@ export const typeDefs = gql`
   }
 `;
 
-const Query: QueryResolvers.Resolvers = {
+const Query: QueryResolvers = {
   async coverage(_, args) {
     const schema = await loadSchema(args.schema);
     const documents = await loadDocuments(args.documents);
@@ -51,27 +51,27 @@ const Query: QueryResolvers.Resolvers = {
   },
 };
 
-const SchemaCoverage: SchemaCoverageResolvers.Resolvers = {
+const SchemaCoverage: SchemaCoverageResolvers = {
   types(schemaCoverage) {
-    return Object.keys(schemaCoverage.types).map(name => ({
+    return Object.keys(schemaCoverage.types).map((name) => ({
       name,
       ...schemaCoverage.types[name],
     }));
   },
 };
 
-const TypeCoverage: TypeCoverageResolvers.Resolvers = {
+const TypeCoverage: TypeCoverageResolvers = {
   children(typeCoverage) {
-    return Object.keys(typeCoverage.children).map(name => ({
+    return Object.keys(typeCoverage.children).map((name) => ({
       name,
       ...typeCoverage.children[name],
     }));
   },
 };
 
-const TypeChildCoverage: TypeChildCoverageResolvers.Resolvers = {
+const TypeChildCoverage: TypeChildCoverageResolvers = {
   locations(typeChildCoverage) {
-    return Object.keys(typeChildCoverage.locations).map(name => ({
+    return Object.keys(typeChildCoverage.locations).map((name) => ({
       name,
       locations: typeChildCoverage.locations[name],
     }));

@@ -22,7 +22,7 @@ export const typeDefs = gql`
   }
 `;
 
-const Query: QueryResolvers.Resolvers = {
+const Query: QueryResolvers = {
   async similar(_, args) {
     const schema = await loadSchema(args.schema);
     const similarMap = await similar(schema, undefined, args.threshold as any);
@@ -43,7 +43,7 @@ const Query: QueryResolvers.Resolvers = {
   },
 };
 
-const Similar: SimilarResolvers.Resolvers = {
+const Similar: SimilarResolvers = {
   best(parent) {
     return {
       name: parent.bestMatch.target.typeId,

@@ -14,6 +14,5 @@ generates:
         Similar: ../types#ResolvedSimilar
     plugins:
       - add: import * as core from '@graphql-inspector/core';
-      - typescript-common
-      - typescript-server
+      - typescript
       - typescript-resolvers

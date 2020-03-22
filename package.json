@@ -1,5 +1,4 @@
 {
-  "name": "@graphql-inspector/cli",
   "private": true,
   "description": "Tooling for GraphQL. Compare GraphQL Schemas, check documents, find breaking changes, find similar types.",
   "keywords": [
@@ -67,6 +66,9 @@
       "prettier --write",
       "git add"
     ]
+  },
+  "resolutions": {
+    "@types/express": "4.17.3"
   },
   "engines": {
     "node": ">= 10.x"

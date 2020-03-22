@@ -29,7 +29,7 @@ function collectObject(val: string, memo: Record<string, string>) {
   return memo;
 }
 
-commander.option('-r, --require [require]', 'Require modules', collect, []);
+commander.option<string[]>('-r, --require [require]', 'Require modules', collect, []);
 commander.option('-t, --token <s>', 'Access Token');
 commander.option('-h, --header <s>', 'HTTP Headers', collectObject, {});
 
@@ -38,7 +38,7 @@ const defaultPort = 4000;
 commander
   .command('ui')
   .description('Serves a GUI')
-  .option('-p, --port <n>', 'Run on a specific port', defaultPort)
+  .option('-p, --port <n>', 'Run on a specific port', defaultPort.toString())
   .action((cmd: commander.Command) =>
     ui({
       port: cmd.port,
@@ -48,7 +48,7 @@ commander
 commander
   .command('diff <old> <new>')
   .description('Diff two schemas')
-  .option('--rule [name]', 'Add rules', collect, [])
+  .option<string[]>('--rule [name]', 'Add rules', collect, [])
   .action((oldSchema: string, newSchema: string, cmd: commander.Command) =>
     diff(oldSchema, newSchema, normalizeOptions(cmd)),
   );
