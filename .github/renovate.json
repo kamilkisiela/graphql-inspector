@@ -1,0 +1,12 @@
+{
+  "extends": ["config:base"],
+  "labels": ["automerge"],
+  "prConcurrentLimit": 5,
+  "prCreation": "immediate",
+  "prHourlyLimit": 5,
+  "timezone": "Europe/Warsaw",
+  "schedule": ["after 10pm and before 6:00am"],
+  "vulnerabilityAlerts": {
+    "assignees": ["@kamilkisiela"]
+  }
+}
