@@ -19,7 +19,6 @@
     }
   ],
   "github": {
-    "enabled": true,
-    "silent": true
+    "enabled": false
   }
 }

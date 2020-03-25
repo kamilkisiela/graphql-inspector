@@ -12,3 +12,5 @@ yarn.lock
 website/**/yarn.lock
 website/**/package-lock.json
 public/
+
+.now

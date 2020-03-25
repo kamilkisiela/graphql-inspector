@@ -1,0 +1,25 @@
+name: Website	
+on: 	
+  push:	
+    branches:	
+      - master	
+jobs:	
+  Deploy:	
+    name: Deploy website	
+    runs-on: ubuntu-latest	
+    steps:	
+      - name: Checkout
+        uses: actions/checkout@v2	
+
+      - name: Use Node.js 13
+        uses: actions/setup-node@v1	
+        with:	
+          node-version: 13
+
+      - name: ZEIT Now Deployment	
+        uses: amondnet/now-deployment@v2.0.1	
+        with:	
+          zeit-token: ${{ secrets.NOW_TOKEN }}	
+          now-args: '--prod'
+          now-project-id: ${{ secrets.ZEIT_PROJECT }}
+          now-org-id: ${{ secrets.ZEIT_ORG }}
