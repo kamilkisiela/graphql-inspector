@@ -12,6 +12,6 @@
     "live:build": "rm -rf build/graphql-inspector/live && cd live && yarn build && cp -r ./build ../build/graphql-inspector/live"
   },
   "devDependencies": {
-    "docusaurus": "1.13.0"
+    "docusaurus": "1.14.4"
   }
 }
