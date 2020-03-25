@@ -40,7 +40,7 @@
     "probot": "9.11.1"
   },
   "devDependencies": {
-    "@types/js-yaml": "3.12.2",
+    "@types/js-yaml": "3.12.3",
     "@types/node": "13.9.3",
     "typescript": "3.8.3"
   }
