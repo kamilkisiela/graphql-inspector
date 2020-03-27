@@ -1,7 +1,8 @@
 {
   "name": "example",
   "scripts": {
-    "graphql-inspector": "node ../packages/cli/dist/index.js",
+    "ci": "node ../packages/ci/dist/index.cjs.js",
+    "graphql-inspector": "yarn ci",
     "ui": "yarn graphql-inspector ui",
     "diff": "yarn graphql-inspector diff ./schemas/schema.graphql ./schemas/new.graphql",
     "diff:master": "yarn graphql-inspector diff git:master:example/schemas/schema.graphql ./schemas/schema.graphql",

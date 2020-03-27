@@ -1,0 +1,38 @@
+{
+  "name": "@graphql-inspector/logger",
+  "version": "0.0.0-PLACEHOLDER",
+  "description": "Logger for GraphQL Inspector",
+  "sideEffects": false,
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "typings": "dist/index.d.ts",
+  "typescript": {
+    "definition": "dist/index.d.ts"
+  },
+  "author": {
+    "name": "Kamil Kisiela",
+    "email": "kamil.kisiela@gmail.com",
+    "url": "https://github.com/kamilkisiela"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "kamilkisiela/graphql-inspector",
+    "directory": "packages/logger"
+  },
+  "dependencies": {
+    "@graphql-inspector/config": "0.0.0-PLACEHOLDER",
+    "@graphql-inspector/loaders": "0.0.0-PLACEHOLDER",
+    "chalk": "3.0.0",
+    "figures": "3.2.0",
+    "log-symbols": "3.0.0",
+    "std-env": "2.2.1",
+    "strip-ansi": "6.0.0",
+    "jest": "25.2.7",
+    "jsesc": "2.5.2",
+    "tslib": "^1.11.1"
+  },
+  "scripts": {
+    "prepack": "bob prepack"
+  }
+}

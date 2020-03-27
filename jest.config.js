@@ -1,35 +1,28 @@
-// For a detailed explanation regarding each configuration property, visit:
-// https://jestjs.io/docs/en/configuration.html
+const {resolve} = require('path');
+const {pathsToModuleNameMapper} = require('ts-jest/utils');
+
+const ROOT_DIR = __dirname;
+const TSCONFIG = resolve(ROOT_DIR, 'tsconfig.json');
+const tsconfig = require(TSCONFIG);
+const CI = !!process.env.CI;
 
 module.exports = {
-  // Automatically clear mock calls and instances between every test
-  clearMocks: true,
-
-  // The directory where Jest should output its coverage files
-  coverageDirectory: 'coverage',
-
-  // A set of global variables that need to be available in all test environments
+  transform: {'^.+\\.tsx?$': 'ts-jest'},
+  testEnvironment: 'node',
+  rootDir: ROOT_DIR,
   globals: {
     'ts-jest': {
-      tsConfig: 'tsconfig.test.json',
+      diagnostics: false,
+      tsConfig: 'tsconfig.json',
     },
   },
-
-  // An array of file extensions your modules use
-  moduleFileExtensions: ['ts', 'tsx', 'js'],
-
-  // The test environment that will be used for testing
-  testEnvironment: 'node',
-
-  // The glob patterns Jest uses to detect test files
-  testMatch: ['**/__tests__/**/*.+(ts|tsx|js)'],
-
+  restoreMocks: true,
+  reporters: ['default'],
+  modulePathIgnorePatterns: ['dist'],
   testPathIgnorePatterns: ['__tests__/assets/'],
-
-  // A map from regular expressions to paths to transformers
-  transform: {
-    '^.+\\.(ts|tsx)$': 'ts-jest',
-  },
-
-  errorOnDeprecated: true,
+  moduleNameMapper: pathsToModuleNameMapper(tsconfig.compilerOptions.paths, {
+    prefix: `${ROOT_DIR}/`,
+  }),
+  cacheDirectory: resolve(ROOT_DIR, `${CI ? '' : 'node_modules/'}.cache/jest`),
+  collectCoverage: false,
 };

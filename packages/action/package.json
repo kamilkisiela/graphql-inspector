@@ -1,0 +1,54 @@
+{
+  "name": "@graphql-inspector/action",
+  "version": "0.0.0-PLACEHOLDER",
+  "description": "GraphQL Inspector functionality for GitHub Actions",
+  "sideEffects": false,
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "typings": "dist/index.d.ts",
+  "typescript": {
+    "definition": "dist/index.d.ts"
+  },
+  "bin": {
+    "graphql-inspector-github": "./dist/index.js"
+  },
+  "author": {
+    "name": "Kamil Kisiela",
+    "email": "kamil.kisiela@gmail.com",
+    "url": "https://github.com/kamilkisiela"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "kamilkisiela/graphql-inspector",
+    "directory": "packages/action"
+  },
+  "keywords": [
+    "graphql",
+    "graphql-inspector",
+    "tools",
+    "probot",
+    "probot-plugin",
+    "github"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist/",
+    "deploy": "now --docker",
+    "prebuild": "yarn clean",
+    "prepublishOnly": "yarn build",
+    "prepack": "bob prepack"
+  },
+  "dependencies": {
+    "@actions/core": "1.2.3",
+    "@actions/github": "2.1.1",
+    "@graphql-inspector/github": "0.0.0-PLACEHOLDER",
+    "@graphql-inspector/core": "0.0.0-PLACEHOLDER",
+    "js-yaml": "3.13.1",
+    "probot": "9.11.2",
+    "tslib": "^1.11.1"
+  },
+  "devDependencies": {
+    "@types/js-yaml": "3.12.3"
+  }
+}

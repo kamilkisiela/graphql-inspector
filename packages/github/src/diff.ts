@@ -32,13 +32,13 @@ export async function diff({
   }
 
   const annotations = await Promise.all(
-    changes.map(change => annotate({path, change, schemas})),
+    changes.map((change) => annotate({path, change, schemas})),
   );
   let conclusion: CheckConclusion = CheckConclusion.Success;
 
   if (
     changes.some(
-      change => change.criticality.level === CriticalityLevel.Breaking,
+      (change) => change.criticality.level === CriticalityLevel.Breaking,
     )
   ) {
     conclusion = CheckConclusion.Failure;
@@ -47,6 +47,7 @@ export async function diff({
   return {
     conclusion,
     annotations,
+    changes,
   };
 }
 

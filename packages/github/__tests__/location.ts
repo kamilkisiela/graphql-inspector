@@ -1,6 +1,5 @@
-import {buildSchema, printSchema} from 'graphql';
+import {buildSchema, printSchema, GraphQLSchema} from 'graphql';
 import {getLocation} from '../src/location';
-import {GraphQLSchema} from 'graphql';
 
 const schema = buildSchema(/* GraphQL */ `
   type Query {

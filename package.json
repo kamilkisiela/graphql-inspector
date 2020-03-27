@@ -21,31 +21,35 @@
     "url": "kamilkisiela/graphql-inspector"
   },
   "scripts": {
-    "build": "lerna run build",
-    "postbuild": "yarn bundle",
-    "test": "lerna run test",
+    "affected:build": "bob run build",
+    "affected:test": "bob run test",
+    "build": "tsc --project tsconfig.json && bob build",
+    "test": "jest",
     "build:website": "(cd website && yarn deploy) && mv website/build/graphql-inspector public",
-    "build:github": "yarn workspace @graphql-inspector/core build && yarn workspace @graphql-inspector/github build && yarn workspace @graphql-inspector/actions build",
-    "now-build": "yarn workspace @graphql-inspector/core build && yarn workspace @graphql-inspector/github build && yarn build:website",
-    "action": "yarn build:github && yarn bundle",
+    "now-build": "yarn build && yarn build:website",
+    "action": "ncc build packages/action/src/action.ts --out action --minify --transpile-only",
     "bundle": "webpack",
     "format": "prettier --config .prettierrc --write \"**/*.{js,json,md,ts,graphql}\"",
     "prerelease": "yarn action",
-    "prerelease:canary": "yarn prerelease",
-    "release": "lerna publish --exact --force-publish=\"*\"",
-    "release:canary": "lerna publish --force-publish=\"*\" --canary --exact",
+    "release": "node ./scripts/release.js",
+    "release:canary": "npm run release -- canary",
     "precommit": "lint-staged"
   },
   "devDependencies": {
+    "@types/jest": "25.2.1",
+    "@types/node": "13.9.5",
+    "@types/yargs": "15.0.4",
+    "@zeit/ncc": "0.22.0",
+    "bob-the-bundler": "1.0.0-rc.9",
+    "graphql": "15.0.0",
     "lint-staged": "10.1.2",
+    "lodash": "4.17.15",
     "prettier": "2.0.4",
-    "ts-loader": "6.2.2",
-    "webpack": "4.42.1",
-    "webpack-cli": "3.3.11"
+    "ts-jest": "25.3.1",
+    "typescript": "3.8.3"
   },
   "dependencies": {
     "@probot/serverless-lambda": "0.5.0",
-    "babel-loader": "8.1.0",
     "graphql-request": "1.8.2",
     "husky": "4.2.3",
     "immer": "6.0.3",
@@ -53,22 +57,15 @@
     "shelljs": "0.8.3"
   },
   "workspaces": [
-    "packages/core",
-    "packages/cli",
-    "packages/api",
-    "packages/ui",
-    "packages/load",
-    "packages/github",
-    "packages/github-actions"
+    "packages/*",
+    "packages/commands/*",
+    "packages/loaders/*"
   ],
   "lint-staged": {
     "*.{js,json,md,ts,graphql}": [
       "prettier --write",
       "git add"
     ]
-  },
-  "resolutions": {
-    "@types/express": "4.17.4"
   },
   "engines": {
     "node": ">= 10.x"

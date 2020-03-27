@@ -1,7 +1,0 @@
-query post {
-  post {
-    id
-    title
-    createdAtSomePoint
-  }
-}

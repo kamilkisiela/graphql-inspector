@@ -1,6 +1,9 @@
+import {Change} from '@graphql-inspector/core';
+
 export interface ActionResult {
   conclusion: CheckConclusion;
   annotations?: Annotation[];
+  changes?: Change[];
 }
 
 export interface Annotation {

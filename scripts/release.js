@@ -1,29 +1,26 @@
-#!/usr/bin/env node
-
 const {readFileSync, writeFileSync} = require('fs');
 const {resolve, join, relative} = require('path');
+const {execSync} = require('child_process');
 const {exec} = require('shelljs');
 const semver = require('semver');
-const detectIndent = require('detect-indent');
 const immer = require('immer').default;
 
 const placeholder = '0.0.0-PLACEHOLDER';
-const [, , versionOrCanary, code] = process.argv;
+const [, , versionOrCanary, nextVersion] = process.argv;
 const rootDir = resolve(__dirname, '../');
-const rootPackage = join(rootDir, 'package.json');
 const lerna = join(rootDir, 'lerna.json');
 
 const isCanary = versionOrCanary === 'canary';
+const isNext = versionOrCanary === 'next';
+const isLatest = !isNext && !isCanary;
 
 const version = isCanary
-  ? `0.0.0-${Math.random()
-      .toString(16)
-      .substring(2, 9)}.0`
+  ? `0.0.0-canary.${Math.random().toString(16).substring(2, 9)}`
+  : isNext
+  ? nextVersion
   : versionOrCanary;
 
-const packages = JSON.parse(
-  readFileSync(rootPackage, {encoding: 'utf-8'}),
-).workspaces.map(p => join(rootDir, p));
+const packages = getWorkspaces().map((path) => join(rootDir, path));
 
 const current = JSON.parse(readFileSync(lerna, {encoding: 'utf-8'})).version;
 const branch = `release/v${version}`;
@@ -32,7 +29,7 @@ if (!semver.valid(version)) {
   throw new Error(`Version ${version} is not valid`);
 }
 
-if (!isCanary) {
+if (isLatest) {
   // Create a release branch
   exec(`git checkout -b ${branch}`);
 }
@@ -40,40 +37,45 @@ if (!isCanary) {
 // ! lerna.json as the source of truth of a version number
 
 // Set version in lerna.json
-updateJSON(lerna, data => {
+updateJSON(lerna, (data) => {
   data.version = version;
 });
 
 // Set version in packages
-packages.map(dir => {
-  updateString(join(dir, 'package.json'), pkg =>
+packages.map((dir) => {
+  updateString(join(dir, 'package.json'), (pkg) =>
     pkg.replace(new RegExp(placeholder, 'g'), version),
   );
 });
 
 // Set version in Dockerfile (both LABEL and RUN)
-updateString(join(rootDir, 'Dockerfile-cli'), docker =>
+updateString(join(rootDir, 'Dockerfile-cli'), (docker) =>
   docker.replace(new RegExp(current, 'g'), version),
 );
 
-if (!isCanary) {
+if (isLatest) {
   // Bump version in changelog
-  updateString(join(rootDir, 'CHANGELOG.md'), changelog =>
+  updateString(join(rootDir, 'CHANGELOG.md'), (changelog) =>
     changelog.replace('### vNEXT', `### vNEXT` + '\n\n' + `### v${version}`),
   );
 }
 
-const cmd = `npm publish${isCanary ? ' --tag canary' : ''}`;
+exec(`yarn build`);
+
+const extra = isLatest ? '' : ` --tag ${versionOrCanary}`;
+const cmd = `npm publish dist${extra} --access public`;
 
 // Run npm publish in all libraries
-packages.map(dir => {
-  exec(`(cd ${dir} && ${cmd} --access public --otp=${code})`);
+packages.map((dir) => {
+  exec(`(cd ${dir} && ${cmd} --access public)`);
 });
 
-if (!isCanary) {
+if (isLatest) {
   // Revert changes in libraries (back to placeholders)
   exec(
-    `git checkout -- ${packages.map(dir => relative(rootDir, dir)).join(' ')}`,
+    `git checkout -- ${packages
+      .map((dir) => relative(rootDir, dir))
+      .join(' ')}`,
   );
 
   // Add changes and commit as `Release vX.X.X`
@@ -91,12 +93,11 @@ if (!isCanary) {
 
 function updateJSON(filepath, updateFn) {
   const content = readFileSync(filepath, {encoding: 'utf-8'});
-  const {indent} = detectIndent(content);
   const data = JSON.parse(content);
 
   const modified = immer(data, updateFn);
 
-  writeFileSync(filepath, JSON.stringify(modified, null, indent), {
+  writeFileSync(filepath, JSON.stringify(modified, null, 2), {
     encoding: 'utf-8',
   });
 }
@@ -107,4 +108,17 @@ function updateString(filepath, updateFn) {
   writeFileSync(filepath, updateFn(content), {
     encoding: 'utf-8',
   });
+}
+
+function getWorkspaces() {
+  const rawInfo = execSync('yarn workspaces info', {
+    encoding: 'utf-8',
+  });
+
+  const startsAt = rawInfo.indexOf('{');
+  const endsAt = rawInfo.lastIndexOf('}');
+
+  const info = JSON.parse(rawInfo.substr(startsAt, endsAt - startsAt + 1));
+
+  return Object.values(info).map(({location}) => location);
 }

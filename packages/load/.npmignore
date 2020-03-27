@@ -1,9 +1,0 @@
-__tests__/
-__mocks__/
-src/
-jest.config.js
-tsconfig.json
-tsconfig.test.json
-*.zip
-*.tar.gz
-*.tar

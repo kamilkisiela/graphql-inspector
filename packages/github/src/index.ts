@@ -1,6 +1,6 @@
-import appFn, {handleAction} from './probot';
+import app, {handleAction} from './probot';
 
-export default appFn;
+export {app};
 export {handleAction};
 export {ActionResult, CheckConclusion, Annotation} from './types';
 export {SchemaPointer} from './probot';
