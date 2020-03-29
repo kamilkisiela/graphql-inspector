@@ -44,7 +44,7 @@
     "@types/node": "13.9.5",
     "@types/node-fetch": "2.5.5",
     "graphql": "14.6.0",
-    "jest": "25.2.3",
+    "jest": "25.2.4",
     "ts-jest": "25.2.1",
     "typescript": "3.8.3"
   }
