@@ -37,7 +37,7 @@
     "precommit": "lint-staged"
   },
   "devDependencies": {
-    "lint-staged": "10.0.10",
+    "lint-staged": "10.1.0",
     "prettier": "2.0.2",
     "ts-loader": "6.2.2",
     "webpack": "4.42.1",
