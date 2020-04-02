@@ -35,7 +35,7 @@
     "@actions/core": "1.2.3",
     "@actions/github": "2.1.1",
     "@graphql-inspector/github": "0.0.0-PLACEHOLDER",
-    "graphql": "14.6.0",
+    "graphql": "15.0.0",
     "js-yaml": "3.13.1",
     "probot": "9.11.2"
   },
