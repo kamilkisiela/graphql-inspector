@@ -31,7 +31,7 @@
     "prepublishOnly": "yarn build"
   },
   "peerDependencies": {
-    "graphql": "^14.0.0"
+    "graphql": "^14.0.0 || ^15.0.0"
   },
   "dependencies": {
     "@graphql-inspector/api": "0.0.0-PLACEHOLDER",
@@ -55,7 +55,7 @@
     "@types/jest": "25.1.5",
     "@types/log-symbols": "3.0.0",
     "@types/node": "13.11.0",
-    "graphql": "14.6.0",
+    "graphql": "15.0.0",
     "graphql-tag": "2.10.3",
     "jest": "25.2.6",
     "ts-jest": "25.3.0",
