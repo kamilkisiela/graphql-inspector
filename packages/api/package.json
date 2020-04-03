@@ -39,7 +39,7 @@
   },
   "devDependencies": {
     "@types/express": "4.17.4",
-    "@types/jest": "25.2.0",
+    "@types/jest": "25.2.1",
     "graphql": "15.0.0",
     "@graphql-codegen/cli": "1.13.1",
     "@graphql-codegen/add": "1.13.1",
