@@ -3608,10 +3608,10 @@
     "@uifabric/set-version" "^7.0.9"
     tslib "^1.10.0"
 
-"@uifabric/react-hooks@^7.0.25":
-  version "7.0.25"
-  resolved "https://registry.yarnpkg.com/@uifabric/react-hooks/-/react-hooks-7.0.25.tgz#8c916bf74e6d6a2e14d505762820b552febd6c5f"
-  integrity sha512-TQgqt3VGkkCI1JtobrRGntlap2p/l2jhOYGLASyq55NXm7OyDbGgfR4hNVTOEUgukm1sMV7lJ8J/t0B+rFfRLA==
+"@uifabric/react-hooks@^7.1.0":
+  version "7.1.0"
+  resolved "https://registry.yarnpkg.com/@uifabric/react-hooks/-/react-hooks-7.1.0.tgz#7332357961ddde0881a260336ba12d742013b9ec"
+  integrity sha512-0nefjbauRfwisiTOmjMk4IhKZdGoRDewWkYwDblRvm3ExGHK6D+gABvu7wX1QIU13REcvaxoKXzIklJA+8MJyw==
   dependencies:
     "@uifabric/set-version" "^7.0.9"
     "@uifabric/utilities" "^7.15.4"
@@ -12508,17 +12508,17 @@ octokit-pagination-methods@1.1.0, octokit-pagination-methods@^1.1.0:
   resolved "https://registry.npmjs.org/octokit-pagination-methods/-/octokit-pagination-methods-1.1.0.tgz#cf472edc9d551055f9ef73f6e42b4dbb4c80bea4"
   integrity sha512-fZ4qZdQ2nxJvtcasX7Ghl+WlWS/d9IgnBIwFZXVNNZUmzpno91SX5bc5vuxiuKoCtK78XxGGNuSCrDC7xYB3OQ==
 
-office-ui-fabric-react@7.105.8:
-  version "7.105.8"
-  resolved "https://registry.yarnpkg.com/office-ui-fabric-react/-/office-ui-fabric-react-7.105.8.tgz#fa50a17193156d56590c91ea06b7db4ea474c4f5"
-  integrity sha512-zXF6Abv/kwbnuFJx6+4ytGQ/KOZatWtcLsqWpwEMdJ284bo6Cy79pifw30wSpG3opZFRxzAPB4kb0sQDh21RDg==
+office-ui-fabric-react@7.105.9:
+  version "7.105.9"
+  resolved "https://registry.yarnpkg.com/office-ui-fabric-react/-/office-ui-fabric-react-7.105.9.tgz#7d63fd5e203f7a64ccb5c97f1a07cf92c22796b5"
+  integrity sha512-eIZXO0fFMHN4cMWYqWY0u0Yoz1KzoAVi2US9AgwoiDAtQjwmEEZ+jdiINYqYXITdUnGAAL5vtuitowxdo9elCg==
   dependencies:
     "@fluentui/react-focus" "^7.1.12"
     "@microsoft/load-themed-styles" "^1.10.26"
     "@uifabric/foundation" "^7.5.24"
     "@uifabric/icons" "^7.3.23"
     "@uifabric/merge-styles" "^7.8.11"
-    "@uifabric/react-hooks" "^7.0.25"
+    "@uifabric/react-hooks" "^7.1.0"
     "@uifabric/set-version" "^7.0.9"
     "@uifabric/styling" "^7.11.1"
     "@uifabric/utilities" "^7.15.4"
