@@ -33,7 +33,7 @@
     "dependency-graph": "0.9.0"
   },
   "devDependencies": {
-    "@types/jest": "25.1.5",
+    "@types/jest": "25.2.0",
     "graphql": "15.0.0",
     "graphql-tag": "2.10.3",
     "jest": "25.2.7",
