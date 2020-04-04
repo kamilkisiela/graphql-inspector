@@ -3,6 +3,6 @@
   "version": "1.0.0",
   "license": "MIT",
   "dependencies": {
-    "actions-toolkit": "3.0.2"
+    "actions-toolkit": "4.0.0"
   }
 }
