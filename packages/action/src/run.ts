@@ -25,7 +25,7 @@ export async function run() {
   // env:
   //   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   //
-  const token = process.env.GITHUB_TOKEN || core.getInput('github-token');
+  const token = core.getInput('github-token') || process.env.GITHUB_TOKEN;
 
   if (!token) {
     return core.setFailed('Github Token is missing');
