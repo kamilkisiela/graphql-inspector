@@ -45,7 +45,7 @@ describe('validate', () => {
       spyEmit.mock.calls.find(
         hasMessage(
           bolderize(
-            'Cannot query field "createdAtSomePoint" on type "Post". Did you mean "createdAt"?',
+            'Cannot query field "createdAtSomePoint" on type "Post".',
           ),
         ),
       ),
