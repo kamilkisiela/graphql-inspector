@@ -61,7 +61,8 @@
       ],
       "@graphql-inspector/similar-command": [
         "packages/commands/similar/src/index.ts"
-      ]
+      ],
+      "@graphql-inspector/testing": ["packages/testing/src/index.ts"]
     }
   },
   "include": ["packages"],

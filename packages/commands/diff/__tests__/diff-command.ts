@@ -1,5 +1,6 @@
+import '@graphql-inspector/testing';
 import {mockCommand} from '@graphql-inspector/commands';
-import {mockLogger, unmockLogger, nonTTY} from '@graphql-inspector/logger';
+import {mockLogger, unmockLogger} from '@graphql-inspector/logger';
 import yargs from 'yargs';
 import {buildSchema} from 'graphql';
 import {resolve} from 'path';
@@ -28,10 +29,6 @@ const newSchema = buildSchema(/* GraphQL */ `
     post: Post!
   }
 `);
-
-function hasMessage(msg: string) {
-  return (args: string[]) => nonTTY(args.join('')).indexOf(nonTTY(msg)) !== -1;
-}
 
 const diff = createCommand({
   config: {
@@ -82,25 +79,19 @@ describe('diff', () => {
   test('should load graphql file', async () => {
     await mockCommand(diff, 'diff old.graphql old.graphql');
 
-    expect(
-      spyReporter.mock.calls.find(hasMessage('No changes detected')),
-    ).toBeDefined();
-
-    expect(
-      spyReporter.mock.calls.find(hasMessage('Detected the following changes')),
-    ).not.toBeDefined();
+    expect(spyReporter).toHaveBeenCalledNormalized('No changes detected');
+    expect(spyReporter).not.toHaveBeenCalledNormalized(
+      'Detected the following changes',
+    );
   });
 
   test('should load different schema from graphql file', async () => {
     await mockCommand(diff, 'diff old.graphql new.graphql');
 
     expect(spyReporter).not.toHaveBeenCalledWith('No changes detected');
-
-    expect(
-      spyReporter.mock.calls.find(
-        hasMessage('Detected the following changes (4) between schemas:'),
-      ),
-    ).toBeDefined();
+    expect(spyReporter).toHaveBeenCalledNormalized(
+      'Detected the following changes (4) between schemas:',
+    );
 
     expect(spyProcessExit).toHaveBeenCalledWith(1);
   });
@@ -111,9 +102,7 @@ describe('diff', () => {
       'diff old.graphql new.graphql --rule suppressRemovalOfDeprecatedField',
     );
 
-    expect(
-      spyReporter.mock.calls.find(hasMessage('does not exist')),
-    ).not.toBeDefined();
+    expect(spyReporter).not.toHaveBeenCalledNormalized('does not exist');
   });
 
   test('should load rules with local path from fs', async () => {
@@ -122,9 +111,7 @@ describe('diff', () => {
       'diff old.graphql new.graphql --rule ./assets/rule.js',
     );
 
-    expect(
-      spyReporter.mock.calls.find(hasMessage('does not exist')),
-    ).not.toBeDefined();
+    expect(spyReporter).not.toHaveBeenCalledNormalized('does not exist');
   });
 
   test('should load rules with absolute path from fs', async () => {
@@ -136,16 +123,12 @@ describe('diff', () => {
       )}`,
     );
 
-    expect(
-      spyReporter.mock.calls.find(hasMessage('does not exist')),
-    ).not.toBeDefined();
+    expect(spyReporter).not.toHaveBeenCalledNormalized('does not exist');
   });
 
   test('should render error if file does not exist', async () => {
     await mockCommand(diff, `diff old.graphql new.graphql --rule noop.js`);
 
-    expect(
-      spyReporter.mock.calls.find(hasMessage('does not exist')),
-    ).toBeDefined();
+    expect(spyReporter).toHaveBeenCalledNormalized('does not exist');
   });
 });

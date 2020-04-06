@@ -42,9 +42,11 @@
     "@zeit/ncc": "0.22.0",
     "bob-the-bundler": "1.0.0-rc.9",
     "graphql": "15.0.0",
+    "jsesc": "2.5.2",
     "lint-staged": "10.1.2",
     "lodash": "4.17.15",
     "prettier": "2.0.4",
+    "strip-ansi": "6.0.0",
     "ts-jest": "25.3.1",
     "typescript": "3.8.3"
   },

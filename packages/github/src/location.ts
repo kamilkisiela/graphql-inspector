@@ -1,6 +1,6 @@
 import {
   GraphQLSchema,
-  printSchema,
+  printSchema as _printSchema,
   buildSchema,
   isObjectType,
   isDirective,
@@ -15,6 +15,12 @@ function normalizeSchema(schema: GraphQLSchema): GraphQLSchema {
   return buildSchema(printSchema(schema));
 }
 
+// TODO: pass here an original raw file to check if it has hashtag comments and add a offset,
+//       and to check if it uses """descr""" or """ \n descr \n """
+export function printSchema(schema: GraphQLSchema): string {
+  return _printSchema(schema);
+}
+
 export function getLocation({
   path,
   schema,
@@ -23,7 +29,7 @@ export function getLocation({
   schema: GraphQLSchema;
 }) {
   const normalizedSchema = normalizeSchema(schema);
-  const printed = printSchema(normalizedSchema);
+  const printed = _printSchema(normalizedSchema);
   const loc = getNodeLocation({path, schema: normalizedSchema});
   const source = new Source(printed);
 
@@ -57,7 +63,7 @@ function getNodeLocation({
       const field = type.getFields()[fieldName];
 
       if (argName) {
-        const arg = field.args.find(a => a.name === argName)!;
+        const arg = field.args.find((a) => a.name === argName)!;
 
         // type.field.arg
         return arg.astNode!.loc;
@@ -74,7 +80,7 @@ function getNodeLocation({
     const [argName] = rest;
 
     if (argName) {
-      const arg = type.args.find(a => a.name === argName)!;
+      const arg = type.args.find((a) => a.name === argName)!;
 
       // directive.arg
       return arg.astNode!.loc;

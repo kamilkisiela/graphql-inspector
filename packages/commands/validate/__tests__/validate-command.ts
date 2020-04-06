@@ -1,8 +1,9 @@
+import '@graphql-inspector/testing';
 import yargs from 'yargs';
 import {buildSchema, parse} from 'graphql';
-import createCommand from '../src';
 import {mockCommand} from '@graphql-inspector/commands';
-import {mockLogger, unmockLogger, nonTTY} from '@graphql-inspector/logger';
+import {mockLogger, unmockLogger} from '@graphql-inspector/logger';
+import createCommand from '../src';
 
 const schema = buildSchema(/* GraphQL */ `
   type Post {
@@ -26,10 +27,6 @@ const operation = parse(/* GraphQL */ `
     }
   }
 `);
-
-function hasMessage(msg: string) {
-  return (args: string[]) => nonTTY(args.join(' ')).indexOf(nonTTY(msg)) !== -1;
-}
 
 const validate = createCommand({
   config: {
@@ -81,22 +78,15 @@ describe('validate', () => {
   test('should load graphql files', async () => {
     await mockCommand(validate, 'validate "*.graphql" schema.graphql');
 
-    expect(
-      spyReporter.mock.calls.find(hasMessage('Detected 1 invalid document:')),
-    ).toBeDefined();
-
-    expect(
-      spyReporter.mock.calls.find(hasMessage('document.graphql:')),
-    ).toBeDefined();
-
-    expect(
-      spyReporter.mock.calls.find(
-        hasMessage('Cannot query field createdAtSomePoint on type Post'),
-      ),
-    ).toBeDefined();
-
-    expect(
-      spyReporter.mock.calls.find(hasMessage('All documents are valid')),
-    ).not.toBeDefined();
+    expect(spyReporter).toHaveBeenCalledNormalized(
+      'Detected 1 invalid document:',
+    );
+    expect(spyReporter).toHaveBeenCalledNormalized('document.graphql:');
+    expect(spyReporter).toHaveBeenCalledNormalized(
+      'Cannot query field createdAtSomePoint on type Post',
+    );
+    expect(spyReporter).not.toHaveBeenCalledNormalized(
+      'All documents are valid',
+    );
   });
 });

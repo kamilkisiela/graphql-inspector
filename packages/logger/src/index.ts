@@ -3,9 +3,6 @@ import chalk from 'chalk';
 import symbols from 'log-symbols';
 import figures from 'figures';
 
-import stripAnsi from 'strip-ansi';
-import jsesc from 'jsesc';
-
 export {chalk, symbols, figures};
 
 export function bolderize(msg: string): string {
@@ -15,10 +12,6 @@ export function bolderize(msg: string): string {
   return msg
     .replace(findSingleQuotes, (_: string, value: string) => chalk.bold(value))
     .replace(findDoubleQuotes, (_: string, value: string) => chalk.bold(value));
-}
-
-export function nonTTY(msg: string) {
-  return stripAnsi(jsesc(stripAnsi(msg)));
 }
 
 let mockedFn: ((msg: string) => void) | null = null;
