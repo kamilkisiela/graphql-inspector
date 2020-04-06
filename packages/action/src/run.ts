@@ -4,7 +4,7 @@ import {
   Annotation,
   diff,
 } from '@graphql-inspector/github';
-import {buildSchema,} from 'graphql';
+import {buildSchema, Source} from 'graphql';
 import {readFileSync} from 'fs';
 import {resolve} from 'path';
 
@@ -78,9 +78,13 @@ export async function run() {
     workspace,
   };
 
+  const sources = {
+    old: new Source(await loadFile(oldPointer)),
+    new: new Source(await loadFile(newPointer)),
+  };
   const schemas = {
-    old: buildSchema(await loadFile(oldPointer)),
-    new: buildSchema(await loadFile(newPointer)),
+    old: buildSchema(sources.old),
+    new: buildSchema(sources.new),
   };
 
   core.info(`Both schemas built`);
@@ -92,6 +96,7 @@ export async function run() {
     diff({
       path: schemaPath,
       schemas,
+      sources,
     }),
   );
 
@@ -157,11 +162,13 @@ export async function run() {
     addChangesToSummary('Safe', safeChanges);
   }
 
-  summary.push([
-    '',
-    '___',
-    `Thank you for using [GraphQL Inspector](https://graphql-inspector.com/)`
-  ].join('\n'))
+  summary.push(
+    [
+      '',
+      '___',
+      `Thank you for using [GraphQL Inspector](https://graphql-inspector.com/)`,
+    ].join('\n'),
+  );
 
   const title =
     conclusion === CheckConclusion.Failure

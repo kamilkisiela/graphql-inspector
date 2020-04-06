@@ -1,7 +1,7 @@
-import {buildSchema, GraphQLSchema} from 'graphql';
-import {getLocation, printSchema} from '../src/location';
+import {buildSchema, Source} from 'graphql';
+import {getLocation} from '../src/location';
 
-const schema = buildSchema(/* GraphQL */ `
+const source = new Source(/* GraphQL */ `
   type Query {
     user(id: ID!): User
     users: [User!]
@@ -13,42 +13,48 @@ const schema = buildSchema(/* GraphQL */ `
   }
 `);
 
-function printedLine(schema: GraphQLSchema, line: number): string {
-  const printed = printSchema(schema);
-  return printed.split('\n')[line - 1];
+const schema = buildSchema(source);
+
+function printedLine(source: Source, line: number): string {
+  return source.body.split('\n')[line - 1];
 }
 
-test('location of a Type', async () => {
+test('location of a Type', () => {
   const {line} = getLocation({
     schema,
+    source,
     path: 'User',
   });
 
-  expect(printedLine(schema, line)).toMatch('type User {');
+  expect(printedLine(source, line)).toMatch('type User {');
 });
-test('location of a Type.Field', async () => {
+
+test('location of a Type.Field', () => {
   const {line} = getLocation({
     schema,
+    source,
     path: 'User.id',
   });
 
-  expect(printedLine(schema, line)).toMatch('id: ID!');
+  expect(printedLine(source, line)).toMatch('id: ID!');
 });
 
-test('location of a Type.Field.Arg', async () => {
+test('location of a Type.Field.Arg', () => {
   const {line} = getLocation({
     schema,
+    source,
     path: 'Query.user.id',
   });
 
-  expect(printedLine(schema, line)).toMatch('user(id: ID!): User');
+  expect(printedLine(source, line)).toMatch('user(id: ID!): User');
 });
 
-test('location of a RootType.Field', async () => {
+test('location of a RootType.Field', () => {
   const {line} = getLocation({
     schema,
+    source,
     path: 'Query.user',
   });
 
-  expect(printedLine(schema, line)).toMatch('user(id: ID!): User');
+  expect(printedLine(source, line)).toMatch('user(id: ID!): User');
 });

@@ -3,7 +3,7 @@ import {
   CriticalityLevel,
   Change,
 } from '@graphql-inspector/core';
-import {GraphQLSchema} from 'graphql';
+import {GraphQLSchema, Source} from 'graphql';
 
 import {
   CheckConclusion,
@@ -16,11 +16,16 @@ import {getLocation} from './location';
 export async function diff({
   path,
   schemas,
+  sources,
 }: {
   path: string;
   schemas: {
     old: GraphQLSchema;
     new: GraphQLSchema;
+  };
+  sources: {
+    old: Source;
+    new: Source;
   };
 }): Promise<ActionResult> {
   const changes = diffSchemas(schemas.old, schemas.new);
@@ -32,7 +37,7 @@ export async function diff({
   }
 
   const annotations = await Promise.all(
-    changes.map((change) => annotate({path, change, schemas})),
+    changes.map((change) => annotate({path, change, sources})),
   );
   let conclusion: CheckConclusion = CheckConclusion.Success;
 
@@ -60,19 +65,20 @@ const levelMap = {
 function annotate({
   path,
   change,
-  schemas,
+  sources,
 }: {
   path: string;
   change: Change;
-  schemas: {
-    old: GraphQLSchema;
-    new: GraphQLSchema;
+  sources: {
+    old: Source;
+    new: Source;
   };
 }): Annotation {
   const level = change.criticality.level;
-  const schema = change.type.endsWith('_REMOVED') ? schemas.old : schemas.new;
+  const useOld = change.type.endsWith('_REMOVED');
+  const source = useOld ? sources.old : sources.new;
   const loc = change.path
-    ? getLocation({path: change.path, schema})
+    ? getLocation({path: change.path, source})
     : {line: 1, column: 1};
 
   return {
