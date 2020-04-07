@@ -30,13 +30,13 @@
     "graphql": "^0.13.0 || ^14.0.0 || ^15.0.0"
   },
   "dependencies": {
-    "@graphql-toolkit/code-file-loader": "0.10.2",
-    "@graphql-toolkit/core": "0.10.2",
-    "@graphql-toolkit/git-loader": "0.10.2",
-    "@graphql-toolkit/github-loader": "0.10.2",
-    "@graphql-toolkit/graphql-file-loader": "0.10.2",
-    "@graphql-toolkit/json-file-loader": "0.10.2",
-    "@graphql-toolkit/url-loader": "0.10.2"
+    "@graphql-toolkit/code-file-loader": "0.10.3",
+    "@graphql-toolkit/core": "0.10.3",
+    "@graphql-toolkit/git-loader": "0.10.3",
+    "@graphql-toolkit/github-loader": "0.10.3",
+    "@graphql-toolkit/graphql-file-loader": "0.10.3",
+    "@graphql-toolkit/json-file-loader": "0.10.3",
+    "@graphql-toolkit/url-loader": "0.10.3"
   },
   "devDependencies": {
     "@types/express": "4.17.4",
