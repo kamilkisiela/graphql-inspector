@@ -3,7 +3,7 @@ import {diff} from '../src/diff';
 import {CheckConclusion} from '../src/types';
 
 function getPrintedLine(source: Source, line: number): string {
-  return source.body.split('\n')[line - 1].trim();
+  return source.body.split(/\r\n|[\n\r]/g)[line - 1].trim();
 }
 
 function build(oldSource: string, newSource: string) {
@@ -93,9 +93,6 @@ test('should work with comments and descriptions', async () => {
         """
         description: String!
 
-        """
-        Name of the service.
-        """
         name: String!
 
         """
@@ -121,17 +118,14 @@ test('should work with comments and descriptions', async () => {
         The user's first name.
         """
         firstName: String!
-
         """
         The user's last name.
         """
         lastName: String!
-
         """
         The user's phone number.
         """
         phoneNumber: String!
-
         """
         A URL pointing to the user's public avatar.
         """
@@ -146,11 +140,7 @@ test('should work with comments and descriptions', async () => {
         A short description of the service.
         """
         description: String!
-
-        """
-        Name of the service.
-        """
-        name: String!
+        name: String
       }
     `,
   );
@@ -161,7 +151,7 @@ test('should work with comments and descriptions', async () => {
     sources,
   });
 
-  expect(action.annotations).toHaveLength(2);
+  expect(action.annotations).toHaveLength(3);
 
   // Type 'User' was added
   expect(getPrintedLine(sources.new, action.annotations![0].start_line)).toBe(
@@ -170,5 +160,9 @@ test('should work with comments and descriptions', async () => {
   // Field 'version' was removed from object type 'Meta'
   expect(getPrintedLine(sources.old, action.annotations![1].start_line)).toBe(
     'version: String!',
+  );
+  // Field 'Meta.name' changed type from 'String!' to 'String'
+  expect(getPrintedLine(sources.new, action.annotations![2].start_line)).toBe(
+    'name: String',
   );
 });

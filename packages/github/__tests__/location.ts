@@ -1,5 +1,5 @@
-import {buildSchema, Source} from 'graphql';
-import {getLocation} from '../src/location';
+import {Source} from 'graphql';
+import {getLocationByPath} from '../src/location';
 
 const source = new Source(/* GraphQL */ `
   type Query {
@@ -13,15 +13,12 @@ const source = new Source(/* GraphQL */ `
   }
 `);
 
-const schema = buildSchema(source);
-
 function printedLine(source: Source, line: number): string {
   return source.body.split('\n')[line - 1];
 }
 
 test('location of a Type', () => {
-  const {line} = getLocation({
-    schema,
+  const {line} = getLocationByPath({
     source,
     path: 'User',
   });
@@ -30,8 +27,7 @@ test('location of a Type', () => {
 });
 
 test('location of a Type.Field', () => {
-  const {line} = getLocation({
-    schema,
+  const {line} = getLocationByPath({
     source,
     path: 'User.id',
   });
@@ -40,8 +36,7 @@ test('location of a Type.Field', () => {
 });
 
 test('location of a Type.Field.Arg', () => {
-  const {line} = getLocation({
-    schema,
+  const {line} = getLocationByPath({
     source,
     path: 'Query.user.id',
   });
@@ -50,8 +45,7 @@ test('location of a Type.Field.Arg', () => {
 });
 
 test('location of a RootType.Field', () => {
-  const {line} = getLocation({
-    schema,
+  const {line} = getLocationByPath({
     source,
     path: 'Query.user',
   });

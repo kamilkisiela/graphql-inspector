@@ -11,7 +11,7 @@ import {
   Annotation,
   AnnotationLevel,
 } from './types';
-import {getLocation} from './location';
+import {getLocationByPath} from './location';
 
 export async function diff({
   path,
@@ -78,7 +78,7 @@ function annotate({
   const useOld = change.type.endsWith('_REMOVED');
   const source = useOld ? sources.old : sources.new;
   const loc = change.path
-    ? getLocation({path: change.path, source})
+    ? getLocationByPath({path: change.path, source})
     : {line: 1, column: 1};
 
   return {

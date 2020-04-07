@@ -1,7 +1,7 @@
 import {
-  Location,
   Source,
-  getLocation as graphqlGetLocation,
+  SourceLocation,
+  getLocation,
   Kind,
   parse,
   ObjectTypeDefinitionNode,
@@ -11,54 +11,33 @@ import {
   InterfaceTypeDefinitionNode,
   UnionTypeDefinitionNode,
   ScalarTypeDefinitionNode,
+  TypeDefinitionNode,
+  FieldDefinitionNode,
+  InputValueDefinitionNode,
+  EnumValueDefinitionNode,
 } from 'graphql';
 
-export function getLocation({path, source}: {path: string; source: Source}) {
-  const foundLoc = getNodeLocation({
-    path,
-    source,
-  });
-
-  if (!foundLoc) {
-    return {
-      line: 1,
-      column: 1,
-    };
-  }
-
-  const loc = graphqlGetLocation(source, foundLoc.start);
-  const commentedLines = countCommentsUntilLine(source, loc.line);
-
-  // I have no idea why... but it seems like offset is correct when Source contain comments
-  // If there are no comments, it adds one line, so we arrive a bit too far :)
-  const offset = commentedLines
-    ? commentedLines + source.locationOffset.line
-    : 0;
-
-  return {
-    line: loc.line + offset,
-    column: loc.column,
-  };
-}
-
-function getNodeLocation({
+export function getLocationByPath({
   path,
   source,
 }: {
   path: string;
   source: Source;
-}): Location | undefined {
+}): SourceLocation {
   const [typeName, ...rest] = path.split('.');
   const isDirective = typeName.startsWith('@');
 
   const doc = parse(source);
+
+  let resolvedNode: Node = undefined;
 
   for (const definition of doc.definitions) {
     if (
       definition.kind === Kind.OBJECT_TYPE_DEFINITION &&
       definition.name.value === typeName
     ) {
-      return resolveObjectTypeDefinition(rest, definition);
+      resolvedNode = resolveObjectTypeDefinition(rest, definition);
+      break;
     }
 
     if (
@@ -66,158 +45,176 @@ function getNodeLocation({
       definition.kind === Kind.DIRECTIVE_DEFINITION &&
       definition.name.value === typeName.substring(1)
     ) {
-      return resolveDirectiveDefinition(rest, definition);
+      resolvedNode = resolveDirectiveDefinition(rest, definition);
+      break;
     }
 
     if (
       definition.kind === Kind.ENUM_TYPE_DEFINITION &&
       definition.name.value === typeName
     ) {
-      return resolveEnumTypeDefinition(rest, definition);
+      resolvedNode = resolveEnumTypeDefinition(rest, definition);
+      break;
     }
 
     if (
       definition.kind === Kind.INPUT_OBJECT_TYPE_DEFINITION &&
       definition.name.value === typeName
     ) {
-      return resolveInputObjectTypeDefinition(rest, definition);
+      resolvedNode = resolveInputObjectTypeDefinition(rest, definition);
+      break;
     }
 
     if (
       definition.kind === Kind.INTERFACE_TYPE_DEFINITION &&
       definition.name.value === typeName
     ) {
-      return resolveInterfaceTypeDefinition(rest, definition);
+      resolvedNode = resolveInterfaceTypeDefinition(rest, definition);
+      break;
     }
 
     if (
       definition.kind === Kind.UNION_TYPE_DEFINITION &&
       definition.name.value === typeName
     ) {
-      return resolveUnionTypeDefinitionNode(rest, definition);
+      resolvedNode = resolveUnionTypeDefinitionNode(rest, definition);
+      break;
     }
 
     if (
       definition.kind === Kind.SCALAR_TYPE_DEFINITION &&
       definition.name.value === typeName
     ) {
-      return resolveScalarTypeDefinitionNode(rest, definition);
+      resolvedNode = resolveScalarTypeDefinitionNode(rest, definition);
+      break;
     }
   }
+
+  return resolveNodeSourceLocation(source, resolvedNode);;
 }
 
-function countCommentsUntilLine(source: Source, end: number): number {
-  const lines = source.body.split('\n');
-  let count = 0;
-  let i = 0;
-
-  while (i < end + count) {
-    if (lines[i].trimLeft().startsWith('#')) {
-      count++;
-    }
-
-    i++;
-  }
-
-  return count;
-}
+type Node =
+  | TypeDefinitionNode
+  | DirectiveDefinitionNode
+  | FieldDefinitionNode
+  | InputValueDefinitionNode
+  | EnumValueDefinitionNode
+  | undefined;
 
 function resolveScalarTypeDefinitionNode(
   _path: string[],
   definition: ScalarTypeDefinitionNode,
-): Location | undefined {
-  return definition.loc;
+): Node {
+  return definition;
 }
 
 function resolveUnionTypeDefinitionNode(
   _path: string[],
   definition: UnionTypeDefinitionNode,
-): Location | undefined {
-  return definition.loc;
+): Node {
+  return definition;
 }
 
 function resolveInterfaceTypeDefinition(
   path: string[],
   definition: InterfaceTypeDefinitionNode,
-): Location | undefined {
+): Node {
   const [fieldName, argName] = path;
 
   if (!fieldName) {
     console.log(definition);
-    return definition.loc;
+    return definition;
   }
 
   const field = definition.fields!.find((f) => f.name.value === fieldName)!;
 
   if (!argName) {
-    return field.loc;
+    return field;
   }
 
-  return field.arguments!.find((arg) => arg.name.value === argName)?.loc;
+  return field.arguments!.find((arg) => arg.name.value === argName);
 }
 
 function resolveInputObjectTypeDefinition(
   path: string[],
   definition: InputObjectTypeDefinitionNode,
-): Location | undefined {
+): Node {
   const [fieldName] = path;
 
   if (!fieldName) {
-    return definition.loc;
+    return definition;
   }
 
   const field = definition.fields!.find((field) => field.name.value)!;
 
-  return field.loc;
+  return field;
 }
 
 function resolveEnumTypeDefinition(
   path: string[],
   definition: EnumTypeDefinitionNode,
-): Location | undefined {
+): Node {
   const [valueName] = path;
 
   if (!valueName) {
-    return definition.loc;
+    return definition;
   }
 
-  const val = definition.values!.find((val) => val.name.value === valueName)!;
-
-  return val.loc;
+  return definition.values!.find((val) => val.name.value === valueName);
 }
 
 function resolveObjectTypeDefinition(
   path: string[],
   definition: ObjectTypeDefinitionNode,
-): Location | undefined {
+): Node {
   const [fieldName, argName] = path;
 
   if (!fieldName) {
-    return definition.loc;
+    return definition;
   }
 
   const field = definition.fields!.find((f) => f.name.value === fieldName)!;
 
   if (!argName) {
-    return field.loc;
+    return field;
   }
 
-  return field.arguments!.find((arg) => arg.name.value === argName)?.loc;
+  return field.arguments!.find((arg) => arg.name.value === argName);
 }
 
 function resolveDirectiveDefinition(
   path: string[],
   defininition: DirectiveDefinitionNode,
-): Location | undefined {
+): Node {
   const [argName] = path;
 
   if (!argName) {
-    return defininition.loc;
+    return defininition;
   }
 
   const arg = defininition.arguments!.find(
     (arg) => arg.name.value === argName,
   )!;
 
-  return arg.loc;
+  return arg;
+}
+
+function resolveNodeSourceLocation(source: Source, node: Node): SourceLocation {
+  if (!node || !node.loc) {
+    return {
+      line: 1,
+      column: 1,
+    };
+  }
+
+  const nodeLocation = getLocation(source, node.loc.start);
+
+  if (node.description && node.description.loc) {
+    return {
+      line: getLocation(source, node.description.loc.end).line + 1,
+      column: nodeLocation.column,
+    };
+  }
+
+  return nodeLocation;
 }
