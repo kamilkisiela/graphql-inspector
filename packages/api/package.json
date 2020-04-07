@@ -34,7 +34,7 @@
     "@graphql-inspector/core": "0.0.0-PLACEHOLDER",
     "@graphql-inspector/load": "0.0.0-PLACEHOLDER",
     "@graphql-modules/epoxy": "0.4.0",
-    "apollo-server-express": "2.11.0",
+    "apollo-server-express": "2.12.0",
     "graphql-tag": "2.10.3"
   },
   "devDependencies": {
