@@ -30,7 +30,7 @@
     "graphql": "^0.13.0 || ^14.0.0 || ^15.0.0"
   },
   "dependencies": {
-    "@graphql-toolkit/github-loader": "0.10.2",
+    "@graphql-toolkit/github-loader": "0.10.3",
     "tslib": "^1.11.1"
   },
   "scripts": {
