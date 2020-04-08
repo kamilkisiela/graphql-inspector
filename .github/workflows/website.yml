@@ -19,7 +19,7 @@ jobs:
       - name: ZEIT Now Deployment	
         uses: amondnet/now-deployment@v2.0.2
         with:	
-          zeit-token: ${{ secrets.NOW_TOKEN }}	
+          zeit-token: ${{ secrets.ZEIT_TOKEN }}	
           now-args: '--prod'
           now-project-id: ${{ secrets.ZEIT_PROJECT }}
           now-org-id: ${{ secrets.ZEIT_ORG }}
