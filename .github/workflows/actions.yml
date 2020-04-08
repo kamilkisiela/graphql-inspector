@@ -1,5 +1,8 @@
 name: Integration
-on: [push]
+on: 	
+  push:	
+    branches-ignore:	
+      - master
 jobs:
   Action:
     name: Test Inspector Action
