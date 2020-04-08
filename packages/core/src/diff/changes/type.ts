@@ -52,3 +52,29 @@ export function typeDescriptionChanged(
     path: oldType.name,
   };
 }
+
+export function typeDescriptionRemoved(
+  type: GraphQLNamedType,
+): Change {
+  return {
+    criticality: {
+      level: CriticalityLevel.NonBreaking,
+    },
+    type: ChangeType.TypeDescriptionRemoved,
+    message: `Description '${type.description}' was removed from object type '${type.name}'`,
+    path: type.name,
+  };
+}
+
+export function typeDescriptionAdded(
+  type: GraphQLNamedType,
+): Change {
+  return {
+    criticality: {
+      level: CriticalityLevel.NonBreaking,
+    },
+    type: ChangeType.TypeDescriptionAdded,
+    message: `Oobject type '${type.name}' has description '${type.description}'`,
+    path: type.name,
+  };
+}

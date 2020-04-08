@@ -45,6 +45,7 @@
     "jsesc": "2.5.2",
     "lint-staged": "10.1.2",
     "lodash": "4.17.15",
+    "nock": "12.0.3",
     "prettier": "2.0.4",
     "strip-ansi": "6.0.0",
     "ts-jest": "25.3.1",

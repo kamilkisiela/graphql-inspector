@@ -57,6 +57,7 @@ describe('diff', () => {
   let spyProcessCwd: jest.SpyInstance;
 
   beforeEach(() => {
+    yargs.reset();
     spyProcessExit = jest.spyOn(process, 'exit');
     spyProcessExit.mockImplementation();
 
@@ -69,11 +70,11 @@ describe('diff', () => {
   });
 
   afterEach(() => {
+    yargs.reset();
+    unmockLogger();
     spyProcessExit.mockRestore();
     spyProcessCwd.mockRestore();
     spyReporter.mockRestore();
-    yargs.reset();
-    unmockLogger();
   });
 
   test('should load graphql file', async () => {
