@@ -2,6 +2,10 @@
 
 ### vNEXT
 
+### v1.30.2
+
+- **github**: bring back default export of `app`
+
 ### v1.30.1
 
 - Support GraphQL v15
