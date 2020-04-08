@@ -3,7 +3,7 @@ const {resolve} = require('probot/lib/resolver');
 const {findPrivateKey} = require('probot/lib/private-key');
 const {GraphQLClient} = require('graphql-request');
 
-const githubApp = require('@graphql-inspector/github').default;
+const githubApp = require('@graphql-inspector/github').app;
 
 let probot;
 
