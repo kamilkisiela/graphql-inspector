@@ -8,6 +8,7 @@
     "target": "es2015",
     "module": "esnext",
     "moduleResolution": "node",
+    "resolveJsonModule": true,
     "esModuleInterop": true,
     "lib": ["ESNext"],
     "importHelpers": true,
