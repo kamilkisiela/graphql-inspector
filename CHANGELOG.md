@@ -2,6 +2,34 @@
 
 ### vNEXT
 
+- Support GraphQL v15
+- New package: `@graphql-inspector/ci` - a lightweight version of CLI mostly for CI usage
+- Modularized Commands for CLI. Each command is now a standalone package:
+  - @graphql-inspector/commands (core package)
+  - @graphql-inspector/coverage-command
+  - @graphql-inspector/docs-command
+  - @graphql-inspector/diff-command
+  - @graphql-inspector/introspect-command
+  - @graphql-inspector/similar-command
+  - @graphql-inspector/serve-command
+  - @graphql-inspector/validate-command
+- Modularized Schema and Documents loading. Each loader is now a standalone package:
+  - @graphql-inspector/loaders (core package)
+  - @graphql-inspector/code-loader
+  - @graphql-inspector/github-loader
+  - @graphql-inspector/git-loader
+  - @graphql-inspector/json-loader
+  - @graphql-inspector/graphql-loader
+  - @graphql-inspector/url-loader
+- New package for internal usage: `@graphql-inspector/logger` and `@graphql-inspector/config`
+- Rename package: `@graphql-inspector/action` (was `@graphql-inspector/actions`)
+- **core**: introduce `removed` and `added` change types for description of Object Type (before it was showing all changes as `changed`)
+- **github**, **action**: fix import of `chalk` [#1341](https://github.com/kamilkisiela/graphql-inspector/issues/1341)
+- **github**, **action**: adjust annotations to show up in correct lines [#907](https://github.com/kamilkisiela/graphql-inspector/issues/907)
+- **github**, **action**: fix an issue with `@action/core` import [#1056](https://github.com/kamilkisiela/graphql-inspector/issues/1056)
+- **action**: create integration test
+- **cli**: fix an issue with empty descriptions when using URL pointer [#1378](https://github.com/kamilkisiela/graphql-inspector/issues/1378)
+
 ### v1.27.0
 
 - **core** **cli**: introduce `keepClientFields` flag in `validate` [PR #783](https://github.com/kamilkisiela/graphql-inspector/pull/783)
