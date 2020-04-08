@@ -2,6 +2,8 @@
 
 ### vNEXT
 
+### v1.30.1
+
 - Support GraphQL v15
 - New package: `@graphql-inspector/ci` - a lightweight version of CLI mostly for CI usage
 - Modularized Commands for CLI. Each command is now a standalone package:
