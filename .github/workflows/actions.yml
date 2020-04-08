@@ -25,5 +25,5 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Validate result
-        if: steps.inspector.outputs.changes != 3
+        if: steps.inspector.outputs.changes != 2
         run: exit 1
