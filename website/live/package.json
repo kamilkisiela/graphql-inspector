@@ -4,7 +4,7 @@
   "private": true,
   "homepage": "/live/",
   "dependencies": {
-    "@graphql-inspector/core": "1.27.0",
+    "@graphql-inspector/core": "1.30.3",
     "fetch-ponyfill": "6.1.0",
     "graphql": "15.0.0",
     "react": "16.13.1",
