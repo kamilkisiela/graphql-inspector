@@ -27,7 +27,7 @@
     "figures": "3.2.0",
     "log-symbols": "3.0.0",
     "std-env": "2.2.1",
-    "jest": "25.2.7",
+    "jest": "25.3.0",
     "tslib": "^1.11.1"
   },
   "scripts": {
