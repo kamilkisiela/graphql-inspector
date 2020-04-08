@@ -1,1 +1,0 @@
-module.exports = changes => changes;

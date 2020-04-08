@@ -11,8 +11,12 @@
     "github"
   ],
   "sideEffects": false,
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "typings": "dist/index.d.ts",
+  "typescript": {
+    "definition": "dist/index.d.ts"
+  },
   "author": {
     "name": "Kamil Kisiela",
     "email": "kamil.kisiela@gmail.com",
@@ -21,7 +25,8 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "kamilkisiela/graphql-inspector"
+    "url": "kamilkisiela/graphql-inspector",
+    "directory": "packages/github"
   },
   "scripts": {
     "start": "probot run ./dist/index.js",
@@ -31,7 +36,8 @@
     "clean": "rm -rf dist/",
     "deploy": "now --docker",
     "prebuild": "yarn clean",
-    "prepublishOnly": "yarn build"
+    "prepublishOnly": "yarn build",
+    "prepack": "bob prepack"
   },
   "peerDependencies": {
     "graphql": "^14.0.0 || ^15.0.0",
@@ -39,13 +45,12 @@
   },
   "dependencies": {
     "@graphql-inspector/core": "0.0.0-PLACEHOLDER",
-    "probot-config": "1.1.0"
+    "probot-config": "1.1.0",
+    "tslib": "^1.11.1"
   },
   "devDependencies": {
     "@types/express": "4.17.4",
-    "graphql": "15.0.0",
     "probot": "9.11.2",
-    "smee-client": "1.1.0",
-    "typescript": "3.8.3"
+    "smee-client": "1.1.0"
   }
 }

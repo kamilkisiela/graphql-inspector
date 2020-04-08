@@ -8,7 +8,12 @@
     "tools"
   ],
   "sideEffects": false,
-  "main": "dist/index.js",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "typings": "dist/index.d.ts",
+  "typescript": {
+    "definition": "dist/index.d.ts"
+  },
   "author": {
     "name": "Kamil Kisiela",
     "email": "kamil.kisiela@gmail.com",
@@ -17,27 +22,17 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "kamilkisiela/graphql-inspector"
-  },
-  "scripts": {
-    "build": "tsc",
-    "test": "jest",
-    "clean": "rm -rf dist/",
-    "prebuild": "yarn clean",
-    "prepublishOnly": "yarn build"
+    "url": "kamilkisiela/graphql-inspector",
+    "directory": "packages/core"
   },
   "peerDependencies": {
     "graphql": "^0.13.0 || ^14.0.0 || ^15.0.0"
   },
   "dependencies": {
-    "dependency-graph": "0.9.0"
+    "dependency-graph": "0.9.0",
+    "tslib": "^1.11.1"
   },
-  "devDependencies": {
-    "@types/jest": "25.2.1",
-    "graphql": "15.0.0",
-    "graphql-tag": "2.10.3",
-    "jest": "25.2.7",
-    "ts-jest": "25.3.1",
-    "typescript": "3.8.3"
+  "scripts": {
+    "prepack": "bob prepack"
   }
 }

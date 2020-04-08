@@ -1,8 +1,0 @@
-{
-  "name": "@actions/cleanup",
-  "version": "1.0.0",
-  "license": "MIT",
-  "dependencies": {
-    "actions-toolkit": "4.0.0"
-  }
-}

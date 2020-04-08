@@ -1,8 +1,7 @@
-import {buildSchema, printSchema} from 'graphql';
-import {getLocation} from '../src/location';
-import {GraphQLSchema} from 'graphql';
+import {Source} from 'graphql';
+import {getLocationByPath} from '../src/location';
 
-const schema = buildSchema(/* GraphQL */ `
+const source = new Source(/* GraphQL */ `
   type Query {
     user(id: ID!): User
     users: [User!]
@@ -14,42 +13,42 @@ const schema = buildSchema(/* GraphQL */ `
   }
 `);
 
-function printedLine(schema: GraphQLSchema, line: number): string {
-  const printed = printSchema(schema);
-  return printed.split('\n')[line - 1];
+function printedLine(source: Source, line: number): string {
+  return source.body.split('\n')[line - 1];
 }
 
-test('location of a Type', async () => {
-  const {line} = getLocation({
-    schema,
+test('location of a Type', () => {
+  const {line} = getLocationByPath({
+    source,
     path: 'User',
   });
 
-  expect(printedLine(schema, line)).toMatch('type User {');
+  expect(printedLine(source, line)).toMatch('type User {');
 });
-test('location of a Type.Field', async () => {
-  const {line} = getLocation({
-    schema,
+
+test('location of a Type.Field', () => {
+  const {line} = getLocationByPath({
+    source,
     path: 'User.id',
   });
 
-  expect(printedLine(schema, line)).toMatch('id: ID!');
+  expect(printedLine(source, line)).toMatch('id: ID!');
 });
 
-test('location of a Type.Field.Arg', async () => {
-  const {line} = getLocation({
-    schema,
+test('location of a Type.Field.Arg', () => {
+  const {line} = getLocationByPath({
+    source,
     path: 'Query.user.id',
   });
 
-  expect(printedLine(schema, line)).toMatch('user(id: ID!): User');
+  expect(printedLine(source, line)).toMatch('user(id: ID!): User');
 });
 
-test('location of a RootType.Field', async () => {
-  const {line} = getLocation({
-    schema,
+test('location of a RootType.Field', () => {
+  const {line} = getLocationByPath({
+    source,
     path: 'Query.user',
   });
 
-  expect(printedLine(schema, line)).toMatch('user(id: ID!): User');
+  expect(printedLine(source, line)).toMatch('user(id: ID!): User');
 });

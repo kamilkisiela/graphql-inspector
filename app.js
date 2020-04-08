@@ -1,4 +1,4 @@
 // For quick tests
-const appFn = require('@graphql-inspector/github').default;
+const {app} = require('@graphql-inspector/github');
 
-module.exports = appFn;
+module.exports = app;

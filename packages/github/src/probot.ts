@@ -1,6 +1,6 @@
 import * as probot from 'probot';
 import * as getGithubConfig from 'probot-config';
-import {buildSchema} from 'graphql';
+import {buildSchema, Source} from 'graphql';
 
 import {CheckConclusion, ActionResult, Annotation} from './types';
 import {diff} from './diff';
@@ -70,7 +70,7 @@ export interface SchemaPointer {
 }
 
 export default function handleProbot(app: probot.Application) {
-  app.on('check_run', async context => {
+  app.on('check_run', async (context) => {
     const ref = context.payload.check_run.head_sha;
     const action = context.payload.action;
     const {owner, repo} = context.repo();
@@ -78,7 +78,7 @@ export default function handleProbot(app: probot.Application) {
     await handleAction({context, owner, repo, ref, action});
   });
 
-  app.on('check_suite', async context => {
+  app.on('check_suite', async (context) => {
     const ref = context.payload.check_suite.head_sha;
     const action = context.payload.action;
     const {owner, repo} = context.repo();
@@ -139,9 +139,13 @@ export async function handleAction({
     ref,
   };
 
+  const sources = {
+    old: new Source(await loadFile(oldPointer)),
+    new: new Source(await loadFile(newPointer)),
+  };
   const schemas = {
-    old: buildSchema(await loadFile(oldPointer)),
-    new: buildSchema(await loadFile(newPointer)),
+    old: buildSchema(sources.old),
+    new: buildSchema(sources.new),
   };
 
   context.log.info(`Both schemas built - ${id}`);
@@ -153,6 +157,7 @@ export async function handleAction({
       diff({
         path: config.schema.path,
         schemas,
+        sources,
       }),
     );
   }
@@ -162,7 +167,7 @@ export async function handleAction({
   context.log.info(`Actions (${actions.length}) are ready - ${id}`);
 
   const conclusion = results.some(
-    action => action.conclusion === CheckConclusion.Failure,
+    (action) => action.conclusion === CheckConclusion.Failure,
   )
     ? CheckConclusion.Failure
     : CheckConclusion.Success;

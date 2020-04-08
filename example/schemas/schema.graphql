@@ -1,6 +1,11 @@
+# AUTO-GENERATED
+
 type Post {
   id: ID
   title: String @deprecated(reason: "No more used")
+  """
+  Date of Creation in ISO
+  """
   createdAt: String
   modifiedAt: String
 }

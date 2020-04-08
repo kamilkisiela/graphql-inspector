@@ -11,7 +11,7 @@ import {
   isScalarType,
 } from 'graphql';
 
-import {isNotEqual} from './common/compare';
+import {isNotEqual, isVoid} from './common/compare';
 import {unionArrays, diffArrays} from '../utils/arrays';
 import {isPrimitive} from '../utils/graphql';
 import {Change} from './changes/change';
@@ -25,6 +25,8 @@ import {
   typeAdded,
   typeKindChanged,
   typeDescriptionChanged,
+  typeDescriptionAdded,
+  typeDescriptionRemoved,
 } from './changes/type';
 import {directiveRemoved, directiveAdded} from './changes/directive';
 import {changesInEnum} from './enum';
@@ -191,7 +193,13 @@ function changesInType(
   }
 
   if (isNotEqual(oldType.description, newType.description)) {
-    changes.push(typeDescriptionChanged(oldType, newType));
+    if (isVoid(oldType.description)) {
+      changes.push(typeDescriptionAdded(newType));
+    } else if (isVoid(newType.description)) {
+      changes.push(typeDescriptionRemoved(oldType));
+    } else {
+      changes.push(typeDescriptionChanged(oldType, newType));
+    }
   }
 
   return changes;

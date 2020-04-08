@@ -8,6 +8,11 @@ inputs:
   schema:
     description: 'Ref and Path to GraphQL Schema (e.g. "master:schema.graphql")'
     required: true
+  github-token:
+    description: 'Github Token'
+outputs:
+  changes:
+    description: 'Total number of changes'
 runs:
   using: 'node12'
-  main: 'lib/action.js'
+  main: 'action/index.js'

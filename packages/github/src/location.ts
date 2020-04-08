@@ -1,115 +1,220 @@
 import {
-  GraphQLSchema,
-  printSchema,
-  buildSchema,
-  isObjectType,
-  isDirective,
-  isEnumType,
-  isInputObjectType,
-  Location,
   Source,
-  getLocation as graphqlGetLocation,
+  SourceLocation,
+  getLocation,
+  Kind,
+  parse,
+  ObjectTypeDefinitionNode,
+  DirectiveDefinitionNode,
+  EnumTypeDefinitionNode,
+  InputObjectTypeDefinitionNode,
+  InterfaceTypeDefinitionNode,
+  UnionTypeDefinitionNode,
+  ScalarTypeDefinitionNode,
+  TypeDefinitionNode,
+  FieldDefinitionNode,
+  InputValueDefinitionNode,
+  EnumValueDefinitionNode,
 } from 'graphql';
 
-function normalizeSchema(schema: GraphQLSchema): GraphQLSchema {
-  return buildSchema(printSchema(schema));
-}
-
-export function getLocation({
+export function getLocationByPath({
   path,
-  schema,
+  source,
 }: {
   path: string;
-  schema: GraphQLSchema;
-}) {
-  const normalizedSchema = normalizeSchema(schema);
-  const printed = printSchema(normalizedSchema);
-  const loc = getNodeLocation({path, schema: normalizedSchema});
-  const source = new Source(printed);
+  source: Source;
+}): SourceLocation {
+  const [typeName, ...rest] = path.split('.');
+  const isDirective = typeName.startsWith('@');
 
-  if (!loc) {
+  const doc = parse(source);
+
+  let resolvedNode: Node = undefined;
+
+  for (const definition of doc.definitions) {
+    if (
+      definition.kind === Kind.OBJECT_TYPE_DEFINITION &&
+      definition.name.value === typeName
+    ) {
+      resolvedNode = resolveObjectTypeDefinition(rest, definition);
+      break;
+    }
+
+    if (
+      isDirective &&
+      definition.kind === Kind.DIRECTIVE_DEFINITION &&
+      definition.name.value === typeName.substring(1)
+    ) {
+      resolvedNode = resolveDirectiveDefinition(rest, definition);
+      break;
+    }
+
+    if (
+      definition.kind === Kind.ENUM_TYPE_DEFINITION &&
+      definition.name.value === typeName
+    ) {
+      resolvedNode = resolveEnumTypeDefinition(rest, definition);
+      break;
+    }
+
+    if (
+      definition.kind === Kind.INPUT_OBJECT_TYPE_DEFINITION &&
+      definition.name.value === typeName
+    ) {
+      resolvedNode = resolveInputObjectTypeDefinition(rest, definition);
+      break;
+    }
+
+    if (
+      definition.kind === Kind.INTERFACE_TYPE_DEFINITION &&
+      definition.name.value === typeName
+    ) {
+      resolvedNode = resolveInterfaceTypeDefinition(rest, definition);
+      break;
+    }
+
+    if (
+      definition.kind === Kind.UNION_TYPE_DEFINITION &&
+      definition.name.value === typeName
+    ) {
+      resolvedNode = resolveUnionTypeDefinitionNode(rest, definition);
+      break;
+    }
+
+    if (
+      definition.kind === Kind.SCALAR_TYPE_DEFINITION &&
+      definition.name.value === typeName
+    ) {
+      resolvedNode = resolveScalarTypeDefinitionNode(rest, definition);
+      break;
+    }
+  }
+
+  return resolveNodeSourceLocation(source, resolvedNode);;
+}
+
+type Node =
+  | TypeDefinitionNode
+  | DirectiveDefinitionNode
+  | FieldDefinitionNode
+  | InputValueDefinitionNode
+  | EnumValueDefinitionNode
+  | undefined;
+
+function resolveScalarTypeDefinitionNode(
+  _path: string[],
+  definition: ScalarTypeDefinitionNode,
+): Node {
+  return definition;
+}
+
+function resolveUnionTypeDefinitionNode(
+  _path: string[],
+  definition: UnionTypeDefinitionNode,
+): Node {
+  return definition;
+}
+
+function resolveInterfaceTypeDefinition(
+  path: string[],
+  definition: InterfaceTypeDefinitionNode,
+): Node {
+  const [fieldName, argName] = path;
+
+  if (!fieldName) {
+    console.log(definition);
+    return definition;
+  }
+
+  const field = definition.fields!.find((f) => f.name.value === fieldName)!;
+
+  if (!argName) {
+    return field;
+  }
+
+  return field.arguments!.find((arg) => arg.name.value === argName);
+}
+
+function resolveInputObjectTypeDefinition(
+  path: string[],
+  definition: InputObjectTypeDefinitionNode,
+): Node {
+  const [fieldName] = path;
+
+  if (!fieldName) {
+    return definition;
+  }
+
+  const field = definition.fields!.find((field) => field.name.value)!;
+
+  return field;
+}
+
+function resolveEnumTypeDefinition(
+  path: string[],
+  definition: EnumTypeDefinitionNode,
+): Node {
+  const [valueName] = path;
+
+  if (!valueName) {
+    return definition;
+  }
+
+  return definition.values!.find((val) => val.name.value === valueName);
+}
+
+function resolveObjectTypeDefinition(
+  path: string[],
+  definition: ObjectTypeDefinitionNode,
+): Node {
+  const [fieldName, argName] = path;
+
+  if (!fieldName) {
+    return definition;
+  }
+
+  const field = definition.fields!.find((f) => f.name.value === fieldName)!;
+
+  if (!argName) {
+    return field;
+  }
+
+  return field.arguments!.find((arg) => arg.name.value === argName);
+}
+
+function resolveDirectiveDefinition(
+  path: string[],
+  defininition: DirectiveDefinitionNode,
+): Node {
+  const [argName] = path;
+
+  if (!argName) {
+    return defininition;
+  }
+
+  const arg = defininition.arguments!.find(
+    (arg) => arg.name.value === argName,
+  )!;
+
+  return arg;
+}
+
+function resolveNodeSourceLocation(source: Source, node: Node): SourceLocation {
+  if (!node || !node.loc) {
     return {
       line: 1,
       column: 1,
     };
   }
 
-  return graphqlGetLocation(source, loc.start);
-}
+  const nodeLocation = getLocation(source, node.loc.start);
 
-function getNodeLocation({
-  path,
-  schema,
-}: {
-  path: string;
-  schema: GraphQLSchema;
-}): Location | undefined {
-  const [typeName, ...rest] = path.split('.');
-  const type = typeName.startsWith('@')
-    ? schema.getDirective(typeName.substring(1))!
-    : schema.getType(typeName)!;
-
-  if (isObjectType(type)) {
-    // type.field.arg
-    const [fieldName, argName] = rest;
-
-    if (fieldName) {
-      const field = type.getFields()[fieldName];
-
-      if (argName) {
-        const arg = field.args.find(a => a.name === argName)!;
-
-        // type.field.arg
-        return arg.astNode!.loc;
-      }
-
-      // type.field
-      return field.astNode!.loc;
-    }
-
-    // type
-    return type.astNode!.loc;
-  } else if (isDirective(type)) {
-    // directive.arg
-    const [argName] = rest;
-
-    if (argName) {
-      const arg = type.args.find(a => a.name === argName)!;
-
-      // directive.arg
-      return arg.astNode!.loc;
-    }
-
-    // directive
-    return type.astNode!.loc;
-  } else if (isEnumType(type)) {
-    // enum.value
-    const [valueName] = rest;
-
-    if (valueName) {
-      const val = type.getValue(valueName)!;
-
-      // enum.value
-      return val.astNode!.loc;
-    }
-
-    // enum
-    return type.astNode!.loc;
-  } else if (isInputObjectType(type)) {
-    // input.field
-    const [fieldName] = rest;
-
-    if (fieldName) {
-      const field = type.getFields()[fieldName]!;
-
-      // input.field
-      return field.astNode!.loc;
-    }
-
-    // input
-    return type.astNode!.loc;
-  } else {
-    // name
-    return type.astNode!.loc;
+  if (node.description && node.description.loc) {
+    return {
+      line: getLocation(source, node.description.loc.end).line + 1,
+      column: nodeLocation.column,
+    };
   }
+
+  return nodeLocation;
 }

@@ -53,6 +53,10 @@ export enum ChangeType {
   TypeAdded = 'TYPE_ADDED',
   TypeKindChanged = 'TYPE_KIND_CHANGED',
   TypeDescriptionChanged = 'TYPE_DESCRIPTION_CHANGED',
+  // TODO
+  TypeDescriptionRemoved = 'TYPE_DESCRIPTION_REMOVED',
+  // TODO
+  TypeDescriptionAdded = 'TYPE_DESCRIPTION_ADDED',
   // Union
   UnionMemberRemoved = 'UNION_MEMBER_REMOVED',
   UnionMemberAdded = 'UNION_MEMBER_ADDED',

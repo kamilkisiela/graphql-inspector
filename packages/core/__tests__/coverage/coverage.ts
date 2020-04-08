@@ -1,5 +1,4 @@
-import {buildSchema, Source, print, getIntrospectionQuery} from 'graphql';
-import gql from 'graphql-tag';
+import {buildSchema, Source, parse, print, getIntrospectionQuery} from 'graphql';
 
 import {coverage} from '../../src/index';
 
@@ -28,7 +27,7 @@ describe('coverage', () => {
     }
   `);
   test('basic', () => {
-    const doc = gql`
+    const doc = parse(/* GraphQL */`
       query getPost {
         post {
           id
@@ -45,7 +44,7 @@ describe('coverage', () => {
           }
         }
       }
-    `;
+    `);
 
     const results = coverage(schema, [new Source(print(doc))]);
 
