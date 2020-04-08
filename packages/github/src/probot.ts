@@ -1,6 +1,7 @@
 import * as probot from 'probot';
 import * as getGithubConfig from 'probot-config';
 import {buildSchema, Source} from 'graphql';
+import {Change, CriticalityLevel} from '@graphql-inspector/core';
 
 import {CheckConclusion, ActionResult, Annotation} from './types';
 import {diff} from './diff';
@@ -180,19 +181,62 @@ export async function handleAction({
     return annotations;
   }, []);
 
-  const issueInfo = `Found ${annotations.length} issue${
-    annotations.length > 1 ? 's' : ''
-  }`;
-  const {title, summary} =
+  const changes = results.reduce<Change[]>(
+    (arr, annotation) =>
+      annotation.changes ? arr.concat(annotation.changes) : arr,
+    [],
+  );
+
+  const breakingChanges = changes.filter(
+    (change) => change.criticality.level === CriticalityLevel.Breaking,
+  );
+  const dangerousChanges = changes.filter(
+    (change) => change.criticality.level === CriticalityLevel.Dangerous,
+  );
+  const safeChanges = changes.filter(
+    (change) => change.criticality.level === CriticalityLevel.NonBreaking,
+  );
+
+  const summary: string[] = [
+    `# Found ${annotations.length} change${annotations.length > 1 ? 's' : ''}`,
+    '',
+    `Breaking: ${breakingChanges.length}`,
+    `Dangerous: ${dangerousChanges.length}`,
+    `Safe: ${safeChanges.length}`,
+  ];
+
+  function addChangesToSummary(type: string, changes: Change[]): void {
+    summary.push(
+      ...['', `## ${type} changes`].concat(
+        changes.map((change) => ` - ${bolderize(change.message)}`),
+      ),
+    );
+  }
+
+  if (breakingChanges.length) {
+    addChangesToSummary('Breaking', breakingChanges);
+  }
+
+  if (dangerousChanges.length) {
+    addChangesToSummary('Dangerous', dangerousChanges);
+  }
+
+  if (safeChanges.length) {
+    addChangesToSummary('Safe', safeChanges);
+  }
+
+  summary.push(
+    [
+      '',
+      '___',
+      `Thank you for using [GraphQL Inspector](https://graphql-inspector.com/)`,
+    ].join('\n'),
+  );
+
+  const title =
     conclusion === CheckConclusion.Failure
-      ? {
-          title: `Something is wrong with your schema`,
-          summary: issueInfo,
-        }
-      : {
-          title: 'Everything looks good',
-          summary: issueInfo,
-        };
+      ? 'Something is wrong with your schema'
+      : 'Everything looks good';
 
   context.log.info(`Sending annotations (${annotations.length})`);
 
@@ -200,7 +244,7 @@ export async function handleAction({
     url,
     context,
     title,
-    summary,
+    summary: summary.join('\n'),
     annotations,
   });
 
@@ -248,4 +292,13 @@ export async function handleAction({
 
     return loader(context, identifier);
   }
+}
+
+function bolderize(msg: string): string {
+  const findSingleQuotes = /\'([^']+)\'/gim;
+  const findDoubleQuotes = /\"([^"]+)\"/gim;
+
+  return msg
+    .replace(findSingleQuotes, (_: string, value: string) => `**${value}**`)
+    .replace(findDoubleQuotes, (_: string, value: string) => `**${value}**`);
 }

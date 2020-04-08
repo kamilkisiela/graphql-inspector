@@ -2,6 +2,8 @@
 
 ### vNEXT
 
+- **github**: summary page with details (like in Github Action)
+
 ### v1.30.3
 
 ### v1.30.2
