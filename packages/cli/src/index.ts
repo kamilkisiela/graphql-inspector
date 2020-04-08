@@ -8,6 +8,7 @@ async function main() {
       loaders: ['code', 'git', 'github', 'graphql', 'json', 'url'],
       commands: [
         'docs',
+        'serve',
         'diff',
         'validate',
         'coverage',

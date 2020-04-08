@@ -51,6 +51,9 @@
       "@graphql-inspector/docs-command": [
         "packages/commands/docs/src/index.ts"
       ],
+      "@graphql-inspector/serve-command": [
+        "packages/commands/serve/src/index.ts"
+      ],
       "@graphql-inspector/coverage-command": [
         "packages/commands/coverage/src/index.ts"
       ],

@@ -1,13 +1,7 @@
 import {createCommand} from '@graphql-inspector/commands';
 import open from 'open';
 
-export default createCommand<
-  {},
-  {
-    oldSchema: string;
-    newSchema: string;
-  }
->(() => {
+export default createCommand(() => {
   return {
     command: ['docs', 'website'],
     describe: 'Open Documentation',

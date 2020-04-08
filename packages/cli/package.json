@@ -52,6 +52,7 @@
   },
   "dependencies": {
     "@graphql-inspector/commands": "0.0.0-PLACEHOLDER",
+    "@graphql-inspector/serve-command": "0.0.0-PLACEHOLDER",
     "@graphql-inspector/docs-command": "0.0.0-PLACEHOLDER",
     "@graphql-inspector/diff-command": "0.0.0-PLACEHOLDER",
     "@graphql-inspector/validate-command": "0.0.0-PLACEHOLDER",
