@@ -60,7 +60,7 @@ if (isLatest) {
   );
 }
 
-exec(`yarn build`);
+exec(`yarn build && yarn action && git add action/`);
 
 const extra = isLatest ? '' : ` --tag ${versionOrCanary}`;
 const cmd = `npm publish dist${extra} --access public`;
