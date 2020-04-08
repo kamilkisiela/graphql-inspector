@@ -43,7 +43,7 @@
     "@types/node": "13.11.1",
     "@types/yargs": "15.0.4",
     "@zeit/ncc": "0.22.1",
-    "bob-the-bundler": "1.0.0-rc.9",
+    "bob-the-bundler": "1.0.0-rc.14",
     "graphql": "15.0.0",
     "jsesc": "2.5.2",
     "lint-staged": "10.1.2",
