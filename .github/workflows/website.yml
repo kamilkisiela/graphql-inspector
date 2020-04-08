@@ -17,7 +17,7 @@ jobs:
           node-version: 13
 
       - name: ZEIT Now Deployment	
-        uses: amondnet/now-deployment@v2.0.1	
+        uses: amondnet/now-deployment@v2.0.2
         with:	
           zeit-token: ${{ secrets.NOW_TOKEN }}	
           now-args: '--prod'
