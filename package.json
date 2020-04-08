@@ -40,7 +40,7 @@
     "@types/cors": "2.8.6",
     "@types/express": "4.17.5",
     "@types/jest": "25.2.1",
-    "@types/node": "13.9.5",
+    "@types/node": "13.11.1",
     "@types/yargs": "15.0.4",
     "@zeit/ncc": "0.22.0",
     "bob-the-bundler": "1.0.0-rc.9",
