@@ -2,6 +2,8 @@
 
 ### vNEXT
 
+### v1.30.3
+
 ### v1.30.2
 
 - **github**: bring back default export of `app`
