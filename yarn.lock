@@ -372,7 +372,7 @@
     unique-filename "^1.1.1"
     which "^1.3.1"
 
-"@graphql-toolkit/code-file-loader@0.10.3":
+"@graphql-toolkit/code-file-loader@~0.10.3":
   version "0.10.3"
   resolved "https://registry.yarnpkg.com/@graphql-toolkit/code-file-loader/-/code-file-loader-0.10.3.tgz#17a2f8206a82c3e786588c1b03a0a6ef30bb7997"
   integrity sha512-jk0ORHQ/JTdzAx0rPUftBQHa7JMPTV7VkJVR5gm9p4hot34zN6D30HPtC24l7a59k9AJpb8tYbwwiFpRUz2pJA==
@@ -391,7 +391,7 @@
     graphql-tools-fork "9.0.1"
     lodash "4.17.15"
 
-"@graphql-toolkit/core@0.10.3":
+"@graphql-toolkit/core@~0.10.3":
   version "0.10.3"
   resolved "https://registry.yarnpkg.com/@graphql-toolkit/core/-/core-0.10.3.tgz#8ed1a31197953f7b09ad741ab7b5407bc09041ae"
   integrity sha512-eM+71oYMId9YglsWihBWL++3CacCW6BqyUUbr+o0KdGui5xdkWYBIIZl+PK57b1GKK5fsGeSvK0Zn61p1mkzkA==
@@ -409,7 +409,7 @@
     unixify "1.0.0"
     valid-url "1.0.9"
 
-"@graphql-toolkit/git-loader@0.10.3":
+"@graphql-toolkit/git-loader@~0.10.3":
   version "0.10.3"
   resolved "https://registry.yarnpkg.com/@graphql-toolkit/git-loader/-/git-loader-0.10.3.tgz#fcad429955f350d964081f8fc124bcc1c0158dea"
   integrity sha512-ZpXIgswtDFB3ywP67FCEwpw13k8kSuoeLlK9M7mkkCphaz1daFTD1gzjT0nSWRna1zQcSCj+KdSBmmb6Ht9SEA==
@@ -418,7 +418,7 @@
     "@graphql-toolkit/graphql-tag-pluck" "0.10.3"
     simple-git "1.132.0"
 
-"@graphql-toolkit/github-loader@0.10.3":
+"@graphql-toolkit/github-loader@~0.10.3":
   version "0.10.3"
   resolved "https://registry.yarnpkg.com/@graphql-toolkit/github-loader/-/github-loader-0.10.3.tgz#3c905beed849e9019f80ba3e5a218df68fef0479"
   integrity sha512-xbLdhczTLnsgi6mfrdS8goiVa32+/Ha4QdJRuBvufCaKYSYh8njo7ppudHvJd6CJrCM3haHOucGJBXn243R+zg==
@@ -427,7 +427,7 @@
     "@graphql-toolkit/graphql-tag-pluck" "0.10.3"
     cross-fetch "3.0.4"
 
-"@graphql-toolkit/graphql-file-loader@0.10.3":
+"@graphql-toolkit/graphql-file-loader@~0.10.3":
   version "0.10.3"
   resolved "https://registry.yarnpkg.com/@graphql-toolkit/graphql-file-loader/-/graphql-file-loader-0.10.3.tgz#87f76f844eadb85fce72e26c7d3221c858657731"
   integrity sha512-J6BcIq9ArHLx/h/xUwjLUUBZB48AlYYKvo0b5nHPv6jTpBMYgfzTFM0oUskUEFzm0i2IJcQ7tLl+cH6dkJTkhQ==
@@ -447,7 +447,7 @@
   optionalDependencies:
     vue-template-compiler "^2.6.11"
 
-"@graphql-toolkit/json-file-loader@0.10.3":
+"@graphql-toolkit/json-file-loader@~0.10.3":
   version "0.10.3"
   resolved "https://registry.yarnpkg.com/@graphql-toolkit/json-file-loader/-/json-file-loader-0.10.3.tgz#bb10d66e74695f514387f76dabf03c6d2f265b7e"
   integrity sha512-1p3R1D9srYX09R3KKpJ5r+Yz81+qsCuG9YHGiQz5MV+oMyNglvihyzXs643+v74/ffIBAG53uvjUp9D9ZG0lAQ==
@@ -465,7 +465,7 @@
     graphql-tools-fork "9.0.1"
     tslib "1.11.1"
 
-"@graphql-toolkit/url-loader@0.10.3":
+"@graphql-toolkit/url-loader@~0.10.3":
   version "0.10.3"
   resolved "https://registry.yarnpkg.com/@graphql-toolkit/url-loader/-/url-loader-0.10.3.tgz#d0db41e97cd6b99e2d96602f73c5a1ce9df473ef"
   integrity sha512-A1rswNcKEcrBUVk587qnxwIVVyDFk9PpRWCa7VxVv96LFxxzX6qNH6lE/5Dywxk63G7LgEXozLSWc5Le1D1hPg==

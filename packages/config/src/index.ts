@@ -43,15 +43,15 @@ function moduleExists(name: string) {
 }
 
 function discoverLoaders(loaders: string[]) {
-  const names = loaders.map((name) => `@graphql-inspector/${name}-loader`);
-
-  return names.filter(moduleExists);
+  return loaders.filter((name) =>
+    moduleExists(`@graphql-inspector/${name}-loader`),
+  );
 }
 
 function discoverCommands(commands: string[]) {
-  const names = commands.map((name) => `@graphql-inspector/${name}-command`);
-
-  return names.filter(moduleExists);
+  return commands.filter((name) =>
+    moduleExists(`@graphql-inspector/${name}-command`),
+  );
 }
 
 function ensureList<T>(list: any, path: string): T[] {

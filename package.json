@@ -45,6 +45,7 @@
     "@zeit/ncc": "0.22.1",
     "bob-the-bundler": "1.0.0-rc.14",
     "graphql": "15.0.0",
+    "jest": "25.3.0",
     "jsesc": "3.0.0",
     "lint-staged": "10.1.2",
     "lodash": "4.17.15",

@@ -34,7 +34,8 @@ async function main() {
   commands
     .reduce((cli, cmd) => cli.command(cmd), root)
     .help()
-    .showHelpOnFail(false).argv;
+    .showHelpOnFail(false)
+    .strict(true).argv;
 }
 
 main();
