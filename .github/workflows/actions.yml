@@ -27,4 +27,4 @@ jobs:
 
       - name: Validate result
         if: steps.inspector.outputs.changes != 3
-        run: echo 'Expected 3 changes received ${{ secrets.GITHUB_TOKEN }}' && exit 1
+        run: echo 'Expected 3 changes received ${{ steps.inspector.outputs.changes }}' && exit 1
