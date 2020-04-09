@@ -15,6 +15,7 @@ jobs:
         run: |
           sed -i 's/createdAt: String/createdAt: String!/g' ./example/schemas/schema.graphql
           sed -i 's/modifiedAt: String/modifiedAt: String!/g' ./example/schemas/schema.graphql
+          sed -i 's/title: String @deprecated(reason: "No more used")/title: String' ./example/schemas/schema.graphql
           cat ./example/schemas/schema.graphql
 
       - name: Run Inspector
@@ -25,5 +26,5 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Validate result
-        if: steps.inspector.outputs.changes != 2
+        if: steps.inspector.outputs.changes != 3
         run: exit 1
