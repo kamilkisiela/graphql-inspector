@@ -5569,10 +5569,10 @@ jsdom@^15.2.1:
     ws "^7.0.0"
     xml-name-validator "^3.0.0"
 
-jsesc@3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/jsesc/-/jsesc-3.0.0.tgz#9e29dd235ea5d5040ef8823aeb6604f30d8cce54"
-  integrity sha512-f4Lv5LNZUw4rZ6gjHwbTsiVxKekg3Hx5JP/phP7dXpLXCyEk6JsNRqPCDAnO6G1iaqYzljpIbOlC23aSUIeeXg==
+jsesc@3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/jsesc/-/jsesc-3.0.1.tgz#0e10205322721c22716cd5bbdbf80e71fb9c8344"
+  integrity sha512-w+MMxnByppM4jwskitZotEtvtO3a2C7WOz31NxJToGisHuysCAQQU7umb/pA/6soPFe8LGjXFEFbuPuLEPm7Ag==
 
 jsesc@^2.5.1:
   version "2.5.2"
