@@ -28,11 +28,11 @@
   },
   "peerDependencies": {
     "@graphql-inspector/config": "0.0.0-PLACEHOLDER",
+    "@graphql-toolkit/common": "~0.10.3",
     "graphql": "^0.13.0 || ^14.0.0 || ^15.0.0"
   },
   "dependencies": {
-    "@graphql-toolkit/common": "0.10.3",
-    "@graphql-toolkit/core": "0.10.3",
+    "@graphql-toolkit/core": "~0.10.3",
     "tslib": "^1.11.1"
   },
   "scripts": {
