@@ -2,6 +2,8 @@
 
 ### vNEXT
 
+### v1.30.4
+
 - **github**: summary page with details (like in Github Action)
 - **ci**: auto discovery of commands and loaders
 - **ci**: fail on unknown command
