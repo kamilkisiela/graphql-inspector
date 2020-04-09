@@ -15,7 +15,7 @@ jobs:
         run: |
           sed -i 's/createdAt: String/createdAt: String!/g' ./example/schemas/schema.graphql
           sed -i 's/modifiedAt: String/modifiedAt: String!/g' ./example/schemas/schema.graphql
-          sed -i 's/title: String @deprecated(reason: "No more used")/title: String/g' ./example/schemas/schema.graphql
+          sed -i 's/post: Post!/post(id: ID): Post!/g' ./example/schemas/schema.graphql
           cat ./example/schemas/schema.graphql
 
       - name: Run Inspector
@@ -27,4 +27,4 @@ jobs:
 
       - name: Validate result
         if: steps.inspector.outputs.changes != 3
-        run: exit 1
+        run: echo 'Expected 3 changes received ${{ secrets.GITHUB_TOKEN }}' && exit 1
