@@ -4,6 +4,7 @@
 
 - **github**: summary page with details (like in Github Action)
 - **ci**: auto discovery of commands and loaders
+- **ci**: fail on unknown command
 - use version ranges for `@graphql-toolkit/*`
 - **logger**: remove `jest` from dependencies
 
