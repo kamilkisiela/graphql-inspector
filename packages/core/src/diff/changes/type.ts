@@ -74,7 +74,7 @@ export function typeDescriptionAdded(
       level: CriticalityLevel.NonBreaking,
     },
     type: ChangeType.TypeDescriptionAdded,
-    message: `Oobject type '${type.name}' has description '${type.description}'`,
+    message: `Object type '${type.name}' has description '${type.description}'`,
     path: type.name,
   };
 }

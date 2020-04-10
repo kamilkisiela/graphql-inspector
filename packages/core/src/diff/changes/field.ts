@@ -189,6 +189,7 @@ export function fieldArgumentAdded(
         }
       : {
           level: CriticalityLevel.Dangerous,
+          reason: `Adding a new argument to an existing field may involve a change in resolve function logic that potentially may cause some side effects.`,
         },
     type: ChangeType.FieldArgumentAdded,
     message: `Argument '${arg.name}: ${arg.type}' added to field '${type.name}.${field.name}'`,
