@@ -2,6 +2,8 @@
 
 ### vNEXT
 
+- **github**: put annotations of removed parts of schema on new schema [#1414](https://github.com/kamilkisiela/graphql-inspector/issues/1414)
+
 ### v1.30.4
 
 - **github**: summary page with details (like in Github Action)

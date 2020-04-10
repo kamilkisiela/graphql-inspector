@@ -37,7 +37,7 @@ export async function diff({
   }
 
   const annotations = await Promise.all(
-    changes.map((change) => annotate({path, change, sources})),
+    changes.map((change) => annotate({path, change, source: sources.new})),
   );
   let conclusion: CheckConclusion = CheckConclusion.Success;
 
@@ -65,18 +65,15 @@ const levelMap = {
 function annotate({
   path,
   change,
-  sources,
+  source,
 }: {
   path: string;
   change: Change;
-  sources: {
-    old: Source;
-    new: Source;
-  };
+  source: Source;
 }): Annotation {
   const level = change.criticality.level;
   const loc = change.path
-    ? getLocationByPath({path: change.path, source: sources.new})
+    ? getLocationByPath({path: change.path, source})
     : {line: 1, column: 1};
 
   return {
