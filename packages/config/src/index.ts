@@ -1,44 +1,43 @@
+// Right now everything is hardcoded for better UX but this may change in future.
+// It's just easier to leave it this way
+
 export interface InspectorConfig {
-  use: {
-    loaders: string[];
-    commands: string[];
-  };
+  loaders: string[];
+  commands: string[];
 }
+
+export const availableCommands = [
+  'coverage',
+  'diff',
+  'docs',
+  'introspect',
+  'serve',
+  'similar',
+  'validate',
+];
+
+export const availableLoaders = [
+  'code',
+  'git',
+  'github',
+  'graphql',
+  'json',
+  'url',
+];
 
 export async function useConfig(): Promise<InspectorConfig | never> {
   return {
-    use: {
-      loaders: ensureList(
-        discoverLoaders(['code', 'git', 'github', 'graphql', 'json', 'url']),
-        'loaders',
-      ),
-      commands: ensureList(
-        discoverCommands([
-          'coverage',
-          'diff',
-          'docs',
-          'introspect',
-          'serve',
-          'similar',
-          'validate',
-        ]),
-        'commands',
-      ),
-    },
+    loaders: ensureList(discoverLoaders(availableLoaders), 'loaders'),
+    commands: ensureList(discoverCommands(availableCommands), 'commands'),
   };
 }
 
 function moduleExists(name: string) {
   try {
-    require(name);
-
+    require.resolve(name);
     return true;
   } catch (error) {
-    if (error?.message?.includes(`Cannot find module '${name}'`)) {
-      return false;
-    }
-
-    throw error;
+    return false;
   }
 }
 

@@ -15,7 +15,7 @@ export type CommandFactory<T = {}, U = {}> = (
 ) => CommandModule<T, U>;
 
 export function useCommands(api: UseCommandsAPI): CommandModule[] {
-  return api.config.use.commands.map((name) => loadCommand(name)(api));
+  return api.config.commands.map((name) => loadCommand(name)(api));
 }
 
 export function createCommand<T = {}, U = {}>(factory: CommandFactory<T, U>) {

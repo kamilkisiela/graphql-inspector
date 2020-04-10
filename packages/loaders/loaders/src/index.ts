@@ -54,7 +54,7 @@ export type Loaders = Pick<LoadersRegistry, 'loadSchema' | 'loadDocuments'>;
 export function useLoaders(config: InspectorConfig): Loaders {
   const loaders = new LoadersRegistry();
 
-  config.use.loaders.forEach((loaderName) => loaders.register(loaderName));
+  config.loaders.forEach((loaderName) => loaders.register(loaderName));
 
   return loaders;
 }
