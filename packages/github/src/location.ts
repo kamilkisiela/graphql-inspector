@@ -90,7 +90,7 @@ export function getLocationByPath({
     }
   }
 
-  return resolveNodeSourceLocation(source, resolvedNode);;
+  return resolveNodeSourceLocation(source, resolvedNode);
 }
 
 type Node =
@@ -115,24 +115,51 @@ function resolveUnionTypeDefinitionNode(
   return definition;
 }
 
+function resolveArgument(argName: string, field: FieldDefinitionNode) {
+  const arg = field.arguments?.find((a) => a.name.value === argName);
+
+  return arg || field;
+}
+
+function resolveFieldDefinition(
+  path: string[],
+  definition:
+    | InterfaceTypeDefinitionNode
+    | InputObjectTypeDefinitionNode
+    | ObjectTypeDefinitionNode,
+): Node {
+  const [fieldName, argName] = path;
+
+  const fieldIndex =
+    definition.fields?.findIndex(
+      (f: InputValueDefinitionNode | FieldDefinitionNode) =>
+        f.name.value === fieldName,
+    );
+
+  if (typeof fieldIndex === 'number' && fieldIndex > -1) {
+    const field = definition.fields![fieldIndex];
+
+    if (field.kind !== Kind.INPUT_VALUE_DEFINITION && argName) {
+      return resolveArgument(argName, field);
+    }
+
+    return field;
+  }
+
+  return definition;
+}
+
 function resolveInterfaceTypeDefinition(
   path: string[],
   definition: InterfaceTypeDefinitionNode,
 ): Node {
   const [fieldName, argName] = path;
 
-  if (!fieldName) {
-    console.log(definition);
-    return definition;
+  if (fieldName) {
+    return resolveFieldDefinition([fieldName, argName], definition);
   }
 
-  const field = definition.fields!.find((f) => f.name.value === fieldName)!;
-
-  if (!argName) {
-    return field;
-  }
-
-  return field.arguments!.find((arg) => arg.name.value === argName);
+  return definition;
 }
 
 function resolveInputObjectTypeDefinition(
@@ -141,13 +168,11 @@ function resolveInputObjectTypeDefinition(
 ): Node {
   const [fieldName] = path;
 
-  if (!fieldName) {
-    return definition;
+  if (fieldName) {
+    return resolveFieldDefinition([fieldName], definition);
   }
 
-  const field = definition.fields!.find((field) => field.name.value)!;
-
-  return field;
+  return definition;
 }
 
 function resolveEnumTypeDefinition(
@@ -156,11 +181,15 @@ function resolveEnumTypeDefinition(
 ): Node {
   const [valueName] = path;
 
-  if (!valueName) {
-    return definition;
+  if (definition.values && valueName) {
+    const value = definition.values.find((val) => val.name.value === valueName);
+
+    if (value) {
+      return value;
+    }
   }
 
-  return definition.values!.find((val) => val.name.value === valueName);
+  return definition;
 }
 
 function resolveObjectTypeDefinition(
@@ -169,17 +198,11 @@ function resolveObjectTypeDefinition(
 ): Node {
   const [fieldName, argName] = path;
 
-  if (!fieldName) {
-    return definition;
+  if (fieldName) {
+    return resolveFieldDefinition([fieldName, argName], definition);
   }
 
-  const field = definition.fields!.find((f) => f.name.value === fieldName)!;
-
-  if (!argName) {
-    return field;
-  }
-
-  return field.arguments!.find((arg) => arg.name.value === argName);
+  return definition;
 }
 
 function resolveDirectiveDefinition(
@@ -188,15 +211,17 @@ function resolveDirectiveDefinition(
 ): Node {
   const [argName] = path;
 
-  if (!argName) {
-    return defininition;
+  if (defininition.arguments && argName) {
+    const arg = defininition.arguments.find(
+      (arg) => arg.name.value === argName,
+    );
+
+    if (arg) {
+      return arg;
+    }
   }
 
-  const arg = defininition.arguments!.find(
-    (arg) => arg.name.value === argName,
-  )!;
-
-  return arg;
+  return defininition;
 }
 
 function resolveNodeSourceLocation(source: Source, node: Node): SourceLocation {
