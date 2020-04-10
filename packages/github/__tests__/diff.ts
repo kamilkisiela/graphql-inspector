@@ -68,8 +68,8 @@ test('annotations should match lines in schema file', async () => {
   });
 
   // Field 'modifiedAt' was removed from object type 'Post'
-  expect(getPrintedLine(sources.old, action.annotations![0].start_line)).toBe(
-    'modifiedAt: String',
+  expect(getPrintedLine(sources.new, action.annotations![0].start_line)).toBe(
+    'type Post {',
   );
 
   // Field 'Post.createdAt' changed type from 'String' to 'String!'
@@ -158,8 +158,8 @@ test('should work with comments and descriptions', async () => {
     'type User {',
   );
   // Field 'version' was removed from object type 'Meta'
-  expect(getPrintedLine(sources.old, action.annotations![1].start_line)).toBe(
-    'version: String!',
+  expect(getPrintedLine(sources.new, action.annotations![1].start_line)).toBe(
+    'type Meta {',
   );
   // Field 'Meta.name' changed type from 'String!' to 'String'
   expect(getPrintedLine(sources.new, action.annotations![2].start_line)).toBe(

@@ -75,10 +75,8 @@ function annotate({
   };
 }): Annotation {
   const level = change.criticality.level;
-  const useOld = change.type.endsWith('_REMOVED');
-  const source = useOld ? sources.old : sources.new;
   const loc = change.path
-    ? getLocationByPath({path: change.path, source})
+    ? getLocationByPath({path: change.path, source: sources.new})
     : {line: 1, column: 1};
 
   return {
