@@ -122,7 +122,6 @@ function resolveInterfaceTypeDefinition(
   const [fieldName, argName] = path;
 
   if (!fieldName) {
-    console.log(definition);
     return definition;
   }
 
