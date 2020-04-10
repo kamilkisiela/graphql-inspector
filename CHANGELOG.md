@@ -3,6 +3,7 @@
 ### vNEXT
 
 - **github**: put annotations of removed parts of schema on new schema [#1414](https://github.com/kamilkisiela/graphql-inspector/issues/1414)
+- **ci**: improve UX [#1413](https://github.com/kamilkisiela/graphql-inspector/pull/1413)
 
 ### v1.30.4
 

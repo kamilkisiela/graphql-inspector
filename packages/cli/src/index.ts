@@ -4,18 +4,16 @@ import yargs, {Argv} from 'yargs';
 
 async function main() {
   const config = {
-    use: {
-      loaders: ['code', 'git', 'github', 'graphql', 'json', 'url'],
-      commands: [
-        'docs',
-        'serve',
-        'diff',
-        'validate',
-        'coverage',
-        'introspect',
-        'similar',
-      ],
-    },
+    loaders: ['code', 'git', 'github', 'graphql', 'json', 'url'],
+    commands: [
+      'docs',
+      'serve',
+      'diff',
+      'validate',
+      'coverage',
+      'introspect',
+      'similar',
+    ],
   };
   const loaders = useLoaders(config);
   const commands = useCommands({config, loaders});
