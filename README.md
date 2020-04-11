@@ -9,260 +9,38 @@
 **GraphQL Inspector** outputs a list of changes between two GraphQL schemas. Every change is precisely explained and marked as breaking, non-breaking or dangerous.
 It helps you validate documents and fragments against a schema and even find similar or duplicated types.
 
+Use GraphQL Inspector however you want:
+
+- [**GitHub Application**](https://graphql-inspector.com/install)
+- [**GitHub Action**](https://github.com/marketplace/actions/graphql-inspector)
+- [**CLI**](https://graphql-inspector.com/docs/installation#cli)
+- [**Programatic API**](https://graphql-inspector.com/docs/installation#programatic-api)
+
 ## Features
 
-Major features:
-
 - **Compares schemas**
-- **Finds breaking or dangerous changes**
-- **Validates documents against a schema**
+- **Detect breaking or dangerous changes**
+- **Validates Operations and Fragments against a schema**
 - **Finds similar / duplicated types**
-- **Schema coverage based on documents**
-- **Serves a GraphQL server with faked data and GraphQL Playground**
-- **GitHub Bot**
-- **GitHub Actions**
+- **Schema coverage based on Operations and Fragments**
+- **Serves a GraphQL server with faked data and GraphiQL**
 - **Docker Image**
 
-GraphQL Inspector has a **CLI** and also a **programmatic API**, so you can use it however you want to and even build tools on top of it.
+## Use on GitHub
+
+![Github](./website/static/img/github/app-action.jpg)
+
+## Use everywhere
 
 ![Example](./packages/cli/demo.gif)
 
-## Installation
+## Installation and Usage
 
-```bash
-# CLI
-yarn add @graphql-inspector/cli
+Visit our website [**graphql-inspector.com**](https://graphql-inspector.com/) to learn more about the project. 
 
-# Core API for programmatic usage
-yarn add @graphql-inspector/core
-```
+## Documentation
 
-### Compare schemas
-
-Compares schemas and finds breaking or dangerous changes.
-
-**CLI:**
-
-    $ graphql-inspector diff OLD_SCHEMA NEW_SCHEMA
-
-**API:**
-
-```typescript
-import {diff, Change} from '@graphql-inspector/core';
-
-const changes: Change[] = diff(schemaA, schemaB);
-```
-
-![Diff](./assets/diff.jpg)
-
-### Find similar types
-
-Finds similar / duplicated types.
-
-**CLI:**
-
-    $ graphql-inspector similar SCHEMA
-
-**API:**
-
-```typescript
-import {similar, SimilarMap} from '@graphql-inspector/core';
-
-const similar: SimilarMap = similar(schema, typename, threshold);
-```
-
-![Similar](./assets/similar.jpg)
-
-### Check coverage
-
-Schema coverage based on documents. Find out how many times types and fields are used in your application.
-
-**CLI:**
-
-    $ graphql-inspector coverage DOCUMENTS SCHEMA
-
-**API:**
-
-```typescript
-import {coverage, SchemaCoverage} from '@graphql-inspector/core';
-
-const schemaCoverage: SchemaCoverage = coverage(schema, documents);
-```
-
-![Coverage](./assets/coverage.jpg)
-
-### Validate documents
-
-Validates documents against a schema and looks for deprecated usage.
-
-**CLI:**
-
-    $ graphql-inspector validate DOCUMENTS SCHEMA
-
-**API:**
-
-```typescript
-import {validate, InvalidDocument} from '@graphql-inspector/core';
-
-const invalid: InvalidDocument[] = validate(documentsGlob, schema);
-```
-
-![Validate](./assets/validate.jpg)
-
-### Serve faked GraphQL API
-
-Serves a GraphQL server with faked data and GraphQL Playground
-
-**CLI:**
-
-    $ graphql-inspector serve SCHEMA
-
-```bash
-✅ Serving the GraphQL API on http://localhost:4000/
-```
-
-### Introspect GraphQL server
-
-Introspects a GraphQL Server and writes the result to a file
-
-**CLI:**
-
-    $ graphql-inspector introspect SCHEMA --write schema.json
-
-```bash
-✅ Introspection result saved to schema.json
-```
-
-### GitHub Bot and GitHub Actions
-
-Have a per-repository, self-hosted GraphQL Inspector service or deploy it with Docker.
-
-```bash
-# install
-yarn global add @graphql-inspector/actions
-
-# use
-
-$ graphql-inspector-github
-```
-
-```json
-{
-  "name": "app",
-  "scripts": {
-    "precommit": "graphql-inspector introspect schema.js --write schema.graphql && git add schema.graphql"
-  },
-  "graphql-inspector": {
-    "diff": true,
-    "schema": {
-      "ref": "master",
-      "path": "schema.graphql"
-    }
-  }
-}
-```
-
-Get GitHub annotations in your PRs.
-
-![GitHub](./assets/github.jpg)
-
-### CLI in more details
-
-### `SCHEMA`
-
-**Path to a CommonJS or ES Module that exports an object**
-
-Example:
-
-    graphql-inspector coverage ./src/documents.js ./src/schema.js
-
-Example with TypeScript:
-
-    graphql-inspector coverage ./src/documents.ts ./src/schema.ts --require ts-node/register
-
-```typescript
-// String
-export default `
-  type Query {
-    hello: String
-  }
-`
-
-// GraphQLSchema
-export default makeExecutableSchema({...});
-
-// GraphQL Document
-export default gql`
-  type Query {
-    hello: String
-  }
-`
-
-// IntrospectionQuery result
-export default {
-  data: {
-    __schema: {
-      ...
-    }
-  }
-}
-```
-
-**Pointer to a Git repository**
-
-Example:
-
-    graphql-inspector diff git:origin/master:schema.graphql ./schema.graphql
-
-Pattern:
-
-    git:ref:path/to/file
-
-**Pointer to a GitHub repository**
-
-Example:
-
-    graphql-inspector coverage ./src/documents.ts github:kamilkisiela/graphql-inspector-example#master:schema.graphql
-
-Pattern:
-
-    github:owner/name#ref:path/to/file
-
-**GraphQL File**
-
-Example:
-
-    graphql-inspector coverage documents.js schema.graphql
-    graphql-inspector coverage documents.js schema.gql
-
-**JSON File**
-
-Example:
-
-    graphql-inspector coverage documents.js introspected-schema.json
-
-**URL to a GraphQL endpoint**
-
-Example:
-
-    graphql-inspector coverage documents.js https://localhost:3000/graphql
-
-### `DOCUMENTS`
-
-**Glob pattern**
-
-Example:
-
-    graphql-inspector validate ./src/**/*.{js,jsx,tsx,graphql} https://localhost:3000/graphql
-
-Supports TypeScript, JavaScript and GraphQL Files (_Extensions: ts,tsx,js,jsx,graphql,gql,graphqls_).
-
-### Help
-
-Find out what the CLI is capable of:
-
-    graphql-inspector --help
-    graphql-inspector similar --help
+Documentation is available at [**graphql-inspector.com/docs**](https://graphql-inspector.com/docs).
 
 ## Related
 
