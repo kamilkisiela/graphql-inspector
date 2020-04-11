@@ -1,6 +1,8 @@
 import React from 'react';
 import Link from '@docusaurus/Link';
+import Head from '@docusaurus/Head';
 import BrowserOnly from '@docusaurus/BrowserOnly';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Footer from '@theme/Footer';
 import ContactForm from '../components/contact';
 import {Loading} from '../components/loading';
@@ -145,21 +147,39 @@ const Highlights = () => {
   );
 };
 
-class Index extends React.Component {
-  render() {
-    return (
-      <div>
-        <div className="mainContainer">
-          <Nav />
-          <Header />
-        </div>
-        <Highlights />
-        <Live />
-        <Contact />
-        <Footer/>
+function Index() {
+  const context = useDocusaurusContext();
+  const {siteConfig = {}} = context;
+  const {title, tagline, url, favicon} = siteConfig;
+
+  const ogImage = `${url}/img/github/app-action.jpg`;
+
+  return (
+    <div>
+      <Head>
+        <meta property="og:description" content={tagline} />
+        <meta charSet="utf-8" />
+        <meta property="og:image" content={ogImage} />
+        <meta property="twitter:image" content={ogImage} />
+        <meta name="twitter:image:alt" content="Image for GraphQL Inspector" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta property="og:title" content={`${title} - ${tagline}`} />
+        <meta name="description" content={tagline} />
+        <meta property="og:description" content={tagline} />
+        <meta property="og:url" content={url} />
+        <link rel="shortcut icon" href={favicon}></link>
+        <title>{title} - {tagline}</title>
+      </Head>
+      <div className="mainContainer">
+        <Nav />
+        <Header />
       </div>
-    );
-  }
+      <Highlights />
+      <Live />
+      <Contact />
+      <Footer />
+    </div>
+  );
 }
 
 export default Index;
