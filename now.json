@@ -15,7 +15,7 @@
     {
       "source": "/install",
       "destination": "https://github.com/marketplace/graphql-inspector",
-      "status": 301
+      "statusCode": 301
     },
     {
       "source": "/docs",
