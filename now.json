@@ -15,7 +15,7 @@
     {
       "src": "/install",
       "status": 301,
-      "headers": {"Location": "https://github.com/apps/graphql-inspector"}
+      "headers": {"Location": "https://github.com/marketplace/graphql-inspector"}
     }
   ],
   "github": {
