@@ -104,7 +104,17 @@ module.exports = {
       trackingID: 'UA-125180910-2',
     },
   },
-  scripts: ['/js/scroll-to.js', '/js/drift.js'],
+  scripts: [
+    {
+      src: '/js/scroll-to.js',
+      async: true,
+      defer: true,
+    }, {
+      src: '/js/drift.js',
+      async: true,
+      defer: true,
+    }
+  ],
   stylesheets: ['https://fonts.googleapis.com/css?family=Lato:300,400,700,900'],
   presets: [
     [
