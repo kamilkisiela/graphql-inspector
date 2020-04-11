@@ -1,21 +1,49 @@
-/**
- * Copyright (c) 2017-present, Facebook, Inc.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
-const React = require('react');
+import React from 'react';
+import Link from '@docusaurus/Link';
+import Layout from '@theme/Layout';
+import ContactForm from '../components/contact';
+import {Loading} from '../components/loading';
 
 const Live = () => {
+  const Diff = React.lazy(() => import('../components/diff'));
+
   return (
     <div className="live">
       <div className="live-wrapper">
-        <iframe src={'/live/#diff'} />
+        <ErrorBoundary>
+          <React.Suspense fallback={<Loading color="#fff" height="300px" />}>
+            <Diff />
+          </React.Suspense>
+        </ErrorBoundary>
       </div>
     </div>
   );
 };
+
+class ErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {hasError: false};
+  }
+
+  static getDerivedStateFromError() {
+    // Update state so the next render will show the fallback UI.
+    return {hasError: true};
+  }
+
+  componentDidCatch(error, errorInfo) {
+    console.error(error, errorInfo);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      // Fallback
+      return <span>Something went wrong.</span>;
+    }
+
+    return this.props.children;
+  }
+}
 
 const Contact = () => {
   return (
@@ -30,7 +58,7 @@ const Contact = () => {
             help you and hear how you use GraphQL Inspector today!
           </h2>
           <div className="contact-wrapper">
-            <iframe src={'/live/#contact'} />
+            <ContactForm />
           </div>
         </div>
       </div>
@@ -42,10 +70,10 @@ const Nav = () => {
   return (
     <div id="main-nav">
       <a href="" className="logo">
-        <img src="/img/logo.svg" alt="GraphQL Inspector Logo" />
+        <img src="/static/img/logo.svg" alt="GraphQL Inspector Logo" />
       </a>
       <div className="links">
-        <a href="/docs">Docs</a>
+        <Link to="/docs">Docs</Link>
         <div className="sep" />
         <a href="/install">Install</a>
         <div className="sep" />
@@ -70,13 +98,13 @@ const Header = () => {
           Detects every change, finds similar or duplicated types, validates
           documents against a schema and looks for deprecated usage.
         </h2>
-        <a href="/docs">Start to Inspect</a>
+        <Link to="/docs">Start to Inspect</Link>
       </div>
     </div>
   );
 };
 
-const Hightlight = props => {
+const Hightlight = (props) => {
   return (
     <div className="highlight">
       <img src={props.image} alt={props.title} />
@@ -113,7 +141,7 @@ const Highlights = () => {
 class Index extends React.Component {
   render() {
     return (
-      <div>
+      <Layout title="asd">
         <div className="mainContainer">
           <Nav />
           <Header />
@@ -121,9 +149,9 @@ class Index extends React.Component {
         <Highlights />
         <Live />
         <Contact />
-      </div>
+      </Layout>
     );
   }
 }
 
-module.exports = Index;
+export default Index;

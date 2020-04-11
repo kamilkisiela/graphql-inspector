@@ -11,7 +11,7 @@ const Container = styled.div`
   color: ${props => props.color};
 `;
 
-export default function Loading({color, height}) {
+export function Loading({color, height}) {
   return (
     <Container color={color} height={height}>
       <div>Loading...</div>

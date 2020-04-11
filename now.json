@@ -13,10 +13,15 @@
   "public": false,
   "routes": [
     {
-      "src": "/install",
+      "source": "/install",
       "status": 301,
       "headers": {"Location": "https://github.com/marketplace/graphql-inspector"}
-    }
+    },
+    {
+      "source": "/docs",
+      "destination": "/docs/index",
+      "statusCode": 301 
+    },
   ],
   "github": {
     "enabled": false
