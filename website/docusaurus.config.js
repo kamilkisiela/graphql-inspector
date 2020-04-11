@@ -13,7 +13,7 @@ module.exports = {
   themeConfig: {
     disableDarkMode: true,
     sidebarCollapsible: false,
-    image: 'img/logo.svg',
+    image: 'img/github/app-action.jpg',
     navbar: {
       title: 'GraphQL Inspector',
       logo: {
