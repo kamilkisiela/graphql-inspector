@@ -35,6 +35,9 @@
       "installation": {
         "title": "Getting Started"
       },
+      "recipes/action": {
+        "title": "GitHub Action"
+      },
       "recipes/ci": {
         "title": "Continuous Integration"
       },
@@ -50,8 +53,8 @@
     "categories": {
       "Introduction": "Introduction",
       "Essentials": "Essentials",
-      "API": "API",
-      "Recipes": "Recipes"
+      "Recipes": "Recipes",
+      "API": "API"
     }
   },
   "pages-strings": {
