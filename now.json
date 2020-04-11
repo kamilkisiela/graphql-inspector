@@ -21,7 +21,7 @@
       "source": "/docs",
       "destination": "/docs/index",
       "statusCode": 301 
-    },
+    }
   ],
   "github": {
     "enabled": false
