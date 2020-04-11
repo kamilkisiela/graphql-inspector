@@ -1,17 +1,34 @@
 {
+  "name": "@graphql-inspector/website",
   "scripts": {
-    "start": "docusaurus-start",
-    "prestart": "yarn live:dev",
-    "deploy": "yarn global add concurrently && concurrently \"yarn\" \"(cd live && yarn)\" && yarn build",
-    "prebuild": "rm -rf build && mkdir build",
-    "build": "concurrently \"yarn website:build\" \"yarn live:build\"",
-    "version": "docusaurus-version",
-    "rename-version": "docusaurus-rename-version",
-    "website:build": "docusaurus-build",
-    "live:dev": "rm -rf static/live && cd live && yarn build && cp -r ./build ../static/live",
-    "live:build": "rm -rf build/graphql-inspector/live && cd live && yarn build && cp -r ./build ../build/graphql-inspector/live"
+    "start": "docusaurus start",
+    "build": "docusaurus build",
+    "swizzle": "docusaurus swizzle",
+    "deploy": "docusaurus deploy"
   },
-  "devDependencies": {
-    "docusaurus": "1.14.4"
+  "dependencies": {
+    "@docusaurus/core": "2.0.0-alpha.50",
+    "@docusaurus/preset-classic": "2.0.0-alpha.50",
+    "@graphql-inspector/core": "1.30.4",
+    "classnames": "2.2.6",
+    "fetch-ponyfill": "6.1.0",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "react-feather": "2.0.4",
+    "react-flip-move": "3.0.4",
+    "react-monaco-editor": "0.36.0",
+    "styled-components": "5.1.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

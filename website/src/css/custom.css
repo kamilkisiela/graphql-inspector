@@ -1,10 +1,31 @@
+:root {
+  --ifm-color-primary: #4b5ff7;
+  --ifm-color-primary-dark: #2c44f6;
+  --ifm-color-primary-darker: #1d36f5;
+  --ifm-color-primary-darkest: #0a22d8;
+  --ifm-color-primary-light: #6a7af8;
+  --ifm-color-primary-lighter: #7988f9;
+  --ifm-color-primary-lightest: #a7b1fb;
+}
+
 body {
   font-family: 'Lato', sans-serif;
 }
 
+button {
+  --ifm-color-content: #fff;
+}
+
+@media only screen and (max-width: 996px) {
+  .menu > button {
+    right: 50% !important;
+    margin-right: -32px;
+  }
+}
+
 @media only screen and (max-width: 1024px) {
   .mainContainer {
-    padding-top: 20px;
+    padding-top: 90px;
     background-size: 400px;
     background-position: bottom right;
   }
@@ -36,7 +57,7 @@ body {
     width: 100%;
   }
 
-  #main-highlights>.container {
+  #main-highlights > .container {
     flex-direction: column;
   }
 
@@ -60,8 +81,8 @@ body {
 }
 
 @media only screen and (min-width: 1024px) {
-  .navPusher {
-    padding-top: 0;
+  #main-nav {
+    padding-top: 50px;
   }
 
   #main-header {
@@ -71,6 +92,11 @@ body {
 
   #main-header h1 {
     max-width: 450px;
+  }
+
+  #main-header .container {
+    margin-left: 0;
+    margin-right: 0;
   }
 
   .mainContainer {
@@ -117,7 +143,7 @@ body {
   height: 75px;
 }
 
-.projectTitle>small {
+.projectTitle > small {
   color: #999;
 }
 
@@ -152,13 +178,13 @@ body.separateOnPageNav .headerTitleWithLogo {
   visibility: hidden;
 }
 
-body.separateOnPageNav .navPusher {
+body.separateOnPageNav .mainContainer {
   padding-top: 50px;
 }
 
 body:not(.separateOnPageNav) .mainContainer {
   padding-bottom: 0;
-  background-image: url(../img/ui/cover.svg);
+  background-image: url(/img/ui/cover.svg);
   background-repeat: no-repeat;
 }
 
@@ -240,7 +266,7 @@ body:not(.separateOnPageNav) .mainContainer {
   box-shadow: 0 25px 68px 0 rgba(0, 0, 0, 0.02);
 }
 
-#main-highlights>.container {
+#main-highlights > .container {
   margin: 0 auto;
   padding: 45px 0;
   max-width: 960px;
@@ -314,7 +340,7 @@ body:not(.separateOnPageNav) .mainContainer {
   margin: 0 5px;
 }
 
-#main-footer .links a>img {
+#main-footer .links a > img {
   height: 26px;
 }
 
@@ -333,7 +359,7 @@ pre .btnIcon {
   color: #fff;
   background-color: transparent;
   height: 30px;
-  transition: all .25s ease-out;
+  transition: all 0.25s ease-out;
 }
 
 pre .btnIcon:hover {
@@ -347,7 +373,7 @@ pre .btnIcon:hover {
 
 .btnIcon svg {
   fill: currentColor;
-  margin-right: .4em;
+  margin-right: 0.4em;
 }
 
 .btnIcon__label {

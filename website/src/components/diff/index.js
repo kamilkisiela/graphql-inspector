@@ -96,6 +96,7 @@ export default function Diff() {
           codeLens: false,
           lineNumbers: 'off',
           minimap: false,
+          originalEditable: false,
         }}
       />
       <Changes enterAnimation="fade" leaveAnimation="fade">
