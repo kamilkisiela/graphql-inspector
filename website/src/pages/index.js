@@ -1,6 +1,5 @@
 import React from 'react';
 import Link from '@docusaurus/Link';
-import Layout from '@theme/Layout';
 import ContactForm from '../components/contact';
 import {Loading} from '../components/loading';
 
@@ -141,7 +140,7 @@ const Highlights = () => {
 class Index extends React.Component {
   render() {
     return (
-      <Layout title="asd">
+      <div>
         <div className="mainContainer">
           <Nav />
           <Header />
@@ -149,7 +148,7 @@ class Index extends React.Component {
         <Highlights />
         <Live />
         <Contact />
-      </Layout>
+      </div>
     );
   }
 }
