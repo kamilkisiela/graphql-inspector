@@ -9,7 +9,7 @@
       "essentials/serve",
       "essentials/introspect"
     ],
-    "API": ["api/schema", "api/documents"],
-    "Recipes": ["recipes/ci", "recipes/github"]
+    "Recipes": ["recipes/ci", "recipes/github", "recipes/action"],
+    "API": ["api/schema", "api/documents"]
   }
 }

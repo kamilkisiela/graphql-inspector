@@ -8,7 +8,20 @@ GraphQL Inspector App checks your Pull Request in order to find breaking changes
 
 We strongly believe in Open Source and that's why we made it possible to have a per-repository, self-hosted GraphQL Inspector App thanks to GitHub Actions or to host your own instance in the Cloud.
 
-![GitHub](/img/cli/github.jpg)
+![Application](/img/github/app-action.jpg)
+
+## Installation
+
+GraphQL Inspector App comes with a free plan and that's the only plan.
+
+Visit [the application on marketplace](https://github.com/marketplace/graphql-inspector) and enable it in your project:
+
+**Pick a free plan:**
+![Step 1](/img/github/app-setup-plan.jpg)
+![Step 2](/img/github/app-install.jpg)
+
+**Select repositories and click Install:**
+![Step 3](/img/github/app-repositories.jpg)
 
 ## Usage
 
@@ -42,46 +55,17 @@ It's also possible to setup everything in `package.json` (it must be placed in t
 {
   // ...
   "scripts": {
-    "graphql:dump": "graphql-inspector introspect schema.js --write schema.graphql",
-    "precommit": "yarn graphql:dump && git add schema.graphql"
+    "graphql:save": "graphql-inspector introspect schema.js --write schema.graphql"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn graphql:save && git add schema.graphql"
+    }
   }
 }
 ```
 
 This way your schema file is always up to date with your actual schema.
-
-## GitHub Application
-
-You don't have to host your own instance of GraphQL Inspector, we got you covered. Simply install [GraphQL Inspector App](https://github.com/apps/graphql-inspector) in a repository and enjoy having a solid workflow.
-
-## Use GitHub Actions
-
-With GitHub Actions, you don't have to host GraphQL Inspector anywhere on your own. Here's an example workflow:
-
-```yaml
-name: CI
-
-on: [push]
-
-jobs:
-  test:
-    name: Check Schema
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@master
-
-      - uses: kamilkisiela/graphql-inspector@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          schema: 'master:schema.graphql'
-```
-
-Here's how it looks like:
-
-![GitHub](/img/github/workflow.jpg)
 
 Now on every commit or every Pull Request the GraphQL Inspector App will annotate every change, next to the line in code where it happened.
 

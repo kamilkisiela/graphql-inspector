@@ -2,19 +2,68 @@
 title: Getting Started
 ---
 
+## GitHub Application
+
+Visit [GraphQL Inspector](https://github.com/marketplace/graphql-inspector) on GitHub Marketplace and complete installation.
+
+Read the ["GitHub Application"](./recipes/github) chapter to see the instructions.
+
+---
+
+## GitHub Action
+
+Visit [GraphQL Inspector](https://github.com/marketplace/actions/graphql-inspector) on GitHub Marketplace and complete installation.
+
+Read the ["GitHub Action"](./recipes/action) chapter to see the instructions.
+
+---
+
 ## CLI
 
-Install GraphQL Inspector using [`yarn`](https://yarnpkg.com/en):
+Command Line Tool with all the features, installable with a single command:
+
+Install using [`yarn`](https://yarnpkg.com/en) or [`npm`](https://www.npmjs.com/):
 
 ```bash
-yarn global add @graphql-inspector/cli
+# Yarn
+yarn global add @graphql-inspector/cli graphql
+
+# NPM
+npm install --global @graphql-inspector/cli graphql
 ```
 
-Or [`npm`](https://www.npmjs.com/):
+### Usage
+
+    graphql-inspector --help
+
+---
+
+## CLI for CI
+
+Works similar to regular CLI but every feature is pluggable to keep the size as low as possible.
+
+Install using [`yarn`](https://yarnpkg.com/en) or [`npm`](https://www.npmjs.com/):
 
 ```bash
-npm install --global @graphql-inspector/cli
+# Yarn
+yarn global add @graphql-inspector/ci
+
+# NPM
+npm install --global @graphql-inspector/ci
 ```
+
+### Commands
+
+Every command is installable through a package.
+
+- diff - `@graphql-inspector/diff-command`
+- validate - `@graphql-inspector/validate-command`
+- coverage - `@graphql-inspector/coverage-command`
+- similar - `@graphql-inspector/similar-command`
+- introspect - `@graphql-inspector/introspect-command`
+- serve - `@graphql-inspector/serve-command`
+
+> Please take a look at ["Continous Integration"](./recipes/ci) chapter.
 
 ### Usage
 
@@ -24,25 +73,27 @@ npm install --global @graphql-inspector/cli
 
 ## Programatic API
 
-Install GraphQL Inspector using [`yarn`](https://yarnpkg.com/en):
+GraphQL Inspector comes with a programatic API, here is how to use the Core package.
+
+Install using [`yarn`](https://yarnpkg.com/en) or [`npm`](https://www.npmjs.com/):
 
 ```bash
+# Yarn
 yarn add @graphql-inspector/core
-```
 
-Or [`npm`](https://www.npmjs.com/):
-
-```bash
-npm install --save @graphql-inspector/core
+# NPM
+npm install @graphql-inspector/core
 ```
 
 ### Usage
 
 ```typescript
-import { ... } from '@graphql-inspector/core';
+import { diff, validate, coverage, ... } from '@graphql-inspector/core';
 ```
 
 ## Docker
+
+GraphQL Inspector is also available on Docker.
 
 ```bash
 docker run kamilkisiela/graphql-inspector --help
