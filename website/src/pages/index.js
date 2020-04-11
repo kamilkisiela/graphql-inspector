@@ -1,19 +1,26 @@
 import React from 'react';
 import Link from '@docusaurus/Link';
+import BrowserOnly from '@docusaurus/BrowserOnly';
 import ContactForm from '../components/contact';
 import {Loading} from '../components/loading';
 
-const Live = () => {
+const LiveContent = () => {
   const Diff = React.lazy(() => import('../components/diff'));
 
   return (
+    <ErrorBoundary>
+      <React.Suspense fallback={<Loading color="#fff" height="300px" />}>
+        <Diff />
+      </React.Suspense>
+    </ErrorBoundary>
+  );
+};
+
+const Live = () => {
+  return (
     <div className="live">
       <div className="live-wrapper">
-        <ErrorBoundary>
-          <React.Suspense fallback={<Loading color="#fff" height="300px" />}>
-            <Diff />
-          </React.Suspense>
-        </ErrorBoundary>
+        <BrowserOnly>{() => <LiveContent />}</BrowserOnly>
       </div>
     </div>
   );
