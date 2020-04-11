@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from '@docusaurus/Link';
 import BrowserOnly from '@docusaurus/BrowserOnly';
+import Footer from '@theme/Footer';
 import ContactForm from '../components/contact';
 import {Loading} from '../components/loading';
 
@@ -76,7 +77,7 @@ const Nav = () => {
   return (
     <div id="main-nav">
       <a href="" className="logo">
-        <img src="/static/img/logo.svg" alt="GraphQL Inspector Logo" />
+        <img src="/img/logo.svg" alt="GraphQL Inspector Logo" />
       </a>
       <div className="links">
         <Link to="/docs">Docs</Link>
@@ -155,6 +156,7 @@ class Index extends React.Component {
         <Highlights />
         <Live />
         <Contact />
+        <Footer/>
       </div>
     );
   }
