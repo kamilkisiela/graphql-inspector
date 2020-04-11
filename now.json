@@ -11,17 +11,17 @@
     "FAUNADB_SECRET": "@graphql-inspector-faunadb"
   },
   "public": false,
-  "routes": [
+  "redirects": [
     {
       "source": "/install",
-      "status": 301,
-      "headers": {"Location": "https://github.com/marketplace/graphql-inspector"}
+      "destination": "https://github.com/marketplace/graphql-inspector",
+      "status": 301
     },
     {
       "source": "/docs",
       "destination": "/docs/index",
       "statusCode": 301 
-    }
+    },
   ],
   "github": {
     "enabled": false
