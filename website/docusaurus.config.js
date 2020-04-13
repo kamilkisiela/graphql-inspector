@@ -141,6 +141,11 @@ module.exports = {
     googleAnalytics: {
       trackingID: 'UA-125180910-2',
     },
+    algolia: {
+      apiKey: 'c81d6a17b6d40971f230c0d79b03ff23',
+      indexName: 'graphql-inspector',
+      algoliaOptions: {},
+    },
   },
   scripts: [
     {
