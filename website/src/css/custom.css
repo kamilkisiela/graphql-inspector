@@ -6,6 +6,13 @@
   --ifm-color-primary-light: #6a7af8;
   --ifm-color-primary-lighter: #7988f9;
   --ifm-color-primary-lightest: #a7b1fb;
+
+  --ifm-color-secondary: #bfc7d5;
+  --ifm-footer-link-hover-color: #fff;
+}
+
+a {
+  transition: all 0.2s ease 0s;
 }
 
 body {
@@ -111,6 +118,18 @@ button {
   .live-wrapper {
     height: 300px;
   }
+}
+
+.footer .text--center {
+  text-align: left;
+}
+
+.footer .text--center div:not(.margin-bottom--sm) {
+  color: #bfc7d5;
+}
+
+.footer .footer__link-item:hover {
+  text-decoration: none;
 }
 
 .live {

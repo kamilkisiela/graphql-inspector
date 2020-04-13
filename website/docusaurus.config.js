@@ -14,6 +14,15 @@ module.exports = {
     disableDarkMode: true,
     sidebarCollapsible: false,
     image: 'img/github/app-action.jpg',
+    announcementBar: {
+      id: 'support_us',
+      content: [
+        '<strong>We are working on v2.0</strong>. Contribute to its <a target="_blank" rel="noopener noreferrer" href="https://github.com/kamilkisiela/graphql-inspector/issues/1371">roadmap</a> by suggesting features.',
+        'If you like GraphQL Inspector give it a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/kamilkisiela/graphql-inspector/">GitHub</a>!',
+      ].join(' '),
+      backgroundColor: '#292d3e',
+      textColor: '#bfc7d5',
+    },
     navbar: {
       title: 'GraphQL Inspector',
       logo: {
@@ -30,7 +39,7 @@ module.exports = {
         {
           href: '/install',
           label: 'Install',
-          position: 'right'
+          position: 'right',
         },
         {
           href: 'https://github.com/kamilkisiela/graphql-inspector',
@@ -41,10 +50,10 @@ module.exports = {
     },
     footer: {
       style: 'dark',
-      copyright: `Copyright © ${new Date().getFullYear()} Kamil Kisiela`,
+      copyright: `Copyright © ${new Date().getFullYear()} Kamil Kisiela. All rights reserved.`,
       logo: {
         alt: 'GraphQL Inspector Logo',
-        src: 'img/logo-gray.svg',
+        src: 'img/logo-white.svg',
       },
       links: [
         {
@@ -65,6 +74,27 @@ module.exports = {
           ],
         },
         {
+          title: 'Product',
+          items: [
+            {
+              label: 'Command-Line',
+              to: 'docs/essentials/diff',
+            },
+            {
+              label: 'GitHub Application',
+              to: 'docs/recipes/github',
+            },
+            {
+              label: 'GitHub Action',
+              to: 'docs/recipes/action',
+            },
+            {
+              label: 'Continous Integration',
+              to: 'docs/recipes/ci',
+            },
+          ],
+        },
+        {
           title: 'Community',
           items: [
             {
@@ -78,6 +108,10 @@ module.exports = {
             {
               label: 'Mailing List',
               href: 'https://upscri.be/19qjhi',
+            },
+            {
+              label: 'Community Meetings',
+              href: 'https://github.com/the-guild-org/community-meetings',
             },
           ],
         },
@@ -96,6 +130,10 @@ module.exports = {
               label: 'Twitter',
               href: 'https://twitter.com/kamilkisiela',
             },
+            {
+              label: 'LinkedIn',
+              href: 'https://www.linkedin.com/company/the-guild-software'
+            }
           ],
         },
       ],
@@ -109,11 +147,12 @@ module.exports = {
       src: '/js/scroll-to.js',
       async: true,
       defer: true,
-    }, {
+    },
+    {
       src: '/js/drift.js',
       async: true,
       defer: true,
-    }
+    },
   ],
   stylesheets: ['https://fonts.googleapis.com/css?family=Lato:300,400,700,900'],
   presets: [
