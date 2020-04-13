@@ -1,6 +1,7 @@
 {
   "name": "@graphql-inspector/website",
   "scripts": {
+    "postinstall": "patch-package",
     "start": "docusaurus start",
     "build": "docusaurus build",
     "swizzle": "docusaurus swizzle",
@@ -12,6 +13,7 @@
     "@graphql-inspector/core": "1.30.4",
     "classnames": "2.2.6",
     "fetch-ponyfill": "6.1.0",
+    "patch-package": "6.2.2",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-feather": "2.0.4",
