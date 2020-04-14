@@ -1,6 +1,6 @@
 module.exports = {
   scope: '@graphql-inspector',
-  ignore: [],
+  ignore: ['@graphql-inspector/changelog-app'],
   base: `origin/master`,
   track: [
     'bob.config.js',
@@ -13,7 +13,11 @@ module.exports = {
   ],
   commands: {
     test: {
-      track: ['jest.config.js', '<project>/jest.config.js', '<project>/__tests__/**'],
+      track: [
+        'jest.config.js',
+        '<project>/jest.config.js',
+        '<project>/__tests__/**',
+      ],
       run(affected) {
         return [`yarn`, ['test', '--passWithNoTests', ...affected.paths]];
       },

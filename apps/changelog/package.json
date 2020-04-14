@@ -1,0 +1,25 @@
+{
+  "private": true,
+  "name": "@graphql-inspector/changelog-app",
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@chakra-ui/core": "0.7.0",
+    "@emotion/core": "10.0.28",
+    "@emotion/styled": "10.0.27",
+    "date-fns": "2.12.0",
+    "emotion-theming": "10.0.27",
+    "next": "9.3.6",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "react-feather": "2.0.8",
+    "timeago.js": "4.0.2"
+  },
+  "devDependencies": {
+    "@types/react": "16.9.34"
+  }
+}
