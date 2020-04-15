@@ -4,19 +4,45 @@ import {
   Change,
 } from '@graphql-inspector/core';
 import {GraphQLSchema, Source} from 'graphql';
+import axios from 'axios';
 
 import {
   CheckConclusion,
   ActionResult,
   Annotation,
   AnnotationLevel,
+  PullRequest,
 } from './types';
 import {getLocationByPath} from './location';
+import {parseEndpoint, isNil} from './utils';
+
+export type DiffInterceptor =
+  | string
+  | {
+      url: string;
+      headers?: {
+        [header: string]: string;
+      };
+    };
+
+export interface DiffInterceptorPayload {
+  pullRequests?: PullRequest[];
+  ref?: string;
+  changes: Change[];
+}
+
+export type DiffInterceptorResponse = {
+  changes: Change[];
+  conclusion?: CheckConclusion;
+};
 
 export async function diff({
   path,
   schemas,
   sources,
+  interceptor,
+  pullRequests,
+  ref,
 }: {
   path: string;
   schemas: {
@@ -27,13 +53,28 @@ export async function diff({
     old: Source;
     new: Source;
   };
+  interceptor?: DiffInterceptor;
+  pullRequests?: PullRequest[];
+  ref?: string;
 }): Promise<ActionResult> {
-  const changes = diffSchemas(schemas.old, schemas.new);
+  let changes = diffSchemas(schemas.old, schemas.new);
+  let forcedConclusion: CheckConclusion | null = null;
 
   if (!changes || !changes.length) {
     return {
       conclusion: CheckConclusion.Success,
     };
+  }
+
+  if (!isNil(interceptor)) {
+    const interceptionResult = await interceptChanges(interceptor, {
+      pullRequests,
+      ref,
+      changes,
+    });
+
+    changes = interceptionResult.changes || [];
+    forcedConclusion = interceptionResult.conclusion || null;
   }
 
   const annotations = await Promise.all(
@@ -47,6 +88,10 @@ export async function diff({
     )
   ) {
     conclusion = CheckConclusion.Failure;
+  }
+
+  if (forcedConclusion) {
+    conclusion = forcedConclusion;
   }
 
   return {
@@ -84,4 +129,19 @@ function annotate({
     start_line: loc.line,
     end_line: loc.line,
   };
+}
+
+async function interceptChanges(
+  interceptor: DiffInterceptor,
+  payload: DiffInterceptorPayload,
+): Promise<DiffInterceptorResponse> {
+  const endpoint = parseEndpoint(interceptor);
+
+  const {data} = await axios.request({
+    url: endpoint.url,
+    method: endpoint.method,
+    data: payload,
+  });
+
+  return data;
 }

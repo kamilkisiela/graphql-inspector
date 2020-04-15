@@ -82,9 +82,11 @@ const Nav = () => {
         <img src="/img/logo.svg" alt="GraphQL Inspector Logo" />
       </a>
       <div className="links">
-        <Link to="/docs">Docs</Link>
+        <Link to="/docs">Documentation</Link>
         <div className="sep" />
-        <a href="/install">Install</a>
+        <a href="/install">App</a>
+        <div className="sep" />
+        <a href="/action">Action</a>
         <div className="sep" />
         <a href="https://github.com/kamilkisiela/graphql-inspector">GitHub</a>
         <div className="sep" />

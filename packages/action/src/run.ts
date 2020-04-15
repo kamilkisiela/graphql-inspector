@@ -1,8 +1,8 @@
 import {
-  ActionResult,
   CheckConclusion,
-  Annotation,
   diff,
+  createSummary,
+  printSchemaFromEndpoint,
 } from '@graphql-inspector/github';
 import {buildSchema, Source} from 'graphql';
 import {readFileSync} from 'fs';
@@ -11,7 +11,6 @@ import {resolve} from 'path';
 import * as core from '@actions/core';
 import * as github from '@actions/github';
 import {Octokit} from '@octokit/rest';
-import {Change, CriticalityLevel} from '@graphql-inspector/core';
 
 const CHECK_NAME = 'GraphQL Inspector';
 
@@ -38,6 +37,10 @@ export async function run() {
       'Failed to resolve workspace directory. GITHUB_WORKSPACE is missing',
     );
   }
+
+  const useAnnotations = castToBoolean(core.getInput('annotations'));
+  const failOnBreaking = castToBoolean(core.getInput('fail-on-breaking'));
+  const endpoint = core.getInput('endpoint');
 
   const octokit = new github.GitHub(token);
 
@@ -67,108 +70,56 @@ export async function run() {
   }
 
   const [schemaRef, schemaPath] = schemaPointer.split(':');
-
-  const oldPointer = {
-    ref: schemaRef,
-    path: schemaPath,
-  };
-  const newPointer = {
-    path: oldPointer.path,
-    ref,
-    workspace,
-  };
-
   const sources = {
-    old: new Source(await loadFile(oldPointer)),
-    new: new Source(await loadFile(newPointer)),
+    old: new Source(
+      await (endpoint
+        ? printSchemaFromEndpoint(endpoint)
+        : loadFile({
+            ref: schemaRef,
+            path: schemaPath,
+          })),
+    ),
+    new: new Source(
+      await loadFile({
+        path: endpoint ? schemaPointer : schemaPath,
+        ref,
+        workspace,
+      }),
+    ),
   };
   const schemas = {
     old: buildSchema(sources.old),
     new: buildSchema(sources.new),
   };
 
-  core.info(`Both schemas built`);
-
-  const actions: Array<Promise<ActionResult>> = [];
+  core.info(`Built both schemas`);
 
   core.info(`Start comparing schemas`);
-  actions.push(
-    diff({
-      path: schemaPath,
-      schemas,
-      sources,
-    }),
-  );
 
-  const results = await Promise.all(actions);
+  const action = await diff({
+    path: schemaPath,
+    schemas,
+    sources,
+  });
 
-  const conclusion = results.some(
-    (action) => action.conclusion === CheckConclusion.Failure,
-  )
-    ? CheckConclusion.Failure
-    : CheckConclusion.Success;
-
-  const annotations = results.reduce<Annotation[]>((annotations, action) => {
-    if (action.annotations) {
-      return annotations.concat(action.annotations);
-    }
-
-    return annotations;
-  }, []);
-
-  const changes = results.reduce<Change[]>(
-    (arr, annotation) =>
-      annotation.changes ? arr.concat(annotation.changes) : arr,
-    [],
-  );
+  let conclusion = action.conclusion;
+  let annotations = action.annotations || [];
+  const changes = action.changes || [];
 
   core.setOutput('changes', `${changes.length || 0}`);
 
-  const breakingChanges = changes.filter(
-    (change) => change.criticality.level === CriticalityLevel.Breaking,
-  );
-  const dangerousChanges = changes.filter(
-    (change) => change.criticality.level === CriticalityLevel.Dangerous,
-  );
-  const safeChanges = changes.filter(
-    (change) => change.criticality.level === CriticalityLevel.NonBreaking,
-  );
-
-  const summary: string[] = [
-    `# Found ${annotations.length} change${annotations.length > 1 ? 's' : ''}`,
-    '',
-    `Breaking: ${breakingChanges.length}`,
-    `Dangerous: ${dangerousChanges.length}`,
-    `Safe: ${safeChanges.length}`,
-  ];
-
-  function addChangesToSummary(type: string, changes: Change[]): void {
-    summary.push(
-      ...['', `## ${type} changes`].concat(
-        changes.map((change) => ` - ${bolderize(change.message)}`),
-      ),
-    );
+  // Force Success when failOnBreaking is disabled
+  if (failOnBreaking === false && conclusion === CheckConclusion.Failure) {
+    core.info('FailOnBreaking disabled. Forcing SUCCESS');
+    conclusion = CheckConclusion.Success;
   }
 
-  if (breakingChanges.length) {
-    addChangesToSummary('Breaking', breakingChanges);
+  if (useAnnotations === false) {
+    core.info(`Anotations are disabeld. Skipping annotations...`);
+    annotations = [];
   }
 
-  if (dangerousChanges.length) {
-    addChangesToSummary('Dangerous', dangerousChanges);
-  }
-
-  if (safeChanges.length) {
-    addChangesToSummary('Safe', safeChanges);
-  }
-
-  summary.push(
-    [
-      '',
-      '___',
-      `Thank you for using [GraphQL Inspector](https://graphql-inspector.com/). If you like it, [consider supporting the project](https://github.com/sponsors/kamilkisiela).`,
-    ].join('\n'),
-  );
+  const summary = createSummary(changes);
 
   const title =
     conclusion === CheckConclusion.Failure
@@ -178,7 +129,7 @@ export async function run() {
   try {
     await updateCheckRun(octokit, checkId, {
       conclusion,
-      output: {title, summary: summary.join('\n'), annotations},
+      output: {title, summary, annotations},
     });
   } catch (e) {
     // Error
@@ -270,11 +221,12 @@ async function updateCheckRun(
   // Success or Neutral
 }
 
-function bolderize(msg: string): string {
-  const findSingleQuotes = /\'([^']+)\'/gim;
-  const findDoubleQuotes = /\"([^"]+)\"/gim;
-
-  return msg
-    .replace(findSingleQuotes, (_: string, value: string) => `**${value}**`)
-    .replace(findDoubleQuotes, (_: string, value: string) => `**${value}**`);
+/**
+ * Treats non-falsy value as true
+ */
+function castToBoolean(value: string | boolean): boolean {
+  if (typeof value === 'boolean') {
+    return value;
+  }
+  return value === 'false' ? false : true;
 }

@@ -45,7 +45,9 @@
   },
   "dependencies": {
     "@graphql-inspector/core": "0.0.0-PLACEHOLDER",
-    "probot-config": "1.1.0",
+    "axios": "0.19.2",
+    "dataloader": "2.0.0",
+    "js-yaml": "3.13.1",
     "tslib": "^1.11.1"
   },
   "devDependencies": {

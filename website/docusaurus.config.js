@@ -18,7 +18,7 @@ module.exports = {
       id: 'support_us',
       content: [
         '<strong>We are working on v2.0</strong>. Contribute to its <a target="_blank" rel="noopener noreferrer" href="https://github.com/kamilkisiela/graphql-inspector/issues/1371">roadmap</a> by suggesting features.',
-        'If you like GraphQL Inspector give it a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/kamilkisiela/graphql-inspector/">GitHub</a>!',
+        'If you like GraphQL Inspector give it a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/kamilkisiela/graphql-inspector/">GitHub</a> and <a target="_blank" rel="noopener noreferrer" href="https://github.com/sponsors/kamilkisiela">consider supporting the project</a>!',
       ].join(' '),
       backgroundColor: '#292d3e',
       textColor: '#bfc7d5',
@@ -38,7 +38,12 @@ module.exports = {
         },
         {
           href: '/install',
-          label: 'Install',
+          label: 'GitHub App',
+          position: 'right',
+        },
+        {
+          href: '/action',
+          label: 'GitHub Action',
           position: 'right',
         },
         {
@@ -69,12 +74,16 @@ module.exports = {
             },
             {
               label: 'Recipes',
-              to: 'docs/recipes/github',
+              to: 'docs/recipes/notifications',
+            },
+            {
+              label: 'Products',
+              to: 'docs/products/github',
             },
           ],
         },
         {
-          title: 'Product',
+          title: 'Products',
           items: [
             {
               label: 'Command-Line',
@@ -82,15 +91,15 @@ module.exports = {
             },
             {
               label: 'GitHub Application',
-              to: 'docs/recipes/github',
+              to: 'docs/products/github',
             },
             {
               label: 'GitHub Action',
-              to: 'docs/recipes/action',
+              to: 'docs/products/action',
             },
             {
               label: 'Continous Integration',
-              to: 'docs/recipes/ci',
+              to: 'docs/products/ci',
             },
           ],
         },
@@ -132,8 +141,8 @@ module.exports = {
             },
             {
               label: 'LinkedIn',
-              href: 'https://www.linkedin.com/company/the-guild-software'
-            }
+              href: 'https://www.linkedin.com/company/the-guild-software',
+            },
           ],
         },
       ],

@@ -32,6 +32,42 @@ jobs:
 
 Now on every commit or every Pull Request the GraphQL Inspector App will annotate every change, next to the line in code where it happened.
 
+---
+
+## Inputs
+
+### annotations
+Use annotation (enabled by default)
+
+```yaml
+- uses: kamilkisiela/graphql-inspector@master
+  with:
+    github-token: ${{ secrets.GITHUB_TOKEN }}
+    schema: 'master:schema.graphql'
+    annotations: false
+```
+
+### fail-on-breaking
+Fail on breaking changes (enabled by default)
+
+```yaml
+- uses: kamilkisiela/graphql-inspector@master
+  with:
+    github-token: ${{ secrets.GITHUB_TOKEN }}
+    schema: 'master:schema.graphql'
+    fail-on-breaking: false
+```
+
+---
+
+## Outputs
+
+Read [GitHub Actions docs](https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjobs_idoutputs) to see how to use outputs.
+
+### changes
+
+Total number of changes
+
 ![Summary](/img/github/summary.jpg)
 
 ![Annotations](/img/cli/github.jpg)

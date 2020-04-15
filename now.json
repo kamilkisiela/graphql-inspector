@@ -8,7 +8,8 @@
     "APP_ID": "@graphql-inspector-app-id",
     "PRIVATE_KEY": "@graphql-inspector-private-key",
     "WEBHOOK_SECRET": "@graphql-inspector-webhook-secret",
-    "FAUNADB_SECRET": "@graphql-inspector-faunadb"
+    "FAUNADB_SECRET": "@graphql-inspector-faunadb",
+    "FAUNADB_STATS_SECRET": "@graphql-inspector-faunadb-stats"
   },
   "public": false,
   "redirects": [
@@ -18,9 +19,14 @@
       "statusCode": 301
     },
     {
+      "source": "/action",
+      "destination": "https://github.com/marketplace/actions/graphql-inspector",
+      "statusCode": 301
+    },
+    {
       "source": "/docs",
       "destination": "/docs/index",
-      "statusCode": 301 
+      "statusCode": 301
     }
   ],
   "github": {

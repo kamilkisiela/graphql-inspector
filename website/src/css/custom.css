@@ -43,6 +43,17 @@ button {
 
   #main-nav .links {
     padding-top: 25px;
+    max-width: 80%;
+    flex-wrap: wrap;
+  }
+
+  #main-nav .links a {
+    margin: 0 10px 10px 10px !important;
+  }
+
+  #main-nav .links .sep {
+    /* margin: 0 10px !important; */
+    display: none;
   }
 
   #main-header {

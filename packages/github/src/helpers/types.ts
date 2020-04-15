@@ -34,3 +34,10 @@ export enum CheckConclusion {
   Neutral = 'neutral',
   Failure = 'action_required',
 }
+
+export interface PullRequest {
+  base: {ref: string};
+  url: string;
+  id: number;
+  number: number;
+}

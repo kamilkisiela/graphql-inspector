@@ -3,7 +3,7 @@
   "scripts": {
     "postinstall": "patch-package",
     "start": "docusaurus start",
-    "build": "docusaurus build",
+    "build": "node ./links.js && docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy"
   },
@@ -13,6 +13,7 @@
     "@graphql-inspector/core": "1.30.4",
     "classnames": "2.2.6",
     "fetch-ponyfill": "6.1.0",
+    "globby": "11.0.0",
     "patch-package": "6.2.2",
     "react": "16.13.1",
     "react-dom": "16.13.1",

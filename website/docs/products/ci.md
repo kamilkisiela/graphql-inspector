@@ -70,7 +70,7 @@ Now, when you push your changes you would see the following:
 
 ## Recommmended worflow
 
-We recommend to automate the workflow and use `husky` to run [`$ graphql-inspector introspect`](../essentials/introspect).
+We recommend to automate the workflow and use `husky` to run [`$ graphql-inspector introspect`](../essentials/introspect.md).
 
 ```json
 {

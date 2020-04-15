@@ -5,9 +5,21 @@ branding:
   icon: 'search'
   color: 'orange'
 inputs:
+  annotations:
+    description: 'Use annotation (enabled by default)'
+  fail-on-breaking:
+    description: 'Fail on breaking changes (enabled by default)'
   schema:
-    description: 'Ref and Path to GraphQL Schema (e.g. "master:schema.graphql")'
+    description: |
+      Ref and Path to GraphQL Schema (e.g. "master:schema.graphql")
+
+      * Ref is needed where 'endpoint' is not defined
     required: true
+  endpoint:
+    description: |
+      Url to your GraphQL API
+
+      When using an endpoint, 'schema' should point to a file (without a reference - branch name for example)
   github-token:
     description: 'Github Token'
 outputs:
