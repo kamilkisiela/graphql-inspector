@@ -166,7 +166,7 @@ export async function run() {
     [
       '',
       '___',
-      `Thank you for using [GraphQL Inspector](https://graphql-inspector.com/)`,
+      `Thank you for using [GraphQL Inspector](https://graphql-inspector.com/). If you like it, [consider supporting the project](https://github.com/sponsors/kamilkisiela).`,
     ].join('\n'),
   );
 
