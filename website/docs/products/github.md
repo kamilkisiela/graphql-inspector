@@ -71,6 +71,18 @@ In some cases you want to get a summary of changes but no annotations on a schem
 
 By default, GraphQL Inspector fails the Pull Request when it detects some breaking changes. To force a successful check just set `failOnBreaking` to `false`.
 
+### Using GraphQL Endpoint
+
+Read more about [using live and running GraphQL endpoint](../recipes/endpoints.md) as source of schema.
+
+### Using multiple environments
+
+Read more about [managing many environments](../recipes/environments.md).
+
+### Intercept checks with serverless functions
+
+Learn how to [remotely control detected changes and accept/reject Pull Requests](../recipes/intercept.md).
+
 ## Other
 
 ### Full configuration
@@ -81,8 +93,12 @@ diff: true # enabled by default
 
 # Customizing Schema Diff
 diff: 
-  annotations: true # Pull Request annotations (enabled by default)
-  failOnBreaking: true # Fail on breaking changes or force SUCCESS when disabled (enabled by default)
+  # Pull Request annotations (enabled by default)
+  annotations: true
+  # Fail on breaking changes or force SUCCESS when disabled (enabled by default)
+  failOnBreaking: true
+  # Intercept list of detected changes and decide whether or not to accept a Pull Request 
+  intercept: '<url>'
 
 # Notifications (disabled by default)
 notifications:
@@ -95,6 +111,9 @@ branch: 'master'
 
 # A path to a schema file
 schema: 'schema.graphql'
+
+# Use live and running endpoint as source of schema
+endpoint: '<url>'
 ```
 
 

@@ -58,6 +58,17 @@ Fail on breaking changes (enabled by default)
     fail-on-breaking: false
 ```
 
+### endpoint
+Use GraphQL API endpoint as source of schema.
+
+```yaml
+- uses: kamilkisiela/graphql-inspector@master
+  with:
+    github-token: ${{ secrets.GITHUB_TOKEN }}
+    schema: 'schema.graphql' # important to define a path to schema file, without a branch
+    endpoint: 'https://my-app.com/graphql'
+```
+
 ---
 
 ## Outputs

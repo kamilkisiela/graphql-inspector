@@ -50,3 +50,5 @@ Two scenarios to consider here.
 
 1. When a Pull Request to `master` branch is created, GraphQL Inspector introspects a given GraphQL endpoint and compares it with a GraphQL schema of the Pull Request. 
 2. In case when your Pull Request targets to a branch, let's call it `my-random-branch` and it's not a branch defined in any of environments, GraphQL Inspector picks schema file as the source of truth.
+
+> When using GraphQL Inspector as GitHub Action, endpoint is always as the source of truth.
