@@ -7,6 +7,10 @@
 - **github** schema change notifications on Slack, Discord and through Webhook.
 - **github** **action** opt-out annotations
 - **github** **action** opt-in forced success on breaking changes
+- **github** **action** endpoint as source of schema
+- **github** support multiple environments (production, preview etc)
+- **github** remote interception of detected changes (schema check) via http
+- **github** managing unrelated PRs separately
 
 ### v1.30.4
 
