@@ -1,11 +1,7 @@
 import * as probot from 'probot';
 import {buildSchema} from 'graphql';
 import {diff} from '@graphql-inspector/core';
-import {
-  FileLoader,
-  ConfigLoader,
-  loadSources,
-} from './helpers/loaders';
+import {FileLoader, ConfigLoader, loadSources} from './helpers/loaders';
 import {
   SchemaPointer,
   NormalizedEnvironment,
@@ -17,7 +13,7 @@ import {
   notifyWithWebhook,
   notifyWithDiscord,
 } from './helpers/notifications';
-import { createLogger } from './helpers/logger';
+import {createLogger} from './helpers/logger';
 
 export async function handleSchemaChangeNotifications({
   context,
@@ -112,7 +108,11 @@ export async function handleSchemaChangeNotifications({
     if (notifications.slack) {
       actions.push(
         actionRunner('slack', () =>
-          notifyWithSlack({url: notifications.slack!, changes}),
+          notifyWithSlack({
+            url: notifications.slack!,
+            changes,
+            environment: config.name,
+          }),
         ),
       );
     }
@@ -120,7 +120,11 @@ export async function handleSchemaChangeNotifications({
     if (notifications.discord) {
       actions.push(
         actionRunner('slack', () =>
-          notifyWithDiscord({url: notifications.slack!, changes}),
+          notifyWithDiscord({
+            url: notifications.slack!,
+            changes,
+            environment: config.name,
+          }),
         ),
       );
     }
@@ -128,7 +132,11 @@ export async function handleSchemaChangeNotifications({
     if (notifications.webhook) {
       actions.push(
         actionRunner('webhook', () =>
-          notifyWithWebhook({url: notifications.webhook!, changes}),
+          notifyWithWebhook({
+            url: notifications.webhook!,
+            changes,
+            environment: config.name,
+          }),
         ),
       );
     }

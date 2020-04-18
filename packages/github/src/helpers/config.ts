@@ -85,7 +85,7 @@ export type NormalizedLegacyConfig = {
   __default: NormalizedEnvironment;
 };
 
-const defaultConfigName = '__default';
+export const defaultConfigName = '__default';
 const diffDefault = {
   annotations: true,
   failOnBreaking: true,

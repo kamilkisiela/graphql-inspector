@@ -1,38 +1,35 @@
 import {Change, CriticalityLevel} from '@graphql-inspector/core';
 import axios from 'axios';
 import {slackCoderize, discordCoderize, filterChangesByLevel} from './utils';
+import {defaultConfigName} from './config';
 
 export interface WebhookNotification {
   environment: string;
   name?: string;
   changes: Array<{
     message: string;
-    level: 'breaking' | 'dangerous' | 'safe';
+    level: CriticalityLevel;
   }>;
 }
 
 export async function notifyWithWebhook({
   url,
   changes,
+  environment,
 }: {
   url: string;
   changes: Change[];
+  environment?: string;
 }) {
   const event: WebhookNotification = {
-    environment: 'production',
-    changes: changes.map((change) => {
-      const lvl = change.criticality.level;
-
-      return {
-        message: change.message,
-        level:
-          lvl === CriticalityLevel.Breaking
-            ? 'breaking'
-            : lvl === CriticalityLevel.Dangerous
-            ? 'dangerous'
-            : 'safe',
-      };
-    }),
+    environment:
+      environment && environment !== defaultConfigName
+        ? environment
+        : 'default',
+    changes: changes.map((change) => ({
+      message: change.message,
+      level: change.criticality.level,
+    })),
   };
 
   await axios.post(url, event, {
@@ -45,14 +42,22 @@ export async function notifyWithWebhook({
 export async function notifyWithSlack({
   url,
   changes,
+  environment,
 }: {
   changes: Change[];
   url: string;
+  environment?: string;
 }) {
+  const totalChanges = changes.length;
+  const schemaName = environment ? `${environment} schema` : `schema`;
+
   const event = {
     username: 'GraphQL Inspector',
     icon_url: 'https://graphql-inspector/img/logo-slack.png',
-    text: `:male-detective: Hi, I found *${changes.length} changes* in your schema:`,
+    text: `:male-detective: Hi, I found *${totalChanges} ${pluralize(
+      'change',
+      totalChanges,
+    )}* ${schemaName}:`,
     attachments: createAttachments(changes),
   };
 
@@ -66,14 +71,22 @@ export async function notifyWithSlack({
 export async function notifyWithDiscord({
   url,
   changes,
+  environment,
 }: {
   changes: Change[];
   url: string;
+  environment?: string;
 }) {
+  const totalChanges = changes.length;
+  const schemaName = environment ? `${environment} schema` : `schema`;
+
   const event = {
     username: 'GraphQL Inspector',
     avatar_url: 'https://graphql-inspector/img/logo-slack.png',
-    content: `:detective: Hi, I found **${changes.length} changes** in your schema:`,
+    content: `:detective: Hi, I found **${totalChanges} ${pluralize(
+      'change',
+      totalChanges,
+    )}** in ${schemaName}:`,
     embeds: createDiscordEmbeds(changes),
   };
 
@@ -230,4 +243,8 @@ function renderDiscordEmbed({
     title,
     description,
   };
+}
+
+function pluralize(word: string, num: number): string {
+  return word + (num > 1 ? 's' : '');
 }

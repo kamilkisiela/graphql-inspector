@@ -99,7 +99,7 @@ export async function handleSchemaDiff({
       sources,
     });
 
-    logger.info(`result is ready`);
+    logger.info(`schema diff result is ready`);
 
     let conclusion = action.conclusion;
     let annotations = action.annotations || [];

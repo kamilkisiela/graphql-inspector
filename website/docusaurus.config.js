@@ -12,7 +12,7 @@ module.exports = {
 
   themeConfig: {
     disableDarkMode: true,
-    sidebarCollapsible: false,
+    sidebarCollapsible: true,
     image: 'img/github/app-action.jpg',
     announcementBar: {
       id: 'support_us',
