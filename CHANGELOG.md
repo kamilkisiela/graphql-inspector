@@ -4,6 +4,13 @@
 
 - **github**: put annotations of removed parts of schema on new schema [#1414](https://github.com/kamilkisiela/graphql-inspector/issues/1414)
 - **ci**: improve UX [#1413](https://github.com/kamilkisiela/graphql-inspector/pull/1413)
+- **github** schema change notifications on Slack, Discord and through Webhook.
+- **github** **action** opt-out annotations
+- **github** **action** opt-in forced success on breaking changes
+- **github** **action** endpoint as source of schema
+- **github** support multiple environments (production, preview etc)
+- **github** remote interception of detected changes (schema check) via http
+- **github** managing unrelated PRs separately
 
 ### v1.30.4
 

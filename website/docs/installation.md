@@ -6,7 +6,7 @@ title: Getting Started
 
 Visit [GraphQL Inspector](https://github.com/marketplace/graphql-inspector) on GitHub Marketplace and complete installation.
 
-Read the ["GitHub Application"](./recipes/github) chapter to see the instructions.
+Read the ["GitHub Application"](./products/github.md) chapter to see the instructions.
 
 ---
 
@@ -14,7 +14,7 @@ Read the ["GitHub Application"](./recipes/github) chapter to see the instruction
 
 Visit [GraphQL Inspector](https://github.com/marketplace/actions/graphql-inspector) on GitHub Marketplace and complete installation.
 
-Read the ["GitHub Action"](./recipes/action) chapter to see the instructions.
+Read the ["GitHub Action"](./products/action.md) chapter to see the instructions.
 
 ---
 
@@ -63,7 +63,7 @@ Every command is installable through a package.
 - introspect - `@graphql-inspector/introspect-command`
 - serve - `@graphql-inspector/serve-command`
 
-> Please take a look at ["Continous Integration"](./recipes/ci) chapter.
+> Please take a look at ["Continous Integration"](./products/ci.md) chapter.
 
 ### Usage
 

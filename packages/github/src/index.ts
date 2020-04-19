@@ -1,9 +1,10 @@
-import app, {handleAction} from './probot';
+import app from './app';
 
 export default app;
 
 export {app};
-export {handleAction};
-export {ActionResult, CheckConclusion, Annotation} from './types';
-export {SchemaPointer} from './probot';
-export {diff} from './diff';
+export {ActionResult, CheckConclusion, Annotation} from './helpers/types';
+export {SchemaPointer, createConfig, NormalizedConfig} from './helpers/config';
+export {diff} from './helpers/diff';
+export {createFileLoader, printSchemaFromEndpoint} from './helpers/loaders';
+export {createSummary, quotesTransformer} from './helpers/utils';

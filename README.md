@@ -20,6 +20,8 @@ Use GraphQL Inspector however you want:
 
 - **Compares schemas**
 - **Detect breaking or dangerous changes**
+- **Schema change notifications**
+- **Use serverless functions validate changes**
 - **Validates Operations and Fragments against a schema**
 - **Finds similar / duplicated types**
 - **Schema coverage based on Operations and Fragments**

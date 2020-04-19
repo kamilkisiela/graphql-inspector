@@ -1,6 +1,6 @@
 import {Context} from 'probot';
-
 import {CheckStatus, Annotation, CheckConclusion} from './types';
+import {Logger} from './logger';
 
 const headers = {accept: 'application/vnd.github.antiope-preview+json'};
 
@@ -9,13 +9,14 @@ export async function start({
   owner,
   repo,
   sha,
+  logger,
 }: {
   sha: string;
   context: Context;
   owner: string;
   repo: string;
+  logger: Logger;
 }): Promise<string> {
-  const id = `${owner}/${repo}#${sha}`;
   try {
     const result = await context.github.request({
       headers,
@@ -26,28 +27,29 @@ export async function start({
       head_sha: sha,
       status: CheckStatus.InProgress,
     } as any);
-    context.log.info(`[check-start] sent - ${id}`);
+    logger.info(`check started`);
 
     return result.data.url;
-  } catch (e) {
-    context.log.error(`[check-start] failed - ${id}`);
-    context.log.error(e);
-    throw e;
+  } catch (error) {
+    logger.error(`failed to start a check`, error);
+    throw error;
   }
 }
 
-export async function annotations({
+export async function annotate({
   context,
   url,
   annotations,
   title,
   summary,
+  logger,
 }: {
   url: string;
   annotations: Annotation[];
   context: Context;
   title: string;
   summary: string;
+  logger: Logger;
 }) {
   try {
     await context.github.request({
@@ -60,11 +62,10 @@ export async function annotations({
         summary,
       },
     } as any);
-    context.log.info(`[check-annotations] sent (${annotations.length})`);
-  } catch (e) {
-    context.log.error(`[check-annotations] failed`);
-    context.log.error(e);
-    throw e;
+    logger.info(`annotations sent (${annotations.length})`);
+  } catch (error) {
+    logger.error(`failed to send annotations`, error);
+    throw error;
   }
 }
 
@@ -72,10 +73,12 @@ export async function complete({
   context,
   url,
   conclusion,
+  logger,
 }: {
   url: string;
   context: Context;
   conclusion: CheckConclusion;
+  logger: Logger;
 }) {
   try {
     await context.github.request({
@@ -86,10 +89,9 @@ export async function complete({
       completed_at: new Date().toISOString(),
       status: CheckStatus.Completed,
     } as any);
-    context.log.info(`[check-complete] sent`);
-  } catch (e) {
-    context.log.error(`[check-complete] failed`);
-    context.log.error(e);
-    throw e;
+    logger.info(`check completed`);
+  } catch (error) {
+    logger.error(`failed to complete a check`, error);
+    throw error;
   }
 }

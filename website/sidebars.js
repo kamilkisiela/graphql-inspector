@@ -8,8 +8,16 @@ module.exports = {
       'essentials/similar',
       'essentials/serve',
       'essentials/introspect',
+      'essentials/notifications',
     ],
-    Recipes: ['recipes/ci', 'recipes/github', 'recipes/action'],
+    Recipes: [
+      'recipes/environments',
+      'recipes/endpoints',
+      'recipes/intercept',
+      'recipes/annotations',
+      'recipes/pull-requests',
+    ],
+    Products: ['products/ci', 'products/github', 'products/action'],
     API: ['api/schema', 'api/documents'],
   },
 };

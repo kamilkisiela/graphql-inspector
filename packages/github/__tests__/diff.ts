@@ -1,6 +1,12 @@
 import {buildSchema, Source} from 'graphql';
-import {diff} from '../src/diff';
-import {CheckConclusion} from '../src/types';
+import nock from 'nock';
+import {
+  diff,
+  DiffInterceptorPayload,
+  DiffInterceptorResponse,
+} from '../src/helpers/diff';
+import {CheckConclusion} from '../src/helpers/types';
+import {CriticalityLevel} from '@graphql-inspector/core';
 
 function getPrintedLine(source: Source, line: number): string {
   return source.body.split(/\r\n|[\n\r]/g)[line - 1].trim();
@@ -165,4 +171,57 @@ test('should work with comments and descriptions', async () => {
   expect(getPrintedLine(sources.new, action.annotations![2].start_line)).toBe(
     'name: String',
   );
+});
+
+test('use interceptor to modify changes', async () => {
+  const scope = nock('https://api.com')
+    .post('/intercept')
+    .reply(async (_, body: DiffInterceptorPayload) => {
+      const response: DiffInterceptorResponse = {
+        changes: body.changes.map((c) => {
+          c.criticality.level = 'NON_BREAKING' as any;
+          return {...c};
+        }),
+      };
+      return [200, response];
+    });
+  const action = await diff({
+    path: 'schema.graphql',
+    ...build(oldSchema, newSchema),
+    interceptor: 'https://api.com/intercept',
+  });
+
+  expect(action.annotations).toHaveLength(7);
+  expect(action.changes).toHaveLength(7);
+  expect(
+    action.changes.every(
+      (change) => change.criticality.level === CriticalityLevel.NonBreaking,
+    ),
+  ).toBe(true);
+  expect(action.conclusion).toBe(CheckConclusion.Success);
+
+  scope.done();
+});
+
+test('use interceptor to modify check conclusion', async () => {
+  const scope = nock('https://api.com')
+    .post('/intercept')
+    .reply(async (_, body: DiffInterceptorPayload) => {
+      const response: DiffInterceptorResponse = {
+        changes: body.changes,
+        conclusion: 'neutral' as any,
+      };
+      return [200, response];
+    });
+  const action = await diff({
+    path: 'schema.graphql',
+    ...build(oldSchema, newSchema),
+    interceptor: 'https://api.com/intercept',
+  });
+
+  expect(action.annotations).toHaveLength(7);
+  expect(action.changes).toHaveLength(7);
+  expect(action.conclusion).toBe(CheckConclusion.Neutral);
+
+  scope.done();
 });

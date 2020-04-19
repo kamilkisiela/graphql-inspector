@@ -6,6 +6,8 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Footer from '@theme/Footer';
 import ContactForm from '../components/contact';
 import {Loading} from '../components/loading';
+import {Feature} from '../components/feature';
+import {Highlights} from '../components/highlights';
 
 const LiveContent = () => {
   const Diff = React.lazy(() => import('../components/diff'));
@@ -82,9 +84,11 @@ const Nav = () => {
         <img src="/img/logo.svg" alt="GraphQL Inspector Logo" />
       </a>
       <div className="links">
-        <Link to="/docs">Docs</Link>
+        <Link to="/docs">Documentation</Link>
         <div className="sep" />
-        <a href="/install">Install</a>
+        <a href="/install">App</a>
+        <div className="sep" />
+        <a href="/action">Action</a>
         <div className="sep" />
         <a href="https://github.com/kamilkisiela/graphql-inspector">GitHub</a>
         <div className="sep" />
@@ -123,30 +127,6 @@ const Hightlight = (props) => {
   );
 };
 
-const Highlights = () => {
-  return (
-    <div id="main-highlights">
-      <div className="container">
-        <Hightlight
-          title="GitHub integration"
-          image="/img/ui/features/github.svg"
-          description="Have a per-repository, self-hosted GraphQL Inspector service or deploy it with Docker."
-        />
-        <Hightlight
-          title="Compare GraphQL schemas"
-          image="/img/ui/features/diff.svg"
-          description="Detects every change (neutral, dangerous or breaking)."
-        />
-        <Hightlight
-          title="Validate operations and fragments"
-          image="/img/ui/features/validate.svg"
-          description="Validates documents against a schema and looks for deprecated usage."
-        />
-      </div>
-    </div>
-  );
-};
-
 function Index() {
   const context = useDocusaurusContext();
   const {siteConfig = {}} = context;
@@ -168,13 +148,143 @@ function Index() {
         <meta property="og:description" content={tagline} />
         <meta property="og:url" content={url} />
         <link rel="shortcut icon" href={favicon}></link>
-        <title>{title} - {tagline}</title>
+        <title>
+          {title} - {tagline}
+        </title>
       </Head>
       <div className="mainContainer">
         <Nav />
         <Header />
       </div>
-      <Highlights />
+
+      <Highlights
+        highlights={[
+          {
+            title: 'Works with GitHub',
+            text: (
+              <p>
+                Start using our <strong>GitHub Application</strong>, setup
+                everything within few clicks.
+                <br />
+                Using GitHub workflows? Try out the{' '}
+                <strong>GitHub Action</strong>!
+              </p>
+            ),
+            link: <Link to="/docs/products/github">Learn more</Link>,
+          },
+          {
+            title: 'Continous Integrations',
+            text: (
+              <p>
+                GraphQL Inspector can be used in any Continous Integration
+                service.Use our modularized, CI suited version of CLI.
+              </p>
+            ),
+            link: <Link to="/docs/products/ci">Learn more</Link>,
+          },
+          {
+            title: 'Command-Line',
+            text: (
+              <p>
+                <strong>GraphQL Inspector offers a CLI</strong> that lets you
+                analyze your GraphQL API but also client-side applications.
+              </p>
+            ),
+            link: <Link to="/docs/essentials/diff">Lean more</Link>,
+          },
+          {
+            title: 'Entirely Open-Source',
+            text: (
+              <p>
+                Our codebase is publicly available on GitHub and it's easy to
+                deploy and use your GitHub Application.
+              </p>
+            ),
+            link: (
+              <a href="https://github.com/kamilkisiela/graphql-inspector">
+                Visit repository
+              </a>
+            ),
+          },
+        ]}
+      />
+
+      <Feature
+        img={
+          <img
+            src="/img/ui/features/annotations.png"
+            alt="Annotations"
+          />
+        }
+        title="In-Code Annotations"
+        text={
+          <>
+            <p>
+              GitHub offers <strong>in-code annotations</strong> and GraphQL
+              Inspector, both App and Action enables you do use them.
+            </p>
+            <p>
+              Nice and clean way to understand what have really changed and how
+              it looked before and after.
+            </p>
+          </>
+        }
+      />
+
+      <Feature
+        reversed={true}
+        img={
+          <img src="/img/ui/features/notifications.png" alt="Notifications" />
+        }
+        title="Notifications"
+        text={
+          <>
+            <p>Stay up to date with changes in GraphQL Schema.</p>
+            <p>
+              Receive notifications on <strong>Slack</strong>,{' '}
+              <strong>Discord</strong> or even via <strong>WebHooks</strong>{' '}
+              every time new changes are introduced.
+            </p>
+          </>
+        }
+      />
+
+      <Feature
+        img={<img src="/img/ui/features/schema-check.png" alt="Schema Check" />}
+        title="Detect Changes"
+        text={
+          <>
+            <p>
+              <strong>Prevent breaking changes</strong> on Pull Request and Push
+              levels.
+            </p>
+            <p>
+              Get a fully detailed summary with a list of proposed changes to
+              the GraphQL Schema and decide whether or not to implement them.
+            </p>
+          </>
+        }
+      />
+
+      <Feature
+        reversed={true}
+        img={<img src="/img/ui/features/intercept.svg" alt="Intercept changes via HTTP" />}
+        title="Intercept via HTTP"
+        text={
+          <>
+            <p>
+              On every schema checking, your http endpoint receives a list of
+              changes, list of related Pull Request or a commit SHA.
+            </p>
+            <p>
+              <strong>
+                Decide about the status of Pull Request.
+              </strong>
+            </p>
+          </>
+        }
+      />
+
       <Live />
       <Contact />
       <Footer />
