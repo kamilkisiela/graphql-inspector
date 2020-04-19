@@ -25,7 +25,7 @@
     "affected:test": "bob run test",
     "build": "tsc --project tsconfig.json && bob build",
     "test": "jest",
-    "now-build": "exit 0;yarn build && (cd website && yarn && yarn build && mv build ../public)",
+    "now-build": "yarn build && (cd website && yarn && yarn build && mv build ../public)",
     "action": "ncc build packages/action/src/action.ts --out action --minify --transpile-only",
     "bundle": "webpack",
     "format": "prettier --config .prettierrc --write \"**/*.{js,json,md,ts,graphql}\"",
