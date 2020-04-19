@@ -53,7 +53,7 @@ async function handlerBing(req, res) {
       'https://graphql.fauna.com/graphql',
       {
         headers: {
-          Authorization: `Basic ${secret}`,
+          Authorization: `Bearer ${secret}`,
         },
       },
     );
