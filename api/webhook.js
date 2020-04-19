@@ -2,12 +2,13 @@ const {createProbot} = require('probot');
 const {resolve} = require('probot/lib/resolver');
 const {findPrivateKey} = require('probot/lib/private-key');
 const {GraphQLClient} = require('graphql-request');
+const axios = require('axios').default;
 
 const githubApp = require('@graphql-inspector/github').app;
 
 let probot;
 
-const loadProbot = appFn => {
+const loadProbot = (appFn) => {
   probot =
     probot ||
     createProbot({
@@ -25,7 +26,7 @@ const loadProbot = appFn => {
   return probot;
 };
 
-const lowerCaseKeys = obj =>
+const lowerCaseKeys = (obj) =>
   Object.keys(obj).reduce(
     (accumulator, key) =>
       Object.assign(accumulator, {[key.toLocaleLowerCase()]: obj[key]}),
@@ -46,6 +47,10 @@ function serverless(appFn) {
       res.send(`Visit graphql-inspector.com`);
       return;
     }
+
+    try {
+      await axios.get('https://graphql-inspector.com/api/collect?kind=app');
+    } catch (e) {}
 
     // Otherwise let's listen handle the payload
     probot = probot || loadProbot(appFn);
@@ -120,7 +125,7 @@ async function logEvent({event, ok, error}) {
       'https://graphql.fauna.com/graphql',
       {
         headers: {
-          Authorization: `Basic ${secret}`,
+          Authorization: `Bearer ${secret}`,
         },
       },
     );
