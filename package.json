@@ -46,7 +46,7 @@
     "axios": "0.19.2",
     "bob-the-bundler": "1.0.0-rc.14",
     "graphql": "15.0.0",
-    "jest": "25.3.0",
+    "jest": "25.4.0",
     "jsesc": "3.0.1",
     "lint-staged": "10.1.6",
     "lodash": "4.17.15",
