@@ -48,10 +48,6 @@ function serverless(appFn) {
       return;
     }
 
-    try {
-      await axios.get('https://graphql-inspector.com/api/collect?kind=app');
-    } catch (e) {}
-
     // Otherwise let's listen handle the payload
     probot = probot || loadProbot(appFn);
 

@@ -1,9 +1,16 @@
 import * as probot from 'probot';
+import axios from 'axios';
 import {createConfigLoader, createFileLoader} from './helpers/loaders';
 import {handleSchemaChangeNotifications} from './schema-change-notifications';
 import {handleSchemaDiff} from './schema-diff';
 
 const allowedCheckActions = ['requested', 'rerequested', 'gh-action']
+
+async function collect() {
+  try {
+    await axios.get('https://graphql-inspector.com/api/collect?kind=app');
+  } catch (e) {}
+}
 
 export default function handleProbot(app: probot.Application) {
   app.on('check_run', async (context) => {
@@ -15,6 +22,8 @@ export default function handleProbot(app: probot.Application) {
     if (allowedCheckActions.includes(action) === false) {
       return;
     }
+
+    await collect();
 
     const loadFile = createFileLoader({context, owner, repo});
     const loadConfig = createConfigLoader(
@@ -43,6 +52,8 @@ export default function handleProbot(app: probot.Application) {
       return;
     }
 
+    await collect();
+
     const loadFile = createFileLoader({context, owner, repo});
     const loadConfig = createConfigLoader(
       {context, owner, repo, ref},
@@ -70,6 +81,8 @@ export default function handleProbot(app: probot.Application) {
       {context, owner, repo, ref},
       loadFile,
     );
+
+    await collect();
 
     await handleSchemaChangeNotifications({
       context,
