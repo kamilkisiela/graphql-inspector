@@ -44,7 +44,6 @@
     "@actions/github": "2.1.1",
     "@graphql-inspector/github": "0.0.0-PLACEHOLDER",
     "@graphql-inspector/core": "0.0.0-PLACEHOLDER",
-    "axios": "0.19.2",
     "js-yaml": "3.13.1",
     "probot": "9.11.3",
     "tslib": "^1.11.1"

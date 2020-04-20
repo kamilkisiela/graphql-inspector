@@ -7,7 +7,6 @@ import {
 import {buildSchema, Source} from 'graphql';
 import {readFileSync} from 'fs';
 import {resolve} from 'path';
-import axios from 'axios';
 
 import * as core from '@actions/core';
 import * as github from '@actions/github';
@@ -17,10 +16,6 @@ const CHECK_NAME = 'GraphQL Inspector';
 
 export async function run() {
   core.info(`GraphQL Inspector started`);
-
-  try {
-    await axios.get('https://graphql-inspector.com/api/collect?kind=action');
-  } catch (e) {}
 
   // env
   const ref = process.env.GITHUB_SHA!;

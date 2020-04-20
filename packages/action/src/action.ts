@@ -2,7 +2,7 @@
   userAgent: 'node.js',
 };
 
-import core from '@actions/core';
+import * as core from '@actions/core';
 import {run} from './run';
 
 run().catch(e => {
