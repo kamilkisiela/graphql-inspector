@@ -20,6 +20,8 @@ export async function run() {
   // env
   const ref = process.env.GITHUB_SHA!;
 
+  core.info(`Ref: ${ref}`);
+
   //
   // env:
   //   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
