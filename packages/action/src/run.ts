@@ -47,14 +47,13 @@ export async function run() {
   // repo
   const {owner, repo} = github.context.repo;
 
-  const sha = github.context.sha;
-  core.info(`Creating a check named "${CHECK_NAME}" (sha: ${sha})`);
+  core.info(`Creating a check named "${CHECK_NAME}" (ref: ${ref})`);
 
   const check = await octokit.checks.create({
     owner,
     repo,
     name: CHECK_NAME,
-    head_sha: sha,
+    head_sha: ref,
     status: 'in_progress',
   });
 
