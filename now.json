@@ -28,11 +28,6 @@
       "statusCode": 301
     }
   ],
-  "functions": {
-    "api/webhook.js": {
-      "maxDuration": 20
-    }
-  },
   "github": {
     "enabled": false
   }
