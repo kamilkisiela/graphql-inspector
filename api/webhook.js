@@ -1,8 +1,7 @@
+/// @ts-check
 const {createProbot} = require('probot');
 const {resolve} = require('probot/lib/resolver');
 const {findPrivateKey} = require('probot/lib/private-key');
-const {GraphQLClient} = require('graphql-request');
-const axios = require('axios').default;
 
 const githubApp = require('@graphql-inspector/github').app;
 
@@ -77,12 +76,6 @@ function serverless(appFn) {
       } catch (err) {
         console.error(err);
 
-        await logEvent({
-          event,
-          ok: false,
-          error: err,
-        });
-
         res.status(500);
         res.json(err);
 
@@ -91,65 +84,10 @@ function serverless(appFn) {
     } else {
       console.error({req, res});
 
-      await logEvent({
-        event,
-        ok: false,
-        error: 'No req object...',
-      });
-
       res.status(500);
       res.send('unknown error');
 
       return;
     }
   };
-}
-
-async function logEvent({event, ok, error}) {
-  const secret = process.env.FAUNADB_SECRET;
-
-  if (!secret) {
-    return;
-  }
-
-  const status = ok === true ? 'success' : 'failure';
-
-  console.log('log', {event, status});
-
-  try {
-    const graphQLClient = new GraphQLClient(
-      'https://graphql.fauna.com/graphql',
-      {
-        headers: {
-          Authorization: `Bearer ${secret}`,
-        },
-      },
-    );
-
-    const query = /* GraphQL */ `
-      mutation invocation($event: String!, $status: Status!, $error: String) {
-        createInvocation(
-          data: {event: $event, status: $status, error: $error}
-        ) {
-          _id
-          _ts
-        }
-      }
-    `;
-
-    const variables = {event, status};
-
-    if (error) {
-      variables.error =
-        typeof error.toString !== 'undefined' ? error.toString() : `${error}`;
-    }
-
-    const result = await graphQLClient.request(query, variables);
-
-    console.log('LOG SENT');
-    console.log(result);
-  } catch (e) {
-    console.log('FAILED TO SEND LOG');
-    console.error(e);
-  }
 }

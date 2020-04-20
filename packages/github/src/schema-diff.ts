@@ -7,6 +7,7 @@ import {SchemaPointer, createConfig} from './helpers/config';
 import {diff} from './helpers/diff';
 import {createSummary} from './helpers/utils';
 import {createLogger} from './helpers/logger';
+import { MissingConfigError } from './helpers/errors';
 
 export async function handleSchemaDiff({
   context,
@@ -45,13 +46,7 @@ export async function handleSchemaDiff({
 
     if (!rawConfig) {
       logger.error(`Config file missing`);
-      await complete({
-        url: checkUrl,
-        context,
-        conclusion: CheckConclusion.Failure,
-        logger,
-      });
-      return;
+      throw new MissingConfigError()
     }
 
     const branches = pullRequests.map((pr) => pr.base.ref);
