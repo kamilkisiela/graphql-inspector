@@ -80,8 +80,12 @@ export async function handleSchemaChangeNotifications({
   const sources = await loadSources({config, oldPointer, newPointer, loadFile});
 
   const schemas = {
-    old: buildSchema(sources.old),
-    new: buildSchema(sources.new),
+    old: buildSchema(sources.old, {
+      assumeValid: true
+    }),
+    new: buildSchema(sources.new, {
+      assumeValid: true
+    }),
   };
 
   logger.info(`built schemas`);

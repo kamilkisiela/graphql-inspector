@@ -788,3 +788,27 @@ test('Query fields becoming nullable is a breaking change', () => {
     `Field 'Comment.customScalar' changed type from 'CustomScalar!' to 'CustomScalar'`,
   );
 });
+
+test('should work with with missing directive definitions', () => {
+  const schemaA = buildSchema(/* GraphQL */ `
+    type Query {
+      foo: String! @md
+      bar: String! @md
+    }
+  `, {
+    assumeValid: true
+  });
+
+  const schemaB = buildSchema(/* GraphQL */ `
+    type Query {
+      foo: String! @md
+      bar: String
+    }
+  `, {
+    assumeValid: true
+  });
+
+  const changes = diff(schemaA, schemaB);
+
+  expect(changes).toHaveLength(1);
+});

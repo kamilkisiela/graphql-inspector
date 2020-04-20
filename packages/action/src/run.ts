@@ -7,6 +7,7 @@ import {
 import {buildSchema, Source} from 'graphql';
 import {readFileSync} from 'fs';
 import {resolve} from 'path';
+import {execSync} from 'child_process';
 
 import * as core from '@actions/core';
 import * as github from '@actions/github';
@@ -14,11 +15,36 @@ import {Octokit} from '@octokit/rest';
 
 const CHECK_NAME = 'GraphQL Inspector';
 
+function getCurrentCommitSha() {
+  const sha = execSync(`git rev-parse HEAD`).toString().trim();
+  
+  try {
+    const msg = execSync(`git show ${sha} -s --format=%s`).toString().trim();
+    const PR_MSG = /Merge (\w+) into \w+/i;
+
+    if (PR_MSG.test(msg)) {
+      const result = PR_MSG.exec(msg);
+
+      if (result) {
+        return result[1];
+      }
+    }
+  } catch (e) {
+    //
+  }
+
+  return sha;
+}
+
 export async function run() {
   core.info(`GraphQL Inspector started`);
 
   // env
   const ref = process.env.GITHUB_SHA!;
+  const commitSha = getCurrentCommitSha();
+
+  core.info(`Ref: ${ref}`);
+  core.info(`Commit SHA: ${commitSha}`);
 
   //
   // env:
@@ -47,14 +73,19 @@ export async function run() {
   // repo
   const {owner, repo} = github.context.repo;
 
+  core.info(`Creating a check named "${CHECK_NAME}"`);
+
   const check = await octokit.checks.create({
     owner,
     repo,
     name: CHECK_NAME,
-    head_sha: github.context.sha,
+    head_sha: commitSha,
     status: 'in_progress',
   });
+
   const checkId = check.data.id;
+
+  core.info(`Check ID: ${checkId}`);
 
   const loadFile = fileLoader({
     octokit,
@@ -70,26 +101,35 @@ export async function run() {
   }
 
   const [schemaRef, schemaPath] = schemaPointer.split(':');
+
+  const [oldFile, newFile] = await Promise.all([
+    endpoint
+      ? printSchemaFromEndpoint(endpoint)
+      : loadFile({
+          ref: schemaRef,
+          path: schemaPath,
+        }),
+    loadFile({
+      path: endpoint ? schemaPointer : schemaPath,
+      ref,
+      workspace,
+    }),
+  ]);
+
+  core.info('Got both sources');
+
   const sources = {
-    old: new Source(
-      await (endpoint
-        ? printSchemaFromEndpoint(endpoint)
-        : loadFile({
-            ref: schemaRef,
-            path: schemaPath,
-          })),
-    ),
-    new: new Source(
-      await loadFile({
-        path: endpoint ? schemaPointer : schemaPath,
-        ref,
-        workspace,
-      }),
-    ),
+    old: new Source(oldFile),
+    new: new Source(newFile),
   };
+
   const schemas = {
-    old: buildSchema(sources.old),
-    new: buildSchema(sources.new),
+    old: buildSchema(sources.old, {
+      assumeValid: true,
+    }),
+    new: buildSchema(sources.new, {
+      assumeValid: true,
+    }),
   };
 
   core.info(`Built both schemas`);
@@ -107,6 +147,7 @@ export async function run() {
   const changes = action.changes || [];
 
   core.setOutput('changes', `${changes.length || 0}`);
+  core.info(`Changes: ${changes.length || 0}`);
 
   // Force Success when failOnBreaking is disabled
   if (failOnBreaking === false && conclusion === CheckConclusion.Failure) {
@@ -115,7 +156,7 @@ export async function run() {
   }
 
   if (useAnnotations === false) {
-    core.info(`Anotations are disabeld. Skipping annotations...`);
+    core.info(`Anotations are disabled. Skipping annotations...`);
     annotations = [];
   }
 
@@ -126,15 +167,25 @@ export async function run() {
       ? 'Something is wrong with your schema'
       : 'Everything looks good';
 
+  core.info(`Conclusion: ${conclusion}`);
+
   try {
-    await updateCheckRun(octokit, checkId, {
+    return await updateCheckRun(octokit, checkId, {
       conclusion,
       output: {title, summary, annotations},
     });
   } catch (e) {
     // Error
     core.error(e.message || e);
-    return core.setFailed('Invalid config. Failed to add annotation');
+
+    const title = 'Invalid config. Failed to add annotation';
+
+    await updateCheckRun(octokit, checkId, {
+      conclusion: CheckConclusion.Failure,
+      output: {title, summary: title, annotations: []},
+    });
+
+    return core.setFailed(title);
   }
 }
 
@@ -204,6 +255,7 @@ async function updateCheckRun(
   checkId: number,
   {conclusion, output}: UpdateCheckRunOptions,
 ) {
+  core.info(`Updating check: ${checkId}`);
   await octokit.checks.update({
     check_run_id: checkId,
     completed_at: new Date().toISOString(),
