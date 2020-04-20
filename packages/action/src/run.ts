@@ -16,7 +16,24 @@ import {Octokit} from '@octokit/rest';
 const CHECK_NAME = 'GraphQL Inspector';
 
 function getCurrentCommitSha() {
-  return execSync(`git rev-parse HEAD`).toString().trim();
+  const sha = execSync(`git rev-parse HEAD`).toString().trim();
+  
+  try {
+    const msg = execSync(`git show ${sha} -s --format=%s`).toString().trim();
+    const PR_MSG = /Merge (\w{7}) into \w{7}/i;
+
+    if (PR_MSG.test(msg)) {
+      const result = PR_MSG.exec(msg);
+
+      if (result) {
+        return result[1];
+      }
+    }
+  } catch (e) {
+    //
+  }
+
+  return sha;
 }
 
 export async function run() {
