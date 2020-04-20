@@ -171,7 +171,11 @@ export async function printSchemaFromEndpoint(endpoint: Endpoint) {
   });
   const introspection = response.data;
 
-  return printSchema(buildClientSchema(introspection));
+  return printSchema(
+    buildClientSchema(introspection, {
+      assumeValid: true,
+    }),
+  );
 }
 
 export async function loadSources({

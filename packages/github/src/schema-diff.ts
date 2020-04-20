@@ -82,8 +82,12 @@ export async function handleSchemaDiff({
     });
 
     const schemas = {
-      old: buildSchema(sources.old),
-      new: buildSchema(sources.new),
+      old: buildSchema(sources.old, {
+        assumeValid: true
+      }),
+      new: buildSchema(sources.new, {
+        assumeValid: true
+      }),
     };
 
     logger.info(`built schemas`);
