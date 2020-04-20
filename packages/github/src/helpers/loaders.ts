@@ -33,6 +33,7 @@ interface FileLoaderInput {
   path: string;
   ref: string;
   throwNotFound?: boolean;
+  onError?: (error: any) => void;
 }
 
 export type FileLoader = (input: FileLoaderInput) => Promise<string | null>;
@@ -63,11 +64,15 @@ export function createFileLoader(config: FileLoaderConfig): FileLoader {
 
             return (result as any).repository.object.text as string;
           } catch (error) {
-            console.error(error);
             const failure = new Error(`Failed to load '${path}' (ref: ${ref})`);
 
             if (input.throwNotFound === false) {
-              console.error(failure);
+              if (input.onError) {
+                input.onError(failure);
+              } else {
+                console.error(failure);
+              }
+
               return null;
             }
 
@@ -95,18 +100,31 @@ export function createConfigLoader(
 ): ConfigLoader {
   const loader = new Dataloader<string, object | null, string>(
     (ids) => {
+      const errors: Error[] = [];
+      const onError = (error: any) => {
+        errors.push(error);
+      };
+
       return Promise.all(
         ids.map(async (id) => {
-          const [yamlConfig, ymlConfig] = await Promise.all([
+          const [yamlConfig, ymlConfig, pkgFile] = await Promise.all([
             loadFile({
               ...config,
               path: `.github/${id}.yaml`,
               throwNotFound: false,
+              onError,
             }),
             loadFile({
               ...config,
               path: `.github/${id}.yml`,
               throwNotFound: false,
+              onError,
+            }),
+            loadFile({
+              ...config,
+              path: 'package.json',
+              throwNotFound: false,
+              onError,
             }),
           ]);
 
@@ -114,18 +132,19 @@ export function createConfigLoader(
             return yaml.safeLoad((yamlConfig || ymlConfig)!);
           }
 
-          const file = await loadFile({
-            ...config,
-            path: 'package.json',
-          });
+          if (pkgFile) {
+            try {
+              const pkg = JSON.parse(pkgFile);
 
-          if (file) {
-            const pkg = JSON.parse(file);
-
-            if (pkg[id]) {
-              return pkg[id];
+              if (pkg[id]) {
+                return pkg[id];
+              }
+            } catch (error) {
+              errors.push(error);
             }
           }
+
+          console.error([`Failed to load a config:`, ...errors].join('\n'));
 
           return null;
         }),
