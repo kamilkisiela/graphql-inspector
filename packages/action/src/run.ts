@@ -20,7 +20,7 @@ function getCurrentCommitSha() {
   
   try {
     const msg = execSync(`git show ${sha} -s --format=%s`).toString().trim();
-    const PR_MSG = /Merge (\w{7}) into \w{7}/i;
+    const PR_MSG = /Merge (\w+) into \w+/i;
 
     if (PR_MSG.test(msg)) {
       const result = PR_MSG.exec(msg);
