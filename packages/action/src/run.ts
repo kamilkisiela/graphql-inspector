@@ -7,6 +7,7 @@ import {
 import {buildSchema, Source} from 'graphql';
 import {readFileSync} from 'fs';
 import {resolve} from 'path';
+import {execSync} from 'child_process';
 
 import * as core from '@actions/core';
 import * as github from '@actions/github';
@@ -14,13 +15,19 @@ import {Octokit} from '@octokit/rest';
 
 const CHECK_NAME = 'GraphQL Inspector';
 
+function getCurrentCommitSha() {
+  return execSync(`git rev-parse HEAD`).toString().trim();
+}
+
 export async function run() {
   core.info(`GraphQL Inspector started`);
 
   // env
   const ref = process.env.GITHUB_SHA!;
+  const commitSha = getCurrentCommitSha();
 
   core.info(`Ref: ${ref}`);
+  core.info(`Commit SHA: ${commitSha}`);
 
   //
   // env:
@@ -49,13 +56,13 @@ export async function run() {
   // repo
   const {owner, repo} = github.context.repo;
 
-  core.info(`Creating a check named "${CHECK_NAME}" (ref: ${ref})`);
+  core.info(`Creating a check named "${CHECK_NAME}"`);
 
   const check = await octokit.checks.create({
     owner,
     repo,
     name: CHECK_NAME,
-    head_sha: ref,
+    head_sha: commitSha,
     status: 'in_progress',
   });
 
