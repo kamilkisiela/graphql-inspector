@@ -1,7 +1,7 @@
 module.exports = {
   title: 'GraphQL Inspector',
   tagline:
-    'Compare schemas, validate documents, find breaking changes, find similar types, schema coverage',
+    'Validate schemas, detect changes, receive schema change notifications on Slack and Discord. Validate documents, find similar types, get schema coverage.',
 
   url: 'https://graphql-inspector.com',
   baseUrl: '/',
@@ -159,16 +159,14 @@ module.exports = {
   scripts: [
     {
       src: '/js/scroll-to.js',
-      async: true,
-      defer: true,
     },
     {
       src: '/js/drift.js',
-      async: true,
-      defer: true,
     },
   ],
-  stylesheets: ['https://fonts.googleapis.com/css?family=Lato:300,400,700,900'],
+  stylesheets: [
+    'https://fonts.googleapis.com/css?family=Lato:300,400,700,900&display=swap',
+  ],
   presets: [
     [
       '@docusaurus/preset-classic',
@@ -188,6 +186,17 @@ module.exports = {
           changefreq: 'weekly',
           priority: 0.5,
         },
+      },
+    ],
+  ],
+  plugins: [
+    [
+      '@docusaurus/plugin-ideal-image',
+      {
+        size: 800,
+        max: 800,
+        min: 200,
+        quality: 100,
       },
     ],
   ],

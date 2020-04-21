@@ -3,6 +3,7 @@ import Link from '@docusaurus/Link';
 import Head from '@docusaurus/Head';
 import BrowserOnly from '@docusaurus/BrowserOnly';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import Image from '@theme/IdealImage';
 import Footer from '@theme/Footer';
 import ContactForm from '../components/contact';
 import {Loading} from '../components/loading';
@@ -108,21 +109,11 @@ const Header = () => {
           <span>Bulletproof</span> your GraphQL API
         </h1>
         <h2>
-          Detects every change, finds similar or duplicated types, validates
-          documents against a schema and looks for deprecated usage.
+          Validate schemas and detect changes. Receive schema change notifications. Keep
+          Operations and Fragments consistent.
         </h2>
         <Link to="/docs">Start to Inspect</Link>
       </div>
-    </div>
-  );
-};
-
-const Hightlight = (props) => {
-  return (
-    <div className="highlight">
-      <img src={props.image} alt={props.title} />
-      <div className="title">{props.title}</div>
-      <div className="description">{props.description}</div>
     </div>
   );
 };
@@ -211,9 +202,10 @@ function Index() {
 
       <Feature
         img={
-          <img
-            src="/img/ui/features/annotations.png"
+          <Image
+            img={require('../../static/img/ui/features/annotations.png')}
             alt="Annotations"
+            loading="lazy"
           />
         }
         title="In-Code Annotations"
@@ -234,7 +226,11 @@ function Index() {
       <Feature
         reversed={true}
         img={
-          <img src="/img/ui/features/notifications.png" alt="Notifications" />
+          <Image
+            img={require('../../static/img/ui/features/notifications.png')}
+            alt="Notifications"
+            loading="lazy"
+          />
         }
         title="Notifications"
         text={
@@ -250,7 +246,13 @@ function Index() {
       />
 
       <Feature
-        img={<img src="/img/ui/features/schema-check.png" alt="Schema Check" />}
+        img={
+          <Image
+            img={require('../../static/img/ui/features/schema-check.png')}
+            alt="Schema Validation"
+            loading="lazy"
+          />
+        }
         title="Detect Changes"
         text={
           <>
@@ -268,7 +270,12 @@ function Index() {
 
       <Feature
         reversed={true}
-        img={<img src="/img/ui/features/intercept.svg" alt="Intercept changes via HTTP" />}
+        img={
+          <Image
+            img={require('../../static/img/ui/features/intercept.png')}
+            alt="Intercept changes via HTTP"
+            loading="lazy"
+          />}
         title="Intercept via HTTP"
         text={
           <>
