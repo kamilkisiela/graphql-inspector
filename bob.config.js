@@ -14,7 +14,7 @@ module.exports = {
     test: {
       track: ['jest.config.js', '<project>/jest.config.js', '<project>/__tests__/**'],
       run(affected) {
-        return [`yarn`, ['test', ...affected.paths]];
+        return [`yarn`, ['test', '--passWithNoTests', ...affected.paths]];
       },
     },
     build: {
