@@ -1,4 +1,8 @@
-import {createCommand, GlobalArgs} from '@graphql-inspector/commands';
+import {
+  createCommand,
+  GlobalArgs,
+  parseGlobalArgs,
+} from '@graphql-inspector/commands';
 import {Logger, bolderize, chalk} from '@graphql-inspector/logger';
 import {
   validate as validateDocuments,
@@ -64,9 +68,10 @@ export default createCommand<
     },
     async handler(args) {
       const {loaders} = api;
+      const {headers, token} = parseGlobalArgs(args);
       const schema = await loaders.loadSchema(args.schema, {
-        token: args.token,
-        headers: args.headers,
+        headers,
+        token,
       });
       const documents = await loaders.loadDocuments(args.documents);
 

@@ -35,8 +35,8 @@ async function main() {
         type: 'string',
       },
       h: {
-        alias: 'headers',
-        describe: 'Http Headers',
+        alias: 'header',
+        describe: 'Http Header',
         type: 'array',
       },
     });

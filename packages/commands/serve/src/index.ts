@@ -1,4 +1,8 @@
-import {createCommand, GlobalArgs} from '@graphql-inspector/commands';
+import {
+  createCommand,
+  GlobalArgs,
+  parseGlobalArgs,
+} from '@graphql-inspector/commands';
 import {Logger} from '@graphql-inspector/logger';
 import open from 'open';
 import express from 'express';
@@ -35,9 +39,10 @@ export default createCommand<
         });
     },
     async handler(args) {
-      console.log('DONE');
+      const {headers, token} = parseGlobalArgs(args);
       const schema = await loaders.loadSchema(args.schema, {
-        headers: args.headers,
+        headers,
+        token,
       });
 
       const port = args.port;

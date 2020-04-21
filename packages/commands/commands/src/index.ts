@@ -38,7 +38,25 @@ export function ensureAbsolute(
 export interface GlobalArgs {
   require?: string[];
   token?: string;
-  headers?: string[];
+  header?: string[];
+}
+
+export function parseGlobalArgs(args: GlobalArgs) {
+  const headers: Record<string, string> = {};
+
+  if (args.header) {
+    args.header.forEach((header) => {
+      const [name, ...values] = header.split(':');
+
+      headers[name] = values.join('');
+    });
+  }
+
+  if (args.require) {
+    args.require.forEach((mod) => require(mod));
+  }
+
+  return {headers, token: args.token};
 }
 
 export async function mockCommand(mod: CommandModule, cmd: string) {

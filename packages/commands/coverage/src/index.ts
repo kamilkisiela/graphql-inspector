@@ -2,6 +2,7 @@ import {
   createCommand,
   GlobalArgs,
   ensureAbsolute,
+  parseGlobalArgs,
 } from '@graphql-inspector/commands';
 import {Logger, chalk} from '@graphql-inspector/logger';
 import {
@@ -54,10 +55,11 @@ export default createCommand<
       const {loaders} = api;
       const writePath = args.write;
       const shouldWrite = typeof writePath !== 'undefined';
+      const {headers, token} = parseGlobalArgs(args);
 
       const schema = await loaders.loadSchema(args.schema, {
-        token: args.token,
-        headers: args.headers,
+        token,
+        headers,
       });
       const documents = await loaders.loadDocuments(args.documents);
       const coverage = calculateCoverage(
