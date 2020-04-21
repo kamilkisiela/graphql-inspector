@@ -21,7 +21,7 @@ const GET_FILE_QUERY = /* GraphQL */ `
       }
     }
   }
-`;
+`.replace(/\s+/g, ' ');
 
 type FileLoaderConfig = {
   context: probot.Context;
@@ -144,7 +144,7 @@ export function createConfigLoader(
             }
           }
 
-          console.error([`Failed to load a config:`, ...errors].join('\n'));
+          console.error([`Failed to load config:`, ...errors].join('\n'));
 
           return null;
         }),

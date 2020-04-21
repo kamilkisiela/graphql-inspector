@@ -1,12 +1,40 @@
 ---
-title: Compare schemas
+title: Schema Validation
 ---
 
-Compares schemas and finds breaking or dangerous changes.
+Detect changes to your GraphQL Schema and prevent breaking your existing applications. With GraphQL Inspector you get a list of breaking, potentially dangerous and safe changes on every Pull Request. Integrate it with GitHub, BitBucket, GitLab or any Continous Integration.
 
-![Diff](/img/cli/diff.jpg)
+![Application](/img/github/app-action.jpg)
 
-## Usage
+## Using GitHub Application
+
+[Install our GitHub Application](../products/github.md#detection-of-changes) to check Pull Requests and commits.
+
+## Using GitHub Action
+
+[Use our GitHub Action](../products/action.md) in few steps.
+
+## Using in CI
+
+GraphQL Inspector offers a version of our CLI that is better suited for Continous Integrations. Learn more [how to use it](../products/ci.md).
+
+## Using CLI
+
+<div style={{
+    padding: 16,
+    backgroundColor: '#292d3e',
+    color: '#bfc7d5'
+}}>
+    <div style={{marginBottom: 15}}>Detected following changes:</div>
+    <div>❌ Field <b>posts</b> was removed from object type <b>Query</b></div>
+    <div>❌ Field <b>modifiedAt</b> was removed from object type <b>Post</b></div>
+    <div>✅ Field <b>Post.id</b> changed typed from <b>ID</b> to <b>ID!</b></div>
+    <div>✅ Deprecation reason <b>"No more used"</b> on field <b>Post.title</b> was added</div>
+    <div style={{marginTop: 15}}><span style={{color: 'red'}}>ERROR</span> Detected 2 breaking changes!</div>
+</div>
+
+
+### Usage
 
 Run the following command:
 
@@ -34,7 +62,7 @@ GraphQL Inspector defines three kinds of changes:
 
 When there's at least one breaking change, process fails, otherwise it succeeds.
 
-## Examples
+### Examples
 
 Compare your local schema against a remote server:
 
@@ -44,7 +72,7 @@ Compare your local schema against a schema on a master branch (github):
 
     graphql-inspector diff github:user/repo#master:schema.graphql schema.graphql
 
-## Rules
+### Rules
 
 In order to customize the diff's behavior, you're able to use a set of rules:
 
@@ -60,7 +88,7 @@ Changes of descriptions are filtered out and are not displayed in the CLI result
 
     graphql-inspector diff https://api.com/graphql schema.graphql --rule ignoreDescriptionChanges
 
-## Custom rules
+### Custom rules
 
 It's possible to write your own rules.
 

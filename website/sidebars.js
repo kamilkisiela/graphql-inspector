@@ -3,12 +3,12 @@ module.exports = {
     Introduction: ['index', 'installation'],
     Essentials: [
       'essentials/diff',
+      'essentials/notifications',
       'essentials/validate',
       'essentials/coverage',
       'essentials/similar',
       'essentials/serve',
       'essentials/introspect',
-      'essentials/notifications',
     ],
     Recipes: [
       'recipes/environments',
