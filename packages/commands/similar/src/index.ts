@@ -2,6 +2,7 @@ import {
   createCommand,
   GlobalArgs,
   ensureAbsolute,
+  parseGlobalArgs,
 } from '@graphql-inspector/commands';
 import {Logger, figures, chalk} from '@graphql-inspector/logger';
 import {
@@ -53,12 +54,13 @@ export default createCommand<
     },
     async handler(args) {
       const {loaders} = api;
+      const {headers, token} = parseGlobalArgs(args);
       const writePath = args.write;
       const shouldWrite = typeof writePath !== 'undefined';
 
       const schema = await loaders.loadSchema(args.schema, {
-        token: args.token,
-        headers: args.headers,
+        headers,
+        token,
       });
 
       const similarMap = findSimilar(schema, args.name, args.threshold);

@@ -13,6 +13,7 @@
 - **github** managing unrelated PRs separately
 - **action** use original SHA, not SHA from `pull_request` event [PR #1440](https://github.com/kamilkisiela/graphql-inspector/pull/1440)
 - **github** **action** assume valid schema to avoid missing directive definitions [PR #1440](https://github.com/kamilkisiela/graphql-inspector/pull/1440)
+- **cli** **ci** fix `--header` and `--token` [PR #1442](https://github.com/kamilkisiela/graphql-inspector/pull/1442)
 
 ### v1.30.4
 

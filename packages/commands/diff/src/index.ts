@@ -1,4 +1,9 @@
-import {createCommand, ensureAbsolute} from '@graphql-inspector/commands';
+import {
+  createCommand,
+  ensureAbsolute,
+  parseGlobalArgs,
+  GlobalArgs,
+} from '@graphql-inspector/commands';
 import {symbols, Logger, bolderize} from '@graphql-inspector/logger';
 import {
   diff as diffSchema,
@@ -15,7 +20,7 @@ export default createCommand<
     oldSchema: string;
     newSchema: string;
     rule?: string[];
-  }
+  } & GlobalArgs
 >((api) => {
   const {loaders} = api;
 
@@ -46,9 +51,16 @@ export default createCommand<
       try {
         const oldSchemaPointer = args.oldSchema;
         const newSchemaPointer = args.newSchema;
+        const {headers, token} = parseGlobalArgs(args);
 
-        const oldSchema = await loaders.loadSchema(oldSchemaPointer);
-        const newSchema = await loaders.loadSchema(newSchemaPointer);
+        const oldSchema = await loaders.loadSchema(oldSchemaPointer, {
+          headers,
+          token,
+        });
+        const newSchema = await loaders.loadSchema(newSchemaPointer, {
+          headers,
+          token,
+        });
 
         const rules = args.rule
           ? args.rule

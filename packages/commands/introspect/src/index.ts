@@ -1,4 +1,8 @@
-import {createCommand, GlobalArgs} from '@graphql-inspector/commands';
+import {
+  createCommand,
+  GlobalArgs,
+  parseGlobalArgs,
+} from '@graphql-inspector/commands';
 import {Logger} from '@graphql-inspector/logger';
 import {writeFileSync} from 'fs';
 import {resolve, extname} from 'path';
@@ -32,10 +36,11 @@ export default createCommand<
     },
     async handler(args) {
       const {loaders} = api;
+      const {headers, token} = parseGlobalArgs(args);
 
       const schema = await loaders.loadSchema(args.schema, {
-        token: args.token,
-        headers: args.headers,
+        token,
+        headers,
       });
       const introspection = introspectionFromSchema(schema);
       const output = args.write!;
