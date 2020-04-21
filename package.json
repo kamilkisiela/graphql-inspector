@@ -50,7 +50,7 @@
     "lint-staged": "10.1.7",
     "lodash": "4.17.15",
     "nock": "12.0.3",
-    "prettier": "2.0.4",
+    "prettier": "2.0.5",
     "smee-client": "1.1.0",
     "strip-ansi": "6.0.0",
     "ts-jest": "25.4.0",
