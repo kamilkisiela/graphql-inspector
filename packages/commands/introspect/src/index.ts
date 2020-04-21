@@ -13,6 +13,7 @@ export default createCommand<
   {
     schema: string;
     write?: string;
+    comments?: boolean;
   } & GlobalArgs
 >((api) => {
   return {
@@ -30,6 +31,10 @@ export default createCommand<
             alias: 'write',
             describe: 'Write to a file',
             type: 'string',
+          },
+          comments: {
+            describe: 'Use preceding comments as the description',
+            type: 'boolean',
           },
         })
         .default('w', 'graphql.schema.json');
@@ -53,7 +58,7 @@ export default createCommand<
         case '.gqls':
         case '.graphqls':
           content = printSchema(schema, {
-            commentDescriptions: true,
+            commentDescriptions: args.comments || false
           });
           break;
         case '.json':
