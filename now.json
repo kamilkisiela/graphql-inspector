@@ -26,6 +26,21 @@
       "source": "/docs",
       "destination": "/docs/index",
       "statusCode": 301
+    },
+    {
+      "source": "/docs/recipes/github",
+      "destination": "/docs/products/github",
+      "statusCode" 301
+    },
+    {
+      "source": "/docs/recipes/action",
+      "destination": "/docs/products/action",
+      "statusCode" 301
+    },
+    {
+      "source": "/docs/recipes/ci",
+      "destination": "/docs/products/ci",
+      "statusCode" 301
     }
   ],
   "github": {
