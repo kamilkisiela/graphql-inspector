@@ -130,6 +130,9 @@ export async function handleSchemaDiff({
     let annotations = action.annotations || [];
     const changes = action.changes || [];
 
+    logger.info(`changes - ${changes.length}`);
+    logger.info(`annotations - ${changes.length}`);
+
     const summary = createSummary(changes);
 
     // Force Success when failOnBreaking is disabled
