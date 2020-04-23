@@ -95,6 +95,7 @@ const notificationsDefault = false;
 
 function normalizeConfig(config: Config): NormalizedConfig {
   if (isLegacyConfig(config)) {
+    console.log('config type - legacy');
     return {
       [defaultConfigName]: {
         name: defaultConfigName,
@@ -111,6 +112,7 @@ function normalizeConfig(config: Config): NormalizedConfig {
   }
 
   if (isSingleEnvironmentConfig(config)) {
+    console.log('config type - single');
     return {
       [config.branch]: {
         name: config.branch,
@@ -127,6 +129,7 @@ function normalizeConfig(config: Config): NormalizedConfig {
   }
 
   if (isMultipleEnvironmentConfig(config)) {
+    console.log('config type - multiple');
     const normalized: NormalizedConfig = {};
 
     for (const envName in config.env) {
