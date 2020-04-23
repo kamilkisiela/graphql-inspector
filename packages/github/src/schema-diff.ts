@@ -81,6 +81,8 @@ export async function handleSchemaDiff({
         logger,
       });
       return;
+    } else {
+      logger.info(`enabled`);
     }
 
     const oldPointer: SchemaPointer = {

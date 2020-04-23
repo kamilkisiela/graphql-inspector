@@ -59,6 +59,8 @@ export async function handleSchemaChangeNotifications({
   if (!config.notifications) {
     logger.info(`disabled. Skipping...`);
     return;
+  } else {
+    logger.info(`enabled`);
   }
 
   if (config.branch !== branch) {
@@ -81,10 +83,10 @@ export async function handleSchemaChangeNotifications({
 
   const schemas = {
     old: buildSchema(sources.old, {
-      assumeValid: true
+      assumeValid: true,
     }),
     new: buildSchema(sources.new, {
-      assumeValid: true
+      assumeValid: true,
     }),
   };
 
