@@ -15,7 +15,7 @@
 - **github** **action** assume valid schema to avoid missing directive definitions [PR #1440](https://github.com/kamilkisiela/graphql-inspector/pull/1440)
 - **cli** **ci** fix `--header` and `--token` [PR #1442](https://github.com/kamilkisiela/graphql-inspector/pull/1442)
 - **cli** **ci** BREAKING: don't use preceding comments as the description by default (`--comments` flag to enable comments) [PR #1443](https://github.com/kamilkisiela/graphql-inspector/pull/1443)
-- **github** use SHA of the most recent commit on ref before the push 
+- **github** use SHA of the most recent commit on ref before the push [PR #1448](https://github.com/kamilkisiela/graphql-inspector/pull/1448)
 
 ### v1.30.4
 
