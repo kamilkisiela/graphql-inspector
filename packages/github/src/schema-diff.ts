@@ -3,17 +3,22 @@ import {buildSchema} from 'graphql';
 import {CheckConclusion, PullRequest} from './helpers/types';
 import {FileLoader, ConfigLoader, loadSources} from './helpers/loaders';
 import {start, complete, annotate} from './helpers/check-runs';
-import {SchemaPointer, createConfig} from './helpers/config';
+import {
+  SchemaPointer,
+  createConfig,
+  defaultFallbackBranch,
+} from './helpers/config';
 import {diff} from './helpers/diff';
 import {createSummary} from './helpers/utils';
 import {createLogger} from './helpers/logger';
-import { MissingConfigError } from './helpers/errors';
+import {MissingConfigError} from './helpers/errors';
 
 export async function handleSchemaDiff({
   context,
   ref,
   repo,
   owner,
+  before,
   pullRequests = [],
   loadFile,
   loadConfig,
@@ -23,6 +28,10 @@ export async function handleSchemaDiff({
   repo: string;
   ref: string;
   pullRequests: PullRequest[];
+  /***
+   * The SHA of the most recent commit on ref before the push
+   */
+  before?: string;
   loadFile: FileLoader;
   loadConfig: ConfigLoader;
 }): Promise<void> {
@@ -46,12 +55,21 @@ export async function handleSchemaDiff({
 
     if (!rawConfig) {
       logger.error(`Config file missing`);
-      throw new MissingConfigError()
+      throw new MissingConfigError();
     }
 
     const branches = pullRequests.map((pr) => pr.base.ref);
+    const firstBranch = branches[0];
+
+    logger.info(`fallback branch from Pull Requests: ${firstBranch}`);
+    logger.info(`SHA before push: ${before}`);
+
     // on non-environment related PRs, use a branch from first associated pull request
-    const config = createConfig(rawConfig as any, branches, branches[0]);
+    const config = createConfig(
+      rawConfig as any,
+      branches,
+      firstBranch || before, // we will probably throw an error when both are not defined
+    );
 
     if (!config.diff) {
       logger.info(`disabled. Skipping...`);
@@ -74,6 +92,14 @@ export async function handleSchemaDiff({
       ref,
     };
 
+    if (oldPointer.ref === defaultFallbackBranch) {
+      logger.error('used default ref to get old schema');
+    }
+
+    if (newPointer.ref === defaultFallbackBranch) {
+      logger.error('used default ref to get new schema');
+    }
+
     const sources = await loadSources({
       config,
       oldPointer,
@@ -83,10 +109,10 @@ export async function handleSchemaDiff({
 
     const schemas = {
       old: buildSchema(sources.old, {
-        assumeValid: true
+        assumeValid: true,
       }),
       new: buildSchema(sources.new, {
-        assumeValid: true
+        assumeValid: true,
       }),
     };
 
@@ -103,6 +129,9 @@ export async function handleSchemaDiff({
     let conclusion = action.conclusion;
     let annotations = action.annotations || [];
     const changes = action.changes || [];
+
+    logger.info(`changes - ${changes.length}`);
+    logger.info(`annotations - ${changes.length}`);
 
     const summary = createSummary(changes);
 
@@ -152,14 +181,14 @@ export async function handleSchemaDiff({
       title: `Failed to complete schema check`,
       summary: `ERROR: ${error.message || error}`,
       annotations: [],
-      logger
+      logger,
     });
 
     await complete({
       url: checkUrl,
       context,
       conclusion: CheckConclusion.Failure,
-      logger
+      logger,
     });
   }
 }
