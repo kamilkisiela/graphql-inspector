@@ -3,7 +3,7 @@
   "version": 2,
   "alias": ["graphql-inspector"],
   "env": {
-    "LOG_FORMAT": "json",
+    "LOG_FORMAT": "short",
     "LOG_LEVEL": "info",
     "DISABLE_STATS": true,
     "LOG_LEVEL_IN_STRING": true,
