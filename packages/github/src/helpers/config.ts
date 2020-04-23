@@ -86,6 +86,7 @@ export type NormalizedLegacyConfig = {
 };
 
 export const defaultConfigName = '__default';
+export const defaultFallbackBranch = '*';
 const diffDefault = {
   annotations: true,
   failOnBreaking: true,
@@ -173,7 +174,7 @@ function getGlobalConfig(
 export function createConfig(
   rawConfig: Config,
   branches: string[] = [],
-  fallbackBranch = '*',
+  fallbackBranch = defaultFallbackBranch,
 ): NormalizedEnvironment {
   const normalizedConfig = normalizeConfig(rawConfig);
 
