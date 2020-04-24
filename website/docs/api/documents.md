@@ -23,3 +23,5 @@ GraphQL Inspector support glob pattern.
 Given example above, Inspector will search every file that matches that pattern and extract operations and fragments.
 
 Supported extensions: `.graphql`, `.graphqls` and `.gql`.
+
+> ⚠️ Remember to wrap a glob pattern with quotes: `"./src/app/**/*.graphql"` ⚠️
