@@ -1,6 +1,7 @@
 import {Context} from 'probot';
 import {CheckStatus, Annotation, CheckConclusion} from './types';
 import {Logger} from './logger';
+import {batch} from './utils';
 
 const headers = {accept: 'application/vnd.github.antiope-preview+json'};
 
@@ -51,18 +52,26 @@ export async function annotate({
   summary: string;
   logger: Logger;
 }) {
+  const batches = batch(annotations, 50);
+
+  context.log.info(`annotations to be sent: ${annotations.length}`);
+
   try {
-    await context.github.request({
-      headers,
-      url,
-      method: 'PATCH',
-      output: {
-        annotations,
-        title,
-        summary,
-      },
-    } as any);
-    logger.info(`annotations sent (${annotations.length})`);
+    await Promise.all(
+      batches.map(async (chunk) => {
+        await context.github.request({
+          headers,
+          url,
+          method: 'PATCH',
+          output: {
+            annotations: chunk,
+            title,
+            summary,
+          },
+        } as any);
+        logger.info(`annotations sent (${chunk.length})`);
+      }),
+    );
   } catch (error) {
     logger.error(`failed to send annotations`, error);
     throw error;

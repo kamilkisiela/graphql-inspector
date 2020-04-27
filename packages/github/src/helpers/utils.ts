@@ -107,3 +107,17 @@ export function parseEndpoint(
     headers: endpoint.headers,
   };
 }
+
+export function batch<T>(items: T[], limit: number): T[][] {
+  const batches: T[][] = [];
+  const batchesNum = Math.ceil(items.length / limit);
+
+  for (let i = 0; i < batchesNum; i++) {
+    const start = i * limit;
+    const end = start + limit;
+
+    batches.push(items.slice(start, end));
+  }
+
+  return batches;
+}
