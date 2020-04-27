@@ -1,5 +1,5 @@
 import {CriticalityLevel, Change} from '@graphql-inspector/core';
-import { Endpoint } from './config';
+import {Endpoint} from './config';
 
 export function bolderize(msg: string): string {
   return quotesTransformer(msg, '**');
@@ -111,6 +111,11 @@ export function parseEndpoint(
 export function batch<T>(items: T[], limit: number): T[][] {
   const batches: T[][] = [];
   const batchesNum = Math.ceil(items.length / limit);
+
+  // We still want to update check-run and send empty annotations
+  if (batchesNum === 0) {
+    return [[]];
+  }
 
   for (let i = 0; i < batchesNum; i++) {
     const start = i * limit;
