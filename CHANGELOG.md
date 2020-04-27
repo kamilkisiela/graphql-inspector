@@ -16,6 +16,7 @@
 - **cli** **ci** fix `--header` and `--token` [PR #1442](https://github.com/kamilkisiela/graphql-inspector/pull/1442)
 - **cli** **ci** BREAKING: don't use preceding comments as the description by default (`--comments` flag to enable comments) [PR #1443](https://github.com/kamilkisiela/graphql-inspector/pull/1443)
 - **github** use SHA of the most recent commit on ref before the push [PR #1448](https://github.com/kamilkisiela/graphql-inspector/pull/1448)
+- **github** send annotations in batches [PR #1402](https://github.com/kamilkisiela/graphql-inspector/pull/1402)
 
 ### v1.30.4
 
