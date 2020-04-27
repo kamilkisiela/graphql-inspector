@@ -31,19 +31,14 @@ module.exports = {
       },
       links: [
         {
-          to: '/docs/',
+          to: '/docs',
           activeBasePath: '/docs',
           label: 'Documentation',
           position: 'right',
         },
         {
-          href: '/install',
-          label: 'GitHub App',
-          position: 'right',
-        },
-        {
-          href: '/action',
-          label: 'GitHub Action',
+          to: '/enterprise',
+          label: 'Enterprise',
           position: 'right',
         },
         {
