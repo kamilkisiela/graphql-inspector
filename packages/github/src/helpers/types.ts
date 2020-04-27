@@ -32,7 +32,7 @@ export enum CheckStatus {
 export enum CheckConclusion {
   Success = 'success',
   Neutral = 'neutral',
-  Failure = 'action_required',
+  Failure = 'failure',
 }
 
 export interface PullRequest {

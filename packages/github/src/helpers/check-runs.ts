@@ -55,6 +55,7 @@ export async function annotate({
   const batches = batch(annotations, 50);
 
   context.log.info(`annotations to be sent: ${annotations.length}`);
+  context.log.info(`title: ${title}`);
 
   try {
     await Promise.all(
