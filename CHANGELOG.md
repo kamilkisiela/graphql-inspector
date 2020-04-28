@@ -18,7 +18,7 @@
 - **github** use SHA of the most recent commit on ref before the push [PR #1448](https://github.com/kamilkisiela/graphql-inspector/pull/1448)
 - **github** send annotations in batches [PR #1402](https://github.com/kamilkisiela/graphql-inspector/pull/1402)
 - **github** use `failure` instead of `action_required` - allows to call re-runs
-- **github** reduce the number of GitHub API calls by batching file fetching calls
+- **github** reduce the number of GitHub API calls by batching file fetching calls [PR #1460](https://github.com/kamilkisiela/graphql-inspector/pull/1460)
 
 ### v1.30.4
 
