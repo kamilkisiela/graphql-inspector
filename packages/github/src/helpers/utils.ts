@@ -126,3 +126,10 @@ export function batch<T>(items: T[], limit: number): T[][] {
 
   return batches;
 }
+
+export function objectFromEntries(iterable: any[]) {
+  return [...iterable].reduce((obj, [key, val]) => {
+    obj[key] = val;
+    return obj;
+  }, {});
+}

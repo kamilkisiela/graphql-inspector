@@ -9,19 +9,33 @@ import {
   printSchema,
   Source,
 } from 'graphql';
-import {isNil, parseEndpoint} from './utils';
+import {isNil, parseEndpoint, objectFromEntries} from './utils';
 
-const GET_FILE_QUERY = /* GraphQL */ `
-  query GetFile($repo: String!, $owner: String!, $expression: String!) {
-    repository(name: $repo, owner: $owner) {
-      object(expression: $expression) {
+function createGetFilesQuery(variableMap: Record<string, string>): string {
+  const variables = Object.keys(variableMap)
+    .map((name) => `$${name}: String!`)
+    .join(', ');
+
+  const files = Object.keys(variableMap)
+    .map((name) => {
+      return `
+      ${name}: object(expression: $${name}) {
         ... on Blob {
           text
         }
       }
+    `;
+    })
+    .join('\n');
+
+  return /* GraphQL */ `
+    query GetFile($repo: String!, $owner: String!, ${variables}) {
+      repository(name: $repo, owner: $owner) {
+        ${files}
+      }
     }
-  }
-`.replace(/\s+/g, ' ');
+  `.replace(/\s+/g, ' ');
+}
 
 type FileLoaderConfig = {
   context: probot.Context;
@@ -32,6 +46,7 @@ type FileLoaderConfig = {
 interface FileLoaderInput {
   path: string;
   ref: string;
+  alias: string;
   throwNotFound?: boolean;
   onError?: (error: any) => void;
 }
@@ -41,17 +56,24 @@ export type ConfigLoader = () => Promise<object | null | undefined>; // id is th
 
 export function createFileLoader(config: FileLoaderConfig): FileLoader {
   const loader = new Dataloader<FileLoaderInput, string | null, string>(
-    (inputs) => {
+    async (inputs) => {
+      const variablesMap = objectFromEntries(
+        inputs.map((input) => [input.alias, `${input.ref}:${input.path}`]),
+      );
+      const {context, repo, owner} = config;
+
+      const result = await context.github.graphql(
+        createGetFilesQuery(variablesMap),
+        {
+          repo,
+          owner,
+          ...variablesMap,
+        },
+      );
+
       return Promise.all(
         inputs.map(async (input) => {
-          const {context, repo, owner} = config;
-          const {ref, path} = input;
-
-          const result = await context.github.graphql(GET_FILE_QUERY, {
-            repo,
-            owner,
-            expression: `${ref}:${path}`,
-          });
+          const alias = input.alias;
 
           try {
             if (!result) {
@@ -59,12 +81,14 @@ export function createFileLoader(config: FileLoaderConfig): FileLoader {
             }
 
             if (result.data) {
-              return result.data.repository.object.text as string;
+              return result.data.repository[alias].text as string;
             }
 
-            return (result as any).repository.object.text as string;
+            return (result as any).repository[alias].text as string;
           } catch (error) {
-            const failure = new Error(`Failed to load '${path}' (ref: ${ref})`);
+            const failure = new Error(
+              `Failed to load '${input.path}' (ref: ${input.ref})`,
+            );
 
             if (input.throwNotFound === false) {
               if (input.onError) {
@@ -82,7 +106,8 @@ export function createFileLoader(config: FileLoaderConfig): FileLoader {
       );
     },
     {
-      batch: false,
+      batch: true,
+      maxBatchSize: 5,
       cacheKeyFn(obj) {
         return `${obj.ref} - ${obj.path}`;
       },
@@ -110,18 +135,21 @@ export function createConfigLoader(
           const [yamlConfig, ymlConfig, pkgFile] = await Promise.all([
             loadFile({
               ...config,
+              alias: 'yaml',
               path: `.github/${id}.yaml`,
               throwNotFound: false,
               onError,
             }),
             loadFile({
               ...config,
+              alias: 'yml',
               path: `.github/${id}.yml`,
               throwNotFound: false,
               onError,
             }),
             loadFile({
               ...config,
+              alias: 'pkg',
               path: 'package.json',
               throwNotFound: false,
               onError,
@@ -199,8 +227,14 @@ export async function loadSources({
   const [oldFile, newFile] = await Promise.all([
     useEndpoint
       ? printSchemaFromEndpoint(config.endpoint!)
-      : loadFile(oldPointer),
-    loadFile(newPointer),
+      : loadFile({
+          ...oldPointer,
+          alias: 'oldSource',
+        }),
+    loadFile({
+      ...newPointer,
+      alias: 'newSource',
+    }),
   ]);
 
   return {
