@@ -39,25 +39,30 @@ async function main() {
     .help()
     .showHelpOnFail(false)
     .fail((msg, error) => {
-      if (msg.includes('Unknown argument:')) {
-        const commandName = msg.replace('Unknown argument: ', '').toLowerCase();
+      if (msg) {
+        if (msg.includes('Unknown argument:')) {
+          const commandName = msg
+            .replace('Unknown argument: ', '')
+            .toLowerCase();
 
-        Logger.error(`Command '${commandName}' not found`);
+          Logger.error(`Command '${commandName}' not found`);
 
-        if (availableCommands.includes(commandName)) {
-          Logger.log(
-            `  Try to install @graphql-inspector/${commandName}-command`,
-          );
+          if (availableCommands.includes(commandName)) {
+            Logger.log(
+              `  Try to install @graphql-inspector/${commandName}-command`,
+            );
+          }
+        } else if (msg.includes('Not enough')) {
+          Logger.error(msg);
+          Logger.info('Specify --help for available options');
+        } else {
+          Logger.error(msg);
         }
-      } else if (msg.includes('Not enough')) {
-        Logger.error(msg);
-        Logger.info('Specify --help for available options');
-      } else {
-        Logger.error(msg);
       }
 
       if (error) {
-        throw error;
+        Logger.error(error.message);
+        console.error(error);
       }
 
       process.exit(1);

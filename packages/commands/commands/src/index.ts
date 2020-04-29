@@ -2,19 +2,28 @@ import {InspectorConfig} from '@graphql-inspector/config';
 import {Loaders} from '@graphql-inspector/loaders';
 import {isAbsolute, resolve} from 'path';
 import yargs, {CommandModule} from 'yargs';
+import {pickPointers, PickPointers} from './graphql-config';
 
-export {CommandModule as Command};
+export {CommandModule as Command, PickPointers};
 
 export interface UseCommandsAPI {
   config: InspectorConfig;
   loaders: Loaders;
+  pickPointers: PickPointers;
 }
 
 export type CommandFactory<T = {}, U = {}> = (
   api: UseCommandsAPI,
 ) => CommandModule<T, U>;
 
-export function useCommands(api: UseCommandsAPI): CommandModule[] {
+export function useCommands(
+  input: Omit<UseCommandsAPI, 'pickPointers'>,
+): CommandModule[] {
+  const api = {
+    ...input,
+    pickPointers,
+  };
+
   return api.config.commands.map((name) => loadCommand(name)(api));
 }
 

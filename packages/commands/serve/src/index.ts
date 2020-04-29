@@ -13,21 +13,20 @@ import {fake} from './fake';
 export default createCommand<
   {},
   {
-    schema: string;
+    schema?: string;
     port: number;
   } & GlobalArgs
 >((api) => {
-  const {loaders} = api;
+  const {loaders, pickPointers} = api;
 
   return {
-    command: 'serve <schema>',
+    command: 'serve [schema]',
     describe: 'Compare two GraphQL Schemas',
     builder(yargs) {
       return yargs
         .positional('schema', {
           describe: 'Point to a schema',
           type: 'string',
-          demandOption: true,
         })
         .options({
           port: {
@@ -36,11 +35,21 @@ export default createCommand<
             type: 'number',
             default: 4000,
           },
+          c: {
+            alias: 'config',
+            describe: 'Use GraphQL Config to find schema and documents',
+            type: 'boolean',
+          },
         });
     },
     async handler(args) {
       const {headers, token} = parseGlobalArgs(args);
-      const schema = await loaders.loadSchema(args.schema, {
+      const pointer = await pickPointers(args, {
+        schema: true,
+        documents: false,
+      });
+
+      const schema = await loaders.loadSchema(pointer.schema!, {
         headers,
         token,
       });

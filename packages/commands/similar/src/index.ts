@@ -18,21 +18,20 @@ import {writeFileSync} from 'fs';
 export default createCommand<
   {},
   {
-    schema: string;
+    schema?: string;
     name?: string;
     threshold?: number;
     write?: string;
   } & GlobalArgs
 >((api) => {
   return {
-    command: 'similar <schema>',
+    command: 'similar [schema]',
     describe: 'Find similar types in a schema',
     builder(yargs) {
       return yargs
         .positional('schema', {
           describe: 'Point to a schema',
           type: 'string',
-          demandOption: true,
         })
         .options({
           n: {
@@ -50,15 +49,25 @@ export default createCommand<
             describe: 'Write a file with stats',
             type: 'string',
           },
+          c: {
+            alias: 'config',
+            describe: 'Use GraphQL Config to find schema and documents',
+            type: 'boolean',
+          },
         });
     },
     async handler(args) {
-      const {loaders} = api;
+      const {loaders, pickPointers} = api;
       const {headers, token} = parseGlobalArgs(args);
       const writePath = args.write;
       const shouldWrite = typeof writePath !== 'undefined';
 
-      const schema = await loaders.loadSchema(args.schema, {
+      const pointer = await pickPointers(args, {
+        schema: true,
+        documents: false,
+      });
+
+      const schema = await loaders.loadSchema(pointer.schema!, {
         headers,
         token,
       });

@@ -17,26 +17,25 @@ import {writeFileSync} from 'fs';
 export default createCommand<
   {},
   {
-    schema: string;
-    documents: string;
+    schema?: string;
+    documents?: string;
+    config?: boolean;
     write?: string;
     silent?: boolean;
   } & GlobalArgs
 >((api) => {
   return {
-    command: 'coverage <documents> <schema>',
+    command: 'coverage [documents] [schema]',
     describe: 'Schema coverage based on documents',
     builder(yargs) {
       return yargs
         .positional('schema', {
           describe: 'Point to a schema',
           type: 'string',
-          demandOption: true,
         })
         .positional('documents', {
           describe: 'Point to documents',
           type: 'string',
-          demandOption: true,
         })
         .options({
           w: {
@@ -49,19 +48,29 @@ export default createCommand<
             describe: 'Do not render any stats in the terminal',
             type: 'boolean',
           },
+          c: {
+            alias: 'config',
+            describe: 'Use GraphQL Config to find schema and documents',
+            type: 'boolean',
+          },
         });
     },
     async handler(args) {
-      const {loaders} = api;
+      const {loaders, pickPointers} = api;
       const writePath = args.write;
       const shouldWrite = typeof writePath !== 'undefined';
       const {headers, token} = parseGlobalArgs(args);
 
-      const schema = await loaders.loadSchema(args.schema, {
+      const pointer = await pickPointers(args, {
+        documents: true,
+        schema: true,
+      });
+
+      const schema = await loaders.loadSchema(pointer.schema!, {
         token,
         headers,
       });
-      const documents = await loaders.loadDocuments(args.documents);
+      const documents = await loaders.loadDocuments(pointer.documents!);
       const coverage = calculateCoverage(
         schema,
         documents.map((doc) => new Source(print(doc.document!), doc.location)),

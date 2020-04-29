@@ -1,6 +1,11 @@
 // Right now everything is hardcoded for better UX but this may change in future.
 // It's just easier to leave it this way
 
+export interface GraphQLConfig {
+  schema?: string;
+  documents?: string;
+}
+
 export interface InspectorConfig {
   loaders: string[];
   commands: string[];

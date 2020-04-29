@@ -13,8 +13,8 @@ import {Source, print} from 'graphql';
 export default createCommand<
   {},
   {
-    schema: string;
-    documents: string;
+    schema?: string;
+    documents?: string;
     deprecated?: boolean;
     noStrictFragments: boolean;
     apollo?: boolean;
@@ -23,19 +23,17 @@ export default createCommand<
   } & GlobalArgs
 >((api) => {
   return {
-    command: 'validate <documents> <schema>',
+    command: 'validate [documents] [schema]',
     describe: 'Validate Fragments and Operations',
     builder(yargs) {
       return yargs
         .positional('schema', {
           describe: 'Point to a schema',
           type: 'string',
-          demandOption: true,
         })
         .positional('documents', {
           describe: 'Point to docuents',
           type: 'string',
-          demandOption: true,
         })
         .options({
           d: {
@@ -43,6 +41,11 @@ export default createCommand<
             describe: 'Fail on deprecated usage',
             type: 'boolean',
             default: false,
+          },
+          c: {
+            alias: 'config',
+            describe: 'Use GraphQL Config to find schema and documents',
+            type: 'boolean',
           },
           noStrictFragments: {
             describe: 'Do not fail on duplicated fragment names',
@@ -67,13 +70,18 @@ export default createCommand<
         });
     },
     async handler(args) {
-      const {loaders} = api;
+      const {loaders, pickPointers} = api;
       const {headers, token} = parseGlobalArgs(args);
-      const schema = await loaders.loadSchema(args.schema, {
+      const pointer = await pickPointers(args, {
+        schema: true,
+        documents: true,
+      });
+
+      const schema = await loaders.loadSchema(pointer.schema!, {
         headers,
         token,
       });
-      const documents = await loaders.loadDocuments(args.documents);
+      const documents = await loaders.loadDocuments(pointer.documents!);
 
       const invalidDocuments = validateDocuments(
         schema,
