@@ -57,7 +57,7 @@ export async function notifyWithSlack({
     text: `:male-detective: Hi, I found *${totalChanges} ${pluralize(
       'change',
       totalChanges,
-    )}* ${schemaName}:`,
+    )}* in ${schemaName}:`,
     attachments: createAttachments(changes),
   };
 
