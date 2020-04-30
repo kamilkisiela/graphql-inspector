@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Bug Report
+    url: https://github.com/kamilkisiela/graphql-inspector/issues/new
+    about: Report a bug using Issues
+  - name: Feature Request
+    url: https://github.com/kamilkisiela/graphql-inspector/discussions/new
+    about: Request and discuss a feature
+  - name: Ask a Question
+    url: https://github.com/kamilkisiela/graphql-inspector/discussions/new
+    about: Ask questions and discuss with other community members
