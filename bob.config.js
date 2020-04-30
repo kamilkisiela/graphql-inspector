@@ -5,6 +5,7 @@ module.exports = {
   track: [
     'bob.config.js',
     'package.json',
+    'yarn.lock',
     'tsconfig.json',
     '<project>/package.json',
     '<project>/tsconfig.json',
