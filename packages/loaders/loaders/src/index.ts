@@ -15,13 +15,17 @@ import {GraphQLSchema} from 'graphql';
 export class LoadersRegistry {
   private loaders: UniversalLoader[] = [];
 
-  register(loaderName: string) {
+  register(loader: UniversalLoader) {
+    this.loaders.push(loader);
+  }
+
+  registerModule(loaderName: string) {
     try {
       const loader: UniversalLoader = loadModule(
         `@graphql-inspector/${loaderName}-loader`,
       );
 
-      this.loaders.push(loader);
+      this.register(loader);
     } catch (error) {
       console.error(error);
       throw new Error(`Couldn't load ${loaderName} loader`);
@@ -54,7 +58,7 @@ export type Loaders = Pick<LoadersRegistry, 'loadSchema' | 'loadDocuments'>;
 export function useLoaders(config: InspectorConfig): Loaders {
   const loaders = new LoadersRegistry();
 
-  config.loaders.forEach((loaderName) => loaders.register(loaderName));
+  config.loaders.forEach((loaderName) => loaders.registerModule(loaderName));
 
   return loaders;
 }

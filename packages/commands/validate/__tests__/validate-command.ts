@@ -1,7 +1,7 @@
 import '@graphql-inspector/testing';
 import yargs from 'yargs';
 import {buildSchema, parse} from 'graphql';
-import {mockCommand} from '@graphql-inspector/commands';
+import {mockCommand, pickPointers} from '@graphql-inspector/commands';
 import {mockLogger, unmockLogger} from '@graphql-inspector/logger';
 import createCommand from '../src';
 
@@ -29,11 +29,10 @@ const operation = parse(/* GraphQL */ `
 `);
 
 const validate = createCommand({
+  pickPointers,
   config: {
-    use: {
-      commands: [],
-      loaders: [],
-    },
+    commands: [],
+    loaders: [],
   },
   loaders: {
     async loadSchema() {

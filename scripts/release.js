@@ -1,9 +1,27 @@
+/// @ts-check
 const {readFileSync, writeFileSync} = require('fs');
 const {resolve, join, relative} = require('path');
-const {execSync} = require('child_process');
-const {exec} = require('shelljs');
+const {execSync, exec} = require('child_process');
 const semver = require('semver');
 const immer = require('immer').default;
+
+function execAsync(cmd) {
+  return new Promise((resolve, reject) => {
+    exec(
+      cmd,
+      {
+        encoding: 'utf-8',
+      },
+      (error, stdout, stderr) => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(stdout || stderr);
+        }
+      },
+    );
+  });
+}
 
 const placeholder = '0.0.0-PLACEHOLDER';
 const [, , versionOrCanary, nextVersion] = process.argv;
@@ -29,66 +47,83 @@ if (!semver.valid(version)) {
   throw new Error(`Version ${version} is not valid`);
 }
 
-if (isLatest) {
-  // Create a release branch
-  exec(`git checkout -b ${branch}`);
-}
+async function main() {
+  if (isLatest) {
+    // Create a release branch
+    execSync(`git checkout -b ${branch}`, {
+      stdio: 'inherit',
+    });
+  }
 
-// ! lerna.json as the source of truth of a version number
+  // ! lerna.json as the source of truth of a version number
 
-// Set version in lerna.json
-updateJSON(lerna, (data) => {
-  data.version = version;
-});
+  // Set version in lerna.json
+  updateJSON(lerna, (data) => {
+    data.version = version;
+  });
 
-// Set version in packages
-packages.map((dir) => {
-  updateString(join(dir, 'package.json'), (pkg) =>
-    pkg.replace(new RegExp(placeholder, 'g'), version),
-  );
-});
+  // Set version in packages
+  packages.map((dir) => {
+    updateString(join(dir, 'package.json'), (pkg) =>
+      pkg.replace(new RegExp(placeholder, 'g'), version),
+    );
+  });
 
-// Set version in Dockerfile (both LABEL and RUN)
-updateString(join(rootDir, 'Dockerfile-cli'), (docker) =>
-  docker.replace(new RegExp(current, 'g'), version),
-);
-
-if (isLatest) {
-  // Bump version in changelog
-  updateString(join(rootDir, 'CHANGELOG.md'), (changelog) =>
-    changelog.replace('### vNEXT', `### vNEXT` + '\n\n' + `### v${version}`),
-  );
-}
-
-exec(`yarn build && yarn action && git add action/`);
-
-const extra = isLatest ? '' : ` --tag ${versionOrCanary}`;
-const cmd = `npm publish dist${extra} --access public`;
-
-// Run npm publish in all libraries
-packages.map((dir) => {
-  exec(`(cd ${dir} && ${cmd} --access public)`);
-});
-
-if (isLatest) {
-  // Revert changes in libraries (back to placeholders)
-  exec(
-    `git checkout -- ${packages
-      .map((dir) => relative(rootDir, dir))
-      .join(' ')}`,
+  // Set version in Dockerfile (both LABEL and RUN)
+  updateString(join(rootDir, 'Dockerfile-cli'), (docker) =>
+    docker.replace(new RegExp(current, 'g'), version),
   );
 
-  // Add changes and commit as `Release vX.X.X`
-  exec(`git add . && git commit -m "Release v${version}"`);
+  if (isLatest) {
+    // Bump version in changelog
+    updateString(join(rootDir, 'CHANGELOG.md'), (changelog) =>
+      changelog.replace('### vNEXT', `### vNEXT` + '\n\n' + `### v${version}`),
+    );
+  }
 
-  // Push the release branch to origin
-  exec(`git push origin ${branch}`);
+  execSync(`yarn build && yarn action && git add action/`, {
+    stdio: 'inherit',
+  });
 
-  // Back to master
-  exec(`git checkout master`);
+  const extra = isLatest ? '' : ` --tag ${versionOrCanary}`;
+  const cmd = `npm publish dist${extra} --access public`;
 
-  // Remove the release branch
-  exec(`git branch -D ${branch}`);
+  // Run npm publish in all libraries
+  await Promise.all(
+    packages.map((dir) => execAsync(`(cd ${dir} && ${cmd} --access public)`)),
+  );
+
+  if (isLatest) {
+    // Revert changes in libraries (back to placeholders)
+    execSync(
+      `git checkout -- ${packages
+        .map((dir) => relative(rootDir, dir))
+        .join(' ')}`,
+      {
+        stdio: 'inherit',
+      },
+    );
+
+    // Add changes and commit as `Release vX.X.X`
+    execSync(`git add . && git commit -m "Release v${version}"`, {
+      stdio: 'inherit',
+    });
+
+    // Push the release branch to origin
+    execSync(`git push origin ${branch}`, {
+      stdio: 'inherit',
+    });
+
+    // Back to master
+    execSync(`git checkout master`, {
+      stdio: 'inherit',
+    });
+
+    // Remove the release branch
+    execSync(`git branch -D ${branch}`, {
+      stdio: 'inherit',
+    });
+  }
 }
 
 function updateJSON(filepath, updateFn) {
@@ -122,3 +157,5 @@ function getWorkspaces() {
 
   return Object.values(info).map(({location}) => location);
 }
+
+main();

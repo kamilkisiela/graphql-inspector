@@ -4,7 +4,7 @@ import {isAbsolute, resolve} from 'path';
 import yargs, {CommandModule} from 'yargs';
 import {pickPointers, PickPointers} from './graphql-config';
 
-export {CommandModule as Command, PickPointers};
+export {CommandModule as Command, PickPointers, pickPointers};
 
 export interface UseCommandsAPI {
   config: InspectorConfig;
