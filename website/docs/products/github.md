@@ -57,6 +57,8 @@ It's also possible to setup everything in `package.json` (it must be placed in t
 }
 ```
 
+For example, `schema.graphql` points to a file in root directory of a repository.
+
 ## Features
 
 ### Schema change notifications
