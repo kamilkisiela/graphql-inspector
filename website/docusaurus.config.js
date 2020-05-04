@@ -162,9 +162,13 @@ module.exports = {
     },
     {
       src: 'https://the-guild.dev/static/banner.js',
+      async: true,
+      defer: true,
     },
     {
       src: '/js/drift.js',
+      async: true,
+      defer: true,
     },
   ],
   stylesheets: [
