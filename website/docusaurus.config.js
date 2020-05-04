@@ -161,7 +161,7 @@ module.exports = {
       src: '/js/scroll-to.js',
     },
     {
-      src: 'https://the-guild-website-8aufa09q1.now.sh/static/banner.js',
+      src: 'https://the-guild.dev/static/banner.js',
     },
     {
       src: '/js/drift.js',
