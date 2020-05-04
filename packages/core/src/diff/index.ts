@@ -8,6 +8,8 @@ import * as rules from './rules';
 export * from './rules/types';
 export const DiffRule = rules;
 
+export * from './onComplete/types';
+
 export function diff(
   oldSchema: GraphQLSchema,
   newSchema: GraphQLSchema,

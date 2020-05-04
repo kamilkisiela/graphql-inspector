@@ -11,6 +11,8 @@ import {
   Change,
   DiffRule,
   Rule,
+  CompletionHandler,
+  CompletionArgs,
 } from '@graphql-inspector/core';
 import {existsSync} from 'fs';
 
@@ -20,6 +22,7 @@ export default createCommand<
     oldSchema: string;
     newSchema: string;
     rule?: string[];
+    onComplete?: string;
   } & GlobalArgs
 >((api) => {
   const {loaders} = api;
@@ -45,6 +48,11 @@ export default createCommand<
             describe: 'Add rules',
             array: true,
           },
+          onComplete: {
+            alias: 'onComplete',
+            describe: 'Handle Completion',
+            type: 'string'
+          },
         });
     },
     async handler(args) {
@@ -61,6 +69,8 @@ export default createCommand<
           headers,
           token,
         });
+
+        const onComplete = args.onComplete ? resolveCompletionHandler(args.onComplete) : failOnBreakingChanges
 
         const rules = args.rule
           ? args.rule
@@ -110,19 +120,8 @@ export default createCommand<
         if (nonBreakingChanges.length) {
           reportNonBreakingChanges(nonBreakingChanges);
         }
-
-        const breakingCount = breakingChanges.length;
-
-        if (breakingCount) {
-          Logger.error(
-            `Detected ${breakingCount} breaking change${
-              breakingCount > 1 ? 's' : ''
-            }`,
-          );
-          process.exit(1);
-        } else {
-          Logger.success('No breaking changes detected');
-        }
+        
+        onComplete({ breakingChanges, dangerousChanges, nonBreakingChanges })
       } catch (error) {
         Logger.error(error);
         throw error;
@@ -182,4 +181,27 @@ function resolveRule(name: string): Rule | undefined {
   }
 
   return DiffRule[name as keyof typeof DiffRule];
+}
+
+function resolveCompletionHandler(name: string): CompletionHandler | undefined {
+  const filepath = ensureAbsolute(name);
+  if (existsSync(filepath)) {
+    return require(filepath);
+  }
+  throw new Error(`CompletionHandler '${name}' does not exist!`)
+}
+
+function failOnBreakingChanges({ breakingChanges }: CompletionArgs) {
+  const breakingCount = breakingChanges.length;
+
+  if (breakingCount) {
+    Logger.error(
+      `Detected ${breakingCount} breaking change${
+        breakingCount > 1 ? 's' : ''
+      }`,
+    );
+    process.exit(1);
+  } else {
+    Logger.success('No breaking changes detected');
+  }
 }
