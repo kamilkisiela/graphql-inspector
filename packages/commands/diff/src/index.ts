@@ -183,12 +183,18 @@ function resolveRule(name: string): Rule | undefined {
   return DiffRule[name as keyof typeof DiffRule];
 }
 
-function resolveCompletionHandler(name: string): CompletionHandler | undefined {
+function resolveCompletionHandler(name: string): CompletionHandler | never {
   const filepath = ensureAbsolute(name);
-  if (existsSync(filepath)) {
-    return require(filepath);
+  
+  try {
+    require.resolve(filepath)
+  } catch (error) {
+    throw new Error(`CompletionHandler '${name}' does not exist!`)
   }
-  throw new Error(`CompletionHandler '${name}' does not exist!`)
+
+  const mod = require(filepath);
+
+  return mod?.default || mod;
 }
 
 function failOnBreakingChanges({ breakingChanges }: CompletionArgs) {
