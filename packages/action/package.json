@@ -41,7 +41,7 @@
   },
   "dependencies": {
     "@actions/core": "1.2.4",
-    "@actions/github": "2.1.1",
+    "@actions/github": "2.2.0",
     "@graphql-inspector/github": "0.0.0-PLACEHOLDER",
     "@graphql-inspector/core": "0.0.0-PLACEHOLDER",
     "js-yaml": "3.13.1",
