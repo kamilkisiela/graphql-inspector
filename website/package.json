@@ -10,7 +10,7 @@
     "@docusaurus/core": "2.0.0-alpha.54",
     "@docusaurus/preset-classic": "2.0.0-alpha.54",
     "@docusaurus/plugin-ideal-image": "2.0.0-alpha.54",
-    "@graphql-inspector/core": "1.30.4",
+    "@graphql-inspector/core": "2.0.0",
     "classnames": "2.2.6",
     "fetch-ponyfill": "6.1.0",
     "globby": "11.0.0",
