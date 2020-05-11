@@ -2,6 +2,8 @@
 
 ### vNEXT
 
+### v2.0.0
+
 Read ["New GraphQL Inspector"](https://the-guild.dev/blog/new-graphql-inspector) on our blog
 
 - **github**: put annotations of removed parts of schema on new schema [#1414](https://github.com/kamilkisiela/graphql-inspector/issues/1414)
