@@ -107,7 +107,7 @@ module.exports = {
             },
             {
               label: 'Other projects',
-              href: 'https://github.com/the-guild-org/Stack',
+              href: 'https://the-guild.dev',
             },
             {
               label: 'Mailing List',
@@ -124,7 +124,7 @@ module.exports = {
           items: [
             {
               label: 'Blog',
-              href: 'https://medium.com/the-guild',
+              href: 'https://the-guild.dev/blog',
             },
             {
               label: 'GitHub',

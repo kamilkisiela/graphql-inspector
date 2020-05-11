@@ -35,8 +35,8 @@ class Footer extends React.Component {
           </a>
           <div className="links">
             <a
-              href="https://medium.com/the-guild"
-              title="Subscribe The Guild on Medium"
+              href="https://the-guild.dev"
+              title="The Guild Blog"
             >
               <img src="/img/ui/social/medium.svg" alt="Link to Medium" />
             </a>
