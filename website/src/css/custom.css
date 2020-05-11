@@ -216,6 +216,11 @@ body:not(.separateOnPageNav) .mainContainer {
   padding-bottom: 0;
   background-image: url(/img/ui/cover.svg);
   background-repeat: no-repeat;
+  min-height: 100vh;
+}
+
+body:not(.separateOnPageNav) .mainContainer.enterprise {
+  background-image: url(/img/ui/enterprise-cover.svg);
 }
 
 #main-nav {
@@ -235,7 +240,21 @@ body:not(.separateOnPageNav) .mainContainer {
 #main-nav .links a {
   font-size: 14px;
   font-weight: 800;
+  text-transform: uppercase;
   color: #000;
+}
+
+#main-nav .links a:hover {
+  color: #4b5ff7;
+  text-decoration: none;
+}
+
+#main-nav .social-links {
+  margin-left: 30px;
+}
+
+#main-nav .social-links > a {
+  margin-left: 20px;
 }
 
 #main-nav .links .sep {
@@ -277,18 +296,32 @@ body:not(.separateOnPageNav) .mainContainer {
 
 #main-header a {
   display: inline-block;
-  padding: 20px;
-  margin-top: 30px;
+  padding: 15px 20px;
+  margin-top: 20px;
   border-radius: 35px;
-  box-shadow: 0 14px 44px 0 rgba(75, 95, 247, 0.29);
-  background-color: #4b5ff7;
+  box-sizing: border-box;
+  /* box-shadow: 0 14px 44px 0 rgba(75, 95, 247, 0.29); */
+  /* background-color: #4b5ff7;
+  border: 2px solid #4b5ff7;
+  color: #fff; */
   font-size: 14px;
   font-weight: 700;
   line-height: normal;
   letter-spacing: 0.4px;
-  color: #fff;
   text-transform: uppercase;
   text-decoration: none;
+}
+
+.main-button {
+  background-color: #4b5ff7;
+  border: 2px solid #4b5ff7;
+  color: #fff;
+}
+
+.main-button:hover {
+  background-color: transparent;
+  border-color: #4b5ff7;
+  color: #4b5ff7;
 }
 
 #main-highlights {

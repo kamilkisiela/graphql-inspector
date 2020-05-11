@@ -1,118 +1,34 @@
 import React from 'react';
 import Link from '@docusaurus/Link';
 import Head from '@docusaurus/Head';
-import BrowserOnly from '@docusaurus/BrowserOnly';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Image from '@theme/IdealImage';
 import Footer from '@theme/Footer';
-import ContactForm from '../components/contact';
-import {Loading} from '../components/loading';
+import styles from './index.module.css';
+import {Live} from '../components/live';
+import {Contact} from '../components/contact';
 import {Feature} from '../components/feature';
 import {Highlights} from '../components/highlights';
-
-const LiveContent = () => {
-  const Diff = React.lazy(() => import('../components/diff'));
-
-  return (
-    <ErrorBoundary>
-      <React.Suspense fallback={<Loading color="#fff" height="300px" />}>
-        <Diff />
-      </React.Suspense>
-    </ErrorBoundary>
-  );
-};
-
-const Live = () => {
-  return (
-    <div className="live">
-      <div className="live-wrapper">
-        <BrowserOnly>{() => <LiveContent />}</BrowserOnly>
-      </div>
-    </div>
-  );
-};
-
-class ErrorBoundary extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {hasError: false};
-  }
-
-  static getDerivedStateFromError() {
-    // Update state so the next render will show the fallback UI.
-    return {hasError: true};
-  }
-
-  componentDidCatch(error, errorInfo) {
-    console.error(error, errorInfo);
-  }
-
-  render() {
-    if (this.state.hasError) {
-      // Fallback
-      return <span>Something went wrong.</span>;
-    }
-
-    return this.props.children;
-  }
-}
-
-const Contact = () => {
-  return (
-    <div id="contact-us">
-      <div id="main-header">
-        <div className="container">
-          <h1>
-            <span>Contact us!</span>
-          </h1>
-          <h2>
-            Need help? Want to start using GraphQL Inspector? We would love to
-            help you and hear how you use GraphQL Inspector today!
-          </h2>
-          <div className="contact-wrapper">
-            <ContactForm />
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-const Nav = () => {
-  return (
-    <div id="main-nav">
-      <a href="" className="logo">
-        <img src="/img/logo.svg" alt="GraphQL Inspector Logo" />
-      </a>
-      <div className="links">
-        <Link to="/docs">Documentation</Link>
-        <div className="sep" />
-        <a href="/install">App</a>
-        <div className="sep" />
-        <a href="/action">Action</a>
-        <div className="sep" />
-        <a href="https://github.com/kamilkisiela/graphql-inspector">GitHub</a>
-        <div className="sep" />
-        <a href="#contact-us" className="scroll-to">
-          Contact
-        </a>
-      </div>
-    </div>
-  );
-};
+import {Nav} from '../components/nav';
 
 const Header = () => {
   return (
     <div id="main-header">
       <div className="container">
         <h1>
-          <span>Bulletproof</span> your GraphQL API
+          <span>Bulletproof</span> your GraphQL
         </h1>
         <h2>
-          Validate schemas and detect changes. Receive schema change notifications. Keep
-          Operations and Fragments consistent.
+          Validate schemas and detect changes. Receive schema change
+          notifications. Keep Operations and Fragments consistent.
         </h2>
-        <Link to="/docs">Start to Inspect</Link>
+        <Link
+          to="/docs"
+          className="main-button"
+          title="Documentation | GraphQL Inspector"
+        >
+          Documentation
+        </Link>
       </div>
     </div>
   );
@@ -144,7 +60,13 @@ function Index() {
         </title>
       </Head>
       <div className="mainContainer">
-        <Nav />
+        <Nav
+          link={{
+            to: '/enterprise',
+            title: 'Enterprise - GraphQL Inspector',
+            label: 'Enterprise',
+          }}
+        />
         <Header />
       </div>
 
@@ -161,7 +83,30 @@ function Index() {
                 <strong>GitHub Action</strong>!
               </p>
             ),
-            link: <Link to="/docs/products/github">Learn more</Link>,
+            link: (
+              <div className={styles.indexGithubLinks}>
+                <Link
+                  to="/docs/products/github"
+                  title="How to use GraphQL Inspector in GitHub repository"
+                >
+                  Learn more
+                </Link>
+                <br />
+                <Link href="/install" title="Use GitHub Application">
+                  Install Application
+                </Link>
+                <Link href="/action" title="Use GitHub Action">
+                  Use Action
+                </Link>
+              </div>
+            ),
+            img: (
+              <Image
+                img={require('../../static/img/illustrations/github.png')}
+                alt="GitHub App and Action"
+                loading="lazy"
+              />
+            ),
           },
           {
             title: 'Continous Integrations',
@@ -171,7 +116,21 @@ function Index() {
                 service.Use our modularized, CI suited version of CLI.
               </p>
             ),
-            link: <Link to="/docs/products/ci">Learn more</Link>,
+            link: (
+              <Link
+                to="/docs/products/ci"
+                title="How to use GraphQL Inspector in CI/CD"
+              >
+                Learn more
+              </Link>
+            ),
+            img: (
+              <Image
+                img={require('../../static/img/illustrations/result.png')}
+                alt="Continous Integrations"
+                loading="lazy"
+              />
+            ),
           },
           {
             title: 'Command-Line',
@@ -181,7 +140,21 @@ function Index() {
                 analyze your GraphQL API but also client-side applications.
               </p>
             ),
-            link: <Link to="/docs/essentials/diff">Lean more</Link>,
+            link: (
+              <Link
+                to="/docs/essentials/diff"
+                title="Learn how to use GraphQL Inspector CLI"
+              >
+                Lean more
+              </Link>
+            ),
+            img: (
+              <Image
+                img={require('../../static/img/illustrations/typewriter.png')}
+                alt="Command-Line"
+                loading="lazy"
+              />
+            ),
           },
           {
             title: 'Entirely Open-Source',
@@ -192,9 +165,19 @@ function Index() {
               </p>
             ),
             link: (
-              <a href="https://github.com/kamilkisiela/graphql-inspector">
-                Visit repository
+              <a
+                href="https://github.com/kamilkisiela/graphql-inspector"
+                title="Visit GraphQL Inspector repository"
+              >
+                Source code
               </a>
+            ),
+            img: (
+              <Image
+                img={require('../../static/img/illustrations/hacker-mindset.png')}
+                alt="Entirely Open-Source"
+                loading="lazy"
+              />
             ),
           },
         ]}
@@ -275,7 +258,8 @@ function Index() {
             img={require('../../static/img/ui/features/intercept.png')}
             alt="Intercept changes via HTTP"
             loading="lazy"
-          />}
+          />
+        }
         title="Intercept via HTTP"
         text={
           <>
@@ -284,9 +268,7 @@ function Index() {
               changes, list of related Pull Request or a commit SHA.
             </p>
             <p>
-              <strong>
-                Decide about the status of Pull Request.
-              </strong>
+              <strong>Decide about the status of Pull Request.</strong>
             </p>
           </>
         }

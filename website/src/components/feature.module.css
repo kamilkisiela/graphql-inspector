@@ -1,0 +1,103 @@
+.featureContainer {
+  width: 100%;
+  min-height: 200px;
+  background-color: #fff;
+  padding: 2.5rem 0;
+  margin-bottom: -1px;
+  border-top: 1px solid rgb(238, 238, 238);
+  border-bottom: 1px solid rgb(238, 238, 238);
+  transition: all 0.2s ease 0s;
+}
+
+.featureContainer:hover {
+  box-shadow: 0px 5px 40px rgba(0, 0, 0, 0.1);
+}
+
+.featureTitle {
+  font-size: 36px;
+  font-weight: 500;
+}
+
+.featureImage {
+  text-align: center;
+}
+
+.featureContent {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 50px 25px;
+  box-sizing: border-box;
+
+  display: flex;
+  align-items: center;
+
+  flex-direction: row;
+}
+
+.featureContent.reversed > .featureIage {
+  text-align: right;
+}
+
+.featureContent > * {
+  width: 50%;
+  flex-shrink: 1;
+}
+
+.featureContent > .featureImage {
+  width: 50%;
+  flex-shrink: 0;
+  text-align: left;
+}
+
+.featureContent.reversed > .featureText {
+  padding-left: 0;
+  padding-right: 70px;
+}
+
+.featureText {
+  padding-left: 70px;
+}
+
+@media only screen and (min-width: 996px) {
+  .featureContent.reversed > .featureImage > * {
+    width: 80%;
+    margin-left: 20%;
+  }
+  
+  .featureContent:not(.reversed) > .featureImage > * {
+    width: 80%;
+    margin-right: 20%;
+  }
+}
+
+@media only screen and (max-width: 996px) {
+  .featureImage {
+    max-width: 50%;
+    margin: 0 auto;
+  }
+
+  .featureContent {
+    width: 100%;
+    flex-wrap: wrap;
+    flex-direction: column-reverse;
+  }
+
+  .featureContent.reversed {
+    flex-direction: row;
+  }
+
+  .featureContent .featureImage,
+  .featureContent .featureText {
+    width: 100%;
+    padding: 0 !important;
+    text-align: center;
+  }
+
+  .featureContent .featureText {
+    padding-bottom: 50px !important;
+  }
+
+  .featureContent .featureImage > img {
+    max-width: 60%;
+  }
+}

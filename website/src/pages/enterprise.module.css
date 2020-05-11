@@ -1,0 +1,24 @@
+.enterpriseIcon {
+  color: #4b5ff7;
+}
+
+.enterpriseList {
+  padding: 0;
+  list-style: none;
+}
+
+.enterpriseList > li {
+  line-height: 25px;
+  display: flex;
+  align-items: center;
+}
+
+.enterpriseList > li > svg {
+  margin-right: 10px;
+}
+
+@media only screen and (max-width: 996px) {
+  .enterpriseList > li {
+    justify-content: center;
+  }
+}

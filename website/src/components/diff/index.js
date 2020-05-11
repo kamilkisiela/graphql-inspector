@@ -2,45 +2,10 @@ import React, {useState, useEffect} from 'react';
 import {MonacoDiffEditor} from 'react-monaco-editor';
 import {buildSchema} from 'graphql';
 import {diff} from '@graphql-inspector/core';
-import styled from 'styled-components';
+import styles from './index.module.css';
 import FlipMove from 'react-flip-move';
 
 import Change from './Change';
-
-const height = 300;
-
-const Container = styled.div`
-  background-color: #000;
-  display: flex;
-
-  @media only screen and (max-width: 950px) {
-    flex-direction: column;
-  }
-
-  @media only screen and (min-width: 950px) {
-    flex-direction: row;
-    justify-content: space-between;
-    max-height: ${height}px;
-  }
-`;
-
-const Changes = styled(FlipMove)`
-  flex-shrink: 0;
-  flex-grow: 1;
-  overflow: scroll;
-  box-sizing: border-box;
-
-  @media only screen and (max-width: 950px) {
-    width: 100%;
-    max-height: ${height}px;
-    padding: 15px;
-  }
-
-  @media only screen and (min-width: 950px) {
-    width: 45%;
-    padding-left: 15px;
-  }
-`;
 
 const oldSchemaString = `
   type Post {
@@ -83,10 +48,10 @@ export default function Diff() {
   }, [code]);
 
   return (
-    <Container>
+    <div className={styles.diffContainer}>
       <MonacoDiffEditor
         width="100%"
-        height={height}
+        height={300}
         language="graphql"
         theme="vs-dark"
         original={oldSchemaString}
@@ -99,11 +64,15 @@ export default function Diff() {
           originalEditable: false,
         }}
       />
-      <Changes enterAnimation="fade" leaveAnimation="fade">
+      <FlipMove
+        className={styles.diffChanges}
+        enterAnimation="fade"
+        leaveAnimation="fade"
+      >
         {changes.map((change, i) => (
           <Change key={i} value={change} />
         ))}
-      </Changes>
-    </Container>
+      </FlipMove>
+    </div>
   );
 }
