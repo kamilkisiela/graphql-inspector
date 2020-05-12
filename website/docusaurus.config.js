@@ -17,7 +17,7 @@ module.exports = {
     announcementBar: {
       id: 'support_us',
       content: [
-        '<strong>We are working on v2.0</strong>. Contribute to its <a target="_blank" rel="noopener noreferrer" href="https://github.com/kamilkisiela/graphql-inspector/issues/1371">roadmap</a> by suggesting features.',
+        '<strong>We are working on v3.0</strong>. Contribute to its <a target="_blank" rel="noopener noreferrer" href="https://github.com/kamilkisiela/graphql-inspector/discussions/1371">roadmap</a> by suggesting features.',
         'If you like GraphQL Inspector give it a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/kamilkisiela/graphql-inspector/">GitHub</a> and <a target="_blank" rel="noopener noreferrer" href="https://github.com/sponsors/kamilkisiela">consider supporting the project</a>!',
       ].join(' '),
       backgroundColor: '#292d3e',
