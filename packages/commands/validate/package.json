@@ -33,7 +33,7 @@
     "@graphql-inspector/core": "0.0.0-PLACEHOLDER",
     "@graphql-inspector/commands": "0.0.0-PLACEHOLDER",
     "@graphql-inspector/logger": "0.0.0-PLACEHOLDER",
-    "tslib": "^1.11.1"
+    "tslib": "^2.0.0"
   },
   "scripts": {
     "prepack": "bob prepack"
