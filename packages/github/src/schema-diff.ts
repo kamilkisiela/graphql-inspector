@@ -68,17 +68,6 @@ export async function handleSchemaDiff({
     logger.info(`fallback branch from Pull Requests: ${firstBranch}`);
     logger.info(`SHA before push: ${before}`);
 
-    if (!fallbackBranch || /^[0]+$/.test(fallbackBranch)) {
-      logger.info(`Nothing to compare with. Skipping...`);
-      await complete({
-        url: checkUrl,
-        context,
-        conclusion: CheckConclusion.Success,
-        logger,
-      });
-      return;
-    }
-
     // on non-environment related PRs, use a branch from first associated pull request
     const config = createConfig(
       rawConfig as any,
@@ -98,6 +87,17 @@ export async function handleSchemaDiff({
       return;
     } else {
       logger.info(`enabled`);
+    }
+
+    if (!config.branch || /^[0]+$/.test(config.branch)) {
+      logger.info(`Nothing to compare with. Skipping...`);
+      await complete({
+        url: checkUrl,
+        context,
+        conclusion: CheckConclusion.Success,
+        logger,
+      });
+      return;
     }
 
     const oldPointer: SchemaPointer = {
