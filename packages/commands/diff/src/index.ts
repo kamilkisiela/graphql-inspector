@@ -21,7 +21,7 @@ export default createCommand<
   {
     oldSchema: string;
     newSchema: string;
-    rule?: string[];
+    rule?: Array<string | number>;
     onComplete?: string;
   } & GlobalArgs
 >((api) => {
@@ -44,14 +44,12 @@ export default createCommand<
         })
         .options({
           rule: {
-            alias: 'rule',
             describe: 'Add rules',
             array: true,
           },
           onComplete: {
-            alias: 'onComplete',
             describe: 'Handle Completion',
-            type: 'string'
+            type: 'string',
           },
         });
     },
@@ -70,10 +68,13 @@ export default createCommand<
           token,
         });
 
-        const onComplete = args.onComplete ? resolveCompletionHandler(args.onComplete) : failOnBreakingChanges
+        const onComplete = args.onComplete
+          ? resolveCompletionHandler(args.onComplete)
+          : failOnBreakingChanges;
 
         const rules = args.rule
           ? args.rule
+              .filter(isString)
               .map(
                 (name): Rule => {
                   const rule = resolveRule(name);
@@ -120,8 +121,8 @@ export default createCommand<
         if (nonBreakingChanges.length) {
           reportNonBreakingChanges(nonBreakingChanges);
         }
-        
-        onComplete({ breakingChanges, dangerousChanges, nonBreakingChanges })
+
+        onComplete({breakingChanges, dangerousChanges, nonBreakingChanges});
       } catch (error) {
         Logger.error(error);
         throw error;
@@ -185,11 +186,11 @@ function resolveRule(name: string): Rule | undefined {
 
 function resolveCompletionHandler(name: string): CompletionHandler | never {
   const filepath = ensureAbsolute(name);
-  
+
   try {
-    require.resolve(filepath)
+    require.resolve(filepath);
   } catch (error) {
-    throw new Error(`CompletionHandler '${name}' does not exist!`)
+    throw new Error(`CompletionHandler '${name}' does not exist!`);
   }
 
   const mod = require(filepath);
@@ -197,7 +198,7 @@ function resolveCompletionHandler(name: string): CompletionHandler | never {
   return mod?.default || mod;
 }
 
-function failOnBreakingChanges({ breakingChanges }: CompletionArgs) {
+function failOnBreakingChanges({breakingChanges}: CompletionArgs) {
   const breakingCount = breakingChanges.length;
 
   if (breakingCount) {
@@ -210,4 +211,8 @@ function failOnBreakingChanges({ breakingChanges }: CompletionArgs) {
   } else {
     Logger.success('No breaking changes detected');
   }
+}
+
+function isString(val: any): val is string {
+  return typeof val === 'string';
 }
