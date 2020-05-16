@@ -31,7 +31,7 @@
   },
   "dependencies": {
     "@graphql-inspector/commands": "0.0.0-PLACEHOLDER",
-    "open": "7.0.3",
+    "open": "7.0.4",
     "tslib": "^2.0.0"
   },
   "scripts": {
