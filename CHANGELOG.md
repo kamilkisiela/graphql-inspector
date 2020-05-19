@@ -3,7 +3,7 @@
 ### vNEXT
 
 - **github** skip diff checks for new branches and re-check once Pull Request is opened [#1493](https://github.com/kamilkisiela/graphql-inspector/issues/1493)
-- **action github cli ci loaders** - assume valid Schema and SDL
+- **action github cli ci loaders** - assume valid Schema and SDL [#1508](https://github.com/kamilkisiela/graphql-inspector/pull/1508)
 
 ### v2.0.0
 
