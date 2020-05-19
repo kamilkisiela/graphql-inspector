@@ -796,7 +796,8 @@ test('should work with with missing directive definitions', () => {
       bar: String! @md
     }
   `, {
-    assumeValid: true
+    assumeValid: true,
+    assumeValidSDL: true,
   });
 
   const schemaB = buildSchema(/* GraphQL */ `
@@ -805,7 +806,8 @@ test('should work with with missing directive definitions', () => {
       bar: String
     }
   `, {
-    assumeValid: true
+    assumeValid: true,
+    assumeValidSDL: true,
   });
 
   const changes = diff(schemaA, schemaB);
