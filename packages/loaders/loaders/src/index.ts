@@ -34,6 +34,8 @@ export class LoadersRegistry {
   ): Promise<GraphQLSchema> {
     return loadSchema(pointer, {
       loaders: this.loaders,
+      assumeValid: true,
+      assumeValidSDL: true,
       ...options,
     });
   }
@@ -44,6 +46,8 @@ export class LoadersRegistry {
   ): Promise<Source[]> {
     return loadDocuments(pointer, {
       loaders: this.loaders,
+      assumeValid: true,
+      assumeValidSDL: true,
       ...options,
     });
   }

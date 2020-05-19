@@ -126,9 +126,11 @@ export async function run() {
   const schemas = {
     old: buildSchema(sources.old, {
       assumeValid: true,
+      assumeValidSDL: true,
     }),
     new: buildSchema(sources.new, {
       assumeValid: true,
+      assumeValidSDL: true,
     }),
   };
 
