@@ -1,3 +1,3 @@
-import {UrlLoader} from '@graphql-toolkit/url-loader';
+import {UrlLoader} from '@graphql-tools/url-loader';
 
 export default new UrlLoader();

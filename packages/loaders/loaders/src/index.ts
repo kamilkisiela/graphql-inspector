@@ -1,15 +1,15 @@
 import {InspectorConfig} from '@graphql-inspector/config';
 import {
+  Source,
   UniversalLoader,
   SchemaPointerSingle,
-  Source,
-} from '@graphql-toolkit/common';
+} from '@graphql-tools/utils';
 import {
   loadDocuments,
   loadSchema,
   LoadSchemaOptions,
   LoadTypedefsOptions,
-} from '@graphql-toolkit/core';
+} from '@graphql-tools/load';
 import {GraphQLSchema} from 'graphql';
 
 export class LoadersRegistry {

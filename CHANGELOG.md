@@ -2,6 +2,8 @@
 
 ### vNEXT
 
+- Use GraphQL Tools v6
+
 ### v2.0.1
 
 - **github** skip diff checks for new branches and re-check once Pull Request is opened [#1493](https://github.com/kamilkisiela/graphql-inspector/issues/1493)
