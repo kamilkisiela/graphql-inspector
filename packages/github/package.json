@@ -47,7 +47,7 @@
     "@graphql-inspector/core": "0.0.0-PLACEHOLDER",
     "axios": "0.19.2",
     "dataloader": "2.0.0",
-    "js-yaml": "3.13.1",
+    "js-yaml": "3.14.0",
     "tslib": "^2.0.0"
   },
   "devDependencies": {
