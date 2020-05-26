@@ -14,7 +14,7 @@ export function useMutation(query) {
   });
 
   const mutate = useCallback(
-    variables => {
+    (variables) => {
       setState({
         complete: false,
         loading: true,
@@ -31,8 +31,8 @@ export function useMutation(query) {
           variables,
         }),
       })
-        .then(data => data.json())
-        .then(data => {
+        .then((data) => data.json())
+        .then((data) => {
           if (data.errors) {
             return Promise.reject(new Error('Try Again'));
           }
@@ -44,7 +44,7 @@ export function useMutation(query) {
             data,
           });
         })
-        .catch(error => {
+        .catch((error) => {
           setState({
             complete: true,
             loading: false,

@@ -37,9 +37,9 @@ diff:
 schema: 'schema.graphql'
 
 env:
-  production: 
+  production:
     branch: 'master'
-  preview: 
+  preview:
     branch: 'develop'
 
 others:

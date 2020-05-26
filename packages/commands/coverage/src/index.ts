@@ -3,6 +3,7 @@ import {
   GlobalArgs,
   ensureAbsolute,
   parseGlobalArgs,
+  CommandFactory,
 } from '@graphql-inspector/commands';
 import {Logger, chalk} from '@graphql-inspector/logger';
 import {
@@ -13,6 +14,8 @@ import {
 import {Source, print} from 'graphql';
 import {extname} from 'path';
 import {writeFileSync} from 'fs';
+
+export {CommandFactory};
 
 export default createCommand<
   {},

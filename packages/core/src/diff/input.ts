@@ -20,12 +20,12 @@ export function changesInInputObject(
   const changes: Change[] = [];
   const oldFields = oldInput.getFields();
   const newFields = newInput.getFields();
-  const oldNames = Object.keys(oldFields).map(name => oldFields[name].name);
-  const newNames = Object.keys(newFields).map(name => newFields[name].name);
+  const oldNames = Object.keys(oldFields).map((name) => oldFields[name].name);
+  const newNames = Object.keys(newFields).map((name) => newFields[name].name);
 
-  const added = diffArrays(newNames, oldNames).map(name => newFields[name]);
-  const removed = diffArrays(oldNames, newNames).map(name => oldFields[name]);
-  const common = unionArrays(oldNames, newNames).map(name => ({
+  const added = diffArrays(newNames, oldNames).map((name) => newFields[name]);
+  const removed = diffArrays(oldNames, newNames).map((name) => oldFields[name]);
+  const common = unionArrays(oldNames, newNames).map((name) => ({
     inOld: oldFields[name],
     inNew: newFields[name],
   }));
@@ -34,8 +34,8 @@ export function changesInInputObject(
     changes.push(...changesInInputField(oldInput, inOld, inNew));
   });
 
-  changes.push(...added.map(field => inputFieldAdded(newInput, field)));
-  changes.push(...removed.map(field => inputFieldRemoved(oldInput, field)));
+  changes.push(...added.map((field) => inputFieldAdded(newInput, field)));
+  changes.push(...removed.map((field) => inputFieldRemoved(oldInput, field)));
 
   return changes;
 }

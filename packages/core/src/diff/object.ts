@@ -35,14 +35,15 @@ function addedInterfaces(
 ): Change[] {
   const oldInterfaces = oldType.getInterfaces();
   const newInterfaces = newType.getInterfaces();
-  const oldNames = oldInterfaces.map(i => i.name);
-  const newNames = newInterfaces.map(i => i.name);
+  const oldNames = oldInterfaces.map((i) => i.name);
+  const newNames = newInterfaces.map((i) => i.name);
 
   return diffArrays(newNames, oldNames)
     .map(
-      name => newInterfaces.find(i => i.name === name) as GraphQLInterfaceType,
+      (name) =>
+        newInterfaces.find((i) => i.name === name) as GraphQLInterfaceType,
     )
-    .map(i => objectTypeInterfaceAdded(i, newType));
+    .map((i) => objectTypeInterfaceAdded(i, newType));
 }
 
 function removedInterfaces(
@@ -51,14 +52,15 @@ function removedInterfaces(
 ): Change[] {
   const oldInterfaces = oldType.getInterfaces();
   const newInterfaces = newType.getInterfaces();
-  const oldNames = oldInterfaces.map(i => i.name);
-  const newNames = newInterfaces.map(i => i.name);
+  const oldNames = oldInterfaces.map((i) => i.name);
+  const newNames = newInterfaces.map((i) => i.name);
 
   return diffArrays(oldNames, newNames)
     .map(
-      name => oldInterfaces.find(i => i.name === name) as GraphQLInterfaceType,
+      (name) =>
+        oldInterfaces.find((i) => i.name === name) as GraphQLInterfaceType,
     )
-    .map(i => objectTypeInterfaceRemoved(i, newType));
+    .map((i) => objectTypeInterfaceRemoved(i, newType));
 }
 
 function addedFields(
@@ -71,8 +73,8 @@ function addedFields(
   const newNames = Object.keys(newFields);
 
   return diffArrays(newNames, oldNames)
-    .map(name => newFields[name])
-    .map(f => fieldAdded(newType, f));
+    .map((name) => newFields[name])
+    .map((f) => fieldAdded(newType, f));
 }
 
 function removedFields(
@@ -85,8 +87,8 @@ function removedFields(
   const newNames = Object.keys(newFields);
 
   return diffArrays(oldNames, newNames)
-    .map(name => oldFields[name])
-    .map(f => fieldRemoved(oldType, f));
+    .map((name) => oldFields[name])
+    .map((f) => fieldRemoved(oldType, f));
 }
 
 function changedFields(oldType: GraphQLObjectType, newType: GraphQLObjectType) {
@@ -95,7 +97,7 @@ function changedFields(oldType: GraphQLObjectType, newType: GraphQLObjectType) {
   const oldNames = Object.keys(oldFields);
   const newNames = Object.keys(newFields);
 
-  return unionArrays(oldNames, newNames).map(name => ({
+  return unionArrays(oldNames, newNames).map((name) => ({
     inOld: oldFields[name],
     inNew: newFields[name],
   }));

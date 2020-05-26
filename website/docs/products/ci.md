@@ -41,7 +41,6 @@ Depending on the source of GraphQL Schema or GraphQL Documents, pick one or few 
 | File on GitHub                           | `@graphql-inspector/github-loader`  |
 | GraphQL Endpoint                         | `@graphql-inspector/url-loader`     |
 
-
 Now you know where everything is but let's find out how to make a use of it.
 
 ## Usage
@@ -88,7 +87,7 @@ We recommend to automate the workflow and use `husky` to run [`$ graphql-inspect
 
 This way you `schema.graphql` is always in sync with the code, on each commit.
 
-## Using Docker image 
+## Using Docker image
 
 You can use GraphQL Inspector Docker image in any CI/CD provider. For example, in CircleCI it would look like this:
 

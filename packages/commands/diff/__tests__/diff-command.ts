@@ -134,9 +134,11 @@ describe('diff', () => {
   });
 
   test('should render error if file does not exist', async () => {
-    await mockCommand(diff, `diff old.graphql new.graphql --onComplete ${
-      resolve(__dirname,
-      'assets/onComplete.js',
+    await mockCommand(
+      diff,
+      `diff old.graphql new.graphql --onComplete ${resolve(
+        __dirname,
+        'assets/onComplete.js',
       )}`,
     );
 
@@ -144,7 +146,10 @@ describe('diff', () => {
   });
 
   test('should render error if file does not exist', async () => {
-    await mockCommand(diff, `diff old.graphql new.graphql --onComplete noop.js`);
+    await mockCommand(
+      diff,
+      `diff old.graphql new.graphql --onComplete noop.js`,
+    );
 
     expect(spyReporter).toHaveBeenCalledNormalized('does not exist');
   });

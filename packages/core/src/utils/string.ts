@@ -23,7 +23,7 @@ function compareTwoStrings(str1: string, str2: string) {
   const pairs2 = wordLetterPairs(str2);
   const union = pairs1.length + pairs2.length;
   let intersection = 0;
-  pairs1.forEach(pair1 => {
+  pairs1.forEach((pair1) => {
     for (let i = 0, pair2; (pair2 = pairs2[i]); i++) {
       if (pair1 !== pair2) continue;
       intersection++;
@@ -42,7 +42,7 @@ export function findBestMatch(
     throw new Error(
       'Bad arguments: First argument should be a string, second should be an array of strings',
     );
-  const ratings = targetStrings.map(target => ({
+  const ratings = targetStrings.map((target) => ({
     target,
     rating: compareTwoStrings(mainString, target.value),
   }));
@@ -60,7 +60,7 @@ function areArgsValid(mainString: string, targetStrings: Target[]) {
   if (typeof mainString !== 'string') return false;
   if (!Array.isArray(targetStrings)) return false;
   if (!targetStrings.length) return false;
-  if (targetStrings.find(s => typeof s.value !== 'string')) return false;
+  if (targetStrings.find((s) => typeof s.value !== 'string')) return false;
   return true;
 }
 
@@ -72,9 +72,6 @@ function letterPairs(str: string) {
 }
 
 function wordLetterPairs(str: string) {
-  const pairs = str
-    .toUpperCase()
-    .split(' ')
-    .map(letterPairs);
+  const pairs = str.toUpperCase().split(' ').map(letterPairs);
   return flattenDeep(pairs);
 }

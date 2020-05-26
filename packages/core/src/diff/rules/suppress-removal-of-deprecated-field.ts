@@ -8,7 +8,7 @@ export const suppressRemovalOfDeprecatedField: Rule = ({
   changes,
   oldSchema,
 }) => {
-  return changes.map(change => {
+  return changes.map((change) => {
     if (
       change.type === ChangeType.FieldRemoved &&
       change.criticality.level === CriticalityLevel.Breaking &&

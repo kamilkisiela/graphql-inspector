@@ -2,6 +2,7 @@ import {
   createCommand,
   GlobalArgs,
   parseGlobalArgs,
+  CommandFactory,
 } from '@graphql-inspector/commands';
 import {Logger} from '@graphql-inspector/logger';
 import open from 'open';
@@ -9,6 +10,8 @@ import express from 'express';
 import graphql from 'express-graphql';
 import cors from 'cors';
 import {fake} from './fake';
+
+export {CommandFactory};
 
 export default createCommand<
   {},

@@ -195,25 +195,32 @@ function Enterprise() {
               <Check className={styles.enterpriseIcon} size={20} /> No limits
             </li>
             <li>
-              <Check className={styles.enterpriseIcon} size={20} /> Long-term support (LTS)
+              <Check className={styles.enterpriseIcon} size={20} /> Long-term
+              support (LTS)
             </li>
             <li>
-              <Check className={styles.enterpriseIcon} size={20} /> Technical guidance on GraphQL design
+              <Check className={styles.enterpriseIcon} size={20} /> Technical
+              guidance on GraphQL design
             </li>
             <li>
-              <Check className={styles.enterpriseIcon} size={20} /> Dedicated infrastructure
+              <Check className={styles.enterpriseIcon} size={20} /> Dedicated
+              infrastructure
             </li>
             <li>
-              <Check className={styles.enterpriseIcon} size={20} /> Support channels
+              <Check className={styles.enterpriseIcon} size={20} /> Support
+              channels
             </li>
             <li>
-              <Check className={styles.enterpriseIcon} size={20} /> Well-tested on free infrastructure
+              <Check className={styles.enterpriseIcon} size={20} /> Well-tested
+              on free infrastructure
             </li>
             <li>
-              <Check className={styles.enterpriseIcon} size={20} /> New features decision making
+              <Check className={styles.enterpriseIcon} size={20} /> New features
+              decision making
             </li>
             <li>
-              <Check className={styles.enterpriseIcon} size={20} /> Early access to new features
+              <Check className={styles.enterpriseIcon} size={20} /> Early access
+              to new features
             </li>
           </ul>
         }

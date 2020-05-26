@@ -1,12 +1,15 @@
 import {
   createCommand,
   GlobalArgs,
+  CommandFactory,
   parseGlobalArgs,
 } from '@graphql-inspector/commands';
 import {Logger} from '@graphql-inspector/logger';
 import {writeFileSync} from 'fs';
 import {resolve, extname} from 'path';
 import {introspectionFromSchema, printSchema} from 'graphql';
+
+export {CommandFactory};
 
 export default createCommand<
   {},

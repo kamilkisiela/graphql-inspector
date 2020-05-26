@@ -3,6 +3,7 @@ import {
   ensureAbsolute,
   parseGlobalArgs,
   GlobalArgs,
+  CommandFactory,
 } from '@graphql-inspector/commands';
 import {symbols, Logger, bolderize} from '@graphql-inspector/logger';
 import {
@@ -15,6 +16,8 @@ import {
   CompletionArgs,
 } from '@graphql-inspector/core';
 import {existsSync} from 'fs';
+
+export {CommandFactory};
 
 export default createCommand<
   {},

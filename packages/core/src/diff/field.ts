@@ -64,27 +64,27 @@ export function changesInField(
 
   const oldArgs = oldField.args;
   const newArgs = newField.args;
-  const oldNames = oldArgs.map(a => a.name);
-  const newNames = newArgs.map(a => a.name);
+  const oldNames = oldArgs.map((a) => a.name);
+  const newNames = newArgs.map((a) => a.name);
 
   const added = diffArrays(newNames, oldNames).map(
-    name => newArgs.find(a => a.name === name) as GraphQLArgument,
+    (name) => newArgs.find((a) => a.name === name) as GraphQLArgument,
   );
   const removed = diffArrays(oldNames, newNames).map(
-    name => oldArgs.find(a => a.name === name) as GraphQLArgument,
+    (name) => oldArgs.find((a) => a.name === name) as GraphQLArgument,
   );
-  const common = unionArrays(oldNames, newNames).map(name => ({
-    inOld: oldArgs.find(a => a.name === name) as GraphQLArgument,
-    inNew: newArgs.find(a => a.name === name) as GraphQLArgument,
+  const common = unionArrays(oldNames, newNames).map((name) => ({
+    inOld: oldArgs.find((a) => a.name === name) as GraphQLArgument,
+    inNew: newArgs.find((a) => a.name === name) as GraphQLArgument,
   }));
 
   common.forEach(({inOld, inNew}) => {
     changes.push(...changesInArgument(type, oldField, inOld, inNew));
   });
 
-  changes.push(...added.map(arg => fieldArgumentAdded(type, newField, arg)));
+  changes.push(...added.map((arg) => fieldArgumentAdded(type, newField, arg)));
   changes.push(
-    ...removed.map(arg => fieldArgumentRemoved(type, oldField, arg)),
+    ...removed.map((arg) => fieldArgumentRemoved(type, oldField, arg)),
   );
 
   return changes;

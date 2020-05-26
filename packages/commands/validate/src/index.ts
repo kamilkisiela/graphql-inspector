@@ -2,6 +2,7 @@ import {
   createCommand,
   GlobalArgs,
   parseGlobalArgs,
+  CommandFactory,
 } from '@graphql-inspector/commands';
 import {Logger, bolderize, chalk} from '@graphql-inspector/logger';
 import {
@@ -9,6 +10,8 @@ import {
   InvalidDocument,
 } from '@graphql-inspector/core';
 import {Source, print} from 'graphql';
+
+export {CommandFactory};
 
 export default createCommand<
   {},

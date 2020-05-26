@@ -90,7 +90,7 @@ test('Directive.Field.Arg: non-existing Type should point to first line ', () =>
 });
 
 test('Enum.Value: non-existing Value should point to Enum', () => {
-  const testSource = new Source(/* GraphQL */`
+  const testSource = new Source(/* GraphQL */ `
     enum MyEnum {
       Foo
       Bar
@@ -105,7 +105,7 @@ test('Enum.Value: non-existing Value should point to Enum', () => {
 });
 
 test('Enum.Value: Value should point to Value', () => {
-  const testSource = new Source(/* GraphQL */`
+  const testSource = new Source(/* GraphQL */ `
     enum MyEnum {
       Foo
       Bar

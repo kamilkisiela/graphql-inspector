@@ -77,7 +77,7 @@ export function calculateDepth({
 
     case Kind.SELECTION_SET: {
       return Math.max(
-        ...node.selections.map(selection => {
+        ...node.selections.map((selection) => {
           return calculateDepth({
             node: selection,
             currentDepth: currentDepth,
@@ -90,7 +90,7 @@ export function calculateDepth({
 
     case Kind.DOCUMENT: {
       return Math.max(
-        ...node.definitions.map(def => {
+        ...node.definitions.map((def) => {
           return calculateDepth({
             node: def,
             currentDepth: currentDepth,
@@ -105,7 +105,7 @@ export function calculateDepth({
     case Kind.INLINE_FRAGMENT:
     case Kind.FRAGMENT_DEFINITION: {
       return Math.max(
-        ...node.selectionSet.selections.map(selection => {
+        ...node.selectionSet.selections.map((selection) => {
           return calculateDepth({
             node: selection,
             currentDepth,

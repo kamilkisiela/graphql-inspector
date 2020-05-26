@@ -53,9 +53,7 @@ export function typeDescriptionChanged(
   };
 }
 
-export function typeDescriptionRemoved(
-  type: GraphQLNamedType,
-): Change {
+export function typeDescriptionRemoved(type: GraphQLNamedType): Change {
   return {
     criticality: {
       level: CriticalityLevel.NonBreaking,
@@ -66,9 +64,7 @@ export function typeDescriptionRemoved(
   };
 }
 
-export function typeDescriptionAdded(
-  type: GraphQLNamedType,
-): Change {
+export function typeDescriptionAdded(type: GraphQLNamedType): Change {
   return {
     criticality: {
       level: CriticalityLevel.NonBreaking,

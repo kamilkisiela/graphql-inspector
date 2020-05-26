@@ -38,7 +38,7 @@ Use GraphQL Inspector however you want:
 
 ## Installation and Usage
 
-Visit our website [**graphql-inspector.com**](https://graphql-inspector.com/) to learn more about the project. 
+Visit our website [**graphql-inspector.com**](https://graphql-inspector.com/) to learn more about the project.
 
 ## Documentation
 

@@ -1,6 +1,6 @@
-window.addEventListener('load', function() {
+window.addEventListener('load', function () {
   function scrollTo(id) {
-    return e => {
+    return (e) => {
       e.preventDefault();
 
       const el = document.getElementById(id);
@@ -14,7 +14,7 @@ window.addEventListener('load', function() {
     };
   }
 
-  document.querySelectorAll('a.scroll-to').forEach(el => {
+  document.querySelectorAll('a.scroll-to').forEach((el) => {
     el.addEventListener(
       'click',
       scrollTo(el.getAttribute('href').replace('#', '')),
