@@ -67,7 +67,12 @@ export default createCommand<
         });
     },
     async handler(args) {
-      const {loaders} = api;
+      const {loaders, intercept} = api;
+
+      if (intercept) {
+        intercept(args);
+      }
+
       const {headers, token} = parseGlobalArgs(args);
       const schema = await loaders.loadSchema(args.schema, {
         headers,

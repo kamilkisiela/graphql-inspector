@@ -8,6 +8,7 @@ export {CommandModule as Command};
 export interface UseCommandsAPI {
   config: InspectorConfig;
   loaders: Loaders;
+  intercept?<T>(args: T): Promise<T>;
 }
 
 export type CommandFactory<T = {}, U = {}> = (

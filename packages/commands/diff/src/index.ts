@@ -25,7 +25,7 @@ export default createCommand<
     onComplete?: string;
   } & GlobalArgs
 >((api) => {
-  const {loaders} = api;
+  const {loaders, intercept} = api;
 
   return {
     command: 'diff <oldSchema> <newSchema>',
@@ -55,6 +55,10 @@ export default createCommand<
     },
     async handler(args) {
       try {
+        if (intercept) {
+          intercept(args);
+        }
+
         const oldSchemaPointer = args.oldSchema;
         const newSchemaPointer = args.newSchema;
         const {headers, token} = parseGlobalArgs(args);

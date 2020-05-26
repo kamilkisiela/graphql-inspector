@@ -52,7 +52,12 @@ export default createCommand<
         });
     },
     async handler(args) {
-      const {loaders} = api;
+      const {loaders, intercept} = api;
+
+      if (intercept) {
+        intercept(args);
+      }
+
       const writePath = args.write;
       const shouldWrite = typeof writePath !== 'undefined';
       const {headers, token} = parseGlobalArgs(args);
