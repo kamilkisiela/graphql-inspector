@@ -85,7 +85,7 @@ export default createCommand<
         );
     },
     async handler(args) {
-      interceptArguments(args);
+      await interceptArguments(args);
       const {headers, token} = parseGlobalArgs(args);
       const schema = await loaders.loadSchema(args.schema, {
         headers,

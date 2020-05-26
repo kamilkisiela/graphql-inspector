@@ -20,7 +20,7 @@ export interface UseCommandsAPI {
   /** @internal */
   interceptOptions?<T extends {[key: string]: Options}>(options: T): T;
   /** @internal */
-  interceptArguments?<T extends {[key: string]: any}>(args: T): T;
+  interceptArguments?<T extends {[key: string]: any}>(args: T): Promise<T>;
 }
 
 export type CommandFactory<T = {}, U = {}> = (
@@ -36,7 +36,7 @@ export function useCommands(api: UseCommandsAPI): Command[] {
       interceptPositional(_key, opt) {
         return opt;
       },
-      interceptArguments(args) {
+      async interceptArguments(args) {
         return args;
       },
       ...api,

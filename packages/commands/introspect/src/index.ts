@@ -55,7 +55,7 @@ export default createCommand<
         .default('w', 'graphql.schema.json');
     },
     async handler(args) {
-      interceptArguments(args);
+      await interceptArguments(args);
 
       const {headers, token} = parseGlobalArgs(args);
 

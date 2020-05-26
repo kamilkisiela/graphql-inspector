@@ -71,7 +71,7 @@ export default createCommand<
     },
     async handler(args) {
       try {
-        interceptArguments(args);
+        await interceptArguments(args);
         const oldSchemaPointer = args.oldSchema;
         const newSchemaPointer = args.newSchema;
         const {headers, token} = parseGlobalArgs(args);
