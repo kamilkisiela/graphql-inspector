@@ -1,6 +1,6 @@
 {
   "name": "@graphql-inspector/git-loader",
-  "version": "0.0.0-PLACEHOLDER",
+  "version": "0.0.0-canary.8127707",
   "description": "Load GraphQL Schema and Documents from Git repository",
   "keywords": [
     "graphql",

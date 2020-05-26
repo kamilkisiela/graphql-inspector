@@ -1,6 +1,6 @@
 {
   "name": "@graphql-inspector/logger",
-  "version": "0.0.0-PLACEHOLDER",
+  "version": "0.0.0-canary.8127707",
   "description": "Logger for GraphQL Inspector",
   "sideEffects": false,
   "main": "dist/index.cjs.js",

@@ -1,6 +1,6 @@
 {
   "name": "@graphql-inspector/ci",
-  "version": "0.0.0-PLACEHOLDER",
+  "version": "0.0.0-canary.8127707",
   "description": "Tooling for GraphQL. Compare GraphQL Schemas, check documents, find breaking changes, find similar types.",
   "keywords": [
     "graphql",
@@ -49,10 +49,10 @@
     "graphql": "^14.0.0 || ^15.0.0"
   },
   "dependencies": {
-    "@graphql-inspector/config": "0.0.0-PLACEHOLDER",
-    "@graphql-inspector/commands": "0.0.0-PLACEHOLDER",
-    "@graphql-inspector/loaders": "0.0.0-PLACEHOLDER",
-    "@graphql-inspector/logger": "0.0.0-PLACEHOLDER",
+    "@graphql-inspector/config": "0.0.0-canary.8127707",
+    "@graphql-inspector/commands": "0.0.0-canary.8127707",
+    "@graphql-inspector/loaders": "0.0.0-canary.8127707",
+    "@graphql-inspector/logger": "0.0.0-canary.8127707",
     "yargs": "15.3.1",
     "tslib": "^2.0.0"
   }

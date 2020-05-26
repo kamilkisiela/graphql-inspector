@@ -1,6 +1,6 @@
 {
   "name": "@graphql-inspector/commands",
-  "version": "0.0.0-PLACEHOLDER",
+  "version": "0.0.0-canary.8127707",
   "description": "Plugin system for commands in GraphQL Inspector",
   "keywords": [
     "graphql",
@@ -27,8 +27,8 @@
     "directory": "packages/commands/commands"
   },
   "peerDependencies": {
-    "@graphql-inspector/config": "0.0.0-PLACEHOLDER",
-    "@graphql-inspector/loaders": "0.0.0-PLACEHOLDER",
+    "@graphql-inspector/config": "0.0.0-canary.8127707",
+    "@graphql-inspector/loaders": "0.0.0-canary.8127707",
     "graphql": "^0.13.0 || ^14.0.0 || ^15.0.0",
     "yargs": "15.3.1"
   },

@@ -1,6 +1,6 @@
 {
   "name": "@graphql-inspector/github",
-  "version": "0.0.0-PLACEHOLDER",
+  "version": "0.0.0-canary.8127707",
   "description": "GraphQL Inspector's Probot. Compare GraphQL Schemas, check documents, find breaking changes, find similar types.",
   "keywords": [
     "graphql",
@@ -44,7 +44,7 @@
     "probot": "^9.0.1"
   },
   "dependencies": {
-    "@graphql-inspector/core": "0.0.0-PLACEHOLDER",
+    "@graphql-inspector/core": "0.0.0-canary.8127707",
     "axios": "0.19.2",
     "dataloader": "2.0.0",
     "js-yaml": "3.14.0",

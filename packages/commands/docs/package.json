@@ -1,6 +1,6 @@
 {
   "name": "@graphql-inspector/docs-command",
-  "version": "0.0.0-PLACEHOLDER",
+  "version": "0.0.0-canary.8127707",
   "description": "Open GraphQL Inspector Documentation",
   "keywords": [
     "graphql",
@@ -30,7 +30,7 @@
     "graphql": "^0.13.0 || ^14.0.0 || ^15.0.0"
   },
   "dependencies": {
-    "@graphql-inspector/commands": "0.0.0-PLACEHOLDER",
+    "@graphql-inspector/commands": "0.0.0-canary.8127707",
     "open": "7.0.4",
     "tslib": "^2.0.0"
   },
