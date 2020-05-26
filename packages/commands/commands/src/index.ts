@@ -1,22 +1,47 @@
 import {InspectorConfig} from '@graphql-inspector/config';
 import {Loaders} from '@graphql-inspector/loaders';
 import {isAbsolute, resolve} from 'path';
-import yargs, {CommandModule} from 'yargs';
+import yargs, {
+  CommandModule as Command,
+  PositionalOptions,
+  Options,
+} from 'yargs';
 
-export {CommandModule as Command};
+export {Command};
 
 export interface UseCommandsAPI {
   config: InspectorConfig;
   loaders: Loaders;
-  intercept?<T>(args: T): Promise<T>;
+  /** @internal */
+  interceptPositional?<TKey extends string, TOptions extends PositionalOptions>(
+    key: TKey,
+    options: TOptions,
+  ): TOptions;
+  /** @internal */
+  interceptOptions?<T extends {[key: string]: Options}>(options: T): T;
+  /** @internal */
+  interceptArguments?<T extends {[key: string]: any}>(args: T): T;
 }
 
 export type CommandFactory<T = {}, U = {}> = (
-  api: UseCommandsAPI,
-) => CommandModule<T, U>;
+  api: Required<UseCommandsAPI>,
+) => Command<T, U>;
 
-export function useCommands(api: UseCommandsAPI): CommandModule[] {
-  return api.config.commands.map((name) => loadCommand(name)(api));
+export function useCommands(api: UseCommandsAPI): Command[] {
+  return api.config.commands.map((name) =>
+    loadCommand(name)({
+      interceptOptions(opts) {
+        return opts;
+      },
+      interceptPositional(_key, opt) {
+        return opt;
+      },
+      interceptArguments(args) {
+        return args;
+      },
+      ...api,
+    }),
+  );
 }
 
 export function createCommand<T = {}, U = {}>(factory: CommandFactory<T, U>) {
@@ -60,7 +85,7 @@ export function parseGlobalArgs(args: GlobalArgs) {
   return {headers, token: args.token};
 }
 
-export async function mockCommand(mod: CommandModule, cmd: string) {
+export async function mockCommand(mod: Command, cmd: string) {
   return new Promise<string>((resolve, reject) => {
     yargs.command(mod).parse(cmd, (err: Error, _: never, output: string) => {
       if (err) {

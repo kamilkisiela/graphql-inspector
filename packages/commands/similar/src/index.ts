@@ -24,41 +24,48 @@ export default createCommand<
     write?: string;
   } & GlobalArgs
 >((api) => {
+  const {
+    loaders,
+    interceptArguments,
+    interceptPositional,
+    interceptOptions,
+  } = api;
+
   return {
     command: 'similar <schema>',
     describe: 'Find similar types in a schema',
     builder(yargs) {
       return yargs
-        .positional('schema', {
-          describe: 'Point to a schema',
-          type: 'string',
-          demandOption: true,
-        })
-        .options({
-          n: {
-            alias: 'name',
-            describe: 'Name of a type',
+        .positional(
+          'schema',
+          interceptPositional('schema', {
+            describe: 'Point to a schema',
             type: 'string',
-          },
-          t: {
-            alias: 'threshold',
-            describe: 'Threshold of similarity ratio',
-            type: 'number',
-          },
-          w: {
-            alias: 'write',
-            describe: 'Write a file with stats',
-            type: 'string',
-          },
-        });
+            demandOption: true,
+          }),
+        )
+        .options(
+          interceptOptions({
+            n: {
+              alias: 'name',
+              describe: 'Name of a type',
+              type: 'string',
+            },
+            t: {
+              alias: 'threshold',
+              describe: 'Threshold of similarity ratio',
+              type: 'number',
+            },
+            w: {
+              alias: 'write',
+              describe: 'Write a file with stats',
+              type: 'string',
+            },
+          }),
+        );
     },
     async handler(args) {
-      const {loaders, intercept} = api;
-
-      if (intercept) {
-        intercept(args);
-      }
-
+      interceptArguments(args);
       const {headers, token} = parseGlobalArgs(args);
       const writePath = args.write;
       const shouldWrite = typeof writePath !== 'undefined';

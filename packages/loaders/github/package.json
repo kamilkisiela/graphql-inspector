@@ -1,6 +1,6 @@
 {
   "name": "@graphql-inspector/github-loader",
-  "version": "0.0.0-canary.8127707",
+  "version": "0.0.0-PLACEHOLDER",
   "description": "Load GraphQL Schema and Documents from GitHub repository",
   "keywords": [
     "graphql",

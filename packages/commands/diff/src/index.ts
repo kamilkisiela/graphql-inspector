@@ -25,40 +25,50 @@ export default createCommand<
     onComplete?: string;
   } & GlobalArgs
 >((api) => {
-  const {loaders, intercept} = api;
+  const {
+    loaders,
+    interceptArguments,
+    interceptPositional,
+    interceptOptions,
+  } = api;
 
   return {
     command: 'diff <oldSchema> <newSchema>',
     describe: 'Compare two GraphQL Schemas',
     builder(yargs) {
       return yargs
-        .positional('oldSchema', {
-          describe: 'Point to an old schema',
-          type: 'string',
-          demandOption: true,
-        })
-        .positional('newSchema', {
-          describe: 'Point to a new schema',
-          type: 'string',
-          demandOption: true,
-        })
-        .options({
-          rule: {
-            describe: 'Add rules',
-            array: true,
-          },
-          onComplete: {
-            describe: 'Handle Completion',
+        .positional(
+          'oldSchema',
+          interceptPositional('oldSchema', {
+            describe: 'Point to an old schema',
             type: 'string',
-          },
-        });
+            demandOption: true,
+          }),
+        )
+        .positional(
+          'newSchema',
+          interceptPositional('newSchema', {
+            describe: 'Point to a new schema',
+            type: 'string',
+            demandOption: true,
+          }),
+        )
+        .options(
+          interceptOptions({
+            rule: {
+              describe: 'Add rules',
+              array: true,
+            },
+            onComplete: {
+              describe: 'Handle Completion',
+              type: 'string',
+            },
+          }),
+        );
     },
     async handler(args) {
       try {
-        if (intercept) {
-          intercept(args);
-        }
-
+        interceptArguments(args);
         const oldSchemaPointer = args.oldSchema;
         const newSchemaPointer = args.newSchema;
         const {headers, token} = parseGlobalArgs(args);

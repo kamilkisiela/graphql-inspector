@@ -1,6 +1,6 @@
 {
   "name": "@graphql-inspector/loaders",
-  "version": "0.0.0-canary.8127707",
+  "version": "0.0.0-PLACEHOLDER",
   "description": "Loaders in GraphQL Inspector",
   "keywords": [
     "graphql",
@@ -27,7 +27,7 @@
     "directory": "packages/plugins/plugin"
   },
   "peerDependencies": {
-    "@graphql-inspector/config": "0.0.0-canary.8127707",
+    "@graphql-inspector/config": "0.0.0-PLACEHOLDER",
     "@graphql-tools/utils": "^6.0.0",
     "graphql": "^0.13.0 || ^14.0.0 || ^15.0.0"
   },

@@ -23,40 +23,51 @@ export default createCommand<
     silent?: boolean;
   } & GlobalArgs
 >((api) => {
+  const {
+    loaders,
+    interceptArguments,
+    interceptPositional,
+    interceptOptions,
+  } = api;
+
   return {
     command: 'coverage <documents> <schema>',
     describe: 'Schema coverage based on documents',
     builder(yargs) {
       return yargs
-        .positional('schema', {
-          describe: 'Point to a schema',
-          type: 'string',
-          demandOption: true,
-        })
-        .positional('documents', {
-          describe: 'Point to documents',
-          type: 'string',
-          demandOption: true,
-        })
-        .options({
-          w: {
-            alias: 'write',
-            describe: 'Write a file with coverage stats',
+        .positional(
+          'schema',
+          interceptPositional('schema', {
+            describe: 'Point to a schema',
             type: 'string',
-          },
-          s: {
-            alias: 'silent',
-            describe: 'Do not render any stats in the terminal',
-            type: 'boolean',
-          },
-        });
+            demandOption: true,
+          }),
+        )
+        .positional(
+          'documents',
+          interceptPositional('documents', {
+            describe: 'Point to documents',
+            type: 'string',
+            demandOption: true,
+          }),
+        )
+        .options(
+          interceptOptions({
+            w: {
+              alias: 'write',
+              describe: 'Write a file with coverage stats',
+              type: 'string',
+            },
+            s: {
+              alias: 'silent',
+              describe: 'Do not render any stats in the terminal',
+              type: 'boolean',
+            },
+          }),
+        );
     },
     async handler(args) {
-      const {loaders, intercept} = api;
-
-      if (intercept) {
-        intercept(args);
-      }
+      interceptArguments(args);
 
       const writePath = args.write;
       const shouldWrite = typeof writePath !== 'undefined';

@@ -1,6 +1,6 @@
 {
   "name": "@graphql-inspector/config",
-  "version": "0.0.0-canary.8127707",
+  "version": "0.0.0-PLACEHOLDER",
   "sideEffects": false,
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",

@@ -16,35 +16,43 @@ export default createCommand<
     comments?: boolean;
   } & GlobalArgs
 >((api) => {
+  const {
+    loaders,
+    interceptPositional,
+    interceptOptions,
+    interceptArguments,
+  } = api;
+
   return {
     command: 'introspect <schema>',
     describe: 'Introspect a schema',
     builder(yargs) {
       return yargs
-        .positional('schema', {
-          describe: 'Point to a schema',
-          type: 'string',
-          demandOption: true,
-        })
-        .options({
-          w: {
-            alias: 'write',
-            describe: 'Write to a file',
+        .positional(
+          'schema',
+          interceptPositional('schema', {
+            describe: 'Point to a schema',
             type: 'string',
-          },
-          comments: {
-            describe: 'Use preceding comments as the description',
-            type: 'boolean',
-          },
-        })
+            demandOption: true,
+          }),
+        )
+        .options(
+          interceptOptions({
+            w: {
+              alias: 'write',
+              describe: 'Write to a file',
+              type: 'string',
+            },
+            comments: {
+              describe: 'Use preceding comments as the description',
+              type: 'boolean',
+            },
+          }),
+        )
         .default('w', 'graphql.schema.json');
     },
     async handler(args) {
-      const {loaders, intercept} = api;
-
-      if (intercept) {
-        intercept(args);
-      }
+      interceptArguments(args);
 
       const {headers, token} = parseGlobalArgs(args);
 

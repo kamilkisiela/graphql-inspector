@@ -22,57 +22,67 @@ export default createCommand<
     maxDepth?: number;
   } & GlobalArgs
 >((api) => {
+  const {
+    loaders,
+    interceptArguments,
+    interceptPositional,
+    interceptOptions,
+  } = api;
+
   return {
     command: 'validate <documents> <schema>',
     describe: 'Validate Fragments and Operations',
     builder(yargs) {
       return yargs
-        .positional('schema', {
-          describe: 'Point to a schema',
-          type: 'string',
-          demandOption: true,
-        })
-        .positional('documents', {
-          describe: 'Point to docuents',
-          type: 'string',
-          demandOption: true,
-        })
-        .options({
-          d: {
-            alias: 'deprecated',
-            describe: 'Fail on deprecated usage',
-            type: 'boolean',
-            default: false,
-          },
-          noStrictFragments: {
-            describe: 'Do not fail on duplicated fragment names',
-            type: 'boolean',
-            default: false,
-          },
-          maxDepth: {
-            describe: 'Fail on deep operations',
-            type: 'number',
-          },
-          apollo: {
-            describe: 'Support Apollo directives',
-            type: 'boolean',
-            default: false,
-          },
-          keepClientFields: {
-            describe:
-              'Keeps the fields with @client, but removes @client directive from them',
-            type: 'boolean',
-            default: false,
-          },
-        });
+        .positional(
+          'schema',
+          interceptPositional('schema', {
+            describe: 'Point to a schema',
+            type: 'string',
+            demandOption: true,
+          }),
+        )
+        .positional(
+          'documents',
+          interceptPositional('documents', {
+            describe: 'Point to docuents',
+            type: 'string',
+            demandOption: true,
+          }),
+        )
+        .options(
+          interceptOptions({
+            d: {
+              alias: 'deprecated',
+              describe: 'Fail on deprecated usage',
+              type: 'boolean',
+              default: false,
+            },
+            noStrictFragments: {
+              describe: 'Do not fail on duplicated fragment names',
+              type: 'boolean',
+              default: false,
+            },
+            maxDepth: {
+              describe: 'Fail on deep operations',
+              type: 'number',
+            },
+            apollo: {
+              describe: 'Support Apollo directives',
+              type: 'boolean',
+              default: false,
+            },
+            keepClientFields: {
+              describe:
+                'Keeps the fields with @client, but removes @client directive from them',
+              type: 'boolean',
+              default: false,
+            },
+          }),
+        );
     },
     async handler(args) {
-      const {loaders, intercept} = api;
-
-      if (intercept) {
-        intercept(args);
-      }
-
+      interceptArguments(args);
       const {headers, token} = parseGlobalArgs(args);
       const schema = await loaders.loadSchema(args.schema, {
         headers,
