@@ -7,7 +7,7 @@
     "deploy": "docusaurus deploy"
   },
   "dependencies": {
-    "@docusaurus/core": "2.0.0-alpha.55",
+    "@docusaurus/core": "2.0.0-alpha.56",
     "@docusaurus/preset-classic": "2.0.0-alpha.55",
     "@docusaurus/plugin-ideal-image": "2.0.0-alpha.55",
     "@graphql-inspector/core": "2.0.1",
