@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "@docusaurus/core": "2.0.0-alpha.56",
-    "@docusaurus/preset-classic": "2.0.0-alpha.55",
+    "@docusaurus/preset-classic": "2.0.0-alpha.56",
     "@docusaurus/plugin-ideal-image": "2.0.0-alpha.56",
     "@graphql-inspector/core": "2.0.1",
     "classnames": "2.2.6",
