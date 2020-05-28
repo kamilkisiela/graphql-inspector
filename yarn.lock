@@ -4458,7 +4458,7 @@ has@^1.0.3:
   dependencies:
     function-bind "^1.1.1"
 
-hbs@^4.1.0:
+hbs@^4.1.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/hbs/-/hbs-4.1.1.tgz#8aab17ca6ae70f9aaa225278bed7af31011254b7"
   integrity sha512-6QsbB4RwbpL4cb4DNyjEEPF+suwp+3yZqFVlhILEn92ScC0U4cDCR+FDX53jkfKJPhutcqhAvs+rOLZw5sQrDA==
@@ -7198,10 +7198,10 @@ pretty-format@^26.0.1:
     ansi-styles "^4.0.0"
     react-is "^16.12.0"
 
-probot@9.11.3:
-  version "9.11.3"
-  resolved "https://registry.yarnpkg.com/probot/-/probot-9.11.3.tgz#ae3f3539ddd59675aaf4b795a516d0a6a49f9291"
-  integrity sha512-pelYwGVfqTBokTfR7MnEyswdJfACo3ovZ+ZKlk5j7/kgiPOyXoe+aC2KLnfwahBTweaQU8SyYLsaXklthjklhA==
+probot@9.11.4:
+  version "9.11.4"
+  resolved "https://registry.yarnpkg.com/probot/-/probot-9.11.4.tgz#9231856416284f8641efd3214612cf8aad2aa48d"
+  integrity sha512-BMg7YkCHU0tdLqVJrIsGYv3Bo1IM19o9MI32Uhwbb8MqiDAHhM+9VoGACVQ+JelijRX0/+Cc0EWPdlgQ65fl0w==
   dependencies:
     "@octokit/app" "^4.0.0"
     "@octokit/graphql" "^4.2.0"
@@ -7223,7 +7223,7 @@ probot@9.11.3:
     eventsource "^1.0.7"
     express "^4.16.2"
     express-async-errors "^3.0.0"
-    hbs "^4.1.0"
+    hbs "^4.1.1"
     ioredis "^4.5.1"
     is-base64 "^1.1.0"
     js-yaml "^3.13.1"
