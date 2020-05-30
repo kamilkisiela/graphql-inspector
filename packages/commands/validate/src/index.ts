@@ -9,147 +9,168 @@ import {
   validate as validateDocuments,
   InvalidDocument,
 } from '@graphql-inspector/core';
-import {Source, print} from 'graphql';
+import {Source as DocumentSource} from '@graphql-tools/utils';
+import {Source, print, GraphQLSchema} from 'graphql';
 
 export {CommandFactory};
+
+export function handler({
+  schema,
+  documents,
+  strictFragments,
+  maxDepth,
+  apollo,
+  keepClientFields,
+  failOnDeprecated,
+}: {
+  schema: GraphQLSchema;
+  documents: DocumentSource[];
+  failOnDeprecated: boolean;
+  strictFragments: boolean;
+  apollo: boolean;
+  keepClientFields: boolean;
+  maxDepth?: number;
+}) {
+  const invalidDocuments = validateDocuments(
+    schema,
+    documents.map((doc) => new Source(print(doc.document!), doc.location)),
+    {
+      strictFragments,
+      maxDepth,
+      apollo,
+      keepClientFields,
+    },
+  );
+
+  if (!invalidDocuments.length) {
+    Logger.success('All documents are valid');
+  } else {
+    const errorsCount = countErrors(invalidDocuments);
+    const deprecated = countDeprecated(invalidDocuments);
+
+    if (errorsCount) {
+      Logger.log(
+        `\nDetected ${errorsCount} invalid document${
+          errorsCount > 1 ? 's' : ''
+        }:\n`,
+      );
+
+      invalidDocuments.forEach((doc) => {
+        if (doc.errors.length) {
+          renderInvalidDocument(doc).forEach((line) => {
+            Logger.log(line);
+          });
+        }
+      });
+    } else if (!failOnDeprecated) {
+      Logger.success('All documents are valid');
+    }
+
+    if (deprecated) {
+      Logger.info(
+        `\nDetected ${deprecated} document${
+          deprecated > 1 ? 's' : ''
+        } with deprecated fields:\n`,
+      );
+
+      invalidDocuments.forEach((doc) => {
+        if (doc.deprecated.length) {
+          renderDeprecatedUsageInDocument(doc, failOnDeprecated).forEach(
+            (line) => {
+              Logger.log(line);
+            },
+          );
+        }
+      });
+    }
+
+    if (errorsCount || (deprecated && failOnDeprecated)) {
+      process.exit(1);
+    }
+  }
+}
 
 export default createCommand<
   {},
   {
     schema: string;
     documents: string;
-    deprecated?: boolean;
+    deprecated: boolean;
     noStrictFragments: boolean;
-    apollo?: boolean;
-    keepClientFields?: boolean;
+    apollo: boolean;
+    keepClientFields: boolean;
     maxDepth?: number;
   } & GlobalArgs
 >((api) => {
-  const {
-    loaders,
-    interceptArguments,
-    interceptPositional,
-    interceptOptions,
-  } = api;
+  const {loaders} = api;
 
   return {
     command: 'validate <documents> <schema>',
     describe: 'Validate Fragments and Operations',
     builder(yargs) {
       return yargs
-        .positional(
-          'schema',
-          interceptPositional('schema', {
-            describe: 'Point to a schema',
-            type: 'string',
-            demandOption: true,
-          }),
-        )
-        .positional(
-          'documents',
-          interceptPositional('documents', {
-            describe: 'Point to docuents',
-            type: 'string',
-            demandOption: true,
-          }),
-        )
-        .options(
-          interceptOptions({
-            d: {
-              alias: 'deprecated',
-              describe: 'Fail on deprecated usage',
-              type: 'boolean',
-              default: false,
-            },
-            noStrictFragments: {
-              describe: 'Do not fail on duplicated fragment names',
-              type: 'boolean',
-              default: false,
-            },
-            maxDepth: {
-              describe: 'Fail on deep operations',
-              type: 'number',
-            },
-            apollo: {
-              describe: 'Support Apollo directives',
-              type: 'boolean',
-              default: false,
-            },
-            keepClientFields: {
-              describe:
-                'Keeps the fields with @client, but removes @client directive from them',
-              type: 'boolean',
-              default: false,
-            },
-          }),
-        );
+        .positional('schema', {
+          describe: 'Point to a schema',
+          type: 'string',
+          demandOption: true,
+        })
+        .positional('documents', {
+          describe: 'Point to docuents',
+          type: 'string',
+          demandOption: true,
+        })
+        .options({
+          deprecated: {
+            alias: 'd',
+            describe: 'Fail on deprecated usage',
+            type: 'boolean',
+            default: false,
+          },
+          noStrictFragments: {
+            describe: 'Do not fail on duplicated fragment names',
+            type: 'boolean',
+            default: false,
+          },
+          maxDepth: {
+            describe: 'Fail on deep operations',
+            type: 'number',
+          },
+          apollo: {
+            describe: 'Support Apollo directives',
+            type: 'boolean',
+            default: false,
+          },
+          keepClientFields: {
+            describe:
+              'Keeps the fields with @client, but removes @client directive from them',
+            type: 'boolean',
+            default: false,
+          },
+        });
     },
     async handler(args) {
-      await interceptArguments(args);
       const {headers, token} = parseGlobalArgs(args);
+      const apollo = args.apollo || false;
+      const maxDepth = args.maxDepth || undefined;
+      const strictFragments = !args.noStrictFragments;
+      const keepClientFields = args.keepClientFields || false;
+      const failOnDeprecated = args.deprecated;
+
       const schema = await loaders.loadSchema(args.schema, {
         headers,
         token,
       });
       const documents = await loaders.loadDocuments(args.documents);
 
-      const invalidDocuments = validateDocuments(
+      return handler({
         schema,
-        documents.map((doc) => new Source(print(doc.document!), doc.location)),
-        {
-          strictFragments: !args.noStrictFragments,
-          maxDepth: args.maxDepth || undefined,
-          apollo: args.apollo || false,
-          keepClientFields: args.keepClientFields || false,
-        },
-      );
-
-      if (!invalidDocuments.length) {
-        Logger.success('All documents are valid');
-      } else {
-        const errorsCount = countErrors(invalidDocuments);
-        const deprecated = countDeprecated(invalidDocuments);
-
-        if (errorsCount) {
-          Logger.log(
-            `\nDetected ${errorsCount} invalid document${
-              errorsCount > 1 ? 's' : ''
-            }:\n`,
-          );
-
-          invalidDocuments.forEach((doc) => {
-            if (doc.errors.length) {
-              renderInvalidDocument(doc).forEach((line) => {
-                Logger.log(line);
-              });
-            }
-          });
-        } else if (!args.deprecated) {
-          Logger.success('All documents are valid');
-        }
-
-        if (deprecated) {
-          Logger.info(
-            `\nDetected ${deprecated} document${
-              deprecated > 1 ? 's' : ''
-            } with deprecated fields:\n`,
-          );
-
-          invalidDocuments.forEach((doc) => {
-            if (doc.deprecated.length) {
-              renderDeprecatedUsageInDocument(doc, args.deprecated).forEach(
-                (line) => {
-                  Logger.log(line);
-                },
-              );
-            }
-          });
-        }
-
-        if (errorsCount || (deprecated && args.deprecated)) {
-          process.exit(1);
-        }
-      }
+        documents,
+        apollo,
+        maxDepth,
+        strictFragments,
+        keepClientFields,
+        failOnDeprecated,
+      });
     },
   };
 });

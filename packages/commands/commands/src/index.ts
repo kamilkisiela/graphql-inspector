@@ -1,26 +1,14 @@
 import {InspectorConfig} from '@graphql-inspector/config';
 import {Loaders} from '@graphql-inspector/loaders';
 import {isAbsolute, resolve} from 'path';
-import yargs, {
-  CommandModule as Command,
-  PositionalOptions,
-  Options,
-} from 'yargs';
+import {CommandModule as Command} from 'yargs';
+import * as yargs from 'yargs';
 
 export {Command};
 
 export interface UseCommandsAPI {
   config: InspectorConfig;
   loaders: Loaders;
-  /** @internal */
-  interceptPositional?<TKey extends string, TOptions extends PositionalOptions>(
-    key: TKey,
-    options: TOptions,
-  ): TOptions;
-  /** @internal */
-  interceptOptions?<T extends {[key: string]: Options}>(options: T): T;
-  /** @internal */
-  interceptArguments?<T extends {[key: string]: any}>(args: T): Promise<T>;
 }
 
 export type CommandFactory<T = {}, U = {}> = (
@@ -28,20 +16,7 @@ export type CommandFactory<T = {}, U = {}> = (
 ) => Command<T, U>;
 
 export function useCommands(api: UseCommandsAPI): Command[] {
-  return api.config.commands.map((name) =>
-    loadCommand(name)({
-      interceptOptions(opts) {
-        return opts;
-      },
-      interceptPositional(_key, opt) {
-        return opt;
-      },
-      async interceptArguments(args) {
-        return args;
-      },
-      ...api,
-    }),
-  );
+  return api.config.commands.map((name) => loadCommand(name)(api));
 }
 
 export function createCommand<T = {}, U = {}>(factory: CommandFactory<T, U>) {

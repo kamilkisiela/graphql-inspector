@@ -16,8 +16,72 @@ import {
   CompletionArgs,
 } from '@graphql-inspector/core';
 import {existsSync} from 'fs';
+import {GraphQLSchema} from 'graphql';
 
 export {CommandFactory};
+
+export async function handler(input: {
+  oldSchema: GraphQLSchema;
+  newSchema: GraphQLSchema;
+  onComplete?: string;
+  rules?: Array<string | number>;
+}) {
+  const onComplete = input.onComplete
+    ? resolveCompletionHandler(input.onComplete)
+    : failOnBreakingChanges;
+
+  const rules = input.rules
+    ? input.rules
+        .filter(isString)
+        .map(
+          (name): Rule => {
+            const rule = resolveRule(name);
+
+            if (!rule) {
+              throw new Error(`\Rule '${name}' does not exist!\n`);
+            }
+
+            return rule;
+          },
+        )
+        .filter((f) => f)
+    : [];
+
+  const changes = diffSchema(input.oldSchema, input.newSchema, rules);
+
+  if (changes.length === 0) {
+    Logger.success('No changes detected');
+    return;
+  }
+
+  Logger.log(
+    `\nDetected the following changes (${changes.length}) between schemas:\n`,
+  );
+
+  const breakingChanges = changes.filter(
+    (change) => change.criticality.level === CriticalityLevel.Breaking,
+  );
+  const dangerousChanges = changes.filter(
+    (change) => change.criticality.level === CriticalityLevel.Dangerous,
+  );
+  const nonBreakingChanges = changes.filter(
+    (change) => change.criticality.level === CriticalityLevel.NonBreaking,
+  );
+
+  if (breakingChanges.length) {
+    reportBreakingChanges(breakingChanges);
+  }
+
+  if (dangerousChanges.length) {
+    reportDangerousChanges(dangerousChanges);
+  }
+
+  if (nonBreakingChanges.length) {
+    reportNonBreakingChanges(nonBreakingChanges);
+  }
+
+  onComplete({breakingChanges, dangerousChanges, nonBreakingChanges});
+}
 
 export default createCommand<
   {},
@@ -28,50 +92,36 @@ export default createCommand<
     onComplete?: string;
   } & GlobalArgs
 >((api) => {
-  const {
-    loaders,
-    interceptArguments,
-    interceptPositional,
-    interceptOptions,
-  } = api;
+  const {loaders} = api;
 
   return {
     command: 'diff <oldSchema> <newSchema>',
     describe: 'Compare two GraphQL Schemas',
     builder(yargs) {
       return yargs
-        .positional(
-          'oldSchema',
-          interceptPositional('oldSchema', {
-            describe: 'Point to an old schema',
+        .positional('oldSchema', {
+          describe: 'Point to an old schema',
+          type: 'string',
+          demandOption: true,
+        })
+        .positional('newSchema', {
+          describe: 'Point to a new schema',
+          type: 'string',
+          demandOption: true,
+        })
+        .options({
+          rule: {
+            describe: 'Add rules',
+            array: true,
+          },
+          onComplete: {
+            describe: 'Handle Completion',
             type: 'string',
-            demandOption: true,
-          }),
-        )
-        .positional(
-          'newSchema',
-          interceptPositional('newSchema', {
-            describe: 'Point to a new schema',
-            type: 'string',
-            demandOption: true,
-          }),
-        )
-        .options(
-          interceptOptions({
-            rule: {
-              describe: 'Add rules',
-              array: true,
-            },
-            onComplete: {
-              describe: 'Handle Completion',
-              type: 'string',
-            },
-          }),
-        );
+          },
+        });
     },
     async handler(args) {
       try {
-        await interceptArguments(args);
         const oldSchemaPointer = args.oldSchema;
         const newSchemaPointer = args.newSchema;
         const {headers, token} = parseGlobalArgs(args);
@@ -85,61 +135,12 @@ export default createCommand<
           token,
         });
 
-        const onComplete = args.onComplete
-          ? resolveCompletionHandler(args.onComplete)
-          : failOnBreakingChanges;
-
-        const rules = args.rule
-          ? args.rule
-              .filter(isString)
-              .map(
-                (name): Rule => {
-                  const rule = resolveRule(name);
-
-                  if (!rule) {
-                    throw new Error(`\Rule '${name}' does not exist!\n`);
-                  }
-
-                  return rule;
-                },
-              )
-              .filter((f) => f)
-          : [];
-
-        const changes = diffSchema(oldSchema, newSchema, rules);
-
-        if (changes.length === 0) {
-          Logger.success('No changes detected');
-          return;
-        }
-
-        Logger.log(
-          `\nDetected the following changes (${changes.length}) between schemas:\n`,
-        );
-
-        const breakingChanges = changes.filter(
-          (change) => change.criticality.level === CriticalityLevel.Breaking,
-        );
-        const dangerousChanges = changes.filter(
-          (change) => change.criticality.level === CriticalityLevel.Dangerous,
-        );
-        const nonBreakingChanges = changes.filter(
-          (change) => change.criticality.level === CriticalityLevel.NonBreaking,
-        );
-
-        if (breakingChanges.length) {
-          reportBreakingChanges(breakingChanges);
-        }
-
-        if (dangerousChanges.length) {
-          reportDangerousChanges(dangerousChanges);
-        }
-
-        if (nonBreakingChanges.length) {
-          reportNonBreakingChanges(nonBreakingChanges);
-        }
-
-        onComplete({breakingChanges, dangerousChanges, nonBreakingChanges});
+        await handler({
+          oldSchema,
+          newSchema,
+          rules: args.rule,
+          onComplete: args.onComplete,
+        });
       } catch (error) {
         Logger.error(error);
         throw error;
