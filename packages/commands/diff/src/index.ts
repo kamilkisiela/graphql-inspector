@@ -20,7 +20,7 @@ import {GraphQLSchema} from 'graphql';
 
 export {CommandFactory};
 
-export async function handler(input: {
+export function handler(input: {
   oldSchema: GraphQLSchema;
   newSchema: GraphQLSchema;
   onComplete?: string;
@@ -135,7 +135,7 @@ export default createCommand<
           token,
         });
 
-        await handler({
+        handler({
           oldSchema,
           newSchema,
           rules: args.rule,
