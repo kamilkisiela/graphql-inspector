@@ -2,7 +2,7 @@ import {InspectorConfig} from '@graphql-inspector/config';
 import {Loaders} from '@graphql-inspector/loaders';
 import {isAbsolute, resolve} from 'path';
 import {CommandModule as Command} from 'yargs';
-import * as yargs from 'yargs';
+import yargs from 'yargs';
 
 export {Command};
 

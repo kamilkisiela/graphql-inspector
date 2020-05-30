@@ -1,14 +1,13 @@
 import {defineCommand} from '@graphql-cli/common';
 import {loaders} from '@graphql-cli/loaders';
-import {handler} from '@graphql-inspector/similar-command';
+import {handler} from '@graphql-inspector/introspect-command';
 
 export default defineCommand<
   {},
   {
     project?: string;
-    name?: string;
-    threshold?: number;
     write?: string;
+    comments?: boolean;
     config?: string;
   }
 >((api) => {
@@ -24,32 +23,26 @@ export default defineCommand<
           type: 'string',
         })
         .options({
-          name: {
-            alias: 'n',
-            describe: 'Name of a type',
-            type: 'string',
-          },
-          threshold: {
-            alias: 't',
-            describe: 'Threshold of similarity ratio',
-            type: 'number',
-          },
           write: {
             alias: 'w',
-            describe: 'Write a file with stats',
+            describe: 'Write to a file',
             type: 'string',
+          },
+          comments: {
+            describe: 'Use preceding comments as the description',
+            type: 'boolean',
           },
           config: {
             alias: 'c',
             type: 'string',
             describe: 'Location of GraphQL Config',
           },
-        });
+        })
+        .default('w', 'graphql.schema.json');
     },
     async handler(args) {
-      const writePath = args.write;
-      const type = args.name;
-      const threshold = args.threshold;
+      const output = args.write!;
+      const comments = args.comments || false;
       const config = await api.useConfig({
         rootDir: args.config || process.cwd(),
         extensions: [
@@ -70,7 +63,7 @@ export default defineCommand<
         ? project.getSchema()
         : loadSchema(args.project!, {}));
 
-      return handler({schema, writePath, type, threshold});
+      return handler({schema, output, comments});
     },
   };
 });

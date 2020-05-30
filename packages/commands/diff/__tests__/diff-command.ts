@@ -1,7 +1,7 @@
 import '@graphql-inspector/testing';
 import {mockCommand} from '@graphql-inspector/commands';
 import {mockLogger, unmockLogger} from '@graphql-inspector/logger';
-import * as yargs from 'yargs';
+import yargs from 'yargs';
 import {buildSchema} from 'graphql';
 import {resolve} from 'path';
 import createCommand from '../src';

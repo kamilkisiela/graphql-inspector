@@ -44,7 +44,7 @@
     "@types/yargs": "15.0.5",
     "@zeit/ncc": "0.22.2",
     "axios": "0.19.2",
-    "bob-the-bundler": "1.0.2",
+    "bob-the-bundler": "1.0.3-alpha.0",
     "graphql": "15.0.0",
     "graphql-config": "^3.0.2",
     "jest": "26.0.1",
