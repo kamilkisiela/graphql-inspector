@@ -1,5 +1,10 @@
 import {defineCommand} from '@graphql-cli/common';
-import {loaders} from '@graphql-cli/loaders';
+import {
+  GlobalArgs,
+  parseGlobalArgs,
+  InspectorExtension,
+  loaders,
+} from '@graphql-inspector/graphql-cli-common';
 import {handler} from '@graphql-inspector/validate-command';
 
 export default defineCommand<
@@ -13,8 +18,7 @@ export default defineCommand<
     apollo: boolean;
     keepClientFields: boolean;
     maxDepth?: number;
-    config?: string;
-  }
+  } & GlobalArgs
 >((api) => {
   return {
     command: 'validate [project]',
@@ -60,6 +64,21 @@ export default defineCommand<
             type: 'boolean',
             default: false,
           },
+          require: {
+            alias: 'r',
+            describe: 'Require modules',
+            type: 'array',
+          },
+          token: {
+            alias: 't',
+            describe: 'Access Token',
+            type: 'string',
+          },
+          header: {
+            alias: 'h',
+            describe: 'Http Header',
+            type: 'array',
+          },
           config: {
             alias: 'c',
             type: 'string',
@@ -73,29 +92,20 @@ export default defineCommand<
       const strictFragments = !args.noStrictFragments;
       const keepClientFields = args.keepClientFields || false;
       const failOnDeprecated = args.deprecated;
+      const {headers, token} = parseGlobalArgs(args);
 
       const config = await api.useConfig({
         rootDir: args.config || process.cwd(),
-        extensions: [
-          (api) => {
-            loaders.forEach((loader) => {
-              api.loaders.schema.register(loader);
-            });
-            loaders.forEach((loader) => {
-              api.loaders.documents.register(loader);
-            });
-
-            return {
-              name: 'inspector',
-            };
-          },
-        ],
+        extensions: [InspectorExtension],
       });
 
       if (args.documents && args.schema) {
         const {loadDocuments, loadSchema} = api.useLoaders({loaders});
-        const schema = await loadSchema(args.schema!, {});
-        const documents = await loadDocuments(args.documents!, {});
+        const schema = await loadSchema(args.schema!, {headers, token});
+        const documents = await loadDocuments(args.documents!, {
+          headers,
+          token,
+        });
 
         return handler({
           schema,

@@ -1,5 +1,10 @@
 import {defineCommand} from '@graphql-cli/common';
-import {loaders} from '@graphql-cli/loaders';
+import {
+  GlobalArgs,
+  parseGlobalArgs,
+  InspectorExtension,
+  loaders,
+} from '@graphql-inspector/graphql-cli-common';
 import {handler} from '@graphql-inspector/introspect-command';
 
 export default defineCommand<
@@ -8,8 +13,7 @@ export default defineCommand<
     project?: string;
     write?: string;
     comments?: boolean;
-    config?: string;
-  }
+  } & GlobalArgs
 >((api) => {
   const {loadSchema} = api.useLoaders({loaders});
 
@@ -32,6 +36,21 @@ export default defineCommand<
             describe: 'Use preceding comments as the description',
             type: 'boolean',
           },
+          require: {
+            alias: 'r',
+            describe: 'Require modules',
+            type: 'array',
+          },
+          token: {
+            alias: 't',
+            describe: 'Access Token',
+            type: 'string',
+          },
+          header: {
+            alias: 'h',
+            describe: 'Http Header',
+            type: 'array',
+          },
           config: {
             alias: 'c',
             type: 'string',
@@ -41,27 +60,21 @@ export default defineCommand<
         .default('w', 'graphql.schema.json');
     },
     async handler(args) {
+      const {headers, token} = parseGlobalArgs(args);
       const output = args.write!;
       const comments = args.comments || false;
       const config = await api.useConfig({
         rootDir: args.config || process.cwd(),
-        extensions: [
-          (api) => {
-            loaders.forEach((loader) => {
-              api.loaders.schema.register(loader);
-            });
-
-            return {
-              name: 'inspector',
-            };
-          },
-        ],
+        extensions: [InspectorExtension],
       });
 
       const project = config.projects[args.project || 'default'];
       const schema = await (project
         ? project.getSchema()
-        : loadSchema(args.project!, {}));
+        : loadSchema(args.project!, {
+            headers,
+            token,
+          }));
 
       return handler({schema, output, comments});
     },

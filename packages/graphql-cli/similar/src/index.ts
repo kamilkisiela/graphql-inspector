@@ -1,5 +1,10 @@
 import {defineCommand} from '@graphql-cli/common';
-import {loaders} from '@graphql-cli/loaders';
+import {
+  GlobalArgs,
+  parseGlobalArgs,
+  InspectorExtension,
+  loaders,
+} from '@graphql-inspector/graphql-cli-common';
 import {handler} from '@graphql-inspector/similar-command';
 
 export default defineCommand<
@@ -9,8 +14,7 @@ export default defineCommand<
     name?: string;
     threshold?: number;
     write?: string;
-    config?: string;
-  }
+  } & GlobalArgs
 >((api) => {
   return {
     command: 'similar [project]',
@@ -37,6 +41,21 @@ export default defineCommand<
             describe: 'Write a file with stats',
             type: 'string',
           },
+          require: {
+            alias: 'r',
+            describe: 'Require modules',
+            type: 'array',
+          },
+          token: {
+            alias: 't',
+            describe: 'Access Token',
+            type: 'string',
+          },
+          header: {
+            alias: 'h',
+            describe: 'Http Header',
+            type: 'array',
+          },
           config: {
             alias: 'c',
             type: 'string',
@@ -48,26 +67,21 @@ export default defineCommand<
       const writePath = args.write;
       const type = args.name;
       const threshold = args.threshold;
+      const {headers, token} = parseGlobalArgs(args);
+
       const config = await api.useConfig({
         rootDir: args.config || process.cwd(),
-        extensions: [
-          (api) => {
-            loaders.forEach((loader) => {
-              api.loaders.schema.register(loader);
-            });
-
-            return {
-              name: 'inspector',
-            };
-          },
-        ],
+        extensions: [InspectorExtension],
       });
 
       const project = config.projects[args.project || 'default'];
       const {loadSchema} = api.useLoaders({loaders});
-      
+
       const schema = await (project.getSchema() ||
-        loadSchema(args.project!, {}));
+        loadSchema(args.project!, {
+          headers,
+          token,
+        }));
 
       return handler({schema, writePath, threshold, type});
     },

@@ -1,5 +1,10 @@
 import {defineCommand} from '@graphql-cli/common';
-import {loaders} from '@graphql-cli/loaders';
+import {
+  GlobalArgs,
+  parseGlobalArgs,
+  InspectorExtension,
+  loaders,
+} from '@graphql-inspector/graphql-cli-common';
 import {handler} from '@graphql-inspector/coverage-command';
 
 export default defineCommand<
@@ -10,8 +15,7 @@ export default defineCommand<
     documents?: string;
     write?: string;
     silent?: boolean;
-    config?: string;
-  }
+  } & GlobalArgs
 >((api) => {
   return {
     command: 'coverage [project]',
@@ -41,6 +45,21 @@ export default defineCommand<
             describe: 'Do not render any stats in the terminal',
             type: 'boolean',
           },
+          require: {
+            alias: 'r',
+            describe: 'Require modules',
+            type: 'array',
+          },
+          token: {
+            alias: 't',
+            describe: 'Access Token',
+            type: 'string',
+          },
+          header: {
+            alias: 'h',
+            describe: 'Http Header',
+            type: 'array',
+          },
           config: {
             alias: 'c',
             type: 'string',
@@ -51,28 +70,23 @@ export default defineCommand<
     async handler(args) {
       const writePath = args.write;
       const silent = args.silent;
+      const {headers, token} = parseGlobalArgs(args);
+
       const config = await api.useConfig({
         rootDir: args.config || process.cwd(),
-        extensions: [
-          (api) => {
-            loaders.forEach((loader) => {
-              api.loaders.schema.register(loader);
-            });
-            loaders.forEach((loader) => {
-              api.loaders.documents.register(loader);
-            });
-
-            return {
-              name: 'inspector',
-            };
-          },
-        ],
+        extensions: [InspectorExtension],
       });
 
       if (args.documents && args.schema) {
         const {loadDocuments, loadSchema} = api.useLoaders({loaders});
-        const schema = await loadSchema(args.schema!, {});
-        const documents = await loadDocuments(args.documents!, {});
+        const schema = await loadSchema(args.schema!, {
+          headers,
+          token,
+        });
+        const documents = await loadDocuments(args.documents!, {
+          headers,
+          token,
+        });
 
         return handler({schema, documents, silent, writePath});
       }

@@ -1,5 +1,10 @@
 import {defineCommand} from '@graphql-cli/common';
-import {loaders} from '@graphql-cli/loaders';
+import {
+  GlobalArgs,
+  parseGlobalArgs,
+  InspectorExtension,
+  loaders,
+} from '@graphql-inspector/graphql-cli-common';
 import {handler} from '@graphql-inspector/diff-command';
 
 export default defineCommand<
@@ -9,8 +14,7 @@ export default defineCommand<
     newSchema: string;
     rule?: Array<string | number>;
     onComplete?: string;
-    config?: string;
-  }
+  } & GlobalArgs
 >((api) => {
   return {
     command: 'diff <oldSchema> <newSchema>',
@@ -36,6 +40,21 @@ export default defineCommand<
             describe: 'Handle Completion',
             type: 'string',
           },
+          require: {
+            alias: 'r',
+            describe: 'Require modules',
+            type: 'array',
+          },
+          token: {
+            alias: 't',
+            describe: 'Access Token',
+            type: 'string',
+          },
+          header: {
+            alias: 'h',
+            describe: 'Http Header',
+            type: 'array',
+          },
           config: {
             alias: 'c',
             type: 'string',
@@ -44,25 +63,19 @@ export default defineCommand<
         });
     },
     async handler(args) {
+      const {headers, token} = parseGlobalArgs(args);
       const config = await api.useConfig({
         rootDir: args.config || process.cwd(),
-        extensions: [
-          (api) => {
-            loaders.forEach((loader) => {
-              api.loaders.schema.register(loader);
-            });
-
-            return {
-              name: 'inspector',
-            };
-          },
-        ],
+        extensions: [InspectorExtension],
       });
 
       function resolveSchema(pointer: string) {
         return !!config.projects[pointer]
           ? config.getProject(pointer).getSchema()
-          : loadSchema(pointer, {});
+          : loadSchema(pointer, {
+              headers,
+              token,
+            });
       }
 
       const {loadSchema} = api.useLoaders({loaders});

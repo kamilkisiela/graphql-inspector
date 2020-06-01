@@ -1,11 +1,7 @@
 {
-  "name": "@graphql-cli/coverage",
+  "name": "@graphql-inspector/graphql-cli-common",
   "version": "0.0.0-PLACEHOLDER",
-  "description": "Introspects GraphQL Schema",
-  "keywords": [
-    "graphql-cli",
-    "graphql-cli-plugin"
-  ],
+  "description": "Internal",
   "sideEffects": false,
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
@@ -22,15 +18,13 @@
   "repository": {
     "type": "git",
     "url": "kamilkisiela/graphql-inspector",
-    "directory": "packages/graphql-cli/coverage"
+    "directory": "packages/graphql-cli/common"
   },
   "peerDependencies": {
-    "graphql": "^0.13.0 || ^14.0.0 || ^15.0.0"
+    "graphql-config": "^3.0.0"
   },
   "dependencies": {
-    "@graphql-inspector/coverage-command": "0.0.0-PLACEHOLDER",
-    "@graphql-inspector/graphql-cli-common": "0.0.0-PLACEHOLDER",
-    "@graphql-cli/common": "4.0.1-alpha-f965abc.0",
+    "@graphql-cli/loaders": "4.0.1-alpha-f965abc.0",
     "tslib": "^2.0.0"
   },
   "scripts": {

@@ -73,6 +73,9 @@
       ],
       "@graphql-cli/similar": ["packages/graphql-cli/similar/src/index.ts"],
       "@graphql-cli/validate": ["packages/graphql-cli/validate/src/index.ts"],
+      "@graphql-inspector/graphql-cli-common": [
+        "packages/graphql-cli/common/src/index.ts"
+      ],
       "@graphql-inspector/testing": ["packages/testing/src/index.ts"]
     }
   },
