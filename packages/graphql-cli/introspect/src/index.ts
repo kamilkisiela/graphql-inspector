@@ -2,7 +2,7 @@ import {defineCommand} from '@graphql-cli/common';
 import {
   GlobalArgs,
   parseGlobalArgs,
-  InspectorExtension,
+  createInspectorExtension,
   loaders,
 } from '@graphql-inspector/graphql-cli-common';
 import {handler} from '@graphql-inspector/introspect-command';
@@ -65,7 +65,7 @@ export default defineCommand<
       const comments = args.comments || false;
       const config = await api.useConfig({
         rootDir: args.config || process.cwd(),
-        extensions: [InspectorExtension],
+        extensions: [createInspectorExtension('introspect')],
       });
 
       const project = config.projects[args.project || 'default'];

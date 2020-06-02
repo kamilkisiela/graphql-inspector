@@ -2,34 +2,40 @@ import {defineCommand} from '@graphql-cli/common';
 import {
   GlobalArgs,
   parseGlobalArgs,
-  InspectorExtension,
+  createInspectorExtension,
   loaders,
 } from '@graphql-inspector/graphql-cli-common';
 import {handler} from '@graphql-inspector/diff-command';
+import {GraphQLSchema} from 'graphql';
+import {GraphQLProjectConfig} from 'graphql-config';
+
+interface ExtensionConfig {
+  schema: string;
+  headers?: Record<string, string>;
+  token?: string;
+}
 
 export default defineCommand<
   {},
   {
-    oldSchema: string;
-    newSchema: string;
+    source?: string;
+    target?: string;
     rule?: Array<string | number>;
     onComplete?: string;
   } & GlobalArgs
 >((api) => {
   return {
-    command: 'diff <oldSchema> <newSchema>',
+    command: 'diff [source] [target]',
     describe: 'Compare two GraphQL Schemas',
     builder(yargs) {
       return yargs
-        .positional('oldSchema', {
-          describe: 'Point to an old schema (or project)',
+        .positional('source', {
+          describe: 'Point to a source schema (or project)',
           type: 'string',
-          demandOption: true,
         })
-        .positional('newSchema', {
-          describe: 'Point to a new schema (or project)',
+        .positional('target', {
+          describe: 'Point to a target schema (or project)',
           type: 'string',
-          demandOption: true,
         })
         .options({
           rule: {
@@ -66,8 +72,42 @@ export default defineCommand<
       const {headers, token} = parseGlobalArgs(args);
       const config = await api.useConfig({
         rootDir: args.config || process.cwd(),
-        extensions: [InspectorExtension],
+        extensions: [createInspectorExtension('diff')],
       });
+
+      const {loadSchema} = api.useLoaders({loaders});
+
+      let baseSchema: GraphQLSchema;
+      let newSchema: GraphQLSchema;
+
+      if (!args.target) {
+        // Case 1: <no args>
+        //    Base schema - `diff` extension
+        //    New schema - default project
+        // Case 2: <source>
+        //    Base schema - `diff` extension
+        //    New schema - named project
+
+        const project = config.getProject(args.source);
+
+        baseSchema = await resolveBaseSchema(project);
+        newSchema = await project.getSchema();
+      } else {
+        // Case 3: <source> <target>
+        //    Base schema - `project` or `pointer`
+        //    New schema - `project` or `pointer`
+        baseSchema = await resolveSchema(args.source!);
+        newSchema = await resolveSchema(args.target!);
+      }
+
+      function resolveBaseSchema(project: GraphQLProjectConfig) {
+        const diffConfig = project.extension<ExtensionConfig>('diff');
+
+        return loadSchema(diffConfig.schema, {
+          headers: diffConfig.headers,
+          token: diffConfig.token,
+        });
+      }
 
       function resolveSchema(pointer: string) {
         return !!config.projects[pointer]
@@ -78,13 +118,8 @@ export default defineCommand<
             });
       }
 
-      const {loadSchema} = api.useLoaders({loaders});
-
-      const oldSchema = await resolveSchema(args.oldSchema);
-      const newSchema = await resolveSchema(args.newSchema);
-
       return handler({
-        oldSchema,
+        oldSchema: baseSchema,
         newSchema,
         rules: args.rule,
         onComplete: args.onComplete,

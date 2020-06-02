@@ -28,7 +28,9 @@ export function parseGlobalArgs(args: GlobalArgs) {
   return {headers, token: args.token};
 }
 
-export const InspectorExtension: GraphQLExtensionDeclaration = (api) => {
+export const createInspectorExtension: (
+  name: string,
+) => GraphQLExtensionDeclaration = (name: string) => (api) => {
   loaders.forEach((loader) => {
     api.loaders.schema.register(loader);
   });
@@ -37,6 +39,6 @@ export const InspectorExtension: GraphQLExtensionDeclaration = (api) => {
   });
 
   return {
-    name: 'inspector',
+    name,
   };
 };

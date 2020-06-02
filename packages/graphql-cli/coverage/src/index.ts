@@ -2,7 +2,7 @@ import {defineCommand} from '@graphql-cli/common';
 import {
   GlobalArgs,
   parseGlobalArgs,
-  InspectorExtension,
+  createInspectorExtension,
   loaders,
 } from '@graphql-inspector/graphql-cli-common';
 import {handler} from '@graphql-inspector/coverage-command';
@@ -74,7 +74,7 @@ export default defineCommand<
 
       const config = await api.useConfig({
         rootDir: args.config || process.cwd(),
-        extensions: [InspectorExtension],
+        extensions: [createInspectorExtension('coverage')],
       });
 
       if (args.documents && args.schema) {
