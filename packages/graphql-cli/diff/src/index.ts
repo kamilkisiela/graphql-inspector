@@ -10,9 +10,7 @@ import {GraphQLSchema} from 'graphql';
 import {GraphQLProjectConfig} from 'graphql-config';
 
 interface ExtensionConfig {
-  schema: string;
-  headers?: Record<string, string>;
-  token?: string;
+  baseSchema: string;
 }
 
 export default defineCommand<
@@ -103,10 +101,7 @@ export default defineCommand<
       function resolveBaseSchema(project: GraphQLProjectConfig) {
         const diffConfig = project.extension<ExtensionConfig>('diff');
 
-        return loadSchema(diffConfig.schema, {
-          headers: diffConfig.headers,
-          token: diffConfig.token,
-        });
+        return project.loadSchema(diffConfig.baseSchema);
       }
 
       function resolveSchema(pointer: string) {
