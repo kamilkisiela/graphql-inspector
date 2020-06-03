@@ -166,7 +166,7 @@ module.exports = {
   ],
   presets: [
     [
-      '@docusaurus/preset-classic',
+      require.resolve('@docusaurus/preset-classic'),
       {
         docs: {
           path: 'docs',
@@ -188,7 +188,7 @@ module.exports = {
   ],
   plugins: [
     [
-      '@docusaurus/plugin-ideal-image',
+      require.resolve('@docusaurus/plugin-ideal-image'),
       {
         size: 800,
         max: 800,
