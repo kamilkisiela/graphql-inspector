@@ -412,18 +412,18 @@
     unique-filename "^1.1.1"
     which "^1.3.1"
 
-"@graphql-cli/common@4.0.1-alpha-f965abc.0":
-  version "4.0.1-alpha-f965abc.0"
-  resolved "https://registry.yarnpkg.com/@graphql-cli/common/-/common-4.0.1-alpha-f965abc.0.tgz#ec301275c2f2ad64d00ffdebe07fff466394a46c"
-  integrity sha512-PKIXepzKT3QiH5nWxKz+E8VB7yxohof+ggeH+XysGpFEs5CNhuvblhmjbsEGGrSUpBq/c9U5gttPR6/TILBI9g==
+"@graphql-cli/common@4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@graphql-cli/common/-/common-4.0.0.tgz#a14d382b1e744b784eebde4cb98fadd30fd5e3b2"
+  integrity sha512-1webMsg9tmVQX9YA1wYeCVxNdWNrCrgVmpD0JyzroSsSEjt5hrHZR2x2vzuHK5CthH9I99GdvRtuMixmd1S9bQ==
   dependencies:
     "@graphql-tools/load" "^6.0.0"
     tslib "^2.0.0"
 
-"@graphql-cli/loaders@4.0.1-alpha-f965abc.0":
-  version "4.0.1-alpha-f965abc.0"
-  resolved "https://registry.yarnpkg.com/@graphql-cli/loaders/-/loaders-4.0.1-alpha-f965abc.0.tgz#71b8b1b541e0d6036b55b2fd013d98223080933f"
-  integrity sha512-5JZ/v9plaBMCukEw4ju6781bL3ddUB5Fqj/HeooHLXvnq7Our40ttbQUGXnWLEYv7dl0KUX46WHjm9bAoOfSzA==
+"@graphql-cli/loaders@4.0.0":
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/@graphql-cli/loaders/-/loaders-4.0.0.tgz#1e2fe548e35ec543c2aa13c683703408b0b1c7c9"
+  integrity sha512-hZ2DNCfjqZCCZrV4HqfgKwHWRCnh0TEXi9rkjvV0nMs4khfAzQFhAP+Y7nQMxAk7aKPY7kEq6X/tEYr8B68SQA==
   dependencies:
     "@graphql-tools/apollo-engine-loader" "^6.0.0"
     "@graphql-tools/code-file-loader" "^6.0.0"
