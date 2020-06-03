@@ -2,7 +2,10 @@
 
 ### vNEXT
 
+### v2.1.0
+
 - Use GraphQL Tools v6
+- Integration with GraphQL CLI
 
 ### v2.0.1
 
