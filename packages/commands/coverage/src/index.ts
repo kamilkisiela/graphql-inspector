@@ -3,6 +3,7 @@ import {
   GlobalArgs,
   ensureAbsolute,
   parseGlobalArgs,
+  CommandFactory,
 } from '@graphql-inspector/commands';
 import {Logger, chalk} from '@graphql-inspector/logger';
 import {
@@ -10,9 +11,59 @@ import {
   SchemaCoverage,
   getTypePrefix,
 } from '@graphql-inspector/core';
-import {Source, print} from 'graphql';
+import {Source as DocumentSource} from '@graphql-tools/utils';
+import {Source, print, GraphQLSchema} from 'graphql';
 import {extname} from 'path';
 import {writeFileSync} from 'fs';
+
+export {CommandFactory};
+
+export function handler({
+  schema,
+  documents,
+  silent,
+  writePath,
+}: {
+  schema: GraphQLSchema;
+  documents: DocumentSource[];
+  silent?: boolean;
+  writePath?: string;
+}) {
+  const shouldWrite = typeof writePath !== 'undefined';
+  const coverage = calculateCoverage(
+    schema,
+    documents.map((doc) => new Source(print(doc.document!), doc.location)),
+  );
+
+  if (silent !== true) {
+    renderCoverage(coverage);
+  }
+
+  if (shouldWrite) {
+    if (typeof writePath !== 'string') {
+      throw new Error(`--write is not valid file path: ${writePath}`);
+    }
+
+    const absPath = ensureAbsolute(writePath);
+    const ext = extname(absPath).replace('.', '').toLocaleLowerCase();
+
+    let output: string | undefined = undefined;
+
+    if (ext === 'json') {
+      output = outputJSON(coverage);
+    }
+
+    if (output) {
+      writeFileSync(absPath, output, {
+        encoding: 'utf-8',
+      });
+
+      Logger.success(`Available at ${absPath}\n`);
+    } else {
+      throw new Error(`Extension ${ext} is not supported`);
+    }
+  }
+}
 
 export default createCommand<
   {},
@@ -23,6 +74,8 @@ export default createCommand<
     silent?: boolean;
   } & GlobalArgs
 >((api) => {
+  const {loaders} = api;
+
   return {
     command: 'coverage <documents> <schema>',
     describe: 'Schema coverage based on documents',
@@ -52,9 +105,8 @@ export default createCommand<
         });
     },
     async handler(args) {
-      const {loaders} = api;
       const writePath = args.write;
-      const shouldWrite = typeof writePath !== 'undefined';
+      const silent = args.silent;
       const {headers, token} = parseGlobalArgs(args);
 
       const schema = await loaders.loadSchema(args.schema, {
@@ -62,39 +114,8 @@ export default createCommand<
         headers,
       });
       const documents = await loaders.loadDocuments(args.documents);
-      const coverage = calculateCoverage(
-        schema,
-        documents.map((doc) => new Source(print(doc.document!), doc.location)),
-      );
 
-      if (args.silent !== true) {
-        renderCoverage(coverage);
-      }
-
-      if (shouldWrite) {
-        if (typeof writePath !== 'string') {
-          throw new Error(`--write is not valid file path: ${writePath}`);
-        }
-
-        const absPath = ensureAbsolute(writePath);
-        const ext = extname(absPath).replace('.', '').toLocaleLowerCase();
-
-        let output: string | undefined = undefined;
-
-        if (ext === 'json') {
-          output = outputJSON(coverage);
-        }
-
-        if (output) {
-          writeFileSync(absPath, output, {
-            encoding: 'utf-8',
-          });
-
-          Logger.success(`Available at ${absPath}\n`);
-        } else {
-          throw new Error(`Extension ${ext} is not supported`);
-        }
-      }
+      return handler({schema, documents, silent, writePath});
     },
   };
 });

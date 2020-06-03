@@ -1,1 +1,1 @@
-declare module 'std-env'
+declare module 'std-env';

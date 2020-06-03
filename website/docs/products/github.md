@@ -94,12 +94,12 @@ Learn how to [remotely control detected changes and accept/reject Pull Requests]
 diff: true # enabled by default
 
 # Customizing Schema Diff
-diff: 
+diff:
   # Pull Request annotations (enabled by default)
   annotations: true
   # Fail on breaking changes or force SUCCESS when disabled (enabled by default)
   failOnBreaking: true
-  # Intercept list of detected changes and decide whether or not to accept a Pull Request 
+  # Intercept list of detected changes and decide whether or not to accept a Pull Request
   intercept: '<url>'
 
 # Notifications (disabled by default)
@@ -117,7 +117,6 @@ schema: 'schema.graphql'
 # Use live and running endpoint as source of schema
 endpoint: '<url>'
 ```
-
 
 ### Recommended worflow
 

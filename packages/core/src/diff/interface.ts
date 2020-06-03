@@ -30,8 +30,8 @@ function addedFields(
   const newNames = Object.keys(newFields);
 
   return diffArrays(newNames, oldNames)
-    .map(name => newFields[name])
-    .map(f => fieldAdded(newInterface, f));
+    .map((name) => newFields[name])
+    .map((f) => fieldAdded(newInterface, f));
 }
 
 function removedFields(
@@ -44,8 +44,8 @@ function removedFields(
   const newNames = Object.keys(newFields);
 
   return diffArrays(oldNames, newNames)
-    .map(name => oldFields[name])
-    .map(f => fieldRemoved(oldInterface, f));
+    .map((name) => oldFields[name])
+    .map((f) => fieldRemoved(oldInterface, f));
 }
 
 function changedFields(
@@ -57,7 +57,7 @@ function changedFields(
   const oldNames = Object.keys(oldFields);
   const newNames = Object.keys(newFields);
 
-  return unionArrays(oldNames, newNames).map(name => ({
+  return unionArrays(oldNames, newNames).map((name) => ({
     inOld: oldFields[name],
     inNew: newFields[name],
   }));

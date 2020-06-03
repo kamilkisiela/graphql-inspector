@@ -1,0 +1,39 @@
+{
+  "name": "@graphql-cli/validate",
+  "version": "0.0.0-PLACEHOLDER",
+  "description": "Find similar types in GraphQL Schema",
+  "keywords": [
+    "graphql-cli",
+    "graphql-cli-plugin"
+  ],
+  "sideEffects": false,
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "typings": "dist/index.d.ts",
+  "typescript": {
+    "definition": "dist/index.d.ts"
+  },
+  "author": {
+    "name": "Kamil Kisiela",
+    "email": "kamil.kisiela@gmail.com",
+    "url": "https://github.com/kamilkisiela"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "kamilkisiela/graphql-inspector",
+    "directory": "packages/graphql-cli/validate"
+  },
+  "peerDependencies": {
+    "graphql": "^0.13.0 || ^14.0.0 || ^15.0.0"
+  },
+  "dependencies": {
+    "@graphql-inspector/validate-command": "0.0.0-PLACEHOLDER",
+    "@graphql-cli/common": "4.0.0",
+    "@graphql-cli/loaders": "4.0.0",
+    "tslib": "^2.0.0"
+  },
+  "scripts": {
+    "prepack": "bob prepack"
+  }
+}

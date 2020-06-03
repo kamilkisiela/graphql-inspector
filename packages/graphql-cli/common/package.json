@@ -1,0 +1,33 @@
+{
+  "name": "@graphql-inspector/graphql-cli-common",
+  "version": "0.0.0-PLACEHOLDER",
+  "description": "Internal",
+  "sideEffects": false,
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "typings": "dist/index.d.ts",
+  "typescript": {
+    "definition": "dist/index.d.ts"
+  },
+  "author": {
+    "name": "Kamil Kisiela",
+    "email": "kamil.kisiela@gmail.com",
+    "url": "https://github.com/kamilkisiela"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "kamilkisiela/graphql-inspector",
+    "directory": "packages/graphql-cli/common"
+  },
+  "peerDependencies": {
+    "graphql-config": "^3.0.0"
+  },
+  "dependencies": {
+    "@graphql-cli/loaders": "4.0.0",
+    "tslib": "^2.0.0"
+  },
+  "scripts": {
+    "prepack": "bob prepack"
+  }
+}

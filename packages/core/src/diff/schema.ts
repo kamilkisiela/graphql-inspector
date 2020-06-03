@@ -79,19 +79,19 @@ function diffTypes(
   const oldTypeMap = oldSchema.getTypeMap();
   const newTypeMap = newSchema.getTypeMap();
   const oldTypenames = Object.keys(oldTypeMap).filter(
-    name => !isPrimitive(name),
+    (name) => !isPrimitive(name),
   );
   const newTypenames = Object.keys(newTypeMap).filter(
-    name => !isPrimitive(name),
+    (name) => !isPrimitive(name),
   );
 
   const added = diffArrays(newTypenames, oldTypenames).map(
-    name => newTypeMap[name],
+    (name) => newTypeMap[name],
   );
   const removed = diffArrays(oldTypenames, newTypenames).map(
-    name => oldTypeMap[name],
+    (name) => oldTypeMap[name],
   );
-  const common = unionArrays(oldTypenames, newTypenames).map(name => ({
+  const common = unionArrays(oldTypenames, newTypenames).map((name) => ({
     inOld: oldTypeMap[name],
     inNew: newTypeMap[name],
   }));
@@ -116,18 +116,18 @@ function diffDirectives(
 } {
   const oldDirectives = oldSchema.getDirectives();
   const newDirectives = newSchema.getDirectives();
-  const oldNames = oldDirectives.map(d => d.name);
-  const newNames = newDirectives.map(d => d.name);
+  const oldNames = oldDirectives.map((d) => d.name);
+  const newNames = newDirectives.map((d) => d.name);
 
-  const added = diffArrays(newNames, oldNames).map(name =>
-    newDirectives.find(d => d.name === name),
+  const added = diffArrays(newNames, oldNames).map((name) =>
+    newDirectives.find((d) => d.name === name),
   ) as GraphQLDirective[];
-  const removed = diffArrays(oldNames, newNames).map(name =>
-    oldDirectives.find(d => d.name === name),
+  const removed = diffArrays(oldNames, newNames).map((name) =>
+    oldDirectives.find((d) => d.name === name),
   ) as GraphQLDirective[];
-  const common = unionArrays(oldNames, newNames).map(name => ({
-    inOld: oldDirectives.find(d => d.name === name) as GraphQLDirective,
-    inNew: newDirectives.find(d => d.name === name) as GraphQLDirective,
+  const common = unionArrays(oldNames, newNames).map((name) => ({
+    inOld: oldDirectives.find((d) => d.name === name) as GraphQLDirective,
+    inNew: newDirectives.find((d) => d.name === name) as GraphQLDirective,
   }));
 
   return {

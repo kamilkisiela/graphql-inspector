@@ -4,11 +4,11 @@ title: Schema change notifications
 
 Stay up to date with changes in your GraphQL Schema. Receive notifications on Slack, Discord or even via WebHooks every time new changes are introduced.
 
-Track what happens in your Production, Staging or QA environments. 
+Track what happens in your Production, Staging or QA environments.
 
 > ⚠️ Available only in GitHub Application ⚠️
 
-## How it works? 
+## How it works?
 
 Every pushed commit is checked by GraphQL Inspector. If changes are detected, it sends a notification to your Slack or Discord.
 

@@ -34,7 +34,7 @@ describe('calculateDepth', () => {
       calculateDepth({
         node: doc,
         currentDepth: 0,
-        getFragment: name => fragments[name],
+        getFragment: (name) => fragments[name],
       }),
     ).toEqual(2);
   });
@@ -67,7 +67,7 @@ describe('calculateDepth', () => {
       calculateDepth({
         node: doc,
         currentDepth: 0,
-        getFragment: name => fragments[name],
+        getFragment: (name) => fragments[name],
       }),
     ).toEqual(2);
   });

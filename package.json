@@ -25,6 +25,7 @@
     "affected:test": "bob run test",
     "build": "tsc --project tsconfig.json && bob build",
     "test": "jest",
+    "prebuild": "rimraf \"packages/**/dist/\"",
     "now-build": "yarn build && (cd website && yarn && yarn build && mv build ../public)",
     "action": "ncc build packages/action/src/action.ts --out action --minify --transpile-only",
     "bundle": "webpack",
@@ -43,14 +44,16 @@
     "@types/yargs": "15.0.5",
     "@zeit/ncc": "0.22.2",
     "axios": "0.19.2",
-    "bob-the-bundler": "1.0.2",
+    "bob-the-bundler": "1.0.3-alpha.0",
     "graphql": "15.0.0",
+    "graphql-config": "^3.0.2",
     "jest": "26.0.1",
     "jsesc": "3.0.1",
     "lint-staged": "10.2.7",
     "lodash": "4.17.15",
     "nock": "12.0.3",
     "prettier": "2.0.5",
+    "rimraf": "3.0.2",
     "smee-client": "1.1.0",
     "strip-ansi": "6.0.0",
     "ts-jest": "26.1.0",
@@ -67,7 +70,8 @@
   "workspaces": [
     "packages/*",
     "packages/commands/*",
-    "packages/loaders/*"
+    "packages/loaders/*",
+    "packages/graphql-cli/*"
   ],
   "lint-staged": {
     "*.{js,json,md,ts,graphql}": [

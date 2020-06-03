@@ -1,4 +1,10 @@
-import {buildSchema, Source, parse, print, getIntrospectionQuery} from 'graphql';
+import {
+  buildSchema,
+  Source,
+  parse,
+  print,
+  getIntrospectionQuery,
+} from 'graphql';
 
 import {coverage} from '../../src/index';
 
@@ -27,7 +33,7 @@ describe('coverage', () => {
     }
   `);
   test('basic', () => {
-    const doc = parse(/* GraphQL */`
+    const doc = parse(/* GraphQL */ `
       query getPost {
         post {
           id

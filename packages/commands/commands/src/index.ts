@@ -1,9 +1,10 @@
 import {InspectorConfig} from '@graphql-inspector/config';
 import {Loaders} from '@graphql-inspector/loaders';
 import {isAbsolute, resolve} from 'path';
-import yargs, {CommandModule} from 'yargs';
+import {CommandModule as Command} from 'yargs';
+import yargs from 'yargs';
 
-export {CommandModule as Command};
+export {Command};
 
 export interface UseCommandsAPI {
   config: InspectorConfig;
@@ -11,10 +12,10 @@ export interface UseCommandsAPI {
 }
 
 export type CommandFactory<T = {}, U = {}> = (
-  api: UseCommandsAPI,
-) => CommandModule<T, U>;
+  api: Required<UseCommandsAPI>,
+) => Command<T, U>;
 
-export function useCommands(api: UseCommandsAPI): CommandModule[] {
+export function useCommands(api: UseCommandsAPI): Command[] {
   return api.config.commands.map((name) => loadCommand(name)(api));
 }
 
@@ -59,7 +60,7 @@ export function parseGlobalArgs(args: GlobalArgs) {
   return {headers, token: args.token};
 }
 
-export async function mockCommand(mod: CommandModule, cmd: string) {
+export async function mockCommand(mod: Command, cmd: string) {
   return new Promise<string>((resolve, reject) => {
     yargs.command(mod).parse(cmd, (err: Error, _: never, output: string) => {
       if (err) {

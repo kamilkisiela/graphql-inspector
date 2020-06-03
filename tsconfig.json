@@ -66,6 +66,16 @@
       "@graphql-inspector/similar-command": [
         "packages/commands/similar/src/index.ts"
       ],
+      "@graphql-cli/coverage": ["packages/graphql-cli/coverage/src/index.ts"],
+      "@graphql-cli/diff": ["packages/graphql-cli/diff/src/index.ts"],
+      "@graphql-cli/introspect": [
+        "packages/graphql-cli/introspect/src/index.ts"
+      ],
+      "@graphql-cli/similar": ["packages/graphql-cli/similar/src/index.ts"],
+      "@graphql-cli/validate": ["packages/graphql-cli/validate/src/index.ts"],
+      "@graphql-inspector/graphql-cli-common": [
+        "packages/graphql-cli/common/src/index.ts"
+      ],
       "@graphql-inspector/testing": ["packages/testing/src/index.ts"]
     }
   },

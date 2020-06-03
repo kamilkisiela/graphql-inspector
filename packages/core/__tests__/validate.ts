@@ -89,7 +89,10 @@ describe('validate', () => {
       `),
     ];
 
-    const results = validate(schema, docs.map(doc => new Source(print(doc))));
+    const results = validate(
+      schema,
+      docs.map((doc) => new Source(print(doc))),
+    );
 
     expect(results.length).toEqual(0);
   });
@@ -133,7 +136,10 @@ describe('validate', () => {
       `),
     ];
 
-    const results = validate(schema, docs.map(doc => new Source(print(doc))));
+    const results = validate(
+      schema,
+      docs.map((doc) => new Source(print(doc))),
+    );
 
     expect(results.length).toEqual(1);
     expect(results[0].errors.length).toEqual(1);
@@ -182,7 +188,10 @@ describe('validate', () => {
       `),
     ];
 
-    const results = validate(schema, docs.map(doc => new Source(print(doc))));
+    const results = validate(
+      schema,
+      docs.map((doc) => new Source(print(doc))),
+    );
 
     expect(results.length).toEqual(0);
   });
@@ -231,9 +240,13 @@ describe('validate', () => {
       `),
     ];
 
-    const results = validate(schema, docs.map(doc => new Source(print(doc))), {
-      maxDepth: 1,
-    });
+    const results = validate(
+      schema,
+      docs.map((doc) => new Source(print(doc))),
+      {
+        maxDepth: 1,
+      },
+    );
 
     expect(results.length).toEqual(1);
   });
@@ -287,9 +300,13 @@ describe('validate', () => {
       `),
     ];
 
-    const results = validate(schema, docs.map(doc => new Source(print(doc))), {
-      maxDepth: 1,
-    });
+    const results = validate(
+      schema,
+      docs.map((doc) => new Source(print(doc))),
+      {
+        maxDepth: 1,
+      },
+    );
 
     expect(results.length).toEqual(1);
   });
@@ -341,9 +358,13 @@ describe('validate', () => {
       `),
     ];
 
-    const results = validate(schema, docs.map(doc => new Source(print(doc))), {
-      maxDepth: 2,
-    });
+    const results = validate(
+      schema,
+      docs.map((doc) => new Source(print(doc))),
+      {
+        maxDepth: 2,
+      },
+    );
 
     expect(results.length).toEqual(0);
   });

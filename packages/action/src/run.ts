@@ -17,7 +17,7 @@ const CHECK_NAME = 'GraphQL Inspector';
 
 function getCurrentCommitSha() {
   const sha = execSync(`git rev-parse HEAD`).toString().trim();
-  
+
   try {
     const msg = execSync(`git show ${sha} -s --format=%s`).toString().trim();
     const PR_MSG = /Merge (\w+) into \w+/i;

@@ -323,8 +323,9 @@ class MockList {
       if (typeof this.wrappedFunction === 'function') {
         const res = this.wrappedFunction(root, args, context, info);
         if (res instanceof MockList) {
-          const nullableType =
-            getNullableType(fieldType.ofType) as GraphQLList<any>;
+          const nullableType = getNullableType(fieldType.ofType) as GraphQLList<
+            any
+          >;
           arr[i] = res.mock(
             root,
             args,

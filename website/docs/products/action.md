@@ -37,6 +37,7 @@ Now on every commit or every Pull Request the GraphQL Inspector App will annotat
 ## Inputs
 
 ### annotations
+
 Use annotation (enabled by default)
 
 ```yaml
@@ -48,6 +49,7 @@ Use annotation (enabled by default)
 ```
 
 ### fail-on-breaking
+
 Fail on breaking changes (enabled by default)
 
 ```yaml
@@ -59,6 +61,7 @@ Fail on breaking changes (enabled by default)
 ```
 
 ### endpoint
+
 Use GraphQL API endpoint as source of schema.
 
 ```yaml
