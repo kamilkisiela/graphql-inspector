@@ -29,8 +29,8 @@
   },
   "dependencies": {
     "@graphql-inspector/diff-command": "0.0.0-PLACEHOLDER",
-    "@graphql-cli/common": "4.0.1-alpha-f965abc.0",
-    "@graphql-cli/loaders": "4.0.1-alpha-f965abc.0",
+    "@graphql-cli/common": "4.0.0",
+    "@graphql-cli/loaders": "4.0.0",
     "tslib": "^2.0.0"
   },
   "scripts": {
