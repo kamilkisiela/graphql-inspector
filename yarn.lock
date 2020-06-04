@@ -1866,6 +1866,13 @@
     "@types/connect" "*"
     "@types/node" "*"
 
+"@types/bunyan@^1.8.4":
+  version "1.8.6"
+  resolved "https://registry.yarnpkg.com/@types/bunyan/-/bunyan-1.8.6.tgz#6527641cca30bedec5feb9ab527b7803b8000582"
+  integrity sha512-YiozPOOsS6bIuz31ilYqR5SlLif4TBWsousN2aCWLi5233nZSX19tFbcQUPdR7xJ8ypPyxkCGNxg0CIV5n9qxQ==
+  dependencies:
+    "@types/node" "*"
+
 "@types/color-name@^1.1.1":
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/@types/color-name/-/color-name-1.1.1.tgz#1c1261bbeaa10a8055bbc5d8ab84b7b2afc846a0"
@@ -1903,7 +1910,7 @@
     "@types/node" "*"
     "@types/range-parser" "*"
 
-"@types/express@*", "@types/express@4.17.6":
+"@types/express@*", "@types/express@4.17.6", "@types/express@^4.17.2":
   version "4.17.6"
   resolved "https://registry.yarnpkg.com/@types/express/-/express-4.17.6.tgz#6bce49e49570507b86ea1b07b806f04697fac45e"
   integrity sha512-n/mr9tZI83kd4azlPG5y997C/M4DNABK9yErhFM6hKdym4kkmd9j0vtsJyjFIwfRBxtrxZtAfGZCNRIBMFLK5w==
@@ -1926,6 +1933,13 @@
   version "4.1.3"
   resolved "https://registry.yarnpkg.com/@types/graceful-fs/-/graceful-fs-4.1.3.tgz#039af35fe26bec35003e8d86d2ee9c586354348f"
   integrity sha512-AiHRaEB50LQg0pZmm659vNBb9f4SJ0qrAnteuzhSeAUcJKxoYgEnprg/83kppCnc2zvtCKbdZry1a5pVY3lOTQ==
+  dependencies:
+    "@types/node" "*"
+
+"@types/ioredis@^4.0.6":
+  version "4.16.3"
+  resolved "https://registry.yarnpkg.com/@types/ioredis/-/ioredis-4.16.3.tgz#385ab1662620e1066334291a02cc70d8756da673"
+  integrity sha512-hE9HUayptwyZRIhRM2FF4vDmond4Yxylpjpri0qBvs7Rw4tFJnM+fdb2PbpU+PKKkPuFBGKnkrGSgwqeUmCJ2Q==
   dependencies:
     "@types/node" "*"
 
@@ -7645,10 +7659,10 @@ prisma-yml@1.34.10:
     scuid "^1.0.2"
     yaml-ast-parser "^0.0.40"
 
-probot@9.11.4:
-  version "9.11.4"
-  resolved "https://registry.yarnpkg.com/probot/-/probot-9.11.4.tgz#9231856416284f8641efd3214612cf8aad2aa48d"
-  integrity sha512-BMg7YkCHU0tdLqVJrIsGYv3Bo1IM19o9MI32Uhwbb8MqiDAHhM+9VoGACVQ+JelijRX0/+Cc0EWPdlgQ65fl0w==
+probot@9.11.5:
+  version "9.11.5"
+  resolved "https://registry.yarnpkg.com/probot/-/probot-9.11.5.tgz#2a27eb37cdd2cf22b757e8dc689ad589b397d2af"
+  integrity sha512-t7OoWyIkMlFcFxjywF/Oq0i093FU0RD93xWF4TOXTjyossXwVnBFDJ4jyb303VCkuwGgoNO4Uz/fdKRnC6ILgg==
   dependencies:
     "@octokit/app" "^4.0.0"
     "@octokit/graphql" "^4.2.0"
@@ -7658,6 +7672,9 @@ probot@9.11.4:
     "@octokit/request" "^5.1.0"
     "@octokit/rest" "^16.43.1"
     "@octokit/webhooks" "^6.0.0"
+    "@types/bunyan" "^1.8.4"
+    "@types/express" "^4.17.2"
+    "@types/ioredis" "^4.0.6"
     "@types/supports-color" "^5.3.0"
     bottleneck "^2.15.3"
     bunyan "^1.8.12"
