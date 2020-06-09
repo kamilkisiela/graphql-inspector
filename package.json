@@ -64,7 +64,7 @@
     "graphql-request": "2.0.0",
     "husky": "4.2.5",
     "immer": "6.0.9",
-    "lerna": "3.22.0",
+    "lerna": "3.22.1",
     "shelljs": "0.8.4"
   },
   "workspaces": [
