@@ -13,6 +13,8 @@ import * as core from '@actions/core';
 import * as github from '@actions/github';
 import {Octokit} from '@octokit/rest';
 
+type OctokitInstance = ReturnType<typeof github.getOctokit>;
+
 const CHECK_NAME = 'GraphQL Inspector';
 
 function getCurrentCommitSha() {
@@ -68,7 +70,7 @@ export async function run() {
   const failOnBreaking = castToBoolean(core.getInput('fail-on-breaking'));
   const endpoint = core.getInput('endpoint');
 
-  const octokit = new github.GitHub(token);
+  const octokit = github.getOctokit(token);
 
   // repo
   const {owner, repo} = github.context.repo;
@@ -196,7 +198,7 @@ function fileLoader({
   owner,
   repo,
 }: {
-  octokit: github.GitHub;
+  octokit: OctokitInstance;
   owner: string;
   repo: string;
 }) {
@@ -253,7 +255,7 @@ type UpdateCheckRunOptions = Required<
   Pick<Octokit.ChecksUpdateParams, 'conclusion' | 'output'>
 >;
 async function updateCheckRun(
-  octokit: github.GitHub,
+  octokit: OctokitInstance,
   checkId: number,
   {conclusion, output}: UpdateCheckRunOptions,
 ) {
