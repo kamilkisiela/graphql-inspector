@@ -5013,10 +5013,10 @@ ignore@^5.1.4:
   resolved "https://registry.yarnpkg.com/ignore/-/ignore-5.1.8.tgz#f150a8b50a34289b33e22f5889abd4d8016f0e57"
   integrity sha512-BMpfD7PpiETpBl/A6S498BaIJ6Y/ABT93ETbby2fP00v4EbvPBXWEoaR1UBPKs3iR53pJY7EtZk5KACI57i1Uw==
 
-immer@6.0.9:
-  version "6.0.9"
-  resolved "https://registry.yarnpkg.com/immer/-/immer-6.0.9.tgz#b9dd69b8e69b3a12391e87db1e3ff535d1b26485"
-  integrity sha512-SyCYnAuiRf67Lvk0VkwFvwtDoEiCMjeamnHvRfnVDyc7re1/rQrNxuL+jJ7lA3WvdC4uznrvbmm+clJ9+XXatg==
+immer@7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/immer/-/immer-7.0.0.tgz#94d5f567648fd7e977d91e97a61aeb223eb796e2"
+  integrity sha512-fDG+mIa2se3ICnLYtYGazWwKN9L7rtvrIDK56IMisJ53JHY223g01nLvmYs8SXNSmnOYP7OeYfNJMT0aBT4pdA==
 
 import-fresh@^2.0.0:
   version "2.0.0"
