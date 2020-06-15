@@ -368,4 +368,59 @@ describe('validate', () => {
 
     expect(results.length).toEqual(0);
   });
+
+  test('custom deprecated annotation', () => {
+    const schema = buildSchema(/* GraphQL */ `
+      type Post {
+        id: ID
+        title: String
+        author: String
+        createdAt: Int
+      }
+
+      input PostQuery {
+        title: String
+      }
+
+      input LegacyPostQuery {
+        text: String
+      }
+
+      type Query {
+        findPost(
+          searchQuery: PostQuery
+          """
+          Deprecated: Please use 'searchQuery' instead.
+          """
+          query: LegacyPostQuery
+        ): Post
+      }
+
+      schema {
+        query: Query
+      }
+    `);
+
+    const doc = parse(/* GraphQL */ `
+      query getPost {
+        findPost(query: {text: "title"}) {
+          id
+        }
+      }
+    `);
+
+    const results = validate(schema, [new Source(print(doc))], {
+      isArgumentDeprecatedBasedOnDescription: (description) =>
+        !!description.match(/deprecated/i),
+    });
+
+    expect(results.length).toEqual(1);
+    expect(results[0].errors.length).toEqual(0);
+    expect(results[0].deprecated.length).toEqual(1);
+
+    const deprecated = results[0].deprecated[0];
+    expect(deprecated.message).toMatch(
+      `The argument 'query' of 'findPost' is deprecated. Deprecated: Please use 'searchQuery' instead.`,
+    );
+  });
 });
