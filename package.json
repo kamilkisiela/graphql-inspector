@@ -45,7 +45,7 @@
     "@zeit/ncc": "0.22.2",
     "axios": "0.19.2",
     "bob-the-bundler": "1.0.3-alpha.0",
-    "graphql": "15.1.0",
+    "graphql": "15.2.0",
     "graphql-config": "3.0.2",
     "jest": "26.1.0",
     "jsesc": "3.0.1",
