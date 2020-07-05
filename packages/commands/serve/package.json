@@ -34,7 +34,7 @@
     "@graphql-inspector/logger": "0.0.0-PLACEHOLDER",
     "cors": "2.8.5",
     "express": "4.17.1",
-    "express-graphql": "0.9.0",
+    "express-graphql": "0.10.2",
     "open": "7.0.4",
     "tslib": "^2.0.0"
   },
