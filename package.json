@@ -51,13 +51,13 @@
     "jsesc": "3.0.1",
     "lint-staged": "10.2.11",
     "lodash": "4.17.15",
-    "nock": "13.0.1",
+    "nock": "13.0.2",
     "prettier": "2.0.5",
     "rimraf": "3.0.2",
     "smee-client": "1.1.0",
     "strip-ansi": "6.0.0",
     "ts-jest": "26.1.1",
-    "typescript": "3.9.5"
+    "typescript": "3.9.6"
   },
   "dependencies": {
     "@probot/serverless-lambda": "0.5.0",
