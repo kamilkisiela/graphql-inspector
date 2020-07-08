@@ -50,7 +50,7 @@
     "jest": "26.1.0",
     "jsesc": "3.0.1",
     "lint-staged": "10.2.11",
-    "lodash": "4.17.15",
+    "lodash": "4.17.19",
     "nock": "13.0.2",
     "prettier": "2.0.5",
     "rimraf": "3.0.2",
