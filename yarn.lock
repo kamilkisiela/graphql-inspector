@@ -7609,10 +7609,10 @@ prisma-yml@1.34.10:
     scuid "^1.0.2"
     yaml-ast-parser "^0.0.40"
 
-probot@9.11.6:
-  version "9.11.6"
-  resolved "https://registry.yarnpkg.com/probot/-/probot-9.11.6.tgz#8d8de560efa66062097b85e3ed83a5d23f696fc6"
-  integrity sha512-+9kFRuKgs475WJr+J/ebZfqeg4QzW9zgpZ2E1Hcpi0/eSG1zWZpYwldFzPzTUoyThIYnLtkwEBN8zCByccHmXg==
+probot@9.11.7:
+  version "9.11.7"
+  resolved "https://registry.yarnpkg.com/probot/-/probot-9.11.7.tgz#1d9910de22ccdb00b0280bd7c6c65087305a84f3"
+  integrity sha512-0fjLgDc84tpNNWrUvHOtCwO+CxaSjJXbFrM//NDyU7s92LcVdLCjPZyTyyr3kveA2DzAl/LFqb87RkoJL4dyOQ==
   dependencies:
     "@octokit/app" "^4.0.0"
     "@octokit/graphql" "^4.2.0"
