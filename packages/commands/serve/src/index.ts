@@ -7,7 +7,7 @@ import {
 import {Logger} from '@graphql-inspector/logger';
 import open from 'open';
 import express from 'express';
-import graphql from 'express-graphql';
+import { graphqlHTTP } from 'express-graphql';
 import cors from 'cors';
 import {fake} from './fake';
 
@@ -61,7 +61,7 @@ export default createCommand<
 
         app.use(
           cors(),
-          graphql({
+          graphqlHTTP({
             schema,
             graphiql: true,
           }),
