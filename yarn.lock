@@ -3360,6 +3360,13 @@ cross-fetch@3.0.4:
     node-fetch "2.6.0"
     whatwg-fetch "3.0.0"
 
+cross-fetch@^3.0.4:
+  version "3.0.5"
+  resolved "https://registry.yarnpkg.com/cross-fetch/-/cross-fetch-3.0.5.tgz#2739d2981892e7ab488a7ad03b92df2816e03f4c"
+  integrity sha512-FFLcLtraisj5eteosnX1gf01qYDCOc4fDy0+euOt8Kn9YBY2NtXL/pCoYPavw24NIQkQqm5ZOLsGD5Zzj0gyew==
+  dependencies:
+    node-fetch "2.6.0"
+
 cross-spawn@7.0.3:
   version "7.0.3"
   resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-7.0.3.tgz#f73a85b9d5d41d045551c177e2882d4ac85728a6"
@@ -4695,10 +4702,12 @@ graphql-config@3.0.3:
     string-env-interpolation "1.0.1"
     tslib "^2.0.0"
 
-graphql-request@2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/graphql-request/-/graphql-request-2.0.0.tgz#8dd12cf1eb2ce0c80f4114fd851741e091134862"
-  integrity sha512-Ww3Ax+G3l2d+mPT8w7HC9LfrKjutnCKtnDq7ZZp2ghVk5IQDjwAk3/arRF1ix17Ky15rm0hrSKVKxRhIVlSuoQ==
+graphql-request@3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/graphql-request/-/graphql-request-3.0.0.tgz#942d81bbd621cc2223d35fbf2b42edf8be822b83"
+  integrity sha512-zW8AuLnKMYOnpVKdANU9FzLDoj4u4AoU6KZ79e+BcJaNiuw/vgCJ0p7ppDMSDrW77a12Moa7J7Mg4w0f9Kd/Kg==
+  dependencies:
+    cross-fetch "^3.0.4"
 
 graphql-request@^1.5.0:
   version "1.8.2"
