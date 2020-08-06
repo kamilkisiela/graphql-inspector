@@ -2080,10 +2080,10 @@
   dependencies:
     "@types/yargs-parser" "*"
 
-"@zeit/ncc@0.22.2":
-  version "0.22.2"
-  resolved "https://registry.yarnpkg.com/@zeit/ncc/-/ncc-0.22.2.tgz#4b59cdffaad6babaccb90806fb37bc22de590014"
-  integrity sha512-LGW5RPIwulh+fyKiMTgbIEbdc/hdf/4+U5B1WbT/We0jweHoywDbk9hi+3hNjSzQNShGumP72zgc6PHEUG5syg==
+"@zeit/ncc@0.22.3":
+  version "0.22.3"
+  resolved "https://registry.yarnpkg.com/@zeit/ncc/-/ncc-0.22.3.tgz#fca6b86b4454ce7a7e1e7e755165ec06457f16cd"
+  integrity sha512-jnCLpLXWuw/PAiJiVbLjA8WBC0IJQbFeUwF4I9M+23MvIxTxk5pD4Q8byQBSPmHQjz5aBoA7AKAElQxMpjrCLQ==
 
 "@zkochan/cmd-shim@^3.1.0":
   version "3.1.0"
