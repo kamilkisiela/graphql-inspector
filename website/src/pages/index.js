@@ -95,7 +95,7 @@ function Index() {
                 <Link href="/install" title="Use GitHub Application">
                   Install Application
                 </Link>
-                <Link href="/action" title="Use GitHub Action">
+                <Link href="/docs/products/action" title="Use GitHub Action">
                   Use Action
                 </Link>
               </div>
