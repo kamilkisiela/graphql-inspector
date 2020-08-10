@@ -47,7 +47,7 @@
     "bob-the-bundler": "1.1.0",
     "graphql": "15.3.0",
     "graphql-config": "3.0.3",
-    "jest": "26.2.2",
+    "jest": "26.3.0",
     "jsesc": "3.0.1",
     "lint-staged": "10.2.11",
     "lodash": "4.17.19",
