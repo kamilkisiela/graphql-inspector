@@ -1,11 +1,13 @@
 import {GraphQLEnumType, GraphQLEnumValue} from 'graphql';
 
-import {isNotEqual} from './common/compare';
+import {isNotEqual, isVoid} from './common/compare';
 import {
   enumValueRemoved,
   enumValueAdded,
   enumValueDescriptionChanged,
   enumValueDeprecationReasonChanged,
+  enumValueDeprecationReasonAdded,
+  enumValueDeprecationReasonRemoved,
 } from './changes/enum';
 import {Change} from './changes/change';
 import {unionArrays, diffArrays} from '../utils/arrays';
@@ -38,9 +40,13 @@ export function changesInEnum(
     }
 
     if (isNotEqual(oldValue.deprecationReason, newValue.deprecationReason)) {
-      changes.push(
-        enumValueDeprecationReasonChanged(newEnum, oldValue, newValue),
-      );
+      if (isVoid(oldValue.deprecationReason)) {
+        changes.push(enumValueDeprecationReasonAdded(newEnum, oldValue, newValue));
+      } else if (isVoid(newValue.deprecationReason)) {
+        changes.push(enumValueDeprecationReasonRemoved(newEnum, oldValue, newValue));
+      } else {
+        changes.push(enumValueDeprecationReasonChanged(newEnum, oldValue, newValue));
+      }
     }
   });
 

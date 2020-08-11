@@ -142,4 +142,70 @@ describe('enum', () => {
       `Enum value 'enumA.A' deprecation reason changed from 'Old Reason' to 'New Reason'`,
     );
   });
+
+  test('deprecation reason added', () => {
+    const a = buildSchema(/* GraphQL */ `
+      type Query {
+        fieldA: String
+      }
+
+      enum enumA {
+        A
+        B
+      }
+    `);
+
+    const b = buildSchema(/* GraphQL */ `
+      type Query {
+        fieldA: String
+      }
+
+      enum enumA {
+        A @deprecated(reason: "New Reason")
+        B
+      }
+    `);
+
+    const changes = diff(a, b);
+    const change = findFirstChangeByPath(changes, 'enumA.A');
+
+    expect(changes.length).toEqual(1);
+    expect(change.criticality.level).toEqual(CriticalityLevel.NonBreaking);
+    expect(change.message).toEqual(
+      `Enum value 'enumA.A' was deprecated with reason 'New Reason'`,
+    );
+  });
+
+  test('deprecation reason removed', () => {
+    const a = buildSchema(/* GraphQL */ `
+      type Query {
+        fieldA: String
+      }
+
+      enum enumA {
+        A @deprecated(reason: "New Reason")
+        B
+      }
+    `);
+
+    const b = buildSchema(/* GraphQL */ `
+    type Query {
+      fieldA: String
+    }
+
+    enum enumA {
+      A
+      B
+    }
+    `);
+
+    const changes = diff(a, b);
+    const change = findFirstChangeByPath(changes, 'enumA.A');
+
+    expect(changes.length).toEqual(1);
+    expect(change.criticality.level).toEqual(CriticalityLevel.NonBreaking);
+    expect(change.message).toEqual(
+      `Deprecation reason was removed from enum value 'enumA.A'`,
+    );
+  });
 });
