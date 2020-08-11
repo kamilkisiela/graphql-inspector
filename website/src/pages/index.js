@@ -92,12 +92,12 @@ function Index() {
                   Learn more
                 </Link>
                 <br />
-                <Link href="/install" title="Use GitHub Application">
+                <a href="/install" title="Use GitHub Application">
                   Install Application
-                </Link>
-                <Link href="/action" title="Use GitHub Action">
+                </a>
+                <a href="/action" title="Use GitHub Action">
                   Use Action
-                </Link>
+                </a>
               </div>
             ),
             img: (
