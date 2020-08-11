@@ -17,9 +17,9 @@ jobs:
           node-version: 13
 
       - name: ZEIT Now Deployment	
-        uses: amondnet/now-deployment@v2.0.3
+        uses: amondnet/vercel-action@v19.0.1+2
         with:	
           zeit-token: ${{ secrets.ZEIT_TOKEN }}	
-          now-args: '--prod'
-          now-project-id: ${{ secrets.ZEIT_PROJECT }}
-          now-org-id: ${{ secrets.ZEIT_ORG }}
+          vercel-args: '--prod'
+          vercel-project-id: ${{ secrets.ZEIT_PROJECT }}
+          vercel-org-id: ${{ secrets.ZEIT_ORG }}
