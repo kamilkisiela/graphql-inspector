@@ -2,6 +2,11 @@
 
 ### vNEXT
 
+### v2.2.0
+
+- **core**: Adds two additional change types for enum value deprecations (added and removed) to match behavior with fields
+- **core**: Fixes the type returned by `enumValueDeprecationReasonChanged` (was `EnumValueDescriptionChanged`).
+
 ### v2.1.0
 
 - Use GraphQL Tools v6
