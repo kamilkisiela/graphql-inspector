@@ -8636,10 +8636,10 @@ smart-buffer@^4.1.0:
   resolved "https://registry.yarnpkg.com/smart-buffer/-/smart-buffer-4.1.0.tgz#91605c25d91652f4661ea69ccf45f1b331ca21ba"
   integrity sha512-iVICrxOzCynf/SNaBQCw34eM9jROU/s5rzIhpOvzhzuYHfJR/DhZfDkXiZSgKXfgv26HT3Yni3AV/DGw0cGnnw==
 
-smee-client@1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/smee-client/-/smee-client-1.2.1.tgz#31306c6780178aced09b6a5ba97d51740bb3ccfb"
-  integrity sha512-pLz/MJ8jEckuU2Cc8jIKwuR0FzU7YPvnpN5N6k+hNv4m/y0crv8Q9Gqvn7IpSbvyCRvbQyaQfKzKmwWiE/awvw==
+smee-client@1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/smee-client/-/smee-client-1.2.2.tgz#e7cf16bd18bed04e7313bf394bd66e30810ed598"
+  integrity sha512-RFV54aJOgj0jeBGFR5hBZ/QqxYO4Vuz7GmceJyAYnT5eigkBe5DiZUx9t9izpKHMXYk3TEiyKVW1Aa8eeKsIvQ==
   dependencies:
     commander "^2.19.0"
     eventsource "^1.0.7"
