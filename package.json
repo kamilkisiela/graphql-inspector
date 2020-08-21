@@ -43,7 +43,7 @@
     "@types/node": "13.13.15",
     "@types/yargs": "15.0.5",
     "@zeit/ncc": "0.22.3",
-    "axios": "0.19.2",
+    "axios": "0.20.0",
     "bob-the-bundler": "1.1.0",
     "graphql": "15.3.0",
     "graphql-config": "3.0.3",
