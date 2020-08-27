@@ -133,7 +133,7 @@ export default createCommand<
         }, apolloFederation);
         const newSchema = await loaders.loadSchema(newSchemaPointer, {
           headers,
-          token,          
+          token,
         }, apolloFederation);
 
         handler({
