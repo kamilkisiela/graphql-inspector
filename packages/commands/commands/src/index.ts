@@ -40,6 +40,7 @@ export interface GlobalArgs {
   require?: string[];
   token?: string;
   header?: string[];
+  apolloFederation?: boolean
 }
 
 export function parseGlobalArgs(args: GlobalArgs) {
