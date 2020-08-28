@@ -84,7 +84,7 @@ export default createCommand<
       const {headers, token} = parseGlobalArgs(args);
       const output = args.write!;
       const comments = args.comments || false;
-      const apolloFederation = args.apolloFederation || false;
+      const apolloFederation = args.federation || false;
 
       const schema = await loaders.loadSchema(args.schema, {
         token,

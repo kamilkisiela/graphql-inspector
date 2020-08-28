@@ -151,7 +151,7 @@ export default createCommand<
     async handler(args) {
       const {headers, token} = parseGlobalArgs(args);
       const apollo = args.apollo || false;
-      const apolloFederation = args.apolloFederation || false;
+      const apolloFederation = args.federation || false;
       const maxDepth = args.maxDepth || undefined;
       const strictFragments = !args.noStrictFragments;
       const keepClientFields = args.keepClientFields || false;

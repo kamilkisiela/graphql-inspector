@@ -108,7 +108,7 @@ export default createCommand<
       const writePath = args.write;
       const silent = args.silent;
       const {headers, token} = parseGlobalArgs(args);
-      const apolloFederation = args.apolloFederation || false;
+      const apolloFederation = args.federation || false;
 
 
       const schema = await loaders.loadSchema(args.schema, {

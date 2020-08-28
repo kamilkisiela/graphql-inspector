@@ -126,7 +126,7 @@ export default createCommand<
       const writePath = args.write;
       const type = args.name;
       const threshold = args.threshold;
-      const apolloFederation = args.apolloFederation || false;
+      const apolloFederation = args.federation || false;
 
       const schema = await loaders.loadSchema(args.schema, {
         headers,
