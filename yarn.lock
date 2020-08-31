@@ -1997,10 +1997,10 @@
   dependencies:
     "@types/istanbul-lib-report" "*"
 
-"@types/jest@26.0.11":
-  version "26.0.11"
-  resolved "https://registry.yarnpkg.com/@types/jest/-/jest-26.0.11.tgz#e2787bbd4b6a2dcfebcb251bdb32c77c7b72da7b"
-  integrity sha512-TtvwL2TgJgNPako4x6LV5lEaWRsyWmC7he6DLVscbl1q8kbZVyVFKOe9mMXR18Ffrl0d2UN9k2E2LliMddjtEw==
+"@types/jest@26.0.12":
+  version "26.0.12"
+  resolved "https://registry.yarnpkg.com/@types/jest/-/jest-26.0.12.tgz#0f20fef9e74f55a312530284e6178f3b3254f501"
+  integrity sha512-vZOFjm562IPb1EmaKxMjdcouxVb1l3NqoUH4XC4tDQ2R/AWde+0HXBUhyfc6L+7vc3mJ393U+5vr3nH2CLSVVg==
   dependencies:
     jest-diff "^25.2.1"
     pretty-format "^25.2.1"
