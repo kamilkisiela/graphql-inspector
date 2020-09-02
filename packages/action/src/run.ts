@@ -225,7 +225,7 @@ function fileLoader({
       });
     }
 
-    const result = await octokit.graphql(query, {
+    const result: any = await octokit.graphql(query, {
       repo,
       owner,
       expression: `${file.ref}:${file.path}`,
@@ -234,10 +234,7 @@ function fileLoader({
 
     try {
       if (
-        result &&
-        result.repository &&
-        result.repository.object &&
-        result.repository.object.text
+        result?.repository?.object?.text
       ) {
         return result.repository.object.text;
       }
