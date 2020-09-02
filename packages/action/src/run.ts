@@ -104,15 +104,19 @@ export async function run() {
 
   const [schemaRef, schemaPath] = schemaPointer.split(':');
 
+  const pointers = {
+    old: endpoint || {
+      ref: schemaRef,
+      path: schemaPath,
+    },
+    new: endpoint ? schemaPointer : schemaPath
+  }
   const [oldFile, newFile] = await Promise.all([
-    endpoint
-      ? printSchemaFromEndpoint(endpoint)
-      : loadFile({
-          ref: schemaRef,
-          path: schemaPath,
-        }),
+    typeof pointers.old === 'string'
+      ? printSchemaFromEndpoint(pointers.old)
+      : loadFile(pointers.old),
     loadFile({
-      path: endpoint ? schemaPointer : schemaPath,
+      path: pointers.new,
       ref,
       workspace,
     }),
@@ -126,14 +130,8 @@ export async function run() {
   };
 
   const schemas = {
-    old: buildSchema(sources.old, {
-      assumeValid: true,
-      assumeValidSDL: true,
-    }),
-    new: buildSchema(sources.new, {
-      assumeValid: true,
-      assumeValidSDL: true,
-    }),
+    old: produceSchema(sources.old, pointers.old),
+    new: produceSchema(sources.new, pointers.new),
   };
 
   core.info(`Built both schemas`);
@@ -285,4 +283,16 @@ function castToBoolean(value: string | boolean): boolean {
     return value;
   }
   return value === 'false' ? false : true;
+}
+
+function produceSchema(source: string | Source, pointer: string | Record<string, string>) {
+  try {
+    return buildSchema(source, {
+      assumeValid: true,
+      assumeValidSDL: true,
+    });
+  } catch (e) {
+    const normalizedPointer = typeof pointer === 'string' ? pointer : Object.values(pointer).join(':')
+    throw new Error(`Failed to parse "${normalizedPointer}": ${e.message}`);
+  }
 }
