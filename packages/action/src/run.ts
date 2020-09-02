@@ -287,6 +287,8 @@ function castToBoolean(value: string | boolean): boolean {
 
 function produceSchema(source: string | Source, pointer: string | Record<string, string>) {
   try {
+    ensureBody(typeof source === 'string' ? source : source.body);
+
     return buildSchema(source, {
       assumeValid: true,
       assumeValidSDL: true,
@@ -294,5 +296,11 @@ function produceSchema(source: string | Source, pointer: string | Record<string,
   } catch (e) {
     const normalizedPointer = typeof pointer === 'string' ? pointer : Object.values(pointer).join(':')
     throw new Error(`Failed to parse "${normalizedPointer}": ${e.message}`);
+  }
+}
+
+function ensureBody(source: string): void {
+  if (!source.trim().length) {
+    throw new Error(`Content is empty`);
   }
 }

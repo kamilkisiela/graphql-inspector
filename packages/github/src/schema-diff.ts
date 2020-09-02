@@ -208,6 +208,7 @@ export async function handleSchemaDiff({
 
 function produceSchema(source: string | Source, pointer: SchemaPointer) {
   try {
+    ensureBody(typeof source === 'string' ? source : source.body);
     return buildSchema(source, {
       assumeValid: true,
       assumeValidSDL: true,
@@ -215,5 +216,11 @@ function produceSchema(source: string | Source, pointer: SchemaPointer) {
   } catch (e) {
     const normalizedPointer = `${pointer.ref}:${pointer.path}`;
     throw new Error(`Failed to parse "${normalizedPointer}": ${e.message}`);
+  }
+}
+
+function ensureBody(source: string): void {
+  if (!source.trim().length) {
+    throw new Error(`Content is empty`);
   }
 }
