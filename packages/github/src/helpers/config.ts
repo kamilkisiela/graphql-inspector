@@ -19,7 +19,7 @@ export interface SchemaPointer {
 export interface LegacyConfig {
   diff?: boolean | Diff;
   notifications?: Notifications;
-  endpoint?: string;
+  endpoint?: Endpoint;
   schema: SchemaPointer;
 }
 
@@ -38,7 +38,7 @@ interface Diff {
 
 interface Environment {
   branch: string;
-  endpoint?: string;
+  endpoint?: Endpoint;
   diff?: Diff | boolean;
   notifications?: Notifications | boolean;
 }
@@ -47,7 +47,7 @@ export interface NormalizedEnvironment {
   name: string;
   schema: string;
   branch: string;
-  endpoint?: string;
+  endpoint?: Endpoint;
   diff: Diff | false;
   notifications: Notifications | false;
 }
@@ -281,7 +281,7 @@ type Maybe<T> = T | undefined | null;
 type Toggle<T> = T | boolean;
 type Option<T> = Toggle<Maybe<T>>;
 
-// I'm not very proud about it :)
+// I'm not very proud of it :)
 function prioritize<T>(
   child: Option<T>,
   parent: Option<T>,
