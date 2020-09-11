@@ -2082,11 +2082,6 @@
     readable-stream "^3.6.0"
     split2 "^3.2.2"
 
-"@probot/serverless-lambda@0.5.0":
-  version "0.5.0"
-  resolved "https://registry.yarnpkg.com/@probot/serverless-lambda/-/serverless-lambda-0.5.0.tgz#cbae4a4a9e056d786f390abfa1017a53985c1555"
-  integrity sha512-LUTOnsDhg4+MA3ZkSu2ei7snwrPTVxid00QQU7cNYfWFS6iaSIkg6QDcMRkSMgBlMAa3IHvR2Nzpn7FO/xRzdQ==
-
 "@rollup/plugin-node-resolve@7.1.1":
   version "7.1.1"
   resolved "https://registry.yarnpkg.com/@rollup/plugin-node-resolve/-/plugin-node-resolve-7.1.1.tgz#8c6e59c4b28baf9d223028d0e450e06a485bb2b7"
