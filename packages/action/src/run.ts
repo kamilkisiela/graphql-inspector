@@ -296,9 +296,13 @@ function castToBoolean(value: string | boolean, defaultValue?: boolean): boolean
     return value;
   }
 
-  if (typeof value === 'undefined' && typeof defaultValue === 'boolean') {
+  if (value === 'true' || value === 'false') {
+    return value === 'true';
+  }
+
+  if (typeof defaultValue === 'boolean') {
     return defaultValue;
   }
 
-  return value === 'false' ? false : true;
+  return true;
 }
