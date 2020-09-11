@@ -42,7 +42,7 @@ export async function run() {
   core.info(`GraphQL Inspector started`);
 
   // env
-  const ref = process.env.GITHUB_SHA!;
+  let ref = process.env.GITHUB_SHA!;
   const commitSha = getCurrentCommitSha();
 
   core.info(`Ref: ${ref}`);
@@ -66,6 +66,7 @@ export async function run() {
     );
   }
 
+  const useExperimentalMerge = castToBoolean(core.getInput('experimental_merge'), false);
   const useAnnotations = castToBoolean(core.getInput('annotations'));
   const failOnBreaking = castToBoolean(core.getInput('fail-on-breaking'));
   const endpoint = core.getInput('endpoint');
@@ -89,20 +90,32 @@ export async function run() {
 
   core.info(`Check ID: ${checkId}`);
 
+  const schemaPointer = core.getInput('schema', {required: true});
+
   const loadFile = fileLoader({
     octokit,
     owner,
     repo,
   });
 
-  const schemaPointer = core.getInput('schema', {required: true});
-
   if (!schemaPointer) {
     core.error('No `schema` variable');
     return core.setFailed('Failed to find `schema` variable');
   }
 
-  const [schemaRef, schemaPath] = schemaPointer.split(':');
+  let [schemaRef, schemaPath] = schemaPointer.split(':');
+
+  if (useExperimentalMerge && github.context.payload.pull_request) {
+    ref = `refs/pull/${github.context.payload.pull_request.number}/merge`
+    core.info(`EXPERIMENTAL - Using Pull Request ${ref}`)
+    
+    const baseRef = github.context.payload.pull_request?.base?.ref;
+    
+    if (baseRef) {
+      schemaRef = baseRef
+      core.info(`EXPERIMENTAL - Using ${baseRef} as base schema ref`)
+    }
+  }
 
   const [oldFile, newFile] = await Promise.all([
     endpoint
@@ -277,9 +290,14 @@ async function updateCheckRun(
 /**
  * Treats non-falsy value as true
  */
-function castToBoolean(value: string | boolean): boolean {
+function castToBoolean(value: string | boolean, defaultValue?: boolean): boolean {
   if (typeof value === 'boolean') {
     return value;
   }
+
+  if (typeof value === 'undefined' && typeof defaultValue === 'boolean') {
+    return defaultValue;
+  }
+
   return value === 'false' ? false : true;
 }
