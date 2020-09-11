@@ -87,6 +87,13 @@ Learn how to [remotely control detected changes and accept/reject Pull Requests]
 
 ## Other
 
+### Experimental
+
+**`experimental_merge`**
+_(disabled by default)_
+Merge Pull Request's branch with the target branch to get the schema.
+Helps to get the correct state of schema when Pull Request is behind the target branch.
+
 ### Full configuration
 
 ```yaml
@@ -101,6 +108,8 @@ diff:
   failOnBreaking: true
   # Intercept list of detected changes and decide whether or not to accept a Pull Request
   intercept: '<url>'
+  # Merge Pull Request's branch with the target branch to get the schema (disabled by default)
+  experimental_merge: false
 
 # Notifications (disabled by default)
 notifications:
