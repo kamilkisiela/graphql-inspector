@@ -17,6 +17,7 @@ export async function handleSchemaDiff({
   action,
   context,
   ref,
+  pullRequestNumber,
   repo,
   owner,
   before,
@@ -29,6 +30,7 @@ export async function handleSchemaDiff({
   owner: string;
   repo: string;
   ref: string;
+  pullRequestNumber?: number;
   pullRequests: PullRequest[];
   /***
    * The SHA of the most recent commit on ref before the push
@@ -98,6 +100,17 @@ export async function handleSchemaDiff({
         logger,
       });
       return;
+    }
+
+    if (config.diff.experimental_merge) {
+      if (!pullRequestNumber && pullRequests?.length) {
+        pullRequestNumber = pullRequests[0].number;
+      }
+  
+      if (pullRequestNumber) {
+        ref = `refs/pull/${pullRequestNumber}/merge`;
+        logger.info(`[EXPERIMENTAL] Using Pull Request: ${ref}`);
+      }
     }
 
     const oldPointer: SchemaPointer = {
