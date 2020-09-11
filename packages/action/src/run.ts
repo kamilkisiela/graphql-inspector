@@ -58,7 +58,7 @@ export async function run() {
     return core.setFailed('Github Token is missing');
   }
 
-  const workspace = process.env.GITHUB_WORKSPACE!;
+  let workspace = process.env.GITHUB_WORKSPACE;
 
   if (!workspace) {
     return core.setFailed(
@@ -107,6 +107,7 @@ export async function run() {
 
   if (useExperimentalMerge && github.context.payload.pull_request) {
     ref = `refs/pull/${github.context.payload.pull_request.number}/merge`
+    workspace = undefined;
     core.info(`EXPERIMENTAL - Using Pull Request ${ref}`)
     
     const baseRef = github.context.payload.pull_request?.base?.ref;
