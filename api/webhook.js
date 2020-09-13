@@ -1,7 +1,7 @@
 /// @ts-check
 const {createProbot} = require('probot');
-const {resolve} = require('probot/lib/resolver');
-const {findPrivateKey} = require('probot/lib/private-key');
+const {resolveAppFunction} = require('probot/lib/helpers/resolve-app-function');
+const {findPrivateKey} = require('probot/lib/helpers/get-private-key');
 
 const githubApp = require('@graphql-inspector/github').app;
 
@@ -17,7 +17,7 @@ const loadProbot = (appFn) => {
     });
 
   if (typeof appFn === 'string') {
-    appFn = resolve(appFn);
+    appFn = resolveAppFunction(appFn);
   }
 
   probot.load(appFn);
