@@ -49,6 +49,7 @@ Run the following command:
 - `-r, --require <s>` - require a module
 - `-t, --token <s>` - an access token
 - `-h, --header <s>` - set http header (`--header 'Auth: Basic 123')
+- `--federation` - Support Apollo Federation directives (default: _false_)
 
 **Output**
 
