@@ -1,4 +1,4 @@
-import { mockGraphQLServer } from '@graphql-inspector/testing';
+import {mockGraphQLServer} from '@graphql-inspector/testing';
 import {LoadersRegistry} from '@graphql-inspector/loaders';
 import loader from '@graphql-inspector/url-loader';
 import {mockCommand} from '@graphql-inspector/commands';
@@ -28,7 +28,7 @@ const introspect = createCommand({
     commands: [],
     loaders: [],
   },
-  loaders
+  loaders,
 });
 
 describe('introspect', () => {

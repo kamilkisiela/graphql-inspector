@@ -3,6 +3,7 @@
 ### vNEXT
 
 - **action,github**: EXPERIMENTAL - Merge Pull Request's branch with the target branch to get the schema. Helps to get the correct state of schema when Pull Request is behind the target branch. _(disabled by default)_ - [docs](https://graphql-inspector.com/docs/products/github#experimental)
+- **github**: Accepts a GitHub Label to mark Pull Request with breaking changes as something expected and safe [PR #1711](https://github.com/kamilkisiela/graphql-inspector/pull/1711) - [docs](https://graphql-inspector.com/docs/products/github#approved-breaking-change-label)
 
 ### v2.2.0
 

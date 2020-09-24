@@ -189,14 +189,14 @@ describe('enum', () => {
     `);
 
     const b = buildSchema(/* GraphQL */ `
-    type Query {
-      fieldA: String
-    }
+      type Query {
+        fieldA: String
+      }
 
-    enum enumA {
-      A
-      B
-    }
+      enum enumA {
+        A
+        B
+      }
     `);
 
     const changes = diff(a, b);

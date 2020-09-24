@@ -157,10 +157,14 @@ export default createCommand<
       const keepClientFields = args.keepClientFields || false;
       const failOnDeprecated = args.deprecated;
 
-      const schema = await loaders.loadSchema(args.schema, {
-        headers,
-        token,
-      }, apolloFederation);
+      const schema = await loaders.loadSchema(
+        args.schema,
+        {
+          headers,
+          token,
+        },
+        apolloFederation,
+      );
       const documents = await loaders.loadDocuments(args.documents);
 
       return handler({

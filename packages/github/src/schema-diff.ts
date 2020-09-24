@@ -106,7 +106,7 @@ export async function handleSchemaDiff({
       if (!pullRequestNumber && pullRequests?.length) {
         pullRequestNumber = pullRequests[0].number;
       }
-  
+
       if (pullRequestNumber) {
         ref = `refs/pull/${pullRequestNumber}/merge`;
         logger.info(`[EXPERIMENTAL] Using Pull Request: ${ref}`);
@@ -167,8 +167,17 @@ export async function handleSchemaDiff({
 
     const summary = createSummary(changes);
 
+    const approveLabelName =
+      config.diff.approveLabel || 'approved-breaking-change';
+    const hasApprovedBreakingChangeLabel = pullRequestNumber
+      ? pullRequests[0].labels?.find((label) => label.name === approveLabelName)
+      : false;
+
     // Force Success when failOnBreaking is disabled
-    if (config.diff.failOnBreaking === false) {
+    if (
+      config.diff.failOnBreaking === false ||
+      hasApprovedBreakingChangeLabel
+    ) {
       logger.info('FailOnBreaking disabled. Forcing SUCCESS');
       conclusion = CheckConclusion.Success;
     }

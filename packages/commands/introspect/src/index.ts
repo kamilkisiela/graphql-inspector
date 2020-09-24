@@ -86,10 +86,14 @@ export default createCommand<
       const comments = args.comments || false;
       const apolloFederation = args.federation || false;
 
-      const schema = await loaders.loadSchema(args.schema, {
-        token,
-        headers,
-      }, apolloFederation);
+      const schema = await loaders.loadSchema(
+        args.schema,
+        {
+          token,
+          headers,
+        },
+        apolloFederation,
+      );
 
       return handler({schema, output, comments});
     },

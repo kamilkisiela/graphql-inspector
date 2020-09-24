@@ -128,10 +128,14 @@ export default createCommand<
       const threshold = args.threshold;
       const apolloFederation = args.federation || false;
 
-      const schema = await loaders.loadSchema(args.schema, {
-        headers,
-        token,
-      }, apolloFederation);
+      const schema = await loaders.loadSchema(
+        args.schema,
+        {
+          headers,
+          token,
+        },
+        apolloFederation,
+      );
 
       return handler({schema, writePath, type, threshold});
     },
