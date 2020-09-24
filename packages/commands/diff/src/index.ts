@@ -127,14 +127,22 @@ export default createCommand<
         const apolloFederation = args.federation || false;
         const {headers, token} = parseGlobalArgs(args);
 
-        const oldSchema = await loaders.loadSchema(oldSchemaPointer, {
-          headers,
-          token,
-        }, apolloFederation);
-        const newSchema = await loaders.loadSchema(newSchemaPointer, {
-          headers,
-          token,
-        }, apolloFederation);
+        const oldSchema = await loaders.loadSchema(
+          oldSchemaPointer,
+          {
+            headers,
+            token,
+          },
+          apolloFederation,
+        );
+        const newSchema = await loaders.loadSchema(
+          newSchemaPointer,
+          {
+            headers,
+            token,
+          },
+          apolloFederation,
+        );
 
         handler({
           oldSchema,

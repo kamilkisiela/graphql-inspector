@@ -74,7 +74,11 @@ export default function handleProbot(app: probot.Application) {
     const pullRequests = [context.payload.pull_request];
     const before = context.payload.pull_request.base.ref;
 
-    if (['opened', 'synchronize', 'edited'].includes(action) === false) {
+    if (
+      ['opened', 'synchronize', 'edited', 'labeled', 'unlabeled'].includes(
+        action,
+      ) === false
+    ) {
       return;
     }
 

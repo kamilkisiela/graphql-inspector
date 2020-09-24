@@ -10,10 +10,7 @@ import {
   LoadSchemaOptions,
   LoadTypedefsOptions,
 } from '@graphql-tools/load';
-import {
-  GraphQLSchema,
-  buildSchema
-} from 'graphql';
+import {GraphQLSchema, buildSchema} from 'graphql';
 
 export class LoadersRegistry {
   private loaders: UniversalLoader[] = [];
@@ -38,23 +35,25 @@ export class LoadersRegistry {
   loadSchema(
     pointer: SchemaPointerSingle,
     options: Omit<LoadSchemaOptions, 'loaders'> = {},
-    enableApolloFederation: boolean
+    enableApolloFederation: boolean,
   ): Promise<GraphQLSchema> {
     return loadSchema(pointer, {
       loaders: this.loaders,
       ...options,
-      ...(enableApolloFederation ? {
-        schemas: [
-          buildSchema(/* GraphQL */ `          
-            scalar _FieldSet            
-            directive @external on FIELD_DEFINITION
-            directive @requires(fields: _FieldSet!) on FIELD_DEFINITION
-            directive @provides(fields: _FieldSet!) on FIELD_DEFINITION
-            directive @key(fields: _FieldSet!) on OBJECT | INTERFACE
-            directive @extends on OBJECT | INTERFACE
-          `)
-        ]
-      } : {})
+      ...(enableApolloFederation
+        ? {
+            schemas: [
+              buildSchema(/* GraphQL */ `
+                scalar _FieldSet
+                directive @external on FIELD_DEFINITION
+                directive @requires(fields: _FieldSet!) on FIELD_DEFINITION
+                directive @provides(fields: _FieldSet!) on FIELD_DEFINITION
+                directive @key(fields: _FieldSet!) on OBJECT | INTERFACE
+                directive @extends on OBJECT | INTERFACE
+              `),
+            ],
+          }
+        : {}),
     });
   }
 

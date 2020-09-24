@@ -7,7 +7,7 @@ import {
 import {Logger} from '@graphql-inspector/logger';
 import open from 'open';
 import express from 'express';
-import { graphqlHTTP } from 'express-graphql';
+import {graphqlHTTP} from 'express-graphql';
 import cors from 'cors';
 import {fake} from './fake';
 
@@ -45,10 +45,14 @@ export default createCommand<
       const {headers, token} = parseGlobalArgs(args);
       const apolloFederation = args.federation || false;
 
-      const schema = await loaders.loadSchema(args.schema, {
-        headers,
-        token,
-      }, apolloFederation);
+      const schema = await loaders.loadSchema(
+        args.schema,
+        {
+          headers,
+          token,
+        },
+        apolloFederation,
+      );
 
       const port = args.port;
 

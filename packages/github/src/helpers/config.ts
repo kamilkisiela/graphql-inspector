@@ -33,6 +33,7 @@ interface Diff {
   experimental_merge?: boolean;
   annotations?: boolean;
   failOnBreaking?: boolean;
+  approveLabel?: string;
   intercept?: DiffInterceptor;
 }
 

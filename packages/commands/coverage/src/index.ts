@@ -110,11 +110,14 @@ export default createCommand<
       const {headers, token} = parseGlobalArgs(args);
       const apolloFederation = args.federation || false;
 
-
-      const schema = await loaders.loadSchema(args.schema, {
-        token,
-        headers,
-      }, apolloFederation);
+      const schema = await loaders.loadSchema(
+        args.schema,
+        {
+          token,
+          headers,
+        },
+        apolloFederation,
+      );
       const documents = await loaders.loadDocuments(args.documents);
 
       return handler({schema, documents, silent, writePath});
