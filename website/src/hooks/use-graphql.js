@@ -3,7 +3,7 @@ import fetchPonyfill from 'fetch-ponyfill';
 
 const {fetch} = fetchPonyfill();
 
-const endpoint = 'https://the-guild.dev/api/graphql';
+const endpoint = 'https://guild-ms-slack-bot.vercel.app/api/graphql';
 
 export function useMutation(query) {
   const [state, setState] = useState({
