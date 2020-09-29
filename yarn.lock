@@ -7890,10 +7890,10 @@ pretty-format@^26.4.2:
     ansi-styles "^4.0.0"
     react-is "^16.12.0"
 
-probot@10.8.1:
-  version "10.8.1"
-  resolved "https://registry.yarnpkg.com/probot/-/probot-10.8.1.tgz#95b9d22fc93ba14a08beb99f18e9f46a2a0790b4"
-  integrity sha512-c0zzXfSlI/iiPvyGh/xxAg/IWpLfVrniLT8zRfA9N4sjOucM4xShwgU8obpHqbOGAZOjxOPeVhB/4lOTE5WDIw==
+probot@10.9.0:
+  version "10.9.0"
+  resolved "https://registry.yarnpkg.com/probot/-/probot-10.9.0.tgz#ac35e74dc2490607be0855d93096effa4e9fa223"
+  integrity sha512-4oCjBrHfrbDOoMu2eZjCjIHWrfJUXJYBSne4bkgoq/drtug0ZUI9JD5VLynRDsHHsDOf04/FUr8l/0sBDVD8mQ==
   dependencies:
     "@octokit/auth-app" "^2.4.14"
     "@octokit/auth-unauthenticated" "^1.0.0"
