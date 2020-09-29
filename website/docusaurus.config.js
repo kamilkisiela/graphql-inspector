@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
   title: 'GraphQL Inspector',
   tagline:
@@ -198,5 +200,6 @@ module.exports = {
         quality: 100,
       },
     ],
+    path.join(__dirname, '/plugins/monaco-editor')
   ],
 };
