@@ -2,7 +2,7 @@
   "name": "@graphql-inspector/website",
   "scripts": {
     "start": "docusaurus start",
-    "build": "node ./links.js && docusaurus build",
+    "build": "docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy"
   },
