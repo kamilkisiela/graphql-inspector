@@ -1,7 +1,7 @@
 {
   "name": "graphql-inspector",
   "version": 2,
-  "alias": ["graphql-inspector"],
+  "alias": ["graphql-inspector-app"],
   "env": {
     "LOG_FORMAT": "short",
     "LOG_LEVEL": "info",
