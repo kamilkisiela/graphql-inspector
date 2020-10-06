@@ -40,7 +40,7 @@
     "@types/cors": "2.8.7",
     "@types/express": "4.17.8",
     "@types/jest": "26.0.14",
-    "@types/node": "13.13.21",
+    "@types/node": "13.13.22",
     "@types/yargs": "15.0.7",
     "@zeit/ncc": "0.22.3",
     "axios": "0.20.0",
