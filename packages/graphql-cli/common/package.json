@@ -24,7 +24,7 @@
     "graphql-config": "^3.0.0"
   },
   "dependencies": {
-    "@graphql-cli/loaders": "4.0.0",
+    "@graphql-cli/loaders": "4.1.0",
     "tslib": "^2.0.0"
   },
   "scripts": {
