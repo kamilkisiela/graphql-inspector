@@ -8041,10 +8041,10 @@ pretty-format@^26.5.2:
     ansi-styles "^4.0.0"
     react-is "^16.12.0"
 
-probot@10.9.1:
-  version "10.9.1"
-  resolved "https://registry.yarnpkg.com/probot/-/probot-10.9.1.tgz#11da451e12c718e6dbc7d1b0f9884f848546c80c"
-  integrity sha512-NMe7EwB9sQ5JIayjzPga80Iu7Av05CKDtnaSbZSHKWgFwcNNvv2/TDGMhlDWtJ2ZujceNTVTolrvxzafotXtQg==
+probot@10.9.3:
+  version "10.9.3"
+  resolved "https://registry.yarnpkg.com/probot/-/probot-10.9.3.tgz#45f7140fbe408cc69f3b7f85cadf6d281d64938a"
+  integrity sha512-wmTntTuiqKhhkn2kVsAwW2mU44kTbc7MTEWs8QNafolljlvGOg/TquWqcA/zzgh54u06XWumzOU/tGDaCEwWzg==
   dependencies:
     "@octokit/auth-app" "^2.4.14"
     "@octokit/auth-unauthenticated" "^1.0.0"
