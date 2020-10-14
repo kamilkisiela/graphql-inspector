@@ -15,8 +15,8 @@
     "fetch-ponyfill": "6.1.1",
     "globby": "11.0.1",
     "monaco-editor-webpack-plugin": "2.0.0",
-    "react": "16.13.1",
-    "react-dom": "16.13.1",
+    "react": "16.14.0",
+    "react-dom": "16.14.0",
     "react-feather": "2.0.8",
     "react-flip-move": "3.0.4",
     "react-monaco-editor": "0.40.0"
