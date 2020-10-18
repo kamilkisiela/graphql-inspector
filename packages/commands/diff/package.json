@@ -33,6 +33,9 @@
     "@graphql-inspector/core": "0.0.0-PLACEHOLDER",
     "@graphql-inspector/commands": "0.0.0-PLACEHOLDER",
     "@graphql-inspector/logger": "0.0.0-PLACEHOLDER",
+    "express": "4.17.1",
+    "express-graphql": "0.11.0",
+    "graphql-tools": "6.2.4-alpha-34c1194a.0",
     "tslib": "^2.0.0"
   },
   "scripts": {

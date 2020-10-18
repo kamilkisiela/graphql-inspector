@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta
+      name="viewport"
+      content="user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, minimal-ui"
+    />
+    <style>
+      body {
+        margin: 0;
+      }
+
+      #voyager {
+        height: 100vh;
+      }
+
+      .edge.red > path:not(.hover-path),
+      .edge.red > polygon {
+        stroke: #ff0000 !important;
+      }
+
+      .field.red > polygon {
+        fill: rgba(255, 0, 0, 0.55);
+      }
+
+      .edge.green > path:not(.hover-path),
+      .edge.green > polygon {
+        stroke: #00ff00 !important;
+      }
+
+      .field.green > polygon {
+        fill: rgba(0, 255, 0, 0.55);
+      }
+
+      .edge.yellow > path:not(.hover-path),
+      .edge.yellow > polygon {
+        stroke: #ffff00 !important;
+      }
+
+      .field.yellow > polygon {
+        fill: rgba(255, 255, 0, 0.55);
+      }
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/graphql-voyager/dist/voyager.css"
+    />
+    <script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/graphql-voyager/dist/voyager.min.js"></script>
+  </head>
+  <body>
+    <main id="voyager">Loading...</main>
+    <script>
+      window.addEventListener('load', () => {
+        GraphQLVoyager.init(document.getElementById('voyager'), {
+          introspection: (introspectionQuery) =>
+            fetch(`/graphql?query=${introspectionQuery}`).then((res) =>
+              res.ok ? res.json() : res.text(),
+            ),
+        });
+        setInterval(() => {
+          fetch('/changes')
+            .then(function (res) {
+              return res.json();
+            })
+            .then((changes) => {
+              const redElements = document.getElementsByClassName('red');
+              while (redElements.length) {
+                redElements[0].classList.remove('red');
+              }
+
+              const greenElements = document.getElementsByClassName('green');
+              while (greenElements.length) {
+                greenElements[0].classList.remove('green');
+              }
+
+              const yellowElements = document.getElementsByClassName('yellow');
+              while (yellowElements.length) {
+                yellowElements[0].classList.remove('yellow');
+              }
+
+              changes.forEach((change) => {
+                const selector = `[id="FIELD::${change.path.replace(
+                  '.',
+                  '::',
+                )}"]`;
+
+                let color;
+
+                switch (change.type) {
+                  case 'FIELD_ADDED':
+                    color = 'green';
+                    break;
+                  case 'FIELD_REMOVED':
+                    color = 'red';
+                    break;
+                  case 'FIELD_TYPE_CHANGED':
+                    color = 'yellow';
+                    break;
+                }
+
+                const element = document.querySelector(selector);
+
+                if (element) {
+                  element.classList.add(color);
+
+                  const titleElements = element.getElementsByTagName('title');
+
+                  while (titleElements.length) {
+                    titleElements[0].remove();
+                  }
+
+                  const node = document.createElementNS(
+                    'http://www.w3.org/2000/svg',
+                    'title',
+                  );
+                  const textnode = document.createTextNode(change.message);
+                  node.appendChild(textnode);
+                  element.prepend(node);
+                }
+              });
+            });
+        }, 1000);
+      });
+    </script>
+  </body>
+</html>
