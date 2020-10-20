@@ -17,7 +17,7 @@ jobs:
           node-version: 13
 
       - name: Vercel Deployment	
-        uses: amondnet/vercel-action@v19.0.1+2
+        uses: amondnet/vercel-action@v19.0.1
         with:	
           vercel-token: ${{ secrets.ZEIT_TOKEN }}	
           vercel-args: '--prod'
