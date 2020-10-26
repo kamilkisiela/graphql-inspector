@@ -42,8 +42,8 @@
   "dependencies": {
     "@actions/core": "1.2.6",
     "@actions/github": "4.0.0",
-    "@graphql-inspector/github": "0.0.0-PLACEHOLDER",
     "@graphql-inspector/core": "0.0.0-PLACEHOLDER",
+    "@graphql-inspector/github": "0.0.0-PLACEHOLDER",
     "js-yaml": "3.14.0",
     "probot": "10.9.4",
     "tslib": "^2.0.0"

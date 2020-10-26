@@ -30,8 +30,8 @@
     "graphql": "^0.13.0 || ^14.0.0 || ^15.0.0"
   },
   "dependencies": {
-    "@graphql-inspector/core": "0.0.0-PLACEHOLDER",
     "@graphql-inspector/commands": "0.0.0-PLACEHOLDER",
+    "@graphql-inspector/core": "0.0.0-PLACEHOLDER",
     "@graphql-inspector/logger": "0.0.0-PLACEHOLDER",
     "tslib": "^2.0.0"
   },
