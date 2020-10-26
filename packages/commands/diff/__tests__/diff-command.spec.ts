@@ -125,7 +125,7 @@ describe('diff', () => {
     expect(spyReporter).not.toHaveBeenCalledNormalized('does not exist');
   });
 
-  test.only('should render error if file does not exist', async () => {
+  test('should render error if file does not exist', async () => {
     await mockCommand(diff, `diff old.graphql new.graphql --rule noop.js`);
 
     expect(spyReporter).toHaveBeenCalledNormalized('does not exist');

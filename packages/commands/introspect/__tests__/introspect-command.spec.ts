@@ -5,7 +5,14 @@ import {mockCommand} from '@graphql-inspector/commands';
 import {mockLogger, unmockLogger} from '@graphql-inspector/logger';
 import yargs from 'yargs';
 import {buildSchema} from 'graphql';
+import {unlinkSync, existsSync} from 'fs';
 import createCommand from '../src';
+
+function sleepFor(ms: number) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
+}
 
 const schema = buildSchema(/* GraphQL */ `
   type Post {
@@ -33,13 +40,10 @@ const introspect = createCommand({
 
 describe('introspect', () => {
   let spyReporter: jest.SpyInstance;
-  let spyProcessExit: jest.SpyInstance;
   let spyProcessCwd: jest.SpyInstance;
 
   beforeEach(() => {
     yargs.reset();
-    spyProcessExit = jest.spyOn(process, 'exit');
-    spyProcessExit.mockImplementation();
 
     spyProcessCwd = jest
       .spyOn(process, 'cwd')
@@ -52,9 +56,9 @@ describe('introspect', () => {
   afterEach(() => {
     yargs.reset();
     unmockLogger();
-    spyProcessExit.mockRestore();
     spyProcessCwd.mockRestore();
     spyReporter.mockRestore();
+    unlinkSync('graphql.schema.json');
   });
 
   test('graphql api with port and ws in name using url-loader', async () => {
@@ -64,8 +68,9 @@ describe('introspect', () => {
       path: '/graphql',
     });
     await mockCommand(introspect, 'introspect http://foo.ws:8020/graphql');
+    await sleepFor(500);
 
     done();
-    expect(spyProcessExit).toHaveBeenCalledWith(0);
+    expect(existsSync('graphql.schema.json')).toBe(true);
   });
 });
