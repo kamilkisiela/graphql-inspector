@@ -5,7 +5,7 @@ import {mockCommand} from '@graphql-inspector/commands';
 import {mockLogger, unmockLogger} from '@graphql-inspector/logger';
 import yargs from 'yargs';
 import {buildSchema} from 'graphql';
-import {unlinkSync, existsSync} from 'fs';
+import {unlinkSync, existsSync, readFileSync} from 'fs';
 import createCommand from '../src';
 
 function sleepFor(ms: number) {
@@ -58,7 +58,9 @@ describe('introspect', () => {
     unmockLogger();
     spyProcessCwd.mockRestore();
     spyReporter.mockRestore();
-    unlinkSync('graphql.schema.json');
+    try {
+      unlinkSync('graphql.schema.json');
+    } catch (e) {}
   });
 
   test('graphql api with port and ws in name using url-loader', async () => {
@@ -72,5 +74,27 @@ describe('introspect', () => {
 
     done();
     expect(existsSync('graphql.schema.json')).toBe(true);
+  });
+
+  test('saved to graphql files using url-loader', async () => {
+    const done = mockGraphQLServer({
+      schema,
+      host: 'https://example.com',
+      path: '/graphql',
+    });
+    await mockCommand(introspect, 'introspect https://example.com/graphql -w schema.graphql');
+    await sleepFor(500);
+
+    done();
+    expect(existsSync('schema.graphql')).toBe(true);
+
+    const printed = readFileSync('schema.graphql', {
+      encoding: 'utf-8'
+    });
+    unlinkSync('schema.graphql');
+    
+    const builtSchema = buildSchema(printed);
+    
+    expect(builtSchema.getQueryType().getFields()).toHaveProperty('post');
   });
 });
