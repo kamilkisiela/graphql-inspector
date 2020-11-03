@@ -2,7 +2,7 @@
 
 ### vNEXT
 
-- **action**: Support multiple GitHub Actions, new `name` input.
+- **action**: Support multiple GitHub Actions, new `name` input [PR #1770](https://github.com/kamilkisiela/graphql-inspector/pull/1770)
 
 ### v2.3.0
 
