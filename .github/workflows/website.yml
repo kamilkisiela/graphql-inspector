@@ -18,7 +18,8 @@ jobs:
 
       - name: Vercel Deployment	
         uses: kamilkisiela/vercel-action@feature/deployment
-        with:	
+        with:
+          github-deployment: true	
           vercel-token: ${{ secrets.ZEIT_TOKEN }}	
           vercel-args: '--prod'
           vercel-project-name: 'GraphQL Inspector'
