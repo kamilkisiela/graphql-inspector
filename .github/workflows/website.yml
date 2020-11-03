@@ -17,9 +17,10 @@ jobs:
           node-version: 14
 
       - name: Vercel Deployment	
-        uses: amondnet/vercel-action@v19.0.1+4
+        uses: kamilkisiela/vercel-action@feature/deployment
         with:	
           vercel-token: ${{ secrets.ZEIT_TOKEN }}	
           vercel-args: '--prod'
+          vercel-project-name: 'GraphQL Inspector'
           vercel-project-id: ${{ secrets.ZEIT_PROJECT }}
           vercel-org-id: ${{ secrets.ZEIT_ORG }}
