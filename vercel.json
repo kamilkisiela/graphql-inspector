@@ -42,6 +42,6 @@
     }
   ],
   "github": {
-    "enabled": false
+    "enabled": true
   }
 }
