@@ -2,6 +2,8 @@
 
 ### vNEXT
 
+- **action**: Support multiple GitHub Actions, new `name` input [PR #1770](https://github.com/kamilkisiela/graphql-inspector/pull/1770)
+
 ### v2.3.0
 
 - **action,github**: EXPERIMENTAL - Merge Pull Request's branch with the target branch to get the schema. Helps to get the correct state of schema when Pull Request is behind the target branch. _(disabled by default)_ - [docs](https://graphql-inspector.com/docs/products/github#experimental)
