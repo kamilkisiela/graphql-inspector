@@ -53,6 +53,7 @@ export async function run() {
   //   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   //
   const token = core.getInput('github-token') || process.env.GITHUB_TOKEN;
+  const checkName = core.getInput('name') || CHECK_NAME;
 
   if (!token) {
     return core.setFailed('Github Token is missing');
@@ -76,12 +77,12 @@ export async function run() {
   // repo
   const {owner, repo} = github.context.repo;
 
-  core.info(`Creating a check named "${CHECK_NAME}"`);
+  core.info(`Creating a check named "${checkName}"`);
 
   const check = await octokit.checks.create({
     owner,
     repo,
-    name: CHECK_NAME,
+    name: checkName,
     head_sha: commitSha,
     status: 'in_progress',
   });
