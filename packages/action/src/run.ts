@@ -3,8 +3,9 @@ import {
   diff,
   createSummary,
   printSchemaFromEndpoint,
+  produceSchema,
 } from '@graphql-inspector/github';
-import {buildSchema, Source} from 'graphql';
+import {Source} from 'graphql';
 import {readFileSync} from 'fs';
 import {resolve} from 'path';
 import {execSync} from 'child_process';
@@ -136,19 +137,13 @@ export async function run() {
   core.info('Got both sources');
 
   const sources = {
-    old: new Source(oldFile),
-    new: new Source(newFile),
+    old: new Source(oldFile, endpoint || `${schemaRef}:${schemaPath}`),
+    new: new Source(newFile, endpoint ? schemaPointer : schemaPath),
   };
 
   const schemas = {
-    old: buildSchema(sources.old, {
-      assumeValid: true,
-      assumeValidSDL: true,
-    }),
-    new: buildSchema(sources.new, {
-      assumeValid: true,
-      assumeValidSDL: true,
-    }),
+    old: produceSchema(sources.old),
+    new: produceSchema(sources.new),
   };
 
   core.info(`Built both schemas`);
@@ -217,7 +212,7 @@ function fileLoader({
   owner: string;
   repo: string;
 }) {
-  const query = `
+  const query = /* GraphQL */`
     query GetFile($repo: String!, $owner: String!, $expression: String!) {
       repository(name: $repo, owner: $owner) {
         object(expression: $expression) {
