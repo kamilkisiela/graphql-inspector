@@ -1,5 +1,5 @@
 import * as probot from 'probot';
-import {buildSchema} from 'graphql';
+import {buildSchema, Source} from 'graphql';
 import {CheckConclusion, PullRequest} from './helpers/types';
 import {FileLoader, ConfigLoader, loadSources} from './helpers/loaders';
 import {start, complete, annotate} from './helpers/check-runs';
@@ -138,14 +138,8 @@ export async function handleSchemaDiff({
     });
 
     const schemas = {
-      old: buildSchema(sources.old, {
-        assumeValid: true,
-        assumeValidSDL: true,
-      }),
-      new: buildSchema(sources.new, {
-        assumeValid: true,
-        assumeValidSDL: true,
-      }),
+      old: produceSchema(sources.old),
+      new: produceSchema(sources.new),
     };
 
     logger.info(`built schemas`);
@@ -236,5 +230,20 @@ export async function handleSchemaDiff({
       conclusion: CheckConclusion.Failure,
       logger,
     });
+  }
+}
+
+function produceSchema(source: Source) {
+  try {
+    if (!source.body.trim().length) {
+      throw new Error(`Content is empty`);
+    }
+    
+    return buildSchema(source, {
+      assumeValid: true,
+      assumeValidSDL: true,
+    });
+  } catch (e) {
+    throw new Error(`Failed to parse "${source.name}": ${e.message}`);
   }
 }
