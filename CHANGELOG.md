@@ -2,6 +2,7 @@
 
 ### vNEXT
 
+- **github**: Introduce `summaryLimit` in Diff options [PR #1775](https://github.com/kamilkisiela/graphql-inspector/pull/1775)
 - **action**: Support multiple GitHub Actions, new `name` input [PR #1770](https://github.com/kamilkisiela/graphql-inspector/pull/1770)
 
 ### v2.3.0

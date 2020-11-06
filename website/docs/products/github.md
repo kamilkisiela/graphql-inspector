@@ -97,6 +97,14 @@ _('approved-breaking-change' by default)_
 
 You can customize the label's name in `diff.approveLabel` option (see [Full configuration](#full-configuration) below)
 
+### Limit summary length
+
+Length of a summary of a CI check is limited by GitHub API. This is why we decided to show only a list of 100 changes.
+
+_('100' by default)_
+
+You can adjust the limit as you wish using `diff.summaryLimit` option (see [Full configuration](#full-configuration) below)
+
 ### Experimental
 
 **`experimental_merge`**
@@ -122,6 +130,8 @@ diff:
   experimental_merge: false
   # Label to mark Pull Request introducing breaking changes as safe and expected ('approved-breaking-change' by default)
   approveLabel: 'approved-breaking-change'
+  # Limit a list of changes in summary to max 150
+  summaryLimit: 150
 
 # Notifications (disabled by default)
 notifications:

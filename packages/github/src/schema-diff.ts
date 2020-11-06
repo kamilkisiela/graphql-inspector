@@ -165,7 +165,9 @@ export async function handleSchemaDiff({
     logger.info(`changes - ${changes.length}`);
     logger.info(`annotations - ${changes.length}`);
 
-    const summary = createSummary(changes);
+    const summaryLimit = config.diff.summaryLimit || 100;
+
+    const summary = createSummary(changes, summaryLimit);
 
     const approveLabelName =
       config.diff.approveLabel || 'approved-breaking-change';
@@ -189,6 +191,9 @@ export async function handleSchemaDiff({
 
     if (config.diff.annotations === false) {
       logger.info(`Anotations are disabled. Skipping annotations...`);
+      annotations = [];
+    } else if (annotations.length > summaryLimit) {
+      logger.info(`Total amount of annotations is over the limit (${annotations.length} > ${summaryLimit}). Skipping annotations...`);
       annotations = [];
     } else {
       logger.info(`Sending annotations (${annotations.length})`);
