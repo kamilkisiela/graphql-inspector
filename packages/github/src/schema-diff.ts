@@ -1,5 +1,5 @@
 import * as probot from 'probot';
-import {buildSchema} from 'graphql';
+import { produceSchema } from './helpers/schema';
 import {CheckConclusion, PullRequest} from './helpers/types';
 import {FileLoader, ConfigLoader, loadSources} from './helpers/loaders';
 import {start, complete, annotate} from './helpers/check-runs';
@@ -138,14 +138,8 @@ export async function handleSchemaDiff({
     });
 
     const schemas = {
-      old: buildSchema(sources.old, {
-        assumeValid: true,
-        assumeValidSDL: true,
-      }),
-      new: buildSchema(sources.new, {
-        assumeValid: true,
-        assumeValidSDL: true,
-      }),
+      old: produceSchema(sources.old),
+      new: produceSchema(sources.new),
     };
 
     logger.info(`built schemas`);
