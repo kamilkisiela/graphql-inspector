@@ -35,6 +35,7 @@ interface Diff {
   failOnBreaking?: boolean;
   approveLabel?: string;
   intercept?: DiffInterceptor;
+  summaryLimit?: number;
 }
 
 interface Environment {
