@@ -60,7 +60,7 @@
     "typescript": "4.0.3"
   },
   "dependencies": {
-    "graphql-request": "3.2.0",
+    "graphql-request": "3.3.0",
     "husky": "4.3.0",
     "immer": "7.0.14",
     "lerna": "3.22.1",
