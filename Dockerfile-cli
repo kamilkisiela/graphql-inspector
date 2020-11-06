@@ -1,4 +1,4 @@
-FROM node:10-slim
+FROM node:12-slim
 
 LABEL version="2.3.0"
 LABEL repository="http://github.com/kamilkisiela/graphql-inspector"
@@ -7,6 +7,7 @@ LABEL maintainer="Kamil Kisiela <kamil.kisiela@gmail.com>"
 
 ENV LOG_LEVEL "debug"
 
+RUN apk --no-cache add git
 RUN yarn global add @graphql-inspector/cli@2.3.0 graphql
 
 RUN mkdir /app
