@@ -43,6 +43,11 @@ export function unionArrays(a: string[], b: string[]): string[] {
 export function compareLists<T extends {name: string}>(
   oldList: readonly T[],
   newList: readonly T[],
+  callbacks?: {
+    onAdded?(t: T): void;
+    onRemoved?(t: T): void;
+    onCommon?(t: {inNew: T; inOld: T}): void;
+  },
 ) {
   const oldMap = keyMap(oldList, ({name}) => name);
   const newMap = keyMap(newList, ({name}) => name);
@@ -66,6 +71,18 @@ export function compareLists<T extends {name: string}>(
   for (const newItem of newList) {
     if (oldMap[newItem.name] === undefined) {
       added.push(newItem);
+    }
+  }
+
+  if (callbacks) {
+    if (callbacks.onAdded) {
+      added.forEach(callbacks.onAdded);
+    }
+    if (callbacks.onRemoved) {
+      removed.forEach(callbacks.onRemoved);
+    }
+    if (callbacks.onCommon) {
+      common.forEach(callbacks.onCommon);
     }
   }
 

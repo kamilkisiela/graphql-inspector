@@ -1,20 +1,22 @@
 import {GraphQLUnionType} from 'graphql';
-import {Change} from './changes/change';
 import {compareLists} from '../utils/compare';
 import {unionMemberAdded, unionMemberRemoved} from './changes/union';
+import {AddChange} from './schema';
 
 export function changesInUnion(
   oldUnion: GraphQLUnionType,
   newUnion: GraphQLUnionType,
-): Change[] {
-  const changes: Change[] = [];
+  addChange: AddChange,
+) {
   const oldTypes = oldUnion.getTypes();
   const newTypes = newUnion.getTypes();
 
-  const {added, removed} = compareLists(oldTypes, newTypes);
-
-  changes.push(...added.map((type) => unionMemberAdded(newUnion, type)));
-  changes.push(...removed.map((type) => unionMemberRemoved(oldUnion, type)));
-
-  return changes;
+  compareLists(oldTypes, newTypes, {
+    onAdded(t) {
+      addChange(unionMemberAdded(newUnion, t));
+    },
+    onRemoved(t) {
+      addChange(unionMemberRemoved(oldUnion, t));
+    },
+  });
 }

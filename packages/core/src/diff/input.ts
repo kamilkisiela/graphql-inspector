@@ -1,7 +1,6 @@
 import {GraphQLInputObjectType, GraphQLInputField} from 'graphql';
 
 import {diffArrays, isNotEqual, isVoid} from '../utils/compare';
-import {Change} from './changes/change';
 import {compareLists} from '../utils/compare';
 import {
   inputFieldAdded,
@@ -12,44 +11,42 @@ import {
   inputFieldDefaultValueChanged,
   inputFieldTypeChanged,
 } from './changes/input';
+import {AddChange} from './schema';
 
 export function changesInInputObject(
   oldInput: GraphQLInputObjectType,
   newInput: GraphQLInputObjectType,
-): Change[] {
-  const changes: Change[] = [];
+  addChange: AddChange,
+) {
   const oldFields = oldInput.getFields();
   const newFields = newInput.getFields();
 
-  const {added, removed, common} = compareLists(
-    Object.values(oldFields),
-    Object.values(newFields),
-  );
-
-  common.forEach(({inOld, inNew}) => {
-    changes.push(...changesInInputField(oldInput, inOld, inNew));
+  compareLists(Object.values(oldFields), Object.values(newFields), {
+    onAdded(field) {
+      addChange(inputFieldAdded(newInput, field));
+    },
+    onRemoved(field) {
+      addChange(inputFieldRemoved(oldInput, field));
+    },
+    onCommon(field) {
+      changesInInputField(oldInput, field.inOld, field.inNew, addChange);
+    },
   });
-
-  changes.push(...added.map((field) => inputFieldAdded(newInput, field)));
-  changes.push(...removed.map((field) => inputFieldRemoved(oldInput, field)));
-
-  return changes;
 }
 
 function changesInInputField(
   input: GraphQLInputObjectType,
   oldField: GraphQLInputField,
   newField: GraphQLInputField,
-): Change[] {
-  const changes: Change[] = [];
-
+  addChange: AddChange,
+) {
   if (isNotEqual(oldField.description, newField.description)) {
     if (isVoid(oldField.description)) {
-      changes.push(inputFieldDescriptionAdded(input, newField));
+      addChange(inputFieldDescriptionAdded(input, newField));
     } else if (isVoid(newField.description)) {
-      changes.push(inputFieldDescriptionRemoved(input, oldField));
+      addChange(inputFieldDescriptionRemoved(input, oldField));
     } else {
-      changes.push(inputFieldDescriptionChanged(input, oldField, newField));
+      addChange(inputFieldDescriptionChanged(input, oldField, newField));
     }
   }
 
@@ -59,19 +56,17 @@ function changesInInputField(
       Array.isArray(newField.defaultValue)
     ) {
       if (diffArrays(oldField.defaultValue, newField.defaultValue).length > 0) {
-        changes.push(inputFieldDefaultValueChanged(input, oldField, newField));
+        addChange(inputFieldDefaultValueChanged(input, oldField, newField));
       }
     } else if (
       JSON.stringify(oldField.defaultValue) !==
       JSON.stringify(newField.defaultValue)
     ) {
-      changes.push(inputFieldDefaultValueChanged(input, oldField, newField));
+      addChange(inputFieldDefaultValueChanged(input, oldField, newField));
     }
   }
 
   if (isNotEqual(oldField.type.toString(), newField.type.toString())) {
-    changes.push(inputFieldTypeChanged(input, oldField, newField));
+    addChange(inputFieldTypeChanged(input, oldField, newField));
   }
-
-  return changes;
 }

@@ -1,6 +1,5 @@
 import {GraphQLObjectType} from 'graphql';
 
-import {Change} from './changes/change';
 import {
   objectTypeInterfaceAdded,
   objectTypeInterfaceRemoved,
@@ -8,38 +7,41 @@ import {
 import {fieldRemoved, fieldAdded} from './changes/field';
 import {changesInField} from './field';
 import {compareLists} from '../utils/compare';
+import {AddChange} from './schema';
 
 export function changesInObject(
   oldType: GraphQLObjectType,
   newType: GraphQLObjectType,
-): Change[] {
-  const changes: Change[] = [];
-
+  addChange: AddChange,
+) {
   const oldInterfaces = oldType.getInterfaces();
   const newInterfaces = newType.getInterfaces();
 
   const oldFields = oldType.getFields();
   const newFields = newType.getFields();
 
-  const interfaces = compareLists(oldInterfaces, newInterfaces);
-  const fields = compareLists(
-    Object.values(oldFields),
-    Object.values(newFields),
-  );
-
-  // Interfaces
-  changes.push(
-    ...interfaces.added.map((i) => objectTypeInterfaceAdded(i, newType)),
-    ...interfaces.removed.map((i) => objectTypeInterfaceRemoved(i, oldType)),
-  );
-  // Fields
-  changes.push(
-    ...fields.added.map((f) => fieldAdded(newType, f)),
-    ...fields.removed.map((f) => fieldRemoved(oldType, f)),
-  );
-  fields.common.forEach((field) => {
-    changes.push(...changesInField(oldType, field.inOld, field.inNew));
+  compareLists(oldInterfaces, newInterfaces, {
+    onAdded(i) {
+      addChange(objectTypeInterfaceAdded(i, newType));
+    },
+    onRemoved(i) {
+      addChange(objectTypeInterfaceRemoved(i, oldType));
+    },
   });
 
-  return changes;
+  compareLists(
+    Object.values(oldFields),
+    Object.values(newFields),
+    {
+      onAdded(f) {
+        addChange(fieldAdded(newType, f));
+      },
+      onRemoved(f) {
+        addChange(fieldRemoved(oldType, f));
+      },
+      onCommon(f) {
+        changesInField(oldType, f.inOld, f.inNew, addChange);
+      },
+    },
+  );
 }

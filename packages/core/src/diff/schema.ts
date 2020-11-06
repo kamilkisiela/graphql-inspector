@@ -1,7 +1,6 @@
 import {
   GraphQLSchema,
   GraphQLNamedType,
-  GraphQLDirective,
   GraphQLObjectType,
   isEnumType,
   isUnionType,
@@ -35,71 +34,56 @@ import {changesInObject} from './object';
 import {changesInInterface} from './interface';
 import {changesInDirective} from './directive';
 
+export type AddChange = (change: Change) => void;
+
 export function diffSchema(
   oldSchema: GraphQLSchema,
   newSchema: GraphQLSchema,
 ): Change[] {
   const changes: Change[] = [];
-  const types = diffTypes(oldSchema, newSchema);
-  const directives = diffDirectives(oldSchema, newSchema);
 
-  // Added and removed types
-  changes.push(...types.added.map(typeAdded));
-  changes.push(...types.removed.map(typeRemoved));
-  // Added and removed directives
-  changes.push(...directives.added.map(directiveAdded));
-  changes.push(...directives.removed.map(directiveRemoved));
+  function addChange(change: Change) {
+    changes.push(change);
+  }
 
-  // Changes in Schema
-  changes.push(...changesInSchema(oldSchema, newSchema));
-  // Changes in Type
-  types.common.forEach(({inOld, inNew}) => {
-    changes.push(...changesInType(inOld, inNew));
-  });
-  // Changes in Directives
-  directives.common.forEach(({inOld, inNew}) => {
-    changes.push(...changesInDirective(inOld, inNew));
+  changesInSchema(oldSchema, newSchema, addChange);
+
+  compareLists(
+    Object.values(oldSchema.getTypeMap()).filter((t) => !isPrimitive(t)),
+    Object.values(newSchema.getTypeMap()).filter((t) => !isPrimitive(t)),
+    {
+      onAdded(type) {
+        addChange(typeAdded(type));
+      },
+      onRemoved(type) {
+        addChange(typeRemoved(type));
+      },
+      onCommon(type) {
+        changesInType(type.inOld, type.inNew, addChange);
+      },
+    },
+  );
+
+  compareLists(oldSchema.getDirectives(), newSchema.getDirectives(), {
+    onAdded(directive) {
+      addChange(directiveAdded(directive));
+    },
+    onRemoved(directive) {
+      addChange(directiveRemoved(directive));
+    },
+    onCommon(directive) {
+      changesInDirective(directive.inOld, directive.inNew, addChange);
+    },
   });
 
   return changes;
 }
 
-function diffTypes(
-  oldSchema: GraphQLSchema,
-  newSchema: GraphQLSchema,
-): {
-  added: GraphQLNamedType[];
-  removed: GraphQLNamedType[];
-  common: {
-    inOld: GraphQLNamedType;
-    inNew: GraphQLNamedType;
-  }[];
-} {
-  return compareLists(
-    Object.values(oldSchema.getTypeMap()).filter(t => !isPrimitive(t)),
-    Object.values(newSchema.getTypeMap()).filter(t => !isPrimitive(t)),
-  );
-}
-
-function diffDirectives(
-  oldSchema: GraphQLSchema,
-  newSchema: GraphQLSchema,
-): {
-  added: GraphQLDirective[];
-  removed: GraphQLDirective[];
-  common: {
-    inOld: GraphQLDirective;
-    inNew: GraphQLDirective;
-  }[];
-} {
-  return compareLists(oldSchema.getDirectives(), newSchema.getDirectives());
-}
-
 function changesInSchema(
   oldSchema: GraphQLSchema,
   newSchema: GraphQLSchema,
-): Change[] {
-  const changes: Change[] = [];
+  addChange: AddChange,
+) {
   const oldRoot = {
     query: (oldSchema.getQueryType() || ({} as GraphQLObjectType)).name,
     mutation: (oldSchema.getMutationType() || ({} as GraphQLObjectType)).name,
@@ -114,51 +98,46 @@ function changesInSchema(
   };
 
   if (isNotEqual(oldRoot.query, newRoot.query)) {
-    changes.push(schemaQueryTypeChanged(oldSchema, newSchema));
+    addChange(schemaQueryTypeChanged(oldSchema, newSchema));
   }
 
   if (isNotEqual(oldRoot.mutation, newRoot.mutation)) {
-    changes.push(schemaMutationTypeChanged(oldSchema, newSchema));
+    addChange(schemaMutationTypeChanged(oldSchema, newSchema));
   }
 
   if (isNotEqual(oldRoot.subscription, newRoot.subscription)) {
-    changes.push(schemaSubscriptionTypeChanged(oldSchema, newSchema));
+    addChange(schemaSubscriptionTypeChanged(oldSchema, newSchema));
   }
-
-  return changes;
 }
 
 function changesInType(
   oldType: GraphQLNamedType,
   newType: GraphQLNamedType,
-): Change[] {
-  let changes: Change[] = [];
-
+  addChange: AddChange,
+) {
   if (isEnumType(oldType) && isEnumType(newType)) {
-    changes = changesInEnum(oldType, newType);
+    changesInEnum(oldType, newType, addChange);
   } else if (isUnionType(oldType) && isUnionType(newType)) {
-    changes = changesInUnion(oldType, newType);
+    changesInUnion(oldType, newType, addChange);
   } else if (isInputObjectType(oldType) && isInputObjectType(newType)) {
-    changes = changesInInputObject(oldType, newType);
+    changesInInputObject(oldType, newType, addChange);
   } else if (isObjectType(oldType) && isObjectType(newType)) {
-    changes = changesInObject(oldType, newType);
+    changesInObject(oldType, newType, addChange);
   } else if (isInterfaceType(oldType) && isInterfaceType(newType)) {
-    changes = changesInInterface(oldType, newType);
+    changesInInterface(oldType, newType, addChange);
   } else if (isScalarType(oldType) && isScalarType(newType)) {
     // what to do with scalar types?
   } else {
-    changes = [typeKindChanged(oldType, newType)];
+    addChange(typeKindChanged(oldType, newType));
   }
 
   if (isNotEqual(oldType.description, newType.description)) {
     if (isVoid(oldType.description)) {
-      changes.push(typeDescriptionAdded(newType));
+      addChange(typeDescriptionAdded(newType));
     } else if (isVoid(newType.description)) {
-      changes.push(typeDescriptionRemoved(oldType));
+      addChange(typeDescriptionRemoved(oldType));
     } else {
-      changes.push(typeDescriptionChanged(oldType, newType));
+      addChange(typeDescriptionChanged(oldType, newType));
     }
   }
-
-  return changes;
 }
