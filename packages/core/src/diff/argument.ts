@@ -5,14 +5,13 @@ import {
   GraphQLInterfaceType,
 } from 'graphql';
 
-import {isNotEqual} from './common/compare';
+import {diffArrays, isNotEqual} from '../utils/compare';
 import {Change} from './changes/change';
 import {
   fieldArgumentDescriptionChanged,
   fieldArgumentDefaultChanged,
   fieldArgumentTypeChanged,
 } from './changes/argument';
-import {diffArrays} from '../utils/arrays';
 
 export function changesInArgument(
   type: GraphQLObjectType | GraphQLInterfaceType,

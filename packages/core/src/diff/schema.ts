@@ -11,8 +11,7 @@ import {
   isScalarType,
 } from 'graphql';
 
-import {isNotEqual, isVoid} from './common/compare';
-import {unionArrays, diffArrays} from '../utils/arrays';
+import {compareLists, isNotEqual, isVoid} from '../utils/compare';
 import {isPrimitive} from '../utils/graphql';
 import {Change} from './changes/change';
 import {
@@ -76,31 +75,10 @@ function diffTypes(
     inNew: GraphQLNamedType;
   }[];
 } {
-  const oldTypeMap = oldSchema.getTypeMap();
-  const newTypeMap = newSchema.getTypeMap();
-  const oldTypenames = Object.keys(oldTypeMap).filter(
-    (name) => !isPrimitive(name),
+  return compareLists(
+    Object.values(oldSchema.getTypeMap()).filter(t => !isPrimitive(t)),
+    Object.values(newSchema.getTypeMap()).filter(t => !isPrimitive(t)),
   );
-  const newTypenames = Object.keys(newTypeMap).filter(
-    (name) => !isPrimitive(name),
-  );
-
-  const added = diffArrays(newTypenames, oldTypenames).map(
-    (name) => newTypeMap[name],
-  );
-  const removed = diffArrays(oldTypenames, newTypenames).map(
-    (name) => oldTypeMap[name],
-  );
-  const common = unionArrays(oldTypenames, newTypenames).map((name) => ({
-    inOld: oldTypeMap[name],
-    inNew: newTypeMap[name],
-  }));
-
-  return {
-    added,
-    removed,
-    common,
-  };
 }
 
 function diffDirectives(
@@ -114,27 +92,7 @@ function diffDirectives(
     inNew: GraphQLDirective;
   }[];
 } {
-  const oldDirectives = oldSchema.getDirectives();
-  const newDirectives = newSchema.getDirectives();
-  const oldNames = oldDirectives.map((d) => d.name);
-  const newNames = newDirectives.map((d) => d.name);
-
-  const added = diffArrays(newNames, oldNames).map((name) =>
-    newDirectives.find((d) => d.name === name),
-  ) as GraphQLDirective[];
-  const removed = diffArrays(oldNames, newNames).map((name) =>
-    oldDirectives.find((d) => d.name === name),
-  ) as GraphQLDirective[];
-  const common = unionArrays(oldNames, newNames).map((name) => ({
-    inOld: oldDirectives.find((d) => d.name === name) as GraphQLDirective,
-    inNew: newDirectives.find((d) => d.name === name) as GraphQLDirective,
-  }));
-
-  return {
-    added,
-    removed,
-    common,
-  };
+  return compareLists(oldSchema.getDirectives(), newSchema.getDirectives());
 }
 
 function changesInSchema(

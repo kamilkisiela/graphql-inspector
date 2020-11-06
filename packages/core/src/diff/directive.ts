@@ -4,7 +4,7 @@ import {
   GraphQLArgument,
 } from 'graphql';
 
-import {isNotEqual} from './common/compare';
+import {isNotEqual} from '../utils/compare';
 import {Change} from './changes/change';
 import {
   directiveDescriptionChanged,
@@ -16,7 +16,7 @@ import {
   directiveArgumentDefaultValueChanged,
   directiveArgumentTypeChanged,
 } from './changes/directive';
-import {diffArrays, unionArrays} from '../utils/arrays';
+import {diffArrays, compareLists} from '../utils/compare';
 
 export function changesInDirective(
   oldDirective: GraphQLDirective,
@@ -28,59 +28,41 @@ export function changesInDirective(
     changes.push(directiveDescriptionChanged(oldDirective, newDirective));
   }
 
+  const locations = {
+    added: diffArrays(newDirective.locations, oldDirective.locations),
+    removed: diffArrays(oldDirective.locations, newDirective.locations),
+  };
+
   // locations added
   changes.push(
-    ...diffArrays(
-      newDirective.locations,
-      oldDirective.locations,
-    ).map((location) =>
+    ...locations.added.map((location) =>
       directiveLocationAdded(newDirective, location as DirectiveLocationEnum),
     ),
   );
 
   // locations removed
   changes.push(
-    ...diffArrays(
-      oldDirective.locations,
-      newDirective.locations,
-    ).map((location) =>
+    ...locations.removed.map((location) =>
       directiveLocationRemoved(oldDirective, location as DirectiveLocationEnum),
     ),
   );
 
-  const oldNames = oldDirective.args.map((a) => a.name);
-  const newNames = newDirective.args.map((a) => a.name);
+  const args = compareLists(oldDirective.args, newDirective.args);
 
   // arguments added
   changes.push(
-    ...diffArrays(newNames, oldNames).map((name) =>
-      directiveArgumentAdded(
-        newDirective,
-        newDirective.args.find((a) => a.name === name) as GraphQLArgument,
-      ),
-    ),
+    ...args.added.map((arg) => directiveArgumentAdded(newDirective, arg)),
   );
-
   // arguments removed
   changes.push(
-    ...diffArrays(oldNames, newNames).map((name) =>
-      directiveArgumentRemoved(
-        oldDirective,
-        oldDirective.args.find((a) => a.name === name) as GraphQLArgument,
-      ),
-    ),
+    ...args.removed.map((arg) => directiveArgumentRemoved(oldDirective, arg)),
   );
 
   // common arguments
-  unionArrays(oldNames, newNames).forEach((name) => {
-    const oldArg = oldDirective.args.find(
-      (a) => a.name === name,
-    ) as GraphQLArgument;
-    const newArg = newDirective.args.find(
-      (a) => a.name === name,
-    ) as GraphQLArgument;
-
-    changes.push(...changesInDirectiveArgument(oldDirective, oldArg, newArg));
+  args.common.forEach((arg) => {
+    changes.push(
+      ...changesInDirectiveArgument(oldDirective, arg.inOld, arg.inNew),
+    );
   });
 
   return changes;

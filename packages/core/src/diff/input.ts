@@ -1,8 +1,8 @@
 import {GraphQLInputObjectType, GraphQLInputField} from 'graphql';
 
-import {isNotEqual, isVoid} from './common/compare';
+import {diffArrays, isNotEqual, isVoid} from '../utils/compare';
 import {Change} from './changes/change';
-import {diffArrays, unionArrays} from '../utils/arrays';
+import {compareLists} from '../utils/compare';
 import {
   inputFieldAdded,
   inputFieldRemoved,
@@ -20,15 +20,11 @@ export function changesInInputObject(
   const changes: Change[] = [];
   const oldFields = oldInput.getFields();
   const newFields = newInput.getFields();
-  const oldNames = Object.keys(oldFields).map((name) => oldFields[name].name);
-  const newNames = Object.keys(newFields).map((name) => newFields[name].name);
 
-  const added = diffArrays(newNames, oldNames).map((name) => newFields[name]);
-  const removed = diffArrays(oldNames, newNames).map((name) => oldFields[name]);
-  const common = unionArrays(oldNames, newNames).map((name) => ({
-    inOld: oldFields[name],
-    inNew: newFields[name],
-  }));
+  const {added, removed, common} = compareLists(
+    Object.values(oldFields),
+    Object.values(newFields),
+  );
 
   common.forEach(({inOld, inNew}) => {
     changes.push(...changesInInputField(oldInput, inOld, inNew));
@@ -76,8 +72,6 @@ function changesInInputField(
   if (isNotEqual(oldField.type.toString(), newField.type.toString())) {
     changes.push(inputFieldTypeChanged(input, oldField, newField));
   }
-
-  // TODO: diff directives
 
   return changes;
 }
