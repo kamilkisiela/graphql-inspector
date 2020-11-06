@@ -53,8 +53,8 @@ export function changesInDirective(
     onRemoved(arg) {
       addChange(directiveArgumentRemoved(oldDirective, arg));
     },
-    onCommon(arg) {
-      changesInDirectiveArgument(oldDirective, arg.inOld, arg.inNew, addChange);
+    onMutual(arg) {
+      changesInDirectiveArgument(oldDirective, arg.oldVersion, arg.newVersion, addChange);
     },
   });
 }

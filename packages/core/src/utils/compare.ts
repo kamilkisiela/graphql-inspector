@@ -46,7 +46,7 @@ export function compareLists<T extends {name: string}>(
   callbacks?: {
     onAdded?(t: T): void;
     onRemoved?(t: T): void;
-    onCommon?(t: {inNew: T; inOld: T}): void;
+    onMutual?(t: {newVersion: T; oldVersion: T}): void;
   },
 ) {
   const oldMap = keyMap(oldList, ({name}) => name);
@@ -54,16 +54,16 @@ export function compareLists<T extends {name: string}>(
 
   const added: T[] = [];
   const removed: T[] = [];
-  const common: Array<{inNew: T; inOld: T}> = [];
+  const mutual: Array<{newVersion: T; oldVersion: T}> = [];
 
   for (const oldItem of oldList) {
     const newItem = newMap[oldItem.name];
     if (newItem === undefined) {
       removed.push(oldItem);
     } else {
-      common.push({
-        inNew: newItem,
-        inOld: oldItem,
+      mutual.push({
+        newVersion: newItem,
+        oldVersion: oldItem,
       });
     }
   }
@@ -81,14 +81,14 @@ export function compareLists<T extends {name: string}>(
     if (callbacks.onRemoved) {
       removed.forEach(callbacks.onRemoved);
     }
-    if (callbacks.onCommon) {
-      common.forEach(callbacks.onCommon);
+    if (callbacks.onMutual) {
+      mutual.forEach(callbacks.onMutual);
     }
   }
 
   return {
     added,
     removed,
-    common,
+    mutual,
   };
 }

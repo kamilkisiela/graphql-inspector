@@ -58,8 +58,8 @@ export function diffSchema(
       onRemoved(type) {
         addChange(typeRemoved(type));
       },
-      onCommon(type) {
-        changesInType(type.inOld, type.inNew, addChange);
+      onMutual(type) {
+        changesInType(type.oldVersion, type.newVersion, addChange);
       },
     },
   );
@@ -71,8 +71,8 @@ export function diffSchema(
     onRemoved(directive) {
       addChange(directiveRemoved(directive));
     },
-    onCommon(directive) {
-      changesInDirective(directive.inOld, directive.inNew, addChange);
+    onMutual(directive) {
+      changesInDirective(directive.oldVersion, directive.newVersion, addChange);
     },
   });
 

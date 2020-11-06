@@ -39,8 +39,8 @@ export function changesInObject(
       onRemoved(f) {
         addChange(fieldRemoved(oldType, f));
       },
-      onCommon(f) {
-        changesInField(oldType, f.inOld, f.inNew, addChange);
+      onMutual(f) {
+        changesInField(oldType, f.oldVersion, f.newVersion, addChange);
       },
     },
   );

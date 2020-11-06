@@ -28,8 +28,8 @@ export function changesInInputObject(
     onRemoved(field) {
       addChange(inputFieldRemoved(oldInput, field));
     },
-    onCommon(field) {
-      changesInInputField(oldInput, field.inOld, field.inNew, addChange);
+    onMutual(field) {
+      changesInInputField(oldInput, field.oldVersion, field.newVersion, addChange);
     },
   });
 }

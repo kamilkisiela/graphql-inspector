@@ -67,8 +67,8 @@ export function changesInField(
     onRemoved(arg) {
       addChange(fieldArgumentRemoved(type, oldField, arg));
     },
-    onCommon(arg) {
-      changesInArgument(type, oldField, arg.inOld, arg.inNew, addChange)
+    onMutual(arg) {
+      changesInArgument(type, oldField, arg.oldVersion, arg.newVersion, addChange)
     }
   })
 }

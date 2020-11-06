@@ -24,9 +24,9 @@ export function changesInEnum(
     onRemoved(value) {
       addChange(enumValueRemoved(oldEnum, value));
     },
-    onCommon(value) {
-      const oldValue = value.inOld;
-      const newValue = value.inNew;
+    onMutual(value) {
+      const oldValue = value.oldVersion;
+      const newValue = value.newVersion;
 
       if (isNotEqual(oldValue.description, newValue.description)) {
         addChange(enumValueDescriptionChanged(newEnum, oldValue, newValue));

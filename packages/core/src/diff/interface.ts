@@ -20,8 +20,8 @@ export function changesInInterface(
       onRemoved(field) {
         addChange(fieldRemoved(oldInterface, field));
       },
-      onCommon(field) {
-        changesInField(oldInterface, field.inOld, field.inNew, addChange);
+      onMutual(field) {
+        changesInField(oldInterface, field.oldVersion, field.newVersion, addChange);
       },
     },
   );
