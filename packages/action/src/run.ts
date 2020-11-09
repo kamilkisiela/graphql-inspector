@@ -174,7 +174,7 @@ export async function run() {
     annotations = [];
   }
 
-  const summary = createSummary(changes, 100);
+  const summary = createSummary(changes, 100, false);
 
   const title =
     conclusion === CheckConclusion.Failure
