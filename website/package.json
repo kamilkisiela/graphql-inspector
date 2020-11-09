@@ -12,7 +12,7 @@
     "@docusaurus/preset-classic": "2.0.0-alpha.66",
     "@graphql-inspector/core": "2.3.0",
     "classnames": "2.2.6",
-    "fetch-ponyfill": "6.1.1",
+    "fetch-ponyfill": "7.0.0",
     "globby": "11.0.1",
     "monaco-editor-webpack-plugin": "2.0.0",
     "react": "17.0.1",
