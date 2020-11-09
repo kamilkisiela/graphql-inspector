@@ -30,7 +30,7 @@ export function filterChangesByLevel(level: CriticalityLevel) {
   return (change: Change) => change.criticality.level === level;
 }
 
-export function createSummary(changes: Change[], summaryLimit: number) {
+export function createSummary(changes: Change[], summaryLimit: number, isLegacyConfig: boolean) {
   const breakingChanges = changes.filter(
     filterChangesByLevel(CriticalityLevel.Breaking),
   );
@@ -48,6 +48,10 @@ export function createSummary(changes: Change[], summaryLimit: number) {
     `Dangerous: ${dangerousChanges.length}`,
     `Safe: ${safeChanges.length}`,
   ];
+
+  if (isLegacyConfig) {
+    summary.push(['', '> Legacy config detected, [please migrate to a new syntax](https://graphql-inspector.com/docs/products/github#full-configuration)', ''].join('\n'))
+  }
 
   if (changes.length > summaryLimit) {
     summary.push(

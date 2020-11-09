@@ -96,20 +96,28 @@ const diffDefault = {
 };
 const notificationsDefault = false;
 
-function normalizeConfig(config: Config): NormalizedConfig {
+function normalizeConfig(
+  config: Config,
+): {
+  kind: 'legacy' | 'single' | 'multiple';
+  config: NormalizedConfig;
+} {
   if (isLegacyConfig(config)) {
     console.log('config type - "legacy"');
     return {
-      [defaultConfigName]: {
-        name: defaultConfigName,
-        schema: config.schema.path,
-        branch: config.schema.ref,
-        endpoint: config.endpoint,
-        notifications: prioritize<Notifications | false>(
-          config.notifications,
-          notificationsDefault,
-        ),
-        diff: prioritize<Diff | false>(config.diff, diffDefault),
+      kind: 'legacy',
+      config: {
+        [defaultConfigName]: {
+          name: defaultConfigName,
+          schema: config.schema.path,
+          branch: config.schema.ref,
+          endpoint: config.endpoint,
+          notifications: prioritize<Notifications | false>(
+            config.notifications,
+            notificationsDefault,
+          ),
+          diff: prioritize<Diff | false>(config.diff, diffDefault),
+        },
       },
     };
   }
@@ -117,16 +125,19 @@ function normalizeConfig(config: Config): NormalizedConfig {
   if (isSingleEnvironmentConfig(config)) {
     console.log('config type - "single"');
     return {
-      [config.branch]: {
-        name: config.branch,
-        schema: config.schema,
-        branch: config.branch,
-        endpoint: config.endpoint,
-        notifications: prioritize<Notifications | false>(
-          config.notifications,
-          notificationsDefault,
-        ),
-        diff: prioritize<Diff | false>(config.diff, diffDefault),
+      kind: 'single',
+      config: {
+        [config.branch]: {
+          name: config.branch,
+          schema: config.schema,
+          branch: config.branch,
+          endpoint: config.endpoint,
+          notifications: prioritize<Notifications | false>(
+            config.notifications,
+            notificationsDefault,
+          ),
+          diff: prioritize<Diff | false>(config.diff, diffDefault),
+        },
       },
     };
   }
@@ -154,7 +165,10 @@ function normalizeConfig(config: Config): NormalizedConfig {
       }
     }
 
-    return normalized;
+    return {
+      kind: 'multiple',
+      config: normalized,
+    };
   }
 
   throw new Error('Invalid configuration');
@@ -179,12 +193,17 @@ function getGlobalConfig(
 
 export function createConfig(
   rawConfig: Config,
+  setConfigKind: (kind: 'legacy' | 'single' | 'multiple') => void,
   branches: string[] = [],
   fallbackBranch = defaultFallbackBranch,
 ): NormalizedEnvironment {
-  const normalizedConfig = normalizeConfig(rawConfig);
+  const {config: normalizedConfig, kind: configKind} = normalizeConfig(
+    rawConfig,
+  );
 
   let config: NormalizedEnvironment | null = null;
+
+  setConfigKind(configKind);
 
   if (isNormalizedLegacyConfig(normalizedConfig)) {
     config = normalizedConfig[defaultConfigName];

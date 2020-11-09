@@ -66,6 +66,7 @@ export async function handleSchemaDiff({
     const branches = pullRequests.map((pr) => pr.base.ref);
     const firstBranch = branches[0];
     const fallbackBranch = firstBranch || before;
+    let isLegacyConfig = false;
 
     logger.info(`fallback branch from Pull Requests: ${firstBranch}`);
     logger.info(`SHA before push: ${before}`);
@@ -73,6 +74,9 @@ export async function handleSchemaDiff({
     // on non-environment related PRs, use a branch from first associated pull request
     const config = createConfig(
       rawConfig as any,
+      (configKind) => {
+        isLegacyConfig = configKind === 'legacy'
+      },
       branches,
       fallbackBranch, // we will probably throw an error when both are not defined
     );
@@ -161,7 +165,7 @@ export async function handleSchemaDiff({
 
     const summaryLimit = config.diff.summaryLimit || 100;
 
-    const summary = createSummary(changes, summaryLimit);
+    const summary = createSummary(changes, summaryLimit, isLegacyConfig);
 
     const approveLabelName =
       config.diff.approveLabel || 'approved-breaking-change';

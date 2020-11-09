@@ -2,6 +2,7 @@
 
 ### vNEXT
 
+- **github**: Detection of a legacy config + note in a summary
 - **github**: Better error message on parsing failure [PR #1777](https://github.com/kamilkisiela/graphql-inspector/pull/1777)
 - **github**: Introduce `summaryLimit` in Diff options [PR #1775](https://github.com/kamilkisiela/graphql-inspector/pull/1775)
 - **action**: Support multiple GitHub Actions, new `name` input [PR #1770](https://github.com/kamilkisiela/graphql-inspector/pull/1770)

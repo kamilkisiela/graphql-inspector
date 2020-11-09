@@ -54,7 +54,11 @@ export async function handleSchemaChangeNotifications({
   }
 
   const branch = ref.replace('refs/heads/', '');
-  const config = createConfig(rawConfig as any, [branch]);
+  const config = createConfig(
+    rawConfig as any,
+    () => {},
+    [branch],
+  );
 
   if (!config.notifications) {
     logger.info(`disabled. Skipping...`);
