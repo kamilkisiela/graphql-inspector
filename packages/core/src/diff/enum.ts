@@ -31,12 +31,10 @@ export function changesInEnum(
       if (isNotEqual(oldValue.description, newValue.description)) {
         addChange(enumValueDescriptionChanged(newEnum, oldValue, newValue));
       }
-  
+
       if (isNotEqual(oldValue.deprecationReason, newValue.deprecationReason)) {
         if (isVoid(oldValue.deprecationReason)) {
-          addChange(
-            enumValueDeprecationReasonAdded(newEnum, oldValue, newValue),
-          );
+          addChange(enumValueDeprecationReasonAdded(newEnum, newValue));
         } else if (isVoid(newValue.deprecationReason)) {
           addChange(
             enumValueDeprecationReasonRemoved(newEnum, oldValue, newValue),
@@ -47,6 +45,20 @@ export function changesInEnum(
           );
         }
       }
+    },
+  });
+}
+
+export function addedInEnum(enumType: GraphQLEnumType, addChange: AddChange) {
+  enumType.getValues().forEach((value) => {
+    addChange(enumValueAdded(enumType, value));
+
+    if (!isVoid(value.description)) {
+      // TODO: addChange(enumValueDescriptionAdded)
+    }
+
+    if (!isVoid(value.deprecationReason)) {
+      addChange(enumValueDeprecationReasonAdded(enumType, value));
     }
   });
 }

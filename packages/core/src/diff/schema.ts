@@ -27,18 +27,23 @@ import {
   typeDescriptionRemoved,
 } from './changes/type';
 import {directiveRemoved, directiveAdded} from './changes/directive';
-import {changesInEnum} from './enum';
-import {changesInUnion} from './union';
-import {changesInInputObject} from './input';
-import {changesInObject} from './object';
-import {changesInInterface} from './interface';
+import {addedInEnum, changesInEnum} from './enum';
+import {addedInUnion, changesInUnion} from './union';
+import {addedInInputObject, changesInInputObject} from './input';
+import {changesInObject, addedInObject} from './object';
+import {changesInInterface, addedInInterface} from './interface';
 import {changesInDirective} from './directive';
 
 export type AddChange = (change: Change) => void;
 
+export interface DiffSchemaOptions {
+  full?: boolean;
+}
+
 export function diffSchema(
   oldSchema: GraphQLSchema,
   newSchema: GraphQLSchema,
+  options?: DiffSchemaOptions,
 ): Change[] {
   const changes: Change[] = [];
 
@@ -54,6 +59,10 @@ export function diffSchema(
     {
       onAdded(type) {
         addChange(typeAdded(type));
+
+        if (options?.full) {
+          addedInType(type, addChange);
+        }
       },
       onRemoved(type) {
         addChange(typeRemoved(type));
@@ -107,6 +116,20 @@ function changesInSchema(
 
   if (isNotEqual(oldRoot.subscription, newRoot.subscription)) {
     addChange(schemaSubscriptionTypeChanged(oldSchema, newSchema));
+  }
+}
+
+function addedInType(type: GraphQLNamedType, addChange: AddChange) {
+  if (isEnumType(type)) {
+    addedInEnum(type, addChange);
+  } else if (isUnionType(type)) {
+    addedInUnion(type, addChange);
+  } else if (isInputObjectType(type)) {
+    addedInInputObject(type, addChange);
+  } else if (isObjectType(type)) {
+    addedInObject(type, addChange);
+  } else if (isInterfaceType(type)) {
+    addedInInterface(type, addChange);
   }
 }
 

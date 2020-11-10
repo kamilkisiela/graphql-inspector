@@ -20,3 +20,12 @@ export function changesInUnion(
     },
   });
 }
+
+export function addedInUnion(
+  unionType: GraphQLUnionType,
+  addChange: AddChange,
+) {
+  unionType
+    .getTypes()
+    .forEach((t) => addChange(unionMemberAdded(unionType, t)));
+}

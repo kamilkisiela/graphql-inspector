@@ -1,8 +1,4 @@
-import {
-  GraphQLField,
-  GraphQLObjectType,
-  GraphQLInterfaceType,
-} from 'graphql';
+import {GraphQLField, GraphQLObjectType, GraphQLInterfaceType} from 'graphql';
 
 import {isNotEqual, isVoid} from '../utils/compare';
 import {
@@ -17,16 +13,17 @@ import {
   fieldTypeChanged,
   fieldArgumentAdded,
   fieldArgumentRemoved,
+  fieldAdded,
 } from './changes/field';
-import {changesInArgument} from './argument';
+import {changesInArgument, addedInArgument} from './argument';
 import {compareLists} from '../utils/compare';
-import { AddChange } from './schema';
+import {AddChange} from './schema';
 
 export function changesInField(
   type: GraphQLObjectType | GraphQLInterfaceType,
   oldField: GraphQLField<any, any>,
   newField: GraphQLField<any, any>,
-  addChange: AddChange
+  addChange: AddChange,
 ) {
   if (isNotEqual(oldField.description, newField.description)) {
     if (isVoid(oldField.description)) {
@@ -68,7 +65,37 @@ export function changesInField(
       addChange(fieldArgumentRemoved(type, oldField, arg));
     },
     onMutual(arg) {
-      changesInArgument(type, oldField, arg.oldVersion, arg.newVersion, addChange)
-    }
-  })
+      changesInArgument(
+        type,
+        oldField,
+        arg.oldVersion,
+        arg.newVersion,
+        addChange,
+      );
+    },
+  });
+}
+
+export function addedInField(
+  type: GraphQLObjectType | GraphQLInterfaceType,
+  field: GraphQLField<any, any>,
+  addChange: AddChange,
+) {
+  addChange(fieldAdded(type, field));
+
+  if (!isVoid(field.description)) {
+    addChange(fieldDescriptionAdded(type, field));
+  }
+
+  if (field.isDeprecated) {
+    addChange(fieldDeprecationAdded(type, field));
+  }
+
+  if (isVoid(field.deprecationReason)) {
+    addChange(fieldDeprecationReasonAdded(type, field));
+  }
+
+  if (field.args?.length) {
+    field.args.forEach((arg) => addedInArgument(type, field, arg, addChange));
+  }
 }

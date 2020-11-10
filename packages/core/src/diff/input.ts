@@ -29,9 +29,23 @@ export function changesInInputObject(
       addChange(inputFieldRemoved(oldInput, field));
     },
     onMutual(field) {
-      changesInInputField(oldInput, field.oldVersion, field.newVersion, addChange);
+      changesInInputField(
+        oldInput,
+        field.oldVersion,
+        field.newVersion,
+        addChange,
+      );
     },
   });
+}
+
+export function addedInInputObject(
+  inputObject: GraphQLInputObjectType,
+  addChange: AddChange,
+) {
+  const fields = Object.values(inputObject.getFields());
+
+  fields.forEach((field) => addedInInputField(inputObject, field, addChange));
 }
 
 function changesInInputField(
@@ -68,5 +82,21 @@ function changesInInputField(
 
   if (isNotEqual(oldField.type.toString(), newField.type.toString())) {
     addChange(inputFieldTypeChanged(input, oldField, newField));
+  }
+}
+
+function addedInInputField(
+  inputObject: GraphQLInputObjectType,
+  field: GraphQLInputField,
+  addChange: AddChange,
+) {
+  addChange(inputFieldAdded(inputObject, field));
+
+  if (!isVoid(field.description)) {
+    addChange(inputFieldDescriptionAdded(inputObject, field));
+  }
+
+  if (!isVoid(field.defaultValue)) {
+    // TODO: addChange(inputFieldDefaultValueAdded(input, field))
   }
 }

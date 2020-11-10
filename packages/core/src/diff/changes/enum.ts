@@ -67,16 +67,15 @@ export function enumValueDeprecationReasonChanged(
 
 export function enumValueDeprecationReasonAdded(
   newEnum: GraphQLEnumType,
-  oldValue: GraphQLEnumValue,
-  newValue: GraphQLEnumValue,
+  value: GraphQLEnumValue,
 ): Change {
   return {
     criticality: {
       level: CriticalityLevel.NonBreaking,
     },
     type: ChangeType.EnumValueDeprecationReasonAdded,
-    message: `Enum value '${newEnum.name}.${newValue.name}' was deprecated with reason '${newValue.deprecationReason}'`,
-    path: [newEnum.name, oldValue.name].join('.'),
+    message: `Enum value '${newEnum.name}.${value.name}' was deprecated with reason '${value.deprecationReason}'`,
+    path: [newEnum.name, value.name].join('.'),
   };
 }
 
