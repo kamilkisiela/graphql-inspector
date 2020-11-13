@@ -34,10 +34,10 @@
             <tspan x="214" y="357.6" fill="#4B5BFF" letter-spacing=".442">id:</tspan>
             <tspan x="233.209" y="357.6" fill="#4A4A4A" letter-spacing=".442"> </tspan>
             <tspan x="238.444" y="357.6" fill="#F5A623" letter-spacing=".442">ID!</tspan>
-            <tspan x="214" y="386.2" fill="#4B5FF7" letter-spacing=".442">name:</tspan>
+            <tspan x="214" y="386.2" fill="#354c87" letter-spacing=".442">name:</tspan>
             <tspan x="263.57" y="386.2" fill="#4A4A4A" letter-spacing=".442"> </tspan>
             <tspan x="268.805" y="386.2" fill="#F5A623" letter-spacing=".442">String</tspan>
-            <tspan x="214" y="414.8" fill="#4B5FF7" letter-spacing=".442">age:</tspan>
+            <tspan x="214" y="414.8" fill="#354c87" letter-spacing=".442">age:</tspan>
             <tspan x="248.831" y="414.8" fill="#4A4A4A" letter-spacing=".442"> </tspan>
             <tspan x="254.067" y="414.8" fill="#F5A623" letter-spacing=".442">Int</tspan>
             <tspan x="204" y="443.4" fill="#4A4A4A" letter-spacing=".442">}</tspan>
@@ -60,7 +60,7 @@
         </g>
         <path fill="#FFF"
             d="M445.802 497.686l1.38 18.084s9.517-14.513 10.944-18.084c1.427-3.569 4.045-12.848 4.283-13.56.237-.715 6.13-3.828 12.032-1.772 1.588.553.338 5.793.1 5.821-.24.032 2.573-.172 5.584.291 1.034.16 1.098 1.832-3.262 2.944-1.94.493-4.5 2.29-5.73 3.873-2.082 2.684-5.165 6.233-5.87 7.875-.612 1.434-4.572 21.344-15.506 32.186-3.096 3.074-8.324 2.097-10.314-1.784-2.68-5.223-5.904-14.377-7.618-29.775l13.977-6.1z" />
-        <path fill="#4b5ff7"
+        <path fill="#354c87"
             d="M389.923 459.857s-19.326 9.209-22.182 11.827c-2.854 2.616-7.65 34.664-7.65 34.664 4.045 4.232 9.515 7.54 15.993 6.959l1.65-8.554s2.38 18.322 0 25.46c-2.379 7.139-5.733 25.355-5.733 25.355s22.482 12.369 52.637.952c0 0 5.202-49.861 3.299-61.52 1.96 8.358 2.333 11.525 3.888 18.14 5.227.8 12.197-3.174 15.927-9.514 0 0-5.963-34.286-14.105-39.566-6.365-4.13-26.648-8.318-26.648-8.318l-17.076 4.115z" />
         <path fill="#FFF"
             d="M414.182 431.013c0 3.73-3.073 7.875-4.42 11.218-2.654 6.596-7.488 11.58-12.784 11.58-3.568 0-7.063-2.407-9.836-6.063-3.426-4.515-3.74-11.144-3.74-17.273 0-11.087 3.93-18.54 13.778-18.54 7.98 0 17.002 4.937 17.002 19.078" />
@@ -91,13 +91,13 @@
                 <tspan x="40" y="41.6" fill="#4B5BFF" letter-spacing=".442">id:</tspan>
                 <tspan x="59.209" y="41.6" fill="#4A4A4A" letter-spacing=".442"> </tspan>
                 <tspan x="64.444" y="41.6" fill="#F5A623" letter-spacing=".442">ID!</tspan>
-                <tspan x="40" y="70.2" fill="#4B5FF7" letter-spacing=".442">name:</tspan>
+                <tspan x="40" y="70.2" fill="#354c87" letter-spacing=".442">name:</tspan>
                 <tspan x="79.57" y="70.2" fill="#4A4A4A" letter-spacing=".442"> </tspan>
                 <tspan x="94.805" y="70.2" fill="#F5A623" letter-spacing=".442">String</tspan>
-                <tspan x="40" y="98.8" fill="#4B5FF7" letter-spacing=".442">age:</tspan>
+                <tspan x="40" y="98.8" fill="#354c87" letter-spacing=".442">age:</tspan>
                 <tspan x="64.831" y="98.8" fill="#4A4A4A" letter-spacing=".442"> </tspan>
                 <tspan x="80.067" y="98.8" fill="#F5A623" letter-spacing=".442">String</tspan>
-                <tspan x="40" y="127.4" fill="#4B5FF7" letter-spacing=".442">title:</tspan>
+                <tspan x="40" y="127.4" fill="#354c87" letter-spacing=".442">title:</tspan>
                 <tspan x="85.357" y="127.4" fill="#F5A623" letter-spacing=".442"> String</tspan>
                 <tspan x="30" y="156" fill="#4A4A4A" letter-spacing=".442">}</tspan>
             </text>
