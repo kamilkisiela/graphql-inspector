@@ -23,6 +23,7 @@ It supports .graphql, .gql and .json extensions.
 - `-t, --token <s>` - an access token
 - `-h, --header <s>` - set http header (`--header 'Auth: Basic 123')
 - `--federation` - Support Apollo Federation directives (default: _false_)
+- `--aws` - Support AWS Appsync directives and scalar types (default: _false_)
 
 **Output**
 
