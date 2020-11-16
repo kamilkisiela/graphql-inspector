@@ -17,7 +17,6 @@ import {
   transformSchemaWithApollo,
   transformDocumentWithApollo,
 } from '../utils/apollo';
-import {transformSchemaWithAWS} from '../utils/aws';
 
 export interface InvalidDocument {
   source: Source;
@@ -47,11 +46,6 @@ export interface ValidateOptions {
    */
   apollo?: boolean;
   /**
-   * Supports AWS Appsync scalar types
-   * @default false
-   */
-  aws?: boolean;
-  /**
    * Fails when operation depth exceeds maximum depth
    * @default false
    */
@@ -68,7 +62,6 @@ export function validate(
     strictFragments: true,
     keepClientFields: false,
     apollo: false,
-    aws: false,
     ...options,
   };
   const invalidDocuments: InvalidDocument[] = [];
@@ -127,9 +120,6 @@ export function validate(
       let transformedSchema = config.apollo
         ? transformSchemaWithApollo(schema)
         : schema;
-      transformedSchema = config.aws
-        ? transformSchemaWithAWS(transformedSchema)
-        : transformedSchema;
 
       const transformedDoc = config.apollo
         ? transformDocumentWithApollo(merged, {
