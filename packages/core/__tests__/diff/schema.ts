@@ -822,29 +822,3 @@ test('should work with with missing directive definitions', () => {
 
   expect(changes).toHaveLength(1);
 });
-
-test('AWS types validation', () => {
-  const schemaA = buildSchema(/* GraphQL */ `
-    type Date {
-      date: AWSDate!
-    }
-
-    type Query {
-      fieldA: Date!
-    }
-  `);
-
-  const schemaB = buildSchema(/* GraphQL */ `
-    type Date {
-      date: AWSDate!
-    }
-
-    type Query {
-      fieldA: Date!
-    }
-  `);
-
-  const changes = diff(schemaA, schemaB);
-
-  expect(changes.length).toEqual(0);
-});
