@@ -60,7 +60,7 @@ export default defineCommand<
             default: false,
           },
           aws: {
-            describe: 'Supports AWS Appsync scalar types',
+            describe: 'Supports AWS Appsync directives and scalar types',
             type: 'boolean',
             default: false,
           },

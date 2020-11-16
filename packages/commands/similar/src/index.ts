@@ -127,6 +127,7 @@ export default createCommand<
       const type = args.name;
       const threshold = args.threshold;
       const apolloFederation = args.federation || false;
+      const aws = args.aws || false;
 
       const schema = await loaders.loadSchema(
         args.schema,
@@ -135,6 +136,7 @@ export default createCommand<
           token,
         },
         apolloFederation,
+        aws,
       );
 
       return handler({schema, writePath, type, threshold});

@@ -174,6 +174,7 @@ export default createCommand<
           token,
         },
         apolloFederation,
+        aws,
       );
       const documents = await loaders.loadDocuments(args.documents);
 

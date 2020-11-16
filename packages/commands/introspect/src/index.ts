@@ -85,6 +85,7 @@ export default createCommand<
       const output = args.write!;
       const comments = args.comments || false;
       const apolloFederation = args.federation || false;
+      const aws = args.aws || false;
 
       const schema = await loaders.loadSchema(
         args.schema,
@@ -93,6 +94,7 @@ export default createCommand<
           headers,
         },
         apolloFederation,
+        aws,
       );
 
       return handler({schema, output, comments});
