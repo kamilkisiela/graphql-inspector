@@ -26,6 +26,7 @@ Run the following command:
 - `-d, --deprecated` - Fail on deprecated usage (default: _false_)
 - `--noStrictFragments` - Do not fail on duplicated fragment names (default: _false_)
 - `--apollo` - Support Apollo directives (@client and @connection) (default: _false_)
+- `--aws` - Support AWS Appsync scalar types (default: _false_)
 - `--keepClientFields <b>` - Keeps the fields with @client, but removes @client directive from them - works only with combination of `--apollo` (default: _false_)
 - `--federation` - Support Apollo Federation directives (default: _false_)
 - `--maxDepth <n>` - Fail when operation depth exceeds maximum depth (default: _false_)

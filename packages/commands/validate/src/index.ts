@@ -20,6 +20,7 @@ export function handler({
   strictFragments,
   maxDepth,
   apollo,
+  aws,
   keepClientFields,
   failOnDeprecated,
 }: {
@@ -28,6 +29,7 @@ export function handler({
   failOnDeprecated: boolean;
   strictFragments: boolean;
   apollo: boolean;
+  aws: boolean;
   keepClientFields: boolean;
   maxDepth?: number;
 }) {
@@ -38,6 +40,7 @@ export function handler({
       strictFragments,
       maxDepth,
       apollo,
+      aws,
       keepClientFields,
     },
   );
@@ -98,6 +101,7 @@ export default createCommand<
     deprecated: boolean;
     noStrictFragments: boolean;
     apollo: boolean;
+    aws: boolean;
     keepClientFields: boolean;
     maxDepth?: number;
   } & GlobalArgs
@@ -140,6 +144,11 @@ export default createCommand<
             type: 'boolean',
             default: false,
           },
+          aws: {
+            describe: 'Supports AWS Appsync scalar types',
+            type: 'boolean',
+            default: false,
+          },
           keepClientFields: {
             describe:
               'Keeps the fields with @client, but removes @client directive from them',
@@ -151,6 +160,7 @@ export default createCommand<
     async handler(args) {
       const {headers, token} = parseGlobalArgs(args);
       const apollo = args.apollo || false;
+      const aws = args.aws || false;
       const apolloFederation = args.federation || false;
       const maxDepth = args.maxDepth || undefined;
       const strictFragments = !args.noStrictFragments;
@@ -171,6 +181,7 @@ export default createCommand<
         schema,
         documents,
         apollo,
+        aws,
         maxDepth,
         strictFragments,
         keepClientFields,
