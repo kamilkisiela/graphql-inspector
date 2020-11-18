@@ -151,6 +151,7 @@ export default createCommand<
     async handler(args) {
       const {headers, token} = parseGlobalArgs(args);
       const apollo = args.apollo || false;
+      const aws = args.aws || false;
       const apolloFederation = args.federation || false;
       const maxDepth = args.maxDepth || undefined;
       const strictFragments = !args.noStrictFragments;
@@ -164,6 +165,7 @@ export default createCommand<
           token,
         },
         apolloFederation,
+        aws,
       );
       const documents = await loaders.loadDocuments(args.documents);
 
