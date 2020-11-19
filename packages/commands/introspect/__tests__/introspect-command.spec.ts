@@ -110,7 +110,7 @@ describe('introspect', () => {
     });
     await mockCommand(
       introspect,
-      'introspect https://example.com/graphql -w schema.graphql --useGet',
+      'introspect https://example.com/graphql -w schema.graphql --method GET',
     );
     await sleepFor(500);
 

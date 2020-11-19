@@ -126,7 +126,7 @@ export default createCommand<
         const newSchemaPointer = args.newSchema;
         const apolloFederation = args.federation || false;
         const aws = args.aws || false;
-        const useGet = args.useGet || false;
+        const method = args.method?.toUpperCase() || 'POST';
         const {headers, token} = parseGlobalArgs(args);
 
         const oldSchema = await loaders.loadSchema(
@@ -134,7 +134,7 @@ export default createCommand<
           {
             headers,
             token,
-            ...(useGet ? {method: 'GET', useGETForQueries: true} : {}),
+            method,
           },
           apolloFederation,
           aws,
@@ -144,7 +144,7 @@ export default createCommand<
           {
             headers,
             token,
-            ...(useGet ? {method: 'GET', useGETForQueries: true} : {}),
+            method,
           },
           apolloFederation,
           aws,
