@@ -128,12 +128,14 @@ export default createCommand<
       const threshold = args.threshold;
       const apolloFederation = args.federation || false;
       const aws = args.aws || false;
+      const useGet = args.useGet || false;
 
       const schema = await loaders.loadSchema(
         args.schema,
         {
           headers,
           token,
+          ...(useGet ? {method: 'GET', useGETForQueries: true} : {}),
         },
         apolloFederation,
         aws,

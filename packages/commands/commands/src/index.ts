@@ -42,6 +42,7 @@ export interface GlobalArgs {
   header?: string[];
   federation?: boolean;
   aws?: boolean;
+  useGet?: boolean;
 }
 
 export function parseGlobalArgs(args: GlobalArgs) {
