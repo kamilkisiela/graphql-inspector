@@ -5,15 +5,15 @@ export function mockGraphQLServer({
   schema,
   host,
   path,
-  useGet = false,
+  method = 'POST',
 }: {
   schema: GraphQLSchema;
   host: string;
   path: string;
-  useGet?: boolean;
+  method?: 'GET' | 'POST';
 }) {
   const scope = nock(host);
-  if (useGet) {
+  if (method === 'GET') {
     scope
       .get((path) => path.startsWith(path))
       .reply(async (unformattedQuery, _: any) => {

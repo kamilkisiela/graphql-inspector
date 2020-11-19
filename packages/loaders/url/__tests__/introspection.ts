@@ -68,7 +68,7 @@ test('use GET method', async () => {
     schema,
     host: 'http://localhost',
     path: '/graphql',
-    useGet: true,
+    method: 'GET',
   });
 
   const introspectedSchema = await loader.load('http://localhost/graphql', {
