@@ -153,7 +153,7 @@ export default createCommand<
       const apollo = args.apollo || false;
       const aws = args.aws || false;
       const apolloFederation = args.federation || false;
-      const useGet = args.useGet || false;
+      const method = args.method?.toUpperCase() || 'POST';
       const maxDepth = args.maxDepth || undefined;
       const strictFragments = !args.noStrictFragments;
       const keepClientFields = args.keepClientFields || false;
@@ -164,7 +164,7 @@ export default createCommand<
         {
           headers,
           token,
-          ...(useGet ? {method: 'GET', useGETForQueries: true} : {}),
+          method,
         },
         apolloFederation,
         aws,
