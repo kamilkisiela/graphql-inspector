@@ -82,19 +82,48 @@ describe('introspect', () => {
       host: 'https://example.com',
       path: '/graphql',
     });
-    await mockCommand(introspect, 'introspect https://example.com/graphql -w schema.graphql');
+    await mockCommand(
+      introspect,
+      'introspect https://example.com/graphql -w schema.graphql',
+    );
     await sleepFor(500);
 
     done();
     expect(existsSync('schema.graphql')).toBe(true);
 
     const printed = readFileSync('schema.graphql', {
-      encoding: 'utf-8'
+      encoding: 'utf-8',
     });
     unlinkSync('schema.graphql');
-    
+
     const builtSchema = buildSchema(printed);
-    
+
+    expect(builtSchema.getQueryType().getFields()).toHaveProperty('post');
+  });
+
+  test('saved to graphql files using url-loader by GET method', async () => {
+    const done = mockGraphQLServer({
+      schema,
+      host: 'https://example.com',
+      path: '/graphql',
+      method: 'GET',
+    });
+    await mockCommand(
+      introspect,
+      'introspect https://example.com/graphql -w schema.graphql --useGet',
+    );
+    await sleepFor(500);
+
+    done();
+    expect(existsSync('schema.graphql')).toBe(true);
+
+    const printed = readFileSync('schema.graphql', {
+      encoding: 'utf-8',
+    });
+    unlinkSync('schema.graphql');
+
+    const builtSchema = buildSchema(printed);
+
     expect(builtSchema.getQueryType().getFields()).toHaveProperty('post');
   });
 });
