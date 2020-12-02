@@ -30,7 +30,7 @@
     "@graphql-inspector/config": "0.0.0-PLACEHOLDER",
     "@graphql-inspector/loaders": "0.0.0-PLACEHOLDER",
     "graphql": "^0.13.0 || ^14.0.0 || ^15.0.0",
-    "yargs": "16.1.0"
+    "yargs": "16.1.1"
   },
   "dependencies": {
     "tslib": "^2.0.0"

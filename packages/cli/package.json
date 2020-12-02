@@ -67,6 +67,6 @@
     "@graphql-inspector/url-loader": "0.0.0-PLACEHOLDER",
     "@graphql-inspector/validate-command": "0.0.0-PLACEHOLDER",
     "tslib": "^2.0.0",
-    "yargs": "16.1.0"
+    "yargs": "16.1.1"
   }
 }
