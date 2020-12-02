@@ -67,7 +67,7 @@ Now, when you push your changes you would see the following:
 
 > Remember, you can use any command the CLI offers.
 
-## Recommmended worflow
+## Recommmended workflow
 
 We recommend to automate the workflow and use `husky` to run [`$ graphql-inspector introspect`](../essentials/introspect.md).
 
