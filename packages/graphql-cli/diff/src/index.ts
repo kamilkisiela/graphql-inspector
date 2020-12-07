@@ -11,6 +11,7 @@ import {GraphQLProjectConfig} from 'graphql-config';
 
 interface ExtensionConfig {
   baseSchema: string;
+  rule: string[];
 }
 
 export default defineCommand<
@@ -78,6 +79,8 @@ export default defineCommand<
       let baseSchema: GraphQLSchema;
       let newSchema: GraphQLSchema;
 
+      const project = config.getProject(args.source);
+
       if (!args.target) {
         // Case 1: <no args>
         //    Base schema - `diff` extension
@@ -85,8 +88,6 @@ export default defineCommand<
         // Case 2: <source>
         //    Base schema - `diff` extension
         //    New schema - named project
-
-        const project = config.getProject(args.source);
 
         baseSchema = await resolveBaseSchema(project);
         newSchema = await project.getSchema();
@@ -113,10 +114,23 @@ export default defineCommand<
             });
       }
 
+      const rules = resolveRules(project);
+
+      function resolveRules(project: GraphQLProjectConfig): (string | number)[] | undefined {
+        const diffConfig = project.extension<ExtensionConfig>('diff');
+
+        // prefer cli over graphql config?
+        if (args.rule) {
+          return args.rule;
+        } else if (diffConfig.rule) {
+          return diffConfig.rule
+        }
+      }
+
       return handler({
         oldSchema: baseSchema,
         newSchema,
-        rules: args.rule,
+        rules,
         onComplete: args.onComplete,
       });
     },
