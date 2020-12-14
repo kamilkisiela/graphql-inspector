@@ -64,7 +64,7 @@ module.exports = (req, res) => {
 };
 ```
 
-There's so much freedom here. Because you know which commit or a pull request triggered the cehck, you're able to decide if submitted changes should be rejected or accepted by fetching informations from GitHub API or your internal APIs.
+There's so much freedom here. Because you know which commit or a pull request triggered the check, you're able to decide if submitted changes should be rejected or accepted by fetching informations from GitHub API or your internal APIs.
 
 ## Payload and Response structrues
 
