@@ -1,4 +1,4 @@
-import {isObjectType, isInterfaceType} from 'graphql';
+import {isObjectType, isInterfaceType, isEnumType} from 'graphql';
 
 import {CriticalityLevel, ChangeType} from './../changes/change';
 import {Rule} from './types';
@@ -21,6 +21,29 @@ export const suppressRemovalOfDeprecatedField: Rule = ({
         const field = type.getFields()[fieldName];
 
         if (field.isDeprecated) {
+          return {
+            ...change,
+            criticality: {
+              ...change.criticality,
+              level: CriticalityLevel.Dangerous,
+            },
+          };
+        }
+      }
+    }
+
+    if (
+      change.type === ChangeType.EnumValueRemoved &&
+      change.criticality.level === CriticalityLevel.Breaking &&
+      change.path
+    ) {
+      const [enumName, enumItem] = parsePath(change.path);
+      const type = oldSchema.getType(enumName);
+
+      if (isEnumType(type)) {
+        const item = type.getValue(enumItem);
+
+        if (item && item.isDeprecated) {
           return {
             ...change,
             criticality: {
