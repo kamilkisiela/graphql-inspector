@@ -116,6 +116,23 @@ export function findDeprecatedUsages(
   visit(
     ast,
     visitWithTypeInfo(typeInfo, {
+      Argument(node) {
+        const argument = typeInfo.getArgument();
+        if (argument) {
+        const reason = argument.deprecationReason;
+        if (reason) {
+          const fieldDef = typeInfo.getFieldDef();
+          if (fieldDef) {
+            errors.push(
+              new GraphQLError(
+                `The argument '${argument?.name}' of '${fieldDef.name}' is deprecated. ${reason}`,
+                [node],
+              ),
+            );
+          }
+        }
+        }
+      },
       Field(node) {
         const fieldDef = typeInfo.getFieldDef();
         if (fieldDef && fieldDef.isDeprecated) {
