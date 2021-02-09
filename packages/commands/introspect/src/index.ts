@@ -7,12 +7,12 @@ import {
 import {Logger} from '@graphql-inspector/logger';
 import {writeFileSync} from 'fs';
 import {resolve, extname} from 'path';
-import {introspectionFromSchema, printSchema, GraphQLSchema} from 'graphql';
+import {introspectionFromSchema, lexicographicSortSchema, printSchema, GraphQLSchema} from 'graphql';
 
 export {CommandFactory};
 
 export function handler({
-  schema,
+  schema: unsortedSchema,
   output,
   comments,
 }: {
@@ -20,6 +20,7 @@ export function handler({
   output: string;
   comments: boolean;
 }) {
+  const schema = lexicographicSortSchema(unsortedSchema);
   const introspection = introspectionFromSchema(schema);
   const filepath = resolve(process.cwd(), output);
   let content: string;
