@@ -109,7 +109,6 @@ export function isForIntrospection(type: GraphQLNamedType | string): boolean {
 export function findDeprecatedUsages(
   schema: GraphQLSchema,
   ast: DocumentNode,
-  isArgumentDeprecatedBasedOnDescription = (_description: string) => false,
 ): Array<GraphQLError> {
   const errors: GraphQLError[] = [];
   const typeInfo = new TypeInfo(schema);
@@ -119,23 +118,19 @@ export function findDeprecatedUsages(
     visitWithTypeInfo(typeInfo, {
       Argument(node) {
         const argument = typeInfo.getArgument();
-        const customDeprecated =
-          argument &&
-          argument.description &&
-          isArgumentDeprecatedBasedOnDescription(argument.description);
-        if (customDeprecated) {
+        if (argument) {
+        const reason = argument.deprecationReason;
+        if (reason) {
           const fieldDef = typeInfo.getFieldDef();
           if (fieldDef) {
-            const reason = argument?.description;
             errors.push(
               new GraphQLError(
-                `The argument '${argument?.name}' of '${
-                  fieldDef.name
-                }' is deprecated.${reason ? ' ' + reason : ''}`,
+                `The argument '${argument?.name}' of '${fieldDef.name}' is deprecated. ${reason}`,
                 [node],
               ),
             );
           }
+        }
         }
       },
       Field(node) {

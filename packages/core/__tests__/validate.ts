@@ -369,7 +369,7 @@ describe('validate', () => {
     expect(results.length).toEqual(0);
   });
 
-  test('custom deprecated annotation', () => {
+  test('deprecated notice for query arguments', () => {
     const schema = buildSchema(/* GraphQL */ `
       type Post {
         id: ID
@@ -389,10 +389,7 @@ describe('validate', () => {
       type Query {
         findPost(
           searchQuery: PostQuery
-          """
-          Deprecated: Please use 'searchQuery' instead.
-          """
-          query: LegacyPostQuery
+          query: LegacyPostQuery @deprecated(reason: "Please use 'searchQuery' instead.")
         ): Post
       }
 
@@ -409,10 +406,7 @@ describe('validate', () => {
       }
     `);
 
-    const results = validate(schema, [new Source(print(doc))], {
-      isArgumentDeprecatedBasedOnDescription: (description) =>
-        !!description.match(/deprecated/i),
-    });
+    const results = validate(schema, [new Source(print(doc))]);
 
     expect(results.length).toEqual(1);
     expect(results[0].errors.length).toEqual(0);
@@ -420,7 +414,7 @@ describe('validate', () => {
 
     const deprecated = results[0].deprecated[0];
     expect(deprecated.message).toMatch(
-      `The argument 'query' of 'findPost' is deprecated. Deprecated: Please use 'searchQuery' instead.`,
+      `The argument 'query' of 'findPost' is deprecated. Please use 'searchQuery' instead.`,
     );
   });
 });

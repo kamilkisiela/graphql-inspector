@@ -36,13 +36,6 @@ export interface ValidateOptions {
    */
   strictDeprecated?: boolean;
   /**
-   * Function to detect deprecated argument usage.
-   * The function will receive description of the argument
-   * and must return `true` if that argument usage should be considered as "deprecated"
-   * @default undefined
-   */
-  isArgumentDeprecatedBasedOnDescription?: (description: string) => boolean;
-  /**
    * Works only with combination of `apollo`
    * @default false
    */
@@ -154,11 +147,7 @@ export function validate(
       }
 
       const deprecated = config.strictDeprecated
-        ? findDeprecatedUsages(
-            transformedSchema,
-            parse(doc.source.body),
-            config.isArgumentDeprecatedBasedOnDescription,
-          )
+        ? findDeprecatedUsages(transformedSchema, parse(doc.source.body))
         : [];
       const duplicatedFragments = config.strictFragments
         ? findDuplicatedFragments(fragmentNames)
