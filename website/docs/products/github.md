@@ -71,7 +71,9 @@ In some cases you want to get a summary of changes but no annotations on a schem
 
 ### Detection of changes
 
-By default, GraphQL Inspector fails the Pull Request when it detects some breaking changes. To force a successful check just set `failOnBreaking` to `false`.
+By default, GraphQL Inspector fails the Pull Request when it detects some breaking changes. 
+
+To force a successful check just set `failOnBreaking` to `false` or apply the [`approved-breaking-change` label](#approved-breaking-change-label).
 
 ### Using GraphQL Endpoint
 
@@ -87,6 +89,29 @@ Learn how to [remotely control detected changes and accept/reject Pull Requests]
 
 ## Other
 
+### Approved Breaking Change Label
+
+Label to mark Pull Request introducing breaking changes as safe and expected
+
+_('approved-breaking-change' by default)_
+
+You can customize the label's name in `diff.approveLabel` option (see [Full configuration](#full-configuration) below)
+
+### Limit summary length
+
+Length of a summary of a CI check is limited by GitHub API. This is why we decided to show only a list of 100 changes.
+
+_('100' by default)_
+
+You can adjust the limit as you wish using `diff.summaryLimit` option (see [Full configuration](#full-configuration) below)
+
+### Experimental
+
+**`experimental_merge`**
+_(disabled by default)_
+Merge Pull Request's branch with the target branch to get the schema.
+Helps to get the correct state of schema when Pull Request is behind the target branch.
+
 ### Full configuration
 
 ```yaml
@@ -101,6 +126,12 @@ diff:
   failOnBreaking: true
   # Intercept list of detected changes and decide whether or not to accept a Pull Request
   intercept: '<url>'
+  # Merge Pull Request's branch with the target branch to get the schema (disabled by default)
+  experimental_merge: false
+  # Label to mark Pull Request introducing breaking changes as safe and expected ('approved-breaking-change' by default)
+  approveLabel: 'approved-breaking-change'
+  # Limit a list of changes in summary to max 150
+  summaryLimit: 150
 
 # Notifications (disabled by default)
 notifications:

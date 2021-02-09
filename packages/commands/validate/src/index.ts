@@ -151,15 +151,24 @@ export default createCommand<
     async handler(args) {
       const {headers, token} = parseGlobalArgs(args);
       const apollo = args.apollo || false;
+      const aws = args.aws || false;
+      const apolloFederation = args.federation || false;
+      const method = args.method?.toUpperCase() || 'POST';
       const maxDepth = args.maxDepth || undefined;
       const strictFragments = !args.noStrictFragments;
       const keepClientFields = args.keepClientFields || false;
       const failOnDeprecated = args.deprecated;
 
-      const schema = await loaders.loadSchema(args.schema, {
-        headers,
-        token,
-      });
+      const schema = await loaders.loadSchema(
+        args.schema,
+        {
+          headers,
+          token,
+          method,
+        },
+        apolloFederation,
+        aws,
+      );
       const documents = await loaders.loadDocuments(args.documents);
 
       return handler({

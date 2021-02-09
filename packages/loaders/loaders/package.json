@@ -28,7 +28,7 @@
   },
   "peerDependencies": {
     "@graphql-inspector/config": "0.0.0-PLACEHOLDER",
-    "@graphql-tools/utils": "^6.0.0",
+    "@graphql-tools/utils": "^6.0.0 || ^7.0.0",
     "graphql": "^0.13.0 || ^14.0.0 || ^15.0.0"
   },
   "dependencies": {

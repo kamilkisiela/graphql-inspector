@@ -40,4 +40,5 @@ export interface PullRequest {
   url: string;
   id: number;
   number: number;
+  labels?: Array<{name: string}>;
 }

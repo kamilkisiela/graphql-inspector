@@ -28,9 +28,9 @@
     "graphql": "^0.13.0 || ^14.0.0 || ^15.0.0"
   },
   "dependencies": {
+    "@graphql-cli/common": "4.1.0",
+    "@graphql-cli/loaders": "4.1.0",
     "@graphql-inspector/similar-command": "0.0.0-PLACEHOLDER",
-    "@graphql-cli/common": "4.0.0",
-    "@graphql-cli/loaders": "4.0.0",
     "tslib": "^2.0.0"
   },
   "scripts": {

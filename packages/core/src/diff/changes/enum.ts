@@ -59,10 +59,38 @@ export function enumValueDeprecationReasonChanged(
     criticality: {
       level: CriticalityLevel.NonBreaking,
     },
-    type: ChangeType.EnumValueDescriptionChanged,
-    message: oldValue.deprecationReason
-      ? `Enum value '${newEnum.name}.${newValue.name}' deprecation reason changed from '${oldValue.deprecationReason}' to '${newValue.deprecationReason}'`
-      : `Enum value '${newEnum.name}.${newValue.name}' was deprecated with reason '${newValue.deprecationReason}'`,
+    type: ChangeType.EnumValueDeprecationReasonChanged,
+    message: `Enum value '${newEnum.name}.${newValue.name}' deprecation reason changed from '${oldValue.deprecationReason}' to '${newValue.deprecationReason}'`,
+    path: [newEnum.name, oldValue.name].join('.'),
+  };
+}
+
+export function enumValueDeprecationReasonAdded(
+  newEnum: GraphQLEnumType,
+  oldValue: GraphQLEnumValue,
+  newValue: GraphQLEnumValue,
+): Change {
+  return {
+    criticality: {
+      level: CriticalityLevel.NonBreaking,
+    },
+    type: ChangeType.EnumValueDeprecationReasonAdded,
+    message: `Enum value '${newEnum.name}.${newValue.name}' was deprecated with reason '${newValue.deprecationReason}'`,
+    path: [newEnum.name, oldValue.name].join('.'),
+  };
+}
+
+export function enumValueDeprecationReasonRemoved(
+  newEnum: GraphQLEnumType,
+  oldValue: GraphQLEnumValue,
+  newValue: GraphQLEnumValue,
+): Change {
+  return {
+    criticality: {
+      level: CriticalityLevel.NonBreaking,
+    },
+    type: ChangeType.EnumValueDeprecationReasonRemoved,
+    message: `Deprecation reason was removed from enum value '${newEnum.name}.${newValue.name}'`,
     path: [newEnum.name, oldValue.name].join('.'),
   };
 }

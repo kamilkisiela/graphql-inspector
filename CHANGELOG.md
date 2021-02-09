@@ -2,6 +2,24 @@
 
 ### vNEXT
 
+- **cli**: Support GET method in URL loaders [#1797](https://github.com/kamilkisiela/graphql-inspector/pull/1797) [#1796](https://github.com/kamilkisiela/graphql-inspector/pull/1796)
+- **cli**: Support AWS types [#1793](https://github.com/kamilkisiela/graphql-inspector/pull/1793)
+- **github**: Detection of a legacy config + note in a summary
+- **github**: Better error message on parsing failure [PR #1777](https://github.com/kamilkisiela/graphql-inspector/pull/1777)
+- **github**: Introduce `summaryLimit` in Diff options [PR #1775](https://github.com/kamilkisiela/graphql-inspector/pull/1775)
+- **action**: Support multiple GitHub Actions, new `name` input [PR #1770](https://github.com/kamilkisiela/graphql-inspector/pull/1770)
+
+### v2.3.0
+
+- **action,github**: EXPERIMENTAL - Merge Pull Request's branch with the target branch to get the schema. Helps to get the correct state of schema when Pull Request is behind the target branch. _(disabled by default)_ - [docs](https://graphql-inspector.com/docs/products/github#experimental)
+- **github**: Accepts a GitHub Label to mark Pull Request with breaking changes as something expected and safe [PR #1711](https://github.com/kamilkisiela/graphql-inspector/pull/1711) - [docs](https://graphql-inspector.com/docs/products/github#approved-breaking-change-label)
+- **cli**: Add support for Apollo Federation directives [PR #1661](https://github.com/kamilkisiela/graphql-inspector/pull/1661) - by [@jinhong-](https://github.com/jinhong-)
+
+### v2.2.0
+
+- **core**: Adds two additional change types for enum value deprecations (added and removed) to match behavior with fields
+- **core**: Fixes the type returned by `enumValueDeprecationReasonChanged` (was `EnumValueDescriptionChanged`).
+
 ### v2.1.0
 
 - Use GraphQL Tools v6

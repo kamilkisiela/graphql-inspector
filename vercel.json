@@ -1,16 +1,12 @@
 {
   "name": "graphql-inspector",
   "version": 2,
-  "alias": ["graphql-inspector"],
+  "alias": ["graphql-inspector-app"],
   "env": {
     "LOG_FORMAT": "short",
     "LOG_LEVEL": "info",
     "DISABLE_STATS": "true",
-    "LOG_LEVEL_IN_STRING": "true",
-    "APP_ID": "@graphql-inspector-app-id",
-    "PRIVATE_KEY": "@graphql-inspector-private-key",
-    "WEBHOOK_SECRET": "@graphql-inspector-webhook-secret",
-    "FAUNADB_STATS_SECRET": "@graphql-inspector-faunadb-stats"
+    "LOG_LEVEL_IN_STRING": "true"
   },
   "public": false,
   "redirects": [
@@ -46,6 +42,6 @@
     }
   ],
   "github": {
-    "enabled": false
+    "enabled": true
   }
 }

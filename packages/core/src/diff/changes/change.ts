@@ -19,6 +19,8 @@ export enum ChangeType {
   EnumValueAdded = 'ENUM_VALUE_ADDED',
   EnumValueDescriptionChanged = 'ENUM_VALUE_DESCRIPTION_CHANGED',
   EnumValueDeprecationReasonChanged = 'ENUM_VALUE_DEPRECATION_REASON_CHANGED',
+  EnumValueDeprecationReasonAdded = 'ENUM_VALUE_DEPRECATION_REASON_ADDED',
+  EnumValueDeprecationReasonRemoved = 'ENUM_VALUE_DEPRECATION_REASON_REMOVED',
   // Field
   FieldRemoved = 'FIELD_REMOVED',
   FieldAdded = 'FIELD_ADDED',

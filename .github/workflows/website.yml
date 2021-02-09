@@ -11,15 +11,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2	
 
-      - name: Use Node.js 13
+      - name: Use Node.js 14
         uses: actions/setup-node@v1	
         with:	
-          node-version: 13
+          node-version: 14
 
-      - name: ZEIT Now Deployment	
-        uses: amondnet/now-deployment@v2.0.2
-        with:	
-          zeit-token: ${{ secrets.ZEIT_TOKEN }}	
-          now-args: '--prod'
-          now-project-id: ${{ secrets.ZEIT_PROJECT }}
-          now-org-id: ${{ secrets.ZEIT_ORG }}
+      - name: Vercel Deployment	
+        uses: amondnet/vercel-action@v19.0.1+4
+        with:
+          vercel-token: ${{ secrets.ZEIT_TOKEN }}	
+          vercel-args: '--prod'
+          vercel-project-name: 'GraphQL Inspector'
+          vercel-project-id: ${{ secrets.ZEIT_PROJECT }}
+          vercel-org-id: ${{ secrets.ZEIT_ORG }}

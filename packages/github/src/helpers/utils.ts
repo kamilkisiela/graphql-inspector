@@ -30,7 +30,7 @@ export function filterChangesByLevel(level: CriticalityLevel) {
   return (change: Change) => change.criticality.level === level;
 }
 
-export function createSummary(changes: Change[]) {
+export function createSummary(changes: Change[], summaryLimit: number, isLegacyConfig: boolean) {
   const breakingChanges = changes.filter(
     filterChangesByLevel(CriticalityLevel.Breaking),
   );
@@ -49,12 +49,31 @@ export function createSummary(changes: Change[]) {
     `Safe: ${safeChanges.length}`,
   ];
 
-  function addChangesToSummary(type: string, changes: Change[]): void {
+  if (isLegacyConfig) {
+    summary.push(['', '> Legacy config detected, [please migrate to a new syntax](https://graphql-inspector.com/docs/products/github#full-configuration)', ''].join('\n'))
+  }
+
+  if (changes.length > summaryLimit) {
     summary.push(
-      ...['', `## ${type} changes`].concat(
-        changes.map((change) => ` - ${bolderize(change.message)}`),
-      ),
+      [
+        '',
+        `Total amount of changes (${changes.length}) is over the limit (${summaryLimit})`,
+        'Adjust it using "summaryLimit" option',
+        '',
+      ].join('\n'),
     );
+  }
+
+  function addChangesToSummary(type: string, changes: Change[]): void {
+    if (changes.length <= summaryLimit) {
+      summary.push(
+        ...['', `## ${type} changes`].concat(
+          changes.map((change) => ` - ${bolderize(change.message)}`),
+        ),
+      );
+    }
+
+    summaryLimit -= changes.length;
   }
 
   if (breakingChanges.length) {

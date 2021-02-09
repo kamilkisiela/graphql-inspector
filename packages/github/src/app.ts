@@ -68,12 +68,17 @@ export default function handleProbot(app: probot.Application) {
 
   app.on('pull_request', async (context) => {
     const ref = context.payload.pull_request.head.ref;
+    const pullRequestNumber = context.payload.pull_request.number;
     const {owner, repo} = context.repo();
     const action = context.payload.action;
     const pullRequests = [context.payload.pull_request];
     const before = context.payload.pull_request.base.ref;
 
-    if (['opened', 'synchronize', 'edited'].includes(action) === false) {
+    if (
+      ['opened', 'synchronize', 'edited', 'labeled', 'unlabeled'].includes(
+        action,
+      ) === false
+    ) {
       return;
     }
 
@@ -93,6 +98,7 @@ export default function handleProbot(app: probot.Application) {
       loadConfig,
       before,
       pullRequests,
+      pullRequestNumber,
     });
   });
 

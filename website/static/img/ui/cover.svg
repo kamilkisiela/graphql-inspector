@@ -22,7 +22,7 @@
             <rect width="722" height="722" x="190.5" y="190.5" stroke="#979797" opacity=".7" rx="135" />
             <rect width="806" height="806" x="148.5" y="148.5" stroke="#979797" opacity=".128" rx="165" />
         </g>
-        <path stroke="#4B5FF7" stroke-width="3"
+        <path stroke="#354c87" stroke-width="3"
             d="M353 488.98c-53.598-4.665-77.234 20.16-70.909 74.473 9.488 81.47-50.935 126.454-81.396 64.854-30.46-61.6-101.37-137.328-12.484-194.307" />
         <g fill-rule="nonzero">
             <use fill="#000" filter="url(#a)" xlink:href="#b" />
@@ -31,13 +31,13 @@
         <text font-family="'Lato', sans-serif" font-size="17" font-weight="500" letter-spacing=".468">
             <tspan x="204" y="329" fill="#91303C">type</tspan>
             <tspan x="245.465" y="329" fill="#4A4A4A" letter-spacing=".442"> User {</tspan>
-            <tspan x="214" y="357.6" fill="#4B5BFF" letter-spacing=".442">id:</tspan>
+            <tspan x="214" y="357.6" fill="#354c87" letter-spacing=".442">id:</tspan>
             <tspan x="233.209" y="357.6" fill="#4A4A4A" letter-spacing=".442"> </tspan>
             <tspan x="238.444" y="357.6" fill="#F5A623" letter-spacing=".442">ID!</tspan>
-            <tspan x="214" y="386.2" fill="#4B5FF7" letter-spacing=".442">name:</tspan>
+            <tspan x="214" y="386.2" fill="#354c87" letter-spacing=".442">name:</tspan>
             <tspan x="263.57" y="386.2" fill="#4A4A4A" letter-spacing=".442"> </tspan>
             <tspan x="268.805" y="386.2" fill="#F5A623" letter-spacing=".442">String</tspan>
-            <tspan x="214" y="414.8" fill="#4B5FF7" letter-spacing=".442">age:</tspan>
+            <tspan x="214" y="414.8" fill="#354c87" letter-spacing=".442">age:</tspan>
             <tspan x="248.831" y="414.8" fill="#4A4A4A" letter-spacing=".442"> </tspan>
             <tspan x="254.067" y="414.8" fill="#F5A623" letter-spacing=".442">Int</tspan>
             <tspan x="204" y="443.4" fill="#4A4A4A" letter-spacing=".442">}</tspan>
@@ -56,7 +56,7 @@
             d="M434.84 619.786c-1.33-23.597-1.805-24.454-11.624-65.515a7.388 7.388 0 0 0-7.182-5.666h-35.098a7.393 7.393 0 0 0-7.295 6.244c-6.497 41.23-6.874 42.246-6.874 65.79 0 21.965 4.788 73.539 4.788 73.539 1.676 2.816 13.024 4.266 16.104 2.913 0 0 2.537-45.85 2.299-64.007-.096-7.237 5.852-46.306 7.441-56.586l3.343 1.22c3.114 12.015 12.123 47.17 12.697 54.05.842 10.087 4.137 64.45 4.137 64.45 4.864 2.432 14.31 3.202 17.518-.66 0 0 .984-53.841-.253-75.772" />
         <g transform="translate(328 406)">
             <use fill="#000" filter="url(#e)" xlink:href="#f" />
-            <use fill="#4B5FF7" xlink:href="#f" />
+            <use fill="#354c87" xlink:href="#f" />
         </g>
         <path fill="#FFF"
             d="M445.802 497.686l1.38 18.084s9.517-14.513 10.944-18.084c1.427-3.569 4.045-12.848 4.283-13.56.237-.715 6.13-3.828 12.032-1.772 1.588.553.338 5.793.1 5.821-.24.032 2.573-.172 5.584.291 1.034.16 1.098 1.832-3.262 2.944-1.94.493-4.5 2.29-5.73 3.873-2.082 2.684-5.165 6.233-5.87 7.875-.612 1.434-4.572 21.344-15.506 32.186-3.096 3.074-8.324 2.097-10.314-1.784-2.68-5.223-5.904-14.377-7.618-29.775l13.977-6.1z" />
@@ -66,7 +66,7 @@
             d="M414.182 431.013c0 3.73-3.073 7.875-4.42 11.218-2.654 6.596-7.488 11.58-12.784 11.58-3.568 0-7.063-2.407-9.836-6.063-3.426-4.515-3.74-11.144-3.74-17.273 0-11.087 3.93-18.54 13.778-18.54 7.98 0 17.002 4.937 17.002 19.078" />
         <path fill="#FFF"
             d="M408.226 463.737c-5.723 3.324-12.862 3.881-17.065 1.571-1.078-.59-1.6-1.822-1.459-3.04.606-5.273.491-11.007-.238-17.138l16.957-1.257c.623 5.859 1.454 10.03 3.6 14.087 1.087 2.06.22 4.605-1.795 5.777" />
-        <path fill="#4B5FF7"
+        <path fill="#354c87"
             d="M376.406 501.422l-17.625-2.707a7.846 7.846 0 0 1-6.563-8.945 7.845 7.845 0 0 1 8.945-6.559l17.625 2.707-2.382 15.504zM435.605 495.225l-.72-2.869-9.873 2.834-.749-2.606 9.963-2.859-.834-3.325 17.297-4.336a7.843 7.843 0 0 1 9.515 5.7 7.842 7.842 0 0 1-5.7 9.514l-17.296 4.337-.943-3.759-9.295 2.67-.748-2.606 9.383-2.695z" />
         <path fill="#EEEBEB"
             d="M390.07 455.04c1.665 1.06 3.43 1.662 5.215 1.662 4.6 0 8.83-3.786 11.608-9.096l-.013-.088c-2.674 3.78-6.164 6.293-9.9 6.293-2.452 0-4.866-1.154-7.038-3.054.083 1.455.126 2.882.128 4.284" />
@@ -87,16 +87,16 @@
             <text font-family="'Lato', sans-serif" font-size="17" font-weight="500" letter-spacing=".468">
                 <tspan x="30" y="13" fill="#91303C">type</tspan>
                 <tspan x="71.465" y="13" fill="#4A4A4A" letter-spacing=".442"> User {</tspan>
-                <tspan x="40" y="41.6" fill="#4B5BFF" letter-spacing=".442">id:</tspan>
+                <tspan x="40" y="41.6" fill="#354c87" letter-spacing=".442">id:</tspan>
                 <tspan x="59.209" y="41.6" fill="#4A4A4A" letter-spacing=".442"> </tspan>
                 <tspan x="64.444" y="41.6" fill="#F5A623" letter-spacing=".442">ID!</tspan>
-                <tspan x="40" y="70.2" fill="#4B5FF7" letter-spacing=".442">name:</tspan>
+                <tspan x="40" y="70.2" fill="#354c87" letter-spacing=".442">name:</tspan>
                 <tspan x="79.57" y="70.2" fill="#4A4A4A" letter-spacing=".442"> </tspan>
                 <tspan x="94.805" y="70.2" fill="#F5A623" letter-spacing=".442">String</tspan>
-                <tspan x="40" y="98.8" fill="#4B5FF7" letter-spacing=".442">age:</tspan>
+                <tspan x="40" y="98.8" fill="#354c87" letter-spacing=".442">age:</tspan>
                 <tspan x="64.831" y="98.8" fill="#4A4A4A" letter-spacing=".442"> </tspan>
                 <tspan x="80.067" y="98.8" fill="#F5A623" letter-spacing=".442">String</tspan>
-                <tspan x="40" y="127.4" fill="#4B5FF7" letter-spacing=".442">title:</tspan>
+                <tspan x="40" y="127.4" fill="#354c87" letter-spacing=".442">title:</tspan>
                 <tspan x="85.357" y="127.4" fill="#F5A623" letter-spacing=".442"> String</tspan>
                 <tspan x="30" y="156" fill="#4A4A4A" letter-spacing=".442">}</tspan>
             </text>

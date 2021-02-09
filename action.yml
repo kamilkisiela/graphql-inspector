@@ -5,6 +5,11 @@ branding:
   icon: 'search'
   color: 'orange'
 inputs:
+  name:
+    description: |
+      The name of the check ("GraphQL Inspector" by default).
+      In case of multiple GraphQL Inspector Actions, use `name` to prevent GitHub from overwriting results.
+      For example, "Check Public API" and "Check Internal API".
   annotations:
     description: 'Use annotation (enabled by default)'
   fail-on-breaking:
@@ -22,6 +27,12 @@ inputs:
       When using an endpoint, 'schema' should point to a file (without a reference - branch name for example)
   github-token:
     description: 'Github Token'
+  experimental_merge:
+    description: |
+      Merge Pull Request's branch with the target branch to get the schema.
+      Helps to get the correct state of schema when Pull Request is behind the target branch
+      
+      (disabled by default)
 outputs:
   changes:
     description: 'Total number of changes'

@@ -3,8 +3,9 @@ import {
   diff,
   createSummary,
   printSchemaFromEndpoint,
+  produceSchema,
 } from '@graphql-inspector/github';
-import {buildSchema, Source} from 'graphql';
+import {Source} from 'graphql';
 import {readFileSync} from 'fs';
 import {resolve} from 'path';
 import {execSync} from 'child_process';
@@ -42,7 +43,7 @@ export async function run() {
   core.info(`GraphQL Inspector started`);
 
   // env
-  const ref = process.env.GITHUB_SHA!;
+  let ref = process.env.GITHUB_SHA!;
   const commitSha = getCurrentCommitSha();
 
   core.info(`Ref: ${ref}`);
@@ -53,12 +54,13 @@ export async function run() {
   //   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   //
   const token = core.getInput('github-token') || process.env.GITHUB_TOKEN;
+  const checkName = core.getInput('name') || CHECK_NAME;
 
   if (!token) {
     return core.setFailed('Github Token is missing');
   }
 
-  const workspace = process.env.GITHUB_WORKSPACE!;
+  let workspace = process.env.GITHUB_WORKSPACE;
 
   if (!workspace) {
     return core.setFailed(
@@ -66,6 +68,7 @@ export async function run() {
     );
   }
 
+  const useExperimentalMerge = castToBoolean(core.getInput('experimental_merge'), false);
   const useAnnotations = castToBoolean(core.getInput('annotations'));
   const failOnBreaking = castToBoolean(core.getInput('fail-on-breaking'));
   const endpoint = core.getInput('endpoint');
@@ -75,12 +78,12 @@ export async function run() {
   // repo
   const {owner, repo} = github.context.repo;
 
-  core.info(`Creating a check named "${CHECK_NAME}"`);
+  core.info(`Creating a check named "${checkName}"`);
 
   const check = await octokit.checks.create({
     owner,
     repo,
-    name: CHECK_NAME,
+    name: checkName,
     head_sha: commitSha,
     status: 'in_progress',
   });
@@ -89,20 +92,33 @@ export async function run() {
 
   core.info(`Check ID: ${checkId}`);
 
+  const schemaPointer = core.getInput('schema', {required: true});
+
   const loadFile = fileLoader({
     octokit,
     owner,
     repo,
   });
 
-  const schemaPointer = core.getInput('schema', {required: true});
-
   if (!schemaPointer) {
     core.error('No `schema` variable');
     return core.setFailed('Failed to find `schema` variable');
   }
 
-  const [schemaRef, schemaPath] = schemaPointer.split(':');
+  let [schemaRef, schemaPath] = schemaPointer.split(':');
+
+  if (useExperimentalMerge && github.context.payload.pull_request) {
+    ref = `refs/pull/${github.context.payload.pull_request.number}/merge`
+    workspace = undefined;
+    core.info(`EXPERIMENTAL - Using Pull Request ${ref}`)
+    
+    const baseRef = github.context.payload.pull_request?.base?.ref;
+    
+    if (baseRef) {
+      schemaRef = baseRef
+      core.info(`EXPERIMENTAL - Using ${baseRef} as base schema ref`)
+    }
+  }
 
   const [oldFile, newFile] = await Promise.all([
     endpoint
@@ -121,19 +137,13 @@ export async function run() {
   core.info('Got both sources');
 
   const sources = {
-    old: new Source(oldFile),
-    new: new Source(newFile),
+    old: new Source(oldFile, endpoint || `${schemaRef}:${schemaPath}`),
+    new: new Source(newFile, endpoint ? schemaPointer : schemaPath),
   };
 
   const schemas = {
-    old: buildSchema(sources.old, {
-      assumeValid: true,
-      assumeValidSDL: true,
-    }),
-    new: buildSchema(sources.new, {
-      assumeValid: true,
-      assumeValidSDL: true,
-    }),
+    old: produceSchema(sources.old),
+    new: produceSchema(sources.new),
   };
 
   core.info(`Built both schemas`);
@@ -164,7 +174,7 @@ export async function run() {
     annotations = [];
   }
 
-  const summary = createSummary(changes);
+  const summary = createSummary(changes, 100, false);
 
   const title =
     conclusion === CheckConclusion.Failure
@@ -202,7 +212,7 @@ function fileLoader({
   owner: string;
   repo: string;
 }) {
-  const query = `
+  const query = /* GraphQL */`
     query GetFile($repo: String!, $owner: String!, $expression: String!) {
       repository(name: $repo, owner: $owner) {
         object(expression: $expression) {
@@ -225,7 +235,7 @@ function fileLoader({
       });
     }
 
-    const result = await octokit.graphql(query, {
+    const result: any = await octokit.graphql(query, {
       repo,
       owner,
       expression: `${file.ref}:${file.path}`,
@@ -234,10 +244,7 @@ function fileLoader({
 
     try {
       if (
-        result &&
-        result.repository &&
-        result.repository.object &&
-        result.repository.object.text
+        result?.repository?.object?.text
       ) {
         return result.repository.object.text;
       }
@@ -280,9 +287,18 @@ async function updateCheckRun(
 /**
  * Treats non-falsy value as true
  */
-function castToBoolean(value: string | boolean): boolean {
+function castToBoolean(value: string | boolean, defaultValue?: boolean): boolean {
   if (typeof value === 'boolean') {
     return value;
   }
-  return value === 'false' ? false : true;
+
+  if (value === 'true' || value === 'false') {
+    return value === 'true';
+  }
+
+  if (typeof defaultValue === 'boolean') {
+    return defaultValue;
+  }
+
+  return true;
 }

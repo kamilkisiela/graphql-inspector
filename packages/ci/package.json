@@ -49,11 +49,11 @@
     "graphql": "^14.0.0 || ^15.0.0"
   },
   "dependencies": {
-    "@graphql-inspector/config": "0.0.0-PLACEHOLDER",
     "@graphql-inspector/commands": "0.0.0-PLACEHOLDER",
+    "@graphql-inspector/config": "0.0.0-PLACEHOLDER",
     "@graphql-inspector/loaders": "0.0.0-PLACEHOLDER",
     "@graphql-inspector/logger": "0.0.0-PLACEHOLDER",
-    "yargs": "15.4.0",
-    "tslib": "^2.0.0"
+    "tslib": "^2.0.0",
+    "yargs": "16.1.1"
   }
 }

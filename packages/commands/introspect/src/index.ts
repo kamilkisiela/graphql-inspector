@@ -7,12 +7,12 @@ import {
 import {Logger} from '@graphql-inspector/logger';
 import {writeFileSync} from 'fs';
 import {resolve, extname} from 'path';
-import {introspectionFromSchema, printSchema, GraphQLSchema} from 'graphql';
+import {introspectionFromSchema, lexicographicSortSchema, printSchema, GraphQLSchema} from 'graphql';
 
 export {CommandFactory};
 
 export function handler({
-  schema,
+  schema: unsortedSchema,
   output,
   comments,
 }: {
@@ -20,6 +20,7 @@ export function handler({
   output: string;
   comments: boolean;
 }) {
+  const schema = lexicographicSortSchema(unsortedSchema);
   const introspection = introspectionFromSchema(schema);
   const filepath = resolve(process.cwd(), output);
   let content: string;
@@ -84,11 +85,20 @@ export default createCommand<
       const {headers, token} = parseGlobalArgs(args);
       const output = args.write!;
       const comments = args.comments || false;
+      const apolloFederation = args.federation || false;
+      const aws = args.aws || false;
+      const method = args.method?.toUpperCase() || 'POST';
 
-      const schema = await loaders.loadSchema(args.schema, {
-        token,
-        headers,
-      });
+      const schema = await loaders.loadSchema(
+        args.schema,
+        {
+          token,
+          headers,
+          method,
+        },
+        apolloFederation,
+        aws,
+      );
 
       return handler({schema, output, comments});
     },

@@ -40,6 +40,9 @@ export interface GlobalArgs {
   require?: string[];
   token?: string;
   header?: string[];
+  federation?: boolean;
+  aws?: boolean;
+  method?: string;
 }
 
 export function parseGlobalArgs(args: GlobalArgs) {

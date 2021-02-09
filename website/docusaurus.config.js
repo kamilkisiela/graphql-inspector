@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
   title: 'GraphQL Inspector',
   tagline:
@@ -11,7 +13,9 @@ module.exports = {
   projectName: 'graphql-inspector',
 
   themeConfig: {
-    disableDarkMode: true,
+    colorMode: {
+      disableSwitch: true,
+    },
     sidebarCollapsible: true,
     image: 'img/github/app-action.jpg',
     announcementBar: {
@@ -29,7 +33,7 @@ module.exports = {
         alt: 'GraphQL Inspector Logo',
         src: 'img/just-logo.svg',
       },
-      links: [
+      items: [
         {
           to: '/docs',
           activeBasePath: '/docs',
@@ -69,7 +73,7 @@ module.exports = {
             },
             {
               label: 'Recipes',
-              to: 'docs/recipes/notifications',
+              to: 'docs/recipes/environments',
             },
             {
               label: 'Products',
@@ -196,5 +200,6 @@ module.exports = {
         quality: 100,
       },
     ],
+    path.join(__dirname, '/plugins/monaco-editor')
   ],
 };

@@ -5,25 +5,23 @@ import {
   GraphQLInterfaceType,
 } from 'graphql';
 
-import {isNotEqual} from './common/compare';
-import {Change} from './changes/change';
+import {diffArrays, isNotEqual} from '../utils/compare';
 import {
   fieldArgumentDescriptionChanged,
   fieldArgumentDefaultChanged,
   fieldArgumentTypeChanged,
 } from './changes/argument';
-import {diffArrays} from '../utils/arrays';
+import { AddChange } from './schema';
 
 export function changesInArgument(
   type: GraphQLObjectType | GraphQLInterfaceType,
   field: GraphQLField<any, any, any>,
   oldArg: GraphQLArgument,
   newArg: GraphQLArgument,
-): Change[] {
-  const changes: Change[] = [];
-
+  addChange: AddChange
+) {
   if (isNotEqual(oldArg.description, newArg.description)) {
-    changes.push(fieldArgumentDescriptionChanged(type, field, oldArg, newArg));
+    addChange(fieldArgumentDescriptionChanged(type, field, oldArg, newArg));
   }
 
   if (isNotEqual(oldArg.defaultValue, newArg.defaultValue)) {
@@ -33,19 +31,17 @@ export function changesInArgument(
     ) {
       const diff = diffArrays(oldArg.defaultValue, newArg.defaultValue);
       if (diff.length > 0) {
-        changes.push(fieldArgumentDefaultChanged(type, field, oldArg, newArg));
+        addChange(fieldArgumentDefaultChanged(type, field, oldArg, newArg));
       }
     } else if (
       JSON.stringify(oldArg.defaultValue) !==
       JSON.stringify(newArg.defaultValue)
     ) {
-      changes.push(fieldArgumentDefaultChanged(type, field, oldArg, newArg));
+      addChange(fieldArgumentDefaultChanged(type, field, oldArg, newArg));
     }
   }
 
   if (isNotEqual(oldArg.type.toString(), newArg.type.toString())) {
-    changes.push(fieldArgumentTypeChanged(type, field, oldArg, newArg));
+    addChange(fieldArgumentTypeChanged(type, field, oldArg, newArg));
   }
-
-  return changes;
 }
