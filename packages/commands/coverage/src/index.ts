@@ -109,14 +109,18 @@ export default createCommand<
       const silent = args.silent;
       const {headers, token} = parseGlobalArgs(args);
       const apolloFederation = args.federation || false;
+      const aws = args.aws || false;
+      const method = args.method?.toUpperCase() || 'POST';
 
       const schema = await loaders.loadSchema(
         args.schema,
         {
           token,
           headers,
+          method,
         },
         apolloFederation,
+        aws,
       );
       const documents = await loaders.loadDocuments(args.documents);
 

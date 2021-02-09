@@ -44,14 +44,18 @@ export default createCommand<
     async handler(args) {
       const {headers, token} = parseGlobalArgs(args);
       const apolloFederation = args.federation || false;
+      const aws = args.aws || false;
+      const method = args.method?.toUpperCase() || 'POST';
 
       const schema = await loaders.loadSchema(
         args.schema,
         {
           headers,
           token,
+          method,
         },
         apolloFederation,
+        aws,
       );
 
       const port = args.port;

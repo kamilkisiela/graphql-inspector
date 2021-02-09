@@ -24,7 +24,9 @@ Run the following command:
 - `-r, --require <s>` - require a module
 - `-t, --token <s>` - an access token
 - `-h, --header <s>` - set http header (`--header 'Auth: Basic 123')
+- `--method` - method on url schema pointers (default: _POST_)
 - `--federation` - Support Apollo Federation directives (default: _false_)
+- `--aws` - Support AWS Appsync directives and scalar types (default: _false_)
 
 **Output**
 

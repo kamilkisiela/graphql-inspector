@@ -5,6 +5,11 @@ branding:
   icon: 'search'
   color: 'orange'
 inputs:
+  name:
+    description: |
+      The name of the check ("GraphQL Inspector" by default).
+      In case of multiple GraphQL Inspector Actions, use `name` to prevent GitHub from overwriting results.
+      For example, "Check Public API" and "Check Internal API".
   annotations:
     description: 'Use annotation (enabled by default)'
   fail-on-breaking:

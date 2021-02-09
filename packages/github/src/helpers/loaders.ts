@@ -238,7 +238,14 @@ export async function loadSources({
   ]);
 
   return {
-    old: new Source(oldFile!),
-    new: new Source(newFile!),
+    old: new Source(
+      oldFile!,
+      useEndpoint
+        ? typeof config.endpoint! === 'string'
+          ? config.endpoint
+          : config.endpoint?.url
+        : `${oldPointer.ref}:${oldPointer.path}`,
+    ),
+    new: new Source(newFile!, `${newPointer.ref}:${newPointer.path}`),
   };
 }

@@ -1,5 +1,5 @@
 /// @ts-check
-const {createProbot} = require('probot');
+const {Probot} = require('probot');
 const {resolveAppFunction} = require('probot/lib/helpers/resolve-app-function');
 const {findPrivateKey} = require('probot/lib/helpers/get-private-key');
 
@@ -10,7 +10,7 @@ let probot;
 const loadProbot = (appFn) => {
   probot =
     probot ||
-    createProbot({
+    new Probot({
       id: process.env.APP_ID,
       secret: process.env.WEBHOOK_SECRET,
       cert: findPrivateKey(),

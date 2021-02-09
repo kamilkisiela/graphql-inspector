@@ -3,8 +3,9 @@ import {
   diff,
   createSummary,
   printSchemaFromEndpoint,
+  produceSchema,
 } from '@graphql-inspector/github';
-import {buildSchema, Source} from 'graphql';
+import {Source} from 'graphql';
 import {readFileSync} from 'fs';
 import {resolve} from 'path';
 import {execSync} from 'child_process';
@@ -53,6 +54,7 @@ export async function run() {
   //   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   //
   const token = core.getInput('github-token') || process.env.GITHUB_TOKEN;
+  const checkName = core.getInput('name') || CHECK_NAME;
 
   if (!token) {
     return core.setFailed('Github Token is missing');
@@ -76,12 +78,12 @@ export async function run() {
   // repo
   const {owner, repo} = github.context.repo;
 
-  core.info(`Creating a check named "${CHECK_NAME}"`);
+  core.info(`Creating a check named "${checkName}"`);
 
   const check = await octokit.checks.create({
     owner,
     repo,
-    name: CHECK_NAME,
+    name: checkName,
     head_sha: commitSha,
     status: 'in_progress',
   });
@@ -135,19 +137,13 @@ export async function run() {
   core.info('Got both sources');
 
   const sources = {
-    old: new Source(oldFile),
-    new: new Source(newFile),
+    old: new Source(oldFile, endpoint || `${schemaRef}:${schemaPath}`),
+    new: new Source(newFile, endpoint ? schemaPointer : schemaPath),
   };
 
   const schemas = {
-    old: buildSchema(sources.old, {
-      assumeValid: true,
-      assumeValidSDL: true,
-    }),
-    new: buildSchema(sources.new, {
-      assumeValid: true,
-      assumeValidSDL: true,
-    }),
+    old: produceSchema(sources.old),
+    new: produceSchema(sources.new),
   };
 
   core.info(`Built both schemas`);
@@ -178,7 +174,7 @@ export async function run() {
     annotations = [];
   }
 
-  const summary = createSummary(changes);
+  const summary = createSummary(changes, 100, false);
 
   const title =
     conclusion === CheckConclusion.Failure
@@ -216,7 +212,7 @@ function fileLoader({
   owner: string;
   repo: string;
 }) {
-  const query = `
+  const query = /* GraphQL */`
     query GetFile($repo: String!, $owner: String!, $expression: String!) {
       repository(name: $repo, owner: $owner) {
         object(expression: $expression) {

@@ -125,6 +125,8 @@ export default createCommand<
         const oldSchemaPointer = args.oldSchema;
         const newSchemaPointer = args.newSchema;
         const apolloFederation = args.federation || false;
+        const aws = args.aws || false;
+        const method = args.method?.toUpperCase() || 'POST';
         const {headers, token} = parseGlobalArgs(args);
 
         const oldSchema = await loaders.loadSchema(
@@ -132,16 +134,20 @@ export default createCommand<
           {
             headers,
             token,
+            method,
           },
           apolloFederation,
+          aws,
         );
         const newSchema = await loaders.loadSchema(
           newSchemaPointer,
           {
             headers,
             token,
+            method,
           },
           apolloFederation,
+          aws,
         );
 
         handler({
