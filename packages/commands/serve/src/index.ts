@@ -2,13 +2,16 @@ import {
   createCommand,
   GlobalArgs,
   parseGlobalArgs,
+  CommandFactory,
 } from '@graphql-inspector/commands';
 import {Logger} from '@graphql-inspector/logger';
 import open from 'open';
 import express from 'express';
-import graphql from 'express-graphql';
+import {graphqlHTTP} from 'express-graphql';
 import cors from 'cors';
 import {fake} from './fake';
+
+export {CommandFactory};
 
 export default createCommand<
   {},
@@ -40,10 +43,20 @@ export default createCommand<
     },
     async handler(args) {
       const {headers, token} = parseGlobalArgs(args);
-      const schema = await loaders.loadSchema(args.schema, {
-        headers,
-        token,
-      });
+      const apolloFederation = args.federation || false;
+      const aws = args.aws || false;
+      const method = args.method?.toUpperCase() || 'POST';
+
+      const schema = await loaders.loadSchema(
+        args.schema,
+        {
+          headers,
+          token,
+          method,
+        },
+        apolloFederation,
+        aws,
+      );
 
       const port = args.port;
 
@@ -58,7 +71,7 @@ export default createCommand<
 
         app.use(
           cors(),
-          graphql({
+          graphqlHTTP({
             schema,
             graphiql: true,
           }),

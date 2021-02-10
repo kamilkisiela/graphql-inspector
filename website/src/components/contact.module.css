@@ -1,0 +1,128 @@
+.contactForm {
+  position: relative;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: solid 1px #4d6894;
+  box-sizing: border-box;
+}
+
+.contactForm:hover {
+  border-color: #4a4a4a;
+}
+.contactForm:focus {
+  border-color: #fff;
+}
+
+.contactSubmit {
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  outline: none;
+  border: 0 none;
+  color: #4a4a4a;
+  cursor: pointer;
+}
+
+.contactSubmit:hover {
+  color: #000;
+}
+
+.contactInput {
+  flex: 1;
+  font-size: 15px;
+  font-weight: 300;
+  color: #000;
+  background: transparent;
+  outline: none;
+  border: 0 none;
+  line-height: 35px;
+}
+
+.contactInput::placeholder {
+  color: #4a4a4a;
+}
+
+.contactStatus {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  font-size: 12px;
+  font-weight: 300;
+  margin-bottom: -35px;
+}
+
+.contactStatus.success {
+  color: #354c87;
+}
+
+.contactStatus.error {
+  color: #cc2b14;
+}
+
+.contactStatus.error a {
+  font-weight: bold;
+  text-decoration: underline;
+  color: #cc2b14;
+}
+
+
+.contactDirectly {
+  font-weight: 800 !important;
+  text-decoration: none !important;
+}
+
+
+.contactUsBackground {
+  background-color: #f4f4f4;
+}
+
+.contactContainer {
+  padding: 125px 0;
+  max-width: 960px;
+  display: flex;
+}
+
+.contactLimitContainer {
+  max-width: 540px;
+}
+
+.contactMainPart {
+  flex: 1;
+}
+
+.contactMailBox {
+  flex-grow: 0;
+  flex-shrink: 0;
+  width: 200px;
+}
+
+.contactTitle {
+  font-size: 36px;
+  font-weight: 500;
+}
+
+.contactDetails {
+  color: #4a4a4a;
+}
+
+.contactSideBySide {
+  display: flex;
+  width: 100%;
+}
+
+@media only screen and (max-width: 996px) {
+  .contactSideBySide {
+    align-items: center;
+    flex-direction: column;
+    flex-flow: column-reverse;
+
+    padding: 0 16px;
+  }
+
+  .contactSideBySide > .contactMailBox {
+    margin-bottom: 50px;
+  }
+}

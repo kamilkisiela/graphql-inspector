@@ -2,13 +2,13 @@ import {isObjectType, isInterfaceType} from 'graphql';
 
 import {CriticalityLevel, ChangeType} from './../changes/change';
 import {Rule} from './types';
-import {parsePath} from '../common/path';
+import {parsePath} from '../../utils/path';
 
 export const suppressRemovalOfDeprecatedField: Rule = ({
   changes,
   oldSchema,
 }) => {
-  return changes.map(change => {
+  return changes.map((change) => {
     if (
       change.type === ChangeType.FieldRemoved &&
       change.criticality.level === CriticalityLevel.Breaking &&

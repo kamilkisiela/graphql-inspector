@@ -1,14 +1,19 @@
 :root {
-  --ifm-color-primary: #4b5ff7;
-  --ifm-color-primary-dark: #2c44f6;
-  --ifm-color-primary-darker: #1d36f5;
-  --ifm-color-primary-darkest: #0a22d8;
-  --ifm-color-primary-light: #6a7af8;
-  --ifm-color-primary-lighter: #7988f9;
-  --ifm-color-primary-lightest: #a7b1fb;
+  --ifm-color-primary: #354c87;
+  --ifm-color-primary-dark: #30447a;
+  --ifm-color-primary-darker: #2d4173;
+  --ifm-color-primary-darkest: #25355f;
+  --ifm-color-primary-light: #3a5495;
+  --ifm-color-primary-lighter: #3d579b;
+  --ifm-color-primary-lightest: #4563b0;
 
-  --ifm-color-secondary: #bfc7d5;
+  --ifm-color-secondary: #f8f8f8;
+  --ifm-color-accent: #628079;
   --ifm-footer-link-hover-color: #fff;
+}
+
+.footer--dark {
+  --ifm-footer-background-color: var(--ifm-color-accent);
 }
 
 a {
@@ -136,7 +141,7 @@ button {
 }
 
 .footer .text--center div:not(.margin-bottom--sm) {
-  color: #bfc7d5;
+  color: var(--ifm-color-secondary);
 }
 
 .footer .footer__link-item:hover {
@@ -216,6 +221,11 @@ body:not(.separateOnPageNav) .mainContainer {
   padding-bottom: 0;
   background-image: url(/img/ui/cover.svg);
   background-repeat: no-repeat;
+  min-height: 100vh;
+}
+
+body:not(.separateOnPageNav) .mainContainer.enterprise {
+  background-image: url(/img/ui/enterprise-cover.svg);
 }
 
 #main-nav {
@@ -235,7 +245,21 @@ body:not(.separateOnPageNav) .mainContainer {
 #main-nav .links a {
   font-size: 14px;
   font-weight: 800;
+  text-transform: uppercase;
   color: #000;
+}
+
+#main-nav .links a:hover {
+  color: var(--ifm-color-primary);
+  text-decoration: none;
+}
+
+#main-nav .social-links {
+  margin-left: 30px;
+}
+
+#main-nav .social-links > a {
+  margin-left: 20px;
 }
 
 #main-nav .links .sep {
@@ -277,18 +301,28 @@ body:not(.separateOnPageNav) .mainContainer {
 
 #main-header a {
   display: inline-block;
-  padding: 20px;
-  margin-top: 30px;
+  padding: 15px 20px;
+  margin-top: 20px;
   border-radius: 35px;
-  box-shadow: 0 14px 44px 0 rgba(75, 95, 247, 0.29);
-  background-color: #4b5ff7;
+  box-sizing: border-box;
   font-size: 14px;
   font-weight: 700;
   line-height: normal;
   letter-spacing: 0.4px;
-  color: #fff;
   text-transform: uppercase;
   text-decoration: none;
+}
+
+.main-button {
+  background-color: var(--ifm-color-primary);
+  border: 2px solid var(--ifm-color-primary);
+  color: #fff;
+}
+
+.main-button:hover {
+  background-color: transparent;
+  border-color: var(--ifm-color-primary);
+  color: var(--ifm-color-primary);
 }
 
 #main-highlights {

@@ -72,19 +72,19 @@ export function validate(
   const fragmentNames: string[] = [];
   const graph = new DepGraph<FragmentDefinitionNode>({circular: true});
 
-  documents.forEach(doc => {
-    doc.fragments.forEach(fragment => {
+  documents.forEach((doc) => {
+    doc.fragments.forEach((fragment) => {
       fragmentNames.push(fragment.node.name.value);
       fragments.push(fragment);
       graph.addNode(fragment.node.name.value, fragment.node);
     });
   });
 
-  fragments.forEach(fragment => {
+  fragments.forEach((fragment) => {
     const depends = extractFragments(print(fragment.node));
 
     if (depends) {
-      depends.forEach(name => {
+      depends.forEach((name) => {
         graph.addDependency(fragment.node.name.value, name);
       });
     }
@@ -92,17 +92,17 @@ export function validate(
 
   documents
     // since we include fragments, validate only operations
-    .filter(doc => doc.hasOperations)
-    .forEach(doc => {
+    .filter((doc) => doc.hasOperations)
+    .forEach((doc) => {
       const docWithOperations: DocumentNode = {
         kind: 'Document',
-        definitions: doc.operations.map(d => d.node),
+        definitions: doc.operations.map((d) => d.node),
       };
       const extractedFragments = (
         extractFragments(print(docWithOperations)) || []
       )
         // resolve all nested fragments
-        .map(fragmentName =>
+        .map((fragmentName) =>
           resolveFragment(graph.getNodeData(fragmentName), graph),
         )
         // flatten arrays
@@ -110,16 +110,17 @@ export function validate(
         // remove duplicates
         .filter(
           (def, i, all) =>
-            all.findIndex(item => item.name.value === def.name.value) === i,
+            all.findIndex((item) => item.name.value === def.name.value) === i,
         );
       const merged: DocumentNode = {
         kind: 'Document',
         definitions: [...docWithOperations.definitions, ...extractedFragments],
       };
 
-      const transformedSchema = config.apollo
+      let transformedSchema = config.apollo
         ? transformSchemaWithApollo(schema)
         : schema;
+
       const transformedDoc = config.apollo
         ? transformDocumentWithApollo(merged, {
             keepClientFields: config.keepClientFields!,
@@ -167,7 +168,9 @@ export function validate(
 function findDuplicatedFragments(fragmentNames: string[]) {
   return fragmentNames
     .filter((name, i, all) => all.indexOf(name) !== i)
-    .map(name => new GraphQLError(`Name of '${name}' fragment is not unique`));
+    .map(
+      (name) => new GraphQLError(`Name of '${name}' fragment is not unique`),
+    );
 }
 
 //
@@ -190,7 +193,7 @@ function resolveFragment(
 }
 
 function extractFragments(document: string): string[] | undefined {
-  return (document.match(/[\.]{3}[a-z0-9\_]+\b/gi) || []).map(name =>
+  return (document.match(/[\.]{3}[a-z0-9\_]+\b/gi) || []).map((name) =>
     name.replace('...', ''),
   );
 }

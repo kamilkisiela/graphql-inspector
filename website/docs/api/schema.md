@@ -68,4 +68,6 @@ Yes, GraphQL Inspector can also do that, here's the pattern:
 
 For example, we want to fetch a .graphql file from master branch of [this sample repository](https://github.com/kamilkisiela/graphql-inspector-example/blob/master/schema.graphql):
 
-    github:kamilkisiela/graphql-inspector-example#master:./schema.graphql
+    github:kamilkisiela/graphql-inspector-example#master:./schema.graphql --token 'github-token-here'
+
+> GitHub Loader requires a GitHub token to be defined

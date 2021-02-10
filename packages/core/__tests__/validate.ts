@@ -89,7 +89,10 @@ describe('validate', () => {
       `),
     ];
 
-    const results = validate(schema, docs.map(doc => new Source(print(doc))));
+    const results = validate(
+      schema,
+      docs.map((doc) => new Source(print(doc))),
+    );
 
     expect(results.length).toEqual(0);
   });
@@ -133,7 +136,10 @@ describe('validate', () => {
       `),
     ];
 
-    const results = validate(schema, docs.map(doc => new Source(print(doc))));
+    const results = validate(
+      schema,
+      docs.map((doc) => new Source(print(doc))),
+    );
 
     expect(results.length).toEqual(1);
     expect(results[0].errors.length).toEqual(1);
@@ -182,7 +188,10 @@ describe('validate', () => {
       `),
     ];
 
-    const results = validate(schema, docs.map(doc => new Source(print(doc))));
+    const results = validate(
+      schema,
+      docs.map((doc) => new Source(print(doc))),
+    );
 
     expect(results.length).toEqual(0);
   });
@@ -231,9 +240,13 @@ describe('validate', () => {
       `),
     ];
 
-    const results = validate(schema, docs.map(doc => new Source(print(doc))), {
-      maxDepth: 1,
-    });
+    const results = validate(
+      schema,
+      docs.map((doc) => new Source(print(doc))),
+      {
+        maxDepth: 1,
+      },
+    );
 
     expect(results.length).toEqual(1);
   });
@@ -287,9 +300,13 @@ describe('validate', () => {
       `),
     ];
 
-    const results = validate(schema, docs.map(doc => new Source(print(doc))), {
-      maxDepth: 1,
-    });
+    const results = validate(
+      schema,
+      docs.map((doc) => new Source(print(doc))),
+      {
+        maxDepth: 1,
+      },
+    );
 
     expect(results.length).toEqual(1);
   });
@@ -341,10 +358,63 @@ describe('validate', () => {
       `),
     ];
 
-    const results = validate(schema, docs.map(doc => new Source(print(doc))), {
-      maxDepth: 2,
-    });
+    const results = validate(
+      schema,
+      docs.map((doc) => new Source(print(doc))),
+      {
+        maxDepth: 2,
+      },
+    );
 
     expect(results.length).toEqual(0);
+  });
+
+  test('deprecated notice for query arguments', () => {
+    const schema = buildSchema(/* GraphQL */ `
+      type Post {
+        id: ID
+        title: String
+        author: String
+        createdAt: Int
+      }
+
+      input PostQuery {
+        title: String
+      }
+
+      input LegacyPostQuery {
+        text: String
+      }
+
+      type Query {
+        findPost(
+          searchQuery: PostQuery
+          query: LegacyPostQuery @deprecated(reason: "Please use 'searchQuery' instead.")
+        ): Post
+      }
+
+      schema {
+        query: Query
+      }
+    `);
+
+    const doc = parse(/* GraphQL */ `
+      query getPost {
+        findPost(query: {text: "title"}) {
+          id
+        }
+      }
+    `);
+
+    const results = validate(schema, [new Source(print(doc))]);
+
+    expect(results.length).toEqual(1);
+    expect(results[0].errors.length).toEqual(0);
+    expect(results[0].deprecated.length).toEqual(1);
+
+    const deprecated = results[0].deprecated[0];
+    expect(deprecated.message).toMatch(
+      `The argument 'query' of 'findPost' is deprecated. Please use 'searchQuery' instead.`,
+    );
   });
 });

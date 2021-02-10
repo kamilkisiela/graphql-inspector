@@ -1,0 +1,38 @@
+.diffContainer {
+  background-color: #000;
+  display: flex;
+}
+
+.diffChanges {
+  flex-shrink: 0;
+  flex-grow: 1;
+  overflow: scroll;
+  box-sizing: border-box;
+}
+
+@media only screen and (max-width: 950px) {
+  .diffContainer {
+    flex-direction: column;
+  }
+
+  .diffChanges {
+    width: 100%;
+    max-height: 300px;
+    padding: 15px;
+  }
+}
+
+@media only screen and (min-width: 950px) {
+  .diffContainer {
+    flex-direction: row;
+    justify-content: space-between;
+    max-height: 300px;
+  }
+
+  .diffChanges {
+    width: 45%;
+    padding-left: 15px;
+  }
+}
+
+

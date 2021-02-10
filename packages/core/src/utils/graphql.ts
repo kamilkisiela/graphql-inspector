@@ -116,6 +116,23 @@ export function findDeprecatedUsages(
   visit(
     ast,
     visitWithTypeInfo(typeInfo, {
+      Argument(node) {
+        const argument = typeInfo.getArgument();
+        if (argument) {
+        const reason = argument.deprecationReason;
+        if (reason) {
+          const fieldDef = typeInfo.getFieldDef();
+          if (fieldDef) {
+            errors.push(
+              new GraphQLError(
+                `The argument '${argument?.name}' of '${fieldDef.name}' is deprecated. ${reason}`,
+                [node],
+              ),
+            );
+          }
+        }
+        }
+      },
       Field(node) {
         const fieldDef = typeInfo.getFieldDef();
         if (fieldDef && fieldDef.isDeprecated) {
@@ -162,7 +179,7 @@ export function removeFieldIfDirectives(
 ): FieldNode | null {
   if (node.directives) {
     if (
-      node.directives.some(d => directiveNames.indexOf(d.name.value) !== -1)
+      node.directives.some((d) => directiveNames.indexOf(d.name.value) !== -1)
     ) {
       return null;
     }
@@ -179,7 +196,7 @@ export function removeDirectives(
     return {
       ...node,
       directives: node.directives.filter(
-        d => directiveNames.indexOf(d.name.value) === -1,
+        (d) => directiveNames.indexOf(d.name.value) === -1,
       ),
     };
   }

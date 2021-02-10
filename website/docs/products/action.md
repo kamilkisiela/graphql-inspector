@@ -36,7 +36,25 @@ Now on every commit or every Pull Request the GraphQL Inspector App will annotat
 
 ## Inputs
 
+### name
+
+The name of the check ("GraphQL Inspector" by default). 
+In case of multiple GraphQL Inspector Actions, use `name` to prevent GitHub from overwriting results. For example, "Check Public API" and "Check Internal API".
+
+```yaml
+- uses: kamilkisiela/graphql-inspector@master
+  with:
+    name: 'Validate Public API'
+    schema: 'master:public.graphql'
+
+- uses: kamilkisiela/graphql-inspector@master
+  with:
+    name: 'Check Interal API'
+    schema: 'master:internal.graphql'
+```
+
 ### annotations
+
 Use annotation (enabled by default)
 
 ```yaml
@@ -48,6 +66,7 @@ Use annotation (enabled by default)
 ```
 
 ### fail-on-breaking
+
 Fail on breaking changes (enabled by default)
 
 ```yaml
@@ -59,6 +78,7 @@ Fail on breaking changes (enabled by default)
 ```
 
 ### endpoint
+
 Use GraphQL API endpoint as source of schema.
 
 ```yaml

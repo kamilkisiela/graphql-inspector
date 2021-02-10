@@ -130,11 +130,10 @@ function resolveFieldDefinition(
 ): Node {
   const [fieldName, argName] = path;
 
-  const fieldIndex =
-    definition.fields?.findIndex(
-      (f: InputValueDefinitionNode | FieldDefinitionNode) =>
-        f.name.value === fieldName,
-    );
+  const fieldIndex = definition.fields?.findIndex(
+    (f: InputValueDefinitionNode | FieldDefinitionNode) =>
+      f.name.value === fieldName,
+  );
 
   if (typeof fieldIndex === 'number' && fieldIndex > -1) {
     const field = definition.fields![fieldIndex];

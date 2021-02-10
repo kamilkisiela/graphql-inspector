@@ -56,7 +56,7 @@ export function coverage(
   };
   const typeMap = schema.getTypeMap();
   const typeInfo = new TypeInfo(schema);
-  const visitor: (source: Source) => Visitor<any, any> = source => ({
+  const visitor: (source: Source) => Visitor<any, any> = (source) => ({
     Field(node) {
       const fieldDef = typeInfo.getFieldDef();
       const parent = typeInfo.getParentType();
@@ -113,10 +113,10 @@ export function coverage(
 
   documents.forEach((doc, i) => {
     const source = coverage.sources[i];
-    doc.operations.forEach(op => {
+    doc.operations.forEach((op) => {
       visit(op.node, visitWithTypeInfo(typeInfo, visitor(source)));
     });
-    doc.fragments.forEach(fr => {
+    doc.fragments.forEach((fr) => {
       visit(fr.node, visitWithTypeInfo(typeInfo, visitor(source)));
     });
   });

@@ -1,6 +1,9 @@
 packages/*/dist
-dist/functions/
-website/live/build/
+dist/
+website/
 website/build/
 public/
 lib/
+.vscode/
+.github/
+action/

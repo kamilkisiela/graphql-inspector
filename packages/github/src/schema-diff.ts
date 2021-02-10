@@ -1,5 +1,5 @@
 import * as probot from 'probot';
-import {buildSchema} from 'graphql';
+import { produceSchema } from './helpers/schema';
 import {CheckConclusion, PullRequest} from './helpers/types';
 import {FileLoader, ConfigLoader, loadSources} from './helpers/loaders';
 import {start, complete, annotate} from './helpers/check-runs';
@@ -14,8 +14,10 @@ import {createLogger} from './helpers/logger';
 import {MissingConfigError} from './helpers/errors';
 
 export async function handleSchemaDiff({
+  action,
   context,
   ref,
+  pullRequestNumber,
   repo,
   owner,
   before,
@@ -23,10 +25,12 @@ export async function handleSchemaDiff({
   loadFile,
   loadConfig,
 }: {
+  action: string;
   context: probot.Context;
   owner: string;
   repo: string;
   ref: string;
+  pullRequestNumber?: number;
   pullRequests: PullRequest[];
   /***
    * The SHA of the most recent commit on ref before the push
@@ -39,6 +43,7 @@ export async function handleSchemaDiff({
   const logger = createLogger('DIFF', context);
 
   logger.info(`Started - ${id}`);
+  logger.info(`Action: "${action}"`);
 
   const checkUrl = await start({
     context,
@@ -60,6 +65,8 @@ export async function handleSchemaDiff({
 
     const branches = pullRequests.map((pr) => pr.base.ref);
     const firstBranch = branches[0];
+    const fallbackBranch = firstBranch || before;
+    let isLegacyConfig = false;
 
     logger.info(`fallback branch from Pull Requests: ${firstBranch}`);
     logger.info(`SHA before push: ${before}`);
@@ -67,8 +74,11 @@ export async function handleSchemaDiff({
     // on non-environment related PRs, use a branch from first associated pull request
     const config = createConfig(
       rawConfig as any,
+      (configKind) => {
+        isLegacyConfig = configKind === 'legacy'
+      },
       branches,
-      firstBranch || before, // we will probably throw an error when both are not defined
+      fallbackBranch, // we will probably throw an error when both are not defined
     );
 
     if (!config.diff) {
@@ -83,6 +93,28 @@ export async function handleSchemaDiff({
       return;
     } else {
       logger.info(`enabled`);
+    }
+
+    if (!config.branch || /^[0]+$/.test(config.branch)) {
+      logger.info(`Nothing to compare with. Skipping...`);
+      await complete({
+        url: checkUrl,
+        context,
+        conclusion: CheckConclusion.Success,
+        logger,
+      });
+      return;
+    }
+
+    if (config.diff.experimental_merge) {
+      if (!pullRequestNumber && pullRequests?.length) {
+        pullRequestNumber = pullRequests[0].number;
+      }
+
+      if (pullRequestNumber) {
+        ref = `refs/pull/${pullRequestNumber}/merge`;
+        logger.info(`[EXPERIMENTAL] Using Pull Request: ${ref}`);
+      }
     }
 
     const oldPointer: SchemaPointer = {
@@ -110,12 +142,8 @@ export async function handleSchemaDiff({
     });
 
     const schemas = {
-      old: buildSchema(sources.old, {
-        assumeValid: true,
-      }),
-      new: buildSchema(sources.new, {
-        assumeValid: true,
-      }),
+      old: produceSchema(sources.old),
+      new: produceSchema(sources.new),
     };
 
     logger.info(`built schemas`);
@@ -135,10 +163,21 @@ export async function handleSchemaDiff({
     logger.info(`changes - ${changes.length}`);
     logger.info(`annotations - ${changes.length}`);
 
-    const summary = createSummary(changes);
+    const summaryLimit = config.diff.summaryLimit || 100;
+
+    const summary = createSummary(changes, summaryLimit, isLegacyConfig);
+
+    const approveLabelName =
+      config.diff.approveLabel || 'approved-breaking-change';
+    const hasApprovedBreakingChangeLabel = pullRequestNumber
+      ? pullRequests[0].labels?.find((label) => label.name === approveLabelName)
+      : false;
 
     // Force Success when failOnBreaking is disabled
-    if (config.diff.failOnBreaking === false) {
+    if (
+      config.diff.failOnBreaking === false ||
+      hasApprovedBreakingChangeLabel
+    ) {
       logger.info('FailOnBreaking disabled. Forcing SUCCESS');
       conclusion = CheckConclusion.Success;
     }
@@ -150,6 +189,9 @@ export async function handleSchemaDiff({
 
     if (config.diff.annotations === false) {
       logger.info(`Anotations are disabled. Skipping annotations...`);
+      annotations = [];
+    } else if (annotations.length > summaryLimit) {
+      logger.info(`Total amount of annotations is over the limit (${annotations.length} > ${summaryLimit}). Skipping annotations...`);
       annotations = [];
     } else {
       logger.info(`Sending annotations (${annotations.length})`);

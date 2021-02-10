@@ -50,7 +50,9 @@ test('renamed query', () => {
   const changes = diff(schemaA, schemaB);
 
   // Type Added
-  const added = changes.find(c => c.message.indexOf('added') !== -1) as Change;
+  const added = changes.find(
+    (c) => c.message.indexOf('added') !== -1,
+  ) as Change;
 
   expect(added).toBeDefined();
   expect(added.criticality.level).toEqual(CriticalityLevel.NonBreaking);
@@ -59,7 +61,7 @@ test('renamed query', () => {
 
   // Type Removed
   const removed = changes.find(
-    c => c.message.indexOf('removed') !== -1,
+    (c) => c.message.indexOf('removed') !== -1,
   ) as Change;
 
   expect(removed).toBeDefined();
@@ -69,7 +71,7 @@ test('renamed query', () => {
 
   // Root Type Changed
   const changed = changes.find(
-    c => c.message.indexOf('changed') !== -1,
+    (c) => c.message.indexOf('changed') !== -1,
   ) as Change;
 
   expect(changed).toBeDefined();
@@ -94,8 +96,8 @@ test('new field and field changed', () => {
   `);
 
   const changes = diff(schemaA, schemaB);
-  const changed = changes.find(c => c.message.includes('changed')) as Change;
-  const added = changes.find(c => c.message.includes('added')) as Change;
+  const changed = changes.find((c) => c.message.includes('changed')) as Change;
+  const added = changes.find((c) => c.message.includes('added')) as Change;
 
   expect(changed).toBeDefined();
   expect(changed.criticality.level).toEqual(CriticalityLevel.Breaking);
@@ -331,15 +333,15 @@ test('huge test', () => {
     `Description for argument 'someArg' on directive 'yolo' changed from 'Included when true.' to 'someArg does stuff'`,
     `Type for argument 'someArg' on directive 'yolo' changed from 'Boolean!' to 'String!'`,
     `Default value 'Test' was added to argument 'anotherArg' on directive 'yolo'`,
-  ].forEach(msg => {
+  ].forEach((msg) => {
     try {
-      expect(changes.some(c => c.message === msg)).toEqual(true);
+      expect(changes.some((c) => c.message === msg)).toEqual(true);
     } catch (e) {
       console.log(changes);
       console.log(`Couldn't find: ${msg}`);
       const match = findBestMatch(
         msg,
-        changes.map(c => ({
+        changes.map((c) => ({
           typeId: c.path || '',
           value: c.message,
         })),
@@ -397,9 +399,9 @@ test('huge test', () => {
     '@yolo.someArg',
     '@yolo.someArg',
     '@yolo.anotherArg',
-  ].forEach(path => {
+  ].forEach((path) => {
     try {
-      expect(changes.some(c => c.path === path)).toEqual(true);
+      expect(changes.some((c) => c.path === path)).toEqual(true);
     } catch (e) {
       console.log(`Couldn't find: ${path}`);
       throw e;
@@ -790,23 +792,31 @@ test('Query fields becoming nullable is a breaking change', () => {
 });
 
 test('should work with with missing directive definitions', () => {
-  const schemaA = buildSchema(/* GraphQL */ `
-    type Query {
-      foo: String! @md
-      bar: String! @md
-    }
-  `, {
-    assumeValid: true
-  });
+  const schemaA = buildSchema(
+    /* GraphQL */ `
+      type Query {
+        foo: String! @md
+        bar: String! @md
+      }
+    `,
+    {
+      assumeValid: true,
+      assumeValidSDL: true,
+    },
+  );
 
-  const schemaB = buildSchema(/* GraphQL */ `
-    type Query {
-      foo: String! @md
-      bar: String
-    }
-  `, {
-    assumeValid: true
-  });
+  const schemaB = buildSchema(
+    /* GraphQL */ `
+      type Query {
+        foo: String! @md
+        bar: String
+      }
+    `,
+    {
+      assumeValid: true,
+      assumeValidSDL: true,
+    },
+  );
 
   const changes = diff(schemaA, schemaB);
 

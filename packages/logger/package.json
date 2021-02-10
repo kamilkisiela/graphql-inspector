@@ -21,11 +21,11 @@
     "directory": "packages/logger"
   },
   "dependencies": {
-    "chalk": "4.0.0",
+    "chalk": "4.1.0",
     "figures": "3.2.0",
     "log-symbols": "4.0.0",
     "std-env": "2.2.1",
-    "tslib": "^1.11.1"
+    "tslib": "^2.0.0"
   },
   "scripts": {
     "prepack": "bob prepack"

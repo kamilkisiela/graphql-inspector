@@ -33,7 +33,6 @@ GraphQL Inspector offers a version of our CLI that is better suited for Continou
     <div style={{marginTop: 15}}><span style={{color: 'red'}}>ERROR</span> Detected 2 breaking changes!</div>
 </div>
 
-
 ### Usage
 
 Run the following command:
@@ -50,6 +49,9 @@ Run the following command:
 - `-r, --require <s>` - require a module
 - `-t, --token <s>` - an access token
 - `-h, --header <s>` - set http header (`--header 'Auth: Basic 123')
+- `--method` - method on url schema pointers (default: _POST_)
+- `--federation` - Support Apollo Federation directives (default: _false_)
+- `--aws` - Support AWS Appsync directives and scalar types (default: _false_)
 
 **Output**
 

@@ -2,24 +2,24 @@
   "name": "@graphql-inspector/website",
   "scripts": {
     "start": "docusaurus start",
-    "build": "node ./links.js && docusaurus build",
+    "build": "docusaurus build",
     "swizzle": "docusaurus swizzle",
     "deploy": "docusaurus deploy"
   },
   "dependencies": {
-    "@docusaurus/core": "2.0.0-alpha.54",
-    "@docusaurus/preset-classic": "2.0.0-alpha.54",
-    "@docusaurus/plugin-ideal-image": "2.0.0-alpha.54",
-    "@graphql-inspector/core": "1.30.4",
+    "@docusaurus/core": "2.0.0-alpha.66",
+    "@docusaurus/plugin-ideal-image": "2.0.0-alpha.66",
+    "@docusaurus/preset-classic": "2.0.0-alpha.66",
+    "@graphql-inspector/core": "2.3.0",
     "classnames": "2.2.6",
-    "fetch-ponyfill": "6.1.0",
-    "globby": "11.0.0",
-    "react": "16.13.1",
-    "react-dom": "16.13.1",
+    "fetch-ponyfill": "7.0.0",
+    "globby": "11.0.1",
+    "monaco-editor-webpack-plugin": "2.0.0",
+    "react": "17.0.1",
+    "react-dom": "17.0.1",
     "react-feather": "2.0.8",
     "react-flip-move": "3.0.4",
-    "react-monaco-editor": "0.36.0",
-    "styled-components": "5.1.0"
+    "react-monaco-editor": "0.40.0"
   },
   "browserslist": {
     "production": [

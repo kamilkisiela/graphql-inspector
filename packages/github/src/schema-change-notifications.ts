@@ -54,7 +54,11 @@ export async function handleSchemaChangeNotifications({
   }
 
   const branch = ref.replace('refs/heads/', '');
-  const config = createConfig(rawConfig as any, [branch]);
+  const config = createConfig(
+    rawConfig as any,
+    () => {},
+    [branch],
+  );
 
   if (!config.notifications) {
     logger.info(`disabled. Skipping...`);
@@ -84,9 +88,11 @@ export async function handleSchemaChangeNotifications({
   const schemas = {
     old: buildSchema(sources.old, {
       assumeValid: true,
+      assumeValidSDL: true,
     }),
     new: buildSchema(sources.new, {
       assumeValid: true,
+      assumeValidSDL: true,
     }),
   };
 

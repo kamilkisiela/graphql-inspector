@@ -1,64 +1,28 @@
 import {GraphQLInterfaceType} from 'graphql';
 
-import {Change} from './changes/change';
 import {fieldRemoved, fieldAdded} from './changes/field';
 import {changesInField} from './field';
-import {diffArrays, unionArrays} from '../utils/arrays';
+import {compareLists} from '../utils/compare';
+import {AddChange} from './schema';
 
 export function changesInInterface(
   oldInterface: GraphQLInterfaceType,
   newInterface: GraphQLInterfaceType,
-): Change[] {
-  const changes: Change[] = [];
-
-  changes.push(...addedFields(oldInterface, newInterface));
-  changes.push(...removedFields(oldInterface, newInterface));
-  changedFields(oldInterface, newInterface).forEach(({inOld, inNew}) => {
-    changes.push(...changesInField(oldInterface, inOld, inNew));
-  });
-
-  return changes;
-}
-
-function addedFields(
-  oldInterface: GraphQLInterfaceType,
-  newInterface: GraphQLInterfaceType,
-): Change[] {
-  const oldFields = oldInterface.getFields();
-  const newFields = newInterface.getFields();
-  const oldNames = Object.keys(oldFields);
-  const newNames = Object.keys(newFields);
-
-  return diffArrays(newNames, oldNames)
-    .map(name => newFields[name])
-    .map(f => fieldAdded(newInterface, f));
-}
-
-function removedFields(
-  oldInterface: GraphQLInterfaceType,
-  newInterface: GraphQLInterfaceType,
-): Change[] {
-  const oldFields = oldInterface.getFields();
-  const newFields = newInterface.getFields();
-  const oldNames = Object.keys(oldFields);
-  const newNames = Object.keys(newFields);
-
-  return diffArrays(oldNames, newNames)
-    .map(name => oldFields[name])
-    .map(f => fieldRemoved(oldInterface, f));
-}
-
-function changedFields(
-  oldInterface: GraphQLInterfaceType,
-  newInterface: GraphQLInterfaceType,
+  addChange: AddChange,
 ) {
-  const oldFields = oldInterface.getFields();
-  const newFields = newInterface.getFields();
-  const oldNames = Object.keys(oldFields);
-  const newNames = Object.keys(newFields);
-
-  return unionArrays(oldNames, newNames).map(name => ({
-    inOld: oldFields[name],
-    inNew: newFields[name],
-  }));
+  compareLists(
+    Object.values(oldInterface.getFields()),
+    Object.values(newInterface.getFields()),
+    {
+      onAdded(field) {
+        addChange(fieldAdded(newInterface, field));
+      },
+      onRemoved(field) {
+        addChange(fieldRemoved(oldInterface, field));
+      },
+      onMutual(field) {
+        changesInField(oldInterface, field.oldVersion, field.newVersion, addChange);
+      },
+    },
+  );
 }
