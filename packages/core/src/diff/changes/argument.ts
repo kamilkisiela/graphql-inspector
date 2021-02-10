@@ -47,7 +47,7 @@ export function fieldArgumentDefaultChanged(
 }
 
 function safeString(obj: any) {
-  if (typeof Object.getPrototypeOf(obj).toString === 'function') {
+if (obj != null && typeof obj.toString === 'function') {
     return `${obj}`
   }
   return inspect(obj, { depth: null })
