@@ -85,7 +85,7 @@ We recommend to automate the workflow and use `husky` to run [`$ graphql-inspect
 }
 ```
 
-This way you `schema.graphql` is always in sync with the code, on each commit.
+This way your `schema.graphql` is always in sync with the code, on each commit.
 
 ## Using Docker image
 
