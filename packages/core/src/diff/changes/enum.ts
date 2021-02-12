@@ -12,7 +12,9 @@ export function enumValueRemoved(
       reason: `Removing an enum value will cause existing queries that use this enum value to error.`,
     },
     type: ChangeType.EnumValueRemoved,
-    message: `Enum value '${value.name}' was removed from enum '${oldEnum.name}'`,
+    message: `Enum value '${value.name}' ${
+      value.isDeprecated ? '(deprecated) ' : ''
+    }was removed from enum '${oldEnum.name}'`,
     path: [oldEnum.name, value.name].join('.'),
   };
 }
