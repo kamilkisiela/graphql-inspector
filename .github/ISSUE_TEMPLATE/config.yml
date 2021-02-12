@@ -1,8 +1,5 @@
 blank_issues_enabled: false
 contact_links:
-  - name: Feature Request
+  - name: Have a question?
     url: https://github.com/kamilkisiela/graphql-inspector/discussions/new
-    about: Request and discuss a feature
-  - name: Ask a Question
-    url: https://github.com/kamilkisiela/graphql-inspector/discussions/new
-    about: Ask questions and discuss with other community members
+    about: Not sure about something? need help from the community? have a question to our team? please ask and answer questions here.
