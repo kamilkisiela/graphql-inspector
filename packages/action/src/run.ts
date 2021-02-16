@@ -174,6 +174,11 @@ export async function run() {
     annotations = [];
   }
 
+  if (annotations.length > 50) {
+    core.info(`Reached GitHub limit of annotations (max 50). Skipping annotations...`);
+    annotations = [];
+  }
+
   const summary = createSummary(changes, 100, false);
 
   const title =
