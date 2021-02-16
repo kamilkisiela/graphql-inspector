@@ -2,6 +2,8 @@
 
 ### vNEXT
 
+### v2.4.0
+
 - **cli**: Support GET method in URL loaders [#1797](https://github.com/kamilkisiela/graphql-inspector/pull/1797) [#1796](https://github.com/kamilkisiela/graphql-inspector/pull/1796)
 - **cli**: Support AWS types [#1793](https://github.com/kamilkisiela/graphql-inspector/pull/1793)
 - **github**: Detection of a legacy config + note in a summary
