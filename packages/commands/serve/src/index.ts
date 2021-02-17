@@ -24,7 +24,7 @@ export default createCommand<
 
   return {
     command: 'serve <schema>',
-    describe: 'Compare two GraphQL Schemas',
+    describe: 'Runs server with fake data based on schema',
     builder(yargs) {
       return yargs
         .positional('schema', {
