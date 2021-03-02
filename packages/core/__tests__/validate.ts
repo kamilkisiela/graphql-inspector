@@ -417,4 +417,53 @@ describe('validate', () => {
       `The argument 'query' of 'findPost' is deprecated. Please use 'searchQuery' instead.`,
     );
   });
+
+  test('deprecated notice for field on fragment in different file', () => {
+    const schema = buildSchema(/* GraphQL */ `
+      type Post {
+        id: ID
+        title: String @deprecated(reason: "BECAUSE")
+        author: String
+        createdAt: Int
+      }
+
+      type Query {
+        post: Post
+      }
+
+      schema {
+        query: Query
+      }
+    `);
+
+    const docs = [
+      parse(/* GraphQL */ `
+        query getPostOrImage {
+          post {
+            ...PostInfo
+          }
+        }
+      `),
+      parse(/* GraphQL */ `
+        fragment PostInfo on Post {
+          id
+          title
+        }
+      `),
+    ];
+
+    const results = validate(
+      schema,
+      docs.map((doc) => new Source(print(doc))),
+    );
+
+    expect(results.length).toEqual(1);
+    expect(results[0].errors.length).toEqual(0);
+    expect(results[0].deprecated.length).toEqual(1);
+
+    const deprecated = results[0].deprecated[0];
+    expect(deprecated.message).toMatch(
+      `The field 'Post.title' is deprecated. BECAUSE`,
+    );
+  });
 });
