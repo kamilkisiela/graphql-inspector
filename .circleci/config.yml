@@ -15,7 +15,7 @@ jobs:
           name: Build
           command: yarn build
       - run:
-          name: Pack
+          name: Prepare artifacts
           command: yarn pack-flat --commit $CIRCLE_BUILD_NUM
       - store_artifacts:
           path: .bob-packed
