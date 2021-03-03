@@ -3,7 +3,6 @@ import {
   GraphQLError,
   Source,
   print,
-  parse,
   validate as validateDocument,
   FragmentDefinitionNode,
   DocumentNode,
@@ -147,7 +146,7 @@ export function validate(
       }
 
       const deprecated = config.strictDeprecated
-        ? findDeprecatedUsages(transformedSchema, parse(doc.source.body))
+        ? findDeprecatedUsages(transformedSchema, transformedDoc)
         : [];
       const duplicatedFragments = config.strictFragments
         ? findDuplicatedFragments(fragmentNames)
