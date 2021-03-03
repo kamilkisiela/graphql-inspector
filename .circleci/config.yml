@@ -7,7 +7,7 @@ jobs:
   build:
     executor: 
       name: node/default
-      tag: '14'
+      tag: '12'
     steps:
       - checkout
       - node/install-yarn
