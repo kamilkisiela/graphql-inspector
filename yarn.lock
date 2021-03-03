@@ -3007,10 +3007,10 @@ bluebird@^3.5.1, bluebird@^3.5.3, bluebird@^3.5.5, bluebird@^3.7.2:
   resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.7.2.tgz#9f229c15be272454ffa973ace0dbee79a1b0c36f"
   integrity sha512-XpNj6GDQzdfW+r2Wnn7xiSAd7TM3jzkxGXBGTtWKuSXv1xUV+azxAm8jdWZN06QTQk+2N2XB9jRDkvbmQmcRtg==
 
-bob-the-bundler@1.2.0-alpha.0:
-  version "1.2.0-alpha.0"
-  resolved "https://registry.yarnpkg.com/bob-the-bundler/-/bob-the-bundler-1.2.0-alpha.0.tgz#100c18b9f1fdf75d1e6a6e826ad784135a08116c"
-  integrity sha512-FfrCDRP+6ltwHE9n0WZ2MTrhlnWbFeo4FZ6xrvIZtUpUjJmOKQLqGVuvGTPqJEJuft66HXJ6TOkTtOw41GdZvA==
+bob-the-bundler@1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/bob-the-bundler/-/bob-the-bundler-1.2.0.tgz#a69a5695ac4e7aff8e34c8433517ae8c9823982c"
+  integrity sha512-bBz5RiQw326NG/Tdbg+RzM5Aldz6WUYdxf0ZSqTpOiwj8dHqyqZNWi4fDLjUMwL6BRq9HaXyWaqs26iQQfjtzw==
   dependencies:
     "@rollup/plugin-node-resolve" "7.1.1"
     consola "2.11.3"
