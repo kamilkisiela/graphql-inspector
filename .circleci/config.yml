@@ -1,0 +1,22 @@
+version: 2.1
+
+orbs:
+  node: circleci/node@4.2.0
+
+jobs:
+  build:
+    executor: node/default
+    steps:
+      - checkout
+      - node/install-yarn
+      - node/install-packages:
+          override-ci-command: yarn install
+      - run:
+          name: Build
+          command: yarn build
+      - run:
+          name: Pack
+          command: yarn pack-flat --commit $CIRCLE_BUILD_NUM
+      - store_artifacts:
+          path: .bob-packed
+          destination: inspector
