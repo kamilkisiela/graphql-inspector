@@ -18,7 +18,7 @@ jobs:
           command: yarn build
       - run:
           name: Prepare artifacts
-          command: yarn pack-flat --commit $CIRCLE_BUILD_NUM
+          command: yarn bob pack-flat --commit $CIRCLE_BUILD_NUM
       - store_artifacts:
           path: .bob-packed
           destination: inspector
