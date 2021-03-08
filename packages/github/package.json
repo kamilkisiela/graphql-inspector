@@ -52,7 +52,7 @@
   },
   "devDependencies": {
     "@types/express": "4.17.11",
-    "probot": "10.14.1",
+    "probot": "10.19.0",
     "smee-client": "1.2.2"
   }
 }
