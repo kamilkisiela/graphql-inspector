@@ -71,7 +71,8 @@ export async function run() {
   const useExperimentalMerge = castToBoolean(core.getInput('experimental_merge'), false);
   const useAnnotations = castToBoolean(core.getInput('annotations'));
   const failOnBreaking = castToBoolean(core.getInput('fail-on-breaking'));
-  const endpoint = core.getInput('endpoint');
+  const endpoint: string = core.getInput('endpoint');
+  const approveLabel: string = core.getInput('approve-label') || 'approved-breaking-change';
 
   const octokit = github.getOctokit(token);
 
@@ -163,8 +164,12 @@ export async function run() {
   core.setOutput('changes', `${changes.length || 0}`);
   core.info(`Changes: ${changes.length || 0}`);
 
+  const hasApprovedBreakingChangeLabel = github.context.payload.pull_request
+      ? github.context.payload.pull_request.labels?.some((label: any) => label.name === approveLabel)
+      : false;
+
   // Force Success when failOnBreaking is disabled
-  if (failOnBreaking === false && conclusion === CheckConclusion.Failure) {
+  if ((failOnBreaking === false || hasApprovedBreakingChangeLabel) && conclusion === CheckConclusion.Failure) {
     core.info('FailOnBreaking disabled. Forcing SUCCESS');
     conclusion = CheckConclusion.Success;
   }

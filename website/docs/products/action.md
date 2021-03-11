@@ -77,6 +77,23 @@ Fail on breaking changes (enabled by default)
     fail-on-breaking: false
 ```
 
+### approve-label
+
+Label to mark Pull Request introducing breaking changes as safe and expected
+By default, GraphQL Inspector fails the Pull Request when it detects any breaking changes.
+
+_('approved-breaking-change' by default)_
+
+```yaml
+- uses: kamilkisiela/graphql-inspector@master
+  with:
+    github-token: ${{ secrets.GITHUB_TOKEN }}
+    schema: 'master:schema.graphql'
+    approve-label: 'expected-breaking-change' 
+```
+
+To mark the breaking change as safe, apply the `approved-breaking-change` label or define your own in `approve-label`.
+
 ### endpoint
 
 Use GraphQL API endpoint as source of schema.
