@@ -1,5 +1,6 @@
 dist
 .bob
+.bob-packed
 .cache
 node_modules/
 yarn-error.log
