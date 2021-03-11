@@ -2,6 +2,8 @@
 
 ### vNEXT
 
+- **action**: Accepts a GitHub Label to mark Pull Request with breaking changes as something expected and safe
+
 ### v2.4.0
 
 - **cli**: Support GET method in URL loaders [#1797](https://github.com/kamilkisiela/graphql-inspector/pull/1797) [#1796](https://github.com/kamilkisiela/graphql-inspector/pull/1796)
