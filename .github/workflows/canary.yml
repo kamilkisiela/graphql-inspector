@@ -1,0 +1,290 @@
+name: CI
+
+on: [pull_request]
+
+jobs:
+  test:
+    name: Test on node ${{ matrix.node_version }}
+    runs-on: ubuntu-latest
+    env:
+      CI: true
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - name: Use Node.js 14
+        uses: actions/setup-node@master
+        with:
+          node-version: 14
+
+      - name: Bob, check the repo
+        id: bob
+        uses: 'kamilkisiela/bob@master'
+      - name: Bob, check Build
+        id: bob-build
+        uses: 'kamilkisiela/bob@master'
+        with:
+          command: build
+
+      - uses: actions/cache@v2
+        name: Cache node_modules
+        if: steps.bob.outputs.dirty == 'true'
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Install
+        if: steps.bob.outputs.dirty == 'true'
+        run: yarn
+
+      - name: Build
+        if: steps.bob-build.outputs.dirty == 'true'
+        run: yarn affected:build
+      
+      - name: Pack
+        if: steps.bob-build.outputs.dirty == 'true'
+        run: yarn bob pack-flat --commit $GITHUB_RUN_ID
+
+      # PUBLISH_PACKAGES
+
+      - name: "Publish core"
+        uses: actions/upload-artifact@v2
+        if: steps.bob-build.outputs.dirty == 'true'
+        with:
+          name: "core.tgz"
+          path: "graphql-inspector-core-$GITHUB_RUN_ID.tar.gz"
+          retention-days: 7
+          if-no-files-found: ignore
+  
+
+      - name: "Publish logger"
+        uses: actions/upload-artifact@v2
+        if: steps.bob-build.outputs.dirty == 'true'
+        with:
+          name: "logger.tgz"
+          path: "graphql-inspector-logger-$GITHUB_RUN_ID.tar.gz"
+          retention-days: 7
+          if-no-files-found: ignore
+  
+
+      - name: "Publish ci"
+        uses: actions/upload-artifact@v2
+        if: steps.bob-build.outputs.dirty == 'true'
+        with:
+          name: "ci.tgz"
+          path: "graphql-inspector-ci-$GITHUB_RUN_ID.tar.gz"
+          retention-days: 7
+          if-no-files-found: ignore
+  
+
+      - name: "Publish cli"
+        uses: actions/upload-artifact@v2
+        if: steps.bob-build.outputs.dirty == 'true'
+        with:
+          name: "cli.tgz"
+          path: "graphql-inspector-cli-$GITHUB_RUN_ID.tar.gz"
+          retention-days: 7
+          if-no-files-found: ignore
+  
+
+      - name: "Publish config"
+        uses: actions/upload-artifact@v2
+        if: steps.bob-build.outputs.dirty == 'true'
+        with:
+          name: "config.tgz"
+          path: "graphql-inspector-config-$GITHUB_RUN_ID.tar.gz"
+          retention-days: 7
+          if-no-files-found: ignore
+  
+
+      - name: "Publish commands"
+        uses: actions/upload-artifact@v2
+        if: steps.bob-build.outputs.dirty == 'true'
+        with:
+          name: "commands.tgz"
+          path: "graphql-inspector-commands-$GITHUB_RUN_ID.tar.gz"
+          retention-days: 7
+          if-no-files-found: ignore
+  
+
+      - name: "Publish loaders"
+        uses: actions/upload-artifact@v2
+        if: steps.bob-build.outputs.dirty == 'true'
+        with:
+          name: "loaders.tgz"
+          path: "graphql-inspector-loaders-$GITHUB_RUN_ID.tar.gz"
+          retention-days: 7
+          if-no-files-found: ignore
+  
+
+      - name: "Publish github"
+        uses: actions/upload-artifact@v2
+        if: steps.bob-build.outputs.dirty == 'true'
+        with:
+          name: "github.tgz"
+          path: "graphql-inspector-github-$GITHUB_RUN_ID.tar.gz"
+          retention-days: 7
+          if-no-files-found: ignore
+  
+
+      - name: "Publish action"
+        uses: actions/upload-artifact@v2
+        if: steps.bob-build.outputs.dirty == 'true'
+        with:
+          name: "action.tgz"
+          path: "graphql-inspector-action-$GITHUB_RUN_ID.tar.gz"
+          retention-days: 7
+          if-no-files-found: ignore
+  
+
+      - name: "Publish code-loader"
+        uses: actions/upload-artifact@v2
+        if: steps.bob-build.outputs.dirty == 'true'
+        with:
+          name: "code-loader.tgz"
+          path: "graphql-inspector-code-loader-$GITHUB_RUN_ID.tar.gz"
+          retention-days: 7
+          if-no-files-found: ignore
+  
+
+      - name: "Publish git-loader"
+        uses: actions/upload-artifact@v2
+        if: steps.bob-build.outputs.dirty == 'true'
+        with:
+          name: "git-loader.tgz"
+          path: "graphql-inspector-git-loader-$GITHUB_RUN_ID.tar.gz"
+          retention-days: 7
+          if-no-files-found: ignore
+  
+
+      - name: "Publish github-loader"
+        uses: actions/upload-artifact@v2
+        if: steps.bob-build.outputs.dirty == 'true'
+        with:
+          name: "github-loader.tgz"
+          path: "graphql-inspector-github-loader-$GITHUB_RUN_ID.tar.gz"
+          retention-days: 7
+          if-no-files-found: ignore
+  
+
+      - name: "Publish graphql-loader"
+        uses: actions/upload-artifact@v2
+        if: steps.bob-build.outputs.dirty == 'true'
+        with:
+          name: "graphql-loader.tgz"
+          path: "graphql-inspector-graphql-loader-$GITHUB_RUN_ID.tar.gz"
+          retention-days: 7
+          if-no-files-found: ignore
+  
+
+      - name: "Publish json-loader"
+        uses: actions/upload-artifact@v2
+        if: steps.bob-build.outputs.dirty == 'true'
+        with:
+          name: "json-loader.tgz"
+          path: "graphql-inspector-json-loader-$GITHUB_RUN_ID.tar.gz"
+          retention-days: 7
+          if-no-files-found: ignore
+  
+
+      - name: "Publish url-loader"
+        uses: actions/upload-artifact@v2
+        if: steps.bob-build.outputs.dirty == 'true'
+        with:
+          name: "url-loader.tgz"
+          path: "graphql-inspector-url-loader-$GITHUB_RUN_ID.tar.gz"
+          retention-days: 7
+          if-no-files-found: ignore
+  
+
+      - name: "Publish diff-command"
+        uses: actions/upload-artifact@v2
+        if: steps.bob-build.outputs.dirty == 'true'
+        with:
+          name: "diff-command.tgz"
+          path: "graphql-inspector-diff-command-$GITHUB_RUN_ID.tar.gz"
+          retention-days: 7
+          if-no-files-found: ignore
+  
+
+      - name: "Publish docs-command"
+        uses: actions/upload-artifact@v2
+        if: steps.bob-build.outputs.dirty == 'true'
+        with:
+          name: "docs-command.tgz"
+          path: "graphql-inspector-docs-command-$GITHUB_RUN_ID.tar.gz"
+          retention-days: 7
+          if-no-files-found: ignore
+  
+
+      - name: "Publish serve-command"
+        uses: actions/upload-artifact@v2
+        if: steps.bob-build.outputs.dirty == 'true'
+        with:
+          name: "serve-command.tgz"
+          path: "graphql-inspector-serve-command-$GITHUB_RUN_ID.tar.gz"
+          retention-days: 7
+          if-no-files-found: ignore
+  
+
+      - name: "Publish coverage-command"
+        uses: actions/upload-artifact@v2
+        if: steps.bob-build.outputs.dirty == 'true'
+        with:
+          name: "coverage-command.tgz"
+          path: "graphql-inspector-coverage-command-$GITHUB_RUN_ID.tar.gz"
+          retention-days: 7
+          if-no-files-found: ignore
+  
+
+      - name: "Publish validate-command"
+        uses: actions/upload-artifact@v2
+        if: steps.bob-build.outputs.dirty == 'true'
+        with:
+          name: "validate-command.tgz"
+          path: "graphql-inspector-validate-command-$GITHUB_RUN_ID.tar.gz"
+          retention-days: 7
+          if-no-files-found: ignore
+  
+
+      - name: "Publish introspect-command"
+        uses: actions/upload-artifact@v2
+        if: steps.bob-build.outputs.dirty == 'true'
+        with:
+          name: "introspect-command.tgz"
+          path: "graphql-inspector-introspect-command-$GITHUB_RUN_ID.tar.gz"
+          retention-days: 7
+          if-no-files-found: ignore
+  
+
+      - name: "Publish similar-command"
+        uses: actions/upload-artifact@v2
+        if: steps.bob-build.outputs.dirty == 'true'
+        with:
+          name: "similar-command.tgz"
+          path: "graphql-inspector-similar-command-$GITHUB_RUN_ID.tar.gz"
+          retention-days: 7
+          if-no-files-found: ignore
+  
+
+      - name: "Publish graphql-cli-common"
+        uses: actions/upload-artifact@v2
+        if: steps.bob-build.outputs.dirty == 'true'
+        with:
+          name: "graphql-cli-common.tgz"
+          path: "graphql-inspector-graphql-cli-common-$GITHUB_RUN_ID.tar.gz"
+          retention-days: 7
+          if-no-files-found: ignore
+  
+
+      - name: "Publish testing"
+        uses: actions/upload-artifact@v2
+        if: steps.bob-build.outputs.dirty == 'true'
+        with:
+          name: "testing.tgz"
+          path: "graphql-inspector-testing-$GITHUB_RUN_ID.tar.gz"
+          retention-days: 7
+          if-no-files-found: ignore
+  

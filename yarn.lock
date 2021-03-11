@@ -3007,10 +3007,10 @@ bluebird@^3.5.1, bluebird@^3.5.3, bluebird@^3.5.5, bluebird@^3.7.2:
   resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.7.2.tgz#9f229c15be272454ffa973ace0dbee79a1b0c36f"
   integrity sha512-XpNj6GDQzdfW+r2Wnn7xiSAd7TM3jzkxGXBGTtWKuSXv1xUV+azxAm8jdWZN06QTQk+2N2XB9jRDkvbmQmcRtg==
 
-bob-the-bundler@1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/bob-the-bundler/-/bob-the-bundler-1.1.0.tgz#fd7cd427f754bf95826055ee356d64a67406387f"
-  integrity sha512-qqstwyxR7YX3Im8jY3vTV4FwnpuRS8AQclZwR9kg3SaWqZnzvEfJKO+JOf3Kbr1/48Zu6O1qPeKmEHesAyR3uw==
+bob-the-bundler@1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/bob-the-bundler/-/bob-the-bundler-1.2.0.tgz#a69a5695ac4e7aff8e34c8433517ae8c9823982c"
+  integrity sha512-bBz5RiQw326NG/Tdbg+RzM5Aldz6WUYdxf0ZSqTpOiwj8dHqyqZNWi4fDLjUMwL6BRq9HaXyWaqs26iQQfjtzw==
   dependencies:
     "@rollup/plugin-node-resolve" "7.1.1"
     consola "2.11.3"
@@ -3022,6 +3022,7 @@ bob-the-bundler@1.1.0:
     minimatch "3.0.4"
     mkdirp "1.0.4"
     p-limit "2.2.2"
+    param-case "3.0.4"
     rollup "2.3.2"
     rollup-plugin-auto-external "2.0.0"
     rollup-plugin-generate-package-json "3.2.0"
@@ -4210,6 +4211,14 @@ domexception@^2.0.1:
   integrity sha512-yxJ2mFy/sibVQlu5qHjOkf9J3K6zgmCxgJ94u2EdvDOV09H+32LtRswEcUsmUWN72pVLOEnTSRaIVVzVQgS0dg==
   dependencies:
     webidl-conversions "^5.0.0"
+
+dot-case@^3.0.4:
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/dot-case/-/dot-case-3.0.4.tgz#9b2b670d00a431667a8a75ba29cd1b98809ce751"
+  integrity sha512-Kv5nKlh6yRrdrGvxeJ2e5y2eRUpkUosIW4A2AS38zwSz27zu7ufDwQPi5Jhs3XAlGNetl3bmnGhQsMtkKJnj3w==
+  dependencies:
+    no-case "^3.0.4"
+    tslib "^2.0.3"
 
 dot-prop@^4.2.0:
   version "4.2.1"
@@ -8054,6 +8063,14 @@ parallel-transform@^1.1.0:
     cyclist "^1.0.1"
     inherits "^2.0.3"
     readable-stream "^2.1.5"
+
+param-case@3.0.4:
+  version "3.0.4"
+  resolved "https://registry.yarnpkg.com/param-case/-/param-case-3.0.4.tgz#7d17fe4aa12bde34d4a77d91acfb6219caad01c5"
+  integrity sha512-RXlj7zCYokReqWpOPH9oYivUzLYZ5vAPIfEmCTNViosC78F8F0H9y7T7gG2M39ymgutxF5gcFEsyZQSph9Bp3A==
+  dependencies:
+    dot-case "^3.0.4"
+    tslib "^2.0.3"
 
 parent-module@^1.0.0:
   version "1.0.1"
