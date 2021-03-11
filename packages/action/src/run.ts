@@ -297,6 +297,8 @@ async function updateCheckRun(
           check_run_id: checkId,
           ...github.context.repo,
           output: {
+            title, 
+            summary,
             annotations: chunk,
           },
         } as any);
