@@ -122,6 +122,10 @@ export async function run() {
     }
   }
 
+  if (endpoint) {
+    schemaPath = schemaPointer;
+  }
+
   const [oldFile, newFile] = await Promise.all([
     endpoint
       ? printSchemaFromEndpoint(endpoint)
@@ -130,7 +134,7 @@ export async function run() {
           path: schemaPath,
         }),
     loadFile({
-      path: endpoint ? schemaPointer : schemaPath,
+      path: schemaPath,
       ref,
       workspace,
     }),
@@ -140,7 +144,7 @@ export async function run() {
 
   const sources = {
     old: new Source(oldFile, endpoint || `${schemaRef}:${schemaPath}`),
-    new: new Source(newFile, endpoint ? schemaPointer : schemaPath),
+    new: new Source(newFile, schemaPath),
   };
 
   const schemas = {
