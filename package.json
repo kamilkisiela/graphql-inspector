@@ -74,7 +74,7 @@
     "packages/graphql-cli/*"
   ],
   "lint-staged": {
-    "*.{js,json,md,ts,graphql}": [
+    "*.{js,json,md,ts,graphql,yaml,yml}": [
       "prettier --write",
       "node scripts/canary",
       "git add"
