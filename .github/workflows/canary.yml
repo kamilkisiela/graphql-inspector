@@ -3,8 +3,8 @@ name: Canary Releases
 on: [pull_request]
 
 jobs:
-  test:
-    name: Test on node ${{ matrix.node_version }}
+  publish:
+    name: Publish
     runs-on: ubuntu-latest
     env:
       CI: true
