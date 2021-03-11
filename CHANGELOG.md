@@ -3,6 +3,7 @@
 ### vNEXT
 
 - **action**: Accepts a GitHub Label to mark Pull Request with breaking changes as something expected and safe [#1852](https://github.com/kamilkisiela/graphql-inspector/pull/1852)
+- **action**: Send annotations in batches
 
 ### v2.4.0
 
