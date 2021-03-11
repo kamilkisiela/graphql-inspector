@@ -295,6 +295,7 @@ async function updateCheckRun(
       batches.map(async (chunk) => {
         await octokit.checks.update({
           check_run_id: checkId,
+          ...github.context.repo,
           output: {
             annotations: chunk,
           },
