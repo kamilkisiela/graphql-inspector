@@ -7,8 +7,8 @@ function createPublish(name) {
         uses: actions/upload-artifact@v2
         if: steps.bob-build.outputs.dirty == 'true'
         with:
-          name: "${name}.tgz"
-          path: ".bob-packed/graphql-inspector-${name}-0.0.0-canary-\${GITHUB_RUN_ID}.tar.gz"
+          name: ${name}.tgz
+          path: .bob-packed/graphql-inspector-${name}-0.0.0-canary-\${{ env.GITHUB_RUN_ID }}.tar.gz
           retention-days: 7
           if-no-files-found: ignore
   `;
