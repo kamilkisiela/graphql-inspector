@@ -13,6 +13,7 @@ import {execSync} from 'child_process';
 import * as core from '@actions/core';
 import * as github from '@actions/github';
 import {Octokit} from '@octokit/rest';
+import {batch} from './utils';
 
 type OctokitInstance = ReturnType<typeof github.getOctokit>;
 
@@ -179,11 +180,6 @@ export async function run() {
     annotations = [];
   }
 
-  if (annotations.length > 50) {
-    core.info(`Reached GitHub limit of annotations (max 50). Skipping annotations...`);
-    annotations = [];
-  }
-
   const summary = createSummary(changes, 100, false);
 
   const title =
@@ -277,14 +273,42 @@ async function updateCheckRun(
   {conclusion, output}: UpdateCheckRunOptions,
 ) {
   core.info(`Updating check: ${checkId}`);
+  
+  const {title, summary, annotations = []} = output;
+  const batches = batch(annotations, 50);
+  
+  core.info(`annotations to be sent: ${annotations.length}`);
+
   await octokit.checks.update({
     check_run_id: checkId,
     completed_at: new Date().toISOString(),
     status: 'completed',
     ...github.context.repo,
     conclusion,
-    output,
+    output: {
+      title, summary
+    },
   });
+
+  try {
+    await Promise.all(
+      batches.map(async (chunk) => {
+        await octokit.checks.update({
+          check_run_id: checkId,
+          ...github.context.repo,
+          output: {
+            title, 
+            summary,
+            annotations: chunk,
+          },
+        } as any);
+        core.info(`annotations sent (${chunk.length})`);
+      }),
+    );
+  } catch (error) {
+    core.error(`failed to send annotations: ${error}`);
+    throw error;
+  }
 
   // Fail
   if (conclusion === CheckConclusion.Failure) {
@@ -312,3 +336,4 @@ function castToBoolean(value: string | boolean, defaultValue?: boolean): boolean
 
   return true;
 }
+
