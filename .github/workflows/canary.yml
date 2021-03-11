@@ -1,4 +1,4 @@
-name: CI
+name: Canary Releases
 
 on: [pull_request]
 
