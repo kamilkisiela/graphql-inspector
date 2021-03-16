@@ -131,9 +131,9 @@ export async function handleSchemaChangeNotifications({
 
     if (notifications.discord) {
       actions.push(
-        actionRunner('slack', () =>
+        actionRunner('discord', () =>
           notifyWithDiscord({
-            url: notifications.slack!,
+            url: notifications.discord!,
             changes,
             environment: config.name,
           }),
