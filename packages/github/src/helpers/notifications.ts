@@ -6,6 +6,9 @@ import {defaultConfigName} from './config';
 export interface WebhookNotification {
   environment: string;
   name?: string;
+  owner: string;
+  repo: string;
+  commit?: string;
   changes: Array<{
     message: string;
     level: CriticalityLevel;
@@ -16,12 +19,21 @@ export async function notifyWithWebhook({
   url,
   changes,
   environment,
+  repo,
+  owner,
+  commit,
 }: {
   url: string;
   changes: Change[];
   environment?: string;
+  owner: string;
+  repo: string;
+  commit?: string;
 }) {
   const event: WebhookNotification = {
+    repo,
+    owner,
+    commit,
     environment:
       environment && environment !== defaultConfigName
         ? environment
@@ -43,13 +55,25 @@ export async function notifyWithSlack({
   url,
   changes,
   environment,
+  repo,
+  owner,
+  commit,
 }: {
   changes: Change[];
   url: string;
   environment?: string;
+  owner: string;
+  repo: string;
+  commit?: string;
 }) {
   const totalChanges = changes.length;
   const schemaName = environment ? `${environment} schema` : `schema`;
+  const sourceLink = commit
+    ? ` (<https://github.com/${owner}/${repo}/commit/${commit}|\`${commit.substr(
+        0,
+        7,
+      )}\`>)`
+    : '';
 
   const event = {
     username: 'GraphQL Inspector',
@@ -57,7 +81,7 @@ export async function notifyWithSlack({
     text: `:male-detective: Hi, I found *${totalChanges} ${pluralize(
       'change',
       totalChanges,
-    )}* ${schemaName}:`,
+    )}* in ${schemaName}${sourceLink}:`,
     attachments: createAttachments(changes),
   };
 
@@ -72,13 +96,25 @@ export async function notifyWithDiscord({
   url,
   changes,
   environment,
+  repo,
+  owner,
+  commit,
 }: {
   changes: Change[];
   url: string;
   environment?: string;
+  owner: string;
+  repo: string;
+  commit?: string;
 }) {
   const totalChanges = changes.length;
   const schemaName = environment ? `${environment} schema` : `schema`;
+  const sourceLink = commit
+    ? ` ([\`${commit.substr(
+        0,
+        7,
+      )}\`](https://github.com/${owner}/${repo}/commit/${commit}))`
+    : '';
 
   const event = {
     username: 'GraphQL Inspector',
@@ -86,7 +122,7 @@ export async function notifyWithDiscord({
     content: `:detective: Hi, I found **${totalChanges} ${pluralize(
       'change',
       totalChanges,
-    )}** in ${schemaName}:`,
+    )}** in ${schemaName}${sourceLink}:`,
     embeds: createDiscordEmbeds(changes),
   };
 

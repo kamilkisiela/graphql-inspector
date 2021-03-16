@@ -54,11 +54,7 @@ export async function handleSchemaChangeNotifications({
   }
 
   const branch = ref.replace('refs/heads/', '');
-  const config = createConfig(
-    rawConfig as any,
-    () => {},
-    [branch],
-  );
+  const config = createConfig(rawConfig as any, () => {}, [branch]);
 
   if (!config.notifications) {
     logger.info(`disabled. Skipping...`);
@@ -116,6 +112,7 @@ export async function handleSchemaChangeNotifications({
     }
 
     const actions: Array<Promise<void>> = [];
+    const commit: string | undefined = context.payload.commits?.[0]?.id;
 
     if (notifications.slack) {
       actions.push(
@@ -124,6 +121,9 @@ export async function handleSchemaChangeNotifications({
             url: notifications.slack!,
             changes,
             environment: config.name,
+            repo,
+            owner,
+            commit,
           }),
         ),
       );
@@ -136,6 +136,9 @@ export async function handleSchemaChangeNotifications({
             url: notifications.discord!,
             changes,
             environment: config.name,
+            repo,
+            owner,
+            commit,
           }),
         ),
       );
@@ -148,6 +151,9 @@ export async function handleSchemaChangeNotifications({
             url: notifications.webhook!,
             changes,
             environment: config.name,
+            repo,
+            owner,
+            commit,
           }),
         ),
       );
