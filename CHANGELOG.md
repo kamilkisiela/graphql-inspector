@@ -2,9 +2,12 @@
 
 ### vNEXT
 
+### v2.5.0
+
 - **action**: Accepts a GitHub Label to mark Pull Request with breaking changes as something expected and safe [#1852](https://github.com/kamilkisiela/graphql-inspector/pull/1852)
 - **action**: Send annotations in batches [#1854](https://github.com/kamilkisiela/graphql-inspector/pull/1854)
 - **action**: Fix missing "path" when using "endpoint" [#1855](https://github.com/kamilkisiela/graphql-inspector/pull/1855)
+- **core**: Fix no deprecation notice for field on fragment in a different document [#1849](https://github.com/kamilkisiela/graphql-inspector/pull/1849)
 
 ### v2.4.0
 
