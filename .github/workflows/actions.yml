@@ -26,7 +26,6 @@ jobs:
         id: inspector
         with:
           schema: 'master:example/schemas/schema.graphql'
-          github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Validate result
         if: steps.inspector.outputs.changes != 3

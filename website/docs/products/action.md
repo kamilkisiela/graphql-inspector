@@ -26,7 +26,6 @@ jobs:
 
       - uses: kamilkisiela/graphql-inspector@master
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
           schema: 'master:schema.graphql'
 ```
 
@@ -60,7 +59,6 @@ Use annotation (enabled by default)
 ```yaml
 - uses: kamilkisiela/graphql-inspector@master
   with:
-    github-token: ${{ secrets.GITHUB_TOKEN }}
     schema: 'master:schema.graphql'
     annotations: false
 ```
@@ -72,7 +70,6 @@ Fail on breaking changes (enabled by default)
 ```yaml
 - uses: kamilkisiela/graphql-inspector@master
   with:
-    github-token: ${{ secrets.GITHUB_TOKEN }}
     schema: 'master:schema.graphql'
     fail-on-breaking: false
 ```
@@ -87,7 +84,6 @@ _('approved-breaking-change' by default)_
 ```yaml
 - uses: kamilkisiela/graphql-inspector@master
   with:
-    github-token: ${{ secrets.GITHUB_TOKEN }}
     schema: 'master:schema.graphql'
     approve-label: 'expected-breaking-change' 
 ```
@@ -101,7 +97,6 @@ Use GraphQL API endpoint as source of schema.
 ```yaml
 - uses: kamilkisiela/graphql-inspector@master
   with:
-    github-token: ${{ secrets.GITHUB_TOKEN }}
     schema: 'schema.graphql' # important to define a path to schema file, without a branch
     endpoint: 'https://my-app.com/graphql'
 ```

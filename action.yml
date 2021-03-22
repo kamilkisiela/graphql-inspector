@@ -28,7 +28,9 @@ inputs:
 
       When using an endpoint, 'schema' should point to a file (without a reference - branch name for example)
   github-token:
-    description: 'Github Token'
+    default: '${{ github.token }}'
+    required: false
+    description: 'Github Token. Use {{ github.token }} by default'
   experimental_merge:
     description: |
       Merge Pull Request's branch with the target branch to get the schema.

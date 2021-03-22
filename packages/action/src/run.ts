@@ -50,16 +50,8 @@ export async function run() {
   core.info(`Ref: ${ref}`);
   core.info(`Commit SHA: ${commitSha}`);
 
-  //
-  // env:
-  //   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  //
-  const token = core.getInput('github-token') || process.env.GITHUB_TOKEN;
+  const token = core.getInput('github-token', {required: true})
   const checkName = core.getInput('name') || CHECK_NAME;
-
-  if (!token) {
-    return core.setFailed('Github Token is missing');
-  }
 
   let workspace = process.env.GITHUB_WORKSPACE;
 
