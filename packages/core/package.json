@@ -29,7 +29,7 @@
     "graphql": "^0.13.0 || ^14.0.0 || ^15.0.0"
   },
   "dependencies": {
-    "dependency-graph": "0.9.0",
+    "dependency-graph": "0.11.0",
     "tslib": "^2.0.0"
   },
   "scripts": {
