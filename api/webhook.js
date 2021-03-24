@@ -1,93 +1,122 @@
 /// @ts-check
+const Sentry = require('@sentry/node');
 const {Probot} = require('probot');
 const {resolveAppFunction} = require('probot/lib/helpers/resolve-app-function');
 const {findPrivateKey} = require('probot/lib/helpers/get-private-key');
 
+Sentry.init({
+  dsn: process.env.SENTRY_DNS,
+  attachStacktrace: true,
+  release: process.env.COMMIT_SHA,
+  tracesSampleRate: 1.0,
+});
 const githubApp = require('@graphql-inspector/github').app;
 
 let probot;
-
-const loadProbot = (appFn) => {
-  probot =
-    probot ||
-    new Probot({
-      id: process.env.APP_ID,
-      secret: process.env.WEBHOOK_SECRET,
-      cert: findPrivateKey(),
-    });
-
-  if (typeof appFn === 'string') {
-    appFn = resolveAppFunction(appFn);
-  }
-
-  probot.load(appFn);
-
-  return probot;
-};
-
-const lowerCaseKeys = (obj) =>
-  Object.keys(obj).reduce(
-    (accumulator, key) =>
-      Object.assign(accumulator, {[key.toLocaleLowerCase()]: obj[key]}),
-    {},
-  );
 
 module.exports = serverless(githubApp);
 
 function serverless(appFn) {
   console.log('Created');
   return async (req, res) => {
-    console.log('Invoked');
-
-    // A friendly homepage if there isn't a payload
-    if (req.method === 'GET') {
-      res.setHeader('Content-Type', 'text/plain');
-      res.status(200);
-      res.send(`Visit graphql-inspector.com`);
-      return;
+    function onError(error) {
+      Sentry.captureException(error, {
+        level: Sentry.Severity.Critical,
+        extra: {
+          body: req.body,
+          headers: req.headers,
+        },
+      });
     }
 
-    // Otherwise let's listen handle the payload
-    probot = probot || loadProbot(appFn);
+    appFn.onError = onError;
 
-    // Determine incoming webhook event type
-    const headers = lowerCaseKeys(req.headers);
-    const e = headers['x-github-event'];
-    const event = `${e}${req.body.action ? '.' + req.body.action : ''}`;
-
-    req.body = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
-
-    // Do the thing
-    console.log(`Received event ${event}`);
-
-    if (req) {
-      try {
-        await probot.receive({
-          name: e,
-          payload: req.body,
+    function initPropot(app) {
+      probot =
+        probot ||
+        new Probot({
+          id: process.env.APP_ID,
+          secret: process.env.WEBHOOK_SECRET,
+          cert: findPrivateKey(),
         });
 
+      if (typeof app === 'string') {
+        app = resolveAppFunction(app);
+        app.onError = onError;
+      }
+
+      probot.load(app);
+    }
+
+    function lowerCaseKeys(obj) {
+      return Object.keys(obj).reduce(
+        (accumulator, key) =>
+          Object.assign(accumulator, {[key.toLocaleLowerCase()]: obj[key]}),
+        {},
+      );
+    }
+
+    try {
+      console.log('Invoked');
+
+      // A friendly homepage if there isn't a payload
+      if (req.method === 'GET') {
+        res.setHeader('Content-Type', 'text/plain');
         res.status(200);
-        res.json({
-          message: `Received ${e}.${req.body.action}`,
-        });
-
+        res.send(`Visit graphql-inspector.com`);
         return;
-      } catch (err) {
-        console.error(err);
+      }
+
+      // Otherwise let's listen handle the payload
+      initPropot(appFn);
+
+      // Determine incoming webhook event type
+      const headers = lowerCaseKeys(req.headers);
+      const e = headers['x-github-event'];
+      const event = `${e}${req.body.action ? '.' + req.body.action : ''}`;
+
+      req.body = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
+
+      // Do the thing
+      console.log(`Received event ${event}`);
+
+      if (req) {
+        try {
+          await probot.receive({
+            name: e,
+            payload: req.body,
+          });
+
+          res.status(200);
+          res.json({
+            message: `Received ${e}.${req.body.action}`,
+          });
+
+          return;
+        } catch (err) {
+          Sentry.captureException(err, {
+            extra: req.body,
+          });
+          console.error(err);
+
+          res.status(500);
+          res.json(err);
+
+          return;
+        }
+      } else {
+        console.error({req, res});
 
         res.status(500);
-        res.json(err);
+        res.send('unknown error');
 
         return;
       }
-    } else {
-      console.error({req, res});
-
-      res.status(500);
-      res.send('unknown error');
-
-      return;
+    } catch (error) {
+      Sentry.captureException(error, {
+        extra: req.body,
+      });
+      throw error;
     }
   };
 }

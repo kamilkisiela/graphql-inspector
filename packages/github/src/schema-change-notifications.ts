@@ -14,6 +14,7 @@ import {
   notifyWithDiscord,
 } from './helpers/notifications';
 import {createLogger} from './helpers/logger';
+import {ErrorHandler} from './helpers/types';
 
 export async function handleSchemaChangeNotifications({
   context,
@@ -23,6 +24,7 @@ export async function handleSchemaChangeNotifications({
   before,
   loadFile,
   loadConfig,
+  onError,
 }: {
   context: probot.Context;
   owner: string;
@@ -31,6 +33,7 @@ export async function handleSchemaChangeNotifications({
   before: string;
   loadFile: FileLoader;
   loadConfig: ConfigLoader;
+  onError: ErrorHandler;
 }): Promise<void> {
   const id = `${owner}/${repo}#${ref}`;
   const logger = createLogger('NOTIFICATIONS', context);
@@ -107,6 +110,7 @@ export async function handleSchemaChangeNotifications({
       try {
         await fn();
       } catch (error) {
+        onError(error);
         logger.error(`Failed to send a notification via ${target}`, error);
       }
     }
