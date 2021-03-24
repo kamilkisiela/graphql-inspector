@@ -1,5 +1,5 @@
 import * as probot from 'probot';
-import { produceSchema } from './helpers/schema';
+import {produceSchema} from './helpers/schema';
 import {CheckConclusion, PullRequest} from './helpers/types';
 import {FileLoader, ConfigLoader, loadSources} from './helpers/loaders';
 import {start, complete, annotate} from './helpers/check-runs';
@@ -24,6 +24,7 @@ export async function handleSchemaDiff({
   pullRequests = [],
   loadFile,
   loadConfig,
+  onError,
 }: {
   action: string;
   context: probot.Context;
@@ -38,6 +39,7 @@ export async function handleSchemaDiff({
   before?: string;
   loadFile: FileLoader;
   loadConfig: ConfigLoader;
+  onError(error: Error): void;
 }): Promise<void> {
   const id = `${owner}/${repo}#${ref}`;
   const logger = createLogger('DIFF', context);
@@ -75,7 +77,7 @@ export async function handleSchemaDiff({
     const config = createConfig(
       rawConfig as any,
       (configKind) => {
-        isLegacyConfig = configKind === 'legacy'
+        isLegacyConfig = configKind === 'legacy';
       },
       branches,
       fallbackBranch, // we will probably throw an error when both are not defined
@@ -191,7 +193,9 @@ export async function handleSchemaDiff({
       logger.info(`Anotations are disabled. Skipping annotations...`);
       annotations = [];
     } else if (annotations.length > summaryLimit) {
-      logger.info(`Total amount of annotations is over the limit (${annotations.length} > ${summaryLimit}). Skipping annotations...`);
+      logger.info(
+        `Total amount of annotations is over the limit (${annotations.length} > ${summaryLimit}). Skipping annotations...`,
+      );
       annotations = [];
     } else {
       logger.info(`Sending annotations (${annotations.length})`);
@@ -218,6 +222,10 @@ export async function handleSchemaDiff({
     logger.info(`done`);
   } catch (error) {
     logger.error(error);
+
+    if (!(error instanceof MissingConfigError)) {
+      onError(error);
+    }
 
     await annotate({
       url: checkUrl,
