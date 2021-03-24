@@ -61,7 +61,7 @@
   },
   "dependencies": {
     "graphql-request": "3.4.0",
-    "husky": "4.3.0",
+    "husky": "4.3.8",
     "immer": "8.0.1",
     "lerna": "3.22.1",
     "probot": "10.14.1",
