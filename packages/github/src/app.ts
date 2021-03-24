@@ -8,7 +8,7 @@ const allowedCheckActions = ['requested', 'rerequested', 'gh-action'];
 const noopError = () => {};
 
 export default function handleProbot(
-  app: probot.Application & {
+  app: probot.Probot & {
     onError?: ErrorHandler;
   },
 ) {

@@ -62,7 +62,7 @@ export function createFileLoader(config: FileLoaderConfig): FileLoader {
       );
       const {context, repo, owner} = config;
 
-      const result: any = await context.github.graphql(
+      const result: any = await context.octokit.graphql(
         createGetFilesQuery(variablesMap),
         {
           repo,

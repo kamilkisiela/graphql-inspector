@@ -19,7 +19,7 @@ export async function start({
   logger: Logger;
 }): Promise<string> {
   try {
-    const result = await context.github.request({
+    const result = await context.octokit.request({
       headers,
       method: 'POST',
       url: `https://api.github.com/repos/${owner}/${repo}/check-runs`,
@@ -60,7 +60,7 @@ export async function annotate({
   try {
     await Promise.all(
       batches.map(async (chunk) => {
-        await context.github.request({
+        await context.octokit.request({
           headers,
           url,
           method: 'PATCH',
@@ -91,7 +91,7 @@ export async function complete({
   logger: Logger;
 }) {
   try {
-    await context.github.request({
+    await context.octokit.request({
       headers,
       url,
       conclusion,
