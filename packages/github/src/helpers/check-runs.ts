@@ -3,8 +3,6 @@ import {CheckStatus, Annotation, CheckConclusion} from './types';
 import {Logger} from './logger';
 import {batch} from './utils';
 
-const headers = {accept: 'application/vnd.github.antiope-preview+json'};
-
 export async function start({
   context,
   owner,
@@ -17,20 +15,18 @@ export async function start({
   owner: string;
   repo: string;
   logger: Logger;
-}): Promise<string> {
+}): Promise<number> {
   try {
-    const result = await context.octokit.request({
-      headers,
-      method: 'POST',
-      url: `https://api.github.com/repos/${owner}/${repo}/check-runs`,
+    const result = await context.octokit.checks.create({
+      owner,
+      repo,
       name: 'graphql-inspector',
-      started_at: new Date().toISOString(),
       head_sha: sha,
       status: CheckStatus.InProgress,
-    } as any);
+    });
     logger.info(`check started`);
 
-    return result.data.url;
+    return result.data.id;
   } catch (error) {
     logger.error(`failed to start a check`, error);
     throw error;
@@ -39,13 +35,17 @@ export async function start({
 
 export async function annotate({
   context,
-  url,
+  owner,
+  repo,
+  checkRunId,
   annotations,
   title,
   summary,
   logger,
 }: {
-  url: string;
+  owner: string;
+  repo: string;
+  checkRunId: number;
   annotations: Annotation[];
   context: Context;
   title: string;
@@ -60,16 +60,16 @@ export async function annotate({
   try {
     await Promise.all(
       batches.map(async (chunk) => {
-        await context.octokit.request({
-          headers,
-          url,
-          method: 'PATCH',
+        await context.octokit.checks.update({
+          owner,
+          repo,
+          check_run_id: checkRunId,
           output: {
             annotations: chunk,
             title,
             summary,
           },
-        } as any);
+        });
         logger.info(`annotations sent (${chunk.length})`);
       }),
     );
@@ -81,24 +81,27 @@ export async function annotate({
 
 export async function complete({
   context,
-  url,
+  owner,
+  repo,
+  checkRunId,
   conclusion,
   logger,
 }: {
-  url: string;
+  owner: string;
+  repo: string;
+  checkRunId: number;
   context: Context;
   conclusion: CheckConclusion;
   logger: Logger;
 }) {
   try {
-    await context.octokit.request({
-      headers,
-      url,
+    await context.octokit.checks.update({
+      owner,
+      repo,
+      check_run_id: checkRunId,
       conclusion,
-      method: 'PATCH',
-      completed_at: new Date().toISOString(),
       status: CheckStatus.Completed,
-    } as any);
+    });
     logger.info(`check completed`);
   } catch (error) {
     logger.error(`failed to complete a check`, error);

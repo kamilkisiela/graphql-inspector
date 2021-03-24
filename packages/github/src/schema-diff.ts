@@ -47,7 +47,7 @@ export async function handleSchemaDiff({
   logger.info(`Started - ${id}`);
   logger.info(`Action: "${action}"`);
 
-  const checkUrl = await start({
+  const checkRunId = await start({
     context,
     owner,
     repo,
@@ -87,7 +87,9 @@ export async function handleSchemaDiff({
       logger.info(`disabled. Skipping...`);
 
       await complete({
-        url: checkUrl,
+        owner,
+        repo,
+        checkRunId,
         context,
         conclusion: CheckConclusion.Success,
         logger,
@@ -100,7 +102,9 @@ export async function handleSchemaDiff({
     if (!config.branch || /^[0]+$/.test(config.branch)) {
       logger.info(`Nothing to compare with. Skipping...`);
       await complete({
-        url: checkUrl,
+        owner,
+        repo,
+        checkRunId,
         context,
         conclusion: CheckConclusion.Success,
         logger,
@@ -202,7 +206,9 @@ export async function handleSchemaDiff({
     }
 
     await annotate({
-      url: checkUrl,
+      owner,
+      repo,
+      checkRunId,
       context,
       title,
       summary,
@@ -213,7 +219,9 @@ export async function handleSchemaDiff({
     logger.info(`Finishing check (${conclusion})`);
 
     await complete({
-      url: checkUrl,
+      owner,
+      repo,
+      checkRunId,
       context,
       conclusion,
       logger,
@@ -228,7 +236,9 @@ export async function handleSchemaDiff({
     }
 
     await annotate({
-      url: checkUrl,
+      owner,
+      repo,
+      checkRunId,
       context,
       title: `Failed to complete schema check`,
       summary: `ERROR: ${error.message || error}`,
@@ -237,7 +247,9 @@ export async function handleSchemaDiff({
     });
 
     await complete({
-      url: checkUrl,
+      owner,
+      repo,
+      checkRunId,
       context,
       conclusion: CheckConclusion.Failure,
       logger,
