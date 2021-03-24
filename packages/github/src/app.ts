@@ -27,6 +27,8 @@ export default function handleProbot(
     };
   }
 
+  app.onError(onError);
+
   app.on(
     'check_run',
     wrap(async (context) => {
