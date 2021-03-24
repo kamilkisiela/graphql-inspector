@@ -8,7 +8,7 @@ Sentry.init({
   tracesSampleRate: 1.0,
 });
 
-const {Probot} = require('probot');
+const {createProbot} = require('probot');
 const githubApp = require('@graphql-inspector/github').app;
 
 let probot;
@@ -33,10 +33,13 @@ function serverless(appFn) {
     function initPropot(app) {
       probot =
         probot ||
-        new Probot({
-          appId: process.env.APP_ID,
-          secret: process.env.WEBHOOK_SECRET,
-          privateKey: process.env.PRIVATE_KEY
+        createProbot({
+          defaults: {
+            appId: process.env.APP_ID,
+            secret: process.env.WEBHOOK_SECRET,
+            privateKey: process.env.PRIVATE_KEY,
+          },
+          env: process.env,
         });
 
       probot.load(app);
