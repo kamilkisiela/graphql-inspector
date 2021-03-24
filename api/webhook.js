@@ -1,5 +1,6 @@
 /// @ts-check
 const Sentry = require('@sentry/node');
+const Tracing = require('@sentry/tracing');
 
 Sentry.init({
   dsn: process.env.SENTRY_DNS,
@@ -10,8 +11,6 @@ Sentry.init({
 
 const {createProbot} = require('probot');
 const githubApp = require('@graphql-inspector/github').app;
-
-let probot;
 
 module.exports = serverless(githubApp);
 
@@ -30,21 +29,6 @@ function serverless(appFn) {
 
     appFn.onError = onError;
 
-    function initPropot(app) {
-      probot =
-        probot ||
-        createProbot({
-          defaults: {
-            appId: process.env.APP_ID,
-            secret: process.env.WEBHOOK_SECRET,
-            privateKey: process.env.PRIVATE_KEY,
-          },
-          env: process.env,
-        });
-
-      probot.load(app);
-    }
-
     function lowerCaseKeys(obj) {
       return Object.keys(obj).reduce(
         (accumulator, key) =>
@@ -53,57 +37,62 @@ function serverless(appFn) {
       );
     }
 
+    console.log('Invoked');
+
+    // A friendly homepage if there isn't a payload
+    if (req.method === 'GET') {
+      res.setHeader('Content-Type', 'text/plain');
+      res.status(200);
+      res.send(`Visit graphql-inspector.com`);
+      return;
+    }
+
+    // Determine incoming webhook event type
+    const headers = lowerCaseKeys(req.headers);
+    const ev = headers['x-github-event'];
+    const id = headers['x-github-delivery'];
+    const event = `${ev}${req.body.action ? '.' + req.body.action : ''}`;
+
+    const transaction = Sentry.startTransaction({
+      name: event,
+    });
+
     try {
-      console.log('Invoked');
-
-      // A friendly homepage if there isn't a payload
-      if (req.method === 'GET') {
-        res.setHeader('Content-Type', 'text/plain');
-        res.status(200);
-        res.send(`Visit graphql-inspector.com`);
-        return;
-      }
-
-      // Otherwise let's listen handle the payload
-      initPropot(appFn);
-
-      // Determine incoming webhook event type
-      const headers = lowerCaseKeys(req.headers);
-      const e = headers['x-github-event'];
-      const event = `${e}${req.body.action ? '.' + req.body.action : ''}`;
-
       req.body = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
+
+      const probot = createProbot({
+        defaults: {
+          appId: process.env.APP_ID,
+          secret: process.env.WEBHOOK_SECRET,
+          privateKey: process.env.PRIVATE_KEY,
+        },
+        env: process.env,
+      });
+      await probot.load(appFn);
 
       // Do the thing
       console.log(`Received event ${event}`);
 
       if (req) {
-        try {
-          await probot.receive({
-            name: e,
-            payload: req.body,
-          });
+        await probot.webhooks.verifyAndReceive({
+          id,
+          name: ev,
+          payload: req.body,
+          signature:
+            headers['x-hub-signature-256'] || headers['x-hub-signature'],
+        });
 
-          res.status(200);
-          res.json({
-            message: `Received ${e}.${req.body.action}`,
-          });
+        transaction.finish();
+        res.status(200);
+        res.json({
+          message: `Received ${ev}.${req.body.action}`,
+        });
 
-          return;
-        } catch (err) {
-          Sentry.captureException(err, {
-            extra: req.body,
-          });
-          console.error(err);
-
-          res.status(500);
-          res.json(err);
-
-          return;
-        }
+        return;
       } else {
-        console.error({req, res});
-
+        transaction.setStatus(Tracing.SpanStatus.UnknownError);
+        transaction.setHttpStatus(500);
+        transaction.finish();
         res.status(500);
         res.send('unknown error');
 
@@ -113,7 +102,12 @@ function serverless(appFn) {
       Sentry.captureException(error, {
         extra: req.body,
       });
-      throw error;
+
+      transaction.setStatus(Tracing.SpanStatus.UnknownError);
+      transaction.setHttpStatus(500);
+      transaction.finish();
+      res.status(500);
+      res.send('unknown error');
     }
   };
 }

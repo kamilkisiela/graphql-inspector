@@ -61,6 +61,7 @@
   },
   "dependencies": {
     "@sentry/node": "6.2.3",
+    "@sentry/tracing": "6.2.3",
     "husky": "4.3.8",
     "immer": "8.0.1",
     "lerna": "3.22.1",
