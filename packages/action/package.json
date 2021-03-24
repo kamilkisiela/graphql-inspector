@@ -44,11 +44,11 @@
     "@actions/github": "4.0.0",
     "@graphql-inspector/core": "0.0.0-PLACEHOLDER",
     "@graphql-inspector/github": "0.0.0-PLACEHOLDER",
-    "js-yaml": "3.14.0",
+    "js-yaml": "3.14.1",
     "probot": "11.1.0",
     "tslib": "^2.0.0"
   },
   "devDependencies": {
-    "@types/js-yaml": "3.12.5"
+    "@types/js-yaml": "3.12.6"
   }
 }
