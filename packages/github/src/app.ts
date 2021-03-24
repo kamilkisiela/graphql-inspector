@@ -2,19 +2,12 @@ import * as probot from 'probot';
 import {createConfigLoader, createFileLoader} from './helpers/loaders';
 import {handleSchemaChangeNotifications} from './schema-change-notifications';
 import {handleSchemaDiff} from './schema-diff';
-import {ErrorHandler} from './helpers/types';
+import {getDiagnostics} from './helpers/diagnostics';
 
 const allowedCheckActions = ['rerequested'];
-const noopError = () => {};
 
-export default function handleProbot(
-  app: probot.Probot & {
-    onError?: ErrorHandler;
-    release?: string;
-  },
-) {
-  const onError = app.onError || noopError;
-  const release = app.release || 'unknown-release';
+export default function handleProbot(app: probot.Probot) {
+  const {onError, release} = getDiagnostics();
 
   function wrap<T>(runner: (ctx: T) => Promise<void>) {
     return async (ctx: T) => {

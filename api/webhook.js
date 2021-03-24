@@ -2,17 +2,19 @@
 const Sentry = require('@sentry/node');
 const Tracing = require('@sentry/tracing');
 
+const release = process.env.COMMIT_SHA;
+
 Sentry.init({
   dsn: process.env.SENTRY_DNS,
   attachStacktrace: true,
-  release: process.env.COMMIT_SHA,
+  release,
   tracesSampleRate: 1.0,
 });
 
 const {createProbot} = require('probot');
-const githubApp = require('@graphql-inspector/github').app;
+const inspector = require('@graphql-inspector/github');
 
-module.exports = serverless(githubApp);
+module.exports = serverless(inspector.app);
 
 function serverless(appFn) {
   console.log('Created');
@@ -27,8 +29,10 @@ function serverless(appFn) {
       });
     }
 
-    appFn.onError = onError;
-    appFn.release = process.env.COMMIT_SHA;
+    inspector.setDiagnostics({
+      onError,
+      release,
+    });
 
     function lowerCaseKeys(obj) {
       return Object.keys(obj).reduce(

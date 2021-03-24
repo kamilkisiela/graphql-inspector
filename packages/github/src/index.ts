@@ -9,3 +9,4 @@ export {diff} from './helpers/diff';
 export {createFileLoader, printSchemaFromEndpoint} from './helpers/loaders';
 export {createSummary, quotesTransformer} from './helpers/utils';
 export {produceSchema} from './helpers/schema';
+export {setDiagnostics} from './helpers/diagnostics';
