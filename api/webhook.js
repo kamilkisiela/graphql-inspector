@@ -9,7 +9,6 @@ Sentry.init({
 });
 
 const {Probot} = require('probot');
-const {resolveAppFunction} = require('probot/lib/helpers/resolve-app-function');
 const githubApp = require('@graphql-inspector/github').app;
 
 let probot;
@@ -39,11 +38,6 @@ function serverless(appFn) {
           secret: process.env.WEBHOOK_SECRET,
           privateKey: process.env.PRIVATE_KEY
         });
-
-      if (typeof app === 'string') {
-        app = resolveAppFunction(app);
-        app.onError = onError;
-      }
 
       probot.load(app);
     }
