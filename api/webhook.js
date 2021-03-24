@@ -1,8 +1,5 @@
 /// @ts-check
 const Sentry = require('@sentry/node');
-const {Probot} = require('probot');
-const {resolveAppFunction} = require('probot/lib/helpers/resolve-app-function');
-const {findPrivateKey} = require('probot/lib/helpers/get-private-key');
 
 Sentry.init({
   dsn: process.env.SENTRY_DNS,
@@ -10,6 +7,9 @@ Sentry.init({
   release: process.env.COMMIT_SHA,
   tracesSampleRate: 1.0,
 });
+
+const {Probot} = require('probot');
+const {resolveAppFunction} = require('probot/lib/helpers/resolve-app-function');
 const githubApp = require('@graphql-inspector/github').app;
 
 let probot;
@@ -37,7 +37,7 @@ function serverless(appFn) {
         new Probot({
           id: process.env.APP_ID,
           secret: process.env.WEBHOOK_SECRET,
-          cert: findPrivateKey(),
+          privateKey: process.env.PRIVATE_KEY
         });
 
       if (typeof app === 'string') {
