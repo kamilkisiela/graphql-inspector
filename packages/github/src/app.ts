@@ -4,7 +4,7 @@ import {handleSchemaChangeNotifications} from './schema-change-notifications';
 import {handleSchemaDiff} from './schema-diff';
 import {ErrorHandler} from './helpers/types';
 
-const allowedCheckActions = ['requested', 'rerequested', 'gh-action'];
+const allowedCheckActions = ['rerequested'];
 const noopError = () => {};
 
 export default function handleProbot(
