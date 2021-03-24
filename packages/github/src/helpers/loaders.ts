@@ -41,6 +41,8 @@ type FileLoaderConfig = {
   context: probot.Context;
   owner: string;
   repo: string;
+  action: string;
+  release: string;
 };
 
 interface FileLoaderInput {

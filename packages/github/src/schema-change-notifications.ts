@@ -25,6 +25,8 @@ export async function handleSchemaChangeNotifications({
   loadFile,
   loadConfig,
   onError,
+  release,
+  action,
 }: {
   context: probot.Context;
   owner: string;
@@ -34,11 +36,14 @@ export async function handleSchemaChangeNotifications({
   loadFile: FileLoader;
   loadConfig: ConfigLoader;
   onError: ErrorHandler;
+  release: string;
+  action: string;
 }): Promise<void> {
   const id = `${owner}/${repo}#${ref}`;
-  const logger = createLogger('NOTIFICATIONS', context);
+  const logger = createLogger('NOTIFICATIONS', context, release);
 
   logger.info(`started - ${id}`);
+  logger.info(`action - ${action}`);
 
   const isBranchPush = ref.startsWith('refs/heads/');
 

@@ -14,6 +14,7 @@ import {createLogger} from './helpers/logger';
 import {MissingConfigError} from './helpers/errors';
 
 export async function handleSchemaDiff({
+  release,
   action,
   context,
   ref,
@@ -26,6 +27,7 @@ export async function handleSchemaDiff({
   loadConfig,
   onError,
 }: {
+  release: string;
   action: string;
   context: probot.Context;
   owner: string;
@@ -42,7 +44,7 @@ export async function handleSchemaDiff({
   onError(error: Error): void;
 }): Promise<void> {
   const id = `${owner}/${repo}#${ref}`;
-  const logger = createLogger('DIFF', context);
+  const logger = createLogger('DIFF', context, release);
 
   logger.info(`Started - ${id}`);
   logger.info(`Action: "${action}"`);

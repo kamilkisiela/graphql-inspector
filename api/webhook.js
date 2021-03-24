@@ -28,6 +28,7 @@ function serverless(appFn) {
     }
 
     appFn.onError = onError;
+    appFn.release = process.env.COMMIT_SHA;
 
     function lowerCaseKeys(obj) {
       return Object.keys(obj).reduce(
