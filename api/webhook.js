@@ -34,7 +34,7 @@ function serverless(appFn) {
       probot =
         probot ||
         new Probot({
-          id: process.env.APP_ID,
+          appId: process.env.APP_ID,
           secret: process.env.WEBHOOK_SECRET,
           privateKey: process.env.PRIVATE_KEY
         });
