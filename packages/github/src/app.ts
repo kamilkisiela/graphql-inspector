@@ -7,7 +7,7 @@ import {getDiagnostics} from './helpers/diagnostics';
 const allowedCheckActions = ['rerequested'];
 
 export default function handleProbot(app: probot.Probot) {
-  const {onError, release} = getDiagnostics();
+  const {onError, release} = getDiagnostics(app);
 
   function wrap<T>(runner: (ctx: T) => Promise<void>) {
     return async (ctx: T) => {
@@ -19,8 +19,6 @@ export default function handleProbot(app: probot.Probot) {
       }
     };
   }
-
-  app.onError(onError);
 
   app.on(
     'check_run',

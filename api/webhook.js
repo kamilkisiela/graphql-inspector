@@ -19,29 +19,6 @@ module.exports = serverless(inspector.app);
 function serverless(appFn) {
   console.log('Created');
   return async (req, res) => {
-    function onError(error) {
-      Sentry.captureException(error, {
-        level: Sentry.Severity.Critical,
-        extra: {
-          body: req.body,
-          headers: req.headers,
-        },
-      });
-    }
-
-    inspector.setDiagnostics({
-      onError,
-      release,
-    });
-
-    function lowerCaseKeys(obj) {
-      return Object.keys(obj).reduce(
-        (accumulator, key) =>
-          Object.assign(accumulator, {[key.toLocaleLowerCase()]: obj[key]}),
-        {},
-      );
-    }
-
     console.log('Invoked');
 
     // A friendly homepage if there isn't a payload
@@ -50,6 +27,14 @@ function serverless(appFn) {
       res.status(200);
       res.send(`Visit graphql-inspector.com`);
       return;
+    }
+
+    function lowerCaseKeys(obj) {
+      return Object.keys(obj).reduce(
+        (accumulator, key) =>
+          Object.assign(accumulator, {[key.toLocaleLowerCase()]: obj[key]}),
+        {},
+      );
     }
 
     // Determine incoming webhook event type
@@ -62,6 +47,16 @@ function serverless(appFn) {
       name: event,
     });
 
+    function onError(error) {
+      Sentry.captureException(error, {
+        level: Sentry.Severity.Critical,
+        extra: {
+          body: req.body,
+          headers: req.headers,
+        },
+      });
+    }
+
     try {
       req.body = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
 
@@ -73,6 +68,12 @@ function serverless(appFn) {
         },
         env: process.env,
       });
+
+      inspector.setDiagnostics(probot, {
+        onError,
+        release,
+      });
+
       await probot.load(appFn);
 
       // Do the thing
