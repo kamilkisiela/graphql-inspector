@@ -14,8 +14,6 @@ Sentry.init({
 const {createProbot} = require('probot');
 const inspector = require('@graphql-inspector/github');
 
-const ignored = [10111689];
-
 module.exports = serverless(inspector.app);
 
 function serverless(appFn) {
@@ -44,14 +42,6 @@ function serverless(appFn) {
     const ev = headers['x-github-event'];
     const id = headers['x-github-delivery'];
     const event = `${ev}${req.body.action ? '.' + req.body.action : ''}`;
-    const installationId = req.body.installation ? req.body.installation.id : null;
-    
-    if (ignored.includes(installationId)) {
-      res.status(200);
-      res.json({
-        message: `Ignored...`,
-      });
-    }
 
     const transaction = Sentry.startTransaction({
       name: event,
