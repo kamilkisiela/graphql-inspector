@@ -19,7 +19,7 @@
     "patch-package": "6.4.7",
     "react": "17.0.1",
     "react-dom": "17.0.1",
-    "react-feather": "2.0.8",
+    "react-feather": "2.0.9",
     "react-flip-move": "3.0.4",
     "react-monaco-editor": "0.40.0"
   },
