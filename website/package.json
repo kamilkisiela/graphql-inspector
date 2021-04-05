@@ -12,7 +12,7 @@
     "@docusaurus/plugin-ideal-image": "2.0.0-alpha.66",
     "@docusaurus/preset-classic": "2.0.0-alpha.66",
     "@graphql-inspector/core": "2.5.0",
-    "classnames": "2.2.6",
+    "classnames": "2.3.1",
     "fetch-ponyfill": "7.1.0",
     "globby": "11.0.1",
     "monaco-editor-webpack-plugin": "3.0.1",
