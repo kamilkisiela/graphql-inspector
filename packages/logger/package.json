@@ -23,8 +23,8 @@
   "dependencies": {
     "chalk": "4.1.0",
     "figures": "3.2.0",
-    "log-symbols": "4.0.0",
-    "std-env": "2.2.1",
+    "log-symbols": "4.1.0",
+    "std-env": "2.3.0",
     "tslib": "^2.0.0"
   },
   "scripts": {

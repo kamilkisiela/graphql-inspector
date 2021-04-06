@@ -1,5 +1,7 @@
 import {Change} from '@graphql-inspector/core';
 
+export type ErrorHandler = (error: Error) => void;
+
 export interface ActionResult {
   conclusion: CheckConclusion;
   annotations?: Annotation[];

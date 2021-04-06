@@ -2,6 +2,8 @@
 
 ### vNEXT
 
+- **github**: Allow for error handling
+
 ### v2.5.0
 
 - **action**: Accepts a GitHub Label to mark Pull Request with breaking changes as something expected and safe [#1852](https://github.com/kamilkisiela/graphql-inspector/pull/1852)

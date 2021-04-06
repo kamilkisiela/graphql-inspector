@@ -1,38 +1,20 @@
 /// @ts-check
-const {Probot} = require('probot');
-const {resolveAppFunction} = require('probot/lib/helpers/resolve-app-function');
-const {findPrivateKey} = require('probot/lib/helpers/get-private-key');
+const Sentry = require('@sentry/node');
+const Tracing = require('@sentry/tracing');
 
-const githubApp = require('@graphql-inspector/github').app;
+const release = process.env.COMMIT_SHA;
 
-let probot;
+Sentry.init({
+  dsn: process.env.SENTRY_DNS,
+  attachStacktrace: true,
+  release,
+  tracesSampleRate: 1.0,
+});
 
-const loadProbot = (appFn) => {
-  probot =
-    probot ||
-    new Probot({
-      id: process.env.APP_ID,
-      secret: process.env.WEBHOOK_SECRET,
-      cert: findPrivateKey(),
-    });
+const {createProbot} = require('probot');
+const inspector = require('@graphql-inspector/github');
 
-  if (typeof appFn === 'string') {
-    appFn = resolveAppFunction(appFn);
-  }
-
-  probot.load(appFn);
-
-  return probot;
-};
-
-const lowerCaseKeys = (obj) =>
-  Object.keys(obj).reduce(
-    (accumulator, key) =>
-      Object.assign(accumulator, {[key.toLocaleLowerCase()]: obj[key]}),
-    {},
-  );
-
-module.exports = serverless(githubApp);
+module.exports = serverless(inspector.app);
 
 function serverless(appFn) {
   console.log('Created');
@@ -47,47 +29,91 @@ function serverless(appFn) {
       return;
     }
 
-    // Otherwise let's listen handle the payload
-    probot = probot || loadProbot(appFn);
+    function lowerCaseKeys(obj) {
+      return Object.keys(obj).reduce(
+        (accumulator, key) =>
+          Object.assign(accumulator, {[key.toLocaleLowerCase()]: obj[key]}),
+        {},
+      );
+    }
 
     // Determine incoming webhook event type
     const headers = lowerCaseKeys(req.headers);
-    const e = headers['x-github-event'];
-    const event = `${e}${req.body.action ? '.' + req.body.action : ''}`;
+    const ev = headers['x-github-event'];
+    const id = headers['x-github-delivery'];
+    const event = `${ev}${req.body.action ? '.' + req.body.action : ''}`;
 
-    req.body = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
+    const transaction = Sentry.startTransaction({
+      name: event,
+    });
 
-    // Do the thing
-    console.log(`Received event ${event}`);
+    function onError(error) {
+      Sentry.captureException(error, {
+        level: Sentry.Severity.Critical,
+        extra: {
+          body: req.body,
+          headers: req.headers,
+        },
+      });
+    }
 
-    if (req) {
-      try {
-        await probot.receive({
-          name: e,
+    try {
+      req.body = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
+
+      const probot = createProbot({
+        defaults: {
+          appId: process.env.APP_ID,
+          secret: process.env.WEBHOOK_SECRET,
+          privateKey: process.env.PRIVATE_KEY,
+        },
+        env: process.env,
+      });
+
+      inspector.setDiagnostics(probot, {
+        onError,
+        release,
+      });
+
+      await probot.load(appFn);
+
+      // Do the thing
+      console.log(`Received event ${event}`);
+
+      if (req) {
+        await probot.webhooks.verifyAndReceive({
+          id,
+          name: ev,
           payload: req.body,
+          signature:
+            headers['x-hub-signature-256'] || headers['x-hub-signature'],
         });
 
+        transaction.finish();
         res.status(200);
         res.json({
-          message: `Received ${e}.${req.body.action}`,
+          message: `Received ${ev}.${req.body.action}`,
         });
 
         return;
-      } catch (err) {
-        console.error(err);
-
+      } else {
+        transaction.setStatus(Tracing.SpanStatus.UnknownError);
+        transaction.setHttpStatus(500);
+        transaction.finish();
         res.status(500);
-        res.json(err);
+        res.send('unknown error');
 
         return;
       }
-    } else {
-      console.error({req, res});
+    } catch (error) {
+      Sentry.captureException(error, {
+        extra: req.body,
+      });
 
+      transaction.setStatus(Tracing.SpanStatus.UnknownError);
+      transaction.setHttpStatus(500);
+      transaction.finish();
       res.status(500);
       res.send('unknown error');
-
-      return;
     }
   };
 }

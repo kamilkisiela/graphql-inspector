@@ -1,5 +1,5 @@
 import * as probot from 'probot';
-import { produceSchema } from './helpers/schema';
+import {produceSchema} from './helpers/schema';
 import {CheckConclusion, PullRequest} from './helpers/types';
 import {FileLoader, ConfigLoader, loadSources} from './helpers/loaders';
 import {start, complete, annotate} from './helpers/check-runs';
@@ -14,6 +14,7 @@ import {createLogger} from './helpers/logger';
 import {MissingConfigError} from './helpers/errors';
 
 export async function handleSchemaDiff({
+  release,
   action,
   context,
   ref,
@@ -24,7 +25,9 @@ export async function handleSchemaDiff({
   pullRequests = [],
   loadFile,
   loadConfig,
+  onError,
 }: {
+  release: string;
   action: string;
   context: probot.Context;
   owner: string;
@@ -38,14 +41,15 @@ export async function handleSchemaDiff({
   before?: string;
   loadFile: FileLoader;
   loadConfig: ConfigLoader;
+  onError(error: Error): void;
 }): Promise<void> {
   const id = `${owner}/${repo}#${ref}`;
-  const logger = createLogger('DIFF', context);
+  const logger = createLogger('DIFF', context, release);
 
   logger.info(`Started - ${id}`);
   logger.info(`Action: "${action}"`);
 
-  const checkUrl = await start({
+  const checkRunId = await start({
     context,
     owner,
     repo,
@@ -75,7 +79,7 @@ export async function handleSchemaDiff({
     const config = createConfig(
       rawConfig as any,
       (configKind) => {
-        isLegacyConfig = configKind === 'legacy'
+        isLegacyConfig = configKind === 'legacy';
       },
       branches,
       fallbackBranch, // we will probably throw an error when both are not defined
@@ -85,7 +89,9 @@ export async function handleSchemaDiff({
       logger.info(`disabled. Skipping...`);
 
       await complete({
-        url: checkUrl,
+        owner,
+        repo,
+        checkRunId,
         context,
         conclusion: CheckConclusion.Success,
         logger,
@@ -98,7 +104,9 @@ export async function handleSchemaDiff({
     if (!config.branch || /^[0]+$/.test(config.branch)) {
       logger.info(`Nothing to compare with. Skipping...`);
       await complete({
-        url: checkUrl,
+        owner,
+        repo,
+        checkRunId,
         context,
         conclusion: CheckConclusion.Success,
         logger,
@@ -191,14 +199,18 @@ export async function handleSchemaDiff({
       logger.info(`Anotations are disabled. Skipping annotations...`);
       annotations = [];
     } else if (annotations.length > summaryLimit) {
-      logger.info(`Total amount of annotations is over the limit (${annotations.length} > ${summaryLimit}). Skipping annotations...`);
+      logger.info(
+        `Total amount of annotations is over the limit (${annotations.length} > ${summaryLimit}). Skipping annotations...`,
+      );
       annotations = [];
     } else {
       logger.info(`Sending annotations (${annotations.length})`);
     }
 
     await annotate({
-      url: checkUrl,
+      owner,
+      repo,
+      checkRunId,
       context,
       title,
       summary,
@@ -209,7 +221,9 @@ export async function handleSchemaDiff({
     logger.info(`Finishing check (${conclusion})`);
 
     await complete({
-      url: checkUrl,
+      owner,
+      repo,
+      checkRunId,
       context,
       conclusion,
       logger,
@@ -219,8 +233,14 @@ export async function handleSchemaDiff({
   } catch (error) {
     logger.error(error);
 
+    if (!(error instanceof MissingConfigError)) {
+      onError(error);
+    }
+
     await annotate({
-      url: checkUrl,
+      owner,
+      repo,
+      checkRunId,
       context,
       title: `Failed to complete schema check`,
       summary: `ERROR: ${error.message || error}`,
@@ -229,7 +249,9 @@ export async function handleSchemaDiff({
     });
 
     await complete({
-      url: checkUrl,
+      owner,
+      repo,
+      checkRunId,
       context,
       conclusion: CheckConclusion.Failure,
       logger,

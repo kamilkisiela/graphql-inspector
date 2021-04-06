@@ -1,4 +1,3 @@
-const {Probot} = require('probot');
-const {app} = require('@graphql-inspector/github');
+const app = require('@graphql-inspector/github').app;
 
-Probot.run(app);
+module.exports = app;

@@ -2,125 +2,188 @@ import * as probot from 'probot';
 import {createConfigLoader, createFileLoader} from './helpers/loaders';
 import {handleSchemaChangeNotifications} from './schema-change-notifications';
 import {handleSchemaDiff} from './schema-diff';
+import {getDiagnostics} from './helpers/diagnostics';
 
-const allowedCheckActions = ['requested', 'rerequested', 'gh-action'];
+const allowedCheckActions = ['rerequested'];
 
-export default function handleProbot(app: probot.Application) {
-  app.on('check_run', async (context) => {
-    const ref = context.payload.check_run.head_sha;
-    const {owner, repo} = context.repo();
-    const action = context.payload.action;
-    const pullRequests = context.payload.check_run.pull_requests;
-    const before = context.payload.check_run.check_suite.before;
+export default function handleProbot(app: probot.Probot) {
+  const {onError, release} = getDiagnostics(app);
 
-    if (allowedCheckActions.includes(action) === false) {
-      return;
-    }
+  function wrap<T>(runner: (ctx: T) => Promise<void>) {
+    return async (ctx: T) => {
+      try {
+        await runner(ctx);
+      } catch (error) {
+        onError(error);
+        throw error;
+      }
+    };
+  }
 
-    const loadFile = createFileLoader({context, owner, repo});
-    const loadConfig = createConfigLoader(
-      {context, owner, repo, ref},
-      loadFile,
-    );
+  app.on(
+    'check_run',
+    wrap(async (context) => {
+      const ref = context.payload.check_run.head_sha;
+      const {owner, repo} = context.repo();
+      const action = context.payload.action;
+      const pullRequests = context.payload.check_run.pull_requests;
+      const before = context.payload.check_run.check_suite.before;
+      const fullAction = 'check_run.' + action;
 
-    await handleSchemaDiff({
-      action: 'check_run.' + action,
-      context,
-      ref,
-      repo,
-      owner,
-      loadFile,
-      loadConfig,
-      before,
-      pullRequests,
-    });
-  });
+      if (allowedCheckActions.includes(action) === false) {
+        return;
+      }
 
-  app.on('check_suite', async (context) => {
-    const ref = context.payload.check_suite.head_sha;
-    const {owner, repo} = context.repo();
-    const action = context.payload.action;
-    const pullRequests = context.payload.check_suite.pull_requests;
-    const before = context.payload.check_suite.before;
+      const loadFile = createFileLoader({
+        context,
+        owner,
+        repo,
+        release,
+        action: fullAction,
+      });
+      const loadConfig = createConfigLoader(
+        {context, owner, repo, ref, release, action: fullAction},
+        loadFile,
+      );
 
-    if (allowedCheckActions.includes(action) === false) {
-      return;
-    }
+      await handleSchemaDiff({
+        release,
+        action: fullAction,
+        context,
+        ref,
+        repo,
+        owner,
+        loadFile,
+        loadConfig,
+        before,
+        pullRequests,
+        onError,
+      });
+    }),
+  );
 
-    const loadFile = createFileLoader({context, owner, repo});
-    const loadConfig = createConfigLoader(
-      {context, owner, repo, ref},
-      loadFile,
-    );
+  app.on(
+    'check_suite',
+    wrap(async (context) => {
+      const ref = context.payload.check_suite.head_sha;
+      const {owner, repo} = context.repo();
+      const action = context.payload.action;
+      const pullRequests = context.payload.check_suite.pull_requests;
+      const before = context.payload.check_suite.before;
+      const fullAction = 'check_suite.' + action;
 
-    await handleSchemaDiff({
-      action: 'check_suite.' + action,
-      context,
-      ref,
-      repo,
-      owner,
-      loadFile,
-      loadConfig,
-      before,
-      pullRequests,
-    });
-  });
+      if (allowedCheckActions.includes(action) === false) {
+        return;
+      }
 
-  app.on('pull_request', async (context) => {
-    const ref = context.payload.pull_request.head.ref;
-    const pullRequestNumber = context.payload.pull_request.number;
-    const {owner, repo} = context.repo();
-    const action = context.payload.action;
-    const pullRequests = [context.payload.pull_request];
-    const before = context.payload.pull_request.base.ref;
+      const loadFile = createFileLoader({
+        context,
+        owner,
+        repo,
+        release,
+        action: fullAction,
+      });
+      const loadConfig = createConfigLoader(
+        {context, owner, repo, ref, release, action: fullAction},
+        loadFile,
+      );
 
-    if (
-      ['opened', 'synchronize', 'edited', 'labeled', 'unlabeled'].includes(
+      await handleSchemaDiff({
+        release,
+        action: fullAction,
+        context,
+        ref,
+        repo,
+        owner,
+        loadFile,
+        loadConfig,
+        before,
+        pullRequests,
+        onError,
+      });
+    }),
+  );
+
+  app.on(
+    'pull_request',
+    wrap(async (context) => {
+      const ref = context.payload.pull_request.head.sha;
+      const pullRequestNumber = context.payload.pull_request.number;
+      const {owner, repo} = context.repo();
+      const action = context.payload.action;
+      const pullRequests = [context.payload.pull_request];
+      const before = context.payload.pull_request.base.sha;
+      const fullAction = 'pull_request.' + action;
+
+      if (
+        ['opened', 'synchronize', 'edited', 'labeled', 'unlabeled'].includes(
+          action,
+        ) === false
+      ) {
+        return;
+      }
+
+      const loadFile = createFileLoader({
+        context,
+        owner,
+        repo,
+        release,
+        action: fullAction,
+      });
+      const loadConfig = createConfigLoader(
+        {context, owner, repo, ref, release, action: fullAction},
+        loadFile,
+      );
+
+      await handleSchemaDiff({
+        release,
+        action: fullAction,
+        context,
+        ref,
+        repo,
+        owner,
+        loadFile,
+        loadConfig,
+        before,
+        pullRequests,
+        pullRequestNumber,
+        onError,
+      });
+    }),
+  );
+
+  app.on(
+    'push',
+    wrap(async (context) => {
+      const ref = context.payload.ref;
+      const {owner, repo} = context.repo();
+      const before = context.payload.before;
+      const action = 'push';
+
+      const loadFile = createFileLoader({
+        context,
+        owner,
+        repo,
+        release,
         action,
-      ) === false
-    ) {
-      return;
-    }
+      });
+      const loadConfig = createConfigLoader(
+        {context, owner, repo, ref, release, action},
+        loadFile,
+      );
 
-    const loadFile = createFileLoader({context, owner, repo});
-    const loadConfig = createConfigLoader(
-      {context, owner, repo, ref},
-      loadFile,
-    );
-
-    await handleSchemaDiff({
-      action: 'pull_request.' + action,
-      context,
-      ref,
-      repo,
-      owner,
-      loadFile,
-      loadConfig,
-      before,
-      pullRequests,
-      pullRequestNumber,
-    });
-  });
-
-  app.on('push', async (context) => {
-    const ref = context.payload.ref;
-    const {owner, repo} = context.repo();
-    const before = context.payload.before;
-
-    const loadFile = createFileLoader({context, owner, repo});
-    const loadConfig = createConfigLoader(
-      {context, owner, repo, ref},
-      loadFile,
-    );
-
-    await handleSchemaChangeNotifications({
-      context,
-      ref,
-      before,
-      repo,
-      owner,
-      loadFile,
-      loadConfig,
-    });
-  });
+      await handleSchemaChangeNotifications({
+        action,
+        release,
+        context,
+        ref,
+        before,
+        repo,
+        owner,
+        loadFile,
+        loadConfig,
+        onError,
+      });
+    }),
+  );
 }

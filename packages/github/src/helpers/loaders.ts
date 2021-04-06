@@ -41,6 +41,8 @@ type FileLoaderConfig = {
   context: probot.Context;
   owner: string;
   repo: string;
+  action: string;
+  release: string;
 };
 
 interface FileLoaderInput {
@@ -62,7 +64,7 @@ export function createFileLoader(config: FileLoaderConfig): FileLoader {
       );
       const {context, repo, owner} = config;
 
-      const result: any = await context.github.graphql(
+      const result: any = await context.octokit.graphql(
         createGetFilesQuery(variablesMap),
         {
           repo,
