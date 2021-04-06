@@ -1,8 +1,16 @@
 diff --git a/node_modules/@docusaurus/theme-search-algolia/src/theme/SearchBar/index.js b/node_modules/@docusaurus/theme-search-algolia/src/theme/SearchBar/index.js
-index 033a105..94e3159 100644
+index 033a105..a4148d8 100644
 --- a/node_modules/@docusaurus/theme-search-algolia/src/theme/SearchBar/index.js
 +++ b/node_modules/@docusaurus/theme-search-algolia/src/theme/SearchBar/index.js
-@@ -101,7 +101,7 @@ function DocSearch({contextualSearch, ...props}) {
+@@ -16,6 +16,7 @@ import useSearchQuery from '@theme/hooks/useSearchQuery';
+ import {DocSearchButton, useDocSearchKeyboardEvents} from '@docsearch/react';
+ import useAlgoliaContextualFacetFilters from '@theme/hooks/useAlgoliaContextualFacetFilters';
+ import {translate} from '@docusaurus/Translate';
++import {CallEnum} from '@algolia/transporter';
+ 
+ let DocSearchModal = null;
+ 
+@@ -101,7 +102,7 @@ function DocSearch({contextualSearch, ...props}) {
  
    const navigator = useRef({
      navigate({itemUrl}) {
@@ -11,3 +19,17 @@ index 033a105..94e3159 100644
      },
    }).current;
  
+@@ -132,6 +133,13 @@ function DocSearch({contextualSearch, ...props}) {
+         siteMetadata.docusaurusVersion,
+       );
+ 
++      const algoliaHost = 'the-guild.dev/api/algolia';
++      searchClient.transporter.hosts.forEach(host => {
++        if ((host.accept & CallEnum.Read) !== 0) {
++          host.url = algoliaHost;
++        }
++      });
++
+       return searchClient;
+     },
+     [siteMetadata.docusaurusVersion],
