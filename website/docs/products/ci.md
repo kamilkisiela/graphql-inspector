@@ -9,6 +9,14 @@ GraphQL Inspector can be used with any Continuous Integration. It's easy!
 GraphQL Inspector already has CLI but we developed a more suited approach for consuming it in CI/CD.
 It's called CLI for CI.
 
+Install it using yarn:
+
+    yarn global add @graphql-inspector/ci
+
+You need to install `graphql` globally too:
+
+    yarn global add graphql
+
 Most common use case is schema diffing and all the other features are never touched. That's why we decide to **make each feature pluggable**.
 
 In GraphQLI Inspector CLI for CI, you're able to **install exactly what you want to use**. **Each command is an installable package**.
@@ -49,11 +57,11 @@ Let's take for example Schema Diffing and assume your latest `schema.graphql` is
 
 You want to compare two GraphQL Schemas:
 
-    yarn add @graphql-inspector/diff-command
+    yarn global add @graphql-inspector/diff-command
 
 You need to be able to load `schema.graphql` from disk and from `origin/master` on Git:
 
-    yarn add @graphql-inspector/graphql-loader @graphql-inspector/git-loader
+    yarn global add @graphql-inspector/graphql-loader @graphql-inspector/git-loader
 
 With everything installed, you can use the command below in your CI setup:
 
