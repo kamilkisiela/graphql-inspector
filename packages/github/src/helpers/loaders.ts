@@ -159,7 +159,7 @@ export function createConfigLoader(
           ]);
 
           if (yamlConfig || ymlConfig) {
-            return yaml.safeLoad((yamlConfig || ymlConfig)!);
+            return yaml.load((yamlConfig || ymlConfig)!);
           }
 
           if (pkgFile) {
