@@ -63,7 +63,7 @@
     "@sentry/node": "6.2.5",
     "@sentry/tracing": "6.2.5",
     "husky": "4.3.8",
-    "immer": "8.0.4",
+    "immer": "9.0.1",
     "lerna": "3.22.1",
     "probot": "11.1.0",
     "shelljs": "0.8.4"
