@@ -256,4 +256,37 @@ describe('enum', () => {
       "Enum value 'A' (deprecated) was removed from enum 'enumA'",
     );
   });
+
+  test('value added should be Breaking when dangerousBreaking rule is used', () => {
+    const a = buildSchema(/* GraphQL */ `
+      type Query {
+        fieldA: String
+      }
+
+      enum enumA {
+        A
+        B
+      }
+    `);
+
+    const b = buildSchema(/* GraphQL */ `
+      type Query {
+        fieldA: String
+      }
+
+      enum enumA {
+        A
+        B
+        C
+      }
+    `);
+
+    const changes = diff(a, b, [DiffRule.dangerousBreaking])
+    const change = findFirstChangeByPath(changes, 'enumA.C');
+
+    expect(changes.length).toEqual(1);
+    expect(change.criticality.level).toEqual(CriticalityLevel.Breaking);
+    expect(change.criticality.reason).toBeDefined();
+    expect(change.message).toEqual(`Enum value 'C' was added to enum 'enumA'`);
+  });
 });

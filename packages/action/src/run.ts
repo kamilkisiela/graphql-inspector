@@ -12,11 +12,9 @@ import {execSync} from 'child_process';
 
 import * as core from '@actions/core';
 import * as github from '@actions/github';
-import {Octokit} from '@octokit/rest';
 import {batch} from './utils';
 
 type OctokitInstance = ReturnType<typeof github.getOctokit>;
-
 const CHECK_NAME = 'GraphQL Inspector';
 
 function getCurrentCommitSha() {
@@ -260,9 +258,8 @@ function fileLoader({
   };
 }
 
-type UpdateCheckRunOptions = Required<
-  Pick<Octokit.ChecksUpdateParams, 'conclusion' | 'output'>
->;
+type UpdateCheckRunOptions = Required<Pick<NonNullable<Parameters<OctokitInstance['checks']['update']>[0]>, 'conclusion' | 'output'>>
+
 async function updateCheckRun(
   octokit: OctokitInstance,
   checkId: number,
