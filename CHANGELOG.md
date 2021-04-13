@@ -4,7 +4,7 @@
 
 - **github**: Allow for error handling
 - **cli**: Adds a relevant file path to an error message [#1887](https://github.com/kamilkisiela/graphql-inspector/pull/1887)
-- **core**: add rule to make dangerous changes breaking (`dangerousBreaking`) [#000](https://github.com/kamilkisiela/graphql-inspector/pull/000)
+- **core**: add rule to make dangerous changes breaking (`dangerousBreaking`) [#1899](https://github.com/kamilkisiela/graphql-inspector/pull/1899)
 
 ### v2.5.0
 
