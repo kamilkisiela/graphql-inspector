@@ -1,0 +1,60 @@
+- color: ffffff
+  description: ""
+  name: area/api
+- color: ffffff
+  description: ""
+  name: area/cli
+- color: ffffff
+  description: ""
+  name: area/core
+- color: ffffff
+  description: ""
+  name: area/github
+- color: ffffff
+  description: ""
+  name: area/load
+- color: ffffff
+  description: ""
+  name: area/trace
+- color: ffffff
+  description: ""
+  name: area/ui
+- color: 8546af
+  description: ""
+  name: automerge
+- color: 0366d6
+  description: Pull requests that update a dependency file
+  name: dependencies
+- color: cfd3d7
+  description: This issue or pull request already exists
+  name: duplicate
+- color: ee0701
+  description: Pull requests that address a security vulnerability
+  name: security
+- color: 3B71B2
+  description: This issue or pull request is waiting to be released
+  name: ⏳ waiting for release
+- color: 5c44d6
+  description: Someone is working on it
+  name: ⚙️ work in progress
+- color: "008672"
+  description: Extra attention is needed
+  name: ⛑️ help wanted
+- color: 692A4E
+  description: Good for newcomers
+  name: "\U0001F393 good first issue"
+- color: FFF9D2
+  description: Further information is requested
+  name: "\U0001F399️ question"
+- color: FF6F61
+  description: Something isn't working
+  name: "\U0001F41E bug"
+- color: 1C77A4
+  description: This issue or pull request is released
+  name: "\U0001F4E6 released"
+- color: D4E1E8
+  description: This will not be worked on
+  name: "\U0001F512 wontfix"
+- color: a2eeef
+  description: New feature or request
+  name: "\U0001F680 enhancement"
