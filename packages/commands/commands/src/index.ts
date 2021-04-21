@@ -1,10 +1,9 @@
-import {InspectorConfig} from '@graphql-inspector/config';
-import {Loaders} from '@graphql-inspector/loaders';
-import {isAbsolute, resolve} from 'path';
-import {CommandModule as Command} from 'yargs';
-import yargs from 'yargs';
+import { InspectorConfig } from '@graphql-inspector/config';
+import { Loaders } from '@graphql-inspector/loaders';
+import { isAbsolute, resolve } from 'path';
+import yargs, { CommandModule as Command } from 'yargs';
 
-export {Command};
+export { Command };
 
 export interface UseCommandsAPI {
   config: InspectorConfig;
@@ -40,6 +39,8 @@ export interface GlobalArgs {
   require?: string[];
   token?: string;
   header?: string[];
+  leftheader?: string[];
+  rightheader?: string[];
   federation?: boolean;
   aws?: boolean;
   method?: string;
@@ -47,6 +48,8 @@ export interface GlobalArgs {
 
 export function parseGlobalArgs(args: GlobalArgs) {
   const headers: Record<string, string> = {};
+  const leftHeaders: Record<string, string> = {};
+  const rightHeaders: Record<string, string> = {};
 
   if (args.header) {
     args.header.forEach((header) => {
@@ -56,11 +59,27 @@ export function parseGlobalArgs(args: GlobalArgs) {
     });
   }
 
+  if (args.leftheader) {
+    args.leftheader.forEach((leftHeader) => {
+      const [lname, ...lvalues] = leftHeader.split(':');
+
+      leftHeaders[lname] = lvalues.join('');
+    });
+  }
+
+  if (args.rightheader) {
+    args.rightheader.forEach((rightHeader) => {
+      const [rname, ...rvalues] = rightHeader.split(':');
+
+      rightHeaders[rname] = rvalues.join('');
+    });
+  }
+
   if (args.require) {
     args.require.forEach((mod) => require(mod));
   }
 
-  return {headers, token: args.token};
+  return {headers, leftHeaders, rightHeaders, token: args.token};
 }
 
 export async function mockCommand(mod: Command, cmd: string) {
