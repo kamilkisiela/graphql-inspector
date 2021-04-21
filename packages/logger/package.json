@@ -21,7 +21,7 @@
     "directory": "packages/logger"
   },
   "dependencies": {
-    "chalk": "4.1.0",
+    "chalk": "4.1.1",
     "figures": "3.2.0",
     "log-symbols": "5.0.0",
     "std-env": "2.3.0",
