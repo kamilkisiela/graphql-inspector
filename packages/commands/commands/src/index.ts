@@ -39,8 +39,8 @@ export interface GlobalArgs {
   require?: string[];
   token?: string;
   header?: string[];
-  leftheader?: string[];
-  rightheader?: string[];
+  leftHeader?: string[];
+  rightHeader?: string[];
   federation?: boolean;
   aws?: boolean;
   method?: string;
@@ -59,16 +59,16 @@ export function parseGlobalArgs(args: GlobalArgs) {
     });
   }
 
-  if (args.leftheader) {
-    args.leftheader.forEach((leftHeader) => {
+  if (args.leftHeader) {
+    args.leftHeader.forEach((leftHeader) => {
       const [lname, ...lvalues] = leftHeader.split(':');
 
       leftHeaders[lname] = lvalues.join('');
     });
   }
 
-  if (args.rightheader) {
-    args.rightheader.forEach((rightHeader) => {
+  if (args.rightHeader) {
+    args.rightHeader.forEach((rightHeader) => {
       const [rname, ...rvalues] = rightHeader.split(':');
 
       rightHeaders[rname] = rvalues.join('');

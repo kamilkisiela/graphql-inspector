@@ -31,12 +31,12 @@ async function main() {
         type: 'array',
       },
       hl: {
-        alias: 'leftheader',
+        alias: 'left-header',
         describe: 'Http Header - Left',
         type: 'array',
       },
       hr: {
-        alias: 'rightheader',
+        alias: 'right-header',
         describe: 'Http Header - Right',
         type: 'array',
       },
