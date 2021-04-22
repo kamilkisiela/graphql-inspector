@@ -96,17 +96,17 @@ import { diff, validate, coverage, ... } from '@graphql-inspector/core';
 GraphQL Inspector is also available on Docker.
 
 ```bash
-docker run kamilkisiela/graphql-inspector --help
+docker run fkelley047/graphql-inspector --help
 ```
 
 Bind volumes to `/app` for working with local files, for example:
 
 ```bash
-docker run -v $PWD:/app kamilkisiela/graphql-inspector graphql-inspector diff old.graphql new.graphql
+docker run -v $PWD:/app fkelley047/graphql-inspector graphql-inspector diff old.graphql new.graphql
 ```
 
 To run commands interactively inside of the container, use the following:
 
 ```bash
-docker run -it kamilkisiela/graphql-inspector
+docker run -it fkelley047/graphql-inspector
 ```
