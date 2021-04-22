@@ -1,24 +1,25 @@
 import {
-  createCommand,
+  CommandFactory, createCommand,
   ensureAbsolute,
-  parseGlobalArgs,
-  GlobalArgs,
-  CommandFactory,
-} from '@graphql-inspector/commands';
-import {symbols, Logger, bolderize} from '@graphql-inspector/logger';
-import {
-  diff as diffSchema,
-  CriticalityLevel,
-  Change,
-  DiffRule,
-  Rule,
-  CompletionHandler,
-  CompletionArgs,
-} from '@graphql-inspector/core';
-import {existsSync} from 'fs';
-import {GraphQLSchema} from 'graphql';
 
-export {CommandFactory};
+  GlobalArgs, parseGlobalArgs
+} from '@graphql-inspector/commands';
+import {
+  Change,
+
+
+
+  CompletionArgs, CompletionHandler, CriticalityLevel, diff as diffSchema,
+
+
+  DiffRule,
+  Rule
+} from '@graphql-inspector/core';
+import { bolderize, Logger, symbols } from '@graphql-inspector/logger';
+import { existsSync } from 'fs';
+import { GraphQLSchema } from 'graphql';
+
+export { CommandFactory };
 
 export function handler(input: {
   oldSchema: GraphQLSchema;
@@ -127,12 +128,15 @@ export default createCommand<
         const apolloFederation = args.federation || false;
         const aws = args.aws || false;
         const method = args.method?.toUpperCase() || 'POST';
-        const {headers, token} = parseGlobalArgs(args);
+        const {headers, leftHeaders, rightHeaders, token} = parseGlobalArgs(args);
+
+        const oldSchemaHeaders = leftHeaders || headers;
+        const newSchemaHeaders = rightHeaders || headers;
 
         const oldSchema = await loaders.loadSchema(
           oldSchemaPointer,
           {
-            headers,
+            oldSchemaHeaders,
             token,
             method,
           },
@@ -142,7 +146,7 @@ export default createCommand<
         const newSchema = await loaders.loadSchema(
           newSchemaPointer,
           {
-            headers,
+            newSchemaHeaders,
             token,
             method,
           },

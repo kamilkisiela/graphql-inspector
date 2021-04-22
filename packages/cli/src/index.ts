@@ -1,6 +1,6 @@
-import {useCommands} from '@graphql-inspector/commands';
-import {useLoaders} from '@graphql-inspector/loaders';
-import yargs, {Argv} from 'yargs';
+import { useCommands } from '@graphql-inspector/commands';
+import { useLoaders } from '@graphql-inspector/loaders';
+import yargs, { Argv } from 'yargs';
 
 async function main() {
   const config = {
@@ -37,6 +37,16 @@ async function main() {
       h: {
         alias: 'header',
         describe: 'Http Header',
+        type: 'array',
+      },
+      hl: {
+        alias: 'left-header',
+        describe: 'Http Header - Left',
+        type: 'array',
+      },
+      hr: {
+        alias: 'right-header',
+        describe: 'Http Header - Right',
         type: 'array',
       },
     });
