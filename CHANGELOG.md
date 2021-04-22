@@ -4,6 +4,7 @@
 
 - **github**: Allow for error handling
 - **cli**: Adds a relevant file path to an error message [#1887](https://github.com/kamilkisiela/graphql-inspector/pull/1887)
+- **cli**: Adds `--left-header` and `--right-header` [#1899](https://github.com/kamilkisiela/graphql-inspector/pull/1899)
 - **core**: add rule to make dangerous changes breaking (`dangerousBreaking`) [#1899](https://github.com/kamilkisiela/graphql-inspector/pull/1899)
 
 ### v2.5.0
