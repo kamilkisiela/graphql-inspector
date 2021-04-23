@@ -8303,10 +8303,10 @@ pretty-format@^26.0.0, pretty-format@^26.6.2:
     ansi-styles "^4.0.0"
     react-is "^17.0.1"
 
-probot@11.2.1:
-  version "11.2.1"
-  resolved "https://registry.yarnpkg.com/probot/-/probot-11.2.1.tgz#c10198320f0f54f0ac64986e898513bb375e3c07"
-  integrity sha512-jeQHqwspcXoJ5ABENXXME07EHq7o4OwIFORmcrPIZYnlQ1UGxS+syDGCkcGohqoxU/wYywqBxhcVnIPUklKrFw==
+probot@11.2.2:
+  version "11.2.2"
+  resolved "https://registry.yarnpkg.com/probot/-/probot-11.2.2.tgz#a962f2b3c1829da169db0702228052472567f43d"
+  integrity sha512-C/LbdAKlqnJoATJMn94sV9/yxsC0esxNlYiOFkfBlobBKdoWxS4HBL0BkOgwRADcmJB2bO4U6rz3bFS2E+KK8A==
   dependencies:
     "@octokit/core" "^3.2.4"
     "@octokit/plugin-enterprise-compatibility" "^1.2.8"
