@@ -43,10 +43,6 @@ function serverless(appFn) {
     const id = headers['x-github-delivery'];
     const event = `${ev}${req.body.action ? '.' + req.body.action : ''}`;
 
-    const transaction = Sentry.startTransaction({
-      name: event,
-    });
-
     function onError(error) {
       Sentry.captureException(error, {
         level: Sentry.Severity.Critical,
@@ -88,7 +84,6 @@ function serverless(appFn) {
             headers['x-hub-signature-256'] || headers['x-hub-signature'],
         });
 
-        transaction.finish();
         res.status(200);
         res.json({
           message: `Received ${ev}.${req.body.action}`,
@@ -96,9 +91,6 @@ function serverless(appFn) {
 
         return;
       } else {
-        transaction.setStatus(Tracing.SpanStatus.UnknownError);
-        transaction.setHttpStatus(500);
-        transaction.finish();
         res.status(500);
         res.send('unknown error');
 
@@ -108,10 +100,6 @@ function serverless(appFn) {
       Sentry.captureException(error, {
         extra: req.body,
       });
-
-      transaction.setStatus(Tracing.SpanStatus.UnknownError);
-      transaction.setHttpStatus(500);
-      transaction.finish();
       res.status(500);
       res.send('unknown error');
     }
