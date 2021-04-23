@@ -8,7 +8,7 @@ Sentry.init({
   dsn: process.env.SENTRY_DNS,
   attachStacktrace: true,
   release,
-  tracesSampleRate: 1.0,
+  tracesSampleRate: 0.5,
 });
 
 const {createProbot} = require('probot');
