@@ -158,12 +158,7 @@ module.exports = {
   scripts: [
     {
       src: '/js/scroll-to.js',
-    },
-    {
-      src: 'https://the-guild.dev/static/banner.js',
-      async: true,
-      defer: true,
-    },
+    }
   ],
   stylesheets: [
     'https://fonts.googleapis.com/css?family=Lato:300,400,700,900&display=swap',
