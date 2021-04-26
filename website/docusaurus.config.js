@@ -149,11 +149,6 @@ module.exports = {
     googleAnalytics: {
       trackingID: 'UA-125180910-2',
     },
-    algolia: {
-      appId: 'ANRJKXZTRW',
-      apiKey: '811d453fc7f80306044dd5cc4b87e064',
-      indexName: 'theguild',
-    },
   },
   scripts: [
     {
