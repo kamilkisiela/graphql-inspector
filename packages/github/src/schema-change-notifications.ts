@@ -102,7 +102,7 @@ export async function handleSchemaChangeNotifications({
 
   logger.info(`built schemas`);
 
-  const changes = diff(schemas.old, schemas.new);
+  const changes = await diff(schemas.old, schemas.new);
 
   if (!changes.length) {
     logger.info(`schemas are equal. Skipping...`);

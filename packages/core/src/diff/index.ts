@@ -14,16 +14,17 @@ export function diff(
   oldSchema: GraphQLSchema,
   newSchema: GraphQLSchema,
   rules: Rule[] = [],
-): Change[] {
+  config?: rules.ConsiderUsageConfig,
+): Promise<Change[]> {
   const changes = diffSchema(oldSchema, newSchema);
 
-  return rules.reduce(
-    (prev, rule) =>
-      rule({
-        changes: prev,
-        oldSchema,
-        newSchema,
-      }),
-    changes,
-  );
+  return rules.reduce(async (prev, rule) => {
+    const prevChanges = await prev;
+    return rule({
+      changes: prevChanges,
+      oldSchema,
+      newSchema,
+      config,
+    });
+  }, Promise.resolve(changes));
 }

@@ -2,6 +2,9 @@
 
 ### vNEXT
 
+- **core**: BREAKING - `diff` is now async
+- **core**: Adds `considerUsage` rule
+
 ### v2.9.0
 
 - **ci**, **cli**: Add `--ignore` to validate command

@@ -57,7 +57,7 @@ export async function diff({
   pullRequests?: PullRequest[];
   ref?: string;
 }): Promise<ActionResult> {
-  let changes = diffSchemas(schemas.old, schemas.new);
+  let changes = await diffSchemas(schemas.old, schemas.new);
   let forcedConclusion: CheckConclusion | null = null;
 
   if (!changes || !changes.length) {

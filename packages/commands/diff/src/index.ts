@@ -20,7 +20,7 @@ import {GraphQLSchema} from 'graphql';
 
 export {CommandFactory};
 
-export function handler(input: {
+export async function handler(input: {
   oldSchema: GraphQLSchema;
   newSchema: GraphQLSchema;
   onComplete?: string;
@@ -45,7 +45,7 @@ export function handler(input: {
         .filter((f) => f)
     : [];
 
-  const changes = diffSchema(input.oldSchema, input.newSchema, rules);
+  const changes = await diffSchema(input.oldSchema, input.newSchema, rules);
 
   if (changes.length === 0) {
     Logger.success('No changes detected');
