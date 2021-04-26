@@ -65,7 +65,7 @@
     "husky": "4.3.8",
     "immer": "9.0.2",
     "lerna": "4.0.0",
-    "probot": "11.2.2",
+    "probot": "11.2.3",
     "shelljs": "0.8.4"
   },
   "workspaces": [
