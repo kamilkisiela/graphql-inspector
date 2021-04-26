@@ -23,7 +23,7 @@
     "react-flip-move": "3.0.4",
     "react-monaco-editor": "0.43.0",
     "styled-components": "5.2.3",
-    "the-guild-components": "1.0.12"
+    "the-guild-components": "1.0.15"
   },
   "browserslist": {
     "production": [
