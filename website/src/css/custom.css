@@ -28,10 +28,6 @@ button {
   --ifm-color-content: #fff;
 }
 
-.DocSearch {
-  display: none !important;
-}
-
 @media only screen and (max-width: 996px) {
   .menu > button {
     right: 50% !important;
