@@ -45,7 +45,7 @@
     "@graphql-inspector/core": "0.0.0-PLACEHOLDER",
     "@graphql-inspector/github": "0.0.0-PLACEHOLDER",
     "js-yaml": "4.1.0",
-    "probot": "11.2.4",
+    "probot": "11.3.0",
     "tslib": "^2.0.0"
   },
   "devDependencies": {
