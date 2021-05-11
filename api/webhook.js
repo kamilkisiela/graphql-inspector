@@ -1,16 +1,5 @@
 /// @ts-check
-const Sentry = require('@sentry/node');
-const Tracing = require('@sentry/tracing');
-
 const release = process.env.COMMIT_SHA;
-
-Sentry.init({
-  dsn: process.env.SENTRY_DNS,
-  attachStacktrace: true,
-  release,
-  tracesSampleRate: 0.5,
-});
-
 const {createProbot} = require('probot');
 const inspector = require('@graphql-inspector/github');
 
@@ -44,13 +33,7 @@ function serverless(appFn) {
     const event = `${ev}${req.body.action ? '.' + req.body.action : ''}`;
 
     function onError(error) {
-      Sentry.captureException(error, {
-        level: Sentry.Severity.Critical,
-        extra: {
-          body: req.body,
-          headers: req.headers,
-        },
-      });
+      console.error(error);
     }
 
     try {
@@ -97,9 +80,7 @@ function serverless(appFn) {
         return;
       }
     } catch (error) {
-      Sentry.captureException(error, {
-        extra: req.body,
-      });
+      console.error(error);
       res.status(500);
       res.send('unknown error');
     }
