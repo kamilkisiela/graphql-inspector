@@ -25,3 +25,27 @@ Given example above, Inspector will search every file that matches that pattern 
 Supported extensions: `.graphql`, `.graphqls` and `.gql`.
 
 > ⚠️ Remember to wrap a glob pattern with quotes: `"./src/app/**/*.graphql"` ⚠️
+
+## Programmatic API
+
+If you are using programmatic API, you might find `@graphql-tools/load` package useful for loading documents. Learn more [here](https://www.graphql-tools.com/docs/documents-loading).
+
+```js
+const { validate } = require('@graphql-inspector/core');
+const { loadDocuments } = require('@graphql-tools/load');
+const { GraphQLFileLoader } = require('@graphql-tools/graphql-file-loader');
+const graphql = require('graphql');
+
+const documents = loadDocuments('./src/**/*.graphql', {
+    loaders: [
+        new GraphQLFileLoader()
+    ]
+});
+
+// Convert documents to the format expected by "validate" function
+const sources = documents.map(doc => {
+    return new graphql.Source(graphql.print(doc.document), doc.location);
+});
+
+const invalidDocuments = validate(schema, sources);
+```

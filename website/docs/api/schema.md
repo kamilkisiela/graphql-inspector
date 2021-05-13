@@ -71,3 +71,7 @@ For example, we want to fetch a .graphql file from master branch of [this sample
     github:kamilkisiela/graphql-inspector-example#master:./schema.graphql --token 'github-token-here'
 
 > GitHub Loader requires a GitHub token to be defined
+
+## Programmatic API
+
+If you are using programmatic API, you might find `@graphql-tools/load` package useful for loading schemas. Learn more [here](https://www.graphql-tools.com/docs/schema-loading).
