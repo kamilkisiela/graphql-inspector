@@ -2,6 +2,8 @@
 
 ### vNEXT
 
+### v2.6.0
+
 - **github**: Allow for error handling
 - **cli**: Adds a relevant file path to an error message [#1887](https://github.com/kamilkisiela/graphql-inspector/pull/1887)
 - **cli**: Adds `--left-header` and `--right-header` [#1899](https://github.com/kamilkisiela/graphql-inspector/pull/1899)
