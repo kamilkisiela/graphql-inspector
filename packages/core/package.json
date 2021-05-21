@@ -30,7 +30,11 @@
   },
   "dependencies": {
     "dependency-graph": "0.11.0",
+    "object-inspect": "1.10.3",
     "tslib": "^2.0.0"
+  },
+  "devDependencies": {
+    "@types/object-inspect": "1.8.0"
   },
   "scripts": {
     "prepack": "bob prepack"

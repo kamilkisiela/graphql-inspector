@@ -1,3 +1,5 @@
+import inspect from 'object-inspect';
+
 export interface Target {
   typeId: string;
   value: string;
@@ -74,4 +76,11 @@ function letterPairs(str: string) {
 function wordLetterPairs(str: string) {
   const pairs = str.toUpperCase().split(' ').map(letterPairs);
   return flattenDeep(pairs);
+}
+
+export function safeString(obj: any) {
+  if (obj != null && typeof obj.toString === 'function') {
+    return `${obj}`;
+  }
+  return inspect(obj);
 }
