@@ -2,6 +2,8 @@
 
 ### vNEXT
 
+### v2.6.1
+
 - **cli**: Revert log-symbols to v4 - brings back CJS support
 
 ### v2.6.0
