@@ -2,6 +2,8 @@
 
 ### vNEXT
 
+### v2.6.2
+
 - **cli**: Fix missing headers
 
 ### v2.6.1
