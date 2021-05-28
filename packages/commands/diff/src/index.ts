@@ -1,25 +1,24 @@
 import {
-  CommandFactory, createCommand,
+  CommandFactory,
+  createCommand,
   ensureAbsolute,
-
-  GlobalArgs, parseGlobalArgs
+  GlobalArgs,
+  parseGlobalArgs,
 } from '@graphql-inspector/commands';
 import {
   Change,
-
-
-
-  CompletionArgs, CompletionHandler, CriticalityLevel, diff as diffSchema,
-
-
+  CompletionArgs,
+  CompletionHandler,
+  CriticalityLevel,
+  diff as diffSchema,
   DiffRule,
-  Rule
+  Rule,
 } from '@graphql-inspector/core';
-import { bolderize, Logger, symbols } from '@graphql-inspector/logger';
-import { existsSync } from 'fs';
-import { GraphQLSchema } from 'graphql';
+import {bolderize, Logger, symbols} from '@graphql-inspector/logger';
+import {existsSync} from 'fs';
+import {GraphQLSchema} from 'graphql';
 
-export { CommandFactory };
+export {CommandFactory};
 
 export function handler(input: {
   oldSchema: GraphQLSchema;
@@ -34,17 +33,15 @@ export function handler(input: {
   const rules = input.rules
     ? input.rules
         .filter(isString)
-        .map(
-          (name): Rule => {
-            const rule = resolveRule(name);
+        .map((name): Rule => {
+          const rule = resolveRule(name);
 
-            if (!rule) {
-              throw new Error(`\Rule '${name}' does not exist!\n`);
-            }
+          if (!rule) {
+            throw new Error(`\Rule '${name}' does not exist!\n`);
+          }
 
-            return rule;
-          },
-        )
+          return rule;
+        })
         .filter((f) => f)
     : [];
 
@@ -128,10 +125,17 @@ export default createCommand<
         const apolloFederation = args.federation || false;
         const aws = args.aws || false;
         const method = args.method?.toUpperCase() || 'POST';
-        const {headers, leftHeaders, rightHeaders, token} = parseGlobalArgs(args);
+        const {headers, leftHeaders, rightHeaders, token} =
+          parseGlobalArgs(args);
 
-        const oldSchemaHeaders = leftHeaders || headers;
-        const newSchemaHeaders = rightHeaders || headers;
+        const oldSchemaHeaders = {
+          ...(headers ?? {}),
+          ...(leftHeaders ?? {}),
+        };
+        const newSchemaHeaders = {
+          ...(headers ?? {}),
+          ...(rightHeaders ?? {}),
+        };
 
         const oldSchema = await loaders.loadSchema(
           oldSchemaPointer,

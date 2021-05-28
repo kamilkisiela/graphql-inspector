@@ -2,6 +2,8 @@
 
 ### vNEXT
 
+- **cli**: Fix missing headers
+
 ### v2.6.1
 
 - **cli**: Revert log-symbols to v4 - brings back CJS support
