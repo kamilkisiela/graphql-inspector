@@ -82,7 +82,7 @@ export default createCommand<
         .default('w', 'graphql.schema.json');
     },
     async handler(args) {
-      const {headers, token} = parseGlobalArgs(args);
+      const {headers, token} = await parseGlobalArgs(args);
       const output = args.write!;
       const comments = args.comments || false;
       const apolloFederation = args.federation || false;

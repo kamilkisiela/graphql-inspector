@@ -42,7 +42,7 @@ export default createCommand<
         });
     },
     async handler(args) {
-      const {headers, token} = parseGlobalArgs(args);
+      const {headers, token} = await parseGlobalArgs(args);
       const apolloFederation = args.federation || false;
       const aws = args.aws || false;
       const method = args.method?.toUpperCase() || 'POST';

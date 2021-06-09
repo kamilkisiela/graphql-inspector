@@ -67,7 +67,7 @@ export default defineCommand<
       const writePath = args.write;
       const type = args.name;
       const threshold = args.threshold;
-      const {headers, token} = parseGlobalArgs(args);
+      const {headers, token} = await parseGlobalArgs(args);
 
       const config = await api.useConfig({
         rootDir: args.config || process.cwd(),

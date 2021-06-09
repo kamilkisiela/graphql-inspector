@@ -126,7 +126,7 @@ export default createCommand<
         const aws = args.aws || false;
         const method = args.method?.toUpperCase() || 'POST';
         const {headers, leftHeaders, rightHeaders, token} =
-          parseGlobalArgs(args);
+          await parseGlobalArgs(args);
 
         const oldSchemaHeaders = {
           ...(headers ?? {}),
@@ -216,16 +216,16 @@ function reportNonBreakingChanges(changes: Change[]) {
   });
 }
 
-function resolveRule(name: string): Rule | undefined {
+async function resolveRule(name: string): Promise<Rule | undefined> {
   const filepath = ensureAbsolute(name);
   if (existsSync(filepath)) {
-    return require(filepath);
+    return import(filepath);
   }
 
   return DiffRule[name as keyof typeof DiffRule];
 }
 
-function resolveCompletionHandler(name: string): CompletionHandler | never {
+async function resolveCompletionHandler(name: string): CompletionHandler | never {
   const filepath = ensureAbsolute(name);
 
   try {
@@ -234,7 +234,7 @@ function resolveCompletionHandler(name: string): CompletionHandler | never {
     throw new Error(`CompletionHandler '${name}' does not exist!`);
   }
 
-  const mod = require(filepath);
+  const mod = await import(filepath);
 
   return mod?.default || mod;
 }

@@ -19,9 +19,9 @@ export class LoadersRegistry {
     this.loaders.push(loader);
   }
 
-  registerModule(loaderName: string) {
+  async registerModule(loaderName: string) {
     try {
-      const loader: UniversalLoader = loadModule(
+      const loader: UniversalLoader = await loadModule(
         `@graphql-inspector/${loaderName}-loader`,
       );
 
@@ -112,16 +112,18 @@ export class LoadersRegistry {
 
 export type Loaders = Pick<LoadersRegistry, 'loadSchema' | 'loadDocuments'>;
 
-export function useLoaders(config: InspectorConfig): Loaders {
+export async function useLoaders(config: InspectorConfig): Promise<Loaders> {
   const loaders = new LoadersRegistry();
 
-  config.loaders.forEach((loaderName) => loaders.registerModule(loaderName));
+  await Promise.all(
+    config.loaders.map((loaderName) => loaders.registerModule(loaderName)),
+  );
 
   return loaders;
 }
 
-function loadModule<T>(name: string): T {
-  const mod = require(name);
+async function loadModule<T>(name: string): Promise<T> {
+  const mod = await import(name);
 
   return mod.default ? mod.default : mod;
 }

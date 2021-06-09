@@ -7,7 +7,7 @@ import yargs, { Argv } from 'yargs';
 async function main() {
   const config = await useConfig();
   const loaders = useLoaders(config);
-  const commands = useCommands({config, loaders});
+  const commands = await useCommands({config, loaders});
 
   const root: Argv = yargs
     .scriptName('graphql-inspector')

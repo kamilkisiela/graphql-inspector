@@ -70,7 +70,7 @@ export default defineCommand<
     async handler(args) {
       const writePath = args.write;
       const silent = args.silent;
-      const {headers, token} = parseGlobalArgs(args);
+      const {headers, token} = await parseGlobalArgs(args);
 
       const config = await api.useConfig({
         rootDir: args.config || process.cwd(),

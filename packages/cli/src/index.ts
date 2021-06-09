@@ -16,7 +16,7 @@ async function main() {
     ],
   };
   const loaders = useLoaders(config);
-  const commands = useCommands({config, loaders});
+  const commands = await useCommands({config, loaders});
 
   const root: Argv = yargs
     .scriptName('graphql-inspector')

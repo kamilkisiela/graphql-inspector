@@ -149,7 +149,7 @@ export default createCommand<
         });
     },
     async handler(args) {
-      const {headers, token} = parseGlobalArgs(args);
+      const {headers, token} = await parseGlobalArgs(args);
       const apollo = args.apollo || false;
       const aws = args.aws || false;
       const apolloFederation = args.federation || false;

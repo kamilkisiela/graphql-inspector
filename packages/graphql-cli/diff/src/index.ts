@@ -67,7 +67,7 @@ export default defineCommand<
         });
     },
     async handler(args) {
-      const {headers, token} = parseGlobalArgs(args);
+      const {headers, token} = await parseGlobalArgs(args);
       const config = await api.useConfig({
         rootDir: args.config || process.cwd(),
         extensions: [createInspectorExtension('diff')],

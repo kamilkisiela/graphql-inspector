@@ -14,16 +14,22 @@ export type CommandFactory<T = {}, U = {}> = (
   api: Required<UseCommandsAPI>,
 ) => Command<T, U>;
 
-export function useCommands(api: UseCommandsAPI): Command[] {
-  return api.config.commands.map((name) => loadCommand(name)(api));
+export function useCommands(api: UseCommandsAPI): Promise<Command[]> {
+  return Promise.all(
+    api.config.commands.map(async (name) => {
+      const loadedCommand = await loadCommand(name);
+
+      return loadedCommand(api);
+    }),
+  );
 }
 
 export function createCommand<T = {}, U = {}>(factory: CommandFactory<T, U>) {
   return factory;
 }
 
-function loadCommand(name: string): CommandFactory {
-  const mod = require(`@graphql-inspector/${name}-command`);
+async function loadCommand(name: string): Promise<CommandFactory> {
+  const mod = await import(`@graphql-inspector/${name}-command`);
 
   return mod.default || mod;
 }
@@ -46,7 +52,7 @@ export interface GlobalArgs {
   method?: string;
 }
 
-export function parseGlobalArgs(args: GlobalArgs) {
+export async function parseGlobalArgs(args: GlobalArgs) {
   const headers: Record<string, string> = {};
   const leftHeaders: Record<string, string> = {};
   const rightHeaders: Record<string, string> = {};
@@ -76,7 +82,7 @@ export function parseGlobalArgs(args: GlobalArgs) {
   }
 
   if (args.require) {
-    args.require.forEach((mod) => require(mod));
+    await Promise.all(args.require.map((mod) => import(mod)));
   }
 
   return {headers, leftHeaders, rightHeaders, token: args.token};

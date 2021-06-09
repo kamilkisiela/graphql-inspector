@@ -10,7 +10,7 @@ export interface GlobalArgs {
   config?: string;
 }
 
-export function parseGlobalArgs(args: GlobalArgs) {
+export async function parseGlobalArgs(args: GlobalArgs) {
   const headers: Record<string, string> = {};
 
   if (args.header) {
@@ -22,7 +22,7 @@ export function parseGlobalArgs(args: GlobalArgs) {
   }
 
   if (args.require) {
-    args.require.forEach((mod) => require(mod as string));
+    await Promise.all(args.require.map((mod) => import(mod as string)));
   }
 
   return {headers, token: args.token};

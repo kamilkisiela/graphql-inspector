@@ -122,7 +122,7 @@ export default createCommand<
         });
     },
     async handler(args) {
-      const {headers, token} = parseGlobalArgs(args);
+      const {headers, token} = await parseGlobalArgs(args);
       const writePath = args.write;
       const type = args.name;
       const threshold = args.threshold;

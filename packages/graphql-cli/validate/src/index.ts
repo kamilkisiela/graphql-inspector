@@ -92,7 +92,7 @@ export default defineCommand<
       const strictFragments = !args.noStrictFragments;
       const keepClientFields = args.keepClientFields || false;
       const failOnDeprecated = args.deprecated;
-      const {headers, token} = parseGlobalArgs(args);
+      const {headers, token} = await parseGlobalArgs(args);
 
       const config = await api.useConfig({
         rootDir: args.config || process.cwd(),
