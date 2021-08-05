@@ -115,7 +115,7 @@ export default createCommand<
           demandOption: true,
         })
         .positional('documents', {
-          describe: 'Point to docuents',
+          describe: 'Point to documents',
           type: 'string',
           demandOption: true,
         })
