@@ -32,7 +32,7 @@ export function inputFieldAdded(
       ? {
           level: CriticalityLevel.Breaking,
           reason:
-            'Adding a possible type to Unions may break existing clients that were not programming defensively against a new possible type.',
+            'Adding a required input field to an existing input object type is a breaking change because it will cause existing uses of this input object type to error.',
         }
       : {
           level: CriticalityLevel.Dangerous,
