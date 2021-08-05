@@ -21,8 +21,6 @@
     "url": "kamilkisiela/graphql-inspector"
   },
   "scripts": {
-    "affected:build": "bob run build",
-    "affected:test": "bob run test",
     "build": "tsc --project tsconfig.json && bob build",
     "test": "jest",
     "prebuild": "rimraf \"packages/**/dist/\"",
