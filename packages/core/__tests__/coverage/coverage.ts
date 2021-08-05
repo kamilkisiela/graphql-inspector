@@ -28,10 +28,16 @@ describe('coverage', () => {
       objectById(id: ID!): Identifiable
     }
 
+    type Mutation {
+      submitPost(title: String!, author: String!): Post!
+    }
+
     schema {
       query: Query
+      mutation: Mutation
     }
   `);
+  
   test('basic', () => {
     const doc = parse(/* GraphQL */ `
       query getPost {
@@ -41,13 +47,20 @@ describe('coverage', () => {
           title
         }
       }
+      
       query getObjectById {
-        objectById {
+        objectById(id: 2) {
           id
           ... on Post {
             title
             createdAt
           }
+        }
+      }
+
+      mutation submitPost {
+        submitPost(title: "Random", author: "More random") {
+          id
         }
       }
     `);
@@ -58,9 +71,11 @@ describe('coverage', () => {
     expect(results.types.Query.hits).toEqual(2);
     expect(results.types.Query.children.posts.hits).toEqual(0);
     expect(results.types.Query.children.post.hits).toEqual(1);
+    expect(results.types.Query.children.objectById.hits).toEqual(1);
+    expect(results.types.Query.children.objectById.children.id.hits).toEqual(1);
     // Post
-    expect(results.types.Post.hits).toEqual(4);
-    expect(results.types.Post.children.id.hits).toEqual(1);
+    expect(results.types.Post.hits).toEqual(5);
+    expect(results.types.Post.children.id.hits).toEqual(2);
     expect(results.types.Post.children.title.hits).toEqual(2);
     expect(results.types.Post.children.author.hits).toEqual(0);
     expect(results.types.Post.children.createdAt.hits).toEqual(1);
@@ -68,6 +83,11 @@ describe('coverage', () => {
     expect(results.types.Identifiable.hits).toEqual(1);
     expect(results.types.Identifiable.children.id.hits).toEqual(1);
     expect(results.types.Identifiable.children.createdAt.hits).toEqual(0);
+    // Mutation
+    expect(results.types.Mutation.hits).toEqual(1);
+    expect(results.types.Mutation.children.submitPost.hits).toEqual(1);
+    expect(results.types.Mutation.children.submitPost.children.title.hits).toEqual(1);
+    expect(results.types.Mutation.children.submitPost.children.author.hits).toEqual(1);
   });
 
   test('introspection', () => {

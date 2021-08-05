@@ -2,6 +2,8 @@
 
 ### vNEXT
 
+- **core**: collect arguments in Schema Coverage [#1962](https://github.com/kamilkisiela/graphql-inspector/issues/1962)
+
 ### v2.6.2
 
 - **cli**: Fix missing headers
