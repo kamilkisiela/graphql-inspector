@@ -2,6 +2,8 @@
 
 ### vNEXT
 
+### v2.7.0
+
 - **core**: collect arguments in Schema Coverage [#1962](https://github.com/kamilkisiela/graphql-inspector/issues/1962)
 - **ci**, **cli**: allow to filter results by file paths when validating documents
 
