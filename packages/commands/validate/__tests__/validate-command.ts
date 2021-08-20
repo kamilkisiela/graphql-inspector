@@ -45,6 +45,17 @@ const validate = createCommand({
           document: operation,
           location: 'document.graphql',
         },
+        {
+          document: parse(/* GraphQL */ `
+            query post {
+              post {
+                id
+                title
+              }
+            }
+          `),
+          location: 'valid-document.graphql',
+        },
       ];
     },
   },
@@ -88,5 +99,14 @@ describe('validate', () => {
     expect(spyReporter).not.toHaveBeenCalledNormalized(
       'All documents are valid',
     );
+  });
+
+  test('should allow to filter results by file paths', async () => {
+    await mockCommand(
+      validate,
+      'validate "*.graphql" schema.graphql --filter valid-document.graphql',
+    );
+
+    expect(spyReporter).toHaveBeenCalledNormalized('All documents are valid');
   });
 });
