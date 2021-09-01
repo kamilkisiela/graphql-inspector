@@ -11,6 +11,7 @@ import {
 } from '@graphql-inspector/core';
 import {Source as DocumentSource} from '@graphql-tools/utils';
 import {relative} from 'path';
+import {writeFileSync} from 'fs';
 import {Source, print, GraphQLSchema, GraphQLError} from 'graphql';
 
 export {CommandFactory};
@@ -26,7 +27,8 @@ export function handler({
   filter,
   onlyErrors,
   relativePaths,
-  json,
+  output,
+  silent,
 }: {
   schema: GraphQLSchema;
   documents: DocumentSource[];
@@ -38,7 +40,8 @@ export function handler({
   filter?: string[];
   onlyErrors?: boolean;
   relativePaths?: boolean;
-  json?: boolean;
+  output?: string;
+  silent?: boolean;
 }) {
   let invalidDocuments = validateDocuments(
     schema,
@@ -73,7 +76,7 @@ export function handler({
     const shouldFailProcess = errorsCount > 0;
 
     if (errorsCount) {
-      if (!json) {
+      if (!silent) {
         Logger.log(
           `\nDetected ${errorsCount} invalid document${
             errorsCount > 1 ? 's' : ''
@@ -81,13 +84,13 @@ export function handler({
         );
       }
 
-      printInvalidDocuments(invalidDocuments, 'errors', true, json);
+      printInvalidDocuments(invalidDocuments, 'errors', true, silent);
     } else {
       Logger.success('All documents are valid');
     }
 
     if (deprecated && !onlyErrors) {
-      if (!json) {
+      if (!silent) {
         Logger.info(
           `\nDetected ${deprecated} document${
             deprecated > 1 ? 's' : ''
@@ -95,7 +98,24 @@ export function handler({
         );
       }
 
-      printInvalidDocuments(invalidDocuments, 'deprecated', false, json);
+      printInvalidDocuments(invalidDocuments, 'deprecated', false, silent);
+    }
+
+    if (output) {
+      writeFileSync(
+        output,
+        JSON.stringify(
+          {
+            status: !shouldFailProcess,
+            documents: invalidDocuments,
+          },
+          null,
+          2,
+        ),
+        {
+          encoding: 'utf-8',
+        },
+      );
     }
 
     if (shouldFailProcess) {
@@ -132,7 +152,8 @@ export default createCommand<
     filter?: string[];
     onlyErrors?: boolean;
     relativePaths?: boolean;
-    json?: boolean;
+    output?: string;
+    silent?: boolean;
   } & GlobalArgs
 >((api) => {
   const {loaders} = api;
@@ -194,10 +215,14 @@ export default createCommand<
             type: 'boolean',
             default: false,
           },
-          json: {
-            describe: 'Display as JSON',
+          silent: {
+            describe: 'Do not print results',
             type: 'boolean',
             default: false,
+          },
+          output: {
+            describe: 'Output JSON file',
+            type: 'string',
           },
         });
     },
@@ -211,7 +236,8 @@ export default createCommand<
       const strictFragments = !args.noStrictFragments;
       const keepClientFields = args.keepClientFields || false;
       const failOnDeprecated = args.deprecated;
-      const json = args.json || false;
+      const output = args.output;
+      const silent = args.silent || false;
       const relativePaths = args.relativePaths || false;
       const onlyErrors = args.onlyErrors || false;
 
@@ -236,7 +262,8 @@ export default createCommand<
         keepClientFields,
         failOnDeprecated,
         filter: args.filter,
-        json,
+        silent,
+        output,
         relativePaths,
         onlyErrors,
       });
@@ -267,17 +294,9 @@ function printInvalidDocuments(
   invalidDocuments: InvalidDocument[],
   listKey: 'errors' | 'deprecated',
   isError = false,
-  isJson = false,
+  silent = false,
 ): void {
-  if (isJson) {
-    Logger.log(
-      JSON.stringify(
-        invalidDocuments.map((doc) => ({
-          source: doc.source.name,
-          [listKey]: doc[listKey].map((item) => item.message),
-        })),
-      ),
-    );
+  if (silent) {
     return;
   }
 

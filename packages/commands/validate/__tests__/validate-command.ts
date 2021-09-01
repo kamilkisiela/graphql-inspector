@@ -122,11 +122,9 @@ describe('validate', () => {
     );
   });
 
-  test('should allow to print json', async () => {
-    await mockCommand(validate, 'validate "*.graphql" schema.graphql --json');
+  test('should allow for silent mode', async () => {
+    await mockCommand(validate, 'validate "*.graphql" schema.graphql --silent');
 
-    expect(spyReporter).toHaveBeenCalledWith(
-      `[{"source":"document.graphql","errors":["Cannot query field \\"createdAtSomePoint\\" on type \\"Post\\"."]}]`,
-    );
+    expect(spyReporter).not.toHaveBeenCalledNormalized('document.graphql:');
   });
 });

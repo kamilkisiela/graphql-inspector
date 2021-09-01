@@ -2,9 +2,10 @@
 
 ### vNEXT
 
-- **ci**, **cli**: `validate` command can print JSON results
+- **ci**, **cli**: `validate` command can output JSON result
 - **ci**, **cli**: `validate` command can show only errors
 - **ci**, **cli**: `validate` command can show relative file paths
+- **ci**, **cli**: `validate` command has silent mode
 
 ### v2.7.0
 
