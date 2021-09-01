@@ -2,6 +2,8 @@
 
 ### vNEXT
 
+### v2.8.1
+
 - **ci**, **cli**: `--filter` should not affect the exit code of the validate command
 
 ### v2.8.0
