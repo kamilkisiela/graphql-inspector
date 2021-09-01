@@ -2,6 +2,10 @@
 
 ### vNEXT
 
+- **ci**, **cli**: `validate` command can print JSON results
+- **ci**, **cli**: `validate` command can show only errors
+- **ci**, **cli**: `validate` command can show relative file paths
+
 ### v2.7.0
 
 - **core**: collect arguments in Schema Coverage [#1962](https://github.com/kamilkisiela/graphql-inspector/issues/1962)

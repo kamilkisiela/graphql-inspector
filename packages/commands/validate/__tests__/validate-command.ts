@@ -1,6 +1,7 @@
 import '@graphql-inspector/testing';
 import yargs from 'yargs';
 import {buildSchema, parse} from 'graphql';
+import {relative} from 'path';
 import {mockCommand} from '@graphql-inspector/commands';
 import {mockLogger, unmockLogger} from '@graphql-inspector/logger';
 import createCommand from '../src';
@@ -108,5 +109,24 @@ describe('validate', () => {
     );
 
     expect(spyReporter).toHaveBeenCalledNormalized('All documents are valid');
+  });
+
+  test('should allow to show relative paths', async () => {
+    await mockCommand(
+      validate,
+      'validate "*.graphql" schema.graphql --relativePaths',
+    );
+
+    expect(spyReporter).toHaveBeenCalledNormalized(
+      `in ${relative(process.cwd(), 'document.graphql')}:`,
+    );
+  });
+
+  test('should allow to print json', async () => {
+    await mockCommand(validate, 'validate "*.graphql" schema.graphql --json');
+
+    expect(spyReporter).toHaveBeenCalledWith(
+      `[{"source":"document.graphql","errors":["Cannot query field \\"createdAtSomePoint\\" on type \\"Post\\"."]}]`,
+    );
   });
 });
