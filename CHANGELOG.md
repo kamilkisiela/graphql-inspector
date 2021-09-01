@@ -2,6 +2,8 @@
 
 ### vNEXT
 
+### v2.8.0
+
 - **ci**, **cli**: `validate` command can output JSON result
 - **ci**, **cli**: `validate` command can show only errors
 - **ci**, **cli**: `validate` command can show relative file paths
