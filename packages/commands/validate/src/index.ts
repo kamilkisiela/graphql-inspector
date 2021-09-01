@@ -54,12 +54,6 @@ export function handler({
     },
   );
 
-  if (filter) {
-    invalidDocuments = invalidDocuments.filter((doc) =>
-      filter.some((filepath) => doc.source.name.includes(filepath)),
-    );
-  }
-
   if (!invalidDocuments.length) {
     Logger.success('All documents are valid');
   } else {
@@ -84,7 +78,12 @@ export function handler({
         );
       }
 
-      printInvalidDocuments(invalidDocuments, 'errors', true, silent);
+      printInvalidDocuments(
+        useFilter(invalidDocuments, filter),
+        'errors',
+        true,
+        silent,
+      );
     } else {
       Logger.success('All documents are valid');
     }
@@ -98,7 +97,12 @@ export function handler({
         );
       }
 
-      printInvalidDocuments(invalidDocuments, 'deprecated', false, silent);
+      printInvalidDocuments(
+        useFilter(invalidDocuments, filter),
+        'deprecated',
+        false,
+        silent,
+      );
     }
 
     if (output) {
@@ -107,7 +111,7 @@ export function handler({
         JSON.stringify(
           {
             status: !shouldFailProcess,
-            documents: invalidDocuments,
+            documents: useFilter(invalidDocuments, filter),
           },
           null,
           2,
@@ -137,6 +141,16 @@ function useRelativePaths(docs: InvalidDocument[]) {
     doc.source.name = relative(process.cwd(), doc.source.name);
     return doc;
   });
+}
+
+function useFilter(docs: InvalidDocument[], patterns?: string[]) {
+  if (!patterns || !patterns.length) {
+    return docs;
+  }
+
+  return docs.filter((doc) =>
+    patterns.some((filepath) => doc.source.name.includes(filepath)),
+  );
 }
 
 export default createCommand<

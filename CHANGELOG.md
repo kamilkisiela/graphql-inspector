@@ -2,6 +2,8 @@
 
 ### vNEXT
 
+- **ci**, **cli**: `--filter` should not affect the exit code of the validate command
+
 ### v2.8.0
 
 - **ci**, **cli**: `validate` command can output JSON result
