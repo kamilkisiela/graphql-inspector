@@ -32,6 +32,10 @@ Run the following command:
 - `--aws` - Support AWS Appsync directives and scalar types (default: _false_)
 - `--maxDepth <n>` - Fail when operation depth exceeds maximum depth (default: _false_)
 - `--filter <s>` - show warnings and errors only for a file (or a list of files)
+- `--silent` - silent mode
+- `--output <s>` - writes errors to a file
+- `--onlyErrors` - shows only errors
+- `--relativePaths` - displays file paths relative to process cwd
 - `-r, --require <s>` - require a module
 - `-t, --token <s>` - an access token
 - `-h, --header <s>` - set http header (`--header 'Auth: Basic 123')
