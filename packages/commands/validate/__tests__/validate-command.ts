@@ -47,6 +47,10 @@ const validate = createCommand({
           location: 'document.graphql',
         },
         {
+          document: operation,
+          location: 'document2.graphql',
+        },
+        {
           document: parse(/* GraphQL */ `
             query post {
               post {
@@ -91,7 +95,7 @@ describe('validate', () => {
     await mockCommand(validate, 'validate "*.graphql" schema.graphql');
 
     expect(spyReporter).toHaveBeenCalledNormalized(
-      'Detected 1 invalid document:',
+      'Detected 2 invalid documents:',
     );
     expect(spyReporter).toHaveBeenCalledNormalized('document.graphql:');
     expect(spyReporter).toHaveBeenCalledNormalized(
@@ -105,10 +109,11 @@ describe('validate', () => {
   test('should allow to filter results by file paths', async () => {
     await mockCommand(
       validate,
-      'validate "*.graphql" schema.graphql --filter valid-document.graphql',
+      'validate "*.graphql" schema.graphql --filter document2.graphql',
     );
 
-    expect(spyReporter).toHaveBeenCalledNormalized('All documents are valid');
+    expect(spyReporter).not.toHaveBeenCalledNormalized('document.graphql:');
+    expect(spyReporter).toHaveBeenCalledNormalized('document2.graphql:');
   });
 
   test('should allow to show relative paths', async () => {
