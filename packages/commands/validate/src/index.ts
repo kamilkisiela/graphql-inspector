@@ -168,6 +168,7 @@ export default createCommand<
     relativePaths?: boolean;
     output?: string;
     silent?: boolean;
+    ignore?: string[];
   } & GlobalArgs
 >((api) => {
   const {loaders} = api;
@@ -219,6 +220,11 @@ export default createCommand<
             array: true,
             type: 'string',
           },
+          ignore: {
+            describe: 'Ignore and do not load these files (supports glob)',
+            array: true,
+            type: 'string',
+          },
           onlyErrors: {
             describe: 'Show only errors',
             type: 'boolean',
@@ -254,6 +260,7 @@ export default createCommand<
       const silent = args.silent || false;
       const relativePaths = args.relativePaths || false;
       const onlyErrors = args.onlyErrors || false;
+      const ignore = args.ignore || [];
 
       const schema = await loaders.loadSchema(
         args.schema,
@@ -265,7 +272,9 @@ export default createCommand<
         apolloFederation,
         aws,
       );
-      const documents = await loaders.loadDocuments(args.documents);
+      const documents = await loaders.loadDocuments(args.documents, {
+        ignore,
+      });
 
       return handler({
         schema,
