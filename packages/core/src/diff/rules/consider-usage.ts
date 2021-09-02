@@ -18,8 +18,9 @@ export interface ConsiderUsageConfig {
    * Because it returns a boolean,
    * we can't attach any data or even customize a message of an api change.
    * This is the first iteration, we're going to improve it soon.
-   *
-   * @param input Object
+   * 
+   * true - NON_BREAKING
+   * false - BREAKING
    */
   checkUsage?(
     input: Array<{type: string; field?: string; argument?: string}>,
