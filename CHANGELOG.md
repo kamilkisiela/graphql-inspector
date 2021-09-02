@@ -2,6 +2,8 @@
 
 ### vNEXT
 
+### v2.9.0
+
 - **ci**, **cli**: Add `--ignore` to validate command
 
 ### v2.8.1
