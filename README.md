@@ -9,6 +9,8 @@
 **GraphQL Inspector** outputs a list of changes between two GraphQL schemas. Every change is precisely explained and marked as breaking, non-breaking or dangerous.
 It helps you validate documents and fragments against a schema and even find similar or duplicated types.
 
+> GraphQL Inspector looks interesting? You may like [GraphQL Hive](https://the-guild.dev/blog/graphql-hive-preview) as well!
+
 Use GraphQL Inspector however you want:
 
 - [**GitHub Application**](https://graphql-inspector.com/install)
