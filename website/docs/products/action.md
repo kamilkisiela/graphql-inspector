@@ -48,7 +48,7 @@ In case of multiple GraphQL Inspector Actions, use `name` to prevent GitHub from
 
 - uses: kamilkisiela/graphql-inspector@master
   with:
-    name: 'Check Interal API'
+    name: 'Check Internal API'
     schema: 'master:internal.graphql'
 ```
 
