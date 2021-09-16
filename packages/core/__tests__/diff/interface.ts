@@ -5,7 +5,7 @@ import {findFirstChangeByPath, findChangesByPath} from '../../utils/testing';
 
 describe('interface', () => {
   describe('fields', () => {
-    test('added', () => {
+    test('added', async () => {
       const a = buildSchema(/* GraphQL */ `
         interface Foo {
           a: String!
@@ -20,13 +20,13 @@ describe('interface', () => {
         }
       `);
 
-      const change = findFirstChangeByPath(diff(a, b), 'Foo.c');
+      const change = findFirstChangeByPath(await diff(a, b), 'Foo.c');
 
       expect(change.criticality.level).toEqual(CriticalityLevel.NonBreaking);
       expect(change.type).toEqual('FIELD_ADDED');
       expect(change.message).toEqual("Field 'c' was added to interface 'Foo'");
     });
-    test('removed', () => {
+    test('removed', async () => {
       const a = buildSchema(/* GraphQL */ `
         interface Foo {
           a: String!
@@ -41,7 +41,7 @@ describe('interface', () => {
         }
       `);
 
-      const change = findFirstChangeByPath(diff(a, b), 'Foo.c');
+      const change = findFirstChangeByPath(await diff(a, b), 'Foo.c');
 
       expect(change.criticality.level).toEqual(CriticalityLevel.Breaking);
       expect(change.type).toEqual('FIELD_REMOVED');
@@ -50,7 +50,7 @@ describe('interface', () => {
       );
     });
 
-    test('order changed', () => {
+    test('order changed', async () => {
       const a = buildSchema(/* GraphQL */ `
         interface Foo {
           a: String!
@@ -64,10 +64,10 @@ describe('interface', () => {
         }
       `);
 
-      expect(diff(a, b)).toHaveLength(0);
+      expect(await diff(a, b)).toHaveLength(0);
     });
 
-    test('type changed', () => {
+    test('type changed', async () => {
       const a = buildSchema(/* GraphQL */ `
         interface Foo {
           a: String!
@@ -83,7 +83,7 @@ describe('interface', () => {
         }
       `);
 
-      const changes = diff(a, b);
+      const changes = await diff(a, b);
       const change = {
         a: findFirstChangeByPath(changes, 'Foo.a'),
         b: findFirstChangeByPath(changes, 'Foo.b'),
@@ -110,7 +110,7 @@ describe('interface', () => {
       );
     });
 
-    test('description changed / added / removed', () => {
+    test('description changed / added / removed', async () => {
       const a = buildSchema(/* GraphQL */ `
         interface Foo {
           """
@@ -138,7 +138,7 @@ describe('interface', () => {
         }
       `);
 
-      const changes = diff(a, b);
+      const changes = await diff(a, b);
       const change = {
         a: findFirstChangeByPath(changes, 'Foo.a'),
         b: findFirstChangeByPath(changes, 'Foo.b'),
@@ -163,7 +163,7 @@ describe('interface', () => {
       expect(change.c.message).toEqual("Field 'Foo.c' has description 'CCC'");
     });
 
-    test('deprecation reason changed / added / removed', () => {
+    test('deprecation reason changed / added / removed', async () => {
       const a = buildSchema(/* GraphQL */ `
         interface Foo {
           a: String! @deprecated(reason: "OLD")
@@ -179,7 +179,7 @@ describe('interface', () => {
         }
       `);
 
-      const changes = diff(a, b);
+      const changes = await diff(a, b);
       const change = {
         a: findFirstChangeByPath(changes, 'Foo.a'),
         b: findChangesByPath(changes, 'Foo.b')[1],
@@ -206,7 +206,7 @@ describe('interface', () => {
       );
     });
 
-    test('deprecation added / removed', () => {
+    test('deprecation added / removed', async () => {
       const a = buildSchema(/* GraphQL */ `
         interface Foo {
           a: String! @deprecated
@@ -220,7 +220,7 @@ describe('interface', () => {
         }
       `);
 
-      const changes = diff(a, b);
+      const changes = await diff(a, b);
       const change = {
         a: findFirstChangeByPath(changes, 'Foo.a'),
         b: findFirstChangeByPath(changes, 'Foo.b'),

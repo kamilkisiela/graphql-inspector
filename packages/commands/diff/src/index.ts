@@ -158,7 +158,7 @@ export default createCommand<
           aws,
         );
 
-        handler({
+        await handler({
           oldSchema,
           newSchema,
           rules: args.rule,
