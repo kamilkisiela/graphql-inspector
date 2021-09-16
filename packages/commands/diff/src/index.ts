@@ -9,6 +9,7 @@ import {
   Change,
   CompletionArgs,
   CompletionHandler,
+  UsageHandler,
   CriticalityLevel,
   diff as diffSchema,
   DiffRule,
@@ -24,6 +25,7 @@ export async function handler(input: {
   oldSchema: GraphQLSchema;
   newSchema: GraphQLSchema;
   onComplete?: string;
+  onUsage?: string;
   rules?: Array<string | number>;
 }) {
   const onComplete = input.onComplete
@@ -45,7 +47,9 @@ export async function handler(input: {
         .filter((f) => f)
     : [];
 
-  const changes = await diffSchema(input.oldSchema, input.newSchema, rules);
+  const changes = await diffSchema(input.oldSchema, input.newSchema, rules, {
+    checkUsage: input.onUsage ? resolveUsageHandler(input.onUsage) : undefined,
+  });
 
   if (changes.length === 0) {
     Logger.success('No changes detected');
@@ -114,6 +118,10 @@ export default createCommand<
           },
           onComplete: {
             describe: 'Handle Completion',
+            type: 'string',
+          },
+          onUsage: {
+            describe: 'Checks usage of schema',
             type: 'string',
           },
         });
@@ -232,6 +240,20 @@ function resolveCompletionHandler(name: string): CompletionHandler | never {
     require.resolve(filepath);
   } catch (error) {
     throw new Error(`CompletionHandler '${name}' does not exist!`);
+  }
+
+  const mod = require(filepath);
+
+  return mod?.default || mod;
+}
+
+function resolveUsageHandler(name: string): UsageHandler | never {
+  const filepath = ensureAbsolute(name);
+
+  try {
+    require.resolve(filepath);
+  } catch (error) {
+    throw new Error(`UsageHandler '${name}' does not exist!`);
   }
 
   const mod = require(filepath);

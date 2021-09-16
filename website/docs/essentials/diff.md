@@ -96,6 +96,31 @@ Changes of descriptions are filtered out and are not displayed in the CLI result
 
     graphql-inspector diff https://api.com/graphql schema.graphql --rule ignoreDescriptionChanges
 
+**considerUsage**
+
+Decides if a breaking change are in fact breaking, based on real usage of schema.
+
+    graphql-inspector diff https://api.com/graphql schema.graphql --rule considerUsage --onUsage check-usage.js
+
+Example `check-usage.js` file:
+
+```javascript
+const BREAKING = false;
+const NOT_BREAKING = true;
+
+module.exports = (entities) => {
+  return Promise.all(
+    entities.map(async ({type, field, argument}) => {
+      // User                   => { type: 'User' }
+      // Query.id               => { type: 'Query', field: 'me' }
+      // Query.users(last: 10)  => { type: 'Query', field: 'users', argument: 'last' }
+      const used = await checkIfUsedInLast30Days(type, field, argument)
+      return used ? BREAKING : NOT_BREAKING;
+    })
+  );
+}
+```
+
 ### Custom rules
 
 It's possible to write your own rules.

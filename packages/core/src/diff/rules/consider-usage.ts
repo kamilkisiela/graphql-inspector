@@ -2,6 +2,10 @@ import {CriticalityLevel} from './../changes/change';
 import {Rule} from './types';
 import {parsePath} from '../../utils/path';
 
+export type UsageHandler = (
+  input: Array<{type: string; field?: string; argument?: string}>,
+) => Promise<boolean[]>;
+
 export interface ConsiderUsageConfig {
   /**
    * Checks if it's safe to introduce a breaking change on a field
@@ -18,13 +22,11 @@ export interface ConsiderUsageConfig {
    * Because it returns a boolean,
    * we can't attach any data or even customize a message of an api change.
    * This is the first iteration, we're going to improve it soon.
-   * 
+   *
    * true - NON_BREAKING
    * false - BREAKING
    */
-  checkUsage?(
-    input: Array<{type: string; field?: string; argument?: string}>,
-  ): Promise<boolean[]>;
+  checkUsage?: UsageHandler;
 }
 
 export const considerUsage: Rule<ConsiderUsageConfig> = async ({
