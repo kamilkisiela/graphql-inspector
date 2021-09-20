@@ -9,7 +9,7 @@ export * from './rules/types';
 export const DiffRule = rules;
 
 export * from './onComplete/types';
-export { UsageHandler } from './rules/consider-usage';
+export type { UsageHandler } from './rules/consider-usage';
 
 export function diff(
   oldSchema: GraphQLSchema,

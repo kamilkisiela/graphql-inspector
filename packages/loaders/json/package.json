@@ -30,7 +30,7 @@
     "graphql": "^0.13.0 || ^14.0.0 || ^15.0.0"
   },
   "dependencies": {
-    "@graphql-tools/json-file-loader": "^6.0.0",
+    "@graphql-tools/json-file-loader": "^7.0.0",
     "tslib": "^2.0.0"
   },
   "scripts": {
