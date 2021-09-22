@@ -92,6 +92,10 @@ export function createSummary(changes: Change[], summaryLimit: number, isLegacyC
     [
       '',
       '___',
+      `We ([The Guild](https://the-guild.dev)) [recently announced an alternative to Inspector](the-guild.dev/blog/graphql-hive-preview) called [GraphQL Hive](https://graphql-hive.com)`,
+      `If you interested in getting an early access, please visit GraphQL Hive and sign in.`,
+      '',
+      '___',
       `Thank you for using [GraphQL Inspector](https://graphql-inspector.com/)`,
       `If you like it, [consider supporting the project](https://github.com/sponsors/kamilkisiela).`,
     ].join('\n'),
