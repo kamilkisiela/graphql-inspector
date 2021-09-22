@@ -2,11 +2,6 @@ import {CriticalityLevel} from './../changes/change';
 import {Rule} from './types';
 import {parsePath} from '../../utils/path';
 
-export const UsageResult = {
-  BREAKING: false,
-  NON_BREAKING: true,
-}
-
 export type UsageHandler = (
   input: Array<{type: string; field?: string; argument?: string}>,
 ) => Promise<boolean[]>;
