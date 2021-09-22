@@ -7,6 +7,7 @@
     "deploy": "docusaurus deploy"
   },
   "dependencies": {
+    "@theguild/components": "1.4.8",
     "@docusaurus/core": "2.0.0-beta.5",
     "@docusaurus/plugin-ideal-image": "2.0.0-beta.5",
     "@docusaurus/preset-classic": "2.0.0-beta.5",
@@ -19,9 +20,8 @@
     "react-dom": "17.0.2",
     "react-feather": "2.0.9",
     "react-flip-move": "3.0.4",
-    "react-monaco-editor": "0.44.0",
-    "styled-components": "5.3.0",
-    "the-guild-components": "1.4.8"
+    "react-monaco-editor": "0.44.0"
+    "styled-components": "5.3.0"
   },
   "browserslist": {
     "production": [

@@ -1,20 +1,36 @@
 import React from 'react';
-import BrowserOnly from '@docusaurus/BrowserOnly';
-import { ThemeProvider, Header } from 'the-guild-components';
+import { ThemeProvider, GlobalStyles, Header, FooterExtended } from '@theguild/components';
 
 // Default implementation, that you can customize
 function Root({ children }) {
   return (
-    <>
-      <BrowserOnly>
-        {() => (
-          <ThemeProvider>
-            <Header activeLink={'/open-source'} accentColor="var(--ifm-color-primary)" />
-          </ThemeProvider>
-        )}
-      </BrowserOnly>
+    <ThemeProvider>
+      <GlobalStyles includeFonts />
+      <Header activeLink={'/open-source'} accentColor="var(--ifm-color-primary)" />
       {children}
-    </>
+      <FooterExtended resources={[
+        {
+          children: 'Command-Line',
+          title: 'Learn about our CLI',
+          href: '/docs/essentials/diff',
+        },
+        {
+          children: 'GitHub Application',
+          title: 'Learn about our GitHub Application',
+          href: '/docs/products/github',
+        },
+        {
+          children: 'GitHub Action',
+          title: 'Learn about our GitHub Action',
+          href: '/docs/products/action',
+        },
+        {
+          children: 'Continous Integration',
+          title: 'Learn how to use GraphQL Inspector in CI/CD',
+          href: '/docs/products/ci',
+        },
+      ]}/>
+    </ThemeProvider>
   );
 }
 
