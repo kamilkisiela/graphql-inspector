@@ -10,24 +10,24 @@ function Root({ children }) {
       {children}
       <FooterExtended resources={[
         {
-          children: 'Introduction',
-          title: 'Get started',
-          href: '/docs/index',
-        },
-        {
-          children: 'Essentials',
-          title: 'Learn about Essentials',
+          children: 'Command-Line',
+          title: 'Learn about our CLI',
           href: '/docs/essentials/diff',
         },
         {
-          children: 'Recipes',
-          title: 'Learn about Recipes',
-          href: '/docs/recipes/environments',
+          children: 'GitHub Application',
+          title: 'Learn about our GitHub Application',
+          href: '/docs/products/github',
         },
         {
-          children: 'Products',
-          title: 'Learn about Products',
-          href: '/docs/products/github',
+          children: 'GitHub Action',
+          title: 'Learn about our GitHub Action',
+          href: '/docs/products/action',
+        },
+        {
+          children: 'Continous Integration',
+          title: 'Learn how to use GraphQL Inspector in CI/CD',
+          href: '/docs/products/ci',
         },
       ]}/>
     </ThemeProvider>
