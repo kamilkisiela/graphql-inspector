@@ -2,6 +2,29 @@
 
 ### vNEXT
 
+- **core**: BREAKING - `diff` is now async
+- **core**: Adds `considerUsage` rule
+
+### v2.9.0
+
+- **ci**, **cli**: Add `--ignore` to validate command
+
+### v2.8.1
+
+- **ci**, **cli**: `--filter` should not affect the exit code of the validate command
+
+### v2.8.0
+
+- **ci**, **cli**: `validate` command can output JSON result
+- **ci**, **cli**: `validate` command can show only errors
+- **ci**, **cli**: `validate` command can show relative file paths
+- **ci**, **cli**: `validate` command has silent mode
+
+### v2.7.0
+
+- **core**: collect arguments in Schema Coverage [#1962](https://github.com/kamilkisiela/graphql-inspector/issues/1962)
+- **ci**, **cli**: allow to filter results by file paths when validating documents
+
 ### v2.6.2
 
 - **cli**: Fix missing headers

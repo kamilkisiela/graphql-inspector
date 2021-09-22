@@ -1,8 +1,7 @@
 import {InspectorConfig} from '@graphql-inspector/config';
 import {
   Source,
-  UniversalLoader,
-  SchemaPointerSingle,
+  Loader,
 } from '@graphql-tools/utils';
 import {
   loadDocuments,
@@ -13,15 +12,15 @@ import {
 import {GraphQLSchema, buildSchema} from 'graphql';
 
 export class LoadersRegistry {
-  private loaders: UniversalLoader[] = [];
+  private loaders: Loader[] = [];
 
-  register(loader: UniversalLoader) {
+  register(loader: Loader) {
     this.loaders.push(loader);
   }
 
   registerModule(loaderName: string) {
     try {
-      const loader: UniversalLoader = loadModule(
+      const loader: Loader = loadModule(
         `@graphql-inspector/${loaderName}-loader`,
       );
 
@@ -33,7 +32,7 @@ export class LoadersRegistry {
   }
 
   loadSchema(
-    pointer: SchemaPointerSingle,
+    pointer: string,
     options: Omit<LoadSchemaOptions, 'loaders'> = {},
     enableApolloFederation: boolean,
     enableAWS: boolean,
@@ -98,7 +97,7 @@ export class LoadersRegistry {
   }
 
   loadDocuments(
-    pointer: SchemaPointerSingle,
+    pointer: string,
     options: Omit<LoadTypedefsOptions, 'loaders'> = {},
   ): Promise<Source[]> {
     return enrichError(

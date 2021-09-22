@@ -9,8 +9,18 @@
     "tools"
   ],
   "sideEffects": false,
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.esm.js",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs"
+    },
+    "./*": {
+      "require": "./dist/*.js",
+      "import": "./dist/*.mjs"
+    }
+  },
   "typings": "dist/index.d.ts",
   "typescript": {
     "definition": "dist/index.d.ts"
@@ -30,7 +40,7 @@
     "graphql": "^0.13.0 || ^14.0.0 || ^15.0.0"
   },
   "dependencies": {
-    "@graphql-tools/url-loader": "^6.0.0",
+    "@graphql-tools/url-loader": "^7.0.0",
     "tslib": "^2.0.0"
   },
   "scripts": {

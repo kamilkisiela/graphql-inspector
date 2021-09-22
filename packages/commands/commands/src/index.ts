@@ -1,9 +1,9 @@
-import { InspectorConfig } from '@graphql-inspector/config';
-import { Loaders } from '@graphql-inspector/loaders';
-import { isAbsolute, resolve } from 'path';
-import yargs, { CommandModule as Command } from 'yargs';
+import {InspectorConfig} from '@graphql-inspector/config';
+import {Loaders} from '@graphql-inspector/loaders';
+import {isAbsolute, resolve} from 'path';
+import yargs, {CommandModule as Command} from 'yargs';
 
-export { Command };
+export {Command};
 
 export interface UseCommandsAPI {
   config: InspectorConfig;
@@ -84,12 +84,15 @@ export function parseGlobalArgs(args: GlobalArgs) {
 
 export async function mockCommand(mod: Command, cmd: string) {
   return new Promise<string>((resolve, reject) => {
-    yargs.command(mod).parse(cmd, (err: Error, _: never, output: string) => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve(output);
-      }
-    });
+    yargs
+      .exitProcess(false)
+      .command(mod)
+      .parse(cmd, (err: Error, _: never, output: string) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve(output);
+        }
+      });
   });
 }

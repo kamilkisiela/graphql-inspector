@@ -9,8 +9,18 @@
     "tools"
   ],
   "sideEffects": false,
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.esm.js",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs"
+    },
+    "./*": {
+      "require": "./dist/*.js",
+      "import": "./dist/*.mjs"
+    }
+  },
   "typings": "dist/index.d.ts",
   "typescript": {
     "definition": "dist/index.d.ts"
@@ -35,7 +45,7 @@
     "cors": "2.8.5",
     "express": "4.17.1",
     "express-graphql": "0.12.0",
-    "open": "8.0.8",
+    "open": "8.2.1",
     "tslib": "^2.0.0"
   },
   "scripts": {

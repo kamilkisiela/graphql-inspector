@@ -5,7 +5,7 @@ import {diff} from '../../src/index';
 import {CriticalityLevel} from '../../src/diff/changes/change';
 
 describe('directive', () => {
-  test('added', () => {
+  test('added', async () => {
     const a = buildSchema(/* GraphQL */ `
       type Dummy {
         field: String
@@ -19,13 +19,13 @@ describe('directive', () => {
       }
     `);
 
-    const change = findFirstChangeByPath(diff(a, b), '@foo');
+    const change = findFirstChangeByPath(await diff(a, b), '@foo');
 
     expect(change.criticality.level).toEqual(CriticalityLevel.NonBreaking);
     expect(change.type).toEqual('DIRECTIVE_ADDED');
     expect(change.message).toEqual(`Directive \'foo\' was added`);
   });
-  test('removed', () => {
+  test('removed', async () => {
     const a = buildSchema(/* GraphQL */ `
       directive @foo on FIELD
 
@@ -39,14 +39,14 @@ describe('directive', () => {
       }
     `);
 
-    const change = findFirstChangeByPath(diff(a, b), '@foo');
+    const change = findFirstChangeByPath(await diff(a, b), '@foo');
 
     expect(change.criticality.level).toEqual(CriticalityLevel.Breaking);
     expect(change.type).toEqual('DIRECTIVE_REMOVED');
     expect(change.message).toEqual(`Directive \'foo\' was removed`);
   });
 
-  test('description', () => {
+  test('description', async () => {
     const a = buildSchema(/* GraphQL */ `
       """
       AAA
@@ -78,7 +78,7 @@ describe('directive', () => {
       }
     `);
 
-    const changes = diff(a, b);
+    const changes = await diff(a, b);
     const change = {
       a: findFirstChangeByPath(changes, '@a'),
       b: findFirstChangeByPath(changes, '@b'),
@@ -106,7 +106,7 @@ describe('directive', () => {
   });
 
   describe('location', () => {
-    test('added', () => {
+    test('added', async () => {
       const a = buildSchema(/* GraphQL */ `
         directive @a on FIELD
 
@@ -122,7 +122,7 @@ describe('directive', () => {
         }
       `);
 
-      const changes = diff(a, b);
+      const changes = await diff(a, b);
       const change = findFirstChangeByPath(changes, '@a');
 
       expect(change.criticality.level).toEqual(CriticalityLevel.NonBreaking);
@@ -132,7 +132,7 @@ describe('directive', () => {
       );
     });
 
-    test('removed', () => {
+    test('removed', async () => {
       const a = buildSchema(/* GraphQL */ `
         directive @a on FIELD | ENUM_VALUE
 
@@ -148,7 +148,7 @@ describe('directive', () => {
         }
       `);
 
-      const changes = diff(a, b);
+      const changes = await diff(a, b);
       const change = findFirstChangeByPath(changes, '@a');
 
       expect(change.criticality.level).toEqual(CriticalityLevel.Breaking);
@@ -160,7 +160,7 @@ describe('directive', () => {
   });
 
   describe('arguments', () => {
-    test('added', () => {
+    test('added', async () => {
       const a = buildSchema(/* GraphQL */ `
         directive @a on FIELD
         directive @b on FIELD
@@ -178,7 +178,7 @@ describe('directive', () => {
         }
       `);
 
-      const changes = diff(a, b);
+      const changes = await diff(a, b);
       const change = {
         a: findFirstChangeByPath(changes, '@a'),
         b: findFirstChangeByPath(changes, '@b'),
@@ -198,7 +198,7 @@ describe('directive', () => {
       );
     });
 
-    test('removed', () => {
+    test('removed', async () => {
       const a = buildSchema(/* GraphQL */ `
         directive @a(name: String) on FIELD
         directive @b(name: String!) on FIELD
@@ -216,7 +216,7 @@ describe('directive', () => {
         }
       `);
 
-      const changes = diff(a, b);
+      const changes = await diff(a, b);
       const change = {
         a: findFirstChangeByPath(changes, '@a.name'),
         b: findFirstChangeByPath(changes, '@b.name'),
@@ -236,7 +236,7 @@ describe('directive', () => {
       );
     });
 
-    test('changed', () => {
+    test('changed', async () => {
       const a = buildSchema(/* GraphQL */ `
         directive @a(name: String) on FIELD
         directive @b(name: String!) on FIELD
@@ -256,7 +256,7 @@ describe('directive', () => {
         }
       `);
 
-      const changes = diff(a, b);
+      const changes = await diff(a, b);
       const change = {
         a: findFirstChangeByPath(changes, '@a.name'),
         b: findFirstChangeByPath(changes, '@b.name'),
@@ -284,7 +284,7 @@ describe('directive', () => {
     });
   });
 
-  test('default value', () => {
+  test('default value', async () => {
     const a = buildSchema(/* GraphQL */ `
       directive @a(name: String! = "aaa") on FIELD
       directive @b(name: String) on FIELD
@@ -308,7 +308,7 @@ describe('directive', () => {
       }
     `);
 
-    const changes = diff(a, b);
+    const changes = await diff(a, b);
     const change = {
       a: findFirstChangeByPath(changes, '@a.name'),
       b: findFirstChangeByPath(changes, '@b.name'),

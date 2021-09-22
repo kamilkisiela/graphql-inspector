@@ -9,6 +9,7 @@ import {
   TypeInfo,
   Visitor,
   GraphQLNamedType,
+  FieldNode,
 } from 'graphql';
 
 import {readDocument} from '../ast/document';
@@ -19,10 +20,20 @@ export interface Location {
   end: number;
 }
 
+export interface ArgumentCoverage {
+  hits: number;
+  locations: {
+    [name: string]: Array<Location>;
+  };
+}
+
 export interface TypeChildCoverage {
   hits: number;
   locations: {
     [name: string]: Array<Location>;
+  };
+  children: {
+    [name: string]: ArgumentCoverage;
   };
 }
 
@@ -57,7 +68,7 @@ export function coverage(
   const typeMap = schema.getTypeMap();
   const typeInfo = new TypeInfo(schema);
   const visitor: (source: Source) => Visitor<any, any> = (source) => ({
-    Field(node) {
+    Field(node: FieldNode) {
       const fieldDef = typeInfo.getFieldDef();
       const parent = typeInfo.getParentType();
 
@@ -70,15 +81,35 @@ export function coverage(
         fieldDef.name !== '__typename' &&
         fieldDef.name !== '__schema'
       ) {
-        const locations =
-          coverage.types[parent.name].children[fieldDef.name].locations[
-            source.name
+        const sourceName = source.name;
+        const typeCoverage = coverage.types[parent.name];
+        const fieldCoverage = typeCoverage.children[fieldDef.name];
+        const locations = fieldCoverage.locations[sourceName];
+
+        typeCoverage.hits++;
+        fieldCoverage.hits++;
+
+        if (node.loc) {
+          fieldCoverage.locations[sourceName] = [
+            node.loc,
+            ...(locations || []),
           ];
-        coverage.types[parent.name].hits++;
-        coverage.types[parent.name].children[fieldDef.name].locations[
-          source.name
-        ] = [node.loc].concat(locations || []);
-        coverage.types[parent.name].children[fieldDef.name].hits++;
+        }
+
+        if (node.arguments) {
+          for (const argNode of node.arguments) {
+            const argCoverage = fieldCoverage.children[argNode.name.value];
+
+            argCoverage.hits++;
+
+            if (argNode.loc) {
+              argCoverage.locations[sourceName] = [
+                argNode.loc!,
+                ...(argCoverage.locations[sourceName] || []),
+              ];
+            }
+          }
+        }
       }
     },
   });
@@ -101,7 +132,15 @@ export function coverage(
           typeCoverage.children[field.name] = {
             hits: 0,
             locations: {},
+            children: {},
           };
+
+          for (const arg of field.args) {
+            typeCoverage.children[field.name].children[arg.name] = {
+              hits: 0,
+              locations: {},
+            };
+          }
         }
 
         coverage.types[type.name] = typeCoverage;

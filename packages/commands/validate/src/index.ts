@@ -10,7 +10,9 @@ import {
   InvalidDocument,
 } from '@graphql-inspector/core';
 import {Source as DocumentSource} from '@graphql-tools/utils';
-import {Source, print, GraphQLSchema} from 'graphql';
+import {relative} from 'path';
+import {writeFileSync} from 'fs';
+import {Source, print, GraphQLSchema, GraphQLError} from 'graphql';
 
 export {CommandFactory};
 
@@ -22,6 +24,11 @@ export function handler({
   apollo,
   keepClientFields,
   failOnDeprecated,
+  filter,
+  onlyErrors,
+  relativePaths,
+  output,
+  silent,
 }: {
   schema: GraphQLSchema;
   documents: DocumentSource[];
@@ -30,8 +37,13 @@ export function handler({
   apollo: boolean;
   keepClientFields: boolean;
   maxDepth?: number;
+  filter?: string[];
+  onlyErrors?: boolean;
+  relativePaths?: boolean;
+  output?: string;
+  silent?: boolean;
 }) {
-  const invalidDocuments = validateDocuments(
+  let invalidDocuments = validateDocuments(
     schema,
     documents.map((doc) => new Source(print(doc.document!), doc.location)),
     {
@@ -45,49 +57,100 @@ export function handler({
   if (!invalidDocuments.length) {
     Logger.success('All documents are valid');
   } else {
+    if (failOnDeprecated) {
+      invalidDocuments = moveDeprecatedToErrors(invalidDocuments);
+    }
+
+    if (relativePaths) {
+      invalidDocuments = useRelativePaths(invalidDocuments);
+    }
+
     const errorsCount = countErrors(invalidDocuments);
     const deprecated = countDeprecated(invalidDocuments);
+    const shouldFailProcess = errorsCount > 0;
 
     if (errorsCount) {
-      Logger.log(
-        `\nDetected ${errorsCount} invalid document${
-          errorsCount > 1 ? 's' : ''
-        }:\n`,
-      );
+      if (!silent) {
+        Logger.log(
+          `\nDetected ${errorsCount} invalid document${
+            errorsCount > 1 ? 's' : ''
+          }:\n`,
+        );
+      }
 
-      invalidDocuments.forEach((doc) => {
-        if (doc.errors.length) {
-          renderInvalidDocument(doc).forEach((line) => {
-            Logger.log(line);
-          });
-        }
-      });
-    } else if (!failOnDeprecated) {
+      printInvalidDocuments(
+        useFilter(invalidDocuments, filter),
+        'errors',
+        true,
+        silent,
+      );
+    } else {
       Logger.success('All documents are valid');
     }
 
-    if (deprecated) {
-      Logger.info(
-        `\nDetected ${deprecated} document${
-          deprecated > 1 ? 's' : ''
-        } with deprecated fields:\n`,
-      );
+    if (deprecated && !onlyErrors) {
+      if (!silent) {
+        Logger.info(
+          `\nDetected ${deprecated} document${
+            deprecated > 1 ? 's' : ''
+          } with deprecated fields:\n`,
+        );
+      }
 
-      invalidDocuments.forEach((doc) => {
-        if (doc.deprecated.length) {
-          renderDeprecatedUsageInDocument(doc, failOnDeprecated).forEach(
-            (line) => {
-              Logger.log(line);
-            },
-          );
-        }
-      });
+      printInvalidDocuments(
+        useFilter(invalidDocuments, filter),
+        'deprecated',
+        false,
+        silent,
+      );
     }
 
-    if (errorsCount || (deprecated && failOnDeprecated)) {
+    if (output) {
+      writeFileSync(
+        output,
+        JSON.stringify(
+          {
+            status: !shouldFailProcess,
+            documents: useFilter(invalidDocuments, filter),
+          },
+          null,
+          2,
+        ),
+        {
+          encoding: 'utf-8',
+        },
+      );
+    }
+
+    if (shouldFailProcess) {
       process.exit(1);
     }
   }
+}
+
+function moveDeprecatedToErrors(docs: InvalidDocument[]) {
+  return docs.map((doc) => ({
+    source: doc.source,
+    errors: [...(doc.errors ?? []), ...(doc.deprecated ?? [])],
+    deprecated: [],
+  }));
+}
+
+function useRelativePaths(docs: InvalidDocument[]) {
+  return docs.map((doc) => {
+    doc.source.name = relative(process.cwd(), doc.source.name);
+    return doc;
+  });
+}
+
+function useFilter(docs: InvalidDocument[], patterns?: string[]) {
+  if (!patterns || !patterns.length) {
+    return docs;
+  }
+
+  return docs.filter((doc) =>
+    patterns.some((filepath) => doc.source.name.includes(filepath)),
+  );
 }
 
 export default createCommand<
@@ -100,6 +163,12 @@ export default createCommand<
     apollo: boolean;
     keepClientFields: boolean;
     maxDepth?: number;
+    filter?: string[];
+    onlyErrors?: boolean;
+    relativePaths?: boolean;
+    output?: string;
+    silent?: boolean;
+    ignore?: string[];
   } & GlobalArgs
 >((api) => {
   const {loaders} = api;
@@ -115,7 +184,7 @@ export default createCommand<
           demandOption: true,
         })
         .positional('documents', {
-          describe: 'Point to docuents',
+          describe: 'Point to documents',
           type: 'string',
           demandOption: true,
         })
@@ -146,6 +215,35 @@ export default createCommand<
             type: 'boolean',
             default: false,
           },
+          filter: {
+            describe: 'Show results only from a list of files (or file)',
+            array: true,
+            type: 'string',
+          },
+          ignore: {
+            describe: 'Ignore and do not load these files (supports glob)',
+            array: true,
+            type: 'string',
+          },
+          onlyErrors: {
+            describe: 'Show only errors',
+            type: 'boolean',
+            default: false,
+          },
+          relativePaths: {
+            describe: 'Show relative paths',
+            type: 'boolean',
+            default: false,
+          },
+          silent: {
+            describe: 'Do not print results',
+            type: 'boolean',
+            default: false,
+          },
+          output: {
+            describe: 'Output JSON file',
+            type: 'string',
+          },
         });
     },
     async handler(args) {
@@ -158,6 +256,11 @@ export default createCommand<
       const strictFragments = !args.noStrictFragments;
       const keepClientFields = args.keepClientFields || false;
       const failOnDeprecated = args.deprecated;
+      const output = args.output;
+      const silent = args.silent || false;
+      const relativePaths = args.relativePaths || false;
+      const onlyErrors = args.onlyErrors || false;
+      const ignore = args.ignore || [];
 
       const schema = await loaders.loadSchema(
         args.schema,
@@ -169,7 +272,9 @@ export default createCommand<
         apolloFederation,
         aws,
       );
-      const documents = await loaders.loadDocuments(args.documents);
+      const documents = await loaders.loadDocuments(args.documents, {
+        ignore,
+      });
 
       return handler({
         schema,
@@ -179,6 +284,11 @@ export default createCommand<
         strictFragments,
         keepClientFields,
         failOnDeprecated,
+        filter: args.filter,
+        silent,
+        output,
+        relativePaths,
+        onlyErrors,
       });
     },
   };
@@ -203,31 +313,38 @@ function countDeprecated(invalidDocuments: InvalidDocument[]): number {
   return 0;
 }
 
-function renderInvalidDocument(invalidDoc: InvalidDocument): string[] {
-  const errors = invalidDoc.errors
-    .map((e) => ` - ${bolderize(e.message)}`)
-    .join('\n');
+function printInvalidDocuments(
+  invalidDocuments: InvalidDocument[],
+  listKey: 'errors' | 'deprecated',
+  isError = false,
+  silent = false,
+): void {
+  if (silent) {
+    return;
+  }
 
-  return [
-    chalk.redBright('error'),
-    `in ${invalidDoc.source.name}:\n\n`,
-    errors,
-    '\n\n',
-  ];
+  invalidDocuments.forEach((doc) => {
+    if (doc.errors.length) {
+      renderErrors(doc.source.name, doc[listKey], isError).forEach((line) => {
+        Logger.log(line);
+      });
+    }
+  });
 }
 
-function renderDeprecatedUsageInDocument(
-  invalidDoc: InvalidDocument,
-  isCritical = false,
+function renderErrors(
+  sourceName: string,
+  errors: GraphQLError[],
+  isError = false,
 ): string[] {
-  const deprecated = invalidDoc.deprecated
+  const errorsAsString = errors
     .map((e) => ` - ${bolderize(e.message)}`)
     .join('\n');
 
   return [
-    isCritical ? chalk.redBright('error') : chalk.yellowBright('warn'),
-    `in ${invalidDoc.source.name}:\n\n`,
-    deprecated,
+    isError ? chalk.redBright('error') : chalk.yellowBright('warn'),
+    `in ${sourceName}:\n\n`,
+    errorsAsString,
     '\n\n',
   ];
 }

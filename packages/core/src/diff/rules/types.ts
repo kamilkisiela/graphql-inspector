@@ -1,8 +1,9 @@
 import {GraphQLSchema} from 'graphql';
 import {Change} from '../changes/change';
 
-export type Rule = (input: {
+export type Rule<TConfig = any> = (input: {
   changes: Change[];
   oldSchema: GraphQLSchema;
   newSchema: GraphQLSchema;
-}) => Change[];
+  config: TConfig;
+}) => Change[] | Promise<Change[]>;

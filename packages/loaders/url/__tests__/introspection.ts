@@ -30,7 +30,7 @@ test('should contain descriptions', async () => {
 
   const introspectedSchema = await loader.load('http://localhost/graphql', {});
 
-  const user = introspectedSchema.schema.getType('User') as GraphQLObjectType;
+  const user = introspectedSchema[0].schema.getType('User') as GraphQLObjectType;
 
   // User
   expect(user.description).toBe('User type it is');
@@ -75,7 +75,7 @@ test('use GET method', async () => {
     method: 'GET',
   });
 
-  const user = introspectedSchema.schema.getType('User') as GraphQLObjectType;
+  const user = introspectedSchema[0].schema.getType('User') as GraphQLObjectType;
 
   // User
   expect(user.description).toBe('User type it is');

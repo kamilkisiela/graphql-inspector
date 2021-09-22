@@ -4,7 +4,7 @@ import {diff} from '../../src/index';
 import {CriticalityLevel, Change} from '../../src/diff/changes/change';
 import {findBestMatch} from '../../src/utils/string';
 
-test('same schema', () => {
+test('same schema', async () => {
   const schemaA = buildSchema(/* GraphQL */ `
     type Post {
       id: ID
@@ -25,12 +25,12 @@ test('same schema', () => {
     }
   `);
 
-  const changes = diff(schemaA, schemaB);
+  const changes = await diff(schemaA, schemaB);
 
   expect(changes.length).toEqual(0);
 });
 
-test('renamed query', () => {
+test('renamed query', async () => {
   const schemaA = buildSchema(/* GraphQL */ `
     type Query {
       fieldA: String!
@@ -47,7 +47,7 @@ test('renamed query', () => {
     }
   `);
 
-  const changes = diff(schemaA, schemaB);
+  const changes = await diff(schemaA, schemaB);
 
   // Type Added
   const added = changes.find(
@@ -81,7 +81,7 @@ test('renamed query', () => {
   );
 });
 
-test('new field and field changed', () => {
+test('new field and field changed', async () => {
   const schemaA = buildSchema(/* GraphQL */ `
     type Query {
       fieldA: String!
@@ -95,7 +95,7 @@ test('new field and field changed', () => {
     }
   `);
 
-  const changes = diff(schemaA, schemaB);
+  const changes = await diff(schemaA, schemaB);
   const changed = changes.find((c) => c.message.includes('changed')) as Change;
   const added = changes.find((c) => c.message.includes('added')) as Change;
 
@@ -111,7 +111,7 @@ test('new field and field changed', () => {
   );
 });
 
-test('schema from an introspection result should be the same', () => {
+test('schema from an introspection result should be the same', async () => {
   const typeDefsA = /* GraphQL */ `
     type Query {
       fieldA: String!
@@ -121,12 +121,12 @@ test('schema from an introspection result should be the same', () => {
   const schemaA = buildSchema(typeDefsA);
   const schemaB = buildClientSchema(introspectionFromSchema(schemaA));
 
-  const changes = diff(schemaA, schemaB);
+  const changes = await diff(schemaA, schemaB);
 
   expect(changes.length).toEqual(0);
 });
 
-test('huge test', () => {
+test('huge test', async () => {
   const schemaA = buildSchema(/* GraphQL */ `
     schema {
       query: Query
@@ -288,7 +288,7 @@ test('huge test', () => {
     ) on FIELD
   `);
 
-  const changes = diff(schemaA, schemaB);
+  const changes = await diff(schemaA, schemaB);
 
   [
     `Type 'WillBeRemoved' was removed`,
@@ -409,7 +409,7 @@ test('huge test', () => {
   });
 });
 
-test('array as default value in argument (same)', () => {
+test('array as default value in argument (same)', async () => {
   const schemaA = buildSchema(/* GraphQL */ `
     interface MyInterface {
       a(b: [String] = ["Hello"]): String!
@@ -422,12 +422,12 @@ test('array as default value in argument (same)', () => {
     }
   `);
 
-  const changes = diff(schemaA, schemaB);
+  const changes = await diff(schemaA, schemaB);
 
   expect(changes.length).toEqual(0);
 });
 
-test('array as default value in argument (different)', () => {
+test('array as default value in argument (different)', async () => {
   const schemaA = buildSchema(/* GraphQL */ `
     interface MyInterface {
       a(b: [String] = ["Hello"]): String!
@@ -440,7 +440,7 @@ test('array as default value in argument (different)', () => {
     }
   `);
 
-  const changes = diff(schemaA, schemaB);
+  const changes = await diff(schemaA, schemaB);
 
   expect(changes.length).toEqual(1);
   expect(changes[0]).toBeDefined();
@@ -451,7 +451,7 @@ test('array as default value in argument (different)', () => {
   expect(changes[0].path).toEqual(`MyInterface.a.b`);
 });
 
-test('input as default value (same)', () => {
+test('input as default value (same)', async () => {
   const schemaA = buildSchema(/* GraphQL */ `
     enum SortOrder {
       ASC
@@ -482,12 +482,12 @@ test('input as default value (same)', () => {
     }
   `);
 
-  const changes = diff(schemaA, schemaB);
+  const changes = await diff(schemaA, schemaB);
 
   expect(changes.length).toEqual(0);
 });
 
-test('array as default value in input (same)', () => {
+test('array as default value in input (same)', async () => {
   const schemaA = buildSchema(/* GraphQL */ `
     enum SortOrder {
       ASC
@@ -510,12 +510,12 @@ test('array as default value in input (same)', () => {
     }
   `);
 
-  const changes = diff(schemaA, schemaB);
+  const changes = await diff(schemaA, schemaB);
 
   expect(changes.length).toEqual(0);
 });
 
-test('array as default value in input (different)', () => {
+test('array as default value in input (different)', async () => {
   const schemaA = buildSchema(/* GraphQL */ `
     enum SortOrder {
       ASC
@@ -540,7 +540,7 @@ test('array as default value in input (different)', () => {
     }
   `);
 
-  const changes = diff(schemaA, schemaB);
+  const changes = await diff(schemaA, schemaB);
 
   expect(changes.length).toEqual(1);
   expect(changes[0]).toBeDefined();
@@ -551,7 +551,7 @@ test('array as default value in input (different)', () => {
   expect(changes[0].path).toEqual(`CommentQuery.sortOrder`);
 });
 
-test('Input fields becoming nullable is a non-breaking change', () => {
+test('Input fields becoming nullable is a non-breaking change', async () => {
   const schemaA = buildSchema(/* GraphQL */ `
     scalar CustomScalar
 
@@ -582,7 +582,7 @@ test('Input fields becoming nullable is a non-breaking change', () => {
     }
   `);
 
-  const changes = diff(schemaA, schemaB);
+  const changes = await diff(schemaA, schemaB);
 
   expect(changes.length).toEqual(4);
 
@@ -611,7 +611,7 @@ test('Input fields becoming nullable is a non-breaking change', () => {
   );
 });
 
-test('Input fields becoming non-nullable is a breaking change', () => {
+test('Input fields becoming non-nullable is a breaking change', async () => {
   const schemaA = buildSchema(/* GraphQL */ `
     scalar CustomScalar
 
@@ -642,7 +642,7 @@ test('Input fields becoming non-nullable is a breaking change', () => {
     }
   `);
 
-  const changes = diff(schemaA, schemaB);
+  const changes = await diff(schemaA, schemaB);
 
   expect(changes.length).toEqual(4);
 
@@ -671,7 +671,7 @@ test('Input fields becoming non-nullable is a breaking change', () => {
   );
 });
 
-test('Query fields becoming non-nullable is a non-breaking change', () => {
+test('Query fields becoming non-nullable is a non-breaking change', async () => {
   const schemaA = buildSchema(/* GraphQL */ `
     scalar CustomScalar
 
@@ -702,7 +702,7 @@ test('Query fields becoming non-nullable is a non-breaking change', () => {
     }
   `);
 
-  const changes = diff(schemaA, schemaB);
+  const changes = await diff(schemaA, schemaB);
 
   expect(changes.length).toEqual(4);
 
@@ -731,7 +731,7 @@ test('Query fields becoming non-nullable is a non-breaking change', () => {
   );
 });
 
-test('Query fields becoming nullable is a breaking change', () => {
+test('Query fields becoming nullable is a breaking change', async () => {
   const schemaA = buildSchema(/* GraphQL */ `
     scalar CustomScalar
 
@@ -762,7 +762,7 @@ test('Query fields becoming nullable is a breaking change', () => {
     }
   `);
 
-  const changes = diff(schemaA, schemaB);
+  const changes = await diff(schemaA, schemaB);
 
   expect(changes.length).toEqual(4);
 
@@ -791,7 +791,7 @@ test('Query fields becoming nullable is a breaking change', () => {
   );
 });
 
-test('should work with with missing directive definitions', () => {
+test('should work with with missing directive definitions', async () => {
   const schemaA = buildSchema(
     /* GraphQL */ `
       type Query {
@@ -818,7 +818,7 @@ test('should work with with missing directive definitions', () => {
     },
   );
 
-  const changes = diff(schemaA, schemaB);
+  const changes = await diff(schemaA, schemaB);
 
   expect(changes).toHaveLength(1);
 });

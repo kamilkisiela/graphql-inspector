@@ -1,4 +1,4 @@
-export {diff, DiffRule, Rule, CompletionArgs, CompletionHandler} from './diff';
+export {diff, DiffRule, Rule, CompletionArgs, CompletionHandler, UsageHandler } from './diff';
 export {validate, InvalidDocument} from './validate';
 export {similar, SimilarMap} from './similar';
 export * from './coverage';

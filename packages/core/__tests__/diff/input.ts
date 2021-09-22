@@ -5,7 +5,7 @@ import {findFirstChangeByPath} from '../../utils/testing';
 
 describe('input', () => {
   describe('fields', () => {
-    test('added', () => {
+    test('added', async () => {
       const a = buildSchema(/* GraphQL */ `
         input Foo {
           a: String!
@@ -22,8 +22,8 @@ describe('input', () => {
       `);
 
       const change = {
-        c: findFirstChangeByPath(diff(a, b), 'Foo.c'),
-        d: findFirstChangeByPath(diff(a, b), 'Foo.d'),
+        c: findFirstChangeByPath(await diff(a, b), 'Foo.c'),
+        d: findFirstChangeByPath(await diff(a, b), 'Foo.d'),
       };
 
       // Non-nullable
@@ -39,7 +39,7 @@ describe('input', () => {
         "Input field 'd' was added to input object type 'Foo'",
       );
     });
-    test('removed', () => {
+    test('removed', async () => {
       const a = buildSchema(/* GraphQL */ `
         input Foo {
           a: String!
@@ -54,7 +54,7 @@ describe('input', () => {
         }
       `);
 
-      const change = findFirstChangeByPath(diff(a, b), 'Foo.c');
+      const change = findFirstChangeByPath(await diff(a, b), 'Foo.c');
 
       expect(change.criticality.level).toEqual(CriticalityLevel.Breaking);
       expect(change.type).toEqual('INPUT_FIELD_REMOVED');
@@ -63,7 +63,7 @@ describe('input', () => {
       );
     });
 
-    test('order changed', () => {
+    test('order changed', async () => {
       const a = buildSchema(/* GraphQL */ `
         input Foo {
           a: String!
@@ -77,10 +77,10 @@ describe('input', () => {
         }
       `);
 
-      expect(diff(a, b)).toHaveLength(0);
+      expect(await diff(a, b)).toHaveLength(0);
     });
 
-    test('type changed', () => {
+    test('type changed', async () => {
       const a = buildSchema(/* GraphQL */ `
         input Foo {
           a: String!
@@ -96,7 +96,7 @@ describe('input', () => {
         }
       `);
 
-      const changes = diff(a, b);
+      const changes = await diff(a, b);
       const change = {
         a: findFirstChangeByPath(changes, 'Foo.a'),
         b: findFirstChangeByPath(changes, 'Foo.b'),
@@ -123,7 +123,7 @@ describe('input', () => {
       );
     });
 
-    test('description changed / added / removed', () => {
+    test('description changed / added / removed', async () => {
       const a = buildSchema(/* GraphQL */ `
         input Foo {
           """
@@ -151,7 +151,7 @@ describe('input', () => {
         }
       `);
 
-      const changes = diff(a, b);
+      const changes = await diff(a, b);
       const change = {
         a: findFirstChangeByPath(changes, 'Foo.a'),
         b: findFirstChangeByPath(changes, 'Foo.b'),
@@ -178,7 +178,7 @@ describe('input', () => {
       );
     });
 
-    test('default value added', () => {
+    test('default value added', async () => {
       const a = buildSchema(/* GraphQL */ `
         input Foo {
           a: String!
@@ -193,8 +193,8 @@ describe('input', () => {
       `);
 
       const change = {
-        a: findFirstChangeByPath(diff(a, b), 'Foo.a'),
-        b: findFirstChangeByPath(diff(a, b), 'Foo.b'),
+        a: findFirstChangeByPath(await diff(a, b), 'Foo.a'),
+        b: findFirstChangeByPath(await diff(a, b), 'Foo.b'),
       };
 
       // Non-nullable
@@ -211,7 +211,7 @@ describe('input', () => {
       );
     });
 
-    test('default value removed', () => {
+    test('default value removed', async () => {
       const a = buildSchema(/* GraphQL */ `
         input Foo {
           a: String! = "Aaa"
@@ -226,8 +226,8 @@ describe('input', () => {
       `);
 
       const change = {
-        a: findFirstChangeByPath(diff(a, b), 'Foo.a'),
-        b: findFirstChangeByPath(diff(a, b), 'Foo.b'),
+        a: findFirstChangeByPath(await diff(a, b), 'Foo.a'),
+        b: findFirstChangeByPath(await diff(a, b), 'Foo.b'),
       };
 
       // Non-nullable
@@ -243,7 +243,7 @@ describe('input', () => {
         "Input field 'Foo.b' default value changed from 'Bbb' to 'undefined'",
       );
     });
-    test('field removed', () => {
+    test('field removed', async () => {
       const a = buildSchema(/* GraphQL */ `
         input Foo {
           a: String!
@@ -258,7 +258,7 @@ describe('input', () => {
         }
       `);
 
-      const change = findFirstChangeByPath(diff(a, b), 'Foo.c');
+      const change = findFirstChangeByPath(await diff(a, b), 'Foo.c');
 
       expect(change.criticality.level).toEqual(CriticalityLevel.Breaking);
       expect(change.type).toEqual('INPUT_FIELD_REMOVED');

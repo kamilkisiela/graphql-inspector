@@ -16,8 +16,8 @@ module.exports = {
     colorMode: {
       defaultMode: 'light',
       disableSwitch: true,
+      respectPrefersColorScheme: false,
     },
-    sidebarCollapsible: true,
     image: 'img/github/app-action.jpg',
     announcementBar: {
       id: 'support_us',
@@ -77,6 +77,7 @@ module.exports = {
           path: 'docs',
           include: ['**/*.md', '**/*.mdx'],
           sidebarPath: require.resolve('./sidebars.js'),
+          sidebarCollapsible: true,
           editUrl:
             'https://github.com/kamilkisiela/graphql-inspector/edit/master/website/',
         },
