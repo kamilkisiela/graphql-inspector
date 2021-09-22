@@ -4,7 +4,7 @@ import {diff, DiffRule, CriticalityLevel} from '../../src/index';
 import {findFirstChangeByPath, findChangesByPath} from '../../utils/testing';
 
 describe('object', () => {
-  test('added', () => {
+  test('added', async () => {
     const a = buildSchema(/* GraphQL */ `
         type A {
           a: String!
@@ -32,15 +32,15 @@ describe('object', () => {
         }
       `);
 
-      const change = findFirstChangeByPath(diff(a, b), 'B');
-      const mutation = findFirstChangeByPath(diff(a, b), 'Mutation');
+      const change = findFirstChangeByPath(await diff(a, b), 'B');
+      const mutation = findFirstChangeByPath(await diff(a, b), 'Mutation');
 
       expect(change.criticality.level).toEqual(CriticalityLevel.NonBreaking);
       expect(mutation.criticality.level).toEqual(CriticalityLevel.NonBreaking);
   });
 
   describe('interfaces', () => {
-    test('added', () => {
+    test('added', async () => {
       const a = buildSchema(/* GraphQL */ `
         interface A {
           a: String!
@@ -75,14 +75,14 @@ describe('object', () => {
         }
       `);
 
-      const change = findFirstChangeByPath(diff(a, b), 'Foo');
+      const change = findFirstChangeByPath(await diff(a, b), 'Foo');
 
       expect(change.criticality.level).toEqual(CriticalityLevel.Dangerous);
       expect(change.type).toEqual('OBJECT_TYPE_INTERFACE_ADDED');
       expect(change.message).toEqual("'Foo' object implements 'C' interface");
     });
 
-    test('removed', () => {
+    test('removed', async () => {
       const a = buildSchema(/* GraphQL */ `
         interface A {
           a: String!
@@ -117,7 +117,7 @@ describe('object', () => {
         }
       `);
 
-      const change = findFirstChangeByPath(diff(a, b), 'Foo');
+      const change = findFirstChangeByPath(await diff(a, b), 'Foo');
 
       expect(change.criticality.level).toEqual(CriticalityLevel.Breaking);
       expect(change.type).toEqual('OBJECT_TYPE_INTERFACE_REMOVED');
@@ -128,7 +128,7 @@ describe('object', () => {
   });
 
   describe('fields', () => {
-    test('added', () => {
+    test('added', async () => {
       const a = buildSchema(/* GraphQL */ `
         type Foo {
           a: String!
@@ -143,7 +143,7 @@ describe('object', () => {
         }
       `);
 
-      const change = findFirstChangeByPath(diff(a, b), 'Foo.c');
+      const change = findFirstChangeByPath(await diff(a, b), 'Foo.c');
 
       expect(change.criticality.level).toEqual(CriticalityLevel.NonBreaking);
       expect(change.type).toEqual('FIELD_ADDED');
@@ -151,7 +151,7 @@ describe('object', () => {
         "Field 'c' was added to object type 'Foo'",
       );
     });
-    test('removed', () => {
+    test('removed', async () => {
       const a = buildSchema(/* GraphQL */ `
         type Foo {
           a: String!
@@ -166,7 +166,7 @@ describe('object', () => {
         }
       `);
 
-      const change = findFirstChangeByPath(diff(a, b), 'Foo.c');
+      const change = findFirstChangeByPath(await diff(a, b), 'Foo.c');
 
       expect(change.criticality.level).toEqual(CriticalityLevel.Breaking);
       expect(change.type).toEqual('FIELD_REMOVED');
@@ -175,7 +175,7 @@ describe('object', () => {
       );
     });
 
-    test('order changed', () => {
+    test('order changed', async () => {
       const a = buildSchema(/* GraphQL */ `
         type Foo {
           a: String!
@@ -189,10 +189,10 @@ describe('object', () => {
         }
       `);
 
-      expect(diff(a, b)).toHaveLength(0);
+      expect(await diff(a, b)).toHaveLength(0);
     });
 
-    test('type changed', () => {
+    test('type changed', async () => {
       const a = buildSchema(/* GraphQL */ `
         type Foo {
           a: String!
@@ -208,7 +208,7 @@ describe('object', () => {
         }
       `);
 
-      const changes = diff(a, b);
+      const changes = await diff(a, b);
       const change = {
         a: findFirstChangeByPath(changes, 'Foo.a'),
         b: findFirstChangeByPath(changes, 'Foo.b'),
@@ -235,7 +235,7 @@ describe('object', () => {
       );
     });
 
-    test('description changed / added / removed', () => {
+    test('description changed / added / removed', async () => {
       const a = buildSchema(/* GraphQL */ `
         type Foo {
           """
@@ -263,7 +263,7 @@ describe('object', () => {
         }
       `);
 
-      const changes = diff(a, b);
+      const changes = await diff(a, b);
       const change = {
         a: findFirstChangeByPath(changes, 'Foo.a'),
         b: findFirstChangeByPath(changes, 'Foo.b'),
@@ -288,7 +288,7 @@ describe('object', () => {
       expect(change.c.message).toEqual("Field 'Foo.c' has description 'CCC'");
     });
 
-    test('deprecation reason changed / added / removed', () => {
+    test('deprecation reason changed / added / removed', async () => {
       const a = buildSchema(/* GraphQL */ `
         type Foo {
           a: String! @deprecated(reason: "OLD")
@@ -304,7 +304,7 @@ describe('object', () => {
         }
       `);
 
-      const changes = diff(a, b);
+      const changes = await diff(a, b);
       const change = {
         a: findFirstChangeByPath(changes, 'Foo.a'),
         b: findChangesByPath(changes, 'Foo.b')[1],
@@ -331,7 +331,7 @@ describe('object', () => {
       );
     });
 
-    test('deprecation added / removed', () => {
+    test('deprecation added / removed', async () => {
       const a = buildSchema(/* GraphQL */ `
         type Foo {
           a: String! @deprecated
@@ -345,7 +345,7 @@ describe('object', () => {
         }
       `);
 
-      const changes = diff(a, b);
+      const changes = await diff(a, b);
       const change = {
         a: findFirstChangeByPath(changes, 'Foo.a'),
         b: findFirstChangeByPath(changes, 'Foo.b'),
@@ -361,7 +361,7 @@ describe('object', () => {
       expect(change.b.message).toEqual("Field 'Foo.b' is deprecated");
     });
 
-    test('removal of a deprecated field', () => {
+    test('removal of a deprecated field', async () => {
       const a = buildSchema(/* GraphQL */ `
         type Foo {
           a: String!
@@ -374,7 +374,7 @@ describe('object', () => {
         }
       `);
 
-      const change = findFirstChangeByPath(diff(a, b), 'Foo.b');
+      const change = findFirstChangeByPath(await diff(a, b), 'Foo.b');
 
       expect(change.criticality.level).toEqual(CriticalityLevel.Breaking);
       expect(change.type).toEqual('FIELD_REMOVED');
@@ -385,7 +385,7 @@ describe('object', () => {
       // suppressRemovalOfDeprecatedField rule should make it only Dangerous
 
       const changeWithRule = findFirstChangeByPath(
-        diff(a, b, [DiffRule.suppressRemovalOfDeprecatedField]),
+        await diff(a, b, [DiffRule.suppressRemovalOfDeprecatedField]),
         'Foo.b',
       );
 
@@ -400,7 +400,7 @@ describe('object', () => {
   });
 
   describe('arguments', () => {
-    test('type changed', () => {
+    test('type changed', async () => {
       const a = buildSchema(/* GraphQL */ `
         type Foo {
           foo(a: String, b: String, c: String!): String
@@ -412,7 +412,7 @@ describe('object', () => {
         }
       `);
 
-      const changes = diff(a, b);
+      const changes = await diff(a, b);
       const change = {
         a: findFirstChangeByPath(changes, 'Foo.foo.a'),
         b: findFirstChangeByPath(changes, 'Foo.foo.b'),
@@ -439,7 +439,7 @@ describe('object', () => {
       );
     });
 
-    test('added', () => {
+    test('added', async () => {
       const a = buildSchema(/* GraphQL */ `
         type Foo {
           foo(a: String): String
@@ -451,7 +451,7 @@ describe('object', () => {
         }
       `);
 
-      const changes = diff(a, b);
+      const changes = await diff(a, b);
       const change = {
         b: findFirstChangeByPath(changes, 'Foo.foo.b'),
         c: findFirstChangeByPath(changes, 'Foo.foo.c'),
@@ -471,7 +471,7 @@ describe('object', () => {
       );
     });
 
-    test('removed', () => {
+    test('removed', async () => {
       const a = buildSchema(/* GraphQL */ `
         type Foo {
           foo(a: String, b: String!, c: String): String
@@ -483,7 +483,7 @@ describe('object', () => {
         }
       `);
 
-      const changes = diff(a, b);
+      const changes = await diff(a, b);
       const change = {
         b: findFirstChangeByPath(changes, 'Foo.foo.b'),
         c: findFirstChangeByPath(changes, 'Foo.foo.c'),

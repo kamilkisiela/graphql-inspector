@@ -5,7 +5,7 @@ import {CriticalityLevel} from '../../src/diff/changes/change';
 import {findChangesByPath, findFirstChangeByPath} from '../../utils/testing';
 
 describe('union', () => {
-  test('member added', () => {
+  test('member added', async () => {
     const a = buildSchema(/* GraphQL */ `
       type A {
         a: String!
@@ -33,7 +33,7 @@ describe('union', () => {
       union Foo = A | B | C
     `);
 
-    const changes = diff(a, b);
+    const changes = await diff(a, b);
 
     const change = findFirstChangeByPath(changes, 'Foo');
 
@@ -42,7 +42,7 @@ describe('union', () => {
     expect(change.message).toEqual("Member 'C' was added to Union type 'Foo'");
   });
 
-  test('member removed', () => {
+  test('member removed', async () => {
     const a = buildSchema(/* GraphQL */ `
       type A {
         a: String!
@@ -70,7 +70,7 @@ describe('union', () => {
       union Foo = A | B
     `);
 
-    const changes = diff(a, b);
+    const changes = await diff(a, b);
     const change = findFirstChangeByPath(changes, 'Foo');
 
     expect(change.criticality.level).toEqual(CriticalityLevel.Breaking);
@@ -80,7 +80,7 @@ describe('union', () => {
     );
   });
 
-  test('same members but different order', () => {
+  test('same members but different order', async () => {
     const a = buildSchema(/* GraphQL */ `
       type A {
         a: String!
@@ -104,7 +104,7 @@ describe('union', () => {
       union Foo = B | A
     `);
 
-    const changes = findChangesByPath(diff(a, b), 'Foo');
+    const changes = findChangesByPath(await diff(a, b), 'Foo');
 
     expect(changes).toHaveLength(0);
   });

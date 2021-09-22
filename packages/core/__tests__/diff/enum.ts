@@ -5,7 +5,7 @@ import {diff, DiffRule} from '../../src/index';
 import {CriticalityLevel} from '../../src/diff/changes/change';
 
 describe('enum', () => {
-  test('value added', () => {
+  test('value added', async () => {
     const a = buildSchema(/* GraphQL */ `
       type Query {
         fieldA: String
@@ -29,7 +29,7 @@ describe('enum', () => {
       }
     `);
 
-    const changes = diff(a, b);
+    const changes = await diff(a, b);
     const change = findFirstChangeByPath(changes, 'enumA.C');
 
     expect(changes.length).toEqual(1);
@@ -38,7 +38,7 @@ describe('enum', () => {
     expect(change.message).toEqual(`Enum value 'C' was added to enum 'enumA'`);
   });
 
-  test('value removed', () => {
+  test('value removed', async () => {
     const a = buildSchema(/* GraphQL */ `
       type Query {
         fieldA: String
@@ -60,7 +60,7 @@ describe('enum', () => {
       }
     `);
 
-    const changes = diff(a, b);
+    const changes = await diff(a, b);
     const change = findFirstChangeByPath(changes, 'enumA.B');
 
     expect(changes.length).toEqual(1);
@@ -71,7 +71,7 @@ describe('enum', () => {
     );
   });
 
-  test('description changed', () => {
+  test('description changed', async () => {
     const a = buildSchema(/* GraphQL */ `
       type Query {
         fieldA: String
@@ -100,7 +100,7 @@ describe('enum', () => {
       }
     `);
 
-    const changes = diff(a, b);
+    const changes = await diff(a, b);
     const change = findFirstChangeByPath(changes, 'enumA');
 
     expect(changes.length).toEqual(1);
@@ -110,7 +110,7 @@ describe('enum', () => {
     );
   });
 
-  test('deprecation reason changed', () => {
+  test('deprecation reason changed', async () => {
     const a = buildSchema(/* GraphQL */ `
       type Query {
         fieldA: String
@@ -133,7 +133,7 @@ describe('enum', () => {
       }
     `);
 
-    const changes = diff(a, b);
+    const changes = await diff(a, b);
     const change = findFirstChangeByPath(changes, 'enumA.A');
 
     expect(changes.length).toEqual(1);
@@ -143,7 +143,7 @@ describe('enum', () => {
     );
   });
 
-  test('deprecation reason added', () => {
+  test('deprecation reason added', async () => {
     const a = buildSchema(/* GraphQL */ `
       type Query {
         fieldA: String
@@ -166,7 +166,7 @@ describe('enum', () => {
       }
     `);
 
-    const changes = diff(a, b);
+    const changes = await diff(a, b);
     const change = findFirstChangeByPath(changes, 'enumA.A');
 
     expect(changes.length).toEqual(1);
@@ -176,7 +176,7 @@ describe('enum', () => {
     );
   });
 
-  test('deprecation reason removed', () => {
+  test('deprecation reason removed', async () => {
     const a = buildSchema(/* GraphQL */ `
       type Query {
         fieldA: String
@@ -199,7 +199,7 @@ describe('enum', () => {
       }
     `);
 
-    const changes = diff(a, b);
+    const changes = await diff(a, b);
     const change = findFirstChangeByPath(changes, 'enumA.A');
 
     expect(changes.length).toEqual(1);
@@ -209,7 +209,7 @@ describe('enum', () => {
     );
   });
   
-  test('removal of a deprecated field', () => {
+  test('removal of a deprecated field', async () => {
     const a = buildSchema(/* GraphQL */ `
       type Query {
         fieldA: String
@@ -231,7 +231,7 @@ describe('enum', () => {
       }
     `);
 
-    const changes = diff(a, b);
+    const changes = await diff(a, b);
     const change = findFirstChangeByPath(changes, 'enumA.A');
 
     expect(changes.length).toEqual(1);
@@ -242,7 +242,7 @@ describe('enum', () => {
 
     // suppressRemovalOfDeprecatedField rule should make it only Dangerous
 
-    const changesWithRule = diff(a, b, [DiffRule.suppressRemovalOfDeprecatedField])
+    const changesWithRule = await diff(a, b, [DiffRule.suppressRemovalOfDeprecatedField])
     const changeWithRule = findFirstChangeByPath(
       changesWithRule,
       'enumA.A',
@@ -257,7 +257,7 @@ describe('enum', () => {
     );
   });
 
-  test('value added should be Breaking when dangerousBreaking rule is used', () => {
+  test('value added should be Breaking when dangerousBreaking rule is used', async () => {
     const a = buildSchema(/* GraphQL */ `
       type Query {
         fieldA: String
@@ -281,7 +281,7 @@ describe('enum', () => {
       }
     `);
 
-    const changes = diff(a, b, [DiffRule.dangerousBreaking])
+    const changes = await diff(a, b, [DiffRule.dangerousBreaking])
     const change = findFirstChangeByPath(changes, 'enumA.C');
 
     expect(changes.length).toEqual(1);

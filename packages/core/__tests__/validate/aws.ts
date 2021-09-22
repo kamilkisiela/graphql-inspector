@@ -28,24 +28,24 @@ describe('aws', () => {
     `);
 
     const schema = await new LoadersRegistry().loadSchema(
-      `
-    type AWS_Data {
-      normalScalar: String
-      date: AWSDate!
-      time: AWSTime!
-      dateTime: AWSDateTime!
-      timestamp: AWSTimestamp!
-      email: AWSEmail!
-      json: AWSJSON!
-      url: AWSURL!
-      phone: AWSPhone!
-      ipAddress: AWSIPAddress!
-    }
+      /* GraphQL */ `
+        type AWS_Data {
+          normalScalar: String
+          date: AWSDate!
+          time: AWSTime!
+          dateTime: AWSDateTime!
+          timestamp: AWSTimestamp!
+          email: AWSEmail!
+          json: AWSJSON!
+          url: AWSURL!
+          phone: AWSPhone!
+          ipAddress: AWSIPAddress!
+        }
 
-    type Query {
-      data: AWS_Data
-    }
-  `,
+        type Query {
+          data: AWS_Data
+        }
+      `,
       {},
       false,
       true,
