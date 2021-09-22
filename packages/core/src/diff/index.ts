@@ -11,6 +11,8 @@ export const DiffRule = rules;
 export * from './onComplete/types';
 export type { UsageHandler } from './rules/consider-usage';
 
+export { UsageResult } from './rules/consider-usage';
+
 export function diff(
   oldSchema: GraphQLSchema,
   newSchema: GraphQLSchema,

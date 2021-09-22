@@ -1,6 +1,6 @@
 import {buildSchema} from 'graphql';
 
-import {diff, CriticalityLevel} from '../../../src/index';
+import {diff, CriticalityLevel, UsageResult} from '../../../src/index';
 import {findFirstChangeByPath} from '../../../utils/testing';
 import {considerUsage} from '../../../src/diff/rules/consider-usage';
 
@@ -21,7 +21,7 @@ describe('considerUsage rule', () => {
 
     const changes = await diff(a, b, [considerUsage], {
       async checkUsage(list) {
-        return list.map(() => true);
+        return list.map(() => UsageResult.NON_BREAKING);
       },
     });
 
@@ -50,7 +50,7 @@ describe('considerUsage rule', () => {
 
     const changes = await diff(a, b, [considerUsage], {
       async checkUsage(list) {
-        return list.map(() => true);
+        return list.map(() => UsageResult.NON_BREAKING);
       },
     });
 
