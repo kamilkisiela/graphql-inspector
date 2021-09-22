@@ -28,14 +28,43 @@ export function parseGlobalArgs(args: GlobalArgs) {
   return {headers, token: args.token};
 }
 
+// Supports old loader format
+function compatibleLoader<TSource>(loader: {
+  loaderId(): string;
+  canLoad(pointer: string, options?: any): Promise<boolean>;
+  canLoadSync?(pointer: string, options?: any): boolean;
+  load(pointer: string, options?: any): Promise<TSource | never>;
+  loadSync?(pointer: string, options?: any): TSource | never;
+}): {
+  loaderId(): string;
+  canLoad(pointer: string, options?: any): Promise<boolean>;
+  canLoadSync?(pointer: string, options?: any): boolean;
+  load(pointer: string, options?: any): Promise<TSource[] | never>;
+  loadSync?(pointer: string, options?: any): TSource[] | never;
+} {
+  return {
+    loaderId: loader.loaderId.bind(loader),
+    canLoad: loader.canLoad.bind(loader),
+    canLoadSync: loader.canLoadSync?.bind(loader),
+    load(pointer, options) {
+      return loader.load(pointer, options).then((source) => [source]);
+    },
+    loadSync: loader.loadSync
+      ? (pointer, options) => {
+          return [loader.loadSync!(pointer, options)];
+        }
+      : undefined,
+  };
+}
+
 export const createInspectorExtension: (
   name: string,
 ) => GraphQLExtensionDeclaration = (name: string) => (api) => {
   loaders.forEach((loader) => {
-    api.loaders.schema.register(loader);
+    api.loaders.schema.register(compatibleLoader(loader));
   });
   loaders.forEach((loader) => {
-    api.loaders.documents.register(loader);
+    api.loaders.documents.register(compatibleLoader(loader));
   });
 
   return {
