@@ -2,7 +2,7 @@ import React from 'react';
 import { ThemeProvider, GlobalStyles, Header, FooterExtended } from '@theguild/components';
 
 if (typeof window !== 'undefined') {
-  if (localStorage.getItem('theme') === 'dark') {
+  if (localStorage.getItem('theme') !== 'light') {
     localStorage.setItem('theme', 'light');
     document.documentElement.setAttribute('data-theme', 'light')
   }
