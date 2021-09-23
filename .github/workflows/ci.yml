@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node_version: [12, 14]
+        node_version: [14, 16]
     env:
       CI: true
 
