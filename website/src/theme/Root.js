@@ -1,6 +1,14 @@
 import React from 'react';
 import { ThemeProvider, GlobalStyles, Header, FooterExtended } from '@theguild/components';
 
+if (typeof window !== 'undefined') {
+  if (localStorage.getItem('theme') === 'dark') {
+    localStorage.setItem('theme', 'light');
+    document.documentElement.setAttribute('data-theme', 'light')
+  }
+}
+
+
 // Default implementation, that you can customize
 function Root({ children }) {
   return (

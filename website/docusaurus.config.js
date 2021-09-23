@@ -61,9 +61,6 @@ module.exports = {
     {
       src: '/js/scroll-to.js',
     },
-    {
-      src: '/js/force-dark.js',
-    },
     'https://the-guild.dev/static/crisp.js'
   ],
   stylesheets: [
