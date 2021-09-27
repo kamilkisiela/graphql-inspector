@@ -4,6 +4,7 @@
 
 - **core**: BREAKING - `diff` is now async
 - **core**: Adds `considerUsage` rule
+- **core**: Fixes missing names of default root types
 
 ### v2.9.0
 

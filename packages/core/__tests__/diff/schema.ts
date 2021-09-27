@@ -822,3 +822,28 @@ test('should work with with missing directive definitions', async () => {
 
   expect(changes).toHaveLength(1);
 });
+
+test('adding root type should not be breaking', async () => {
+  const schemaA = buildSchema(/* GraphQL */ `
+    type Query {
+      foo: String
+    }
+  `);
+
+  const schemaB = buildSchema(/* GraphQL */ `
+    type Query {
+      foo: String
+    }
+
+    type Subscription {
+      onFoo: String
+    }
+  `);
+
+  const changes = await diff(schemaA, schemaB);
+  const subscription = changes[0];
+
+  expect(changes).toHaveLength(1);
+  expect(subscription).toBeDefined();
+  expect(subscription!.criticality.level).toEqual(CriticalityLevel.NonBreaking);
+});
