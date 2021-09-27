@@ -6,6 +6,7 @@
 - **core**: Adds `considerUsage` rule
 - **core**: Fixes missing names of default root types
 - **cli**, **ci**: Adds `@aws_lambda` directive
+- **cli**, **ci**: Fixes missing headers in diff command
 
 ### v2.9.0
 
