@@ -64,6 +64,6 @@
     "@graphql-inspector/loaders": "0.0.0-PLACEHOLDER",
     "@graphql-inspector/logger": "0.0.0-PLACEHOLDER",
     "tslib": "^2.0.0",
-    "yargs": "17.1.1"
+    "yargs": "17.2.1"
   }
 }
