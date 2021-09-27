@@ -2,7 +2,7 @@
 
 ### vNEXT
 
-- **core**: BREAKING - `diff` is now async
+- **core**: BREAKING CHANGE - `diff` is now async
 - **core**: Adds `considerUsage` rule
 - **core**: Fixes missing names of default root types
 - **cli**, **ci**: Adds `@aws_lambda` directive

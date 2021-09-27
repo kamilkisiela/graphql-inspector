@@ -69,8 +69,7 @@
   "workspaces": [
     "packages/*",
     "packages/commands/*",
-    "packages/loaders/*",
-    "packages/graphql-cli/*"
+    "packages/loaders/*"
   ],
   "lint-staged": {
     "*.{js,json,md,ts,graphql}": [
