@@ -36,7 +36,7 @@ inputs:
       Merge Pull Request's branch with the target branch to get the schema.
       Helps to get the correct state of schema when Pull Request is behind the target branch
       
-      (disabled by default)
+      (enabled by default)
 outputs:
   changes:
     description: 'Total number of changes'

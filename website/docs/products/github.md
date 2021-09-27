@@ -108,7 +108,7 @@ You can adjust the limit as you wish using `diff.summaryLimit` option (see [Full
 ### Experimental
 
 **`experimental_merge`**
-_(disabled by default)_
+_(enabled by default)_
 Merge Pull Request's branch with the target branch to get the schema.
 Helps to get the correct state of schema when Pull Request is behind the target branch.
 
@@ -126,8 +126,8 @@ diff:
   failOnBreaking: true
   # Intercept list of detected changes and decide whether or not to accept a Pull Request
   intercept: '<url>'
-  # Merge Pull Request's branch with the target branch to get the schema (disabled by default)
-  experimental_merge: false
+  # Merge Pull Request's branch with the target branch to get the schema (enabled by default)
+  experimental_merge: true
   # Label to mark Pull Request introducing breaking changes as safe and expected ('approved-breaking-change' by default)
   approveLabel: 'approved-breaking-change'
   # Limit a list of changes in summary to max 150
