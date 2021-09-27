@@ -30,6 +30,7 @@ export interface Notifications {
 }
 
 interface Diff {
+  /** @deprecated */
   experimental_merge?: boolean;
   annotations?: boolean;
   failOnBreaking?: boolean;

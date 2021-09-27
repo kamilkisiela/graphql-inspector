@@ -3,6 +3,7 @@
 ### vNEXT
 
 - **core**: BREAKING CHANGE - `diff` is now async
+- **github**: BREAKING CHANGE - `experimental_merge` is now enabled by default
 - **core**: Adds `considerUsage` rule
 - **core**: Fixes missing names of default root types
 - **cli**, **ci**: Adds `@aws_lambda` directive
