@@ -20,7 +20,9 @@ const version = isCanary
   ? nextVersion
   : versionOrCanary;
 
-const packages = getWorkspaces().map((path) => join(rootDir, path));
+const packages = getWorkspaces()
+  .map((path) => join(rootDir, path))
+  .filter((name) => !name.includes('graphql-cli'));
 
 const current = JSON.parse(readFileSync(lerna, {encoding: 'utf-8'})).version;
 const branch = `release/v${version}`;

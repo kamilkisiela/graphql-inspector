@@ -59,7 +59,7 @@ export async function run() {
     );
   }
 
-  const useExperimentalMerge = castToBoolean(core.getInput('experimental_merge'), false);
+  const useMerge = castToBoolean(core.getInput('experimental_merge'), true);
   const useAnnotations = castToBoolean(core.getInput('annotations'));
   const failOnBreaking = castToBoolean(core.getInput('fail-on-breaking'));
   const endpoint: string = core.getInput('endpoint');
@@ -99,7 +99,7 @@ export async function run() {
 
   let [schemaRef, schemaPath] = schemaPointer.split(':');
 
-  if (useExperimentalMerge && github.context.payload.pull_request) {
+  if (useMerge && github.context.payload.pull_request) {
     ref = `refs/pull/${github.context.payload.pull_request.number}/merge`
     workspace = undefined;
     core.info(`EXPERIMENTAL - Using Pull Request ${ref}`)

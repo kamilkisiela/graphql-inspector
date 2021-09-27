@@ -114,14 +114,14 @@ export async function handleSchemaDiff({
       return;
     }
 
-    if (config.diff.experimental_merge) {
+    if (config.diff.experimental_merge === false) {
       if (!pullRequestNumber && pullRequests?.length) {
         pullRequestNumber = pullRequests[0].number;
       }
 
       if (pullRequestNumber) {
         ref = `refs/pull/${pullRequestNumber}/merge`;
-        logger.info(`[EXPERIMENTAL] Using Pull Request: ${ref}`);
+        logger.info(`Using Pull Request: ${ref}`);
       }
     }
 
