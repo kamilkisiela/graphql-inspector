@@ -29,7 +29,7 @@ describe('aws', () => {
 
     const schema = await new LoadersRegistry().loadSchema(
       /* GraphQL */ `
-        type AWS_Data {
+        type AWS_Data @aws_lambda {
           normalScalar: String
           date: AWSDate!
           time: AWSTime!
@@ -43,7 +43,7 @@ describe('aws', () => {
         }
 
         type Query {
-          data: AWS_Data
+          data: AWS_Data @aws_lambda
         }
       `,
       {},
@@ -51,9 +51,7 @@ describe('aws', () => {
       true,
     );
 
-    const results = validate(schema, [new Source(print(doc))], {
-      // aws: true,
-    });
+    const results = validate(schema, [new Source(print(doc))]);
 
     expect(results).toHaveLength(0);
   });

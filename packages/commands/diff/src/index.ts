@@ -148,7 +148,7 @@ export default createCommand<
         const oldSchema = await loaders.loadSchema(
           oldSchemaPointer,
           {
-            oldSchemaHeaders,
+            headers: oldSchemaHeaders,
             token,
             method,
           },
@@ -158,7 +158,7 @@ export default createCommand<
         const newSchema = await loaders.loadSchema(
           newSchemaPointer,
           {
-            newSchemaHeaders,
+            headers: newSchemaHeaders,
             token,
             method,
           },

@@ -88,6 +88,7 @@ export class LoadersRegistry {
                   directive @aws_cognito_user_pools(
                     cognito_groups: [String!]
                   ) on FIELD_DEFINITION | OBJECT
+                  directive @aws_lambda on FIELD_DEFINITION | OBJECT
                 `),
               ],
             }
