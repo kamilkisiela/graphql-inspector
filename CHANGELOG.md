@@ -2,6 +2,8 @@
 
 ### vNEXT
 
+- **core**: prevent runtime exceptions during printing default value change [#2017](https://github.com/kamilkisiela/graphql-inspector/pull/2017)
+
 ### v3.0.0
 
 - **core**: BREAKING CHANGE - `diff` is now async
