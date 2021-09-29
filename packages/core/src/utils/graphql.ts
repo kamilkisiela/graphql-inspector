@@ -15,6 +15,17 @@ import {
   visitWithTypeInfo,
   getNamedType,
   FieldNode,
+  isInterfaceType,
+  isScalarType,
+  isObjectType,
+  isUnionType,
+  isInputObjectType,
+  GraphQLScalarType,
+  GraphQLInterfaceType,
+  GraphQLObjectType,
+  GraphQLUnionType,
+  GraphQLEnumType,
+  GraphQLInputObjectType,
 } from 'graphql';
 
 export function safeChangeForField(
@@ -119,18 +130,18 @@ export function findDeprecatedUsages(
       Argument(node) {
         const argument = typeInfo.getArgument();
         if (argument) {
-        const reason = argument.deprecationReason;
-        if (reason) {
-          const fieldDef = typeInfo.getFieldDef();
-          if (fieldDef) {
-            errors.push(
-              new GraphQLError(
-                `The argument '${argument?.name}' of '${fieldDef.name}' is deprecated. ${reason}`,
-                [node],
-              ),
-            );
+          const reason = argument.deprecationReason;
+          if (reason) {
+            const fieldDef = typeInfo.getFieldDef();
+            if (fieldDef) {
+              errors.push(
+                new GraphQLError(
+                  `The argument '${argument?.name}' of '${fieldDef.name}' is deprecated. ${reason}`,
+                  [node],
+                ),
+              );
+            }
           }
-        }
         }
       },
       Field(node) {
@@ -202,4 +213,99 @@ export function removeDirectives(
   }
 
   return node;
+}
+
+export function getReachableTypes(schema: GraphQLSchema): Set<string> {
+  const reachableTypes = new Set<string>();
+
+  const collect = (type: GraphQLNamedType): false | void => {
+    const typeName = type.name;
+
+    if (reachableTypes.has(typeName)) {
+      return;
+    }
+
+    reachableTypes.add(typeName);
+
+    if (isScalarType(type)) {
+      return;
+    } else if (isInterfaceType(type) || isObjectType(type)) {
+      if (isInterfaceType(type)) {
+        const {objects, interfaces} = schema.getImplementations(type);
+
+        for (const child of objects) {
+          collect(child);
+        }
+
+        for (const child of interfaces) {
+          collect(child);
+        }
+      }
+
+      const fields = type.getFields();
+
+      for (const fieldName in fields) {
+        const field = fields[fieldName];
+
+        collect(resolveOutputType(field.type));
+
+        const args = field.args;
+
+        for (const argName in args) {
+          const arg = args[argName];
+
+          collect(resolveInputType(arg.type));
+        }
+      }
+    } else if (isUnionType(type)) {
+      const types = type.getTypes();
+      for (const child of types) {
+        collect(child);
+      }
+    } else if (isInputObjectType(type)) {
+      const fields = type.getFields();
+      for (const fieldName in fields) {
+        const field = fields[fieldName];
+
+        collect(resolveInputType(field.type));
+      }
+    }
+  };
+
+  for (const type of [
+    schema.getQueryType(),
+    schema.getMutationType(),
+    schema.getSubscriptionType(),
+  ]) {
+    if (type) {
+      collect(type);
+    }
+  }
+
+  return reachableTypes;
+}
+
+function resolveOutputType(
+  output: GraphQLOutputType,
+):
+  | GraphQLScalarType
+  | GraphQLObjectType
+  | GraphQLInterfaceType
+  | GraphQLUnionType
+  | GraphQLEnumType {
+  if (isListType(output) || isNonNullType(output)) {
+    return resolveOutputType(output.ofType);
+  }
+
+  return output;
+}
+
+function resolveInputType(
+  input: GraphQLInputType,
+): GraphQLScalarType | GraphQLEnumType | GraphQLInputObjectType {
+  if (isListType(input) || isNonNullType(input)) {
+    return resolveInputType(input.ofType);
+  }
+
+  return input;
 }

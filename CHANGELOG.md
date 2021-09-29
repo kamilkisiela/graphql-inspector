@@ -5,6 +5,7 @@
 - **core**: BREAKING CHANGE - `diff` is now async
 - **github**: BREAKING CHANGE - `experimental_merge` is now enabled by default
 - **core**: Adds `considerUsage` rule
+- **core**: Adds `safeUnreachable` rule
 - **core**: Fixes missing names of default root types
 - **cli**, **ci**: Adds `@aws_lambda` directive
 - **cli**, **ci**: Fixes missing headers in diff command

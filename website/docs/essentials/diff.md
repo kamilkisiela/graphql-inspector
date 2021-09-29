@@ -96,6 +96,27 @@ Changes of descriptions are filtered out and are not displayed in the CLI result
 
     graphql-inspector diff https://api.com/graphql schema.graphql --rule ignoreDescriptionChanges
 
+**safeUnreachable**
+
+Breaking changes done on unreachable parts of schema (non-accessible when starting from the root types) won't be marked as breaking.
+
+    graphql-inspector diff https://api.com/graphql schema.graphql --rule safeUnreachable
+
+Example of unreachable type:
+
+```graphql
+type Query {
+  me: String
+}
+
+"""
+User can't be requested, it's unreachable
+"""
+type User {
+  id: ID!
+}
+```
+
 **considerUsage**
 
 Decides if a breaking change are in fact breaking, based on real usage of schema.
