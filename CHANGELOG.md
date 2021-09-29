@@ -2,6 +2,8 @@
 
 ### vNEXT
 
+### v3.0.0
+
 - **core**: BREAKING CHANGE - `diff` is now async
 - **github**: BREAKING CHANGE - `experimental_merge` is now enabled by default
 - **core**: Adds `considerUsage` rule
