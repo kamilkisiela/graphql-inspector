@@ -39,9 +39,9 @@ export default function Diff() {
   const [code, setCode] = useState(newSchemaString);
   const [changes, setChanges] = useState([]);
 
-  useEffect(() => {
+  useEffect(async () => {
     try {
-      setChanges(diff(oldSchema, buildSchema(code)));
+      setChanges(await diff(oldSchema, buildSchema(code)));
     } catch (e) {
       console.error(e);
     }
