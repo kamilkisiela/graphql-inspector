@@ -59,6 +59,6 @@
     "tslib": "^2.0.0"
   },
   "devDependencies": {
-    "@types/js-yaml": "4.0.1"
+    "@types/js-yaml": "4.0.3"
   }
 }
