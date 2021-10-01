@@ -21,10 +21,11 @@ inputs:
       Ref and Path to GraphQL Schema (e.g. "master:schema.graphql")
 
       * Ref is needed where 'endpoint' is not defined
+      * Can be URL to the GraphQL API - should represent the "after" schema. Available only if 'endpoint' is defined. Has to start with http(s).
     required: true
   endpoint:
     description: |
-      Url to your GraphQL API
+      An url to the GraphQL API. It should represent the "before" schema.
 
       When using an endpoint, 'schema' should point to a file (without a reference - branch name for example)
   github-token:

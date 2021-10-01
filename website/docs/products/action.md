@@ -92,12 +92,21 @@ To mark the breaking change as safe, apply the `approved-breaking-change` label 
 
 ### endpoint
 
-Use GraphQL API endpoint as source of schema.
+Use GraphQL API endpoint as source of schema. It should represent the "before" schema.
 
 ```yaml
 - uses: kamilkisiela/graphql-inspector@master
   with:
     schema: 'schema.graphql' # important to define a path to schema file, without a branch
+    endpoint: 'https://my-app.com/graphql'
+```
+
+If you want to use GraphQL API endpoint as source of "after" schema:
+
+```yaml
+- uses: kamilkisiela/graphql-inspector@master
+  with:
+    schema: 'https://pr-1234.my-app.dev/graphql'
     endpoint: 'https://my-app.com/graphql'
 ```
 

@@ -2,6 +2,8 @@
 
 ### vNEXT
 
+- **action**: `schema` can now point to GraphQL API
+
 ### v3.0.1
 
 - **core**: prevent runtime exceptions during printing default value change [#2017](https://github.com/kamilkisiela/graphql-inspector/pull/2017)
