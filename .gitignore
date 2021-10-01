@@ -16,3 +16,4 @@ website/**/package-lock.json
 public/
 .now
 .vercel
+/.idea/

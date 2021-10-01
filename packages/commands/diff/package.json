@@ -47,5 +47,8 @@
   },
   "scripts": {
     "prepack": "bob prepack"
+  },
+  "devDependencies": {
+    "@types/node": "16.10.2"
   }
 }

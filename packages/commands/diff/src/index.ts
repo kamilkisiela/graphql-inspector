@@ -9,15 +9,17 @@ import {
   Change,
   CompletionArgs,
   CompletionHandler,
-  UsageHandler,
   CriticalityLevel,
   diff as diffSchema,
   DiffRule,
   Rule,
+  UsageHandler,
 } from '@graphql-inspector/core';
 import {bolderize, Logger, symbols} from '@graphql-inspector/logger';
 import {existsSync} from 'fs';
 import {GraphQLSchema} from 'graphql';
+import {GitLabCodeClimateIssueType, IssueType, Severity} from './gitlab-types';
+import {createHash} from 'crypto';
 
 export {CommandFactory};
 
@@ -27,6 +29,7 @@ export async function handler(input: {
   onComplete?: string;
   onUsage?: string;
   rules?: Array<string | number>;
+  format: string;
 }) {
   const onComplete = input.onComplete
     ? resolveCompletionHandler(input.onComplete)
@@ -82,6 +85,37 @@ export async function handler(input: {
     reportNonBreakingChanges(nonBreakingChanges);
   }
 
+  Logger.log('Output type: ' + input.format);
+  if (input.format === 'gitlab') {
+    const gitlab: Array<GitLabCodeClimateIssueType> = [];
+    for (let change of changes) {
+      gitlab.push({
+        type: 'issue',
+        check_name: change.type,
+        categories: [
+          change.criticality.level === CriticalityLevel.Breaking
+            ? IssueType.COMPATIBILITY
+            : IssueType.BUG_RISK,
+        ],
+        description: change.message + '\\n' + change.criticality.reason || '',
+        location: {
+          path: '',
+          lines: {
+            begin: 1,
+            end: 2,
+          },
+        },
+        severity: Severity.INFO,
+        fingerprint: createHash('md5')
+          .update(
+            change.criticality.level + ':' + change.type + ':' + change.message,
+          )
+          .digest('hex'),
+      });
+    }
+    Logger.log(JSON.stringify(gitlab));
+  }
+
   onComplete({breakingChanges, dangerousChanges, nonBreakingChanges});
 }
 
@@ -92,6 +126,7 @@ export default createCommand<
     newSchema: string;
     rule?: Array<string | number>;
     onComplete?: string;
+    format: string;
   } & GlobalArgs
 >((api) => {
   const {loaders} = api;
@@ -124,7 +159,13 @@ export default createCommand<
             describe: 'Checks usage of schema',
             type: 'string',
           },
-        });
+          format: {
+            alias: 'f',
+            describe: 'Set the output format',
+            choices: ['plain', 'gitlab'],
+          },
+        })
+        .default('format', 'plain');
     },
     async handler(args) {
       try {
@@ -171,6 +212,7 @@ export default createCommand<
           newSchema,
           rules: args.rule,
           onComplete: args.onComplete,
+          format: args.format,
         });
       } catch (error) {
         Logger.error(error);
