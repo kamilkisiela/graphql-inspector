@@ -50,7 +50,7 @@ export type Position = LineColumnPosition | OffsetPosition;
 
 export interface LineColumnPosition {
   line: number;
-  column: number;
+  column?: number;
 }
 
 export interface OffsetPosition {

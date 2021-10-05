@@ -64,7 +64,13 @@ export default defineCommand<
             type: 'string',
             describe: 'Location of GraphQL Config',
           },
-        });
+          format: {
+            alias: 'f',
+            describe: 'Set the output format',
+            choices: ['plain', 'gitlab'],
+          },
+        })
+        .default('format', 'plain');
     },
     async handler(args) {
       const {headers, token} = parseGlobalArgs(args);
@@ -116,8 +122,10 @@ export default defineCommand<
       return handler({
         oldSchema: baseSchema,
         newSchema,
+        schemaPath: args.target,
         rules: args.rule,
         onComplete: args.onComplete,
+        format: args.format,
       });
     },
   };

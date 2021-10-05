@@ -16,8 +16,10 @@ import {
   UsageHandler,
 } from '@graphql-inspector/core';
 import {bolderize, Logger, symbols} from '@graphql-inspector/logger';
-import {existsSync} from 'fs';
-import {GraphQLSchema} from 'graphql';
+import {existsSync, readFileSync} from 'fs';
+// import {GraphQLSchema} from 'graphql';
+import {GraphQLSchema, Source} from 'graphql';
+import {getLocationByPath} from '../../../core/src/utils/location';
 import {GitLabCodeClimateIssueType, IssueType, Severity} from './gitlab-types';
 import {createHash} from 'crypto';
 
@@ -26,33 +28,43 @@ export {CommandFactory};
 export async function handler(input: {
   oldSchema: GraphQLSchema;
   newSchema: GraphQLSchema;
+  schemaPath: string;
   onComplete?: string;
   onUsage?: string;
   rules?: Array<string | number>;
   format: string;
 }) {
-  const onComplete = input.onComplete
-    ? resolveCompletionHandler(input.onComplete)
-    : failOnBreakingChanges;
+  const rules = (input.rules ?? [])
+    .filter(isString)
+    .map((name): Rule => {
+      const rule = resolveRule(name);
 
-  const rules = input.rules
-    ? input.rules
-        .filter(isString)
-        .map((name): Rule => {
-          const rule = resolveRule(name);
+      if (!rule) {
+        throw new Error(`\Rule '${name}' does not exist!\n`);
+      }
 
-          if (!rule) {
-            throw new Error(`\Rule '${name}' does not exist!\n`);
-          }
-
-          return rule;
-        })
-        .filter((f) => f)
-    : [];
+      return rule;
+    })
+    .filter((f) => f);
 
   const changes = await diffSchema(input.oldSchema, input.newSchema, rules, {
     checkUsage: input.onUsage ? resolveUsageHandler(input.onUsage) : undefined,
   });
+
+  // Logger.log('Output type: ' + input.format);
+  if (input.format === 'plain') {
+    handlePlainFormat(changes);
+  } else if (input.format === 'gitlab') {
+    handleGitLabFormat(changes, input.schemaPath);
+  } else {
+    throw new Error(`Output format ${input.format} is not supported`);
+  }
+}
+
+function handlePlainFormat(changes: Array<Change>, onCompleteX?: string) {
+  const onComplete = onCompleteX
+    ? resolveCompletionHandler(onCompleteX)
+    : failOnBreakingChanges;
 
   if (changes.length === 0) {
     Logger.success('No changes detected');
@@ -85,38 +97,52 @@ export async function handler(input: {
     reportNonBreakingChanges(nonBreakingChanges);
   }
 
-  Logger.log('Output type: ' + input.format);
-  if (input.format === 'gitlab') {
-    const gitlab: Array<GitLabCodeClimateIssueType> = [];
-    for (let change of changes) {
-      gitlab.push({
-        type: 'issue',
-        check_name: change.type,
-        categories: [
-          change.criticality.level === CriticalityLevel.Breaking
-            ? IssueType.COMPATIBILITY
-            : IssueType.BUG_RISK,
-        ],
-        description: change.message + '\\n' + change.criticality.reason || '',
-        location: {
-          path: '',
-          lines: {
-            begin: 1,
-            end: 2,
+  onComplete({breakingChanges, dangerousChanges, nonBreakingChanges});
+}
+
+function handleGitLabFormat(changes: Array<Change>, schemaPath: string) {
+  const gitlab: Array<GitLabCodeClimateIssueType> = [];
+  for (let change of changes) {
+    if (!change.path) {
+      throw Error(`Path undefined for change ${change}`);
+    }
+    const loc = change.path
+      ? getLocationByPath({
+          path: change.path,
+          source: new Source(readFileSync(schemaPath).toString(), schemaPath),
+        })
+      : {line: 1, column: 1};
+    loc.column;
+    gitlab.push({
+      type: 'issue',
+      check_name: change.type,
+      categories: [
+        change.criticality.level === CriticalityLevel.Breaking
+          ? IssueType.COMPATIBILITY
+          : IssueType.BUG_RISK,
+      ],
+      description: change.message + '\n' + change.criticality.reason || '',
+      location: {
+        path: schemaPath,
+        positions: {
+          begin: {
+            line: loc.line,
+            column: loc.column,
+          },
+          end: {
+            line: loc.line,
           },
         },
-        severity: Severity.INFO,
-        fingerprint: createHash('md5')
-          .update(
-            change.criticality.level + ':' + change.type + ':' + change.message,
-          )
-          .digest('hex'),
-      });
-    }
-    Logger.log(JSON.stringify(gitlab));
+      },
+      severity: Severity.INFO,
+      fingerprint: createHash('md5')
+        .update(
+          change.criticality.level + ':' + change.type + ':' + change.message,
+        )
+        .digest('hex'),
+    });
   }
-
-  onComplete({breakingChanges, dangerousChanges, nonBreakingChanges});
+  console.log(JSON.stringify(gitlab));
 }
 
 export default createCommand<
@@ -210,6 +236,7 @@ export default createCommand<
         await handler({
           oldSchema,
           newSchema,
+          schemaPath: newSchemaPointer,
           rules: args.rule,
           onComplete: args.onComplete,
           format: args.format,

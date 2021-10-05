@@ -13,7 +13,7 @@ import {
   AnnotationLevel,
   PullRequest,
 } from './types';
-import {getLocationByPath} from './location';
+import {getLocationByPath} from '../../../core/src/utils/location';
 import {parseEndpoint, isNil} from './utils';
 
 export type DiffInterceptor =
