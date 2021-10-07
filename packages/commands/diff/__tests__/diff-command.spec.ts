@@ -125,13 +125,13 @@ describe('diff', () => {
     expect(spyReporter).not.toHaveBeenCalledNormalized('does not exist');
   });
 
-  test('should render error if file does not exist', async () => {
+  test('should render error if --rule file does not exist', async () => {
     await mockCommand(diff, `diff old.graphql new.graphql --rule noop.js`);
 
     expect(spyReporter).toHaveBeenCalledNormalized('does not exist');
   });
 
-  test('should render error if file does not exist', async () => {
+  test('should render error if file onComplete does not exist (#1)', async () => {
     await mockCommand(
       diff,
       `diff old.graphql new.graphql --onComplete ${resolve(
@@ -143,12 +143,19 @@ describe('diff', () => {
     expect(spyProcessExit).toHaveBeenCalledWith(2);
   });
 
-  test('should render error if file does not exist', async () => {
+  test('should render error if onComplete file does not exist (#2)', async () => {
     await mockCommand(
       diff,
       `diff old.graphql new.graphql --onComplete noop.js`,
     );
 
     expect(spyReporter).toHaveBeenCalledNormalized('does not exist');
+  });
+
+  test('should render Code Quality JSON on --format gitlab success', async () => {
+    await mockCommand(diff, `diff old.graphql new.graphql --format gitlab`);
+
+    // TODO
+    expect(spyReporter).toHaveBeenCalledNormalized('[{');
   });
 });

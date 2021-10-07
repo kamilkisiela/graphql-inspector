@@ -8,6 +8,7 @@ import {
 import {handler} from '@graphql-inspector/diff-command';
 import {GraphQLSchema} from 'graphql';
 import {GraphQLProjectConfig} from 'graphql-config';
+import {UseCommandsAPI} from '../../../commands/commands/src';
 
 interface ExtensionConfig {
   baseSchema: string;
@@ -20,8 +21,9 @@ export default defineCommand<
     target?: string;
     rule?: Array<string | number>;
     onComplete?: string;
+    format?: string;
   } & GlobalArgs
->((api) => {
+>((api: UseCommandsAPI) => {
   return {
     command: 'diff [source] [target]',
     describe: 'Compare two GraphQL Schemas',

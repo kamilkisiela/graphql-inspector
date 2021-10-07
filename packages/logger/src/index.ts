@@ -24,6 +24,7 @@ export interface Logger {
   info(msg: string): void;
   error(msg: string): void;
   warn(msg: string): void;
+  raw(msg: string): void;
 }
 
 export const Logger = {
@@ -42,6 +43,9 @@ export const Logger = {
   warn(msg: string) {
     emit('warn', msg);
   },
+  raw(msg: string) {
+    emit('raw', msg);
+  },
 };
 
 export function mockLogger(fn: (msg: string) => void) {
@@ -53,11 +57,15 @@ export function unmockLogger() {
 }
 
 function emit(
-  type: 'success' | 'info' | 'log' | 'error' | 'warn',
+  type: 'success' | 'info' | 'log' | 'error' | 'warn' | 'raw',
   msg: string,
 ) {
   if (mockedFn) {
     return mockedFn(msg);
+  }
+
+  if (type === 'raw') {
+    console.log(msg);
   }
 
   if (!canBeFancy) {

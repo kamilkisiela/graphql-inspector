@@ -17,7 +17,6 @@ import {
 } from '@graphql-inspector/core';
 import {bolderize, Logger, symbols} from '@graphql-inspector/logger';
 import {existsSync, readFileSync} from 'fs';
-// import {GraphQLSchema} from 'graphql';
 import {GraphQLSchema, Source} from 'graphql';
 import {getLocationByPath} from '../../../core/src/utils/location';
 import {GitLabCodeClimateIssueType, IssueType, Severity} from './gitlab-types';
@@ -34,6 +33,11 @@ export async function handler(input: {
   rules?: Array<string | number>;
   format: string;
 }) {
+  const onComplete = resolveOnComplete(
+    input.onComplete,
+    input.format === 'plain' ? failOnBreakingChanges : undefined,
+  );
+
   const rules = (input.rules ?? [])
     .filter(isString)
     .map((name): Rule => {
@@ -51,7 +55,6 @@ export async function handler(input: {
     checkUsage: input.onUsage ? resolveUsageHandler(input.onUsage) : undefined,
   });
 
-  // Logger.log('Output type: ' + input.format);
   if (input.format === 'plain') {
     handlePlainFormat(changes);
   } else if (input.format === 'gitlab') {
@@ -59,13 +62,40 @@ export async function handler(input: {
   } else {
     throw new Error(`Output format ${input.format} is not supported`);
   }
+
+  onComplete(changes);
 }
 
-function handlePlainFormat(changes: Array<Change>, onCompleteX?: string) {
-  const onComplete = onCompleteX
-    ? resolveCompletionHandler(onCompleteX)
-    : failOnBreakingChanges;
+function resolveOnComplete(
+  onCompleteName?: string,
+  fallback?: (args: CompletionArgs) => void,
+): (changes: Array<Change>) => void {
+  const onComplete = onCompleteName
+    ? resolveCompletionHandler(onCompleteName)
+    : fallback;
 
+  if (!onComplete) {
+    return (_) => {};
+  }
+
+  return (changes: Array<Change>) => {
+    const breakingChanges = filterChangesByCriticality(
+      changes,
+      CriticalityLevel.Breaking,
+    );
+    const dangerousChanges = filterChangesByCriticality(
+      changes,
+      CriticalityLevel.Dangerous,
+    );
+    const nonBreakingChanges = filterChangesByCriticality(
+      changes,
+      CriticalityLevel.NonBreaking,
+    );
+    onComplete({breakingChanges, dangerousChanges, nonBreakingChanges});
+  };
+}
+
+function handlePlainFormat(changes: Array<Change>) {
   if (changes.length === 0) {
     Logger.success('No changes detected');
     return;
@@ -75,43 +105,76 @@ function handlePlainFormat(changes: Array<Change>, onCompleteX?: string) {
     `\nDetected the following changes (${changes.length}) between schemas:\n`,
   );
 
-  const breakingChanges = changes.filter(
-    (change) => change.criticality.level === CriticalityLevel.Breaking,
+  const breakingChanges = filterChangesByCriticality(
+    changes,
+    CriticalityLevel.Breaking,
   );
-  const dangerousChanges = changes.filter(
-    (change) => change.criticality.level === CriticalityLevel.Dangerous,
+  const dangerousChanges = filterChangesByCriticality(
+    changes,
+    CriticalityLevel.Dangerous,
   );
-  const nonBreakingChanges = changes.filter(
-    (change) => change.criticality.level === CriticalityLevel.NonBreaking,
+  const nonBreakingChanges = filterChangesByCriticality(
+    changes,
+    CriticalityLevel.NonBreaking,
   );
 
   if (breakingChanges.length) {
-    reportBreakingChanges(breakingChanges);
+    reportPlainBreakingChanges(breakingChanges);
   }
 
   if (dangerousChanges.length) {
-    reportDangerousChanges(dangerousChanges);
+    reportPlainDangerousChanges(dangerousChanges);
   }
 
   if (nonBreakingChanges.length) {
-    reportNonBreakingChanges(nonBreakingChanges);
+    reportPlainNonBreakingChanges(nonBreakingChanges);
   }
-
-  onComplete({breakingChanges, dangerousChanges, nonBreakingChanges});
 }
 
-function handleGitLabFormat(changes: Array<Change>, schemaPath: string) {
+function filterChangesByCriticality(
+  changes: Array<Change>,
+  criticalityLevel: CriticalityLevel,
+): Array<Change> {
+  return changes.filter(
+    (change) => change.criticality.level === criticalityLevel,
+  );
+}
+
+function handleGitLabFormat(changes: Array<Change>, newSchemaSource: string) {
   const gitlab: Array<GitLabCodeClimateIssueType> = [];
   for (let change of changes) {
     if (!change.path) {
       throw Error(`Path undefined for change ${change}`);
     }
-    const loc = change.path
-      ? getLocationByPath({
-          path: change.path,
-          source: new Source(readFileSync(schemaPath).toString(), schemaPath),
-        })
-      : {line: 1, column: 1};
+    const loc = getLocationByPath({
+      path: change.path,
+      source: new Source(
+        readFileSync(newSchemaSource).toString(),
+        newSchemaSource,
+      ),
+    });
+    let severity: Severity;
+    if (change.criticality.level === CriticalityLevel.NonBreaking) {
+      severity = Severity.INFO;
+    } else if (change.criticality.level === CriticalityLevel.Dangerous) {
+      severity = Severity.MAJOR;
+    } else if (change.criticality.level === CriticalityLevel.Breaking) {
+      severity = Severity.CRITICAL;
+    } else {
+      throw new Error(
+        `Could not map criticality ${change.criticality.level} to GitLab severity mapping (change: ${change})`,
+      );
+    }
+    let description: string;
+    if (change.message && change.criticality.reason) {
+      description = change.message + '. ' + change.criticality.reason;
+    } else if (change.message) {
+      description = change.message;
+    } else if (change.criticality.reason) {
+      description = change.criticality.reason;
+    } else {
+      throw new Error(`No description could be deferred for change ${change}`);
+    }
     loc.column;
     gitlab.push({
       type: 'issue',
@@ -121,9 +184,9 @@ function handleGitLabFormat(changes: Array<Change>, schemaPath: string) {
           ? IssueType.COMPATIBILITY
           : IssueType.BUG_RISK,
       ],
-      description: change.message + '\n' + change.criticality.reason || '',
+      description: description || '',
       location: {
-        path: schemaPath,
+        path: newSchemaSource,
         positions: {
           begin: {
             line: loc.line,
@@ -134,7 +197,7 @@ function handleGitLabFormat(changes: Array<Change>, schemaPath: string) {
           },
         },
       },
-      severity: Severity.INFO,
+      severity: severity,
       fingerprint: createHash('md5')
         .update(
           change.criticality.level + ':' + change.type + ':' + change.message,
@@ -142,7 +205,7 @@ function handleGitLabFormat(changes: Array<Change>, schemaPath: string) {
         .digest('hex'),
     });
   }
-  console.log(JSON.stringify(gitlab));
+  Logger.raw(JSON.stringify(gitlab));
 }
 
 export default createCommand<
@@ -152,7 +215,7 @@ export default createCommand<
     newSchema: string;
     rule?: Array<string | number>;
     onComplete?: string;
-    format: string;
+    format?: string;
   } & GlobalArgs
 >((api) => {
   const {loaders} = api;
@@ -239,7 +302,7 @@ export default createCommand<
           schemaPath: newSchemaPointer,
           rules: args.rule,
           onComplete: args.onComplete,
-          format: args.format,
+          format: args.format || 'plain',
         });
       } catch (error) {
         Logger.error(error);
@@ -266,7 +329,7 @@ function sortChanges(changes: Change[]) {
   });
 }
 
-function reportBreakingChanges(changes: Change[]) {
+function reportPlainBreakingChanges(changes: Change[]) {
   const label = symbols.error;
   const sorted = sortChanges(changes);
 
@@ -275,7 +338,7 @@ function reportBreakingChanges(changes: Change[]) {
   });
 }
 
-function reportDangerousChanges(changes: Change[]) {
+function reportPlainDangerousChanges(changes: Change[]) {
   const label = symbols.warning;
   const sorted = sortChanges(changes);
 
@@ -284,7 +347,7 @@ function reportDangerousChanges(changes: Change[]) {
   });
 }
 
-function reportNonBreakingChanges(changes: Change[]) {
+function reportPlainNonBreakingChanges(changes: Change[]) {
   const label = symbols.success;
   const sorted = sortChanges(changes);
 
