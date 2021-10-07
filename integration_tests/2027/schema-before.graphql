@@ -1,0 +1,12 @@
+type Company {
+  id: ID!
+}
+
+type Hotel {
+  id: ID!
+}
+
+type Query {
+  companies: [Company]!
+  hotels: [Hotel]!
+}
