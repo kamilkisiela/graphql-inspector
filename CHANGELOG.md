@@ -3,6 +3,7 @@
 ### vNEXT
 
 - **action**: `schema` can now point to GraphQL API
+- **cli**: fix missing `--onUsage` in the diff command
 
 ### v3.0.1
 

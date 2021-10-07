@@ -92,6 +92,7 @@ export default createCommand<
     newSchema: string;
     rule?: Array<string | number>;
     onComplete?: string;
+    onUsage?: string;
   } & GlobalArgs
 >((api) => {
   const {loaders} = api;
@@ -171,6 +172,7 @@ export default createCommand<
           newSchema,
           rules: args.rule,
           onComplete: args.onComplete,
+          onUsage: args.onUsage,
         });
       } catch (error) {
         Logger.error(error);
