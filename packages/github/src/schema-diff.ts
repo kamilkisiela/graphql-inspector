@@ -114,7 +114,7 @@ export async function handleSchemaDiff({
       return;
     }
 
-    if (config.diff.experimental_merge === false) {
+    if (config.diff.experimental_merge !== false) {
       if (!pullRequestNumber && pullRequests?.length) {
         pullRequestNumber = pullRequests[0].number;
       }
