@@ -13,6 +13,7 @@ private-key.pem
 yarn.lock
 website/**/yarn.lock
 website/**/package-lock.json
-public/
 .now
 .vercel
+.idea
+.next

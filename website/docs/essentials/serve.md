@@ -12,7 +12,7 @@ Run the following command:
 
 **Arguments**
 
-- [`SCHEMA`](../api/schema.md) - point to a schema
+- [`SCHEMA`](../api/schema) - point to a schema
 
 **Flags**
 

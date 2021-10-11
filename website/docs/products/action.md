@@ -6,7 +6,7 @@ title: GitHub Action
 
 GraphQL Inspector Action checks your Pull Request in order to find breaking changes (and others) in a GraphQL Schema, against your `master` branch.
 
-![Application](/img/github/app-action.jpg)
+![Application](/assets/img/github/app-action.jpg)
 
 ## Usage
 
@@ -120,6 +120,6 @@ Read [GitHub Actions docs](https://help.github.com/en/actions/reference/workflow
 
 Total number of changes
 
-![Summary](/img/github/summary.jpg)
+![Summary](/assets/img/github/summary.jpg)
 
-![Annotations](/img/cli/github.jpg)
+![Annotations](/assets/img/cli/github.jpg)

@@ -2,9 +2,9 @@
 title: Validate documents
 ---
 
-Validates documents against a schema and looks for deprecated usage.
+Validate documents against a schema and looks for deprecated usage.
 
-![Validate](/img/cli/validate.jpg)
+![Validate](/assets/img/cli/validate.jpg)
 
 ## Usage
 
@@ -18,8 +18,8 @@ Run the following command:
 
 **Arguments**
 
-- [`DOCUMENTS`](../api/documents.md) - a glob pattern that points to GraphQL Documents / Operations
-- [`SCHEMA`](../api/schema.md) - point to a schema
+- [`DOCUMENTS`](../api/documents) - a glob pattern that points to GraphQL Documents / Operations
+- [`SCHEMA`](../api/schema) - point to a schema
 
 **Flags**
 

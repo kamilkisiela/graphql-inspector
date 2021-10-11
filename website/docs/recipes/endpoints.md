@@ -5,7 +5,7 @@ title: Using GraphQL Endpoints
 In this chapter, we're going to use live and running GraphQL API instead of GraphQL file as the source of truth of your schema.
 This approach is very useful when you don't deploy on every push and your default branch is fine with temporary breaking changes.
 
-> Using GitHub secrets is not possible at the moment but we're working on it!
+> Using GitHub secrets is not possible at the moment, but we're working on it!
 
 ## Usage
 

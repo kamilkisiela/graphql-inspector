@@ -15,13 +15,13 @@ We strongly believe in Open Source and that's why we made it possible to have a 
 - [Detect changes](#detection-of-changes)
 - [Schema change notifications](#schema-change-notifications)
 - [In-Code annotations](#annotations)
-- [Intercept checks with serverless functions](../recipes/intercept.md)
-- [Use many environments](../recipes/environments.md)
-- [Use live and running GraphQL endpoints](../recipes/endpoints.md)
+- [Intercept checks with serverless functions](../recipes/intercept)
+- [Use many environments](../recipes/environments)
+- [Use live and running GraphQL endpoints](../recipes/endpoints)
 
 ---
 
-![Application](/img/github/app-action.jpg)
+![Application](/assets/img/github/app-action.jpg)
 
 ## Installation
 
@@ -30,11 +30,11 @@ GraphQL Inspector App comes with a free plan and that's the only plan.
 Visit [the application on marketplace](https://github.com/marketplace/graphql-inspector) and enable it in your project:
 
 **Pick a free plan:**
-![Step 1](/img/github/app-setup-plan.jpg)
-![Step 2](/img/github/app-install.jpg)
+![Step 1](/assets/img/github/app-setup-plan.jpg)
+![Step 2](/assets/img/github/app-install.jpg)
 
 **Select repositories and click Install:**
-![Step 3](/img/github/app-repositories.jpg)
+![Step 3](/assets/img/github/app-repositories.jpg)
 
 ## Usage
 
@@ -47,7 +47,7 @@ schema: 'schema.graphql' # an output of `$ graphql-inspector introspect ...`
 
 It's also possible to setup everything in `package.json` (it must be placed in the root directory).
 
-```json
+```jsonc
 {
   // ...
   "graphql-inspector": {
@@ -63,11 +63,11 @@ For example, `schema.graphql` points to a file in root directory of a repository
 
 ### Schema change notifications
 
-To stay up to date with changes in your GraphQL Schema and to receive notifications on Slack, Discord or even via WebHooks, read the ["Notifications" chapter](../essentials/notifications.md).
+To stay up to date with changes in your GraphQL Schema and to receive notifications on Slack, Discord or even via WebHooks, read the ["Notifications" chapter](../essentials/notifications).
 
 ### Annotations
 
-In some cases you want to get a summary of changes but no annotations on a schema file. Annotations are enabled by default but to disabled them, please follow the instructions in ["Annotations" chapter](../recipes/annotations.md).
+In some cases you want to get a summary of changes but no annotations on a schema file. Annotations are enabled by default but to disable them, please follow the instructions in ["Annotations" chapter](../recipes/annotations).
 
 ### Detection of changes
 
@@ -77,15 +77,15 @@ To force a successful check just set `failOnBreaking` to `false` or apply the [`
 
 ### Using GraphQL Endpoint
 
-Read more about [using live and running GraphQL endpoint](../recipes/endpoints.md) as source of schema.
+Read more about [using live and running GraphQL endpoint](../recipes/endpoints) as source of schema.
 
 ### Using multiple environments
 
-Read more about [managing many environments](../recipes/environments.md).
+Read more about [managing many environments](../recipes/environments).
 
 ### Intercept checks with serverless functions
 
-Learn how to [remotely control detected changes and accept/reject Pull Requests](../recipes/intercept.md).
+Learn how to [remotely control detected changes and accept/reject Pull Requests](../recipes/intercept).
 
 ## Other
 
@@ -149,11 +149,11 @@ schema: 'schema.graphql'
 endpoint: '<url>'
 ```
 
-### Recommended worflow
+### Recommended workflow
 
-We recommend to automate the generation of `schema.graphql` and use `husky` to run [`$ graphql-inspector introspect`](../essentials/introspect.md):
+We recommend to automate the generation of `schema.graphql` and use `husky` to run [`$ graphql-inspector introspect`](../essentials/introspect):
 
-```json
+```jsonc
 {
   // ...
   "scripts": {
@@ -177,4 +177,4 @@ We strongly believe in Open Source and that's why we made it possible to host yo
 
 > Under the hood, the GraphQL Inspector uses [Probot](https://probot.github.io), a bot made by GitHub team.
 
-There's a well written ["Deployment" chapter](https://probot.github.io/docs/deployment/) on Probot's documentation.
+There's a well written ["Deployment" chapter](https://probot.github.io/docs/deployment) on Probot's documentation.
