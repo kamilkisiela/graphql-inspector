@@ -1,6 +1,5 @@
 import {
   GraphQLDirective,
-  DirectiveLocationEnum,
   GraphQLArgument,
 } from 'graphql';
 
@@ -35,14 +34,14 @@ export function changesInDirective(
   // locations added
   locations.added.forEach((location) =>
     addChange(
-      directiveLocationAdded(newDirective, location as DirectiveLocationEnum),
+      directiveLocationAdded(newDirective, location as any),
     ),
   );
 
   // locations removed
   locations.removed.forEach((location) =>
     addChange(
-      directiveLocationRemoved(oldDirective, location as DirectiveLocationEnum),
+      directiveLocationRemoved(oldDirective, location as any),
     ),
   );
 

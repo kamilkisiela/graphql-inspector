@@ -32,11 +32,11 @@ export function isVoid<T>(a: T): boolean {
   return typeof a === 'undefined' || a === null;
 }
 
-export function diffArrays(a: string[], b: string[]): string[] {
+export function diffArrays<T>(a: T[] | readonly T[], b: T[] | readonly T[]): T[] {
   return a.filter((c) => !b.some((d) => d === c));
 }
 
-export function unionArrays(a: string[], b: string[]): string[] {
+export function unionArrays<T>(a: T[] | readonly T[], b: T[] | readonly T[]): T[] {
   return a.filter((c) => b.some((d) => d === c));
 }
 

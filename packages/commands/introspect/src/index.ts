@@ -30,7 +30,7 @@ export function handler({
     case '.gql':
     case '.gqls':
     case '.graphqls':
-      content = printSchema(schema, {
+      content = (printSchema as any)(schema, {
         commentDescriptions: comments,
       });
       break;

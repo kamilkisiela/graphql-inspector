@@ -21,6 +21,7 @@ import {
 import {changesInArgument} from './argument';
 import {compareLists} from '../utils/compare';
 import { AddChange } from './schema';
+import { isDeprecated } from '../utils/isDeprecated';
 
 export function changesInField(
   type: GraphQLObjectType | GraphQLInterfaceType,
@@ -38,8 +39,8 @@ export function changesInField(
     }
   }
 
-  if (isNotEqual(oldField.isDeprecated, newField.isDeprecated)) {
-    if (newField.isDeprecated) {
+  if (isNotEqual(isDeprecated(oldField), isDeprecated(newField))) {
+    if (isDeprecated(newField)) {
       addChange(fieldDeprecationAdded(type, newField));
     } else {
       addChange(fieldDeprecationRemoved(type, oldField));

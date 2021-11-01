@@ -39,10 +39,10 @@
   "peerDependencies": {
     "@graphql-inspector/config": "0.0.0-PLACEHOLDER",
     "@graphql-tools/utils": "^6.0.0 || ^7.0.0 || ^8.0.0",
-    "graphql": "^0.13.0 || ^14.0.0 || ^15.0.0"
+    "graphql": "^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0"
   },
   "dependencies": {
-    "@graphql-tools/load": "^7.3.2",
+    "@graphql-tools/load": "^7.4.1",
     "tslib": "^2.0.0"
   },
   "scripts": {

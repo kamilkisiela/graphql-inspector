@@ -27,6 +27,7 @@ import {
   GraphQLEnumType,
   GraphQLInputObjectType,
 } from 'graphql';
+import { isDeprecated } from './isDeprecated';
 
 export function safeChangeForField(
   oldType: GraphQLOutputType,
@@ -80,7 +81,7 @@ export function getKind(type: GraphQLNamedType): KindEnum {
 }
 
 export function getTypePrefix(type: GraphQLNamedType): string {
-  const kind: KindEnum = getKind(type);
+  const kind = getKind(type);
 
   const kindsMap: Record<string, string> = {
     [Kind.SCALAR_TYPE_DEFINITION]: 'scalar',
@@ -91,7 +92,7 @@ export function getTypePrefix(type: GraphQLNamedType): string {
     [Kind.INPUT_OBJECT_TYPE_DEFINITION]: 'input',
   };
 
-  return kindsMap[kind];
+  return kindsMap[kind.toString()];
 }
 
 export function isPrimitive(type: GraphQLNamedType | string): boolean {
@@ -146,7 +147,7 @@ export function findDeprecatedUsages(
       },
       Field(node) {
         const fieldDef = typeInfo.getFieldDef();
-        if (fieldDef && fieldDef.isDeprecated) {
+        if (fieldDef && isDeprecated(fieldDef)) {
           const parentType = typeInfo.getParentType();
           if (parentType) {
             const reason = fieldDef.deprecationReason;
@@ -163,7 +164,7 @@ export function findDeprecatedUsages(
       },
       EnumValue(node) {
         const enumVal = typeInfo.getEnumValue();
-        if (enumVal && enumVal.isDeprecated) {
+        if (enumVal && isDeprecated(enumVal)) {
           const type = getNamedType(typeInfo.getInputType()!);
           if (type) {
             const reason = enumVal.deprecationReason;

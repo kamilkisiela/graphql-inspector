@@ -124,7 +124,7 @@ export function fake(schema: GraphQLSchema): void {
       ) {
         let implementationType;
         if (mockFunctionMap.has(fieldType.name)) {
-          const interfaceMockObj = mockFunctionMap.get(fieldType.name)!(
+          const interfaceMockObj: any = mockFunctionMap.get(fieldType.name)!(
             root,
             args,
             context,
@@ -183,7 +183,7 @@ export function fake(schema: GraphQLSchema): void {
           const rootMock = mockFunctionMap.get(typeName);
           // XXX: BUG in here, need to provide proper signature for rootMock.
           if (
-            typeof rootMock!(undefined, {}, {}, {} as any)[fieldName] ===
+            typeof (rootMock!(undefined, {}, {}, {} as any) as any)[fieldName] ===
             'function'
           ) {
             mockResolver = (
@@ -193,7 +193,7 @@ export function fake(schema: GraphQLSchema): void {
               info: GraphQLResolveInfo,
             ) => {
               const updatedRoot = root || {}; // TODO: should we clone instead?
-              updatedRoot[fieldName] = rootMock!(root, args, context, info)[
+              updatedRoot[fieldName] = (rootMock!(root, args, context, info) as any)[
                 fieldName
               ];
               // XXX this is a bit of a hack to still use mockType, which
@@ -256,12 +256,8 @@ function assignResolveType(type: GraphQLType) {
     // the default `resolveType` always returns null. We add a fallback
     // resolution that works with how unions and interface are mocked
     namedFieldType.resolveType = (
-      data: any,
-      _context: any,
-      info: GraphQLResolveInfo,
-    ) => {
-      return info.schema.getType(data.__typename) as GraphQLObjectType;
-    };
+      data: any
+    ) => data.__typename;
   }
 }
 

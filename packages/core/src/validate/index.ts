@@ -6,6 +6,7 @@ import {
   validate as validateDocument,
   FragmentDefinitionNode,
   DocumentNode,
+  Kind,
 } from 'graphql';
 import {DepGraph} from 'dependency-graph';
 
@@ -94,7 +95,7 @@ export function validate(
     .filter((doc) => doc.hasOperations)
     .forEach((doc) => {
       const docWithOperations: DocumentNode = {
-        kind: 'Document',
+        kind: Kind.DOCUMENT,
         definitions: doc.operations.map((d) => d.node),
       };
       const extractedFragments = (
@@ -112,7 +113,7 @@ export function validate(
             all.findIndex((item) => item.name.value === def.name.value) === i,
         );
       const merged: DocumentNode = {
-        kind: 'Document',
+        kind: Kind.DOCUMENT,
         definitions: [...docWithOperations.definitions, ...extractedFragments],
       };
 

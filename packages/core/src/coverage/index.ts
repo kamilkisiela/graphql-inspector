@@ -7,7 +7,7 @@ import {
   visit,
   visitWithTypeInfo,
   TypeInfo,
-  Visitor,
+  ASTVisitor,
   GraphQLNamedType,
   FieldNode,
 } from 'graphql';
@@ -67,7 +67,7 @@ export function coverage(
   };
   const typeMap = schema.getTypeMap();
   const typeInfo = new TypeInfo(schema);
-  const visitor: (source: Source) => Visitor<any, any> = (source) => ({
+  const visitor: (source: Source) => ASTVisitor = (source) => ({
     Field(node: FieldNode) {
       const fieldDef = typeInfo.getFieldDef();
       const parent = typeInfo.getParentType();
