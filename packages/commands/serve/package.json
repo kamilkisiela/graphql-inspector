@@ -37,7 +37,7 @@
     "directory": "packages/commands/docs"
   },
   "peerDependencies": {
-    "graphql": "^0.13.0 || ^14.0.0 || ^15.0.0"
+    "graphql": "^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0"
   },
   "dependencies": {
     "@graphql-inspector/commands": "0.0.0-PLACEHOLDER",

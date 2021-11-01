@@ -9,6 +9,7 @@ import {
 
 import {Change, CriticalityLevel, ChangeType} from './change';
 import {safeChangeForField} from '../../utils/graphql';
+import { isDeprecated } from '../../utils/isDeprecated';
 
 export function fieldRemoved(
   type: GraphQLObjectType | GraphQLInterfaceType,
@@ -24,7 +25,7 @@ export function fieldRemoved(
     },
     type: ChangeType.FieldRemoved,
     message: `Field '${field.name}' ${
-      field.isDeprecated ? '(deprecated) ' : ''
+      isDeprecated(field) ? '(deprecated) ' : ''
     }was removed from ${entity} '${type.name}'`,
     path: [type.name, field.name].join('.'),
   };
