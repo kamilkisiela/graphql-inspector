@@ -127,7 +127,7 @@ export default createCommand<
             type: 'string',
           },
           assumeValidSDL: {
-            describe: "Set to true to assume the SDL is valid. Missing directive definitions will be accepted"
+            describe: "Set to true to assume the SDL is valid. Missing directive definitions will be accepted",
             type: 'boolean',
             default: false,
           },
