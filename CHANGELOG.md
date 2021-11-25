@@ -2,6 +2,8 @@
 
 ### vNEXT
 
+- **cli**: add `--assumeValidSDL` flag
+
 ### v3.0.2
 
 - **action**: `schema` can now point to GraphQL API

@@ -93,6 +93,7 @@ export default createCommand<
     rule?: Array<string | number>;
     onComplete?: string;
     onUsage?: string;
+    assumeValidSDL?: boolean;
   } & GlobalArgs
 >((api) => {
   const {loaders} = api;
@@ -125,6 +126,11 @@ export default createCommand<
             describe: 'Checks usage of schema',
             type: 'string',
           },
+          assumeValidSDL: {
+            describe: "Set to true to assume the SDL is valid. Missing directive definitions will be accepted"
+            type: 'boolean',
+            default: false,
+          },
         });
     },
     async handler(args) {
@@ -133,6 +139,7 @@ export default createCommand<
         const newSchemaPointer = args.newSchema;
         const apolloFederation = args.federation || false;
         const aws = args.aws || false;
+        const assumeValidSDL = args.assumeValidSDL ?? false;
         const method = args.method?.toUpperCase() || 'POST';
         const {headers, leftHeaders, rightHeaders, token} =
           parseGlobalArgs(args);
@@ -152,6 +159,7 @@ export default createCommand<
             headers: oldSchemaHeaders,
             token,
             method,
+            assumeValidSDL,
           },
           apolloFederation,
           aws,
@@ -162,6 +170,7 @@ export default createCommand<
             headers: newSchemaHeaders,
             token,
             method,
+            assumeValidSDL,
           },
           apolloFederation,
           aws,
