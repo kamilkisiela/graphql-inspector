@@ -138,12 +138,9 @@ export async function run() {
 
   console.log('---schemaPath::', schemaPath);
 
-  console.log('---oldFile::', oldFile);
-
   let oldSchema:GraphQLSchema, newSchema:GraphQLSchema, sources, schemas;
 
   if(extname(schemaPath.toLowerCase())===".json") {
-    console.log('---json file');
     oldSchema = buildClientSchema(JSON.parse(oldFile));
     newSchema = buildClientSchema(JSON.parse(newFile));
 
@@ -151,23 +148,23 @@ export async function run() {
       old: new Source(printSchema(oldSchema), endpoint || `${schemaRef}:${schemaPath}`),
       new: new Source(printSchema(newSchema), schemaPath),
     };
-
-    schemas = {
-      old: oldSchema,
-      new: newSchema,
-    };
   } else {
-    console.log('---gql file');
     sources = {
       old: new Source(oldFile, endpoint || `${schemaRef}:${schemaPath}`),
       new: new Source(newFile, schemaPath),
     };
 
-    schemas = {
-      old: produceSchema(sources.old),
-      new: produceSchema(sources.new),
-    };
+    oldSchema = produceSchema(sources.old);
+    newSchema = produceSchema(sources.new);
   }
+
+  schemas = {
+    old: oldSchema,
+    new: newSchema,
+  };
+
+  console.log(`---oldSDL::`, printSchema(oldSchema));
+  console.log(`---newSDL::`, printSchema(newSchema));
 
   core.info(`Built both schemas`);
 
