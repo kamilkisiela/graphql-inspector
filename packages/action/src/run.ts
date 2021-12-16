@@ -5,10 +5,12 @@ import {
   printSchemaFromEndpoint,
   produceSchema,
 } from '@graphql-inspector/github';
-import {Source} from 'graphql';
+import {Source, GraphQLSchema, printSchema} from 'graphql';
 import {readFileSync} from 'fs';
-import {resolve} from 'path';
+import {resolve, extname} from 'path';
 import {execSync} from 'child_process';
+import {JsonFileLoader} from '@graphql-tools/json-file-loader';
+import {loadSchema} from '@graphql-tools/load';
 
 import * as core from '@actions/core';
 import * as github from '@actions/github';
@@ -136,15 +138,36 @@ export async function run() {
 
   core.info('Got both sources');
 
-  const sources = {
-    old: new Source(oldFile, endpoint || `${schemaRef}:${schemaPath}`),
-    new: new Source(newFile, schemaPath),
-  };
+  let oldSchema:GraphQLSchema, newSchema:GraphQLSchema, sources, schemas;
 
-  const schemas = {
-    old: produceSchema(sources.old),
-    new: produceSchema(sources.new),
-  };
+  if(extname(schemaPath.toLowerCase())===".json") {
+    oldSchema = await loadSchema(oldFile, {
+      loaders: [new JsonFileLoader()],
+    });
+    newSchema = await loadSchema(newFile, {
+      loaders: [new JsonFileLoader()],
+    });
+
+    sources = {
+      old: new Source(printSchema(oldSchema), endpoint || `${schemaRef}:${schemaPath}`),
+      new: new Source(printSchema(newSchema), schemaPath),
+    };
+
+    schemas = {
+      old: oldSchema,
+      new: newSchema,
+    };
+  } else {
+    sources = {
+      old: new Source(oldFile, endpoint || `${schemaRef}:${schemaPath}`),
+      new: new Source(newFile, schemaPath),
+    };
+
+    schemas = {
+      old: produceSchema(sources.old),
+      new: produceSchema(sources.new),
+    };
+  }
 
   core.info(`Built both schemas`);
 
@@ -192,7 +215,7 @@ export async function run() {
       conclusion,
       output: {title, summary, annotations},
     });
-  } catch (e) {
+  } catch (e:any) {
     // Error
     core.error(e.message || e);
 
