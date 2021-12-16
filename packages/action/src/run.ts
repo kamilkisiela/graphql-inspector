@@ -138,9 +138,12 @@ export async function run() {
 
   core.info('Got both sources');
 
+  console.log('---schemaPath::', schemaPath);
+
   let oldSchema:GraphQLSchema, newSchema:GraphQLSchema, sources, schemas;
 
   if(extname(schemaPath.toLowerCase())===".json") {
+    console.log('---json file');
     oldSchema = await loadSchema(oldFile, {
       loaders: [new JsonFileLoader()],
     });
@@ -158,6 +161,7 @@ export async function run() {
       new: newSchema,
     };
   } else {
+    console.log('---gql file');
     sources = {
       old: new Source(oldFile, endpoint || `${schemaRef}:${schemaPath}`),
       new: new Source(newFile, schemaPath),
