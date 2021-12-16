@@ -136,8 +136,6 @@ export async function run() {
 
   core.info('Got both sources');
 
-  console.log('---schemaPath::', schemaPath);
-
   let oldSchema:GraphQLSchema, newSchema:GraphQLSchema, sources, schemas;
 
   if(extname(schemaPath.toLowerCase())===".json") {
@@ -162,9 +160,6 @@ export async function run() {
     old: oldSchema,
     new: newSchema,
   };
-
-  console.log(`---oldSDL::`, printSchema(oldSchema));
-  console.log(`---newSDL::`, printSchema(newSchema));
 
   core.info(`Built both schemas`);
 
