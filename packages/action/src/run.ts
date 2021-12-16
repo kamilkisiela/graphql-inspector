@@ -5,11 +5,10 @@ import {
   printSchemaFromEndpoint,
   produceSchema,
 } from '@graphql-inspector/github';
-import {Source, GraphQLSchema, printSchema} from 'graphql';
+import {Source, GraphQLSchema, buildSchema, printSchema} from 'graphql';
 import {readFileSync} from 'fs';
 import {resolve, extname} from 'path';
 import {execSync} from 'child_process';
-import {JsonFileLoader} from '@graphql-tools/json-file-loader';
 import {loadSchema} from '@graphql-tools/load';
 
 import * as core from '@actions/core';
@@ -140,16 +139,14 @@ export async function run() {
 
   console.log('---schemaPath::', schemaPath);
 
+  console.log('---oldFile::', oldFile);
+
   let oldSchema:GraphQLSchema, newSchema:GraphQLSchema, sources, schemas;
 
   if(extname(schemaPath.toLowerCase())===".json") {
     console.log('---json file');
-    oldSchema = await loadSchema(oldFile, {
-      loaders: [new JsonFileLoader()],
-    });
-    newSchema = await loadSchema(newFile, {
-      loaders: [new JsonFileLoader()],
-    });
+    oldSchema = buildSchema(oldFile);
+    newSchema = buildSchema(newFile);
 
     sources = {
       old: new Source(printSchema(oldSchema), endpoint || `${schemaRef}:${schemaPath}`),
