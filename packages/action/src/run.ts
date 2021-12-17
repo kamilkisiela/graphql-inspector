@@ -140,7 +140,7 @@ export async function run() {
   let newSchema: GraphQLSchema;
   let sources: { new: Source; old: Source; }; 
 
-  if(extname(schemaPath.toLowerCase())===".json") {
+  if (extname(schemaPath.toLowerCase()) === ".json") {
     oldSchema = buildClientSchema(JSON.parse(oldFile));
     newSchema = buildClientSchema(JSON.parse(newFile));
 
