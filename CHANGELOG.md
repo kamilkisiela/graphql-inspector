@@ -2,6 +2,8 @@
 
 ### vNEXT
 
+- **action**: Support introspection query result
+
 ### v3.0.2
 
 - **action**: `schema` can now point to GraphQL API
