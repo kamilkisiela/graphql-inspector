@@ -136,7 +136,9 @@ export async function run() {
 
   core.info('Got both sources');
 
-  let oldSchema:GraphQLSchema, newSchema:GraphQLSchema, sources, schemas;
+  let oldSchema: GraphQLSchema;
+  let newSchema: GraphQLSchema;
+  let sources: { new: Source; old: Source; }; 
 
   if(extname(schemaPath.toLowerCase())===".json") {
     oldSchema = buildClientSchema(JSON.parse(oldFile));
@@ -156,7 +158,7 @@ export async function run() {
     newSchema = produceSchema(sources.new);
   }
 
-  schemas = {
+  const schemas = {
     old: oldSchema,
     new: newSchema,
   };
