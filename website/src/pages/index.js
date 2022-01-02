@@ -198,7 +198,7 @@ function Index() {
             <>
               <p>
                 GitHub offers <strong>in-code annotations</strong> and GraphQL
-                Inspector, both App and Action enables you do use them.
+                Inspector, both App and Action enables you to use them.
               </p>
               <p>
                 Nice and clean way to understand what have really changed and how

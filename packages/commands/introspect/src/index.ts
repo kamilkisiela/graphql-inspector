@@ -7,7 +7,12 @@ import {
 import {Logger} from '@graphql-inspector/logger';
 import {writeFileSync} from 'fs';
 import {resolve, extname} from 'path';
-import {introspectionFromSchema, lexicographicSortSchema, printSchema, GraphQLSchema} from 'graphql';
+import {
+  introspectionFromSchema,
+  lexicographicSortSchema,
+  printSchema,
+  GraphQLSchema,
+} from 'graphql';
 
 export {CommandFactory};
 
