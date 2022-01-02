@@ -141,8 +141,10 @@ export async function run() {
   let sources: { new: Source; old: Source; }; 
 
   if (extname(schemaPath.toLowerCase()) === ".json") {
-    oldSchema = buildClientSchema(JSON.parse(oldFile));
-    newSchema = buildClientSchema(JSON.parse(newFile));
+    let oldJSON = JSON.parse(oldFile);
+    let newJSON = JSON.parse(newFile);
+    oldSchema = buildClientSchema(oldJSON.data || oldJSON);
+    newSchema = buildClientSchema(newJSON.data || newJSON);
 
     sources = {
       old: new Source(printSchema(oldSchema), endpoint || `${schemaRef}:${schemaPath}`),
