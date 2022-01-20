@@ -12,6 +12,11 @@
   --ifm-footer-link-hover-color: #fff;
 }
 
+#tgc-modal {
+  /* hotfix because this website is not "compatible" with `@the-guild/components@1.8.7`'s `twin.macro` `tw()` that handles centering of the search modal */
+  margin-left: -384px;
+}
+
 .footer--dark {
   --ifm-footer-background-color: var(--ifm-color-accent);
 }
