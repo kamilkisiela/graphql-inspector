@@ -2,6 +2,8 @@
 
 ### vNEXT
 
+### v3.1.0
+
 - **action**: Support introspection query result
 
 ### v3.0.2
