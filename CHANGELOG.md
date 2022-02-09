@@ -2,6 +2,8 @@
 
 ### vNEXT
 
+- **cli**: Use GraphQL Yoga in `serve` command
+
 ### v3.1.0
 
 - **action**: Support introspection query result

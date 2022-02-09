@@ -5,10 +5,8 @@ import {
   CommandFactory,
 } from '@graphql-inspector/commands';
 import {Logger} from '@graphql-inspector/logger';
+import {createServer} from '@graphql-yoga/node'
 import open from 'open';
-import express from 'express';
-import {graphqlHTTP} from 'express-graphql';
-import cors from 'cors';
 import {fake} from './fake';
 
 export {CommandFactory};
@@ -61,29 +59,23 @@ export default createCommand<
       const port = args.port;
 
       try {
-        const app = express();
-
         fake(schema);
 
-        app.get('/test', (_, res) => {
-          res.send('yes').status(200);
-        });
+        const server = createServer({
+          schema,
+          port,
+          cors: true,
+          logging: false,
+          
+        })
 
-        app.use(
-          cors(),
-          graphqlHTTP({
-            schema,
-            graphiql: true,
-          }),
-        );
-
-        const server = app.listen(port);
+        await server.start();
         const url = `http://localhost:${port}`;
         Logger.success(`GraphQL API:    ${url}`);
         await open(url);
 
         const shutdown = () => {
-          server.close();
+          server.stop();
           process.exit(0);
         };
 
