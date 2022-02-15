@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import Script from 'next/script';
 import { appWithTranslation } from 'next-i18next';
 import {
   extendTheme,
@@ -10,19 +11,12 @@ import {
   AppSeoProps,
   CombinedThemeProvider,
   DocsPage,
-  ExtendComponents,
   handlePushRoute,
 } from '@guild-docs/client';
 import { FooterExtended, Header, Subheader } from '@theguild/components';
 import type { AppProps } from 'next/app';
 import 'remark-admonitions/styles/infima.css';
 import '../../public/style.css';
-
-ExtendComponents({
-  HelloWorld() {
-    return <p>Hello World!</p>;
-  },
-});
 
 const styles: typeof chakraTheme['styles'] = {
   global: (props) => ({
@@ -74,6 +68,7 @@ const AppContent: FC<AppProps> = (appProps) => {
 
   return (
     <>
+      <Script async src="https://the-guild.dev/static/crisp.js" />
       <Header accentColor={accentColor} activeLink="/open-source" themeSwitch />
       <Subheader
         activeLink={router.asPath}
