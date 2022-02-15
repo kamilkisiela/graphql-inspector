@@ -78,4 +78,4 @@ env:
         annotations: false
 ```
 
-In the example above, every enironment has a webhook and slack notifications enabled but in case of Production environemnt, Slack has a differrent url. The Preview environment uses the global Slack but has annotation disabled.
+In the example above, every environment has a webhook and Slack notifications enabled but in case of Production environment, Slack has a different url. The Preview environment uses the global Slack but has annotation disabled.

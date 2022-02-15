@@ -1,0 +1,10 @@
+.liveContent {
+  margin: 0 auto;
+  max-width: 960px;
+}
+
+.live {
+  background-color: #000;
+  padding: 25px 0;
+  width: 100%;
+}

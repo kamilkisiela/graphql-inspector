@@ -12,6 +12,7 @@
 .contactForm:hover {
   border-color: #4a4a4a;
 }
+
 .contactForm:focus {
   border-color: #fff;
 }
@@ -76,7 +77,7 @@
 
 
 .contactUsBackground {
-  background-color: #f4f4f4;
+  padding: 125px;
 }
 
 .contactContainer {
@@ -118,7 +119,6 @@
     align-items: center;
     flex-direction: column;
     flex-flow: column-reverse;
-
     padding: 0 16px;
   }
 

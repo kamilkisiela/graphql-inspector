@@ -4,7 +4,7 @@ title: Schema coverage
 
 Schema coverage based on documents. Find out how many times types and fields are used in your application.
 
-![Coverage](/img/cli/coverage.jpg)
+![Coverage](/assets/img/cli/coverage.jpg)
 
 ## Usage
 
@@ -14,8 +14,8 @@ Run the following command:
 
 **Arguments**
 
-- [`DOCUMENTS`](../api/documents.md) - a glob pattern that points to GraphQL Documents / Operations
-- [`SCHEMA`](../api/schema.md) - point to a schema
+- [`DOCUMENTS`](../api/documents) - a glob pattern that points to GraphQL Documents / Operations
+- [`SCHEMA`](../api/schema) - point to a schema
 
 **Flags**
 

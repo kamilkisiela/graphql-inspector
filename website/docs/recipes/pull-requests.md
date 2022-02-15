@@ -49,4 +49,4 @@ others:
 
 ## Disabling on GitHub Action
 
-It's simple, use the [fail-on-breaking](../products/action.md#fail-on-breaking) input.
+It's simple, use the <span style={{textDecoration: 'underline'}}>[fail-on-breaking](../products/action#fail-on-breaking)</span> input.

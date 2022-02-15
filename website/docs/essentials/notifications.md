@@ -28,7 +28,7 @@ notifications:
 ### Using with environments
 
 Notifications are highly customizable.
-You're able to have a setup where every schema change on any of your enironments is sent via webhook.
+You're able to have a setup where every schema change on any of your environments is sent via webhook.
 To reduce the noise, you can setup Slack notifications only for Production environment.
 
 ```yaml
@@ -47,14 +47,14 @@ Whenever a new change is pushed to `develop` branch, you get a notification via 
 
 ## Notifications on Slack
 
-In order to use Slack notifications, you need to create your own application on Slack and an Incoming Webhook. [Follow these instructions](https://slack.com/intl/en-pl/help/articles/115005265063-Incoming-Webhooks-for-Slack).
+In order to use Slack notifications, you need to create your own application on Slack and an Incoming Webhook. <span style={{textDecoration: 'underline'}}>[Follow these instructions](https://slack.com/intl/en-pl/help/articles/115005265063-Incoming-Webhooks-for-Slack)</span>.
 
 ```yaml
 notifications:
   slack: 'https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX'
 ```
 
-![Notifications on Slack](/img/notifications/slack.png)
+![Notifications on Slack](/assets/img/notifications/slack.png)
 
 ## Notifications on Discord
 
@@ -65,7 +65,7 @@ notifications:
   discord: 'https://discordapp.com/api/webhooks/XXXXXX/XXXXXX'
 ```
 
-![Notifications on Discord](/img/notifications/discord.png)
+![Notifications on Discord](/assets/img/notifications/discord.png)
 
 ## Notifications via Webhook
 

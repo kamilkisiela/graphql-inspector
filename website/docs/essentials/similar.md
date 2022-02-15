@@ -4,7 +4,7 @@ title: Find similar types
 
 Get a list of similar types in order to find duplicates.
 
-![Similar](/img/cli/similar.jpg)
+![Similar](/assets/img/cli/similar.jpg)
 
 ## Usage
 
@@ -14,7 +14,7 @@ Run the following command:
 
 **Arguments**
 
-- [`SCHEMA`](../api/schema.md) - point to a schema
+- [`SCHEMA`](../api/schema) - point to a schema
 
 **Flags**
 
