@@ -1,0 +1,14 @@
+type User {
+  id: ID
+  firstName: String
+  firstname: String @deprecated(reason: "testing deprecation")
+}
+
+input CreateUser {
+    email: String
+    firstname: String @deprecated(reason: "testing deprecation")
+}
+
+type Query {
+  user: User
+}
