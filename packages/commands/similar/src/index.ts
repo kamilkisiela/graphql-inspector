@@ -5,18 +5,18 @@ import {
   parseGlobalArgs,
   CommandFactory,
 } from '@graphql-inspector/commands';
-import {Logger, figures, chalk} from '@graphql-inspector/logger';
+import { Logger, figures, chalk } from '@graphql-inspector/logger';
 import {
   similar as findSimilar,
   getTypePrefix,
   SimilarMap,
   Rating,
 } from '@graphql-inspector/core';
-import {extname} from 'path';
-import {GraphQLNamedType, GraphQLSchema} from 'graphql';
-import {writeFileSync} from 'fs';
+import { extname } from 'path';
+import { GraphQLNamedType, GraphQLSchema } from 'graphql';
+import { writeFileSync } from 'fs';
 
-export {CommandFactory};
+export { CommandFactory };
 
 export function handler({
   schema,
@@ -91,7 +91,7 @@ export default createCommand<
     write?: string;
   } & GlobalArgs
 >((api) => {
-  const {loaders} = api;
+  const { loaders } = api;
 
   return {
     command: 'similar <schema>',
@@ -122,7 +122,7 @@ export default createCommand<
         });
     },
     async handler(args) {
-      const {headers, token} = parseGlobalArgs(args);
+      const { headers, token } = parseGlobalArgs(args);
       const writePath = args.write;
       const type = args.name;
       const threshold = args.threshold;
@@ -141,7 +141,7 @@ export default createCommand<
         aws,
       );
 
-      return handler({schema, writePath, type, threshold});
+      return handler({ schema, writePath, type, threshold });
     },
   };
 });

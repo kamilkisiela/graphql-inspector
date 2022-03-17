@@ -1,8 +1,8 @@
-import {buildSchema} from 'graphql';
+import { buildSchema } from 'graphql';
 
-import {diff, CriticalityLevel} from '../../../src/index';
-import {findFirstChangeByPath} from '../../../utils/testing';
-import {safeUnreachable} from '../../../src/diff/rules/safe-unreachable';
+import { diff, CriticalityLevel } from '../../../src/index';
+import { findFirstChangeByPath } from '../../../utils/testing';
+import { safeUnreachable } from '../../../src/diff/rules/safe-unreachable';
 
 describe('safeUnreachable rule', () => {
   test('removed field', async () => {

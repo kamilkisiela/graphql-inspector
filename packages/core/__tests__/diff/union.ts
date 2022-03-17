@@ -1,8 +1,8 @@
-import {buildSchema} from 'graphql';
+import { buildSchema } from 'graphql';
 
-import {diff} from '../../src/index';
-import {CriticalityLevel} from '../../src/diff/changes/change';
-import {findChangesByPath, findFirstChangeByPath} from '../../utils/testing';
+import { diff } from '../../src/index';
+import { CriticalityLevel } from '../../src/diff/changes/change';
+import { findChangesByPath, findFirstChangeByPath } from '../../utils/testing';
 
 describe('union', () => {
   test('member added', async () => {

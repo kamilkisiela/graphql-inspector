@@ -1,9 +1,9 @@
-import {CriticalityLevel} from './../changes/change';
-import {Rule} from './types';
-import {parsePath} from '../../utils/path';
+import { CriticalityLevel } from './../changes/change';
+import { Rule } from './types';
+import { parsePath } from '../../utils/path';
 
 export type UsageHandler = (
-  input: Array<{type: string; field?: string; argument?: string}>,
+  input: Array<{ type: string; field?: string; argument?: string }>,
 ) => Promise<boolean[]>;
 
 export interface ConsiderUsageConfig {
@@ -62,7 +62,7 @@ export const considerUsage: Rule<ConsiderUsageConfig> = async ({
   // includes only those that are safe to break the api
   const suppressedPaths = collectedBreakingField
     .filter((_, i) => usageList[i] === true)
-    .map(({type, field, argument}) =>
+    .map(({ type, field, argument }) =>
       [type, field, argument].filter(Boolean).join('.'),
     );
 

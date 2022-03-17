@@ -1,1 +1,1 @@
-module.exports = ({changes}) => changes;
+module.exports = ({ changes }) => changes;

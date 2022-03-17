@@ -1,11 +1,11 @@
-import {defineCommand} from '@graphql-cli/common';
+import { defineCommand } from '@graphql-cli/common';
 import {
   GlobalArgs,
   parseGlobalArgs,
   createInspectorExtension,
   loaders,
 } from '@graphql-inspector/graphql-cli-common';
-import {handler} from '@graphql-inspector/validate-command';
+import { handler } from '@graphql-inspector/validate-command';
 
 export default defineCommand<
   {},
@@ -92,7 +92,7 @@ export default defineCommand<
       const strictFragments = !args.noStrictFragments;
       const keepClientFields = args.keepClientFields || false;
       const failOnDeprecated = args.deprecated;
-      const {headers, token} = parseGlobalArgs(args);
+      const { headers, token } = parseGlobalArgs(args);
 
       const config = await api.useConfig({
         rootDir: args.config || process.cwd(),
@@ -100,8 +100,8 @@ export default defineCommand<
       });
 
       if (args.documents && args.schema) {
-        const {loadDocuments, loadSchema} = api.useLoaders({loaders});
-        const schema = await loadSchema(args.schema!, {headers, token});
+        const { loadDocuments, loadSchema } = api.useLoaders({ loaders });
+        const schema = await loadSchema(args.schema!, { headers, token });
         const documents = await loadDocuments(args.documents!, {
           headers,
           token,

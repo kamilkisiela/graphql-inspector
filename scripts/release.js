@@ -1,7 +1,7 @@
-const {readFileSync, writeFileSync} = require('fs');
-const {resolve, join, relative} = require('path');
-const {execSync} = require('child_process');
-const {exec} = require('shelljs');
+const { readFileSync, writeFileSync } = require('fs');
+const { resolve, join, relative } = require('path');
+const { execSync } = require('child_process');
+const { exec } = require('shelljs');
 const semver = require('semver');
 const immer = require('immer').default;
 
@@ -24,7 +24,7 @@ const packages = getWorkspaces()
   .map((path) => join(rootDir, path))
   .filter((name) => !name.includes('graphql-cli'));
 
-const current = JSON.parse(readFileSync(lerna, {encoding: 'utf-8'})).version;
+const current = JSON.parse(readFileSync(lerna, { encoding: 'utf-8' })).version;
 const branch = `release/v${version}`;
 
 if (!semver.valid(version)) {
@@ -94,7 +94,7 @@ if (isLatest) {
 }
 
 function updateJSON(filepath, updateFn) {
-  const content = readFileSync(filepath, {encoding: 'utf-8'});
+  const content = readFileSync(filepath, { encoding: 'utf-8' });
   const data = JSON.parse(content);
 
   const modified = immer(data, updateFn);
@@ -105,7 +105,7 @@ function updateJSON(filepath, updateFn) {
 }
 
 function updateString(filepath, updateFn) {
-  const content = readFileSync(filepath, {encoding: 'utf-8'});
+  const content = readFileSync(filepath, { encoding: 'utf-8' });
 
   writeFileSync(filepath, updateFn(content), {
     encoding: 'utf-8',
@@ -122,5 +122,5 @@ function getWorkspaces() {
 
   const info = JSON.parse(rawInfo.substr(startsAt, endsAt - startsAt + 1));
 
-  return Object.values(info).map(({location}) => location);
+  return Object.values(info).map(({ location }) => location);
 }

@@ -4,9 +4,9 @@ import {
   print,
   parse,
 } from 'graphql';
-import {LoadersRegistry} from '@graphql-inspector/loaders';
+import { LoadersRegistry } from '@graphql-inspector/loaders';
 
-import {validate} from '../../src/validate';
+import { validate } from '../../src/validate';
 
 describe('aws', () => {
   test('should accept AWS Appsync types', async () => {

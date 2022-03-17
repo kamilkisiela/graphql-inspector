@@ -1,4 +1,4 @@
-import {Change} from '../changes/change';
+import { Change } from '../changes/change';
 
 export type CompletionArgs = {
   breakingChanges: Change[];

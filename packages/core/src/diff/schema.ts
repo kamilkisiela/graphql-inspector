@@ -10,9 +10,9 @@ import {
   isScalarType,
 } from 'graphql';
 
-import {compareLists, isNotEqual, isVoid} from '../utils/compare';
-import {isPrimitive} from '../utils/graphql';
-import {Change} from './changes/change';
+import { compareLists, isNotEqual, isVoid } from '../utils/compare';
+import { isPrimitive } from '../utils/graphql';
+import { Change } from './changes/change';
 import {
   schemaQueryTypeChanged,
   schemaMutationTypeChanged,
@@ -26,13 +26,13 @@ import {
   typeDescriptionAdded,
   typeDescriptionRemoved,
 } from './changes/type';
-import {directiveRemoved, directiveAdded} from './changes/directive';
-import {changesInEnum} from './enum';
-import {changesInUnion} from './union';
-import {changesInInputObject} from './input';
-import {changesInObject} from './object';
-import {changesInInterface} from './interface';
-import {changesInDirective} from './directive';
+import { directiveRemoved, directiveAdded } from './changes/directive';
+import { changesInEnum } from './enum';
+import { changesInUnion } from './union';
+import { changesInInputObject } from './input';
+import { changesInObject } from './object';
+import { changesInInterface } from './interface';
+import { changesInDirective } from './directive';
 
 export type AddChange = (change: Change) => void;
 

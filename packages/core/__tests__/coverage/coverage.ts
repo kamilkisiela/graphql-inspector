@@ -6,7 +6,7 @@ import {
   getIntrospectionQuery,
 } from 'graphql';
 
-import {coverage} from '../../src/index';
+import { coverage } from '../../src/index';
 
 describe('coverage', () => {
   const schema = buildSchema(/* GraphQL */ `
@@ -37,7 +37,7 @@ describe('coverage', () => {
       mutation: Mutation
     }
   `);
-  
+
   test('basic', () => {
     const doc = parse(/* GraphQL */ `
       query getPost {
@@ -47,7 +47,7 @@ describe('coverage', () => {
           title
         }
       }
-      
+
       query getObjectById {
         objectById(id: 2) {
           id
@@ -86,8 +86,12 @@ describe('coverage', () => {
     // Mutation
     expect(results.types.Mutation.hits).toEqual(1);
     expect(results.types.Mutation.children.submitPost.hits).toEqual(1);
-    expect(results.types.Mutation.children.submitPost.children.title.hits).toEqual(1);
-    expect(results.types.Mutation.children.submitPost.children.author.hits).toEqual(1);
+    expect(
+      results.types.Mutation.children.submitPost.children.title.hits,
+    ).toEqual(1);
+    expect(
+      results.types.Mutation.children.submitPost.children.author.hits,
+    ).toEqual(1);
   });
 
   test('introspection', () => {

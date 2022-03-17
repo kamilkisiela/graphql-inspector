@@ -1,13 +1,13 @@
 const BREAKING = {
   YES: false,
-  NOT: true
-}
+  NOT: true,
+};
 
 /**
  * @type import('@graphql-inspector/core').UsageHandler
  */
 const checkUsage = (changes) => {
-  return changes.map(change => {
+  return changes.map((change) => {
     if (change.type === 'Hotel') {
       return BREAKING.NOT;
     }

@@ -1,8 +1,12 @@
-import {buildSchema, introspectionFromSchema, buildClientSchema} from 'graphql';
+import {
+  buildSchema,
+  introspectionFromSchema,
+  buildClientSchema,
+} from 'graphql';
 
-import {diff} from '../../src/index';
-import {CriticalityLevel, Change} from '../../src/diff/changes/change';
-import {findBestMatch} from '../../src/utils/string';
+import { diff } from '../../src/index';
+import { CriticalityLevel, Change } from '../../src/diff/changes/change';
+import { findBestMatch } from '../../src/utils/string';
 
 test('same schema', async () => {
   const schemaA = buildSchema(/* GraphQL */ `
@@ -463,7 +467,7 @@ test('input as default value (same)', async () => {
     }
 
     type Comment {
-      replies(query: CommentQuery = {sortOrder: ASC, limit: 3}): String!
+      replies(query: CommentQuery = { sortOrder: ASC, limit: 3 }): String!
     }
   `);
 
@@ -478,7 +482,7 @@ test('input as default value (same)', async () => {
     }
 
     type Comment {
-      replies(query: CommentQuery = {sortOrder: ASC, limit: 3}): String!
+      replies(query: CommentQuery = { sortOrder: ASC, limit: 3 }): String!
     }
   `);
 

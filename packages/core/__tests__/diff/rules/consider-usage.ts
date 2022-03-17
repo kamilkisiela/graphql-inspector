@@ -1,8 +1,8 @@
-import {buildSchema} from 'graphql';
+import { buildSchema } from 'graphql';
 
-import {diff, CriticalityLevel} from '../../../src/index';
-import {findFirstChangeByPath} from '../../../utils/testing';
-import {considerUsage} from '../../../src/diff/rules/consider-usage';
+import { diff, CriticalityLevel } from '../../../src/index';
+import { findFirstChangeByPath } from '../../../utils/testing';
+import { considerUsage } from '../../../src/diff/rules/consider-usage';
 
 describe('considerUsage rule', () => {
   test('removed field', async () => {

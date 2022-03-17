@@ -1,7 +1,7 @@
-import {printType, GraphQLNamedType, GraphQLSchema} from 'graphql';
+import { printType, GraphQLNamedType, GraphQLSchema } from 'graphql';
 
-import {isPrimitive, isForIntrospection} from '../utils/graphql';
-import {findBestMatch, BestMatch, Target, Rating} from '../utils/string';
+import { isPrimitive, isForIntrospection } from '../utils/graphql';
+import { findBestMatch, BestMatch, Target, Rating } from '../utils/string';
 
 export interface SimilarMap {
   [name: string]: BestMatch;
@@ -28,7 +28,7 @@ export function similar(
     throw new Error(`Type '${typeName}' doesn't exist`);
   }
 
-  (typeName ? [{typeId: typeName, value: ''}] : targets).forEach((source) => {
+  (typeName ? [{ typeId: typeName, value: '' }] : targets).forEach((source) => {
     const sourceType = schema.getType(source.typeId) as GraphQLNamedType;
     const matchWith = targets.filter(
       (target) =>

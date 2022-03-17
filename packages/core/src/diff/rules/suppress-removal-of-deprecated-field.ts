@@ -1,8 +1,8 @@
-import {isObjectType, isInterfaceType, isEnumType} from 'graphql';
+import { isObjectType, isInterfaceType, isEnumType } from 'graphql';
 
-import {CriticalityLevel, ChangeType} from './../changes/change';
-import {Rule} from './types';
-import {parsePath} from '../../utils/path';
+import { CriticalityLevel, ChangeType } from './../changes/change';
+import { Rule } from './types';
+import { parsePath } from '../../utils/path';
 import { isDeprecated } from '../../utils/isDeprecated';
 
 export const suppressRemovalOfDeprecatedField: Rule = ({

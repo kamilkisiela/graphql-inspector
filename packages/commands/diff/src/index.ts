@@ -15,11 +15,11 @@ import {
   DiffRule,
   Rule,
 } from '@graphql-inspector/core';
-import {bolderize, Logger, symbols} from '@graphql-inspector/logger';
-import {existsSync} from 'fs';
-import {GraphQLSchema} from 'graphql';
+import { bolderize, Logger, symbols } from '@graphql-inspector/logger';
+import { existsSync } from 'fs';
+import { GraphQLSchema } from 'graphql';
 
-export {CommandFactory};
+export { CommandFactory };
 
 export async function handler(input: {
   oldSchema: GraphQLSchema;
@@ -82,7 +82,7 @@ export async function handler(input: {
     reportNonBreakingChanges(nonBreakingChanges);
   }
 
-  onComplete({breakingChanges, dangerousChanges, nonBreakingChanges});
+  onComplete({ breakingChanges, dangerousChanges, nonBreakingChanges });
 }
 
 export default createCommand<
@@ -95,7 +95,7 @@ export default createCommand<
     onUsage?: string;
   } & GlobalArgs
 >((api) => {
-  const {loaders} = api;
+  const { loaders } = api;
 
   return {
     command: 'diff <oldSchema> <newSchema>',
@@ -134,7 +134,7 @@ export default createCommand<
         const apolloFederation = args.federation || false;
         const aws = args.aws || false;
         const method = args.method?.toUpperCase() || 'POST';
-        const {headers, leftHeaders, rightHeaders, token} =
+        const { headers, leftHeaders, rightHeaders, token } =
           parseGlobalArgs(args);
 
         const oldSchemaHeaders = {
@@ -263,7 +263,7 @@ function resolveUsageHandler(name: string): UsageHandler | never {
   return mod?.default || mod;
 }
 
-function failOnBreakingChanges({breakingChanges}: CompletionArgs) {
+function failOnBreakingChanges({ breakingChanges }: CompletionArgs) {
   const breakingCount = breakingChanges.length;
 
   if (breakingCount) {

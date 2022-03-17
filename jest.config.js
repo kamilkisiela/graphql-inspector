@@ -1,5 +1,5 @@
-const {resolve} = require('path');
-const {pathsToModuleNameMapper} = require('ts-jest/utils');
+const { resolve } = require('path');
+const { pathsToModuleNameMapper } = require('ts-jest/utils');
 
 const ROOT_DIR = __dirname;
 const TSCONFIG = resolve(ROOT_DIR, 'tsconfig.json');
@@ -7,7 +7,7 @@ const tsconfig = require(TSCONFIG);
 const CI = !!process.env.CI;
 
 module.exports = {
-  transform: {'^.+\\.tsx?$': 'ts-jest'},
+  transform: { '^.+\\.tsx?$': 'ts-jest' },
   testEnvironment: 'node',
   rootDir: ROOT_DIR,
   globals: {

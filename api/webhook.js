@@ -1,6 +1,6 @@
 /// @ts-check
 const release = process.env.COMMIT_SHA;
-const {createProbot} = require('probot');
+const { createProbot } = require('probot');
 const inspector = require('@graphql-inspector/github');
 
 module.exports = serverless(inspector.app);
@@ -21,7 +21,7 @@ function serverless(appFn) {
     function lowerCaseKeys(obj) {
       return Object.keys(obj).reduce(
         (accumulator, key) =>
-          Object.assign(accumulator, {[key.toLocaleLowerCase()]: obj[key]}),
+          Object.assign(accumulator, { [key.toLocaleLowerCase()]: obj[key] }),
         {},
       );
     }
