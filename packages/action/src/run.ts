@@ -5,14 +5,14 @@ import {
   printSchemaFromEndpoint,
   produceSchema,
 } from '@graphql-inspector/github';
-import {Source, GraphQLSchema, buildClientSchema, printSchema} from 'graphql';
-import {readFileSync} from 'fs';
-import {resolve, extname} from 'path';
-import {execSync} from 'child_process';
+import { Source, GraphQLSchema, buildClientSchema, printSchema, buildSchema } from 'graphql';
+import { readFileSync } from 'fs';
+import { resolve, extname } from 'path';
+import { execSync } from 'child_process';
 
 import * as core from '@actions/core';
 import * as github from '@actions/github';
-import {batch} from './utils';
+import { batch } from './utils';
 
 type OctokitInstance = ReturnType<typeof github.getOctokit>;
 const CHECK_NAME = 'GraphQL Inspector';
@@ -48,7 +48,7 @@ export async function run() {
   core.info(`Ref: ${ref}`);
   core.info(`Commit SHA: ${commitSha}`);
 
-  const token = core.getInput('github-token', {required: true})
+  const token = core.getInput('github-token', { required: true })
   const checkName = core.getInput('name') || CHECK_NAME;
 
   let workspace = process.env.GITHUB_WORKSPACE;
@@ -68,7 +68,7 @@ export async function run() {
   const octokit = github.getOctokit(token);
 
   // repo
-  const {owner, repo} = github.context.repo;
+  const { owner, repo } = github.context.repo;
 
   core.info(`Creating a check named "${checkName}"`);
 
@@ -84,7 +84,7 @@ export async function run() {
 
   core.info(`Check ID: ${checkId}`);
 
-  const schemaPointer = core.getInput('schema', {required: true});
+  const schemaPointer = core.getInput('schema', { required: true });
 
   const loadFile = fileLoader({
     octokit,
@@ -122,9 +122,9 @@ export async function run() {
     endpoint
       ? printSchemaFromEndpoint(endpoint)
       : loadFile({
-          ref: schemaRef,
-          path: schemaPath,
-        }),
+        ref: schemaRef,
+        path: schemaPath,
+      }),
     isNewSchemaUrl
       ? printSchemaFromEndpoint(schemaPath)
       : loadFile({
@@ -141,7 +141,7 @@ export async function run() {
   let sources: { new: Source; old: Source; }; 
 
   if (extname(schemaPath.toLowerCase()) === ".json") {
-    oldSchema = buildClientSchema(JSON.parse(oldFile));
+    oldSchema = endpoint ? buildSchema(oldFile) : buildClientSchema(JSON.parse(oldFile));
     newSchema = buildClientSchema(JSON.parse(newFile));
 
     sources = {
@@ -181,8 +181,8 @@ export async function run() {
   core.info(`Changes: ${changes.length || 0}`);
 
   const hasApprovedBreakingChangeLabel = github.context.payload.pull_request
-      ? github.context.payload.pull_request.labels?.some((label: any) => label.name === approveLabel)
-      : false;
+    ? github.context.payload.pull_request.labels?.some((label: any) => label.name === approveLabel)
+    : false;
 
   // Force Success when failOnBreaking is disabled
   if ((failOnBreaking === false || hasApprovedBreakingChangeLabel) && conclusion === CheckConclusion.Failure) {
@@ -207,9 +207,9 @@ export async function run() {
   try {
     return await updateCheckRun(octokit, checkId, {
       conclusion,
-      output: {title, summary, annotations},
+      output: { title, summary, annotations },
     });
-  } catch (e:any) {
+  } catch (e: any) {
     // Error
     core.error(e.message || e);
 
@@ -217,7 +217,7 @@ export async function run() {
 
     await updateCheckRun(octokit, checkId, {
       conclusion: CheckConclusion.Failure,
-      output: {title, summary: title, annotations: []},
+      output: { title, summary: title, annotations: [] },
     });
 
     return core.setFailed(title);
@@ -284,11 +284,11 @@ type UpdateCheckRunOptions = Required<Pick<NonNullable<Parameters<OctokitInstanc
 async function updateCheckRun(
   octokit: OctokitInstance,
   checkId: number,
-  {conclusion, output}: UpdateCheckRunOptions,
+  { conclusion, output }: UpdateCheckRunOptions,
 ) {
   core.info(`Updating check: ${checkId}`);
   
-  const {title, summary, annotations = []} = output;
+  const { title, summary, annotations = [] } = output;
   const batches = batch(annotations, 50);
   
   core.info(`annotations to be sent: ${annotations.length}`);
