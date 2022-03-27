@@ -55,7 +55,7 @@
     "graphql": "16.3.0",
     "next-remote-watch": "1.0.0",
     "open-cli": "7.0.1",
-    "typescript": "4.5.5",
+    "typescript": "4.6.3",
     "wait-on": "6.0.1"
   }
 }
