@@ -69,7 +69,7 @@
     "immer": "9.0.6",
     "lerna": "4.0.0",
     "probot": "11.3.0",
-    "shelljs": "0.8.4"
+    "shelljs": "0.8.5"
   },
   "workspaces": [
     "packages/*",
