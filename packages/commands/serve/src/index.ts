@@ -4,12 +4,12 @@ import {
   parseGlobalArgs,
   CommandFactory,
 } from '@graphql-inspector/commands';
-import {Logger} from '@graphql-inspector/logger';
-import {createServer} from '@graphql-yoga/node'
+import { Logger } from '@graphql-inspector/logger';
+import { createServer } from '@graphql-yoga/node';
 import open from 'open';
-import {fake} from './fake';
+import { fake } from './fake';
 
-export {CommandFactory};
+export { CommandFactory };
 
 export default createCommand<
   {},
@@ -18,7 +18,7 @@ export default createCommand<
     port: number;
   } & GlobalArgs
 >((api) => {
-  const {loaders} = api;
+  const { loaders } = api;
 
   return {
     command: 'serve <schema>',
@@ -40,7 +40,7 @@ export default createCommand<
         });
     },
     async handler(args) {
-      const {headers, token} = parseGlobalArgs(args);
+      const { headers, token } = parseGlobalArgs(args);
       const apolloFederation = args.federation || false;
       const aws = args.aws || false;
       const method = args.method?.toUpperCase() || 'POST';
@@ -66,8 +66,7 @@ export default createCommand<
           port,
           cors: true,
           logging: false,
-          
-        })
+        });
 
         await server.start();
         const url = `http://localhost:${port}`;

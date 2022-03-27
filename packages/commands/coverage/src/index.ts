@@ -5,18 +5,18 @@ import {
   parseGlobalArgs,
   CommandFactory,
 } from '@graphql-inspector/commands';
-import {Logger, chalk} from '@graphql-inspector/logger';
+import { Logger, chalk } from '@graphql-inspector/logger';
 import {
   coverage as calculateCoverage,
   SchemaCoverage,
   getTypePrefix,
 } from '@graphql-inspector/core';
-import {Source as DocumentSource} from '@graphql-tools/utils';
-import {Source, print, GraphQLSchema} from 'graphql';
-import {extname} from 'path';
-import {writeFileSync} from 'fs';
+import { Source as DocumentSource } from '@graphql-tools/utils';
+import { Source, print, GraphQLSchema } from 'graphql';
+import { extname } from 'path';
+import { writeFileSync } from 'fs';
 
-export {CommandFactory};
+export { CommandFactory };
 
 export function handler({
   schema,
@@ -74,7 +74,7 @@ export default createCommand<
     silent?: boolean;
   } & GlobalArgs
 >((api) => {
-  const {loaders} = api;
+  const { loaders } = api;
 
   return {
     command: 'coverage <documents> <schema>',
@@ -107,7 +107,7 @@ export default createCommand<
     async handler(args) {
       const writePath = args.write;
       const silent = args.silent;
-      const {headers, token} = parseGlobalArgs(args);
+      const { headers, token } = parseGlobalArgs(args);
       const apolloFederation = args.federation || false;
       const aws = args.aws || false;
       const method = args.method?.toUpperCase() || 'POST';
@@ -124,7 +124,7 @@ export default createCommand<
       );
       const documents = await loaders.loadDocuments(args.documents);
 
-      return handler({schema, documents, silent, writePath});
+      return handler({ schema, documents, silent, writePath });
     },
   };
 });

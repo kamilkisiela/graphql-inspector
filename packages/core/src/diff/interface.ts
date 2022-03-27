@@ -1,9 +1,9 @@
-import {GraphQLInterfaceType} from 'graphql';
+import { GraphQLInterfaceType } from 'graphql';
 
-import {fieldRemoved, fieldAdded} from './changes/field';
-import {changesInField} from './field';
-import {compareLists} from '../utils/compare';
-import {AddChange} from './schema';
+import { fieldRemoved, fieldAdded } from './changes/field';
+import { changesInField } from './field';
+import { compareLists } from '../utils/compare';
+import { AddChange } from './schema';
 
 export function changesInInterface(
   oldInterface: GraphQLInterfaceType,
@@ -21,7 +21,12 @@ export function changesInInterface(
         addChange(fieldRemoved(oldInterface, field));
       },
       onMutual(field) {
-        changesInField(oldInterface, field.oldVersion, field.newVersion, addChange);
+        changesInField(
+          oldInterface,
+          field.oldVersion,
+          field.newVersion,
+          addChange,
+        );
       },
     },
   );

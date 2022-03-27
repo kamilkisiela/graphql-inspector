@@ -1,12 +1,13 @@
 {
-  "bracketSpacing": false,
   "singleQuote": true,
   "trailingComma": "all",
   "overrides": [
     {
-      "files": ["website/**"],
+      "files": "*.{md,mdx}",
       "options": {
-        "bracketSpacing": true
+        "semi": false,
+        "trailingComma": "none",
+        "arrowParens": "avoid"
       }
     }
   ]

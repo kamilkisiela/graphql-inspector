@@ -7,8 +7,8 @@ import {
   isInterfaceType,
 } from 'graphql';
 
-import {Change, CriticalityLevel, ChangeType} from './change';
-import {safeChangeForField} from '../../utils/graphql';
+import { Change, CriticalityLevel, ChangeType } from './change';
+import { safeChangeForField } from '../../utils/graphql';
 import { isDeprecated } from '../../utils/isDeprecated';
 
 export function fieldRemoved(

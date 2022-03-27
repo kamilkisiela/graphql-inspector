@@ -1,5 +1,5 @@
-import {GraphQLObjectType, buildSchema} from 'graphql';
-import {mockGraphQLServer} from '@graphql-inspector/testing';
+import { GraphQLObjectType, buildSchema } from 'graphql';
+import { mockGraphQLServer } from '@graphql-inspector/testing';
 import loader from '../src';
 
 test('should contain descriptions', async () => {
@@ -30,7 +30,9 @@ test('should contain descriptions', async () => {
 
   const introspectedSchema = await loader.load('http://localhost/graphql', {});
 
-  const user = introspectedSchema[0].schema.getType('User') as GraphQLObjectType;
+  const user = introspectedSchema[0].schema.getType(
+    'User',
+  ) as GraphQLObjectType;
 
   // User
   expect(user.description).toBe('User type it is');
@@ -75,7 +77,9 @@ test('use GET method', async () => {
     method: 'GET',
   });
 
-  const user = introspectedSchema[0].schema.getType('User') as GraphQLObjectType;
+  const user = introspectedSchema[0].schema.getType(
+    'User',
+  ) as GraphQLObjectType;
 
   // User
   expect(user.description).toBe('User type it is');

@@ -1,11 +1,11 @@
-import {mockGraphQLServer} from '@graphql-inspector/testing';
-import {LoadersRegistry} from '@graphql-inspector/loaders';
+import { mockGraphQLServer } from '@graphql-inspector/testing';
+import { LoadersRegistry } from '@graphql-inspector/loaders';
 import loader from '@graphql-inspector/url-loader';
-import {mockCommand} from '@graphql-inspector/commands';
-import {mockLogger, unmockLogger} from '@graphql-inspector/logger';
+import { mockCommand } from '@graphql-inspector/commands';
+import { mockLogger, unmockLogger } from '@graphql-inspector/logger';
 import yargs from 'yargs';
-import {buildSchema} from 'graphql';
-import {unlinkSync, existsSync, readFileSync} from 'fs';
+import { buildSchema } from 'graphql';
+import { unlinkSync, existsSync, readFileSync } from 'fs';
 import createCommand from '../src';
 
 function sleepFor(ms: number) {

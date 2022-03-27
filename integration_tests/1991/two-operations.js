@@ -1,4 +1,4 @@
-import {gql} from 'graphql-tag';
+import { gql } from 'graphql-tag';
 
 gql(/* GraphQL */ `
   query isAuthenticated {
@@ -10,4 +10,4 @@ export const UserFrgmnt = gql(/* GraphQL */ `
   fragment UserFrgmnt on User {
     id
   }
-  `);
+`);

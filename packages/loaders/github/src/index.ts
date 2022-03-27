@@ -1,3 +1,3 @@
-import {GithubLoader} from '@graphql-tools/github-loader';
+import { GithubLoader } from '@graphql-tools/github-loader';
 
 export default new GithubLoader();

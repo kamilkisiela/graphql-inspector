@@ -1,7 +1,7 @@
 import stripAnsi from 'strip-ansi';
 import jsesc from 'jsesc';
 
-export {mockGraphQLServer} from './mock-graphql-server';
+export { mockGraphQLServer } from './mock-graphql-server';
 
 export function nonTTY(msg: string) {
   return stripAnsi(jsesc(stripAnsi(msg)));

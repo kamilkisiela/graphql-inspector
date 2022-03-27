@@ -32,29 +32,35 @@ export function isVoid<T>(a: T): boolean {
   return typeof a === 'undefined' || a === null;
 }
 
-export function diffArrays<T>(a: T[] | readonly T[], b: T[] | readonly T[]): T[] {
+export function diffArrays<T>(
+  a: T[] | readonly T[],
+  b: T[] | readonly T[],
+): T[] {
   return a.filter((c) => !b.some((d) => d === c));
 }
 
-export function unionArrays<T>(a: T[] | readonly T[], b: T[] | readonly T[]): T[] {
+export function unionArrays<T>(
+  a: T[] | readonly T[],
+  b: T[] | readonly T[],
+): T[] {
   return a.filter((c) => b.some((d) => d === c));
 }
 
-export function compareLists<T extends {name: string}>(
+export function compareLists<T extends { name: string }>(
   oldList: readonly T[],
   newList: readonly T[],
   callbacks?: {
     onAdded?(t: T): void;
     onRemoved?(t: T): void;
-    onMutual?(t: {newVersion: T; oldVersion: T}): void;
+    onMutual?(t: { newVersion: T; oldVersion: T }): void;
   },
 ) {
-  const oldMap = keyMap(oldList, ({name}) => name);
-  const newMap = keyMap(newList, ({name}) => name);
+  const oldMap = keyMap(oldList, ({ name }) => name);
+  const newMap = keyMap(newList, ({ name }) => name);
 
   const added: T[] = [];
   const removed: T[] = [];
-  const mutual: Array<{newVersion: T; oldVersion: T}> = [];
+  const mutual: Array<{ newVersion: T; oldVersion: T }> = [];
 
   for (const oldItem of oldList) {
     const newItem = newMap[oldItem.name];

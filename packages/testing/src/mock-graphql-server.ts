@@ -1,5 +1,5 @@
 import nock from 'nock';
-import {GraphQLSchema, execute, parse} from 'graphql';
+import { GraphQLSchema, execute, parse } from 'graphql';
 
 export function mockGraphQLServer({
   schema,

@@ -49,7 +49,7 @@ export function findBestMatch(
     rating: compareTwoStrings(mainString, target.value),
   }));
   const bestMatch = Array.from(ratings).sort((a, b) => b.rating - a.rating)[0];
-  return {ratings, bestMatch};
+  return { ratings, bestMatch };
 }
 
 function flattenDeep(arr: any): string[] {

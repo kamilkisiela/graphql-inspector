@@ -1,5 +1,5 @@
-import {ChangeType} from '../changes/change';
-import {Rule} from './types';
+import { ChangeType } from '../changes/change';
+import { Rule } from './types';
 
 const descriptionChangeTypes: ChangeType[] = [
   ChangeType.FieldArgumentDescriptionChanged,
@@ -15,7 +15,7 @@ const descriptionChangeTypes: ChangeType[] = [
   ChangeType.TypeDescriptionChanged,
 ];
 
-export const ignoreDescriptionChanges: Rule = ({changes}) => {
+export const ignoreDescriptionChanges: Rule = ({ changes }) => {
   return changes.filter(
     (change) => descriptionChangeTypes.indexOf(change.type) === -1,
   );

@@ -36,17 +36,17 @@ import {
   Change,
   InvalidDocument,
   SimilarMap,
-  SchemaCoverage,
-} from '@graphql-inspector/core';
+  SchemaCoverage
+} from '@graphql-inspector/core'
 
 // diff
-const changes: Change[] = diff(schemaA, schemaB);
+const changes: Change[] = diff(schemaA, schemaB)
 // validate
-const invalid: InvalidDocument[] = validate(documentsGlob, schema);
+const invalid: InvalidDocument[] = validate(documentsGlob, schema)
 // similar
-const similar: SimilarMap = similar(schema, typename, threshold);
+const similar: SimilarMap = similar(schema, typename, threshold)
 // coverage
-const schemaCoverage: SchemaCoverage = coverage(schema, documents);
+const schemaCoverage: SchemaCoverage = coverage(schema, documents)
 // ...
 ```
 

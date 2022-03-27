@@ -1,7 +1,7 @@
-import {GraphQLExtensionDeclaration} from 'graphql-config';
-import {loaders} from '@graphql-cli/loaders';
+import { GraphQLExtensionDeclaration } from 'graphql-config';
+import { loaders } from '@graphql-cli/loaders';
 
-export {loaders};
+export { loaders };
 
 export interface GlobalArgs {
   require?: Array<string | number>;
@@ -25,7 +25,7 @@ export function parseGlobalArgs(args: GlobalArgs) {
     args.require.forEach((mod) => require(mod as string));
   }
 
-  return {headers, token: args.token};
+  return { headers, token: args.token };
 }
 
 // Supports old loader format

@@ -1,5 +1,5 @@
-import {CriticalityLevel, Change} from '@graphql-inspector/core';
-import {Endpoint} from './config';
+import { CriticalityLevel, Change } from '@graphql-inspector/core';
+import { Endpoint } from './config';
 
 export function bolderize(msg: string): string {
   return quotesTransformer(msg, '**');
@@ -30,7 +30,11 @@ export function filterChangesByLevel(level: CriticalityLevel) {
   return (change: Change) => change.criticality.level === level;
 }
 
-export function createSummary(changes: Change[], summaryLimit: number, isLegacyConfig: boolean) {
+export function createSummary(
+  changes: Change[],
+  summaryLimit: number,
+  isLegacyConfig: boolean,
+) {
   const breakingChanges = changes.filter(
     filterChangesByLevel(CriticalityLevel.Breaking),
   );
@@ -50,7 +54,13 @@ export function createSummary(changes: Change[], summaryLimit: number, isLegacyC
   ];
 
   if (isLegacyConfig) {
-    summary.push(['', '> Legacy config detected, [please migrate to a new syntax](https://graphql-inspector.com/docs/products/github#full-configuration)', ''].join('\n'))
+    summary.push(
+      [
+        '',
+        '> Legacy config detected, [please migrate to a new syntax](https://graphql-inspector.com/docs/products/github#full-configuration)',
+        '',
+      ].join('\n'),
+    );
   }
 
   if (changes.length > summaryLimit) {
@@ -108,9 +118,7 @@ export function isNil(val: any): val is undefined | null {
   return !val && typeof val !== 'boolean';
 }
 
-export function parseEndpoint(
-  endpoint: Endpoint,
-): {
+export function parseEndpoint(endpoint: Endpoint): {
   url: string;
   method: 'GET' | 'get' | 'post' | 'POST';
   headers?: {

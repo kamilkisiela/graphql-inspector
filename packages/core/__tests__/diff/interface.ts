@@ -1,7 +1,7 @@
-import {buildSchema} from 'graphql';
+import { buildSchema } from 'graphql';
 
-import {diff, CriticalityLevel} from '../../src/index';
-import {findFirstChangeByPath, findChangesByPath} from '../../utils/testing';
+import { diff, CriticalityLevel } from '../../src/index';
+import { findFirstChangeByPath, findChangesByPath } from '../../utils/testing';
 
 describe('interface', () => {
   describe('fields', () => {

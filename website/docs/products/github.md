@@ -71,7 +71,7 @@ In some cases you want to get a summary of changes but no annotations on a schem
 
 ### Detection of changes
 
-By default, GraphQL Inspector fails the Pull Request when it detects some breaking changes. 
+By default, GraphQL Inspector fails the Pull Request when it detects some breaking changes.
 
 To force a successful check just set `failOnBreaking` to `false` or apply the [`approved-breaking-change` label](#approved-breaking-change-label).
 

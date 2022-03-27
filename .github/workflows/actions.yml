@@ -1,10 +1,10 @@
 name: Integration
-on: 	
-  push:	
-    branches-ignore:	
+on:
+  push:
+    branches-ignore:
       - master
-  pull_request:	
-    branches-ignore:	
+  pull_request:
+    branches-ignore:
       - master
 jobs:
   Action:

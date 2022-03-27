@@ -1,9 +1,9 @@
-import {InspectorConfig} from '@graphql-inspector/config';
-import {Loaders} from '@graphql-inspector/loaders';
-import {isAbsolute, resolve} from 'path';
-import yargs, {CommandModule as Command} from 'yargs';
+import { InspectorConfig } from '@graphql-inspector/config';
+import { Loaders } from '@graphql-inspector/loaders';
+import { isAbsolute, resolve } from 'path';
+import yargs, { CommandModule as Command } from 'yargs';
 
-export {Command};
+export { Command };
 
 export interface UseCommandsAPI {
   config: InspectorConfig;
@@ -79,7 +79,7 @@ export function parseGlobalArgs(args: GlobalArgs) {
     args.require.forEach((mod) => require(mod));
   }
 
-  return {headers, leftHeaders, rightHeaders, token: args.token};
+  return { headers, leftHeaders, rightHeaders, token: args.token };
 }
 
 export async function mockCommand(mod: Command, cmd: string) {

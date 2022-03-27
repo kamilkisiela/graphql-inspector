@@ -1,4 +1,4 @@
-import {safeString} from '../../src/utils/string';
+import { safeString } from '../../src/utils/string';
 
 test('scalars', () => {
   expect(safeString(0)).toBe('0');

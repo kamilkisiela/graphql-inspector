@@ -1,4 +1,4 @@
-import {createConfig} from '../src/helpers/config';
+import { createConfig } from '../src/helpers/config';
 
 const dummySetConfig = () => {};
 describe('multiple environments', () => {

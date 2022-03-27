@@ -70,5 +70,11 @@
     }
   },
   "include": ["packages"],
-  "exclude": ["**/dist", "**/node_modules/**", "**/__tests__", "**/tests", "packages/graphql-cli"]
+  "exclude": [
+    "**/dist",
+    "**/node_modules/**",
+    "**/__tests__",
+    "**/tests",
+    "packages/graphql-cli"
+  ]
 }
