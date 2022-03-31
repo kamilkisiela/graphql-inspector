@@ -2,6 +2,8 @@
 
 ### vNEXT
 
+### v3.1.2
+
 - **core**: Make sure array of null prototype objects is printable [#2030](https://github.com/kamilkisiela/graphql-inspector/pull/2030)
 - **cli**: Update GraphQL Yoga to v2
 
