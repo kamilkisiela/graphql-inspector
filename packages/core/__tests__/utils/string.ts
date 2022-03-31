@@ -27,5 +27,5 @@ test('object', () => {
 test('array', () => {
   expect(safeString(['42', '42'])).toBe("[ '42', '42' ]");
   expect(safeString([{}])).toBe('[ {} ]');
-  expect(safeString([Object.create(null, { foo: { value: 42, enumerable: true } })])).toBe('[ [Object: null prototype] { foo: 42 } ]');
+  expect(safeString([Object.create(null, { foo: { value: 42, enumerable: true } })])).toBe('[ { foo: 42 } ]');
 });
