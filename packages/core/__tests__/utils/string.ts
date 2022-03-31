@@ -21,7 +21,7 @@ test('undefined', () => {
 
 test('object', () => {
   expect(safeString({})).toBe('{}');
-  expect(safeString(Object.create(null, { foo: { value: 42, enumerable: true } }))).toBe('[Object: null prototype] { foo: 42 }');
+  expect(safeString(Object.create(null, { foo: { value: 42, enumerable: true } }))).toBe('{ foo: 42 }');
 });
 
 test('array', () => {
