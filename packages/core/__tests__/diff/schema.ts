@@ -450,7 +450,7 @@ test('array as default value in argument (different)', async () => {
   expect(changes[0]).toBeDefined();
   expect(changes[0].criticality.level).toEqual(CriticalityLevel.Dangerous);
   expect(changes[0].message).toEqual(
-    `Default value for argument 'b' on field 'MyInterface.a' changed from 'Hello' to 'Goodbye'`,
+    `Default value for argument 'b' on field 'MyInterface.a' changed from '[ 'Hello' ]' to '[ 'Goodbye' ]'`,
   );
   expect(changes[0].path).toEqual(`MyInterface.a.b`);
 });
