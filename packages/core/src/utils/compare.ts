@@ -13,12 +13,30 @@ export function isEqual<T>(a: T, b: T): boolean {
     if (a.length !== b.length) return false;
 
     for (var index = 0; index < a.length; index++) {
-      if (a[index] !== b[index]) {
+      if (!isEqual(a[index], b[index])) {
         return false;
       }
     }
 
     return true;
+  }
+
+  if (typeof a === 'object' && typeof b === 'object') {
+    const aRecord = a as Record<string, unknown>;
+    const bRecord = b as Record<string, unknown>;
+
+    const aKeys: string[] = Object.keys(aRecord);
+    const bKeys: string[] = Object.keys(bRecord);
+
+    if (aKeys.length !== bKeys.length) return false;
+
+    for (const key of aKeys) {
+      if (!isEqual(aRecord[key], bRecord[key])) {
+        return false;
+      }
+    }
+    
+    return true
   }
 
   return a === b || (!a && !b);
