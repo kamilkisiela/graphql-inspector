@@ -1764,13 +1764,24 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@graphql-inspector/core@3.0.2":
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/@graphql-inspector/core/-/core-3.0.2.tgz#715149382c6381ea91bd4a9ba0ab36899e2f4608"
-  integrity sha512-whAUHUD0ivsMpAkX7A7v0IlX069j6fpvMiLmsNzpX1MWMBu44TujlUbeuANegmTysyXxgHvWXtiHhW2zpZ/3QQ==
+"@graphql-inspector/core@3.1.2", "@graphql-inspector/core@latest":
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/@graphql-inspector/core/-/core-3.1.2.tgz#9ef2a72601a77cb0dcc09c5fbd870413bc687ad8"
+  integrity sha512-f+w1LG6JkGuORBVZM9ZM4j/nT2TgPZwk40m7XutWozNKZpguVG8ChQsldAzb9xPpRZ6Qj/qRfMYMyiA4AAqQbg==
   dependencies:
     dependency-graph "0.11.0"
     object-inspect "1.10.3"
+    tslib "^2.0.0"
+
+"@graphql-inspector/github@latest":
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/@graphql-inspector/github/-/github-3.1.2.tgz#c036db856b3d716446637ff97021cb26805b8c23"
+  integrity sha512-Ik7h21nySs7U9WrUk/lF61yfxLoeCX0NJgyipMXUCa+1O2U9n6SkgikJaB6IjbfbD3tA764D+C/WBRrkXSjfFA==
+  dependencies:
+    "@graphql-inspector/core" "3.1.2"
+    axios "0.21.4"
+    dataloader "2.0.0"
+    js-yaml "4.1.0"
     tslib "^2.0.0"
 
 "@graphql-tools/batch-execute@^8.1.0":
