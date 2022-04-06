@@ -15,5 +15,14 @@ module.exports = withBundleAnalyzer(
       config.resolve.fallback = { ...config.resolve.fallback, module: false };
       return config;
     },
+    async redirects() {
+      return [
+        {
+          source: '/install',
+          destination: 'https://github.com/apps/graphql-inspector',
+          permanent: true,
+        },
+      ]
+    },
   }),
 );
