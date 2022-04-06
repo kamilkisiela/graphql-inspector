@@ -54,14 +54,7 @@ export function diffArrays<T>(
   a: T[] | readonly T[],
   b: T[] | readonly T[],
 ): T[] {
-  return a.filter((c) => !b.some((d) => d === c));
-}
-
-export function unionArrays<T>(
-  a: T[] | readonly T[],
-  b: T[] | readonly T[],
-): T[] {
-  return a.filter((c) => b.some((d) => d === c));
+  return a.filter((c) => !b.some((d) => isEqual(d, c)));
 }
 
 export function compareLists<T extends { name: string }>(
