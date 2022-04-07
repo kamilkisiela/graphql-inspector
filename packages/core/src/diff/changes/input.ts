@@ -5,6 +5,7 @@ import {
 } from 'graphql';
 
 import { Change, CriticalityLevel, ChangeType } from './change';
+import { isDeprecated } from '../../utils/isDeprecated';
 import { safeChangeForInputValue } from '../../utils/graphql';
 
 export function inputFieldRemoved(
@@ -18,7 +19,9 @@ export function inputFieldRemoved(
         'Removing an input field will cause existing queries that use this input field to error.',
     },
     type: ChangeType.InputFieldRemoved,
-    message: `Input field '${field.name}' was removed from input object type '${input.name}'`,
+    message: `Input field '${field.name}' ${
+      isDeprecated(field) ? '(deprecated) ' : ''
+    }was removed from input object type '${input.name}'`,
     path: [input.name, field.name].join('.'),
   };
 }
