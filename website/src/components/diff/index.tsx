@@ -6,6 +6,8 @@ import FlipMove from 'react-flip-move';
 import ChangeComponent from './Change';
 import styles from './index.module.css';
 
+const FlipMoveAny = FlipMove as any;
+
 const OLD_SCHEMA = /* GraphQL */ `
   type Post {
     id: ID!
@@ -79,7 +81,7 @@ const Diff: FC = () => {
           originalEditable: false,
         }}
       />
-      <FlipMove
+      <FlipMoveAny
         className={styles.diffChanges}
         enterAnimation="fade"
         leaveAnimation="fade"
@@ -87,7 +89,7 @@ const Diff: FC = () => {
         {changes.map((change, i) => (
           <ChangeComponent key={i} value={change} />
         ))}
-      </FlipMove>
+      </FlipMoveAny>
     </div>
   );
 };
