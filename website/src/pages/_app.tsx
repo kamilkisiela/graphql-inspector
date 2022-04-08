@@ -12,6 +12,7 @@ import {
   CombinedThemeProvider,
   DocsPage,
   handlePushRoute,
+  useGoogleAnalytics,
 } from '@guild-docs/client';
 import { FooterExtended, Header, Subheader } from '@theguild/components';
 import type { AppProps } from 'next/app';
@@ -66,9 +67,13 @@ const AppContent: FC<AppProps> = (appProps) => {
   const logoSrc =
     colorMode === 'light' ? 'subheader-logo.svg' : 'subheader-logo-w.svg';
 
+  const analytics = useGoogleAnalytics({ router, trackingId:"UA-125180910-2" })
+
   return (
     <>
       <Script async src="https://the-guild.dev/static/crisp.js" />
+      <Script {...analytics.loadScriptProps} />
+      <Script {...analytics.configScriptProps} />
       <Header accentColor={accentColor} activeLink="/open-source" themeSwitch />
       <Subheader
         activeLink={router.asPath}
@@ -144,7 +149,9 @@ const App: FC<AppProps> = (appProps) => {
       accentColor={accentColor}
       defaultSeo={defaultSeo}
     >
-      <AppContentWrapper {...appProps} />
+      <>
+        <AppContentWrapper {...appProps} />
+      </>
     </CombinedThemeProvider>
   );
 };

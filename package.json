@@ -82,5 +82,8 @@
       "prettier --write",
       "git add"
     ]
+  },
+  "resolutions": {
+    "mermaid": "8.11.5"
   }
 }
