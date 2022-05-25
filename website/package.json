@@ -16,7 +16,7 @@
     "@chakra-ui/theme-tools": "1.3.6",
     "@graphql-inspector/core": "latest",
     "@graphql-inspector/github": "latest",
-    "@guild-docs/client": "2.1.0",
+    "@guild-docs/client": "2.1.1",
     "@guild-docs/server": "3.0.1",
     "@mdx-js/react": "2.1.1",
     "@monaco-editor/react": "4.3.1",
