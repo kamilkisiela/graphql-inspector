@@ -266,6 +266,90 @@ describe('input', () => {
         "Input field 'c' was removed from input object type 'Foo'",
       );
     });
+
+    test('field made optional', async () => {
+      const a = buildSchema(/* GraphQL */ `
+        input Foo {
+          a: String!
+          b: [String!]!
+          c: [String!]!
+        }
+      `);
+      const b = buildSchema(/* GraphQL */ `
+        input Foo {
+          a: String
+          b: [String!]
+          c: [String]!
+        }
+      `);
+
+      const change = {
+        a: findFirstChangeByPath(await diff(a, b), 'Foo.a'),
+        b: findFirstChangeByPath(await diff(a, b), 'Foo.b'),
+        c: findFirstChangeByPath(await diff(a, b), 'Foo.c'),
+      };
+
+      // Scalar
+      expect(change.a.criticality.level).toEqual(CriticalityLevel.NonBreaking);
+      expect(change.a.type).toEqual('INPUT_FIELD_TYPE_CHANGED');
+      expect(change.a.message).toEqual(
+        "Input field 'Foo.a' changed type from 'String!' to 'String'",
+      );
+      // List
+      expect(change.b.criticality.level).toEqual(CriticalityLevel.NonBreaking);
+      expect(change.b.type).toEqual('INPUT_FIELD_TYPE_CHANGED');
+      expect(change.b.message).toEqual(
+        "Input field 'Foo.b' changed type from '[String!]!' to '[String!]'",
+        );
+      // List value
+      expect(change.c.criticality.level).toEqual(CriticalityLevel.NonBreaking);
+      expect(change.c.type).toEqual('INPUT_FIELD_TYPE_CHANGED');
+      expect(change.c.message).toEqual(
+        "Input field 'Foo.c' changed type from '[String!]!' to '[String]!'",
+        );
+    });
+
+    test('field made non-optional', async () => {
+      const a = buildSchema(/* GraphQL */ `
+        input Foo {
+          a: String
+          b: [String!]
+          c: [String]!
+        }
+      `);
+      const b = buildSchema(/* GraphQL */ `
+        input Foo {
+          a: String!
+          b: [String!]!
+          c: [String!]!
+        }
+      `);
+
+      const change = {
+        a: findFirstChangeByPath(await diff(a, b), 'Foo.a'),
+        b: findFirstChangeByPath(await diff(a, b), 'Foo.b'),
+        c: findFirstChangeByPath(await diff(a, b), 'Foo.c'),
+      };
+
+      // Scalar
+      expect(change.a.criticality.level).toEqual(CriticalityLevel.Breaking);
+      expect(change.a.type).toEqual('INPUT_FIELD_TYPE_CHANGED');
+      expect(change.a.message).toEqual(
+        "Input field 'Foo.a' changed type from 'String' to 'String!'",
+      );
+      // List
+      expect(change.b.criticality.level).toEqual(CriticalityLevel.Breaking);
+      expect(change.b.type).toEqual('INPUT_FIELD_TYPE_CHANGED');
+      expect(change.b.message).toEqual(
+        "Input field 'Foo.b' changed type from '[String!]' to '[String!]!'",
+        );
+      // List value
+      expect(change.c.criticality.level).toEqual(CriticalityLevel.Breaking);
+      expect(change.c.type).toEqual('INPUT_FIELD_TYPE_CHANGED');
+      expect(change.c.message).toEqual(
+        "Input field 'Foo.c' changed type from '[String]!' to '[String!]!'",
+        );
+    });
   });
 
   test('removal of a deprecated field', async () => {
