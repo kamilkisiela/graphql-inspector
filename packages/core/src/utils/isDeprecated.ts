@@ -1,7 +1,7 @@
-import { GraphQLEnumValue, GraphQLField } from 'graphql';
+import { GraphQLInputField, GraphQLEnumValue, GraphQLField } from 'graphql';
 
 export function isDeprecated(
-  fieldOrEnumValue: GraphQLField<any, any> | GraphQLEnumValue,
+  fieldOrEnumValue: GraphQLField<any, any> | GraphQLEnumValue | GraphQLInputField,
 ) {
   if ('isDeprecated' in fieldOrEnumValue) {
     return fieldOrEnumValue['isDeprecated'];
