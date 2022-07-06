@@ -2,6 +2,8 @@
 
 ### vNEXT
 
+### v3.1.3
+
 - **core**: Fix missing export of `safeUnreachable` rule [#2063](https://github.com/kamilkisiela/graphql-inspector/issues/2063)
 - **core**: Fix equality for objects  [#2100](https://github.com/kamilkisiela/graphql-inspector/pull/2100)
 
