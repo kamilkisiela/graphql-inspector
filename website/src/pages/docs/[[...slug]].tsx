@@ -1,6 +1,11 @@
 import Head from 'next/head';
 import type { GetStaticPaths, GetStaticProps } from 'next';
-import { DocsContent, DocsTOC, EditOnGitHubButton, MDXPage } from '@guild-docs/client';
+import {
+  DocsContent,
+  DocsTOC,
+  EditOnGitHubButton,
+  MDXPage,
+} from '@guild-docs/client';
 import { MDXPaths, MDXProps } from '@guild-docs/server';
 import { getRoutes } from '../../../routes';
 
@@ -16,7 +21,12 @@ export default MDXPage(function PostPage({
       <DocsContent>{content}</DocsContent>
       <DocsTOC>
         <TOC />
-        <EditOnGitHubButton repo='kamilkisiela/graphql-inspector' baseDir='website' branch='master' sourceFilePath={sourceFilePath} />
+        <EditOnGitHubButton
+          repo="kamilkisiela/graphql-inspector"
+          baseDir="website"
+          branch="master"
+          sourceFilePath={sourceFilePath}
+        />
       </DocsTOC>
     </>
   );

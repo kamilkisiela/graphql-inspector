@@ -21,7 +21,7 @@ export function isEqual<T>(a: T, b: T): boolean {
     return true;
   }
 
-  if (typeof a === 'object' && typeof b === 'object') {
+  if (a && b && typeof a === 'object' && typeof b === 'object') {
     const aRecord = a as Record<string, unknown>;
     const bRecord = b as Record<string, unknown>;
 
@@ -35,8 +35,8 @@ export function isEqual<T>(a: T, b: T): boolean {
         return false;
       }
     }
-    
-    return true
+
+    return true;
   }
 
   return a === b || (!a && !b);

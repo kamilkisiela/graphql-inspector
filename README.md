@@ -10,9 +10,9 @@
 It helps you validate documents and fragments against a schema and even find similar or duplicated types.
 
 > You may like [GraphQL Hive](https://graphql-hive.com) as well!
-> 
+>
 > It's an open-source performance monitoring tool and schema registry for GraphQL.
-> 
+>
 > GraphQL Hive is currently available as a hosted service but it offers self-hosting as well.
 
 Use GraphQL Inspector however you want:

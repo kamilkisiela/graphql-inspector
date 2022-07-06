@@ -67,7 +67,7 @@ const AppContent: FC<AppProps> = (appProps) => {
   const logoSrc =
     colorMode === 'light' ? 'subheader-logo.svg' : 'subheader-logo-w.svg';
 
-  const analytics = useGoogleAnalytics({ router, trackingId:"G-HQTC95CPEL" })
+  const analytics = useGoogleAnalytics({ router, trackingId: 'G-HQTC95CPEL' });
 
   return (
     <>

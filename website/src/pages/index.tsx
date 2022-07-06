@@ -86,19 +86,24 @@ const IndexPage: FC = () => {
 
       <HeroIllustration
         title="GraphQL Hive"
-        description={<div>Cloud service and self-hosted Performance Monitoring tool and Schema Registry built on top of GraphQL Inspector</div>}
+        description={
+          <div>
+            Cloud service and self-hosted Performance Monitoring tool and Schema
+            Registry built on top of GraphQL Inspector
+          </div>
+        }
         image={{
           src: '/assets/img/illustrations/hive.png',
           alt: 'GraphQL Hive',
           loading: 'lazy',
         }}
         link={{
-          href: "https://graphql-hive.com",
-          children: "Take me to GraphQL Hive",
-          title: "Visit GraphQL Hive"
+          href: 'https://graphql-hive.com',
+          children: 'Take me to GraphQL Hive',
+          title: 'Visit GraphQL Hive',
         }}
-        wrapperProps={{style: {backgroundColor: '#f6f6f6'}}}
-        imageProps={{style: {borderRadius: 20}}}
+        wrapperProps={{ style: { backgroundColor: '#f6f6f6' } }}
+        imageProps={{ style: { borderRadius: 20 } }}
         flipped
       />
 

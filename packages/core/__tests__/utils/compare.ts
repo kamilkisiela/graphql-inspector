@@ -7,6 +7,10 @@ test('isEqual', () => {
   expect(isEqual(1, 1)).toBe(true);
   expect(isEqual(1, 1.0)).toBe(true);
 
+  expect(isEqual(undefined, 1)).toBe(false);
+  expect(isEqual(null, 1)).toBe(false);
+  expect(isEqual(null, null)).toBe(true);
+
   expect(isEqual(['a'], ['a'])).toBe(true);
   expect(isEqual(['a'], ['A'])).toBe(false);
   expect(isEqual(['a'], [''])).toBe(false);
