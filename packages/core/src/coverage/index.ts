@@ -12,8 +12,8 @@ import {
   FieldNode,
 } from 'graphql';
 
-import {readDocument} from '../ast/document';
-import {isForIntrospection, isPrimitive} from '../utils/graphql';
+import { readDocument } from '../ast/document';
+import { isForIntrospection, isPrimitive } from '../utils/graphql';
 
 export interface Location {
   start: number;

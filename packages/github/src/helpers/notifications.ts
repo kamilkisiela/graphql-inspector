@@ -1,7 +1,7 @@
-import {Change, CriticalityLevel} from '@graphql-inspector/core';
+import { Change, CriticalityLevel } from '@graphql-inspector/core';
 import axios from 'axios';
-import {slackCoderize, discordCoderize, filterChangesByLevel} from './utils';
-import {defaultConfigName} from './config';
+import { slackCoderize, discordCoderize, filterChangesByLevel } from './utils';
+import { defaultConfigName } from './config';
 
 export interface WebhookNotification {
   environment: string;

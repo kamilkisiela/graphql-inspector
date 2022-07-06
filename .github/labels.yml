@@ -1,26 +1,26 @@
 - color: ffffff
-  description: ""
+  description: ''
   name: area/api
 - color: ffffff
-  description: ""
+  description: ''
   name: area/cli
 - color: ffffff
-  description: ""
+  description: ''
   name: area/core
 - color: ffffff
-  description: ""
+  description: ''
   name: area/github
 - color: ffffff
-  description: ""
+  description: ''
   name: area/load
 - color: ffffff
-  description: ""
+  description: ''
   name: area/trace
 - color: ffffff
-  description: ""
+  description: ''
   name: area/ui
 - color: 8546af
-  description: ""
+  description: ''
   name: automerge
 - color: 0366d6
   description: Pull requests that update a dependency file
@@ -37,7 +37,7 @@
 - color: 5c44d6
   description: Someone is working on it
   name: ⚙️ work in progress
-- color: "008672"
+- color: '008672'
   description: Extra attention is needed
   name: ⛑️ help wanted
 - color: 692A4E

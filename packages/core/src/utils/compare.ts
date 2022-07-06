@@ -13,7 +13,25 @@ export function isEqual<T>(a: T, b: T): boolean {
     if (a.length !== b.length) return false;
 
     for (var index = 0; index < a.length; index++) {
-      if (a[index] !== b[index]) {
+      if (!isEqual(a[index], b[index])) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
+  if (a && b && typeof a === 'object' && typeof b === 'object') {
+    const aRecord = a as Record<string, unknown>;
+    const bRecord = b as Record<string, unknown>;
+
+    const aKeys: string[] = Object.keys(aRecord);
+    const bKeys: string[] = Object.keys(bRecord);
+
+    if (aKeys.length !== bKeys.length) return false;
+
+    for (const key of aKeys) {
+      if (!isEqual(aRecord[key], bRecord[key])) {
         return false;
       }
     }
@@ -32,29 +50,28 @@ export function isVoid<T>(a: T): boolean {
   return typeof a === 'undefined' || a === null;
 }
 
-export function diffArrays<T>(a: T[] | readonly T[], b: T[] | readonly T[]): T[] {
-  return a.filter((c) => !b.some((d) => d === c));
+export function diffArrays<T>(
+  a: T[] | readonly T[],
+  b: T[] | readonly T[],
+): T[] {
+  return a.filter((c) => !b.some((d) => isEqual(d, c)));
 }
 
-export function unionArrays<T>(a: T[] | readonly T[], b: T[] | readonly T[]): T[] {
-  return a.filter((c) => b.some((d) => d === c));
-}
-
-export function compareLists<T extends {name: string}>(
+export function compareLists<T extends { name: string }>(
   oldList: readonly T[],
   newList: readonly T[],
   callbacks?: {
     onAdded?(t: T): void;
     onRemoved?(t: T): void;
-    onMutual?(t: {newVersion: T; oldVersion: T}): void;
+    onMutual?(t: { newVersion: T; oldVersion: T }): void;
   },
 ) {
-  const oldMap = keyMap(oldList, ({name}) => name);
-  const newMap = keyMap(newList, ({name}) => name);
+  const oldMap = keyMap(oldList, ({ name }) => name);
+  const newMap = keyMap(newList, ({ name }) => name);
 
   const added: T[] = [];
   const removed: T[] = [];
-  const mutual: Array<{newVersion: T; oldVersion: T}> = [];
+  const mutual: Array<{ newVersion: T; oldVersion: T }> = [];
 
   for (const oldItem of oldList) {
     const newItem = newMap[oldItem.name];

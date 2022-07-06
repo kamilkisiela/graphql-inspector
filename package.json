@@ -27,7 +27,8 @@
     "now-build": "yarn build && (cd website && yarn && yarn build && mv build ../public)",
     "action": "ncc build packages/action/src/action.ts --out action --minify --transpile-only",
     "bundle": "webpack",
-    "format": "prettier --config .prettierrc --write \"**/*.{js,json,md,ts,graphql}\"",
+    "format": "prettier --ignore-path .gitignore --write .",
+    "check:format": "prettier --ignore-path .gitignore --check .",
     "prerelease": "yarn action",
     "release": "node ./scripts/release.js",
     "release:canary": "npm run release -- canary",
@@ -49,12 +50,12 @@
     "eslint-config-prettier": "8.3.0",
     "graphql": "16.0.0",
     "graphql-config": "4.0.1",
-    "jest": "27.2.2",
+    "jest": "27.5.1",
     "jsesc": "3.0.2",
     "lint-staged": "11.0.0",
     "lodash": "4.17.21",
     "nock": "13.0.11",
-    "prettier": "2.3.0",
+    "prettier": "2.6.0",
     "rimraf": "3.0.2",
     "smee-client": "1.2.2",
     "strip-ansi": "^6.0.0",
@@ -66,9 +67,8 @@
     "@sentry/tracing": "6.10.0",
     "husky": "4.3.8",
     "immer": "9.0.6",
-    "lerna": "4.0.0",
     "probot": "11.3.0",
-    "shelljs": "0.8.4"
+    "shelljs": "0.8.5"
   },
   "workspaces": [
     "packages/*",
@@ -81,5 +81,8 @@
       "prettier --write",
       "git add"
     ]
+  },
+  "resolutions": {
+    "mermaid": "8.11.5"
   }
 }

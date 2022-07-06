@@ -102,7 +102,7 @@
       "stargazers": 0,
       "master_branch": "master"
     },
-    "pusher": {"name": "kamilkisiela", "email": "kamil.kisiela@gmail.com"},
+    "pusher": { "name": "kamilkisiela", "email": "kamil.kisiela@gmail.com" },
     "sender": {
       "login": "kamilkisiela",
       "id": 8167190,

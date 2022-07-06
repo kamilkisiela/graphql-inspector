@@ -1,6 +1,6 @@
-import {buildSchema, Source, print, parse} from 'graphql';
+import { buildSchema, Source, print, parse } from 'graphql';
 
-import {validate} from '../../src/validate';
+import { validate } from '../../src/validate';
 
 describe('apollo', () => {
   test('should remove a filed with @client', () => {

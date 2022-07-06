@@ -1,7 +1,7 @@
-import {Context} from 'probot';
-import {CheckStatus, Annotation, CheckConclusion} from './types';
-import {Logger} from './logger';
-import {batch} from './utils';
+import { Context } from 'probot';
+import { CheckStatus, Annotation, CheckConclusion } from './types';
+import { Logger } from './logger';
+import { batch } from './utils';
 
 export async function start({
   context,

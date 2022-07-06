@@ -1,7 +1,7 @@
 import * as probot from 'probot';
-import {buildSchema} from 'graphql';
-import {diff} from '@graphql-inspector/core';
-import {FileLoader, ConfigLoader, loadSources} from './helpers/loaders';
+import { buildSchema } from 'graphql';
+import { diff } from '@graphql-inspector/core';
+import { FileLoader, ConfigLoader, loadSources } from './helpers/loaders';
 import {
   SchemaPointer,
   NormalizedEnvironment,
@@ -13,8 +13,8 @@ import {
   notifyWithWebhook,
   notifyWithDiscord,
 } from './helpers/notifications';
-import {createLogger} from './helpers/logger';
-import {ErrorHandler} from './helpers/types';
+import { createLogger } from './helpers/logger';
+import { ErrorHandler } from './helpers/types';
 
 export async function handleSchemaChangeNotifications({
   context,
@@ -87,7 +87,12 @@ export async function handleSchemaChangeNotifications({
     ref,
   };
 
-  const sources = await loadSources({config, oldPointer, newPointer, loadFile});
+  const sources = await loadSources({
+    config,
+    oldPointer,
+    newPointer,
+    loadFile,
+  });
 
   const schemas = {
     old: buildSchema(sources.old, {

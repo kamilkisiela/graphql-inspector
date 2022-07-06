@@ -1,4 +1,4 @@
-import {Change} from '@graphql-inspector/core';
+import { Change } from '@graphql-inspector/core';
 
 export type ErrorHandler = (error: Error) => void;
 
@@ -38,9 +38,9 @@ export enum CheckConclusion {
 }
 
 export interface PullRequest {
-  base: {ref: string};
+  base: { ref: string };
   url: string;
   id: number;
   number: number;
-  labels?: Array<{name: string}>;
+  labels?: Array<{ name: string }>;
 }

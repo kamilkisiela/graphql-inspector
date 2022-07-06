@@ -1,7 +1,7 @@
-import {GraphQLNamedType} from 'graphql';
+import { GraphQLNamedType } from 'graphql';
 
-import {Change, CriticalityLevel, ChangeType} from './change';
-import {getKind} from '../../utils/graphql';
+import { Change, CriticalityLevel, ChangeType } from './change';
+import { getKind } from '../../utils/graphql';
 
 export function typeRemoved(type: GraphQLNamedType): Change {
   return {

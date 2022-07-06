@@ -1,11 +1,11 @@
-import {defineCommand} from '@graphql-cli/common';
+import { defineCommand } from '@graphql-cli/common';
 import {
   GlobalArgs,
   parseGlobalArgs,
   createInspectorExtension,
   loaders,
 } from '@graphql-inspector/graphql-cli-common';
-import {handler} from '@graphql-inspector/introspect-command';
+import { handler } from '@graphql-inspector/introspect-command';
 
 export default defineCommand<
   {},
@@ -15,7 +15,7 @@ export default defineCommand<
     comments?: boolean;
   } & GlobalArgs
 >((api) => {
-  const {loadSchema} = api.useLoaders({loaders});
+  const { loadSchema } = api.useLoaders({ loaders });
 
   return {
     command: 'introspect [project]',
@@ -60,7 +60,7 @@ export default defineCommand<
         .default('w', 'graphql.schema.json');
     },
     async handler(args) {
-      const {headers, token} = parseGlobalArgs(args);
+      const { headers, token } = parseGlobalArgs(args);
       const output = args.write!;
       const comments = args.comments || false;
       const config = await api.useConfig({
@@ -76,7 +76,7 @@ export default defineCommand<
             token,
           }));
 
-      return handler({schema, output, comments});
+      return handler({ schema, output, comments });
     },
   };
 });

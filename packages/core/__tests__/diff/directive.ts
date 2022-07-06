@@ -1,8 +1,8 @@
-import {buildSchema} from 'graphql';
+import { buildSchema } from 'graphql';
 
-import {findFirstChangeByPath} from '../../utils/testing';
-import {diff} from '../../src/index';
-import {CriticalityLevel} from '../../src/diff/changes/change';
+import { findFirstChangeByPath } from '../../utils/testing';
+import { diff } from '../../src/index';
+import { CriticalityLevel } from '../../src/diff/changes/change';
 
 describe('directive', () => {
   test('added', async () => {

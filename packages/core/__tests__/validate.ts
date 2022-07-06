@@ -1,6 +1,6 @@
-import {buildSchema, Source, print, parse} from 'graphql';
+import { buildSchema, Source, print, parse } from 'graphql';
 
-import {validate} from '../src/index';
+import { validate } from '../src/index';
 
 describe('validate', () => {
   test('basic', () => {
@@ -389,7 +389,8 @@ describe('validate', () => {
       type Query {
         findPost(
           searchQuery: PostQuery
-          query: LegacyPostQuery @deprecated(reason: "Please use 'searchQuery' instead.")
+          query: LegacyPostQuery
+            @deprecated(reason: "Please use 'searchQuery' instead.")
         ): Post
       }
 
@@ -400,7 +401,7 @@ describe('validate', () => {
 
     const doc = parse(/* GraphQL */ `
       query getPost {
-        findPost(query: {text: "title"}) {
+        findPost(query: { text: "title" }) {
           id
         }
       }

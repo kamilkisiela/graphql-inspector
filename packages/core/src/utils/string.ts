@@ -49,7 +49,7 @@ export function findBestMatch(
     rating: compareTwoStrings(mainString, target.value),
   }));
   const bestMatch = Array.from(ratings).sort((a, b) => b.rating - a.rating)[0];
-  return {ratings, bestMatch};
+  return { ratings, bestMatch };
 }
 
 function flattenDeep(arr: any): string[] {
@@ -79,8 +79,5 @@ function wordLetterPairs(str: string) {
 }
 
 export function safeString(obj: any) {
-  if (obj != null && typeof obj.toString === 'function') {
-    return `${obj}`;
-  }
-  return inspect(obj);
+  return inspect(obj).replace(/\[Object\: null prototype\] /g, '');
 }

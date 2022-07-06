@@ -1,4 +1,4 @@
-import {createCommand} from '@graphql-inspector/commands';
+import { createCommand } from '@graphql-inspector/commands';
 import open from 'open';
 
 export default createCommand(() => {

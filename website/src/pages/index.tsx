@@ -24,7 +24,7 @@ const FEATURE_LIST = [
     },
   },
   {
-    title: 'Continuous Integrations',
+    title: 'CI/CD',
     description: `GraphQL Inspector can be used in any Continuous Integration service. Use our modularized, CI suited version of CLI.`,
     image: { src: 'assets/img/illustrations/result.png', alt: 'Ci' },
     link: {
@@ -47,7 +47,7 @@ const FEATURE_LIST = [
     },
   },
   {
-    title: 'Entirely Open Source',
+    title: 'Open Source',
     description: `Our codebase is publicly available on GitHub and it's easy to deploy and use your GitHub Application.`,
     image: {
       src: 'assets/img/illustrations/hacker-mindset.png',
@@ -85,6 +85,29 @@ const IndexPage: FC = () => {
       <FeatureList title="" items={FEATURE_LIST} />
 
       <HeroIllustration
+        title="GraphQL Hive"
+        description={
+          <div>
+            Cloud service and self-hosted Performance Monitoring tool and Schema
+            Registry built on top of GraphQL Inspector
+          </div>
+        }
+        image={{
+          src: '/assets/img/illustrations/hive.png',
+          alt: 'GraphQL Hive',
+          loading: 'lazy',
+        }}
+        link={{
+          href: 'https://graphql-hive.com',
+          children: 'Take me to GraphQL Hive',
+          title: 'Visit GraphQL Hive',
+        }}
+        wrapperProps={{ style: { backgroundColor: '#f6f6f6' } }}
+        imageProps={{ style: { borderRadius: 20 } }}
+        flipped
+      />
+
+      <HeroIllustration
         title="In-Code Annotations"
         description="GitHub offers in-code annotations and GraphQL Inspector, both App and Action enables you to use them. Nice and clean way to understand what have really changed and how it looked before and after."
         image={{
@@ -92,7 +115,6 @@ const IndexPage: FC = () => {
           alt: 'Illustration',
           loading: 'lazy',
         }}
-        flipped
       />
 
       <HeroIllustration
@@ -103,6 +125,7 @@ const IndexPage: FC = () => {
           alt: 'Illustration',
           loading: 'lazy',
         }}
+        flipped
       />
 
       <HeroIllustration
@@ -113,7 +136,6 @@ const IndexPage: FC = () => {
           alt: 'Schema Validation',
           loading: 'lazy',
         }}
-        flipped
       />
 
       <HeroIllustration

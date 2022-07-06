@@ -37,7 +37,7 @@ Now on every commit or every Pull Request the GraphQL Inspector App will annotat
 
 ### name
 
-The name of the check ("GraphQL Inspector" by default). 
+The name of the check ("GraphQL Inspector" by default).
 In case of multiple GraphQL Inspector Actions, use `name` to prevent GitHub from overwriting results. For example, "Check Public API" and "Check Internal API".
 
 ```yaml
@@ -85,7 +85,7 @@ _('approved-breaking-change' by default)_
 - uses: kamilkisiela/graphql-inspector@master
   with:
     schema: 'master:schema.graphql'
-    approve-label: 'expected-breaking-change' 
+    approve-label: 'expected-breaking-change'
 ```
 
 To mark the breaking change as safe, apply the `approved-breaking-change` label or define your own in `approve-label`.

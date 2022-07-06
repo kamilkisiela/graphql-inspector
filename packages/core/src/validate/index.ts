@@ -8,11 +8,11 @@ import {
   DocumentNode,
   Kind,
 } from 'graphql';
-import {DepGraph} from 'dependency-graph';
+import { DepGraph } from 'dependency-graph';
 
-import {readDocument} from '../ast/document';
-import {findDeprecatedUsages} from '../utils/graphql';
-import {validateQueryDepth} from './query-depth';
+import { readDocument } from '../ast/document';
+import { findDeprecatedUsages } from '../utils/graphql';
+import { validateQueryDepth } from './query-depth';
 import {
   transformSchemaWithApollo,
   transformDocumentWithApollo,
@@ -68,9 +68,9 @@ export function validate(
   // read documents
   const documents = sources.map(readDocument);
   // keep all named fragments
-  const fragments: Array<{node: FragmentDefinitionNode; source: string}> = [];
+  const fragments: Array<{ node: FragmentDefinitionNode; source: string }> = [];
   const fragmentNames: string[] = [];
-  const graph = new DepGraph<FragmentDefinitionNode>({circular: true});
+  const graph = new DepGraph<FragmentDefinitionNode>({ circular: true });
 
   documents.forEach((doc) => {
     doc.fragments.forEach((fragment) => {
@@ -199,5 +199,5 @@ function extractFragments(document: string): string[] | undefined {
 }
 
 function sumLengths(...arrays: any[][]): number {
-  return arrays.reduce((sum, {length}) => sum + length, 0);
+  return arrays.reduce((sum, { length }) => sum + length, 0);
 }

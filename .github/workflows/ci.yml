@@ -39,10 +39,11 @@ jobs:
 
       - name: Test
         run: yarn test
-      
+
       - name: Integration tests
         run: |
           node packages/cli/dist/index.js validate './integration_tests/2001/operations/**/*.graphql' './integration_tests/2001/schema.graphql'
           node packages/cli/dist/index.js validate './integration_tests/1991/two-operations.js' './integration_tests/1991/schema.graphql'
           node packages/cli/dist/index.js introspect ./integration_tests/1985/schema.js || echo 'TODO'
           node packages/cli/dist/index.js diff ./integration_tests/2027/schema-before.graphql ./integration_tests/2027/schema-after.graphql --rule considerUsage --onUsage ./integration_tests/2027/unused-hotels.js
+          node packages/cli/dist/index.js diff ./integration_tests/2088/old.graphql ./integration_tests/2088/new.graphql --rule suppressRemovalOfDeprecatedField

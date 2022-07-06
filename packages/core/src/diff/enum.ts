@@ -1,6 +1,6 @@
-import {GraphQLEnumType} from 'graphql';
+import { GraphQLEnumType } from 'graphql';
 
-import {isNotEqual, isVoid} from '../utils/compare';
+import { isNotEqual, isVoid } from '../utils/compare';
 import {
   enumValueRemoved,
   enumValueAdded,
@@ -9,8 +9,8 @@ import {
   enumValueDeprecationReasonAdded,
   enumValueDeprecationReasonRemoved,
 } from './changes/enum';
-import {compareLists} from '../utils/compare';
-import {AddChange} from './schema';
+import { compareLists } from '../utils/compare';
+import { AddChange } from './schema';
 
 export function changesInEnum(
   oldEnum: GraphQLEnumType,
@@ -31,7 +31,7 @@ export function changesInEnum(
       if (isNotEqual(oldValue.description, newValue.description)) {
         addChange(enumValueDescriptionChanged(newEnum, oldValue, newValue));
       }
-  
+
       if (isNotEqual(oldValue.deprecationReason, newValue.deprecationReason)) {
         if (isVoid(oldValue.deprecationReason)) {
           addChange(
@@ -47,6 +47,6 @@ export function changesInEnum(
           );
         }
       }
-    }
+    },
   });
 }

@@ -2,6 +2,20 @@
 
 ### vNEXT
 
+### v3.1.4
+
+- **core**: Fix regression [#2128](https://github.com/kamilkisiela/graphql-inspector/issues/2128) introduced in [#2100](https://github.com/kamilkisiela/graphql-inspector/pull/2100)
+
+### v3.1.3
+
+- **core**: Fix missing export of `safeUnreachable` rule [#2063](https://github.com/kamilkisiela/graphql-inspector/issues/2063)
+- **core**: Fix equality for objects [#2100](https://github.com/kamilkisiela/graphql-inspector/pull/2100)
+
+### v3.1.2
+
+- **core**: Make sure array of null prototype objects is printable [#2030](https://github.com/kamilkisiela/graphql-inspector/pull/2030)
+- **cli**: Update GraphQL Yoga to v2
+
 ### v3.1.1
 
 - **cli**: Use GraphQL Yoga in `serve` command

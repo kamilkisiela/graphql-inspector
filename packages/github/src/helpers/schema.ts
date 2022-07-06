@@ -1,4 +1,4 @@
-import {buildSchema, Source} from 'graphql';
+import { buildSchema, Source } from 'graphql';
 
 export function produceSchema(source: Source) {
   try {

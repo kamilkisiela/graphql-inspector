@@ -1,4 +1,4 @@
-import {DepGraph} from 'dependency-graph';
+import { DepGraph } from 'dependency-graph';
 import {
   DocumentNode,
   GraphQLError,

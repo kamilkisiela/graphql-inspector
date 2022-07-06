@@ -5,7 +5,7 @@ import {
   GraphQLInterfaceType,
 } from 'graphql';
 
-import {diffArrays, isNotEqual} from '../utils/compare';
+import { diffArrays, isNotEqual } from '../utils/compare';
 import {
   fieldArgumentDescriptionChanged,
   fieldArgumentDefaultChanged,
@@ -18,7 +18,7 @@ export function changesInArgument(
   field: GraphQLField<any, any, any>,
   oldArg: GraphQLArgument,
   newArg: GraphQLArgument,
-  addChange: AddChange
+  addChange: AddChange,
 ) {
   if (isNotEqual(oldArg.description, newArg.description)) {
     addChange(fieldArgumentDescriptionChanged(type, field, oldArg, newArg));

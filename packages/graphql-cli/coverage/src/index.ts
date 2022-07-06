@@ -1,11 +1,11 @@
-import {defineCommand} from '@graphql-cli/common';
+import { defineCommand } from '@graphql-cli/common';
 import {
   GlobalArgs,
   parseGlobalArgs,
   createInspectorExtension,
   loaders,
 } from '@graphql-inspector/graphql-cli-common';
-import {handler} from '@graphql-inspector/coverage-command';
+import { handler } from '@graphql-inspector/coverage-command';
 
 export default defineCommand<
   {},
@@ -70,7 +70,7 @@ export default defineCommand<
     async handler(args) {
       const writePath = args.write;
       const silent = args.silent;
-      const {headers, token} = parseGlobalArgs(args);
+      const { headers, token } = parseGlobalArgs(args);
 
       const config = await api.useConfig({
         rootDir: args.config || process.cwd(),
@@ -78,7 +78,7 @@ export default defineCommand<
       });
 
       if (args.documents && args.schema) {
-        const {loadDocuments, loadSchema} = api.useLoaders({loaders});
+        const { loadDocuments, loadSchema } = api.useLoaders({ loaders });
         const schema = await loadSchema(args.schema!, {
           headers,
           token,
@@ -88,14 +88,14 @@ export default defineCommand<
           token,
         });
 
-        return handler({schema, documents, silent, writePath});
+        return handler({ schema, documents, silent, writePath });
       }
 
       const project = config.getProject(args.project);
       const schema = await project.getSchema();
       const documents = await project.getDocuments();
 
-      return handler({schema, documents, silent, writePath});
+      return handler({ schema, documents, silent, writePath });
     },
   };
 });

@@ -5,14 +5,14 @@ import {
   printSchemaFromEndpoint,
   produceSchema,
 } from '@graphql-inspector/github';
-import {Source, GraphQLSchema, buildClientSchema, buildSchema, printSchema} from 'graphql';
-import {readFileSync} from 'fs';
-import {resolve, extname} from 'path';
-import {execSync} from 'child_process';
+import { Source, GraphQLSchema, buildClientSchema, buildSchema, printSchema } from 'graphql';
+import { readFileSync } from 'fs';
+import { resolve, extname } from 'path';
+import { execSync } from 'child_process';
 
 import * as core from '@actions/core';
 import * as github from '@actions/github';
-import {batch} from './utils';
+import { batch } from './utils';
 
 type OctokitInstance = ReturnType<typeof github.getOctokit>;
 const CHECK_NAME = 'GraphQL Inspector';
@@ -48,7 +48,7 @@ export async function run() {
   core.info(`Ref: ${ref}`);
   core.info(`Commit SHA: ${commitSha}`);
 
-  const token = core.getInput('github-token', {required: true})
+  const token = core.getInput('github-token', { required: true });
   const checkName = core.getInput('name') || CHECK_NAME;
 
   let workspace = process.env.GITHUB_WORKSPACE;
@@ -63,12 +63,13 @@ export async function run() {
   const useAnnotations = castToBoolean(core.getInput('annotations'));
   const failOnBreaking = castToBoolean(core.getInput('fail-on-breaking'));
   const endpoint: string = core.getInput('endpoint');
-  const approveLabel: string = core.getInput('approve-label') || 'approved-breaking-change';
+  const approveLabel: string =
+    core.getInput('approve-label') || 'approved-breaking-change';
 
   const octokit = github.getOctokit(token);
 
   // repo
-  const {owner, repo} = github.context.repo;
+  const { owner, repo } = github.context.repo;
 
   core.info(`Creating a check named "${checkName}"`);
 
@@ -84,7 +85,7 @@ export async function run() {
 
   core.info(`Check ID: ${checkId}`);
 
-  const schemaPointer = core.getInput('schema', {required: true});
+  const schemaPointer = core.getInput('schema', { required: true });
 
   const loadFile = fileLoader({
     octokit,
@@ -100,15 +101,15 @@ export async function run() {
   let [schemaRef, schemaPath] = schemaPointer.split(':');
 
   if (useMerge && github.context.payload.pull_request) {
-    ref = `refs/pull/${github.context.payload.pull_request.number}/merge`
+    ref = `refs/pull/${github.context.payload.pull_request.number}/merge`;
     workspace = undefined;
-    core.info(`EXPERIMENTAL - Using Pull Request ${ref}`)
-    
+    core.info(`EXPERIMENTAL - Using Pull Request ${ref}`);
+
     const baseRef = github.context.payload.pull_request?.base?.ref;
-    
+
     if (baseRef) {
-      schemaRef = baseRef
-      core.info(`EXPERIMENTAL - Using ${baseRef} as base schema ref`)
+      schemaRef = baseRef;
+      core.info(`EXPERIMENTAL - Using ${baseRef} as base schema ref`);
     }
   }
 
@@ -128,24 +129,27 @@ export async function run() {
     isNewSchemaUrl
       ? printSchemaFromEndpoint(schemaPath)
       : loadFile({
-        path: schemaPath,
-        ref,
-        workspace,
-      }),
+          path: schemaPath,
+          ref,
+          workspace,
+        }),
   ]);
 
   core.info('Got both sources');
 
   let oldSchema: GraphQLSchema;
   let newSchema: GraphQLSchema;
-  let sources: { new: Source; old: Source; }; 
+  let sources: { new: Source; old: Source };
 
   if (extname(schemaPath.toLowerCase()) === ".json") {
     oldSchema = endpoint ? buildSchema(oldFile) : buildClientSchema(JSON.parse(oldFile));
     newSchema = buildClientSchema(JSON.parse(newFile));
 
     sources = {
-      old: new Source(printSchema(oldSchema), endpoint || `${schemaRef}:${schemaPath}`),
+      old: new Source(
+        printSchema(oldSchema),
+        endpoint || `${schemaRef}:${schemaPath}`,
+      ),
       new: new Source(printSchema(newSchema), schemaPath),
     };
   } else {
@@ -181,11 +185,16 @@ export async function run() {
   core.info(`Changes: ${changes.length || 0}`);
 
   const hasApprovedBreakingChangeLabel = github.context.payload.pull_request
-      ? github.context.payload.pull_request.labels?.some((label: any) => label.name === approveLabel)
-      : false;
+    ? github.context.payload.pull_request.labels?.some(
+        (label: any) => label.name === approveLabel,
+      )
+    : false;
 
   // Force Success when failOnBreaking is disabled
-  if ((failOnBreaking === false || hasApprovedBreakingChangeLabel) && conclusion === CheckConclusion.Failure) {
+  if (
+    (failOnBreaking === false || hasApprovedBreakingChangeLabel) &&
+    conclusion === CheckConclusion.Failure
+  ) {
     core.info('FailOnBreaking disabled. Forcing SUCCESS');
     conclusion = CheckConclusion.Success;
   }
@@ -207,9 +216,9 @@ export async function run() {
   try {
     return await updateCheckRun(octokit, checkId, {
       conclusion,
-      output: {title, summary, annotations},
+      output: { title, summary, annotations },
     });
-  } catch (e:any) {
+  } catch (e: any) {
     // Error
     core.error(e.message || e);
 
@@ -217,7 +226,7 @@ export async function run() {
 
     await updateCheckRun(octokit, checkId, {
       conclusion: CheckConclusion.Failure,
-      output: {title, summary: title, annotations: []},
+      output: { title, summary: title, annotations: [] },
     });
 
     return core.setFailed(title);
@@ -233,11 +242,13 @@ function fileLoader({
   owner: string;
   repo: string;
 }) {
-  const query = /* GraphQL */`
+  const query = /* GraphQL */ `
     query GetFile($repo: String!, $owner: String!, $expression: String!) {
       repository(name: $repo, owner: $owner) {
         object(expression: $expression) {
           ... on Blob {
+            isTruncated
+            oid
             text
           }
         }
@@ -264,10 +275,29 @@ function fileLoader({
     core.info(`Query ${file.ref}:${file.path} from ${owner}/${repo}`);
 
     try {
+      if (result?.repository?.object?.oid && result?.repository?.object?.isTruncated) {
+        const oid = result?.repository?.object?.oid
+        const getBlobResponse = await octokit.git.getBlob({
+          owner,
+          repo,
+          file_sha: oid,
+        });
+
+        if(getBlobResponse?.data?.content) {
+          return Buffer.from(getBlobResponse?.data?.content, 'base64').toString('utf-8')
+        }
+
+        throw new Error('getBlobResponse.data.content is null');
+      }
+
       if (
         result?.repository?.object?.text
       ) {
-        return result.repository.object.text;
+        if(result?.repository?.object?.isTruncated === false) {
+          return result.repository.object.text;
+        }
+
+        throw new Error('result.repository.object.text is truncated and oid is null');
       }
 
       throw new Error('result.repository.object.text is null');
@@ -279,18 +309,23 @@ function fileLoader({
   };
 }
 
-type UpdateCheckRunOptions = Required<Pick<NonNullable<Parameters<OctokitInstance['checks']['update']>[0]>, 'conclusion' | 'output'>>
+type UpdateCheckRunOptions = Required<
+  Pick<
+    NonNullable<Parameters<OctokitInstance['checks']['update']>[0]>,
+    'conclusion' | 'output'
+  >
+>;
 
 async function updateCheckRun(
   octokit: OctokitInstance,
   checkId: number,
-  {conclusion, output}: UpdateCheckRunOptions,
+  { conclusion, output }: UpdateCheckRunOptions,
 ) {
   core.info(`Updating check: ${checkId}`);
-  
-  const {title, summary, annotations = []} = output;
+
+  const { title, summary, annotations = [] } = output;
   const batches = batch(annotations, 50);
-  
+
   core.info(`annotations to be sent: ${annotations.length}`);
 
   await octokit.checks.update({
@@ -300,7 +335,8 @@ async function updateCheckRun(
     ...github.context.repo,
     conclusion,
     output: {
-      title, summary
+      title,
+      summary,
     },
   });
 
@@ -311,7 +347,7 @@ async function updateCheckRun(
           check_run_id: checkId,
           ...github.context.repo,
           output: {
-            title, 
+            title,
             summary,
             annotations: chunk,
           },
@@ -335,7 +371,10 @@ async function updateCheckRun(
 /**
  * Treats non-falsy value as true
  */
-function castToBoolean(value: string | boolean, defaultValue?: boolean): boolean {
+function castToBoolean(
+  value: string | boolean,
+  defaultValue?: boolean,
+): boolean {
   if (typeof value === 'boolean') {
     return value;
   }
@@ -350,4 +389,3 @@ function castToBoolean(value: string | boolean, defaultValue?: boolean): boolean
 
   return true;
 }
-

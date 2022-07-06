@@ -1,13 +1,13 @@
-import {defineCommand} from '@graphql-cli/common';
+import { defineCommand } from '@graphql-cli/common';
 import {
   GlobalArgs,
   parseGlobalArgs,
   createInspectorExtension,
   loaders,
 } from '@graphql-inspector/graphql-cli-common';
-import {handler} from '@graphql-inspector/diff-command';
-import {GraphQLSchema} from 'graphql';
-import {GraphQLProjectConfig} from 'graphql-config';
+import { handler } from '@graphql-inspector/diff-command';
+import { GraphQLSchema } from 'graphql';
+import { GraphQLProjectConfig } from 'graphql-config';
 
 interface ExtensionConfig {
   baseSchema: string;
@@ -67,13 +67,13 @@ export default defineCommand<
         });
     },
     async handler(args) {
-      const {headers, token} = parseGlobalArgs(args);
+      const { headers, token } = parseGlobalArgs(args);
       const config = await api.useConfig({
         rootDir: args.config || process.cwd(),
         extensions: [createInspectorExtension('diff')],
       });
 
-      const {loadSchema} = api.useLoaders({loaders});
+      const { loadSchema } = api.useLoaders({ loaders });
 
       let baseSchema: GraphQLSchema;
       let newSchema: GraphQLSchema;

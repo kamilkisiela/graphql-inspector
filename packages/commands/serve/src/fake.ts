@@ -52,7 +52,7 @@ export function fake(schema: GraphQLSchema): void {
     // 3. if there's no mock defined, use the default mocks for this type
     return (
       root: any,
-      args: {[key: string]: any},
+      args: { [key: string]: any },
       context: any,
       info: GraphQLResolveInfo,
     ): any => {
@@ -139,7 +139,7 @@ export function fake(schema: GraphQLSchema): void {
           implementationType = getRandomElement(possibleTypes);
         }
         return Object.assign(
-          {__typename: implementationType},
+          { __typename: implementationType },
           mockType(implementationType)(root, args, context, info),
         );
       }
@@ -183,19 +183,20 @@ export function fake(schema: GraphQLSchema): void {
           const rootMock = mockFunctionMap.get(typeName);
           // XXX: BUG in here, need to provide proper signature for rootMock.
           if (
-            typeof (rootMock!(undefined, {}, {}, {} as any) as any)[fieldName] ===
-            'function'
+            typeof (rootMock!(undefined, {}, {}, {} as any) as any)[
+              fieldName
+            ] === 'function'
           ) {
             mockResolver = (
               root: any,
-              args: {[key: string]: any},
+              args: { [key: string]: any },
               context: any,
               info: GraphQLResolveInfo,
             ) => {
               const updatedRoot = root || {}; // TODO: should we clone instead?
-              updatedRoot[fieldName] = (rootMock!(root, args, context, info) as any)[
-                fieldName
-              ];
+              updatedRoot[fieldName] = (
+                rootMock!(root, args, context, info) as any
+              )[fieldName];
               // XXX this is a bit of a hack to still use mockType, which
               // lets you mock lists etc. as well
               // otherwise we could just set field.resolve to rootMock()[fieldName]
@@ -255,9 +256,7 @@ function assignResolveType(type: GraphQLType) {
   ) {
     // the default `resolveType` always returns null. We add a fallback
     // resolution that works with how unions and interface are mocked
-    namedFieldType.resolveType = (
-      data: any
-    ) => data.__typename;
+    namedFieldType.resolveType = (data: any) => data.__typename;
   }
 }
 
@@ -302,7 +301,7 @@ class MockList {
 
   public mock(
     root: any,
-    args: {[key: string]: any},
+    args: { [key: string]: any },
     context: any,
     info: GraphQLResolveInfo,
     fieldType: GraphQLList<any>,
@@ -319,9 +318,9 @@ class MockList {
       if (typeof this.wrappedFunction === 'function') {
         const res = this.wrappedFunction(root, args, context, info);
         if (res instanceof MockList) {
-          const nullableType = getNullableType(fieldType.ofType) as GraphQLList<
-            any
-          >;
+          const nullableType = getNullableType(
+            fieldType.ofType,
+          ) as GraphQLList<any>;
           arr[i] = res.mock(
             root,
             args,

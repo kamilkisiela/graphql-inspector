@@ -1,4 +1,4 @@
-import {NormalizedEnvironment, SchemaPointer, Endpoint} from './config';
+import { NormalizedEnvironment, SchemaPointer, Endpoint } from './config';
 import * as probot from 'probot';
 import Dataloader from 'dataloader';
 import yaml from 'js-yaml';
@@ -9,7 +9,7 @@ import {
   printSchema,
   Source,
 } from 'graphql';
-import {isNil, parseEndpoint, objectFromEntries} from './utils';
+import { isNil, parseEndpoint, objectFromEntries } from './utils';
 
 function createGetFilesQuery(variableMap: Record<string, string>): string {
   const variables = Object.keys(variableMap)
@@ -62,7 +62,7 @@ export function createFileLoader(config: FileLoaderConfig): FileLoader {
       const variablesMap = objectFromEntries(
         inputs.map((input) => [input.alias, `${input.ref}:${input.path}`]),
       );
-      const {context, repo, owner} = config;
+      const { context, repo, owner } = config;
 
       const result: any = await context.octokit.graphql(
         createGetFilesQuery(variablesMap),
@@ -191,7 +191,7 @@ export function createConfigLoader(
 export async function printSchemaFromEndpoint(endpoint: Endpoint) {
   const config = parseEndpoint(endpoint);
 
-  const {data: response} = await axios.request({
+  const { data: response } = await axios.request({
     method: config.method,
     url: config.url,
     headers: config.headers,

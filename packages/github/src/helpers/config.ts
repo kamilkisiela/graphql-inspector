@@ -1,5 +1,5 @@
-import {DiffInterceptor} from './diff';
-import {isNil} from './utils';
+import { DiffInterceptor } from './diff';
+import { isNil } from './utils';
 
 export type Endpoint =
   | string
@@ -97,9 +97,7 @@ const diffDefault = {
 };
 const notificationsDefault = false;
 
-function normalizeConfig(
-  config: Config,
-): {
+function normalizeConfig(config: Config): {
   kind: 'legacy' | 'single' | 'multiple';
   config: NormalizedConfig;
 } {
@@ -198,9 +196,8 @@ export function createConfig(
   branches: string[] = [],
   fallbackBranch = defaultFallbackBranch,
 ): NormalizedEnvironment {
-  const {config: normalizedConfig, kind: configKind} = normalizeConfig(
-    rawConfig,
-  );
+  const { config: normalizedConfig, kind: configKind } =
+    normalizeConfig(rawConfig);
 
   let config: NormalizedEnvironment | null = null;
 
@@ -319,7 +316,7 @@ function prioritize<T>(
     }
 
     return typeof parent === 'object' && typeof defaults === 'object'
-      ? {...defaults, ...parent}
+      ? { ...defaults, ...parent }
       : parent;
   }
 
@@ -332,6 +329,6 @@ function prioritize<T>(
   }
 
   return typeof child === 'object' && typeof defaults === 'object'
-    ? {...defaults, ...child}
+    ? { ...defaults, ...child }
     : child;
 }

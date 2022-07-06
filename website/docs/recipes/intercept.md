@@ -51,17 +51,17 @@ Let's set all [criticality levels to Non-Breaking](https://github.com/kamilkisie
 
 ```js
 module.exports = (req, res) => {
-  const changes = req.body.changes;
+  const changes = req.body.changes
 
-  changes = changes.forEach((change) => {
-    change.criticality.level = 'NON_BREAKING';
-  });
+  changes = changes.forEach(change => {
+    change.criticality.level = 'NON_BREAKING'
+  })
 
   res.json({
     changes,
-    conclusion: 'success',
-  });
-};
+    conclusion: 'success'
+  })
+}
 ```
 
 There's so much freedom here. Because you know which commit or a pull request triggered the check, you're able to decide if submitted changes should be rejected or accepted by fetching informations from GitHub API or your internal APIs.
@@ -79,15 +79,15 @@ interface DiffInterceptorPayload {
   /**
    * https://developer.github.com/v3/activity/events/types/#checkrunevent - see "pull_request"
    */
-  pullRequests?: PullRequest[];
+  pullRequests?: PullRequest[]
   /**
    * Commit SHA
    */
-  ref?: string;
+  ref?: string
   /**
    * https://github.com/kamilkisiela/graphql-inspector/blob/master/packages/core/src/diff/changes/change.ts#L76-L81
    */
-  changes: Change[];
+  changes: Change[]
 }
 ```
 
@@ -96,16 +96,16 @@ interface DiffInterceptorPayload {
 Described in TypeScript. Look at the source code to see the exact shape.
 
 ```ts
-import {Change} from '@graphql-inspector/core';
+import { Change } from '@graphql-inspector/core'
 
 interface DiffInterceptorResponse {
   /**
    * https://github.com/kamilkisiela/graphql-inspector/blob/master/packages/github/src/types.ts#L32-L36
    */
-  conclusion?: CheckConclusion;
+  conclusion?: CheckConclusion
   /**
    * https://github.com/kamilkisiela/graphql-inspector/blob/master/packages/core/src/diff/changes/change.ts#L76-L81
    */
-  changes: Change[];
+  changes: Change[]
 }
 ```

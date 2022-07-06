@@ -8,18 +8,36 @@ There are few options to provide your schema in GraphQL Inspector.
 
 GraphQL Inspector accepts CommonJS and ESModules
 
-```ts
-// as `default`
-export default makeExecutableSchema({ ... })
-
-// as `schema` variables
-export const schema = makeExecutableSchema({ ... })
-```
-
-Or with CommonJS
+**CommonJS**
 
 ```js
-module.exports = makeExecutableSchema({ ... })
+// Example for loading and merging multiple .graphql files into a single schema
+const { makeExecutableSchema } = require('@graphql-tools/schema')
+const { loadFilesSync } = require('@graphql-tools/load-files')
+
+const typeDefs = loadFilesSync('**/*.graphql')
+
+module.exports = makeExecutableSchema({ typeDefs })
+```
+
+**ESM default export**
+
+```ts
+import { makeExecutableSchema } from '@graphql-tools/schema'
+import { typeDefs } from './type-defs'
+
+// as `default`
+export default makeExecutableSchema({ typeDefs })
+```
+
+**ESM named export**
+
+```ts
+import { makeExecutableSchema } from '@graphql-tools/schema'
+import { typeDefs } from './type-defs'
+
+// as `schema` variables
+export const schema = makeExecutableSchema({ typeDefs })
 ```
 
 If you need to transpile a file, use `--require` option of the CLI:

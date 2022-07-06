@@ -1,6 +1,6 @@
-import {parse} from 'graphql';
+import { parse } from 'graphql';
 
-import {calculateDepth} from '../../src/validate/query-depth';
+import { calculateDepth } from '../../src/validate/query-depth';
 
 describe('calculateDepth', () => {
   test('spread fragments', async () => {

@@ -4,12 +4,17 @@ import {
   CommandFactory,
   parseGlobalArgs,
 } from '@graphql-inspector/commands';
-import {Logger} from '@graphql-inspector/logger';
-import {writeFileSync} from 'fs';
-import {resolve, extname} from 'path';
-import {introspectionFromSchema, lexicographicSortSchema, printSchema, GraphQLSchema} from 'graphql';
+import { Logger } from '@graphql-inspector/logger';
+import { writeFileSync } from 'fs';
+import { resolve, extname } from 'path';
+import {
+  introspectionFromSchema,
+  lexicographicSortSchema,
+  printSchema,
+  GraphQLSchema,
+} from 'graphql';
 
-export {CommandFactory};
+export { CommandFactory };
 
 export function handler({
   schema: unsortedSchema,
@@ -56,7 +61,7 @@ export default createCommand<
     comments?: boolean;
   } & GlobalArgs
 >((api) => {
-  const {loaders} = api;
+  const { loaders } = api;
 
   return {
     command: 'introspect <schema>',
@@ -82,7 +87,7 @@ export default createCommand<
         .default('w', 'graphql.schema.json');
     },
     async handler(args) {
-      const {headers, token} = parseGlobalArgs(args);
+      const { headers, token } = parseGlobalArgs(args);
       const output = args.write!;
       const comments = args.comments || false;
       const apolloFederation = args.federation || false;
@@ -100,7 +105,7 @@ export default createCommand<
         aws,
       );
 
-      return handler({schema, output, comments});
+      return handler({ schema, output, comments });
     },
   };
 });

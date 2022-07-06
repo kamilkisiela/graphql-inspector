@@ -67,7 +67,7 @@ export function safeChangeForInputValue(
   }
 
   if (isNonNullType(oldType)) {
-    const ofType = isNonNullType(newType) ? newType : newType;
+    const ofType = isNonNullType(newType) ? newType.ofType : newType;
 
     return safeChangeForInputValue(oldType.ofType, ofType);
   }
@@ -232,7 +232,7 @@ export function getReachableTypes(schema: GraphQLSchema): Set<string> {
       return;
     } else if (isInterfaceType(type) || isObjectType(type)) {
       if (isInterfaceType(type)) {
-        const {objects, interfaces} = schema.getImplementations(type);
+        const { objects, interfaces } = schema.getImplementations(type);
 
         for (const child of objects) {
           collect(child);

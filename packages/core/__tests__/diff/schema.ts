@@ -1,8 +1,12 @@
-import {buildSchema, introspectionFromSchema, buildClientSchema} from 'graphql';
+import {
+  buildSchema,
+  introspectionFromSchema,
+  buildClientSchema,
+} from 'graphql';
 
-import {diff} from '../../src/index';
-import {CriticalityLevel, Change} from '../../src/diff/changes/change';
-import {findBestMatch} from '../../src/utils/string';
+import { diff } from '../../src/index';
+import { CriticalityLevel, Change } from '../../src/diff/changes/change';
+import { findBestMatch } from '../../src/utils/string';
 
 test('same schema', async () => {
   const schemaA = buildSchema(/* GraphQL */ `
@@ -446,7 +450,7 @@ test('array as default value in argument (different)', async () => {
   expect(changes[0]).toBeDefined();
   expect(changes[0].criticality.level).toEqual(CriticalityLevel.Dangerous);
   expect(changes[0].message).toEqual(
-    `Default value for argument 'b' on field 'MyInterface.a' changed from 'Hello' to 'Goodbye'`,
+    `Default value for argument 'b' on field 'MyInterface.a' changed from '[ 'Hello' ]' to '[ 'Goodbye' ]'`,
   );
   expect(changes[0].path).toEqual(`MyInterface.a.b`);
 });
@@ -463,7 +467,7 @@ test('input as default value (same)', async () => {
     }
 
     type Comment {
-      replies(query: CommentQuery = {sortOrder: ASC, limit: 3}): String!
+      replies(query: CommentQuery = { sortOrder: ASC, limit: 3 }): String!
     }
   `);
 
@@ -478,7 +482,7 @@ test('input as default value (same)', async () => {
     }
 
     type Comment {
-      replies(query: CommentQuery = {sortOrder: ASC, limit: 3}): String!
+      replies(query: CommentQuery = { sortOrder: ASC, limit: 3 }): String!
     }
   `);
 

@@ -3,7 +3,7 @@ import {
   CriticalityLevel,
   Change,
 } from '@graphql-inspector/core';
-import {GraphQLSchema, Source} from 'graphql';
+import { GraphQLSchema, Source } from 'graphql';
 import axios from 'axios';
 
 import {
@@ -13,8 +13,8 @@ import {
   AnnotationLevel,
   PullRequest,
 } from './types';
-import {getLocationByPath} from './location';
-import {parseEndpoint, isNil} from './utils';
+import { getLocationByPath } from './location';
+import { parseEndpoint, isNil } from './utils';
 
 export type DiffInterceptor =
   | string
@@ -78,7 +78,7 @@ export async function diff({
   }
 
   const annotations = await Promise.all(
-    changes.map((change) => annotate({path, change, source: sources.new})),
+    changes.map((change) => annotate({ path, change, source: sources.new })),
   );
   let conclusion: CheckConclusion = CheckConclusion.Success;
 
@@ -118,8 +118,8 @@ function annotate({
 }): Annotation {
   const level = change.criticality.level;
   const loc = change.path
-    ? getLocationByPath({path: change.path, source})
-    : {line: 1, column: 1};
+    ? getLocationByPath({ path: change.path, source })
+    : { line: 1, column: 1 };
 
   return {
     title: change.message,
@@ -137,7 +137,7 @@ async function interceptChanges(
 ): Promise<DiffInterceptorResponse> {
   const endpoint = parseEndpoint(interceptor);
 
-  const {data} = await axios.request({
+  const { data } = await axios.request({
     url: endpoint.url,
     method: endpoint.method,
     data: payload,

@@ -126,19 +126,19 @@ Decides if a breaking change are in fact breaking, based on real usage of schema
 Example `check-usage.js` file:
 
 ```js
-const BREAKING = false;
-const NOT_BREAKING = true;
+const BREAKING = false
+const NOT_BREAKING = true
 
-module.exports = (entities) => {
+module.exports = entities => {
   return Promise.all(
-    entities.map(async ({type, field, argument}) => {
+    entities.map(async ({ type, field, argument }) => {
       // User                   => { type: 'User' }
       // Query.id               => { type: 'Query', field: 'me' }
       // Query.users(last: 10)  => { type: 'Query', field: 'users', argument: 'last' }
       const used = await checkIfUsedInLast30Days(type, field, argument)
-      return used ? BREAKING : NOT_BREAKING;
+      return used ? BREAKING : NOT_BREAKING
     })
-  );
+  )
 }
 ```
 
@@ -150,15 +150,14 @@ First, you need a module:
 
 ```js
 // custom-rule.js
-module.exports = ({changes}) => {
-  return changes.filter(myCustomFilter);
-};
+module.exports = ({ changes }) => {
+  return changes.filter(myCustomFilter)
+}
 ```
 
 Now, you can use that module as a rule:
 
     graphql-inspector diff https://api.com/graphql schema.graphql --rule './custom-rule.js'
-
 
 ### Passing different headers to multiple remote schemas
 

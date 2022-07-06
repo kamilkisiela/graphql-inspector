@@ -1,7 +1,7 @@
-import {GraphQLInputObjectType, GraphQLInputField} from 'graphql';
+import { GraphQLInputObjectType, GraphQLInputField } from 'graphql';
 
-import {diffArrays, isNotEqual, isVoid} from '../utils/compare';
-import {compareLists} from '../utils/compare';
+import { diffArrays, isNotEqual, isVoid } from '../utils/compare';
+import { compareLists } from '../utils/compare';
 import {
   inputFieldAdded,
   inputFieldRemoved,
@@ -11,7 +11,7 @@ import {
   inputFieldDefaultValueChanged,
   inputFieldTypeChanged,
 } from './changes/input';
-import {AddChange} from './schema';
+import { AddChange } from './schema';
 
 export function changesInInputObject(
   oldInput: GraphQLInputObjectType,
@@ -29,7 +29,12 @@ export function changesInInputObject(
       addChange(inputFieldRemoved(oldInput, field));
     },
     onMutual(field) {
-      changesInInputField(oldInput, field.oldVersion, field.newVersion, addChange);
+      changesInInputField(
+        oldInput,
+        field.oldVersion,
+        field.newVersion,
+        addChange,
+      );
     },
   });
 }

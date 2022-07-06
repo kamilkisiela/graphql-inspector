@@ -1,42 +1,42 @@
-import {buildSchema} from 'graphql';
+import { buildSchema } from 'graphql';
 
-import {diff, DiffRule, CriticalityLevel} from '../../src/index';
-import {findFirstChangeByPath, findChangesByPath} from '../../utils/testing';
+import { diff, DiffRule, CriticalityLevel } from '../../src/index';
+import { findFirstChangeByPath, findChangesByPath } from '../../utils/testing';
 
 describe('object', () => {
   test('added', async () => {
     const a = buildSchema(/* GraphQL */ `
-        type A {
-          a: String!
-        }
+      type A {
+        a: String!
+      }
 
-        type Foo {
-          a: String!
-        }
-      `);
-      const b = buildSchema(/* GraphQL */ `
-        type A {
-          a: String!
-        }
+      type Foo {
+        a: String!
+      }
+    `);
+    const b = buildSchema(/* GraphQL */ `
+      type A {
+        a: String!
+      }
 
-        type B {
-          a: String!
-        }
+      type B {
+        a: String!
+      }
 
-        type Mutation {
-          noop: String
-        }
+      type Mutation {
+        noop: String
+      }
 
-        type Foo {
-          a: String!
-        }
-      `);
+      type Foo {
+        a: String!
+      }
+    `);
 
-      const change = findFirstChangeByPath(await diff(a, b), 'B');
-      const mutation = findFirstChangeByPath(await diff(a, b), 'Mutation');
+    const change = findFirstChangeByPath(await diff(a, b), 'B');
+    const mutation = findFirstChangeByPath(await diff(a, b), 'Mutation');
 
-      expect(change.criticality.level).toEqual(CriticalityLevel.NonBreaking);
-      expect(mutation.criticality.level).toEqual(CriticalityLevel.NonBreaking);
+    expect(change.criticality.level).toEqual(CriticalityLevel.NonBreaking);
+    expect(mutation.criticality.level).toEqual(CriticalityLevel.NonBreaking);
   });
 
   describe('interfaces', () => {
