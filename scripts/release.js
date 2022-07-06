@@ -7,7 +7,7 @@ const immer = require('immer').default;
 const axios = require('axios').default;
 
 async function main() {
-  const placeholder = '0.0.0-PLACEHOLDER';
+  const placeholder = '3.2.0';
   const [, , versionOrCanary, nextVersion] = process.argv;
   const rootDir = resolve(__dirname, '../');
   const current = await axios.get('https://unpkg.com/@graphql-inspector/core/package.json', {
@@ -61,11 +61,11 @@ async function main() {
   exec(`yarn build && yarn action && git add action/`);
   
   const extra = isLatest ? '' : ` --tag ${versionOrCanary}`;
-  const cmd = `npm publish dist${extra} --access public`;
+  const cmd = `npm publish ${extra} --access public`;
   
   // Run npm publish in all libraries
   packages.map((dir) => {
-    exec(`(cd ${dir} && ${cmd} --access public)`);
+    exec(`(cd ${dir} && cd dist && ${cmd})`);
   });
   
   if (isLatest) {
