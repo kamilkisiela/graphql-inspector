@@ -95,9 +95,8 @@ const AppContent: FC<AppProps> = (appProps) => {
           },
           {
             children: 'Enterprise',
-            title: 'Enterprise - GraphQL Inspector',
-            href: '/enterprise',
-            onClick: (e) => handlePushRoute('/enterprise', e),
+            title: 'Try GraphQL Hive',
+            href: 'https://graphql-hive.com',
           },
           {
             children: 'Docs',
