@@ -67,7 +67,7 @@ export function safeChangeForInputValue(
   }
 
   if (isNonNullType(oldType)) {
-    const ofType = isNonNullType(newType) ? newType : newType;
+    const ofType = isNonNullType(newType) ? newType.ofType : newType;
 
     return safeChangeForInputValue(oldType.ofType, ofType);
   }
