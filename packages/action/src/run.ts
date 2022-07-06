@@ -5,7 +5,7 @@ import {
   printSchemaFromEndpoint,
   produceSchema,
 } from '@graphql-inspector/github';
-import { Source, GraphQLSchema, buildClientSchema, printSchema } from 'graphql';
+import { Source, GraphQLSchema, buildClientSchema, buildSchema, printSchema } from 'graphql';
 import { readFileSync } from 'fs';
 import { resolve, extname } from 'path';
 import { execSync } from 'child_process';
@@ -141,8 +141,8 @@ export async function run() {
   let newSchema: GraphQLSchema;
   let sources: { new: Source; old: Source };
 
-  if (extname(schemaPath.toLowerCase()) === '.json') {
-    oldSchema = buildClientSchema(JSON.parse(oldFile));
+  if (extname(schemaPath.toLowerCase()) === ".json") {
+    oldSchema = endpoint ? buildSchema(oldFile) : buildClientSchema(JSON.parse(oldFile));
     newSchema = buildClientSchema(JSON.parse(newFile));
 
     sources = {
