@@ -2,6 +2,8 @@
 
 ### vNEXT
 
+### v3.1.4
+
 - **core**: Fix regression [#2128](https://github.com/kamilkisiela/graphql-inspector/issues/2128) introduced in [#2100](https://github.com/kamilkisiela/graphql-inspector/pull/2100)
 
 ### v3.1.3
