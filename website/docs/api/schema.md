@@ -12,10 +12,10 @@ GraphQL Inspector accepts CommonJS and ESModules
 
 ```js
 // Example for loading and merging multiple .graphql files into a single schema
-const { makeExecutableSchema } = require("@graphql-tools/schema");
-const { loadFilesSync } = require('@graphql-tools/load-files');
+const { makeExecutableSchema } = require('@graphql-tools/schema')
+const { loadFilesSync } = require('@graphql-tools/load-files')
 
-const typeDefs = loadFilesSync('**/*.graphql');
+const typeDefs = loadFilesSync('**/*.graphql')
 
 module.exports = makeExecutableSchema({ typeDefs })
 ```
@@ -23,8 +23,8 @@ module.exports = makeExecutableSchema({ typeDefs })
 **ESM default export**
 
 ```ts
-import { makeExecutableSchema } from "@graphql-tools/schema";
-import { typeDefs } from "./type-defs";
+import { makeExecutableSchema } from '@graphql-tools/schema'
+import { typeDefs } from './type-defs'
 
 // as `default`
 export default makeExecutableSchema({ typeDefs })
@@ -33,8 +33,8 @@ export default makeExecutableSchema({ typeDefs })
 **ESM named export**
 
 ```ts
-import { makeExecutableSchema } from "@graphql-tools/schema";
-import { typeDefs } from "./type-defs";
+import { makeExecutableSchema } from '@graphql-tools/schema'
+import { typeDefs } from './type-defs'
 
 // as `schema` variables
 export const schema = makeExecutableSchema({ typeDefs })
