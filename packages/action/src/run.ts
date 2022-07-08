@@ -12,9 +12,18 @@ import { execSync } from 'child_process';
 
 import * as core from '@actions/core';
 import * as github from '@actions/github';
+import { OctokitResponse } from '@octokit/types';
 import { batch } from './utils';
 
 type OctokitInstance = ReturnType<typeof github.getOctokit>;
+interface PullRequest {
+  base: { ref: string };
+  url: string;
+  id: number;
+  number: number;
+  labels?: Array<{ name: string }>;
+}
+
 const CHECK_NAME = 'GraphQL Inspector';
 
 function getCurrentCommitSha() {
@@ -36,6 +45,14 @@ function getCurrentCommitSha() {
   }
 
   return sha;
+}
+
+async function getAssociatedPullRequest(octokit: OctokitInstance, commitSha: string) {
+  const result: OctokitResponse<[PullRequest]> = await octokit.request('GET /repos/{owner}/{repo}/commits/{commit_sha}/pulls', {
+    ...github.context.repo,
+    commit_sha: commitSha
+  })  
+  return result.data.length > 0 ? result.data[0] : null
 }
 
 export async function run() {
@@ -71,6 +88,9 @@ export async function run() {
   // repo
   const { owner, repo } = github.context.repo;
 
+  // pull request
+  const pullRequest = await getAssociatedPullRequest(octokit, commitSha)
+
   core.info(`Creating a check named "${checkName}"`);
 
   const check = await octokit.checks.create({
@@ -100,12 +120,12 @@ export async function run() {
 
   let [schemaRef, schemaPath] = schemaPointer.split(':');
 
-  if (useMerge && github.context.payload.pull_request) {
-    ref = `refs/pull/${github.context.payload.pull_request.number}/merge`;
+  if (useMerge && pullRequest) {
+    ref = `refs/pull/${pullRequest.number}/merge`;
     workspace = undefined;
     core.info(`EXPERIMENTAL - Using Pull Request ${ref}`);
 
-    const baseRef = github.context.payload.pull_request?.base?.ref;
+    const baseRef = pullRequest?.base?.ref;
 
     if (baseRef) {
       schemaRef = baseRef;
@@ -184,11 +204,9 @@ export async function run() {
   core.setOutput('changes', `${changes.length || 0}`);
   core.info(`Changes: ${changes.length || 0}`);
 
-  const hasApprovedBreakingChangeLabel = github.context.payload.pull_request
-    ? github.context.payload.pull_request.labels?.some(
-        (label: any) => label.name === approveLabel,
-      )
-    : false;
+  const hasApprovedBreakingChangeLabel = pullRequest?.labels?.some(
+    (label: any) => label.name === approveLabel,
+  );
 
   // Force Success when failOnBreaking is disabled
   if (
