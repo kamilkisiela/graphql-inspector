@@ -2,6 +2,8 @@
 
 ### vNEXT
 
+- **action**: Fix ignored `approve-label` for `push` events [#2133](https://github.com/kamilkisiela/graphql-inspector/pull/2133)
+
 ### v3.2.0
 
 - **action**: Use GitHub REST API to retrieve the full blob content if schema is truncated [#2131](https://github.com/kamilkisiela/graphql-inspector/pull/2131)
