@@ -7,6 +7,7 @@ import {
 import { Change, CriticalityLevel, ChangeType } from './change';
 import { isDeprecated } from '../../utils/isDeprecated';
 import { safeChangeForInputValue } from '../../utils/graphql';
+import { safeString } from '../../utils/string';
 
 export function inputFieldRemoved(
   input: GraphQLInputObjectType,
@@ -101,7 +102,7 @@ export function inputFieldDefaultValueChanged(
         'Changing the default value for an argument may change the runtime behaviour of a field if it was never provided.',
     },
     type: ChangeType.InputFieldDefaultValueChanged,
-    message: `Input field '${input.name}.${oldField.name}' default value changed from '${oldField.defaultValue}' to '${newField.defaultValue}'`,
+    message: `Input field '${input.name}.${oldField.name}' default value changed from '${safeString(oldField.defaultValue)}' to '${safeString(newField.defaultValue)}'`,
     path: [input.name, oldField.name].join('.'),
   };
 }
