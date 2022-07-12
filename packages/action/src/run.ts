@@ -5,7 +5,13 @@ import {
   printSchemaFromEndpoint,
   produceSchema,
 } from '@graphql-inspector/github';
-import { Source, GraphQLSchema, buildClientSchema, buildSchema, printSchema } from 'graphql';
+import {
+  Source,
+  GraphQLSchema,
+  buildClientSchema,
+  buildSchema,
+  printSchema,
+} from 'graphql';
 import { readFileSync } from 'fs';
 import { resolve, extname } from 'path';
 import { execSync } from 'child_process';
@@ -141,8 +147,10 @@ export async function run() {
   let newSchema: GraphQLSchema;
   let sources: { new: Source; old: Source };
 
-  if (extname(schemaPath.toLowerCase()) === ".json") {
-    oldSchema = endpoint ? buildSchema(oldFile) : buildClientSchema(JSON.parse(oldFile));
+  if (extname(schemaPath.toLowerCase()) === '.json') {
+    oldSchema = endpoint
+      ? buildSchema(oldFile)
+      : buildClientSchema(JSON.parse(oldFile));
     newSchema = buildClientSchema(JSON.parse(newFile));
 
     sources = {
@@ -275,29 +283,34 @@ function fileLoader({
     core.info(`Query ${file.ref}:${file.path} from ${owner}/${repo}`);
 
     try {
-      if (result?.repository?.object?.oid && result?.repository?.object?.isTruncated) {
-        const oid = result?.repository?.object?.oid
+      if (
+        result?.repository?.object?.oid &&
+        result?.repository?.object?.isTruncated
+      ) {
+        const oid = result?.repository?.object?.oid;
         const getBlobResponse = await octokit.git.getBlob({
           owner,
           repo,
           file_sha: oid,
         });
 
-        if(getBlobResponse?.data?.content) {
-          return Buffer.from(getBlobResponse?.data?.content, 'base64').toString('utf-8')
+        if (getBlobResponse?.data?.content) {
+          return Buffer.from(getBlobResponse?.data?.content, 'base64').toString(
+            'utf-8',
+          );
         }
 
         throw new Error('getBlobResponse.data.content is null');
       }
 
-      if (
-        result?.repository?.object?.text
-      ) {
-        if(result?.repository?.object?.isTruncated === false) {
+      if (result?.repository?.object?.text) {
+        if (result?.repository?.object?.isTruncated === false) {
           return result.repository.object.text;
         }
 
-        throw new Error('result.repository.object.text is truncated and oid is null');
+        throw new Error(
+          'result.repository.object.text is truncated and oid is null',
+        );
       }
 
       throw new Error('result.repository.object.text is null');
