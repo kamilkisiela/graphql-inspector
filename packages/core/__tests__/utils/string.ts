@@ -4,10 +4,10 @@ test('scalars', () => {
   expect(safeString(0)).toBe('0');
   expect(safeString(42)).toBe('42');
   expect(safeString(42.42)).toBe('42.42');
-  expect(safeString('42')).toBe("'42'");
-  expect(safeString('true')).toBe("'true'");
+  expect(safeString('42')).toBe('42');
+  expect(safeString('true')).toBe('true');
   expect(safeString(true)).toBe('true');
-  expect(safeString('false')).toBe("'false'");
+  expect(safeString('false')).toBe('false');
   expect(safeString(false)).toBe('false');
 });
 
