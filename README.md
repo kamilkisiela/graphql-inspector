@@ -48,7 +48,7 @@ Visit our website [**graphql-inspector.com**](https://graphql-inspector.com/) to
 
 ## Documentation
 
-Documentation is available at [**graphql-inspector.com/docs**](https://graphql-inspector.com/docs).
+Documentation is available at [**graphql-inspector.com/docs/introduction**](https://www.graphql-inspector.com/docs/introduction).
 
 ## Related
 
