@@ -306,7 +306,7 @@ test('huge test', async () => {
     `Input field 'c' was added to input object type 'AInput'`,
     `Input field 'AInput.a' description changed from 'a' to 'changed'`,
     `Input field 'AInput.a' default value changed from '1' to '1'`,
-    `Input field 'ListInput.a' default value changed from 'foo' to 'bar'`,
+    `Input field 'ListInput.a' default value changed from '[ 'foo' ]' to '[ 'bar' ]'`,
     `Input field 'AInput.a' changed type from 'String' to 'Int'`,
     `'CType' object implements 'AnInterface' interface`,
     `Field 'c' was removed from object type 'CType'`,
@@ -341,7 +341,6 @@ test('huge test', async () => {
     try {
       expect(changes.some((c) => c.message === msg)).toEqual(true);
     } catch (e) {
-      console.log(changes);
       console.log(`Couldn't find: ${msg}`);
       const match = findBestMatch(
         msg,
@@ -550,7 +549,7 @@ test('array as default value in input (different)', async () => {
   expect(changes[0]).toBeDefined();
   expect(changes[0].criticality.level).toEqual(CriticalityLevel.Dangerous);
   expect(changes[0].message).toEqual(
-    `Input field 'CommentQuery.sortOrder' default value changed from 'ASC' to 'DEC'`,
+    `Input field 'CommentQuery.sortOrder' default value changed from '[ 'ASC' ]' to '[ 'DEC' ]'`,
   );
   expect(changes[0].path).toEqual(`CommentQuery.sortOrder`);
 });

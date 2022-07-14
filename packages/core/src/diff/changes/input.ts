@@ -99,7 +99,7 @@ export function inputFieldDefaultValueChanged(
     criticality: {
       level: CriticalityLevel.Dangerous,
       reason:
-        'Changing the default value for an argument may change the runtime behaviour of a field if it was never provided.',
+        'Changing the default value for an argument may change the runtime behavior of a field if it was never provided.',
     },
     type: ChangeType.InputFieldDefaultValueChanged,
     message: `Input field '${input.name}.${oldField.name}' default value changed from '${safeString(oldField.defaultValue)}' to '${safeString(newField.defaultValue)}'`,
