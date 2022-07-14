@@ -182,8 +182,11 @@ export function fieldArgumentAdded(
   field: GraphQLField<any, any, any>,
   arg: GraphQLArgument,
 ): Change {
+  const isBreaking = isNonNullType(arg.type) && typeof arg.defaultValue === 'undefined';
+  const defaultValueMsg = typeof arg.defaultValue !== 'undefined' ? ' (with default value) ' : ' ';
+
   return {
-    criticality: isNonNullType(arg.type)
+    criticality: isBreaking
       ? {
           level: CriticalityLevel.Breaking,
           reason: `Adding a required argument to an existing field is a breaking change because it will cause existing uses of this field to error.`,
@@ -193,7 +196,7 @@ export function fieldArgumentAdded(
           reason: `Adding a new argument to an existing field may involve a change in resolve function logic that potentially may cause some side effects.`,
         },
     type: ChangeType.FieldArgumentAdded,
-    message: `Argument '${arg.name}: ${arg.type}' added to field '${type.name}.${field.name}'`,
+    message: `Argument '${arg.name}: ${arg.type}'${defaultValueMsg}added to field '${type.name}.${field.name}'`,
     path: [type.name, field.name, arg.name].join('.'),
   };
 }
