@@ -5,6 +5,27 @@ import { diff } from '../../src/index';
 import { CriticalityLevel } from '../../src/diff/changes/change';
 
 describe('argument', () => {
+  test('added non-nullable with default value', async () => {
+    const a = buildSchema(/* GraphQL */ `
+      type Query {
+        a: String
+      }
+    `);
+    const b = buildSchema(/* GraphQL */ `
+      type Query {
+        a(b: Boolean! = true): String
+      }
+    `);
+
+    const change = findFirstChangeByPath(await diff(a, b), 'Query.a.b');
+
+    expect(change.criticality.level).toEqual(CriticalityLevel.Dangerous);
+    expect(change.type).toEqual('FIELD_ARGUMENT_ADDED');
+    expect(change.message).toEqual(
+      "Argument 'b: Boolean!' (with default value) added to field 'Query.a'",
+    );
+  });
+
   describe('default value', () => {
     test('added', async () => {
       const a = buildSchema(/* GraphQL */ `
