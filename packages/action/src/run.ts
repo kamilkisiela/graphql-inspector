@@ -21,6 +21,7 @@ interface PullRequest {
   url: string;
   id: number;
   number: number;
+  state: "open" | "closed";
   labels?: Array<{ name: string }>;
 }
 
@@ -120,12 +121,12 @@ export async function run() {
 
   let [schemaRef, schemaPath] = schemaPointer.split(':');
 
-  if (useMerge && pullRequest) {
+  if (useMerge && pullRequest?.state == 'open') {
     ref = `refs/pull/${pullRequest.number}/merge`;
     workspace = undefined;
     core.info(`EXPERIMENTAL - Using Pull Request ${ref}`);
 
-    const baseRef = pullRequest?.base?.ref;
+    const baseRef = pullRequest.base?.ref;
 
     if (baseRef) {
       schemaRef = baseRef;
