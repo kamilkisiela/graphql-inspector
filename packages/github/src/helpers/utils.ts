@@ -102,12 +102,9 @@ export function createSummary(
     [
       '',
       '___',
-      `We ([The Guild](https://the-guild.dev)) [recently announced an alternative to Inspector](https://the-guild.dev/blog/graphql-hive-preview) called [GraphQL Hive](https://graphql-hive.com)`,
-      `If you interested in getting an early access, please visit GraphQL Hive and sign in.`,
+      `Looking for more advanced tool? Try [GraphQL Hive](https://graphql-hive.com)!`
       '',
-      '___',
-      `Thank you for using [GraphQL Inspector](https://graphql-inspector.com/)`,
-      `If you like it, [consider supporting the project](https://github.com/sponsors/kamilkisiela).`,
+      '___'
     ].join('\n'),
   );
 
