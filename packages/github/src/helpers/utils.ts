@@ -102,9 +102,7 @@ export function createSummary(
     [
       '',
       '___',
-      `Looking for more advanced tool? Try [GraphQL Hive](https://graphql-hive.com)!`
-      '',
-      '___'
+      `Looking for more advanced tool? Try [GraphQL Hive](https://graphql-hive.com)!`,
     ].join('\n'),
   );
 
