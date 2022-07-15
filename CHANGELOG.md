@@ -2,6 +2,8 @@
 
 ### vNEXT
 
+### v3.3.0
+
 
 - **docker**: Publish images to the registry
 - **core**: Fix `Cannot convert object to primitive value` error for defaultValue in `ChangeType.InputFieldDefaultValueChanged`
