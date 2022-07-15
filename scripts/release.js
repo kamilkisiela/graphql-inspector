@@ -7,7 +7,7 @@ const immer = require('immer').default;
 const axios = require('axios').default;
 
 async function main() {
-  const placeholder = '3.2.0';
+  const placeholder = '0.0.0-PLACEHOLDER';
   const [, , versionOrCanary, nextVersion] = process.argv;
   const rootDir = resolve(__dirname, '../');
   const current = await axios.get('https://unpkg.com/@graphql-inspector/core/package.json', {
