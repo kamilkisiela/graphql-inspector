@@ -54,9 +54,9 @@ jobs:
           ./packages/cli/dist/index.js introspect ./integration_tests/1985/schema.js || echo 'TODO'
           
           echo 2108
-          ./packages/cli/dist/index.js introspect './integration_tests/2108/**/*.graphql' --write ./2108.graphql
+          ./packages/cli/dist/index.js introspect './integration_tests/2108/**/!(excluded)/*.graphql' --write ./2108.graphql
             if grep -ic "bar" ./2108.graphql
-            then echo "2108 broken" && exit 1
+            then echo "Broken" && exit 1
             else echo "Works"
             fi
           
