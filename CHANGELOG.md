@@ -2,6 +2,8 @@
 
 ### vNEXT
 
+
+- **docker**: Publish images to the registry
 - **core**: Fix `Cannot convert object to primitive value` error for defaultValue in `ChangeType.InputFieldDefaultValueChanged`
 - **action**: Fix ignored `approve-label` for `push` events [#2133](https://github.com/kamilkisiela/graphql-inspector/pull/2133)
 - **core**: Addition of non-nullable argument with a default is now dangerous (previously breaking) [#2137](https://github.com/kamilkisiela/graphql-inspector/pull/2137)
