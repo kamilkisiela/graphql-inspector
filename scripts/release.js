@@ -46,11 +46,6 @@ async function main() {
     );
   });
   
-  // Set version in Dockerfile (both LABEL and RUN)
-  updateString(join(rootDir, 'Dockerfile-cli'), (docker) =>
-    docker.replace(new RegExp(current, 'g'), version),
-  );
-  
   if (isLatest) {
     // Bump version in changelog
     updateString(join(rootDir, 'CHANGELOG.md'), (changelog) =>
