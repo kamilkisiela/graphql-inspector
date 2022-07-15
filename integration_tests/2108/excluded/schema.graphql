@@ -1,3 +1,2 @@
 type Query {
-  bar: String
-}
+  bar: # broken syntax
