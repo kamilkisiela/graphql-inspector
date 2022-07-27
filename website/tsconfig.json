@@ -16,6 +16,6 @@
     "incremental": true,
     "useUnknownInCatchVariables": false
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "routes.ts.old"],
   "exclude": ["node_modules"]
 }

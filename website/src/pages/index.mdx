@@ -1,14 +1,27 @@
-import { FC } from 'react';
-import {
-  FeatureList,
-  HeroGradient,
-  HeroIllustration,
-} from '@theguild/components';
-import { handlePushRoute, NPMBadge } from '@guild-docs/client';
 import { Live } from '../components/live';
 import { Contact } from '../components/contact';
+import { FeatureList, HeroGradient, NPMBadge, HeroIllustration } from '@theguild/components';
+import { handlePushRoute } from 'guild-docs';
 
-const FEATURE_LIST = [
+<HeroGradient
+        title="GraphQL Inspector"
+        description="Validate schemas and detect changes. Receive schema change notifications. Keep Operations and Fragments consistent."
+        link={{
+          href: '/docs/introduction',
+          children: 'Get Started',
+          title: 'Get started with GraphQL Inspector Docs',
+          onClick: (e) => handlePushRoute('/docs/introduction', e),
+        }}
+        colors={['#2e2e2e', '#fff']}
+        version={<NPMBadge name="@graphql-inspector/cli" />}
+        image={{
+          src: '../assets/img/ui/cover.svg',
+          alt: 'Illustration',
+        }}
+/>
+
+<FeatureList
+  items={[
   {
     title: 'Works with GitHub',
     description: `Start using our GitHub Application, setup everything within few clicks. Using GitHub workflows? Try out the GitHub Action.`,
@@ -60,31 +73,9 @@ const FEATURE_LIST = [
       href: 'https://github.com/kamilkisiela/graphql-inspector',
     },
   },
-];
-
-const IndexPage: FC = () => {
-  return (
-    <>
-      <HeroGradient
-        title="GraphQL Inspector"
-        description="Validate schemas and detect changes. Receive schema change notifications. Keep Operations and Fragments consistent."
-        link={{
-          href: '/docs/introduction',
-          children: 'Get Started',
-          title: 'Get started with GraphQL Inspector Docs',
-          onClick: (e) => handlePushRoute('/docs/introduction', e),
-        }}
-        colors={['#2e2e2e', '#fff']}
-        version={<NPMBadge name="@graphql-inspector/cli" />}
-        image={{
-          src: '/assets/img/ui/cover.svg',
-          alt: 'Illustration',
-        }}
-      />
-
-      <FeatureList title="" items={FEATURE_LIST} />
-
-      <HeroIllustration
+]}
+/>
+<HeroIllustration
         title="GraphQL Hive"
         description={
           <div>
@@ -105,9 +96,8 @@ const IndexPage: FC = () => {
         wrapperProps={{ style: { backgroundColor: '#f6f6f6' } }}
         imageProps={{ style: { borderRadius: 20 } }}
         flipped
-      />
-
-      <HeroIllustration
+  />
+<HeroIllustration
         title="In-Code Annotations"
         description="GitHub offers in-code annotations and GraphQL Inspector, both App and Action enables you to use them. Nice and clean way to understand what have really changed and how it looked before and after."
         image={{
@@ -116,8 +106,7 @@ const IndexPage: FC = () => {
           loading: 'lazy',
         }}
       />
-
-      <HeroIllustration
+<HeroIllustration
         title="Notifications"
         description="Stay up to date with changes in GraphQL Schema. Receive notifications on Slack, Discord or even via Webhooks every time new changes are introduced."
         image={{
@@ -127,8 +116,7 @@ const IndexPage: FC = () => {
         }}
         flipped
       />
-
-      <HeroIllustration
+<HeroIllustration
         title="Detect Changes"
         description="Prevent breaking changes on Pull Request and Push levels. Get a fully detailed summary with a list of proposed changes to the GraphQL Schema and decide whether or not to implement them."
         image={{
@@ -137,8 +125,7 @@ const IndexPage: FC = () => {
           loading: 'lazy',
         }}
       />
-
-      <HeroIllustration
+<HeroIllustration
         title="Intercept via HTTP"
         description="On every schema checking, your http endpoint receives a list of changes, list of related Pull Request or a commit SHA. Decide about the status of Pull Request."
         image={{
@@ -148,12 +135,5 @@ const IndexPage: FC = () => {
         }}
         flipped
       />
-
-      <Live />
-
-      <Contact />
-    </>
-  );
-};
-
-export default IndexPage;
+<Live />
+<Contact />
