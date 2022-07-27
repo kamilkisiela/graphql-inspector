@@ -1,6 +1,7 @@
----
-title: Getting Started
----
+import { PackageCmd } from '@theguild/components'
+import { Callout } from '@theguild/components'
+
+# Getting Started
 
 ## GitHub Application
 
@@ -8,15 +9,11 @@ Visit [GraphQL Inspector](https://github.com/marketplace/graphql-inspector) on G
 
 Read the ["GitHub Application"](../products/github) chapter to see the instructions.
 
----
-
 ## GitHub Action
 
 Visit [GraphQL Inspector](https://github.com/marketplace/actions/graphql-inspector) on GitHub Marketplace and complete installation.
 
 Read the ["GitHub Action"](../products/action) chapter to see the instructions.
-
----
 
 ## CLI
 
@@ -24,13 +21,13 @@ Command Line Tool with all the features, installable with a single command:
 
 Install using:
 
-<PackageInstall global packages="@graphql-inspector/cli graphql" />
+<PackageCmd packages={['@graphql-inspector/cli graphql']} />
 
 ### Usage
 
+<Callout type="info">
     graphql-inspector --help
-
----
+</Callout>
 
 ## CLI for CI
 
@@ -38,7 +35,7 @@ Works similar to regular CLI but every feature is pluggable to keep the size as 
 
 Install using:
 
-<PackageInstall global packages="@graphql-inspector/ci" />
+<PackageCmd packages={['@graphql-inspector/ci']} />
 
 ### Commands
 
@@ -51,13 +48,16 @@ Every command is installable through a package.
 - introspect - `@graphql-inspector/introspect-command`
 - serve - `@graphql-inspector/serve-command`
 
-> Please take a look at ["Continuous Integration"](../products/ci) chapter.
+<Callout type="info">
+Please take a look at ["Continuous Integration"](../products/ci) chapter.
+</Callout>
+
 
 ### Usage
 
+<Callout type="info">
     graphql-inspector --help
-
----
+</Callout>
 
 ## Programmatic API
 
@@ -65,7 +65,7 @@ GraphQL Inspector comes with a programmatic API, here is how to use the Core pac
 
 Install using your favorite package manager:
 
-<PackageInstall packages="@graphql-inspector/core" />
+<PackageCmd packages={['@graphql-inspector/core']} />
 
 ### Usage
 

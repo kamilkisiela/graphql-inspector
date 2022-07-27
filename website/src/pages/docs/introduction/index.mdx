@@ -1,6 +1,6 @@
----
-title: What is GraphQL Inspector?
----
+import { Callout } from '@theguild/components'
+
+# What is GraphQL Inspector?
 
 GraphQL Inspector is a set of tools to help you better maintain and improve GraphQL API as well as GraphQL consumers.
 
@@ -13,13 +13,15 @@ GraphQL Inspector outputs a list of changes between two GraphQL schemas. Every c
 - [**GitHub Action**](./products/action)
 - **Programmatic API**
 
-The way GraphQL Inspector is built enables you to use everything through a CLI or each feature separately using one of many available packages. There's also a GitHub Application that you can install and use within seconds. If you're fan of GitHub Actions, we got you covered too.
+The way GraphQL Inspector is built enables you to use everything through a CLI or each feature separately using one of many available packages. There's also a GitHub Application that you can install and use within seconds. If you're a fan of GitHub Actions, we got you covered too.
 
 ## GitHub Application and Action
 
 ![App and Action](/assets/img/github/app-action.jpg)
 
-> GraphQL Inspector GitHub Application is open-sourced, we host it so you don't have to.
+<Callout type="info">
+GraphQL Inspector GitHub Application is open-sourced, we host it so you don't have to.
+</Callout>
 
 ## Command Line Tool
 
@@ -28,13 +30,15 @@ The way GraphQL Inspector is built enables you to use everything through a CLI o
   <source src="/assets/img/cli/demo.mp4" type="video/mp4" />
 </video>
 
-> GraphQL Inspector has a **CLI** and also a **programmatic API**, so you can use it however you want to and even build tools on top of it.
+<Callout type="info">
+GraphQL Inspector has a **CLI** and also a **programmatic API**, so you can use it however you want to and even build tools on top of it.
+</Callout>
 
 ## Features
 
 ### Detect changes between GraphQL Schemas
 
-Prevent breaking changes and get a list of safe and dangerous modifications. Everything with helpful explanation of why changes are breaking or dangerous to introduce.
+Prevent breaking changes and get a list of safe and dangerous modifications. Everything with a helpful explanation of why changes are breaking or dangerous to introduce.
 
 ![Diff](/assets/img/cli/diff.jpg)
 
@@ -46,7 +50,7 @@ Validates Operations and Fragments against a Schema and looks for deprecated usa
 
 ### GitHub Application and GitHub Action
 
-Use our Application and get everything up and running within few seconds. If you prefer, you can have you own self-hosted GraphQL Inspector service or deploy it with Docker. You can also simply use our GitHub Action.
+Use our Application and get everything up and running within a few seconds. If you prefer, you can have your own self-hosted GraphQL Inspector service or deploy it with Docker. You can also simply use our GitHub Action.
 
 ![GitHub](/assets/img/cli/github.jpg)
 
@@ -77,3 +81,5 @@ Introspects a GraphQL API and writes the introspection result to a file.
 ```sh
 ✅ Introspection result saved to schema.json
 ```
+
+
