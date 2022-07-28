@@ -1,30 +1,32 @@
----
-title: Providing Documents
----
+import { Callout } from '@theguild/components'
 
-There are few ways of providing operations and fragments (documents in general).
+# Providing Documents
 
-## JavaScript and TypeScript files
+There are a few ways of providing operations and fragments (documents in general).
 
-GraphQL Inspector support glob pattern.
+## JavaScript And TypeScript Files
 
-    ./src/app/**/*.ts
-
-Given example above, Inspector will search every file that matches that pattern and extract operations and fragments wrapped with `gql` or `graphql` template literal tag.
+GraphQL Inspector supports glob pattern.
+```
+./src/app/**/*.ts
+```
+Given the example above, Inspector will search every file that matches that pattern and extract operations and fragments wrapped with `gql` or `graphql` template literal tag.
 
 Supported extensions: `.ts`, `.tsx`, `.js` and `.jsx`
 
-## GraphQL files
+## GraphQL Files
 
-GraphQL Inspector support glob pattern.
-
-    ./src/app/**/*.graphql
-
-Given example above, Inspector will search every file that matches that pattern and extract operations and fragments.
+GraphQL Inspector supports glob pattern.
+```
+./src/app/**/*.graphql
+```
+Given the example above, Inspector will search every file that matches that pattern and extract operations and fragments.
 
 Supported extensions: `.graphql`, `.graphqls` and `.gql`.
 
-> ⚠️ Remember to wrap a glob pattern with quotes: `"./src/app/**/*.graphql"` ⚠️
+<Callout type="info">
+Remember to wrap a glob pattern with quotes: `"./src/app/**/*.graphql"`
+</Callout>
 
 ## Programmatic API
 
