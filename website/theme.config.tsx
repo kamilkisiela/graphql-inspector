@@ -1,13 +1,13 @@
-import { ConfigLogo } from '@theguild/components';
+import { InspectorLogo } from '@theguild/components';
 // @ts-ignore
 import { DocsThemeConfig } from 'nextra-theme-docs';
 
-const SITE_NAME = 'GraphQL Scalars';
+const SITE_NAME = 'GraphQL Inspector';
 
 const config: DocsThemeConfig = {
   titleSuffix: ` – ${SITE_NAME}`,
-  projectLink: 'https://github.com/urigo/graphql-scalars', // GitHub link in the navbar
-  docsRepositoryBase: 'https://github.com/Urigo/graphql-scalars/tree/master/website/src/pages', // base URL for the docs repository
+  projectLink: 'https://github.com/kamilkisiela/graphql-inspector', // GitHub link in the navbar
+  docsRepositoryBase: 'https://github.com/kamilkisiela/graphql-inspector/tree/master/website/src/pages', // base URL for the docs repository
   nextLinks: true,
   prevLinks: true,
   search: false,
@@ -17,11 +17,11 @@ const config: DocsThemeConfig = {
   footerEditLink: 'Edit this page on GitHub',
   logo: (
     <>
-      <ConfigLogo className="mr-1.5 h-9 w-9" />
+      <InspectorLogo className="mr-1.5 h-9 w-9" />
       <div>
         <h1 className="md:text-md text-sm font-medium">{SITE_NAME}</h1>
         <h2 className="hidden text-xs sm:!block">
-          Common custom GraphQL Scalars for precise type-safe GraphQL schemas
+          Bulletproof your GraphQL
         </h2>
       </div>
     </>
