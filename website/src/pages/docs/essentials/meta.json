@@ -1,0 +1,10 @@
+{
+    "coverage": "Schema Coverage",
+    "diff": "Schema Validation",
+    "introspect": "Introspection",
+    "notifications": "Schema Change Notifications",
+    "serve":  "Serve With Faked Data",
+    "similar": "Find Similar Types",
+    "validate": "Validate Documents"
+
+}

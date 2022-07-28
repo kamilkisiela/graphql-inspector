@@ -1,14 +1,16 @@
----
-title: Schema change notifications
----
+import { Callout } from '@theguild/components'
+
+# Schema Change Notifications
 
 Stay up to date with changes in your GraphQL Schema. Receive notifications on Slack, Discord or even via WebHooks every time new changes are introduced.
 
 Track what happens in your Production, Staging or QA environments.
 
-> ⚠️ Available only in GitHub Application ⚠️
+<Callout type="info">
+Available only in GitHub Application
+</Callout>
 
-## How it works?
+## How Does It Work?
 
 Every pushed commit is checked by GraphQL Inspector. If changes are detected, it sends a notification to your Slack or Discord.
 
@@ -16,7 +18,7 @@ You can exactly specifiy which environments Inspector should track.
 
 ## Configuration
 
-Enabling schema change notifications is pretty straightforward. You need to define one of targets: Slack, Discord or generic webhook.
+Enabling schema change notifications is pretty straightforward. You need to define one of the targets: Slack, Discord or generic webhook.
 
 ```yaml
 notifications:
@@ -25,11 +27,11 @@ notifications:
   webhook: 'your-own-webhook'
 ```
 
-### Using with environments
+### Using With Environments
 
 Notifications are highly customizable.
 You're able to have a setup where every schema change on any of your environments is sent via webhook.
-To reduce the noise, you can setup Slack notifications only for Production environment.
+To reduce the noise, you can set up Slack notifications only for the Production environment.
 
 ```yaml
 notifications:
@@ -43,11 +45,11 @@ env:
     branch: 'develop'
 ```
 
-Whenever a new change is pushed to `develop` branch, you get a notification via Webhook but not on Slack.
+Whenever a new change is pushed to the `develop` branch, you get a notification via Webhook but not on Slack.
 
-## Notifications on Slack
+## Notifications On Slack
 
-In order to use Slack notifications, you need to create your own application on Slack and an Incoming Webhook. <span style={{textDecoration: 'underline'}}>[Follow these instructions](https://slack.com/intl/en-pl/help/articles/115005265063-Incoming-Webhooks-for-Slack)</span>.
+To use Slack notifications, you need to create your application on Slack and an Incoming Webhook. <span style={{textDecoration: 'underline'}}>[Follow these instructions](https://slack.com/intl/en-pl/help/articles/115005265063-Incoming-Webhooks-for-Slack)</span>.
 
 ```yaml
 notifications:
@@ -56,7 +58,7 @@ notifications:
 
 ![Notifications on Slack](/assets/img/notifications/slack.png)
 
-## Notifications on Discord
+## Notifications On Discord
 
 Same story as with Slack. You need to create a webhook first, [following these instructions](https://support.discordapp.com/hc/en-us/articles/228383668-Intro-to-Webhooks) and pass it to
 
@@ -67,7 +69,7 @@ notifications:
 
 ![Notifications on Discord](/assets/img/notifications/discord.png)
 
-## Notifications via Webhook
+## Notifications Via Webhook
 
 For more advanced cases, you may want to use the Webhook option.
 
@@ -78,9 +80,9 @@ notifications:
 
 From now on, every change in your schema will pass through the webhook. You can integrate it with other tools, send to internal applications and do pretty much whatever you can imagine.
 
-### Payload structure
+### Payload Structure
 
-The structure of the received payload described as GraphQL.
+The structure of the received payload is described as GraphQL.
 
 ```graphql
 type Payload {
@@ -101,7 +103,7 @@ enum Level {
 }
 ```
 
-### Example payload
+### Example Payload
 
 ```json
 {

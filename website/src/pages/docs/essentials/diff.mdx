@@ -1,6 +1,4 @@
----
-title: Schema Validation
----
+# Schema Validation
 
 Detect changes to your GraphQL Schema and prevent breaking your existing applications. With GraphQL Inspector you get a list of breaking, potentially dangerous and safe changes on every Pull Request. Integrate it with GitHub, BitBucket, GitLab or any Continuous Integration.
 
@@ -8,7 +6,7 @@ Detect changes to your GraphQL Schema and prevent breaking your existing applica
 
 ## Using GitHub Application
 
-[Install our GitHub Application](../products/github#detection-of-changes) to check Pull Requests and commits.
+[Install our GitHub Application](../products/github#detection-of-changes) to check to Pull Requests and commits.
 
 ## Using GitHub Action
 
@@ -37,14 +35,16 @@ GraphQL Inspector offers a version of our CLI that is better suited for Continuo
 
 Run the following command:
 
-    graphql-inspector diff OLD_SCHEMA NEW_SCHEMA
+```
+graphql-inspector diff OLD_SCHEMA NEW_SCHEMA
+```
 
-**Arguments**
+#### Arguments
 
 - [`OLD_SCHEMA`](../api/schema) - point to an old schema
 - [`NEW_SCHEMA`](../api/schema) - point to a new schema
 
-**Flags**
+#### Flags
 
 - `-r, --require <s>` - require a module
 - `-t, --token <s>` - an access token
@@ -53,7 +53,7 @@ Run the following command:
 - `--federation` - Support Apollo Federation directives (default: _false_)
 - `--aws` - Support AWS Appsync directives and scalar types (default: _false_)
 
-**Output**
+#### Output
 
 A list of all differences between two schemas.
 GraphQL Inspector defines three kinds of changes:
@@ -62,45 +62,47 @@ GraphQL Inspector defines three kinds of changes:
 - Dangerous Change
 - Breaking change
 
-When there's at least one breaking change, process fails, otherwise it succeeds.
+When there's at least one breaking change, the process fails, otherwise, it succeeds.
 
 ### Examples
 
 Compare your local schema against a remote server:
-
-    graphql-inspector diff https://api.com/graphql schema.graphql
-
+```
+graphql-inspector diff https://api.com/graphql schema.graphql
+```
 Compare your local schema against a schema on a master branch (GitHub):
-
-    graphql-inspector diff github:user/repo#master:schema.graphql schema.graphql
-
+```
+graphql-inspector diff github:user/repo#master:schema.graphql schema.graphql
+```
 ### Rules
 
-In order to customize the diff's behavior, you're able to use a set of rules:
+To customize the diff's behavior, you're able to use a set of rules:
 
-**dangerousBreaking**
+#### dangerousBreaking
 
 Turns every dangerous change to be a breaking change.
 
-    graphql-inspector diff https://api.com/graphql schema.graphql --rule dangerousBreaking
+```
+graphql-inspector diff https://api.com/graphql schema.graphql --rule dangerousBreaking
+```
+#### suppressRemovalOfDeprecatedField
 
-**suppressRemovalOfDeprecatedField**
+Every removal of a deprecated field is considered a breaking change. With that flag, you can turn it into a dangerous change, so it won't fail a process or a CI check.
+```
+graphql-inspector diff https://api.com/graphql schema.graphql --rule suppressRemovalOfDeprecatedField
+```
+#### ignoreDescriptionChanges
 
-Every removal of a deprecated field is considered as a breaking change. With that flag you can turn it into a dangerous change, so it won't fail a process or a CI check.
+Changes in descriptions are filtered out and are not displayed in the CLI result.
+```
+graphql-inspector diff https://api.com/graphql schema.graphql --rule ignoreDescriptionChanges
+```
+#### safeUnreachable
 
-    graphql-inspector diff https://api.com/graphql schema.graphql --rule suppressRemovalOfDeprecatedField
-
-**ignoreDescriptionChanges**
-
-Changes of descriptions are filtered out and are not displayed in the CLI result.
-
-    graphql-inspector diff https://api.com/graphql schema.graphql --rule ignoreDescriptionChanges
-
-**safeUnreachable**
-
-Breaking changes done on unreachable parts of schema (non-accessible when starting from the root types) won't be marked as breaking.
-
-    graphql-inspector diff https://api.com/graphql schema.graphql --rule safeUnreachable
+Breaking changes are done on unreachable parts of the schema (non-accessible when starting from the root types) and won't be marked as breaking.
+```
+graphql-inspector diff https://api.com/graphql schema.graphql --rule safeUnreachable
+```
 
 Example of unreachable type:
 
@@ -117,12 +119,12 @@ type User {
 }
 ```
 
-**considerUsage**
+#### considerUsage
 
-Decides if a breaking change are in fact breaking, based on real usage of schema.
-
-    graphql-inspector diff https://api.com/graphql schema.graphql --rule considerUsage --onUsage check-usage.js
-
+Decides if a breaking change is in fact breaking, based on real usage of schema.
+```
+graphql-inspector diff https://api.com/graphql schema.graphql --rule considerUsage --onUsage check-usage.js
+```
 Example `check-usage.js` file:
 
 ```js
@@ -161,7 +163,7 @@ Now, you can use that module as a rule:
 
 ### Passing different headers to multiple remote schemas
 
-If you want to do a diff between multiple remote schemas, each with different set of authentication headers, you can do it with `--left-header` and `--right-header` flags like so:
+If you want to do a diff between multiple remote schemas, each with a different set of authentication headers, you can do it with `--left-header` and `--right-header` flags like so:
 
 `graphql-inspector diff http://your-schema-1/graphql http://your-schema-2/graphql --left-header 'Auth: Basic 123' --right-header 'Auth: Basic 345'`
 
