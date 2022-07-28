@@ -1,16 +1,15 @@
----
-title: GitHub Application
----
+import { Callout } from '@theguild/components'
+
+
+# GitHub Application
 
 [GraphQL Inspector App](https://github.com/apps/graphql-inspector) is a GitHub Application that you can install in any of your repositories.
 
-GraphQL Inspector App checks your Pull Request in order to find breaking changes (and others) in a GraphQL Schema, against your `master` branch.
+GraphQL Inspector App checks your Pull Request to find breaking changes (and others) in a GraphQL Schema, against your `master` branch.
 
-We strongly believe in Open Source and that's why we made it possible to have a per-repository, self-hosted GraphQL Inspector App thanks to GitHub Actions or to host your own instance in the Cloud.
+We strongly believe in Open Source and that's why we made it possible to have a per-repository, self-hosted GraphQL Inspector App thanks to GitHub Actions or to host your instance in the Cloud.
 
----
-
-**Main features**
+## Main Features
 
 - [Detect changes](#detection-of-changes)
 - [Schema change notifications](#schema-change-notifications)
@@ -18,8 +17,6 @@ We strongly believe in Open Source and that's why we made it possible to have a 
 - [Intercept checks with serverless functions](../recipes/intercept)
 - [Use many environments](../recipes/environments)
 - [Use live and running GraphQL endpoints](../recipes/endpoints)
-
----
 
 ![Application](/assets/img/github/app-action.jpg)
 
@@ -29,11 +26,11 @@ GraphQL Inspector App comes with a free plan and that's the only plan.
 
 Visit [the application on marketplace](https://github.com/marketplace/graphql-inspector) and enable it in your project:
 
-**Pick a free plan:**
+### Pick a Free Plan
 ![Step 1](/assets/img/github/app-setup-plan.jpg)
 ![Step 2](/assets/img/github/app-install.jpg)
 
-**Select repositories and click Install:**
+### Select Repositories And Click Install
 ![Step 3](/assets/img/github/app-repositories.jpg)
 
 ## Usage
@@ -45,9 +42,9 @@ branch: 'master'
 schema: 'schema.graphql' # an output of `$ graphql-inspector introspect ...`
 ```
 
-It's also possible to setup everything in `package.json` (it must be placed in the root directory).
+It's also possible to set up everything in `package.json` (it must be placed in the root directory).
 
-```jsonc
+```json
 {
   // ...
   "graphql-inspector": {
@@ -57,17 +54,17 @@ It's also possible to setup everything in `package.json` (it must be placed in t
 }
 ```
 
-For example, `schema.graphql` points to a file in root directory of a repository.
+For example, `schema.graphql` points to a file in the root directory of a repository.
 
 ## Features
 
-### Schema change notifications
+### Schema Change Notifications
 
 To stay up to date with changes in your GraphQL Schema and to receive notifications on Slack, Discord or even via WebHooks, read the ["Notifications" chapter](../essentials/notifications).
 
 ### Annotations
 
-In some cases you want to get a summary of changes but no annotations on a schema file. Annotations are enabled by default but to disable them, please follow the instructions in ["Annotations" chapter](../recipes/annotations).
+In some cases, you want to get a summary of changes but no annotations on a schema file. Annotations are enabled by default but to disable them, please follow the instructions in ["Annotations" chapter](../recipes/annotations).
 
 ### Detection of changes
 
@@ -77,13 +74,13 @@ To force a successful check just set `failOnBreaking` to `false` or apply the [`
 
 ### Using GraphQL Endpoint
 
-Read more about [using live and running GraphQL endpoint](../recipes/endpoints) as source of schema.
+Read more about [using live and running GraphQL endpoint](../recipes/endpoints) as a source of schema.
 
-### Using multiple environments
+### Using Multiple environments
 
 Read more about [managing many environments](../recipes/environments).
 
-### Intercept checks with serverless functions
+### Intercept Checks With Serverless Functions
 
 Learn how to [remotely control detected changes and accept/reject Pull Requests](../recipes/intercept).
 
@@ -97,9 +94,9 @@ _('approved-breaking-change' by default)_
 
 You can customize the label's name in `diff.approveLabel` option (see [Full configuration](#full-configuration) below)
 
-### Limit summary length
+### Limit Summary Length
 
-Length of a summary of a CI check is limited by GitHub API. This is why we decided to show only a list of 100 changes.
+The length of a summary of a CI check is limited by GitHub API. This is why we decided to show only a list of 100 changes.
 
 _('100' by default)_
 
@@ -112,7 +109,7 @@ _(enabled by default)_
 Merge Pull Request's branch with the target branch to get the schema.
 Helps to get the correct state of schema when Pull Request is behind the target branch.
 
-### Full configuration
+### Full Configuration
 
 ```yaml
 # Enabling / Disabling Schema Diff
@@ -145,7 +142,7 @@ branch: 'master'
 # A path to a schema file
 schema: 'schema.graphql'
 
-# Use live and running endpoint as source of schema
+# Use live and running endpoint as a source of schema
 endpoint: '<url>'
 ```
 
@@ -153,7 +150,7 @@ endpoint: '<url>'
 
 We recommend to automate the generation of `schema.graphql` and use `husky` to run [`$ graphql-inspector introspect`](../essentials/introspect):
 
-```jsonc
+```json
 {
   // ...
   "scripts": {
@@ -169,12 +166,14 @@ We recommend to automate the generation of `schema.graphql` and use `husky` to r
 
 This way your schema file is always up to date with your actual schema.
 
-Now on every commit or every Pull Request the GraphQL Inspector App will annotate every change, next to the line in code where it happened.
+Now on every commit or every Pull Request, the GraphQL Inspector App will annotate every change, next to the line in the code where it happened.
 
 ### Deploy your own GraphQL Inspector App
 
-We strongly believe in Open Source and that's why we made it possible to host your own instances of GraphQL Inspector App.
+We strongly believe in Open Source and that's why we made it possible to host your instances of the GraphQL Inspector App.
 
-> Under the hood, the GraphQL Inspector uses [Probot](https://probot.github.io), a bot made by GitHub team.
+<Callout type="info">
+Under the hood, the GraphQL Inspector uses [Probot](https://probot.github.io), a bot made by the GitHub team.
+</Callout>
 
-There's a well written ["Deployment" chapter](https://probot.github.io/docs/deployment) on Probot's documentation.
+There's a well-written ["Deployment" chapter](https://probot.github.io/docs/deployment) on Probot's documentation.
