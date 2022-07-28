@@ -1,10 +1,8 @@
----
-title: Intercepting Schema Changes
----
+# Intercepting Schema Changes
 
-GraphQL Inspector lets you intercept schema changes via HTTP. You're able to decide which changes are acceptable which are not and all of this through even a serverless function.
+GraphQL Inspector lets you intercept schema changes via HTTP. You're able to decide which changes are acceptable and which are not and all of this through even a serverless function.
 
-Whenever GraphQL Inspector runs schema checking triggered by Push or Pull Request events, your http endpoint receives a list of changes, list of related Pull Request or a commit SHA.
+Whenever GraphQL Inspector runs schema checking triggered by Push or Pull Request events, your HTTP endpoint receives a list of changes, a list of related Pull Requests or a commit SHA.
 
 ![Intercept](/assets/img/github/intercept.png)
 
@@ -12,7 +10,7 @@ Whenever GraphQL Inspector runs schema checking triggered by Push or Pull Reques
 
 Configuring an interceptor looks fairly similar to <span style={{textDecoration: 'underline'}}>[`endpoints`](endpoints)</span>, except you can't modify a method, it's always POST request.
 
-**Single environment setup:**
+### Single Environment Setup
 
 ```yaml
 # POST with no headers
@@ -27,7 +25,7 @@ intercept:
     auth: Basic <public-key>
 ```
 
-**Multiple environment setup:**
+### Multiple Environment Setup
 
 ```yaml
 schema: 'schema.graphql'
@@ -45,7 +43,7 @@ env:
         auth: Basic <public-key>
 ```
 
-## Setting an interceptor logic
+## Setting an Interceptor Logic
 
 Let's set all [criticality levels to Non-Breaking](https://github.com/kamilkisiela/graphql-inspector/blob/master/packages/core/src/diff/changes/change.ts#L67) and GitHub Check <span style={{textDecoration: 'underline'}}>[conclusion to Success](https://github.com/kamilkisiela/graphql-inspector/blob/master/packages/github/src/types.ts#L33)</span>.
 
@@ -66,7 +64,7 @@ module.exports = (req, res) => {
 
 There's so much freedom here. Because you know which commit or a pull request triggered the check, you're able to decide if submitted changes should be rejected or accepted by fetching informations from GitHub API or your internal APIs.
 
-## Payload and Response structures
+## Payload and Response Structures
 
 ### Payload
 

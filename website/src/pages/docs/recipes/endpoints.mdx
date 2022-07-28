@@ -1,15 +1,17 @@
----
-title: Using GraphQL Endpoints
----
+import { Callout } from '@theguild/components'
+
+# Using GraphQL Endpoints
 
 In this chapter, we're going to use live and running GraphQL API instead of GraphQL file as the source of truth of your schema.
 This approach is very useful when you don't deploy on every push and your default branch is fine with temporary breaking changes.
 
-> Using GitHub secrets is not possible at the moment, but we're working on it!
+<Callout type="info">
+Using GitHub secrets is not possible at the moment, but we're working on it!
+</Callout>
 
 ## Usage
 
-**Single environment setup:**
+### Single Environment Setup
 
 ```yaml
 # POST with no headers
@@ -25,7 +27,7 @@ endpoint:
     auth: Basic <public-key>
 ```
 
-**Multiple environment setup:**
+### Multiple Environment Setup
 
 ```yaml
 schema: 'schema.graphql'
@@ -46,9 +48,11 @@ env:
 
 Whenever possible, GraphQL Inspector introspects a given GraphQL endpoint and compares it with a GraphQL schema of the Pull Request.
 
-Two scenarios to consider here.
+Two scenarios to consider here:
 
-1. When a Pull Request to `master` branch is created, GraphQL Inspector introspects a given GraphQL endpoint and compares it with a GraphQL schema of the Pull Request.
-2. In case when your Pull Request targets to a branch, let's call it `my-random-branch` and it's not a branch defined in any of environments, GraphQL Inspector picks schema file as the source of truth.
+1. When a Pull Request to the `master` branch is created, GraphQL Inspector introspects a given GraphQL endpoint and compares it with a GraphQL schema of the Pull Request.
+2. In case when your Pull Request targets a branch, let's call it `my-random-branch` and it's not a branch defined in any of the environments, GraphQL Inspector picks the schema file as the source of truth.
 
-> When using GraphQL Inspector as GitHub Action, endpoint is always as the source of truth.
+<Callout type="info">
+When using GraphQL Inspector as GitHub Action, the endpoint is always the source of truth.
+</Callout>
