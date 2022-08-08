@@ -17,28 +17,10 @@
   border-color: #fff;
 }
 
-.contactSubmit {
-  margin: 0;
-  padding: 0;
-  background-color: transparent;
-  outline: none;
-  border: 0 none;
-  color: #4a4a4a;
-  cursor: pointer;
-}
-
-.contactSubmit:hover {
-  color: #000;
-}
-
 .contactInput {
   flex: 1;
-  font-size: 15px;
-  font-weight: 300;
-  color: #000;
   background: transparent;
   outline: none;
-  border: 0 none;
   line-height: 35px;
 }
 
@@ -72,55 +54,4 @@
 .contactDirectly {
   font-weight: 800 !important;
   text-decoration: none !important;
-}
-
-.contactUsBackground {
-  padding: 125px;
-}
-
-.contactContainer {
-  padding: 125px 0;
-  max-width: 960px;
-  display: flex;
-}
-
-.contactLimitContainer {
-  max-width: 540px;
-}
-
-.contactMainPart {
-  flex: 1;
-}
-
-.contactMailBox {
-  flex-grow: 0;
-  flex-shrink: 0;
-  width: 200px;
-}
-
-.contactTitle {
-  font-size: 36px;
-  font-weight: 500;
-}
-
-.contactDetails {
-  color: #4a4a4a;
-}
-
-.contactSideBySide {
-  display: flex;
-  width: 100%;
-}
-
-@media only screen and (max-width: 996px) {
-  .contactSideBySide {
-    align-items: center;
-    flex-direction: column;
-    flex-flow: column-reverse;
-    padding: 0 16px;
-  }
-
-  .contactSideBySide > .contactMailBox {
-    margin-bottom: 50px;
-  }
 }

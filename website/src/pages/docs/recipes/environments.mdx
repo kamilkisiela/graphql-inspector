@@ -8,52 +8,52 @@ Everything works out of the box, you just need to define the environments and as
 
 Using multiple environments means:
 
-- Targeted notifications
-- Custom configuration
-- And a lot more in the near future
+- targeted notifications
+- custom configuration
+- and a lot more in the near future
 
-<Callout type="info">
-Available only in GitHub Application
+<Callout type="warning" emoji='⚠️'>
+Available only in GitHub Application.
 </Callout>
 
-## Migrate From One To Multiple Environments
+## Migrate from One to Multiple Environments
 
 A single environment setup looks like this:
 
 ```yaml
-schema: 'schema.graphql'
-branch: 'master'
+schema: schema.graphql
+branch: master
 ```
 
 Adding a new environment is fairly simple:
 
 ```yaml
-schema: 'schema.graphql'
+schema: schema.graphql
 
 env:
   production:
-    branch: 'master'
+    branch: master
   preview:
-    branch: 'develop'
+    branch: develop
 ```
 
 From now on, every Pull Request or Push to `develop` is tagged as a `preview` environment, everything related to `master` is named `production`.
 
 ## Global Configuration
 
-Defining the same notifications setup in each environment seems like a lot of work! Fortunately, GraphQL Inspector is capable of having a global configuration.
+Defining the same notifications' setup in each environment seems like a lot of work! Fortunately, GraphQL Inspector is capable of having a global configuration.
 
 ```yaml
-schema: 'schema.graphql'
+schema: schema.graphql
 
 notifications:
   slack: '<slack-webhook>'
 
 env:
   production:
-    branch: 'master'
+    branch: master
   preview:
-    branch: 'develop'
+    branch: develop
 ```
 
 All defined environments have now Schema Change Notifications enabled, with Slack as the only target.
@@ -61,7 +61,7 @@ All defined environments have now Schema Change Notifications enabled, with Slac
 In some cases, you may want to have a more advanced setup. GraphQL Inspector passes global settings to environment settings and merges them. In conflicts, the environment setting wins.
 
 ```yaml
-schema: 'schema.graphql'
+schema: schema.graphql
 
 diff:
   annotations: true
@@ -71,13 +71,13 @@ notifications:
 
 env:
   production:
-    branch: 'master'
+    branch: master
     notifications:
       slack: '<production-slack-url>'
   preview:
-    branch: 'develop'
+    branch: develop
       diff:
         annotations: false
 ```
 
-In the example above, every environment has a webhook and Slack notifications enabled but in the case of the Production environment, Slack has a different URL. The Preview environment uses the global Slack but has annotation disabled.
+In the example above, every environment has a webhook and Slack notifications enabled but in the case of the production environment, Slack has a different URL. The Preview environment uses the global Slack but has annotation disabled.

@@ -2,14 +2,16 @@
 
 Get a list of similar types to find duplicates.
 
-![Similar](/assets/img/cli/similar.jpg)
+![Similar](../../../../public/assets/img/cli/similar.jpg)
 
 ## Usage
 
 Run the following command:
-```
+
+```sh
 graphql-inspector similar SCHEMA
 ```
+
 ### Arguments
 
 - [`SCHEMA`](../api/schema) - point to a schema
@@ -17,14 +19,14 @@ graphql-inspector similar SCHEMA
 ### Flags
 
 - `-n, --type <s>` - Check only a single type (_checks all types by default_)
-- `-t, --threshold <n>` - Threshold of similarity ratio (_default: 0.4_)
+- `-t, --threshold <n>` - Threshold of similarity ratio (default: `0.4`)
 - `-w, --write <s>` - Write a file with results
 - `-r, --require <s>` - require a module
 - `-t, --token <s>` - an access token
-- `-h, --header <s>` - set HTTP header (`--header 'Auth: Basic 123')
-- `--method` - method on URL schema pointers (default: _POST_)
-- `--federation` - Support Apollo Federation directives (default: _false_)
-- `--aws` - Support AWS Appsync directives and scalar types (default: _false_)
+- `-h, --header <s>` - set HTTP header (`--header 'Auth: Basic 123'`)
+- `--method` - method on URL schema pointers (default: `POST`)
+- `--federation` - Support Apollo Federation directives (default: `false`)
+- `--aws` - Support AWS Appsync directives and scalar types (default: `false`)
 
 ### Output
 

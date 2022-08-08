@@ -5,7 +5,7 @@ import { Callout } from '@theguild/components'
 In this chapter, we're going to use live and running GraphQL API instead of GraphQL file as the source of truth of your schema.
 This approach is very useful when you don't deploy on every push and your default branch is fine with temporary breaking changes.
 
-<Callout type="info">
+<Callout type='warning' emoji='⚠️'>
 Using GitHub secrets is not possible at the moment, but we're working on it!
 </Callout>
 
@@ -16,13 +16,13 @@ Using GitHub secrets is not possible at the moment, but we're working on it!
 ```yaml
 # POST with no headers
 endpoint: '<graphql-api-url>'
-schema: 'schema.graphql'
+schema: schema.graphql
 
 # GET or POST with headers
-schema: 'schema.graphql'
+schema: schema.graphql
 endpoint:
   url: '<graphql-api-url>'
-  method: 'GET'
+  method: GET
   headers:
     auth: Basic <public-key>
 ```
@@ -30,16 +30,16 @@ endpoint:
 ### Multiple Environment Setup
 
 ```yaml
-schema: 'schema.graphql'
+schema: schema.graphql
 env:
   production:
-    branch: 'master'
+    branch: master
     endpoint: '<prod-api-url>'
   development:
-    branch: 'develop'
+    branch: develop
     endpoint:
       url: '<graphql-api-url>'
-      method: 'GET'
+      method: GET
       headers:
         auth: Basic <public-key>
 ```
@@ -53,6 +53,6 @@ Two scenarios to consider here:
 1. When a Pull Request to the `master` branch is created, GraphQL Inspector introspects a given GraphQL endpoint and compares it with a GraphQL schema of the Pull Request.
 2. In case when your Pull Request targets a branch, let's call it `my-random-branch` and it's not a branch defined in any of the environments, GraphQL Inspector picks the schema file as the source of truth.
 
-<Callout type="info">
+<Callout>
 When using GraphQL Inspector as GitHub Action, the endpoint is always the source of truth.
 </Callout>

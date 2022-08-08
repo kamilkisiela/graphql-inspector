@@ -1,5 +1,4 @@
-import { PackageCmd } from '@theguild/components'
-import { Callout } from '@theguild/components'
+import { PackageCmd, Callout } from '@theguild/components'
 
 # Getting Started
 
@@ -21,13 +20,13 @@ Command Line Tool with all the features, installable with a single command:
 
 Install using:
 
-<PackageCmd packages={['@graphql-inspector/cli graphql']} />
+<PackageCmd packages={[{ name: '@graphql-inspector/cli graphql', isGlobal: true }]} />
 
 ### Usage
 
-<Callout type="info">
-    graphql-inspector --help
-</Callout>
+```sh
+graphql-inspector --help
+```
 
 ## CLI for CI
 
@@ -35,7 +34,7 @@ Works similar to regular CLI but every feature is pluggable to keep the size as 
 
 Install using:
 
-<PackageCmd packages={['@graphql-inspector/ci']} />
+<PackageCmd packages={[{ name: '@graphql-inspector/ci', isGlobal: true }]} />
 
 ### Commands
 
@@ -48,16 +47,16 @@ Every command is installable through a package.
 - introspect - `@graphql-inspector/introspect-command`
 - serve - `@graphql-inspector/serve-command`
 
-<Callout type="info">
+<Callout>
 Please take a look at ["Continuous Integration"](../products/ci) chapter.
 </Callout>
 
 
 ### Usage
 
-<Callout type="info">
-    graphql-inspector --help
-</Callout>
+```sh
+graphql-inspector --help
+```
 
 ## Programmatic API
 

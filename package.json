@@ -77,12 +77,9 @@
     "website"
   ],
   "lint-staged": {
-    "*.{js,jsx,mjs,json,md,mdx,ts,tsx,graphql,gql,yaml,yml}": [
+    "*.{js,jsx,mjs,json,md,ts,tsx,graphql,gql,yaml,yml}": [
       "prettier --write",
       "git add"
     ]
-  },
-  "resolutions": {
-    "mermaid": "8.11.5"
   }
 }

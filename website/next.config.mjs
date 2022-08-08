@@ -4,10 +4,11 @@ export default withGuildDocs({
   eslint: {
     ignoreDuringBuilds: true,
   },
+  swcMinify: true,
   redirects: () => [
     {
-      source: '/docs/introduction',
-      destination: '/docs',
+      source: '/install',
+      destination: 'https://github.com/apps/graphql-inspector',
       permanent: true,
     },
   ],

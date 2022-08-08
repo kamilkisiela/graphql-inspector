@@ -6,15 +6,15 @@ Stay up to date with changes in your GraphQL Schema. Receive notifications on Sl
 
 Track what happens in your Production, Staging or QA environments.
 
-<Callout type="info">
-Available only in GitHub Application
+<Callout type="warning" emoji='⚠️'>
+Available only in GitHub Application.
 </Callout>
 
-## How Does It Work?
+## How does it Work?
 
 Every pushed commit is checked by GraphQL Inspector. If changes are detected, it sends a notification to your Slack or Discord.
 
-You can exactly specifiy which environments Inspector should track.
+You can exactly specify which environments Inspector should track.
 
 ## Configuration
 
@@ -27,11 +27,11 @@ notifications:
   webhook: 'your-own-webhook'
 ```
 
-### Using With Environments
+### Using with Environments
 
 Notifications are highly customizable.
 You're able to have a setup where every schema change on any of your environments is sent via webhook.
-To reduce the noise, you can set up Slack notifications only for the Production environment.
+To reduce the noise, you can setup Slack notifications only for production environment.
 
 ```yaml
 notifications:
@@ -47,18 +47,18 @@ env:
 
 Whenever a new change is pushed to the `develop` branch, you get a notification via Webhook but not on Slack.
 
-## Notifications On Slack
+## Notifications on Slack
 
-To use Slack notifications, you need to create your application on Slack and an Incoming Webhook. <span style={{textDecoration: 'underline'}}>[Follow these instructions](https://slack.com/intl/en-pl/help/articles/115005265063-Incoming-Webhooks-for-Slack)</span>.
+To use Slack notifications, you need to create your own application on Slack and an Incoming Webhook. [Follow these instructions](https://slack.com/intl/en-pl/help/articles/115005265063-Incoming-Webhooks-for-Slack).
 
 ```yaml
 notifications:
   slack: 'https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX'
 ```
 
-![Notifications on Slack](/assets/img/notifications/slack.png)
+![Notifications on Slack](../../../../public/assets/img/notifications/slack.png)
 
-## Notifications On Discord
+## Notifications on Discord
 
 Same story as with Slack. You need to create a webhook first, [following these instructions](https://support.discordapp.com/hc/en-us/articles/228383668-Intro-to-Webhooks) and pass it to
 
@@ -67,9 +67,9 @@ notifications:
   discord: 'https://discordapp.com/api/webhooks/XXXXXX/XXXXXX'
 ```
 
-![Notifications on Discord](/assets/img/notifications/discord.png)
+![Notifications on Discord](../../../../public/assets/img/notifications/discord.png)
 
-## Notifications Via Webhook
+## Notifications via Webhook
 
 For more advanced cases, you may want to use the Webhook option.
 

@@ -6,7 +6,7 @@ In cases of multiple environments, it iterates over all of them and compares a t
 
 When GraphQL Inspector succeeds and finds the associated environment, it detects changes between source and target schemas. If a Pull Request is not related to any environment, the same thing happens.
 
-The described approach may get you into trouble because usually, you don't want to reject Pull Requests that are not (yet) affecting your environment.
+The described approach may get you into trouble because usually, you don't want to reject Pull Requests that are not (yet) affecting your environments.
 
 This is why Inspector lets you still run the change detection but without rejecting those Pull Requests. You just need to turn off the `failOnBreaking` flag.
 
@@ -17,8 +17,8 @@ You keep all the options but disable the `failOnBreaking` flag.
 ```yaml
 diff:
   annotations: true
-schema: 'schema.graphql'
-branch: 'master'
+schema: schema.graphql
+branch: master'
 
 others:
   diff:
@@ -32,13 +32,13 @@ You keep all the global options but disable the `failOnBreaking` flag.
 ```yaml
 diff:
   annotations: true
-schema: 'schema.graphql'
+schema: schema.graphql
 
 env:
   production:
-    branch: 'master'
+    branch: master
   preview:
-    branch: 'develop'
+    branch: develop
 
 others:
   diff:
@@ -47,4 +47,4 @@ others:
 
 ## Disabling GitHub Action
 
-It's simple, use the <span style={{textDecoration: 'underline'}}>[fail-on-breaking](../products/action#fail-on-breaking)</span> input.
+It's simple, use the [fail-on-breaking](../products/action#fail-on-breaking) input.

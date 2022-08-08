@@ -1,6 +1,4 @@
-import { FC, useCallback, useEffect, useState } from 'react';
-import { Send } from 'react-feather';
-import { Image } from '@chakra-ui/react';
+import { FC, ReactElement, useCallback, useEffect, useState } from 'react';
 import { useMutation } from '../hooks/use-graphql';
 import styles from './contact.module.css';
 
@@ -49,8 +47,21 @@ const ContactForm: FC = () => {
         onChange={onChange}
         placeholder="Type your email here"
       />
-      <button className={styles.contactSubmit} type="submit">
-        <Send />
+      <button title="Submit" type="submit">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <line x1="22" y1="2" x2="11" y2="13" />
+          <polygon points="22 2 15 22 11 13 2 9 22 2" />
+        </svg>
       </button>
       {result.error && (
         <div className={`${styles.contactStatus} ${styles.error}`}>
@@ -65,37 +76,33 @@ const ContactForm: FC = () => {
       )}
       {result.data && (
         <div className={`${styles.contactStatus} ${styles.success}`}>
-          We&apos;ll contact you soon!
+          We'll contact you soon!
         </div>
       )}
     </form>
   );
 };
 
-export const Contact: FC = () => {
+export const Contact = (): ReactElement => {
   return (
-    <div className={styles.contactUsBackground} id="contact-us">
-      <div className={styles.contactContainer}>
-        <div className={styles.contactSideBySide}>
-          <div className={styles.contactMainPart}>
-            <h3 className={styles.contactTitle}>Get in touch!</h3>
-            <div className={styles.contactLimitContainer}>
-              <p className={styles.contactDetails}>
-                Need help? Want to start using GraphQL Inspector?
-                <br /> We would love to help you and hear how you use GraphQL
-                Inspector today!
-              </p>
-              <ContactForm />
-            </div>
-          </div>
-          <Image
-            className={styles.contactMailBox}
-            src="/assets/img/illustrations/mail-box.png"
-            alt="Mail Box"
-            loading="lazy"
-          />
+    <div
+      className="container justify-around flex w-full flex-col-reverse md:flex-row items-center md:px-16 mt-16 mb-24 gap-10"
+      id="contact-us"
+    >
+      <div className="max-w-lg">
+        <h3 className="text-2xl md:text-3xl font-bold text-black dark:text-gray-50">Get in touch!</h3>
+        <div className="my-2 text-gray-500 dark:text-gray-400">
+          Need help? Want to start using GraphQL Inspector?
+          <br /> We would love to help you and hear how you use GraphQL
+          Inspector today!
         </div>
+        <ContactForm />
       </div>
+      <img
+        className="max-w-[200px]"
+        src="/assets/img/illustrations/mail-box.png"
+        alt="Mail Box"
+      />
     </div>
   );
 };

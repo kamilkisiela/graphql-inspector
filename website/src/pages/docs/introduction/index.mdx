@@ -9,64 +9,64 @@ GraphQL Inspector outputs a list of changes between two GraphQL schemas. Every c
 **Use GraphQL Inspector however you like:**
 
 - **Command Line Tool**
-- [**GitHub Application**](./products/github)
-- [**GitHub Action**](./products/action)
+- [**GitHub Application**](/docs/products/github)
+- [**GitHub Action**](/docs/products/action)
 - **Programmatic API**
 
 The way GraphQL Inspector is built enables you to use everything through a CLI or each feature separately using one of many available packages. There's also a GitHub Application that you can install and use within seconds. If you're a fan of GitHub Actions, we got you covered too.
 
 ## GitHub Application and Action
 
-![App and Action](/assets/img/github/app-action.jpg)
+![App and Action](../../../../public/assets/img/github/app-action.jpg)
 
-<Callout type="info">
+<Callout>
 GraphQL Inspector GitHub Application is open-sourced, we host it so you don't have to.
 </Callout>
 
 ## Command Line Tool
 
-<video style={{ maxWidth: '100%' }} autoPlay loop muted>
+<video className='w-full' autoPlay loop muted>
   <source src="/assets/img/cli/demo.webm" type="video/webm" />
   <source src="/assets/img/cli/demo.mp4" type="video/mp4" />
 </video>
 
-<Callout type="info">
+<Callout>
 GraphQL Inspector has a **CLI** and also a **programmatic API**, so you can use it however you want to and even build tools on top of it.
 </Callout>
 
 ## Features
 
-### Detect changes between GraphQL Schemas
+### Detect Changes Between GraphQL Schemas
 
 Prevent breaking changes and get a list of safe and dangerous modifications. Everything with a helpful explanation of why changes are breaking or dangerous to introduce.
 
-![Diff](/assets/img/cli/diff.jpg)
+![Diff](../../../../public/assets/img/cli/diff.jpg)
 
-### Keep Operations and Fragments in line with GraphQL Schema
+### Keep Operations and Fragments in Line with GraphQL Schema
 
 Validates Operations and Fragments against a Schema and looks for deprecated usage. Inspector lets you write your own validation rules.
 
-![Validate](/assets/img/cli/validate.jpg)
+![Validate](../../../../public/assets/img/cli/validate.jpg)
 
 ### GitHub Application and GitHub Action
 
 Use our Application and get everything up and running within a few seconds. If you prefer, you can have your own self-hosted GraphQL Inspector service or deploy it with Docker. You can also simply use our GitHub Action.
 
-![GitHub](/assets/img/cli/github.jpg)
+![GitHub](../../../../public/assets/img/cli/github.jpg)
 
-### Find duplicated types
+### Find Duplicated Types
 
 Finds similar / duplicated types across your GraphQL Schema.
 
-![Similar](/assets/img/cli/similar.jpg)
+![Similar](../../../../public/assets/img/cli/similar.jpg)
 
 ### Schema coverage
 
 Schema coverage based on Operations and Fragments. Find out how many times types and fields are used in your application and clean up your GraphQL Schema accordingly.
 
-![Coverage](/assets/img/cli/coverage.jpg)
+![Coverage](../../../../public/assets/img/cli/coverage.jpg)
 
-### Serve faked GraphQL API
+### Serve Faked GraphQL API
 
 Serves a GraphQL server with faked data and GraphiQL
 
@@ -81,5 +81,3 @@ Introspects a GraphQL API and writes the introspection result to a file.
 ```sh
 ✅ Introspection result saved to schema.json
 ```
-
-

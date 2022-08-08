@@ -4,7 +4,7 @@
 
 GraphQL Inspector Action checks your Pull Request to find breaking changes (and others) in a GraphQL Schema, against your `master` branch.
 
-![Application](/assets/img/github/app-action.jpg)
+![Application](../../../../public/assets/img/github/app-action.jpg)
 
 ## Usage
 
@@ -29,30 +29,29 @@ jobs:
 
 Now on every commit or every Pull Request, the GraphQL Inspector App will annotate every change, next to the line in the code where it happened.
 
----
-
 ## Inputs
 
-### Name
+### `name`
 
-The name of the check ("GraphQL Inspector" by default).
+The name of the check (`GraphQL Inspector` by default).
+
 In case of multiple GraphQL Inspector Actions, use `name` to prevent GitHub from overwriting results. For example, "Check Public API" and "Check Internal API".
 
 ```yaml
 - uses: kamilkisiela/graphql-inspector@master
   with:
-    name: 'Validate Public API'
+    name: Validate Public API
     schema: 'master:public.graphql'
 
 - uses: kamilkisiela/graphql-inspector@master
   with:
-    name: 'Check Internal API'
+    name: Check Internal API
     schema: 'master:internal.graphql'
 ```
 
-### Annotations
+### `annotations`
 
-Use annotation (enabled by default)
+Use annotation (`true` by default).
 
 ```yaml
 - uses: kamilkisiela/graphql-inspector@master
@@ -61,9 +60,9 @@ Use annotation (enabled by default)
     annotations: false
 ```
 
-### Fail-On-Breaking
+### `fail-on-breaking`
 
-Fail on breaking changes (enabled by default)
+Fail on breaking changes (`true` by default).
 
 ```yaml
 - uses: kamilkisiela/graphql-inspector@master
@@ -72,30 +71,28 @@ Fail on breaking changes (enabled by default)
     fail-on-breaking: false
 ```
 
-### Approve Label
+### `approve-label`
 
 Label to mark Pull Request introducing breaking changes as safe and expected
-By default, GraphQL Inspector fails the Pull Request when it detects any breaking changes.
-
-_('approved-breaking-change' by default)_
+By default, GraphQL Inspector fails the Pull Request when it detects any breaking changes (`approved-breaking-change` by default).
 
 ```yaml
 - uses: kamilkisiela/graphql-inspector@master
   with:
     schema: 'master:schema.graphql'
-    approve-label: 'expected-breaking-change'
+    approve-label: expected-breaking-change
 ```
 
 To mark the breaking change as safe, apply the `approved-breaking-change` label or define your own in `approve-label`.
 
-### Endpoint
+### `endpoint`
 
 Use GraphQL API endpoint as a source of schema. It should represent the "before" schema.
 
 ```yaml
 - uses: kamilkisiela/graphql-inspector@master
   with:
-    schema: 'schema.graphql' # important to define a path to schema file, without a branch
+    schema: schema.graphql # important to define a path to schema file, without a branch
     endpoint: 'https://my-app.com/graphql'
 ```
 
@@ -108,15 +105,14 @@ If you want to use GraphQL API endpoint as source of "after" schema:
     endpoint: 'https://my-app.com/graphql'
 ```
 
-
 ## Outputs
 
 Read [GitHub Actions docs](https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjobs_idoutputs) to see how to use outputs.
 
-### Changes
+### `changes`
 
 Total number of changes
 
-![Summary](/assets/img/github/summary.jpg)
+![Summary](../../../../public/assets/img/github/summary.jpg)
 
-![Annotations](/assets/img/cli/github.jpg)
+![Annotations](../../../../public/assets/img/cli/github.jpg)

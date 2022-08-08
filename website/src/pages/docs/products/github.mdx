@@ -1,13 +1,12 @@
 import { Callout } from '@theguild/components'
 
-
 # GitHub Application
 
 [GraphQL Inspector App](https://github.com/apps/graphql-inspector) is a GitHub Application that you can install in any of your repositories.
 
 GraphQL Inspector App checks your Pull Request to find breaking changes (and others) in a GraphQL Schema, against your `master` branch.
 
-We strongly believe in Open Source and that's why we made it possible to have a per-repository, self-hosted GraphQL Inspector App thanks to GitHub Actions or to host your instance in the Cloud.
+We strongly believe in Open Source and that's why we made it possible to have a per-repository, self-hosted GraphQL Inspector App thanks to GitHub Actions or to host your own instance in the Cloud.
 
 ## Main Features
 
@@ -18,7 +17,7 @@ We strongly believe in Open Source and that's why we made it possible to have a 
 - [Use many environments](../recipes/environments)
 - [Use live and running GraphQL endpoints](../recipes/endpoints)
 
-![Application](/assets/img/github/app-action.jpg)
+![Application](../../../../public/assets/img/github/app-action.jpg)
 
 ## Installation
 
@@ -26,25 +25,25 @@ GraphQL Inspector App comes with a free plan and that's the only plan.
 
 Visit [the application on marketplace](https://github.com/marketplace/graphql-inspector) and enable it in your project:
 
-### Pick a Free Plan
-![Step 1](/assets/img/github/app-setup-plan.jpg)
-![Step 2](/assets/img/github/app-install.jpg)
+Pick a free plan:
+![Step 1](../../../../public/assets/img/github/app-setup-plan.jpg)
+![Step 2](../../../../public/assets/img/github/app-install.jpg)
 
-### Select Repositories And Click Install
-![Step 3](/assets/img/github/app-repositories.jpg)
+Select repositories and click Install:
+![Step 3](../../../../public/assets/img/github/app-repositories.jpg)
 
 ## Usage
 
 Configure GraphQL Inspector in `.github/graphql-inspector.yaml`:
 
 ```yaml
-branch: 'master'
-schema: 'schema.graphql' # an output of `$ graphql-inspector introspect ...`
+branch: master
+schema: schema.graphql # an output of `$ graphql-inspector introspect ...`
 ```
 
-It's also possible to set up everything in `package.json` (it must be placed in the root directory).
+It's also possible to setup everything in `package.json` (it must be placed in the root directory).
 
-```json
+```jsonc
 {
   // ...
   "graphql-inspector": {
@@ -60,17 +59,17 @@ For example, `schema.graphql` points to a file in the root directory of a reposi
 
 ### Schema Change Notifications
 
-To stay up to date with changes in your GraphQL Schema and to receive notifications on Slack, Discord or even via WebHooks, read the ["Notifications" chapter](../essentials/notifications).
+To stay up to date with changes in your GraphQL Schema and to receive notifications on Slack, Discord or even via WebHooks, read the ["Notifications"](../essentials/notifications) chapter.
 
 ### Annotations
 
-In some cases, you want to get a summary of changes but no annotations on a schema file. Annotations are enabled by default but to disable them, please follow the instructions in ["Annotations" chapter](../recipes/annotations).
+In some cases, you want to get a summary of changes but no annotations on a schema file. Annotations are enabled by default but to disable them, please follow the instructions in ["Annotations"](../recipes/annotations) chapter.
 
 ### Detection of changes
 
 By default, GraphQL Inspector fails the Pull Request when it detects some breaking changes.
 
-To force a successful check just set `failOnBreaking` to `false` or apply the [`approved-breaking-change` label](#approved-breaking-change-label).
+To force a successful check just set `failOnBreaking` to `false` or apply the [`approved-breaking-change`](#approved-breaking-change-label) label.
 
 ### Using GraphQL Endpoint
 
@@ -90,22 +89,24 @@ Learn how to [remotely control detected changes and accept/reject Pull Requests]
 
 Label to mark Pull Request introducing breaking changes as safe and expected
 
-_('approved-breaking-change' by default)_
+(`approved-breaking-change` by default)
 
-You can customize the label's name in `diff.approveLabel` option (see [Full configuration](#full-configuration) below)
+You can customize the label's name in `diff.approveLabel` option (see [Full configuration](#full-configuration) below).
 
 ### Limit Summary Length
 
 The length of a summary of a CI check is limited by GitHub API. This is why we decided to show only a list of 100 changes.
 
-_('100' by default)_
+(`100` by default)
 
-You can adjust the limit as you wish using `diff.summaryLimit` option (see [Full configuration](#full-configuration) below)
+You can adjust the limit as you wish using `diff.summaryLimit` option (see [Full configuration](#full-configuration) below).
 
 ### Experimental
 
 **`experimental_merge`**
-_(enabled by default)_
+
+(`true` by default)
+
 Merge Pull Request's branch with the target branch to get the schema.
 Helps to get the correct state of schema when Pull Request is behind the target branch.
 
@@ -121,12 +122,12 @@ diff:
   annotations: true
   # Fail on breaking changes or force SUCCESS when disabled (enabled by default)
   failOnBreaking: true
-  # Intercept list of detected changes and decide whether or not to accept a Pull Request
+  # Intercept list of detected changes and decide whether to accept a Pull Request
   intercept: '<url>'
   # Merge Pull Request's branch with the target branch to get the schema (enabled by default)
   experimental_merge: true
   # Label to mark Pull Request introducing breaking changes as safe and expected ('approved-breaking-change' by default)
-  approveLabel: 'approved-breaking-change'
+  approveLabel: approved-breaking-change
   # Limit a list of changes in summary to max 150
   summaryLimit: 150
 
@@ -137,10 +138,10 @@ notifications:
   webhook: 'webhook url'
 
 # Your main / target branch
-branch: 'master'
+branch: master
 
 # A path to a schema file
-schema: 'schema.graphql'
+schema: schema.graphql
 
 # Use live and running endpoint as a source of schema
 endpoint: '<url>'
@@ -150,7 +151,7 @@ endpoint: '<url>'
 
 We recommend to automate the generation of `schema.graphql` and use `husky` to run [`$ graphql-inspector introspect`](../essentials/introspect):
 
-```json
+```jsonc
 {
   // ...
   "scripts": {
@@ -172,7 +173,7 @@ Now on every commit or every Pull Request, the GraphQL Inspector App will annota
 
 We strongly believe in Open Source and that's why we made it possible to host your instances of the GraphQL Inspector App.
 
-<Callout type="info">
+<Callout>
 Under the hood, the GraphQL Inspector uses [Probot](https://probot.github.io), a bot made by the GitHub team.
 </Callout>
 

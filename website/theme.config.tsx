@@ -1,6 +1,4 @@
-import { InspectorLogo } from '@theguild/components';
-// @ts-ignore
-import { DocsThemeConfig } from 'nextra-theme-docs';
+import { InspectorLogo, DocsThemeConfig } from '@theguild/components';
 
 const SITE_NAME = 'GraphQL Inspector';
 

@@ -4,21 +4,21 @@ GraphQL Inspector lets you intercept schema changes via HTTP. You're able to dec
 
 Whenever GraphQL Inspector runs schema checking triggered by Push or Pull Request events, your HTTP endpoint receives a list of changes, a list of related Pull Requests or a commit SHA.
 
-![Intercept](/assets/img/github/intercept.png)
+![Intercept](../../../../public/assets/img/github/intercept.png)
 
 ## Usage
 
-Configuring an interceptor looks fairly similar to <span style={{textDecoration: 'underline'}}>[`endpoints`](endpoints)</span>, except you can't modify a method, it's always POST request.
+Configuring an interceptor looks fairly similar to [`endpoints`](endpoints), except you can't modify a method, it's always POST request.
 
 ### Single Environment Setup
 
 ```yaml
 # POST with no headers
 intercept: '<url>'
-schema: 'schema.graphql'
+schema: schema.graphql
 
 # With headers
-schema: 'schema.graphql'
+schema: schema.graphql
 intercept:
   url: '<url>'
   headers:
@@ -28,15 +28,15 @@ intercept:
 ### Multiple Environment Setup
 
 ```yaml
-schema: 'schema.graphql'
+schema: schema.graphql
 # Or globally
 # intercept: <url>
 env:
   production:
-    branch: 'master'
+    branch: master
     intercept: '<url>'
   development:
-    branch: 'develop'
+    branch: develop
     intercept:
       url: '<url>'
       headers:
@@ -45,24 +45,26 @@ env:
 
 ## Setting an Interceptor Logic
 
-Let's set all [criticality levels to Non-Breaking](https://github.com/kamilkisiela/graphql-inspector/blob/master/packages/core/src/diff/changes/change.ts#L67) and GitHub Check <span style={{textDecoration: 'underline'}}>[conclusion to Success](https://github.com/kamilkisiela/graphql-inspector/blob/master/packages/github/src/types.ts#L33)</span>.
+Let's set all [criticality levels to Non-Breaking](https://github.com/kamilkisiela/graphql-inspector/blob/master/packages/core/src/diff/changes/change.ts#L67) and GitHub Check [conclusion to Success](https://github.com/kamilkisiela/graphql-inspector/blob/master/packages/github/src/types.ts#L33).
 
 ```js
 module.exports = (req, res) => {
-  const changes = req.body.changes
-
-  changes = changes.forEach(change => {
-    change.criticality.level = 'NON_BREAKING'
-  })
+  const { changes } = req.body
 
   res.json({
-    changes,
+    changes: changes.map(change => ({
+      ...change,
+      criticality: {
+        ...change.criticality,
+        level: 'NON_BREAKING'
+      }
+    })),
     conclusion: 'success'
   })
 }
 ```
 
-There's so much freedom here. Because you know which commit or a pull request triggered the check, you're able to decide if submitted changes should be rejected or accepted by fetching informations from GitHub API or your internal APIs.
+There's so much freedom here. Because you know which commit or a pull request triggered the check, you're able to decide if submitted changes should be rejected or accepted by fetching information from GitHub API or your internal APIs.
 
 ## Payload and Response Structures
 

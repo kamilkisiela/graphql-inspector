@@ -10,10 +10,10 @@ GraphQL Inspector already has CLI, but we developed a more suited approach for c
 It's called CLI for CI.
 
 Install it using:
-<PackageCmd packages={['@graphql-inspector/ci']} />
+<PackageCmd packages={[{name:'@graphql-inspector/ci', isGlobal: true}]} />
 
 You need to install `graphql` globally too:
-<PackageCmd packages={['graphql']} />
+<PackageCmd packages={[{name:'graphql', isGlobal: true}]} />
 
 The most common use case is schema diffing and all the other features are never touched. That's why we decide to **make each feature pluggable**.
 
@@ -54,23 +54,23 @@ Now you know where everything is but let's find out how to make use of it.
 Let's take for example Schema Diffing and assume your latest `schema.graphql` is under `master` branch.
 
 You want to compare two GraphQL Schemas:
-<PackageCmd packages={['@graphql-inspector/diff-command']} />
+<PackageCmd packages={[{name:'@graphql-inspector/diff-command', isGlobal: true}]} />
 
 You need to be able to load `schema.graphql` from disk and from `origin/master` on Git:
 
-<PackageCmd global packages={['@graphql-inspector/graphql-loader @graphql-inspector/git-loader']} />
+<PackageCmd packages={[{name:'@graphql-inspector/graphql-loader @graphql-inspector/git-loader', isGlobal: true}]} />
 
 With everything installed, you can use the command below in your CI setup:
-```
+```sh
 graphql-inspector diff 'git:origin/master:./schema.graphql' 'schema.graphql'
 ```
 ## Example
 
 Now, when you push your changes you would see the following:
 
-![Schema Diff in CircleCI](/assets/img/ci/diff.jpg)
+![Schema Diff in CircleCI](../../../../public/assets/img/ci/diff.jpg)
 
-<Callout type="info">
+<Callout>
 Remember, you can use any command the CLI offers.
 </Callout>
 
@@ -78,7 +78,7 @@ Remember, you can use any command the CLI offers.
 
 We recommend to automate the workflow and use `husky` to run [`$ graphql-inspector introspect`](../essentials/introspect).
 
-```json
+```jsonc
 {
   // ...
   "scripts": {
@@ -96,10 +96,9 @@ This way your `schema.graphql` is always in sync with the code, on each commit.
 
 ## Using Docker Image
 
-You can use GraphQL Inspector Docker images in any CI/CD provider. For example, in CircleCI it would look like this:
+You can use GraphQL Inspector Docker image in any CI/CD provider. For example, in CircleCI it would look like this:
 
-```yaml
-# Inside the .circleci/config.yml file:
+```yaml filename=".circleci/config.yml"
 version: 2
 jobs:
   build:
