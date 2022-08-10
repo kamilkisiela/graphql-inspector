@@ -22,7 +22,7 @@ export function useMutation(query: string): [State, Mutate] {
   const [state, setState] = useState<State>(DEFAULT_STATE);
 
   const mutate = useCallback(
-    async (variables) => {
+    async (variables: Record<string, unknown>) => {
       setState({
         ...DEFAULT_STATE,
         loading: true,

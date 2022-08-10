@@ -1,4 +1,11 @@
-import { FC, ReactElement, useCallback, useEffect, useState } from 'react';
+import {
+  ComponentProps,
+  FC,
+  ReactElement,
+  useCallback,
+  useEffect,
+  useState,
+} from 'react';
 import { useMutation } from '../hooks/use-graphql';
 import styles from './contact.module.css';
 
@@ -14,7 +21,7 @@ const ContactForm: FC = () => {
   const [email, setEmail] = useState('');
   const [result, mutate] = useMutation(SAY_HI);
 
-  const onSubmit = useCallback(
+  const onSubmit = useCallback<NonNullable<ComponentProps<'form'>['onSubmit']>>(
     (event) => {
       event.preventDefault();
       mutate({ email });
@@ -22,7 +29,9 @@ const ContactForm: FC = () => {
     [email, mutate],
   );
 
-  const onChange = useCallback(
+  const onChange = useCallback<
+    NonNullable<ComponentProps<'input'>['onChange']>
+  >(
     (event) => {
       if (!result.loading) {
         setEmail(event.target.value);
@@ -90,7 +99,9 @@ export const Contact = (): ReactElement => {
       id="contact-us"
     >
       <div className="max-w-lg">
-        <h3 className="text-2xl md:text-3xl font-bold text-black dark:text-gray-50">Get in touch!</h3>
+        <h3 className="text-2xl md:text-3xl font-bold text-black dark:text-gray-50">
+          Get in touch!
+        </h3>
         <div className="my-2 text-gray-500 dark:text-gray-400">
           Need help? Want to start using GraphQL Inspector?
           <br /> We would love to help you and hear how you use GraphQL
