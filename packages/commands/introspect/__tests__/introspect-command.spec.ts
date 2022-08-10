@@ -9,7 +9,7 @@ import { unlinkSync, existsSync, readFileSync } from 'fs';
 import createCommand from '../src';
 
 function sleepFor(ms: number) {
-  return new Promise((resolve) => {
+  return new Promise(resolve => {
     setTimeout(resolve, ms);
   });
 }
@@ -45,9 +45,7 @@ describe('introspect', () => {
   beforeEach(() => {
     yargs();
 
-    spyProcessCwd = jest
-      .spyOn(process, 'cwd')
-      .mockImplementation(() => __dirname);
+    spyProcessCwd = jest.spyOn(process, 'cwd').mockImplementation(() => __dirname);
 
     spyReporter = jest.fn();
     mockLogger(spyReporter as any);
@@ -82,10 +80,7 @@ describe('introspect', () => {
       host: 'https://example.com',
       path: '/graphql',
     });
-    await mockCommand(
-      introspect,
-      'introspect https://example.com/graphql -w schema.graphql',
-    );
+    await mockCommand(introspect, 'introspect https://example.com/graphql -w schema.graphql');
     await sleepFor(500);
 
     done();
@@ -108,10 +103,7 @@ describe('introspect', () => {
       path: '/graphql',
       method: 'GET',
     });
-    await mockCommand(
-      introspect,
-      'introspect https://example.com/graphql -w schema.graphql --method GET',
-    );
+    await mockCommand(introspect, 'introspect https://example.com/graphql -w schema.graphql --method GET');
     await sleepFor(500);
 
     done();

@@ -1,9 +1,4 @@
-import {
-  GraphQLDirective,
-  DirectiveLocationEnum,
-  GraphQLArgument,
-  isNonNullType,
-} from 'graphql';
+import { GraphQLDirective, DirectiveLocationEnum, GraphQLArgument, isNonNullType } from 'graphql';
 
 import { Change, CriticalityLevel, ChangeType } from './change';
 import { safeChangeForInputValue } from '../../utils/graphql';
@@ -29,10 +24,7 @@ export function directiveAdded(directive: GraphQLDirective): Change {
   };
 }
 
-export function directiveDescriptionChanged(
-  oldDirective: GraphQLDirective,
-  newDirective: GraphQLDirective,
-): Change {
+export function directiveDescriptionChanged(oldDirective: GraphQLDirective, newDirective: GraphQLDirective): Change {
   return {
     criticality: {
       level: CriticalityLevel.NonBreaking,
@@ -43,10 +35,7 @@ export function directiveDescriptionChanged(
   };
 }
 
-export function directiveLocationAdded(
-  directive: GraphQLDirective,
-  location: DirectiveLocationEnum,
-): Change {
+export function directiveLocationAdded(directive: GraphQLDirective, location: DirectiveLocationEnum): Change {
   return {
     criticality: {
       level: CriticalityLevel.NonBreaking,
@@ -57,10 +46,7 @@ export function directiveLocationAdded(
   };
 }
 
-export function directiveLocationRemoved(
-  directive: GraphQLDirective,
-  location: DirectiveLocationEnum,
-): Change {
+export function directiveLocationRemoved(directive: GraphQLDirective, location: DirectiveLocationEnum): Change {
   return {
     criticality: {
       level: CriticalityLevel.Breaking,
@@ -71,15 +57,10 @@ export function directiveLocationRemoved(
   };
 }
 
-export function directiveArgumentAdded(
-  directive: GraphQLDirective,
-  arg: GraphQLArgument,
-): Change {
+export function directiveArgumentAdded(directive: GraphQLDirective, arg: GraphQLArgument): Change {
   return {
     criticality: {
-      level: isNonNullType(arg.type)
-        ? CriticalityLevel.Breaking
-        : CriticalityLevel.NonBreaking,
+      level: isNonNullType(arg.type) ? CriticalityLevel.Breaking : CriticalityLevel.NonBreaking,
     },
     type: ChangeType.DirectiveArgumentAdded,
     message: `Argument '${arg.name}' was added to directive '${directive.name}'`,
@@ -87,10 +68,7 @@ export function directiveArgumentAdded(
   };
 }
 
-export function directiveArgumentRemoved(
-  directive: GraphQLDirective,
-  arg: GraphQLArgument,
-): Change {
+export function directiveArgumentRemoved(directive: GraphQLDirective, arg: GraphQLArgument): Change {
   return {
     criticality: {
       level: CriticalityLevel.Breaking,
@@ -104,7 +82,7 @@ export function directiveArgumentRemoved(
 export function directiveArgumentDescriptionChanged(
   directive: GraphQLDirective,
   oldArg: GraphQLArgument,
-  newArg: GraphQLArgument,
+  newArg: GraphQLArgument
 ): Change {
   return {
     criticality: {
@@ -119,7 +97,7 @@ export function directiveArgumentDescriptionChanged(
 export function directiveArgumentDefaultValueChanged(
   directive: GraphQLDirective,
   oldArg: GraphQLArgument,
-  newArg: GraphQLArgument,
+  newArg: GraphQLArgument
 ): Change {
   return {
     criticality: {
@@ -139,14 +117,13 @@ export function directiveArgumentDefaultValueChanged(
 export function directiveArgumentTypeChanged(
   directive: GraphQLDirective,
   oldArg: GraphQLArgument,
-  newArg: GraphQLArgument,
+  newArg: GraphQLArgument
 ): Change {
   return {
     criticality: safeChangeForInputValue(oldArg.type, newArg.type)
       ? {
           level: CriticalityLevel.NonBreaking,
-          reason:
-            'Changing an input field from non-null to null is considered non-breaking.',
+          reason: 'Changing an input field from non-null to null is considered non-breaking.',
         }
       : {
           level: CriticalityLevel.Breaking,

@@ -27,7 +27,7 @@ describe('Limit summary', () => {
           },
         },
       ],
-      3,
+      3
     );
 
     expect(summary).toContain('- breaking-1');
@@ -68,7 +68,7 @@ describe('Limit summary', () => {
           },
         },
       ],
-      3,
+      3
     );
 
     expect(summary).toContain('- breaking-1');
@@ -110,7 +110,7 @@ describe('Limit summary', () => {
           },
         },
       ],
-      2,
+      2
     );
 
     expect(summary).not.toContain('- breaking-1');

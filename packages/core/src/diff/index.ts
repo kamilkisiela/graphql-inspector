@@ -15,7 +15,7 @@ export function diff(
   oldSchema: GraphQLSchema,
   newSchema: GraphQLSchema,
   rules: Rule[] = [],
-  config?: rules.ConsiderUsageConfig,
+  config?: rules.ConsiderUsageConfig
 ): Promise<Change[]> {
   const changes = diffSchema(oldSchema, newSchema);
 

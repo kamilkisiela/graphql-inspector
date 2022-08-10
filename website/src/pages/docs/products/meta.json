@@ -1,5 +1,5 @@
 {
-    "ci": "Continuous Integration",
-    "github": "GitHub Application",
-    "action": "GitHub Action"
+  "ci": "Continuous Integration",
+  "github": "GitHub Application",
+  "action": "GitHub Action"
 }

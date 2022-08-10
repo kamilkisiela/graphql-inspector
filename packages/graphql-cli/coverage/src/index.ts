@@ -1,10 +1,5 @@
 import { defineCommand } from '@graphql-cli/common';
-import {
-  GlobalArgs,
-  parseGlobalArgs,
-  createInspectorExtension,
-  loaders,
-} from '@graphql-inspector/graphql-cli-common';
+import { GlobalArgs, parseGlobalArgs, createInspectorExtension, loaders } from '@graphql-inspector/graphql-cli-common';
 import { handler } from '@graphql-inspector/coverage-command';
 
 export default defineCommand<
@@ -16,7 +11,7 @@ export default defineCommand<
     write?: string;
     silent?: boolean;
   } & GlobalArgs
->((api) => {
+>(api => {
   return {
     command: 'coverage [project]',
     describe: 'Schema coverage based on documents',

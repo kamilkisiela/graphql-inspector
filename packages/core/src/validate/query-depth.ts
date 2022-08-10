@@ -1,12 +1,5 @@
 import { DepGraph } from 'dependency-graph';
-import {
-  DocumentNode,
-  GraphQLError,
-  ASTNode,
-  Kind,
-  FragmentDefinitionNode,
-  Source,
-} from 'graphql';
+import { DocumentNode, GraphQLError, ASTNode, Kind, FragmentDefinitionNode, Source } from 'graphql';
 
 export function validateQueryDepth({
   source,
@@ -39,7 +32,7 @@ export function validateQueryDepth({
       `Query exceeds maximum depth of ${maxDepth}`,
       node,
       source,
-      node.loc && node.loc.start ? [node.loc.start] : undefined,
+      node.loc && node.loc.start ? [node.loc.start] : undefined
     );
   }
 }
@@ -77,27 +70,27 @@ export function calculateDepth({
 
     case Kind.SELECTION_SET: {
       return Math.max(
-        ...node.selections.map((selection) => {
+        ...node.selections.map(selection => {
           return calculateDepth({
             node: selection,
             currentDepth: currentDepth,
             maxDepth,
             getFragment,
           });
-        }),
+        })
       );
     }
 
     case Kind.DOCUMENT: {
       return Math.max(
-        ...node.definitions.map((def) => {
+        ...node.definitions.map(def => {
           return calculateDepth({
             node: def,
             currentDepth: currentDepth,
             maxDepth,
             getFragment,
           });
-        }),
+        })
       );
     }
 
@@ -105,14 +98,14 @@ export function calculateDepth({
     case Kind.INLINE_FRAGMENT:
     case Kind.FRAGMENT_DEFINITION: {
       return Math.max(
-        ...node.selectionSet.selections.map((selection) => {
+        ...node.selectionSet.selections.map(selection => {
           return calculateDepth({
             node: selection,
             currentDepth,
             maxDepth,
             getFragment,
           });
-        }),
+        })
       );
     }
 

@@ -13,7 +13,7 @@ import { isDeprecated } from '../../utils/isDeprecated';
 
 export function fieldRemoved(
   type: GraphQLObjectType | GraphQLInterfaceType,
-  field: GraphQLField<any, any, any>,
+  field: GraphQLField<any, any, any>
 ): Change {
   const entity = isInterfaceType(type) ? 'interface' : 'object type';
   return {
@@ -24,17 +24,14 @@ export function fieldRemoved(
         : `Removing a field is a breaking change. It is preferable to deprecate the field before removing it.`,
     },
     type: ChangeType.FieldRemoved,
-    message: `Field '${field.name}' ${
-      isDeprecated(field) ? '(deprecated) ' : ''
-    }was removed from ${entity} '${type.name}'`,
+    message: `Field '${field.name}' ${isDeprecated(field) ? '(deprecated) ' : ''}was removed from ${entity} '${
+      type.name
+    }'`,
     path: [type.name, field.name].join('.'),
   };
 }
 
-export function fieldAdded(
-  type: GraphQLObjectType | GraphQLInterfaceType,
-  field: GraphQLField<any, any, any>,
-): Change {
+export function fieldAdded(type: GraphQLObjectType | GraphQLInterfaceType, field: GraphQLField<any, any, any>): Change {
   const entity = isInterfaceType(type) ? 'interface' : 'object type';
   return {
     criticality: {
@@ -49,7 +46,7 @@ export function fieldAdded(
 export function fieldDescriptionChanged(
   type: GraphQLObjectType | GraphQLInterfaceType,
   oldField: GraphQLField<any, any>,
-  newField: GraphQLField<any, any>,
+  newField: GraphQLField<any, any>
 ): Change {
   return {
     criticality: {
@@ -63,7 +60,7 @@ export function fieldDescriptionChanged(
 
 export function fieldDescriptionAdded(
   type: GraphQLObjectType | GraphQLInterfaceType,
-  field: GraphQLField<any, any>,
+  field: GraphQLField<any, any>
 ): Change {
   return {
     criticality: {
@@ -77,7 +74,7 @@ export function fieldDescriptionAdded(
 
 export function fieldDescriptionRemoved(
   type: GraphQLObjectType | GraphQLInterfaceType,
-  field: GraphQLField<any, any>,
+  field: GraphQLField<any, any>
 ): Change {
   return {
     criticality: {
@@ -91,7 +88,7 @@ export function fieldDescriptionRemoved(
 
 export function fieldDeprecationAdded(
   type: GraphQLObjectType | GraphQLInterfaceType,
-  field: GraphQLField<any, any>,
+  field: GraphQLField<any, any>
 ): Change {
   return {
     criticality: {
@@ -105,7 +102,7 @@ export function fieldDeprecationAdded(
 
 export function fieldDeprecationRemoved(
   type: GraphQLObjectType | GraphQLInterfaceType,
-  field: GraphQLField<any, any>,
+  field: GraphQLField<any, any>
 ): Change {
   return {
     criticality: {
@@ -120,7 +117,7 @@ export function fieldDeprecationRemoved(
 export function fieldDeprecationReasonChanged(
   type: GraphQLObjectType | GraphQLInterfaceType,
   oldField: GraphQLField<any, any>,
-  newField: GraphQLField<any, any>,
+  newField: GraphQLField<any, any>
 ): Change {
   return {
     criticality: {
@@ -134,7 +131,7 @@ export function fieldDeprecationReasonChanged(
 
 export function fieldDeprecationReasonAdded(
   type: GraphQLObjectType | GraphQLInterfaceType,
-  field: GraphQLField<any, any>,
+  field: GraphQLField<any, any>
 ): Change {
   return {
     criticality: {
@@ -148,7 +145,7 @@ export function fieldDeprecationReasonAdded(
 
 export function fieldDeprecationReasonRemoved(
   type: GraphQLObjectType | GraphQLInterfaceType,
-  field: GraphQLField<any, any>,
+  field: GraphQLField<any, any>
 ): Change {
   return {
     criticality: {
@@ -163,7 +160,7 @@ export function fieldDeprecationReasonRemoved(
 export function fieldTypeChanged(
   type: GraphQLObjectType | GraphQLInterfaceType,
   oldField: GraphQLField<any, any, any>,
-  newField: GraphQLField<any, any, any>,
+  newField: GraphQLField<any, any, any>
 ): Change {
   return {
     criticality: {
@@ -180,7 +177,7 @@ export function fieldTypeChanged(
 export function fieldArgumentAdded(
   type: GraphQLObjectType | GraphQLInterfaceType,
   field: GraphQLField<any, any, any>,
-  arg: GraphQLArgument,
+  arg: GraphQLArgument
 ): Change {
   const isBreaking = isNonNullType(arg.type) && typeof arg.defaultValue === 'undefined';
   const defaultValueMsg = typeof arg.defaultValue !== 'undefined' ? ' (with default value) ' : ' ';
@@ -204,7 +201,7 @@ export function fieldArgumentAdded(
 export function fieldArgumentRemoved(
   type: GraphQLObjectType | GraphQLInterfaceType,
   field: GraphQLField<any, any, any>,
-  arg: GraphQLArgument,
+  arg: GraphQLArgument
 ): Change {
   return {
     criticality: {

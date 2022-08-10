@@ -14,7 +14,7 @@ export function parseGlobalArgs(args: GlobalArgs) {
   const headers: Record<string, string> = {};
 
   if (args.header) {
-    args.header.forEach((header) => {
+    args.header.forEach(header => {
       const [name, ...values] = (header as string).split(':');
 
       headers[name] = values.join('');
@@ -22,7 +22,7 @@ export function parseGlobalArgs(args: GlobalArgs) {
   }
 
   if (args.require) {
-    args.require.forEach((mod) => require(mod as string));
+    args.require.forEach(mod => require(mod as string));
   }
 
   return { headers, token: args.token };
@@ -47,7 +47,7 @@ function compatibleLoader<TSource>(loader: {
     canLoad: loader.canLoad.bind(loader),
     canLoadSync: loader.canLoadSync?.bind(loader),
     load(pointer, options) {
-      return loader.load(pointer, options).then((source) => [source]);
+      return loader.load(pointer, options).then(source => [source]);
     },
     loadSync: loader.loadSync
       ? (pointer, options) => {
@@ -57,13 +57,11 @@ function compatibleLoader<TSource>(loader: {
   };
 }
 
-export const createInspectorExtension: (
-  name: string,
-) => GraphQLExtensionDeclaration = (name: string) => (api) => {
-  loaders.forEach((loader) => {
+export const createInspectorExtension: (name: string) => GraphQLExtensionDeclaration = (name: string) => api => {
+  loaders.forEach(loader => {
     api.loaders.schema.register(compatibleLoader(loader));
   });
-  loaders.forEach((loader) => {
+  loaders.forEach(loader => {
     api.loaders.documents.register(compatibleLoader(loader));
   });
 

@@ -52,7 +52,7 @@ const Diff: FC = () => {
     run();
   }, [code]);
 
-  const handleEditorChange: OnMount = (value) => {
+  const handleEditorChange: OnMount = value => {
     console.log('here is the current model value:', value);
     diffRef.current = value.getModifiedEditor();
     value.getModifiedEditor().onKeyUp(handleChange);
@@ -80,11 +80,7 @@ const Diff: FC = () => {
             originalEditable: false,
           }}
         />
-        <FlipMoveAny
-          className="shrink-0"
-          enterAnimation="fade"
-          leaveAnimation="fade"
-        >
+        <FlipMoveAny className="shrink-0" enterAnimation="fade" leaveAnimation="fade">
           {changes.map((change, i) => (
             <ChangeComponent key={i} value={change} />
           ))}

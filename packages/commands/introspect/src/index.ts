@@ -1,18 +1,8 @@
-import {
-  createCommand,
-  GlobalArgs,
-  CommandFactory,
-  parseGlobalArgs,
-} from '@graphql-inspector/commands';
+import { createCommand, GlobalArgs, CommandFactory, parseGlobalArgs } from '@graphql-inspector/commands';
 import { Logger } from '@graphql-inspector/logger';
 import { writeFileSync } from 'fs';
 import { resolve, extname } from 'path';
-import {
-  introspectionFromSchema,
-  lexicographicSortSchema,
-  printSchema,
-  GraphQLSchema,
-} from 'graphql';
+import { introspectionFromSchema, lexicographicSortSchema, printSchema, GraphQLSchema } from 'graphql';
 
 export { CommandFactory };
 
@@ -60,7 +50,7 @@ export default createCommand<
     write?: string;
     comments?: boolean;
   } & GlobalArgs
->((api) => {
+>(api => {
   const { loaders } = api;
 
   return {
@@ -102,7 +92,7 @@ export default createCommand<
           method,
         },
         apolloFederation,
-        aws,
+        aws
       );
 
       return handler({ schema, output, comments });

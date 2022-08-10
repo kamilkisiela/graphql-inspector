@@ -16,7 +16,7 @@ import { AddChange } from './schema';
 export function changesInInputObject(
   oldInput: GraphQLInputObjectType,
   newInput: GraphQLInputObjectType,
-  addChange: AddChange,
+  addChange: AddChange
 ) {
   const oldFields = oldInput.getFields();
   const newFields = newInput.getFields();
@@ -29,12 +29,7 @@ export function changesInInputObject(
       addChange(inputFieldRemoved(oldInput, field));
     },
     onMutual(field) {
-      changesInInputField(
-        oldInput,
-        field.oldVersion,
-        field.newVersion,
-        addChange,
-      );
+      changesInInputField(oldInput, field.oldVersion, field.newVersion, addChange);
     },
   });
 }
@@ -43,7 +38,7 @@ function changesInInputField(
   input: GraphQLInputObjectType,
   oldField: GraphQLInputField,
   newField: GraphQLInputField,
-  addChange: AddChange,
+  addChange: AddChange
 ) {
   if (isNotEqual(oldField.description, newField.description)) {
     if (isVoid(oldField.description)) {
@@ -56,17 +51,11 @@ function changesInInputField(
   }
 
   if (isNotEqual(oldField.defaultValue, newField.defaultValue)) {
-    if (
-      Array.isArray(oldField.defaultValue) &&
-      Array.isArray(newField.defaultValue)
-    ) {
+    if (Array.isArray(oldField.defaultValue) && Array.isArray(newField.defaultValue)) {
       if (diffArrays(oldField.defaultValue, newField.defaultValue).length > 0) {
         addChange(inputFieldDefaultValueChanged(input, oldField, newField));
       }
-    } else if (
-      JSON.stringify(oldField.defaultValue) !==
-      JSON.stringify(newField.defaultValue)
-    ) {
+    } else if (JSON.stringify(oldField.defaultValue) !== JSON.stringify(newField.defaultValue)) {
       addChange(inputFieldDefaultValueChanged(input, oldField, newField));
     }
   }

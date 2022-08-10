@@ -1,10 +1,6 @@
 import { buildSchema, Source } from 'graphql';
 import nock from 'nock';
-import {
-  diff,
-  DiffInterceptorPayload,
-  DiffInterceptorResponse,
-} from '../src/helpers/diff';
+import { diff, DiffInterceptorPayload, DiffInterceptorResponse } from '../src/helpers/diff';
 import { CheckConclusion } from '../src/helpers/types';
 import { CriticalityLevel } from '@graphql-inspector/core';
 
@@ -74,14 +70,10 @@ test('annotations should match lines in schema file', async () => {
   });
 
   // Field 'modifiedAt' was removed from object type 'Post'
-  expect(getPrintedLine(sources.new, action.annotations![0].start_line)).toBe(
-    'type Post {',
-  );
+  expect(getPrintedLine(sources.new, action.annotations![0].start_line)).toBe('type Post {');
 
   // Field 'Post.createdAt' changed type from 'String' to 'String!'
-  expect(getPrintedLine(sources.new, action.annotations![5].start_line)).toBe(
-    'createdAt: String!',
-  );
+  expect(getPrintedLine(sources.new, action.annotations![5].start_line)).toBe('createdAt: String!');
 });
 
 test('should work with comments and descriptions', async () => {
@@ -148,7 +140,7 @@ test('should work with comments and descriptions', async () => {
         description: String!
         name: String
       }
-    `,
+    `
   );
 
   const action = await diff({
@@ -160,17 +152,11 @@ test('should work with comments and descriptions', async () => {
   expect(action.annotations).toHaveLength(3);
 
   // Type 'User' was added
-  expect(getPrintedLine(sources.new, action.annotations![0].start_line)).toBe(
-    'type User {',
-  );
+  expect(getPrintedLine(sources.new, action.annotations![0].start_line)).toBe('type User {');
   // Field 'version' was removed from object type 'Meta'
-  expect(getPrintedLine(sources.new, action.annotations![1].start_line)).toBe(
-    'type Meta {',
-  );
+  expect(getPrintedLine(sources.new, action.annotations![1].start_line)).toBe('type Meta {');
   // Field 'Meta.name' changed type from 'String!' to 'String'
-  expect(getPrintedLine(sources.new, action.annotations![2].start_line)).toBe(
-    'name: String',
-  );
+  expect(getPrintedLine(sources.new, action.annotations![2].start_line)).toBe('name: String');
 });
 
 test('use interceptor to modify changes', async () => {
@@ -178,7 +164,7 @@ test('use interceptor to modify changes', async () => {
     .post('/intercept')
     .reply(async (_, body: DiffInterceptorPayload) => {
       const response: DiffInterceptorResponse = {
-        changes: body.changes.map((c) => {
+        changes: body.changes.map(c => {
           c.criticality.level = 'NON_BREAKING' as any;
           return { ...c };
         }),
@@ -193,11 +179,7 @@ test('use interceptor to modify changes', async () => {
 
   expect(action.annotations).toHaveLength(7);
   expect(action.changes).toHaveLength(7);
-  expect(
-    action.changes.every(
-      (change) => change.criticality.level === CriticalityLevel.NonBreaking,
-    ),
-  ).toBe(true);
+  expect(action.changes.every(change => change.criticality.level === CriticalityLevel.NonBreaking)).toBe(true);
   expect(action.conclusion).toBe(CheckConclusion.Success);
 
   scope.done();

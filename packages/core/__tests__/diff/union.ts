@@ -75,9 +75,7 @@ describe('union', () => {
 
     expect(change.criticality.level).toEqual(CriticalityLevel.Breaking);
     expect(change.type).toEqual('UNION_MEMBER_REMOVED');
-    expect(change.message).toEqual(
-      "Member 'C' was removed from Union type 'Foo'",
-    );
+    expect(change.message).toEqual("Member 'C' was removed from Union type 'Foo'");
   });
 
   test('same members but different order', async () => {
