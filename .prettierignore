@@ -1,9 +1,5 @@
-packages/*/dist
 dist/
 website/
-website/build/
-public/
 lib/
 .vscode/
-.github/
 action/

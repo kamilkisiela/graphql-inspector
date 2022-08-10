@@ -3436,6 +3436,13 @@
     tinykeys "1.4.0"
     use-debounce "8.0.3"
 
+"@theguild/prettier-config@0.0.2":
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/@theguild/prettier-config/-/prettier-config-0.0.2.tgz#1b40cf900f20a9a49b73d65c69643278f275a220"
+  integrity sha512-iawNy3+9GtmIPZqgnXqDgwqlhFYYlfEYS2zqIWwdqTA96D69QtcxURhC04pz2cy823VFLGHfP9/JOvjWZVeQhg==
+  dependencies:
+    prettier-plugin-sh "^0.11.0"
+
 "@theguild/tailwind-config@0.0.2":
   version "0.0.2"
   resolved "https://registry.yarnpkg.com/@theguild/tailwind-config/-/tailwind-config-0.0.2.tgz#a1c3bd055501f047dc6604cd379d570c65999d0a"
@@ -10112,6 +10119,11 @@ ms@2.1.2, ms@^2.1.1:
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.2.tgz#d09d1f357b443f493382a8eb3ccd183872ae6009"
   integrity sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==
 
+mvdan-sh@^0.10.1:
+  version "0.10.1"
+  resolved "https://registry.yarnpkg.com/mvdan-sh/-/mvdan-sh-0.10.1.tgz#5b3a4462a89cf20739b12d851589342c875f4d1f"
+  integrity sha512-kMbrH0EObaKmK3nVRKUIIya1dpASHIEusM13S4V1ViHFuxuNxCo+arxoa6j/dbV22YBGjl7UKJm9QQKJ2Crzhg==
+
 nano-css@^5.3.1:
   version "5.3.4"
   resolved "https://registry.yarnpkg.com/nano-css/-/nano-css-5.3.4.tgz#40af6a83a76f84204f346e8ccaa9169cdae9167b"
@@ -11112,10 +11124,17 @@ prepend-http@^2.0.0:
   resolved "https://registry.yarnpkg.com/prepend-http/-/prepend-http-2.0.0.tgz#e92434bfa5ea8c19f41cdfd401d741a3c819d897"
   integrity sha1-6SQ0v6XqjBn0HN/UAddBo8gZ2Jc=
 
-prettier@2.6.0:
-  version "2.6.0"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.6.0.tgz#12f8f504c4d8ddb76475f441337542fa799207d4"
-  integrity sha512-m2FgJibYrBGGgQXNzfd0PuDGShJgRavjUoRCw1mZERIWVSXF0iLzLm+aOqTAbLnC3n6JzUhAA8uZnFVghHJ86A==
+prettier-plugin-sh@^0.11.0:
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/prettier-plugin-sh/-/prettier-plugin-sh-0.11.0.tgz#b65974d49d93d7f303c3513e218741f2d4820e98"
+  integrity sha512-YwuWGYuf6UiF80BZ3Lrby2yot0zRcktcBl+VD/xSLoPrmiH/yXcopz3RBtNMNcBeP13ALim9N/LtlTCmvUziVQ==
+  dependencies:
+    mvdan-sh "^0.10.1"
+
+prettier@2.7.1:
+  version "2.7.1"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.7.1.tgz#e235806850d057f97bb08368a4f7d899f7760c64"
+  integrity sha512-ujppO+MkdPqoVINuDFDRLClm7D78qbDt0/NR+wp5FqEZOoTNAjPHWj17QRhu7geIHJfcNhRk1XVQmF8Bp3ye+g==
 
 pretty-format@^26.0.0, pretty-format@^26.6.2:
   version "26.6.2"
