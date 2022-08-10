@@ -28,13 +28,15 @@
   "404": {
     "type": "page",
     "theme": {
-      "layout": "full"
+      "layout": "full",
+      "timestamp": false
     }
   },
   "500": {
     "type": "page",
     "theme": {
-      "layout": "full"
+      "layout": "full",
+      "timestamp": false
     }
   }
 }
