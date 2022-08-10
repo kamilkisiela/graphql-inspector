@@ -1,11 +1,4 @@
-import {
-  DefinitionNode,
-  OperationDefinitionNode,
-  FragmentDefinitionNode,
-  Kind,
-  Source,
-  parse,
-} from 'graphql';
+import { DefinitionNode, OperationDefinitionNode, FragmentDefinitionNode, Kind, Source, parse } from 'graphql';
 
 export interface Document {
   source: Source;

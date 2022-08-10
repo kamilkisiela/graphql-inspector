@@ -1,11 +1,4 @@
-import {
-  ComponentProps,
-  FC,
-  ReactElement,
-  useCallback,
-  useEffect,
-  useState,
-} from 'react';
+import { ComponentProps, FC, ReactElement, useCallback, useEffect, useState } from 'react';
 import { useMutation } from '../hooks/use-graphql';
 import styles from './contact.module.css';
 
@@ -22,22 +15,20 @@ const ContactForm: FC = () => {
   const [result, mutate] = useMutation(SAY_HI);
 
   const onSubmit = useCallback<NonNullable<ComponentProps<'form'>['onSubmit']>>(
-    (event) => {
+    event => {
       event.preventDefault();
       mutate({ email });
     },
-    [email, mutate],
+    [email, mutate]
   );
 
-  const onChange = useCallback<
-    NonNullable<ComponentProps<'input'>['onChange']>
-  >(
-    (event) => {
+  const onChange = useCallback<NonNullable<ComponentProps<'input'>['onChange']>>(
+    event => {
       if (!result.loading) {
         setEmail(event.target.value);
       }
     },
-    [setEmail, result.loading],
+    [setEmail, result.loading]
   );
 
   useEffect(() => {
@@ -75,19 +66,12 @@ const ContactForm: FC = () => {
       {result.error && (
         <div className={`${styles.contactStatus} ${styles.error}`}>
           Something went wrong, so please contact us directly on{' '}
-          <a
-            className={styles.contactDirectly}
-            href="mailto:kamil.kisiela@gmail.com"
-          >
+          <a className={styles.contactDirectly} href="mailto:kamil.kisiela@gmail.com">
             kamil.kisiela@gmail.com
           </a>
         </div>
       )}
-      {result.data && (
-        <div className={`${styles.contactStatus} ${styles.success}`}>
-          We'll contact you soon!
-        </div>
-      )}
+      {result.data && <div className={`${styles.contactStatus} ${styles.success}`}>We'll contact you soon!</div>}
     </form>
   );
 };
@@ -99,21 +83,14 @@ export const Contact = (): ReactElement => {
       id="contact-us"
     >
       <div className="max-w-lg">
-        <h3 className="text-2xl md:text-3xl font-bold text-black dark:text-gray-50">
-          Get in touch!
-        </h3>
+        <h3 className="text-2xl md:text-3xl font-bold text-black dark:text-gray-50">Get in touch!</h3>
         <div className="my-2 text-gray-500 dark:text-gray-400">
           Need help? Want to start using GraphQL Inspector?
-          <br /> We would love to help you and hear how you use GraphQL
-          Inspector today!
+          <br /> We would love to help you and hear how you use GraphQL Inspector today!
         </div>
         <ContactForm />
       </div>
-      <img
-        className="max-w-[200px]"
-        src="/assets/img/illustrations/mail-box.png"
-        alt="Mail Box"
-      />
+      <img className="max-w-[200px]" src="/assets/img/illustrations/mail-box.png" alt="Mail Box" />
     </div>
   );
 };

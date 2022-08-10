@@ -43,25 +43,25 @@ jobs:
       - name: Integration tests
         run: |
           chmod +x ./packages/cli/dist/index.js
-          
+
           echo 2001
           ./packages/cli/dist/index.js validate './integration_tests/2001/operations/**/*.graphql' './integration_tests/2001/schema.graphql'
-          
+
           echo 1991
           ./packages/cli/dist/index.js validate './integration_tests/1991/two-operations.js' './integration_tests/1991/schema.graphql'
-          
+
           echo 1985
           ./packages/cli/dist/index.js introspect ./integration_tests/1985/schema.js || echo 'TODO'
-          
+
           echo 2108
           ./packages/cli/dist/index.js introspect './integration_tests/2108/**/!(excluded)/*.graphql' --write ./2108.graphql
             if grep -ic "bar" ./2108.graphql
             then echo "Broken" && exit 1
             else echo "Works"
             fi
-          
+
           echo 2027
           ./packages/cli/dist/index.js diff ./integration_tests/2027/schema-before.graphql ./integration_tests/2027/schema-after.graphql --rule considerUsage --onUsage ./integration_tests/2027/unused-hotels.js
-          
+
           echo 2088
           ./packages/cli/dist/index.js diff ./integration_tests/2088/old.graphql ./integration_tests/2088/new.graphql --rule suppressRemovalOfDeprecatedField

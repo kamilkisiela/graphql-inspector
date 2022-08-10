@@ -13,10 +13,7 @@ import { DepGraph } from 'dependency-graph';
 import { readDocument } from '../ast/document';
 import { findDeprecatedUsages } from '../utils/graphql';
 import { validateQueryDepth } from './query-depth';
-import {
-  transformSchemaWithApollo,
-  transformDocumentWithApollo,
-} from '../utils/apollo';
+import { transformSchemaWithApollo, transformDocumentWithApollo } from '../utils/apollo';
 
 export interface InvalidDocument {
   source: Source;
@@ -52,11 +49,7 @@ export interface ValidateOptions {
   maxDepth?: number;
 }
 
-export function validate(
-  schema: GraphQLSchema,
-  sources: Source[],
-  options?: ValidateOptions,
-): InvalidDocument[] {
+export function validate(schema: GraphQLSchema, sources: Source[], options?: ValidateOptions): InvalidDocument[] {
   const config: ValidateOptions = {
     strictDeprecated: true,
     strictFragments: true,
@@ -72,19 +65,19 @@ export function validate(
   const fragmentNames: string[] = [];
   const graph = new DepGraph<FragmentDefinitionNode>({ circular: true });
 
-  documents.forEach((doc) => {
-    doc.fragments.forEach((fragment) => {
+  documents.forEach(doc => {
+    doc.fragments.forEach(fragment => {
       fragmentNames.push(fragment.node.name.value);
       fragments.push(fragment);
       graph.addNode(fragment.node.name.value, fragment.node);
     });
   });
 
-  fragments.forEach((fragment) => {
+  fragments.forEach(fragment => {
     const depends = extractFragments(print(fragment.node));
 
     if (depends) {
-      depends.forEach((name) => {
+      depends.forEach(name => {
         graph.addDependency(fragment.node.name.value, name);
       });
     }
@@ -92,34 +85,25 @@ export function validate(
 
   documents
     // since we include fragments, validate only operations
-    .filter((doc) => doc.hasOperations)
-    .forEach((doc) => {
+    .filter(doc => doc.hasOperations)
+    .forEach(doc => {
       const docWithOperations: DocumentNode = {
         kind: Kind.DOCUMENT,
-        definitions: doc.operations.map((d) => d.node),
+        definitions: doc.operations.map(d => d.node),
       };
-      const extractedFragments = (
-        extractFragments(print(docWithOperations)) || []
-      )
+      const extractedFragments = (extractFragments(print(docWithOperations)) || [])
         // resolve all nested fragments
-        .map((fragmentName) =>
-          resolveFragment(graph.getNodeData(fragmentName), graph),
-        )
+        .map(fragmentName => resolveFragment(graph.getNodeData(fragmentName), graph))
         // flatten arrays
         .reduce((list, current) => list.concat(current), [])
         // remove duplicates
-        .filter(
-          (def, i, all) =>
-            all.findIndex((item) => item.name.value === def.name.value) === i,
-        );
+        .filter((def, i, all) => all.findIndex(item => item.name.value === def.name.value) === i);
       const merged: DocumentNode = {
         kind: Kind.DOCUMENT,
         definitions: [...docWithOperations.definitions, ...extractedFragments],
       };
 
-      let transformedSchema = config.apollo
-        ? transformSchemaWithApollo(schema)
-        : schema;
+      let transformedSchema = config.apollo ? transformSchemaWithApollo(schema) : schema;
 
       const transformedDoc = config.apollo
         ? transformDocumentWithApollo(merged, {
@@ -127,11 +111,7 @@ export function validate(
           })
         : merged;
 
-      const errors =
-        (validateDocument(
-          transformedSchema,
-          transformedDoc,
-        ) as GraphQLError[]) || [];
+      const errors = (validateDocument(transformedSchema, transformedDoc) as GraphQLError[]) || [];
 
       if (config.maxDepth) {
         const depthError = validateQueryDepth({
@@ -146,12 +126,8 @@ export function validate(
         }
       }
 
-      const deprecated = config.strictDeprecated
-        ? findDeprecatedUsages(transformedSchema, transformedDoc)
-        : [];
-      const duplicatedFragments = config.strictFragments
-        ? findDuplicatedFragments(fragmentNames)
-        : [];
+      const deprecated = config.strictDeprecated ? findDeprecatedUsages(transformedSchema, transformedDoc) : [];
+      const duplicatedFragments = config.strictFragments ? findDuplicatedFragments(fragmentNames) : [];
 
       if (sumLengths(errors, duplicatedFragments, deprecated) > 0) {
         invalidDocuments.push({
@@ -168,9 +144,7 @@ export function validate(
 function findDuplicatedFragments(fragmentNames: string[]) {
   return fragmentNames
     .filter((name, i, all) => all.indexOf(name) !== i)
-    .map(
-      (name) => new GraphQLError(`Name of '${name}' fragment is not unique`),
-    );
+    .map(name => new GraphQLError(`Name of '${name}' fragment is not unique`));
 }
 
 //
@@ -179,23 +153,15 @@ function findDuplicatedFragments(fragmentNames: string[]) {
 //
 function resolveFragment(
   fragment: FragmentDefinitionNode,
-  graph: DepGraph<FragmentDefinitionNode>,
+  graph: DepGraph<FragmentDefinitionNode>
 ): FragmentDefinitionNode[] {
   return graph
     .dependenciesOf(fragment.name.value)
-    .reduce(
-      (list, current) => [
-        ...list,
-        ...resolveFragment(graph.getNodeData(current), graph),
-      ],
-      [fragment],
-    );
+    .reduce((list, current) => [...list, ...resolveFragment(graph.getNodeData(current), graph)], [fragment]);
 }
 
 function extractFragments(document: string): string[] | undefined {
-  return (document.match(/[\.]{3}[a-z0-9\_]+\b/gi) || []).map((name) =>
-    name.replace('...', ''),
-  );
+  return (document.match(/[\.]{3}[a-z0-9\_]+\b/gi) || []).map(name => name.replace('...', ''));
 }
 
 function sumLengths(...arrays: any[][]): number {

@@ -5,11 +5,8 @@ import { Rule } from './types';
 import { parsePath } from '../../utils/path';
 import { isDeprecated } from '../../utils/isDeprecated';
 
-export const suppressRemovalOfDeprecatedField: Rule = ({
-  changes,
-  oldSchema,
-}) => {
-  return changes.map((change) => {
+export const suppressRemovalOfDeprecatedField: Rule = ({ changes, oldSchema }) => {
+  return changes.map(change => {
     if (
       change.type === ChangeType.FieldRemoved &&
       change.criticality.level === CriticalityLevel.Breaking &&

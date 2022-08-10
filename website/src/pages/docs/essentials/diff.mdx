@@ -2,7 +2,9 @@ import { Callout } from '@theguild/components'
 
 # Schema Validation
 
-Detect changes to your GraphQL Schema and prevent breaking your existing applications. With GraphQL Inspector you get a list of breaking, potentially dangerous and safe changes on every Pull Request. Integrate it with GitHub, BitBucket, GitLab or any Continuous Integration.
+Detect changes to your GraphQL Schema and prevent breaking your existing applications. With GraphQL Inspector you get a
+list of breaking, potentially dangerous and safe changes on every Pull Request. Integrate it with GitHub, BitBucket,
+GitLab or any Continuous Integration.
 
 ![Application](../../../../public/assets/img/github/app-action.jpg)
 
@@ -16,7 +18,8 @@ Detect changes to your GraphQL Schema and prevent breaking your existing applica
 
 ## Using in CI
 
-GraphQL Inspector offers a version of our CLI that is better suited for Continuous Integrations. Learn more [how to use it](../products/ci).
+GraphQL Inspector offers a version of our CLI that is better suited for Continuous Integrations. Learn more
+[how to use it](../products/ci).
 
 ## Using CLI
 
@@ -55,8 +58,7 @@ graphql-inspector diff OLD_SCHEMA NEW_SCHEMA
 
 #### Output
 
-A list of all differences between two schemas.
-GraphQL Inspector defines three kinds of changes:
+A list of all differences between two schemas. GraphQL Inspector defines three kinds of changes:
 
 - Non-breaking change
 - Dangerous Change
@@ -67,13 +69,17 @@ When there's at least one breaking change, the process fails, otherwise, it succ
 ### Examples
 
 Compare your local schema against a remote server:
+
 ```sh
 graphql-inspector diff https://api.com/graphql schema.graphql
 ```
+
 Compare your local schema against a schema on a master branch (GitHub):
+
 ```sh
 graphql-inspector diff github:user/repo#master:schema.graphql schema.graphql
 ```
+
 ### Rules
 
 To customize the diff's behavior, you're able to use a set of rules:
@@ -85,21 +91,28 @@ Turns every dangerous change to be a breaking change.
 ```sh /--rule dangerousBreaking/
 graphql-inspector diff https://api.com/graphql schema.graphql --rule dangerousBreaking
 ```
+
 #### `suppressRemovalOfDeprecatedField`
 
-Every removal of a deprecated field is considered a breaking change. With that flag, you can turn it into a dangerous change, so it won't fail a process or a CI check.
+Every removal of a deprecated field is considered a breaking change. With that flag, you can turn it into a dangerous
+change, so it won't fail a process or a CI check.
+
 ```sh /--rule suppressRemovalOfDeprecatedField/
 graphql-inspector diff https://api.com/graphql schema.graphql --rule suppressRemovalOfDeprecatedField
 ```
+
 #### `ignoreDescriptionChanges`
 
 Changes in descriptions are filtered out and are not displayed in the CLI result.
+
 ```sh /--rule ignoreDescriptionChanges/
 graphql-inspector diff https://api.com/graphql schema.graphql --rule ignoreDescriptionChanges
 ```
+
 #### `safeUnreachable`
 
-Breaking changes are done on unreachable parts of the schema (non-accessible when starting from the root types) and won't be marked as breaking.
+Breaking changes are done on unreachable parts of the schema (non-accessible when starting from the root types) and
+won't be marked as breaking.
 
 ```sh /--rule safeUnreachable/
 graphql-inspector diff https://api.com/graphql schema.graphql --rule safeUnreachable
@@ -167,14 +180,14 @@ graphql-inspector diff https://api.com/graphql schema.graphql --rule './custom-r
 
 ### Passing different headers to multiple remote schemas
 
-If you want to do a diff between multiple remote schemas, each with a different set of authentication headers, you can do it with `--left-header` and `--right-header` flags like so:
+If you want to do a diff between multiple remote schemas, each with a different set of authentication headers, you can
+do it with `--left-header` and `--right-header` flags like so:
 
 ```sh
 graphql-inspector diff http://your-schema-1/graphql http://your-schema-2/graphql --left-header 'Auth: Basic 123' --right-header 'Auth: Basic 345'
 ```
 
-where `--left-header` will get passed to `http://your-schema-1/graphql` and `--right-header` will get passed to `http://your-schema-2/graphql`.
+where `--left-header` will get passed to `http://your-schema-1/graphql` and `--right-header` will get passed to
+`http://your-schema-2/graphql`.
 
-<Callout>
-Note: `--left-header` and `--right-header` overrides the `--header` flags.
-</Callout>
+<Callout>Note: `--left-header` and `--right-header` overrides the `--header` flags.</Callout>

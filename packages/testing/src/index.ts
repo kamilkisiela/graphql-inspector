@@ -23,9 +23,7 @@ expect.extend({
   toHaveBeenCalledNormalized(spy: jest.SpyInstance, expected: string) {
     const normalizedExpected = nonTTY(expected);
     const calls = spy.mock.calls;
-    const contain = calls.some((args) =>
-      nonTTY(args.join(' ')).includes(normalizedExpected),
-    );
+    const contain = calls.some(args => nonTTY(args.join(' ')).includes(normalizedExpected));
 
     if (contain) {
       return {

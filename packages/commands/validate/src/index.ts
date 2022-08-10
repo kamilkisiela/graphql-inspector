@@ -1,14 +1,6 @@
-import {
-  createCommand,
-  GlobalArgs,
-  parseGlobalArgs,
-  CommandFactory,
-} from '@graphql-inspector/commands';
+import { createCommand, GlobalArgs, parseGlobalArgs, CommandFactory } from '@graphql-inspector/commands';
 import { Logger, bolderize, chalk } from '@graphql-inspector/logger';
-import {
-  validate as validateDocuments,
-  InvalidDocument,
-} from '@graphql-inspector/core';
+import { validate as validateDocuments, InvalidDocument } from '@graphql-inspector/core';
 import { Source as DocumentSource } from '@graphql-tools/utils';
 import { relative } from 'path';
 import { writeFileSync } from 'fs';
@@ -45,13 +37,13 @@ export function handler({
 }) {
   let invalidDocuments = validateDocuments(
     schema,
-    documents.map((doc) => new Source(print(doc.document!), doc.location)),
+    documents.map(doc => new Source(print(doc.document!), doc.location)),
     {
       strictFragments,
       maxDepth,
       apollo,
       keepClientFields,
-    },
+    }
   );
 
   if (!invalidDocuments.length) {
@@ -71,38 +63,20 @@ export function handler({
 
     if (errorsCount) {
       if (!silent) {
-        Logger.log(
-          `\nDetected ${errorsCount} invalid document${
-            errorsCount > 1 ? 's' : ''
-          }:\n`,
-        );
+        Logger.log(`\nDetected ${errorsCount} invalid document${errorsCount > 1 ? 's' : ''}:\n`);
       }
 
-      printInvalidDocuments(
-        useFilter(invalidDocuments, filter),
-        'errors',
-        true,
-        silent,
-      );
+      printInvalidDocuments(useFilter(invalidDocuments, filter), 'errors', true, silent);
     } else {
       Logger.success('All documents are valid');
     }
 
     if (deprecated && !onlyErrors) {
       if (!silent) {
-        Logger.info(
-          `\nDetected ${deprecated} document${
-            deprecated > 1 ? 's' : ''
-          } with deprecated fields:\n`,
-        );
+        Logger.info(`\nDetected ${deprecated} document${deprecated > 1 ? 's' : ''} with deprecated fields:\n`);
       }
 
-      printInvalidDocuments(
-        useFilter(invalidDocuments, filter),
-        'deprecated',
-        false,
-        silent,
-      );
+      printInvalidDocuments(useFilter(invalidDocuments, filter), 'deprecated', false, silent);
     }
 
     if (output) {
@@ -114,11 +88,11 @@ export function handler({
             documents: useFilter(invalidDocuments, filter),
           },
           null,
-          2,
+          2
         ),
         {
           encoding: 'utf-8',
-        },
+        }
       );
     }
 
@@ -129,7 +103,7 @@ export function handler({
 }
 
 function moveDeprecatedToErrors(docs: InvalidDocument[]) {
-  return docs.map((doc) => ({
+  return docs.map(doc => ({
     source: doc.source,
     errors: [...(doc.errors ?? []), ...(doc.deprecated ?? [])],
     deprecated: [],
@@ -137,7 +111,7 @@ function moveDeprecatedToErrors(docs: InvalidDocument[]) {
 }
 
 function useRelativePaths(docs: InvalidDocument[]) {
-  return docs.map((doc) => {
+  return docs.map(doc => {
     doc.source.name = relative(process.cwd(), doc.source.name);
     return doc;
   });
@@ -148,9 +122,7 @@ function useFilter(docs: InvalidDocument[], patterns?: string[]) {
     return docs;
   }
 
-  return docs.filter((doc) =>
-    patterns.some((filepath) => doc.source.name.includes(filepath)),
-  );
+  return docs.filter(doc => patterns.some(filepath => doc.source.name.includes(filepath)));
 }
 
 export default createCommand<
@@ -170,7 +142,7 @@ export default createCommand<
     silent?: boolean;
     ignore?: string[];
   } & GlobalArgs
->((api) => {
+>(api => {
   const { loaders } = api;
 
   return {
@@ -210,8 +182,7 @@ export default createCommand<
             default: false,
           },
           keepClientFields: {
-            describe:
-              'Keeps the fields with @client, but removes @client directive from them',
+            describe: 'Keeps the fields with @client, but removes @client directive from them',
             type: 'boolean',
             default: false,
           },
@@ -270,7 +241,7 @@ export default createCommand<
           method,
         },
         apolloFederation,
-        aws,
+        aws
       );
       const documents = await loaders.loadDocuments(args.documents, {
         ignore,
@@ -296,8 +267,7 @@ export default createCommand<
 
 function countErrors(invalidDocuments: InvalidDocument[]): number {
   if (invalidDocuments.length) {
-    return invalidDocuments.filter((doc) => doc.errors && doc.errors.length)
-      .length;
+    return invalidDocuments.filter(doc => doc.errors && doc.errors.length).length;
   }
 
   return 0;
@@ -305,9 +275,7 @@ function countErrors(invalidDocuments: InvalidDocument[]): number {
 
 function countDeprecated(invalidDocuments: InvalidDocument[]): number {
   if (invalidDocuments.length) {
-    return invalidDocuments.filter(
-      (doc) => doc.deprecated && doc.deprecated.length,
-    ).length;
+    return invalidDocuments.filter(doc => doc.deprecated && doc.deprecated.length).length;
   }
 
   return 0;
@@ -317,29 +285,23 @@ function printInvalidDocuments(
   invalidDocuments: InvalidDocument[],
   listKey: 'errors' | 'deprecated',
   isError = false,
-  silent = false,
+  silent = false
 ): void {
   if (silent) {
     return;
   }
 
-  invalidDocuments.forEach((doc) => {
+  invalidDocuments.forEach(doc => {
     if (doc.errors.length) {
-      renderErrors(doc.source.name, doc[listKey], isError).forEach((line) => {
+      renderErrors(doc.source.name, doc[listKey], isError).forEach(line => {
         Logger.log(line);
       });
     }
   });
 }
 
-function renderErrors(
-  sourceName: string,
-  errors: GraphQLError[],
-  isError = false,
-): string[] {
-  const errorsAsString = errors
-    .map((e) => ` - ${bolderize(e.message)}`)
-    .join('\n');
+function renderErrors(sourceName: string, errors: GraphQLError[], isError = false): string[] {
+  const errorsAsString = errors.map(e => ` - ${bolderize(e.message)}`).join('\n');
 
   return [
     isError ? chalk.redBright('error') : chalk.yellowBright('warn'),

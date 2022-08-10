@@ -2,12 +2,7 @@ module.exports = {
   root: true,
   ignorePatterns: ['!.*', '.next'],
   reportUnusedDisableDirectives: true,
-  extends: [
-    'eslint:recommended',
-    'plugin:@typescript-eslint/recommended',
-    'next',
-    'prettier',
-  ],
+  extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended', 'next', 'prettier'],
   settings: {
     next: {
       rootDir: './src',

@@ -1,18 +1,8 @@
-import {
-  diff as diffSchemas,
-  CriticalityLevel,
-  Change,
-} from '@graphql-inspector/core';
+import { diff as diffSchemas, CriticalityLevel, Change } from '@graphql-inspector/core';
 import { GraphQLSchema, Source } from 'graphql';
 import axios from 'axios';
 
-import {
-  CheckConclusion,
-  ActionResult,
-  Annotation,
-  AnnotationLevel,
-  PullRequest,
-} from './types';
+import { CheckConclusion, ActionResult, Annotation, AnnotationLevel, PullRequest } from './types';
 import { getLocationByPath } from './location';
 import { parseEndpoint, isNil } from './utils';
 
@@ -77,16 +67,10 @@ export async function diff({
     forcedConclusion = interceptionResult.conclusion || null;
   }
 
-  const annotations = await Promise.all(
-    changes.map((change) => annotate({ path, change, source: sources.new })),
-  );
+  const annotations = await Promise.all(changes.map(change => annotate({ path, change, source: sources.new })));
   let conclusion: CheckConclusion = CheckConclusion.Success;
 
-  if (
-    changes.some(
-      (change) => change.criticality.level === CriticalityLevel.Breaking,
-    )
-  ) {
+  if (changes.some(change => change.criticality.level === CriticalityLevel.Breaking)) {
     conclusion = CheckConclusion.Failure;
   }
 
@@ -107,19 +91,9 @@ const levelMap = {
   [CriticalityLevel.NonBreaking]: AnnotationLevel.Notice,
 };
 
-function annotate({
-  path,
-  change,
-  source,
-}: {
-  path: string;
-  change: Change;
-  source: Source;
-}): Annotation {
+function annotate({ path, change, source }: { path: string; change: Change; source: Source }): Annotation {
   const level = change.criticality.level;
-  const loc = change.path
-    ? getLocationByPath({ path: change.path, source })
-    : { line: 1, column: 1 };
+  const loc = change.path ? getLocationByPath({ path: change.path, source }) : { line: 1, column: 1 };
 
   return {
     title: change.message,
@@ -133,7 +107,7 @@ function annotate({
 
 async function interceptChanges(
   interceptor: DiffInterceptor,
-  payload: DiffInterceptorPayload,
+  payload: DiffInterceptorPayload
 ): Promise<DiffInterceptorResponse> {
   const endpoint = parseEndpoint(interceptor);
 

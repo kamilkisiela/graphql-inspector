@@ -48,7 +48,7 @@ describe('aws', () => {
       `,
       {},
       false,
-      true,
+      true
     );
 
     const results = validate(schema, [new Source(print(doc))]);

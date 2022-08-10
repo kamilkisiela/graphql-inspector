@@ -54,7 +54,7 @@ describe('considerUsage rule', () => {
       },
     });
 
-    changes.forEach((change) => {
+    changes.forEach(change => {
       expect(change.criticality.level).toBe(CriticalityLevel.Dangerous);
       expect(change.message).toContain(`non-breaking based on usage`);
     });

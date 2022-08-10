@@ -7,14 +7,9 @@ export interface Logger {
   error(msg: string | Error, error?: Error): void;
 }
 
-export function createLogger(
-  label: string,
-  context: probot.Context,
-  release: string,
-): Logger {
+export function createLogger(label: string, context: probot.Context, release: string): Logger {
   const id = Math.random().toString(16).substr(2, 5);
-  const prefix = (msg: string) =>
-    `${label} ${id} - release-${release.substr(0, 7)} : ${msg}`;
+  const prefix = (msg: string) => `${label} ${id} - release-${release.substr(0, 7)} : ${msg}`;
 
   return {
     log(msg: string) {

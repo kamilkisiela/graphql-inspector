@@ -17,13 +17,7 @@ import {
   EnumValueDefinitionNode,
 } from 'graphql';
 
-export function getLocationByPath({
-  path,
-  source,
-}: {
-  path: string;
-  source: Source;
-}): SourceLocation {
+export function getLocationByPath({ path, source }: { path: string; source: Source }): SourceLocation {
   const [typeName, ...rest] = path.split('.');
   const isDirective = typeName.startsWith('@');
 
@@ -32,10 +26,7 @@ export function getLocationByPath({
   let resolvedNode: Node = undefined;
 
   for (const definition of doc.definitions) {
-    if (
-      definition.kind === Kind.OBJECT_TYPE_DEFINITION &&
-      definition.name.value === typeName
-    ) {
+    if (definition.kind === Kind.OBJECT_TYPE_DEFINITION && definition.name.value === typeName) {
       resolvedNode = resolveObjectTypeDefinition(rest, definition);
       break;
     }
@@ -49,42 +40,27 @@ export function getLocationByPath({
       break;
     }
 
-    if (
-      definition.kind === Kind.ENUM_TYPE_DEFINITION &&
-      definition.name.value === typeName
-    ) {
+    if (definition.kind === Kind.ENUM_TYPE_DEFINITION && definition.name.value === typeName) {
       resolvedNode = resolveEnumTypeDefinition(rest, definition);
       break;
     }
 
-    if (
-      definition.kind === Kind.INPUT_OBJECT_TYPE_DEFINITION &&
-      definition.name.value === typeName
-    ) {
+    if (definition.kind === Kind.INPUT_OBJECT_TYPE_DEFINITION && definition.name.value === typeName) {
       resolvedNode = resolveInputObjectTypeDefinition(rest, definition);
       break;
     }
 
-    if (
-      definition.kind === Kind.INTERFACE_TYPE_DEFINITION &&
-      definition.name.value === typeName
-    ) {
+    if (definition.kind === Kind.INTERFACE_TYPE_DEFINITION && definition.name.value === typeName) {
       resolvedNode = resolveInterfaceTypeDefinition(rest, definition);
       break;
     }
 
-    if (
-      definition.kind === Kind.UNION_TYPE_DEFINITION &&
-      definition.name.value === typeName
-    ) {
+    if (definition.kind === Kind.UNION_TYPE_DEFINITION && definition.name.value === typeName) {
       resolvedNode = resolveUnionTypeDefinitionNode(rest, definition);
       break;
     }
 
-    if (
-      definition.kind === Kind.SCALAR_TYPE_DEFINITION &&
-      definition.name.value === typeName
-    ) {
+    if (definition.kind === Kind.SCALAR_TYPE_DEFINITION && definition.name.value === typeName) {
       resolvedNode = resolveScalarTypeDefinitionNode(rest, definition);
       break;
     }
@@ -101,38 +77,28 @@ type Node =
   | EnumValueDefinitionNode
   | undefined;
 
-function resolveScalarTypeDefinitionNode(
-  _path: string[],
-  definition: ScalarTypeDefinitionNode,
-): Node {
+function resolveScalarTypeDefinitionNode(_path: string[], definition: ScalarTypeDefinitionNode): Node {
   return definition;
 }
 
-function resolveUnionTypeDefinitionNode(
-  _path: string[],
-  definition: UnionTypeDefinitionNode,
-): Node {
+function resolveUnionTypeDefinitionNode(_path: string[], definition: UnionTypeDefinitionNode): Node {
   return definition;
 }
 
 function resolveArgument(argName: string, field: FieldDefinitionNode) {
-  const arg = field.arguments?.find((a) => a.name.value === argName);
+  const arg = field.arguments?.find(a => a.name.value === argName);
 
   return arg || field;
 }
 
 function resolveFieldDefinition(
   path: string[],
-  definition:
-    | InterfaceTypeDefinitionNode
-    | InputObjectTypeDefinitionNode
-    | ObjectTypeDefinitionNode,
+  definition: InterfaceTypeDefinitionNode | InputObjectTypeDefinitionNode | ObjectTypeDefinitionNode
 ): Node {
   const [fieldName, argName] = path;
 
   const fieldIndex = definition.fields?.findIndex(
-    (f: InputValueDefinitionNode | FieldDefinitionNode) =>
-      f.name.value === fieldName,
+    (f: InputValueDefinitionNode | FieldDefinitionNode) => f.name.value === fieldName
   );
 
   if (typeof fieldIndex === 'number' && fieldIndex > -1) {
@@ -148,10 +114,7 @@ function resolveFieldDefinition(
   return definition;
 }
 
-function resolveInterfaceTypeDefinition(
-  path: string[],
-  definition: InterfaceTypeDefinitionNode,
-): Node {
+function resolveInterfaceTypeDefinition(path: string[], definition: InterfaceTypeDefinitionNode): Node {
   const [fieldName, argName] = path;
 
   if (fieldName) {
@@ -161,10 +124,7 @@ function resolveInterfaceTypeDefinition(
   return definition;
 }
 
-function resolveInputObjectTypeDefinition(
-  path: string[],
-  definition: InputObjectTypeDefinitionNode,
-): Node {
+function resolveInputObjectTypeDefinition(path: string[], definition: InputObjectTypeDefinitionNode): Node {
   const [fieldName] = path;
 
   if (fieldName) {
@@ -174,14 +134,11 @@ function resolveInputObjectTypeDefinition(
   return definition;
 }
 
-function resolveEnumTypeDefinition(
-  path: string[],
-  definition: EnumTypeDefinitionNode,
-): Node {
+function resolveEnumTypeDefinition(path: string[], definition: EnumTypeDefinitionNode): Node {
   const [valueName] = path;
 
   if (definition.values && valueName) {
-    const value = definition.values.find((val) => val.name.value === valueName);
+    const value = definition.values.find(val => val.name.value === valueName);
 
     if (value) {
       return value;
@@ -191,10 +148,7 @@ function resolveEnumTypeDefinition(
   return definition;
 }
 
-function resolveObjectTypeDefinition(
-  path: string[],
-  definition: ObjectTypeDefinitionNode,
-): Node {
+function resolveObjectTypeDefinition(path: string[], definition: ObjectTypeDefinitionNode): Node {
   const [fieldName, argName] = path;
 
   if (fieldName) {
@@ -204,16 +158,11 @@ function resolveObjectTypeDefinition(
   return definition;
 }
 
-function resolveDirectiveDefinition(
-  path: string[],
-  defininition: DirectiveDefinitionNode,
-): Node {
+function resolveDirectiveDefinition(path: string[], defininition: DirectiveDefinitionNode): Node {
   const [argName] = path;
 
   if (defininition.arguments && argName) {
-    const arg = defininition.arguments.find(
-      (arg) => arg.name.value === argName,
-    );
+    const arg = defininition.arguments.find(arg => arg.name.value === argName);
 
     if (arg) {
       return arg;

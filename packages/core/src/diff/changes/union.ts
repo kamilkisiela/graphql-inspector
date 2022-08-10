@@ -1,10 +1,7 @@
 import { GraphQLUnionType, GraphQLObjectType } from 'graphql';
 import { Change, CriticalityLevel, ChangeType } from './change';
 
-export function unionMemberRemoved(
-  union: GraphQLUnionType,
-  type: GraphQLObjectType,
-): Change {
+export function unionMemberRemoved(union: GraphQLUnionType, type: GraphQLObjectType): Change {
   return {
     criticality: {
       level: CriticalityLevel.Breaking,
@@ -17,10 +14,7 @@ export function unionMemberRemoved(
   };
 }
 
-export function unionMemberAdded(
-  union: GraphQLUnionType,
-  type: GraphQLObjectType,
-): Change {
+export function unionMemberAdded(union: GraphQLUnionType, type: GraphQLObjectType): Change {
   return {
     criticality: {
       level: CriticalityLevel.Dangerous,

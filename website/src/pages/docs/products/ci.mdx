@@ -6,18 +6,22 @@ GraphQL Inspector can be used with any Continuous Integration. It's easy!
 
 ## Installation
 
-GraphQL Inspector already has CLI, but we developed a more suited approach for consuming it in CI/CD.
-It's called CLI for CI.
+GraphQL Inspector already has CLI, but we developed a more suited approach for consuming it in CI/CD. It's called CLI
+for CI.
 
 Install it using:
-<PackageCmd packages={[{name:'@graphql-inspector/ci', isGlobal: true}]} />
+
+<PackageCmd packages={[{ name: '@graphql-inspector/ci', isGlobal: true }]} />
 
 You need to install `graphql` globally too:
-<PackageCmd packages={[{name:'graphql', isGlobal: true}]} />
 
-The most common use case is schema diffing and all the other features are never touched. That's why we decide to **make each feature pluggable**.
+<PackageCmd packages={[{ name: 'graphql', isGlobal: true }]} />
 
-In GraphQLI Inspector CLI for CI, you're able to **install exactly what you want to use**. **Each command is an installable package**.
+The most common use case is schema diffing and all the other features are never touched. That's why we decide to **make
+each feature pluggable**.
+
+In GraphQLI Inspector CLI for CI, you're able to **install exactly what you want to use**. **Each command is an
+installable package**.
 
 ## Commands
 
@@ -34,7 +38,8 @@ Here's a list of available commands. Pick one or a few.
 
 ## Loaders
 
-"Loader" is a fairly new concept. Since each command is a package, we decided to do the same for schema/document loading logic.
+"Loader" is a fairly new concept. Since each command is a package, we decided to do the same for schema/document loading
+logic.
 
 Depending on the source of GraphQL Schema or GraphQL Documents, pick one or few from the list.
 
@@ -54,29 +59,31 @@ Now you know where everything is but let's find out how to make use of it.
 Let's take for example Schema Diffing and assume your latest `schema.graphql` is under `master` branch.
 
 You want to compare two GraphQL Schemas:
-<PackageCmd packages={[{name:'@graphql-inspector/diff-command', isGlobal: true}]} />
+
+<PackageCmd packages={[{ name: '@graphql-inspector/diff-command', isGlobal: true }]} />
 
 You need to be able to load `schema.graphql` from disk and from `origin/master` on Git:
 
-<PackageCmd packages={[{name:'@graphql-inspector/graphql-loader @graphql-inspector/git-loader', isGlobal: true}]} />
+<PackageCmd packages={[{ name: '@graphql-inspector/graphql-loader @graphql-inspector/git-loader', isGlobal: true }]} />
 
 With everything installed, you can use the command below in your CI setup:
+
 ```sh
 graphql-inspector diff 'git:origin/master:./schema.graphql' 'schema.graphql'
 ```
+
 ## Example
 
 Now, when you push your changes you would see the following:
 
 ![Schema Diff in CircleCI](../../../../public/assets/img/ci/diff.jpg)
 
-<Callout>
-Remember, you can use any command the CLI offers.
-</Callout>
+<Callout>Remember, you can use any command the CLI offers.</Callout>
 
 ## Recommended Workflow
 
-We recommend to automate the workflow and use `husky` to run [`$ graphql-inspector introspect`](../essentials/introspect).
+We recommend to automate the workflow and use `husky` to run
+[`$ graphql-inspector introspect`](../essentials/introspect).
 
 ```jsonc
 {

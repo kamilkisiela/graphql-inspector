@@ -76,10 +76,7 @@ interface MultipleEnvironmentConfig {
   };
 }
 
-export type Config =
-  | SingleEnvironmentConfig
-  | MultipleEnvironmentConfig
-  | LegacyConfig;
+export type Config = SingleEnvironmentConfig | MultipleEnvironmentConfig | LegacyConfig;
 
 export type NormalizedConfig = {
   [env: string]: NormalizedEnvironment;
@@ -111,10 +108,7 @@ function normalizeConfig(config: Config): {
           schema: config.schema.path,
           branch: config.schema.ref,
           endpoint: config.endpoint,
-          notifications: prioritize<Notifications | false>(
-            config.notifications,
-            notificationsDefault,
-          ),
+          notifications: prioritize<Notifications | false>(config.notifications, notificationsDefault),
           diff: prioritize<Diff | false>(config.diff, diffDefault),
         },
       },
@@ -131,10 +125,7 @@ function normalizeConfig(config: Config): {
           schema: config.schema,
           branch: config.branch,
           endpoint: config.endpoint,
-          notifications: prioritize<Notifications | false>(
-            config.notifications,
-            notificationsDefault,
-          ),
+          notifications: prioritize<Notifications | false>(config.notifications, notificationsDefault),
           diff: prioritize<Diff | false>(config.diff, diffDefault),
         },
       },
@@ -158,7 +149,7 @@ function normalizeConfig(config: Config): {
           notifications: prioritize<Notifications | false>(
             env.notifications,
             config.notifications,
-            notificationsDefault,
+            notificationsDefault
           ),
         };
       }
@@ -175,18 +166,14 @@ function normalizeConfig(config: Config): {
 
 function getGlobalConfig(
   config: SingleEnvironmentConfig | MultipleEnvironmentConfig,
-  fallbackBranch: string,
+  fallbackBranch: string
 ): NormalizedEnvironment {
   return {
     name: 'global',
     schema: config.schema,
     branch: fallbackBranch,
     notifications: false, // notifications should be disabled for non-environment commits
-    diff: prioritize<Diff | false>(
-      config.others?.diff,
-      config.diff,
-      diffDefault,
-    ),
+    diff: prioritize<Diff | false>(config.others?.diff, config.diff, diffDefault),
   };
 }
 
@@ -194,10 +181,9 @@ export function createConfig(
   rawConfig: Config,
   setConfigKind: (kind: 'legacy' | 'single' | 'multiple') => void,
   branches: string[] = [],
-  fallbackBranch = defaultFallbackBranch,
+  fallbackBranch = defaultFallbackBranch
 ): NormalizedEnvironment {
-  const { config: normalizedConfig, kind: configKind } =
-    normalizeConfig(rawConfig);
+  const { config: normalizedConfig, kind: configKind } = normalizeConfig(rawConfig);
 
   let config: NormalizedEnvironment | null = null;
 
@@ -230,9 +216,7 @@ export function createConfig(
   return config;
 }
 
-function isNormalizedLegacyConfig(
-  config: any,
-): config is NormalizedLegacyConfig {
+function isNormalizedLegacyConfig(config: any): config is NormalizedLegacyConfig {
   return typeof config[defaultConfigName] === 'object';
 }
 
@@ -240,36 +224,29 @@ function isLegacyConfig(config: any): config is LegacyConfig {
   return config.schema && typeof config.schema === 'object';
 }
 
-function isSingleEnvironmentConfig(
-  config: any,
-): config is SingleEnvironmentConfig {
+function isSingleEnvironmentConfig(config: any): config is SingleEnvironmentConfig {
   return !config.env;
 }
 
-function isMultipleEnvironmentConfig(
-  config: any,
-): config is MultipleEnvironmentConfig {
+function isMultipleEnvironmentConfig(config: any): config is MultipleEnvironmentConfig {
   return !isLegacyConfig(config) && !isSingleEnvironmentConfig(config);
 }
 
+function findConfigByBranch(branch: string, config: NormalizedConfig): NormalizedEnvironment | never;
 function findConfigByBranch(
   branch: string,
   config: NormalizedConfig,
+  throwOnMissing: true
 ): NormalizedEnvironment | never;
 function findConfigByBranch(
   branch: string,
   config: NormalizedConfig,
-  throwOnMissing: true,
-): NormalizedEnvironment | never;
-function findConfigByBranch(
-  branch: string,
-  config: NormalizedConfig,
-  throwOnMissing: false,
+  throwOnMissing: false
 ): NormalizedEnvironment | null;
 function findConfigByBranch(
   branch: string,
   config: NormalizedConfig,
-  throwOnMissing: boolean = true,
+  throwOnMissing: boolean = true
 ): NormalizedEnvironment | null | never {
   const branches: string[] = [];
 
@@ -287,9 +264,7 @@ function findConfigByBranch(
 
   if (throwOnMissing) {
     throw new Error(
-      `Couldn't match branch "${branch}" with branches in config. Available branches: ${branches.join(
-        ', ',
-      )}`,
+      `Couldn't match branch "${branch}" with branches in config. Available branches: ${branches.join(', ')}`
     );
   }
 
@@ -301,11 +276,7 @@ type Toggle<T> = T | boolean;
 type Option<T> = Toggle<Maybe<T>>;
 
 // I'm not very proud of it :)
-function prioritize<T>(
-  child: Option<T>,
-  parent: Option<T>,
-  defaults?: T,
-): T | false {
+function prioritize<T>(child: Option<T>, parent: Option<T>, defaults?: T): T | false {
   if (child === false) {
     return false;
   }
@@ -315,9 +286,7 @@ function prioritize<T>(
       return defaults || false;
     }
 
-    return typeof parent === 'object' && typeof defaults === 'object'
-      ? { ...defaults, ...parent }
-      : parent;
+    return typeof parent === 'object' && typeof defaults === 'object' ? { ...defaults, ...parent } : parent;
   }
 
   if (parent && typeof parent === 'object') {
@@ -328,7 +297,5 @@ function prioritize<T>(
     };
   }
 
-  return typeof child === 'object' && typeof defaults === 'object'
-    ? { ...defaults, ...child }
-    : child;
+  return typeof child === 'object' && typeof defaults === 'object' ? { ...defaults, ...child } : child;
 }

@@ -1,9 +1,8 @@
-packages/*/dist
 dist/
-website/
-website/build/
-public/
+.next/
 lib/
 .vscode/
-.github/
 action/
+
+# remove when prettier will support MDX (v3)
+website/src/pages/docs/api/schema.mdx

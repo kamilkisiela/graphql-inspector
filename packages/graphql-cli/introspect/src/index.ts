@@ -1,10 +1,5 @@
 import { defineCommand } from '@graphql-cli/common';
-import {
-  GlobalArgs,
-  parseGlobalArgs,
-  createInspectorExtension,
-  loaders,
-} from '@graphql-inspector/graphql-cli-common';
+import { GlobalArgs, parseGlobalArgs, createInspectorExtension, loaders } from '@graphql-inspector/graphql-cli-common';
 import { handler } from '@graphql-inspector/introspect-command';
 
 export default defineCommand<
@@ -14,7 +9,7 @@ export default defineCommand<
     write?: string;
     comments?: boolean;
   } & GlobalArgs
->((api) => {
+>(api => {
   const { loadSchema } = api.useLoaders({ loaders });
 
   return {

@@ -23,7 +23,7 @@ export function changesInField(
   type: GraphQLObjectType | GraphQLInterfaceType,
   oldField: GraphQLField<any, any>,
   newField: GraphQLField<any, any>,
-  addChange: AddChange,
+  addChange: AddChange
 ) {
   if (isNotEqual(oldField.description, newField.description)) {
     if (isVoid(oldField.description)) {
@@ -65,13 +65,7 @@ export function changesInField(
       addChange(fieldArgumentRemoved(type, oldField, arg));
     },
     onMutual(arg) {
-      changesInArgument(
-        type,
-        oldField,
-        arg.oldVersion,
-        arg.newVersion,
-        addChange,
-      );
+      changesInArgument(type, oldField, arg.oldVersion, arg.newVersion, addChange);
     },
   });
 }

@@ -2,9 +2,7 @@ import { CriticalityLevel } from './../changes/change';
 import { Rule } from './types';
 import { parsePath } from '../../utils/path';
 
-export type UsageHandler = (
-  input: Array<{ type: string; field?: string; argument?: string }>,
-) => Promise<boolean[]>;
+export type UsageHandler = (input: Array<{ type: string; field?: string; argument?: string }>) => Promise<boolean[]>;
 
 export interface ConsiderUsageConfig {
   /**
@@ -29,10 +27,7 @@ export interface ConsiderUsageConfig {
   checkUsage?: UsageHandler;
 }
 
-export const considerUsage: Rule<ConsiderUsageConfig> = async ({
-  changes,
-  config,
-}) => {
+export const considerUsage: Rule<ConsiderUsageConfig> = async ({ changes, config }) => {
   if (!config) {
     throw new Error(`considerUsage rule is missing config`);
   }
@@ -43,7 +38,7 @@ export const considerUsage: Rule<ConsiderUsageConfig> = async ({
     argument?: string;
   }> = [];
 
-  changes.forEach((change) => {
+  changes.forEach(change => {
     if (change.criticality.level === CriticalityLevel.Breaking && change.path) {
       const [typeName, fieldName, argumentName] = parsePath(change.path);
 
@@ -62,16 +57,14 @@ export const considerUsage: Rule<ConsiderUsageConfig> = async ({
   // includes only those that are safe to break the api
   const suppressedPaths = collectedBreakingField
     .filter((_, i) => usageList[i] === true)
-    .map(({ type, field, argument }) =>
-      [type, field, argument].filter(Boolean).join('.'),
-    );
+    .map(({ type, field, argument }) => [type, field, argument].filter(Boolean).join('.'));
 
-  return changes.map((change) => {
+  return changes.map(change => {
     // Turns those "safe to break" changes into "dangerous"
     if (
       change.criticality.level === CriticalityLevel.Breaking &&
       change.path &&
-      suppressedPaths.some((p) => change.path!.startsWith(p))
+      suppressedPaths.some(p => change.path!.startsWith(p))
     ) {
       return {
         ...change,

@@ -1,10 +1,5 @@
 import { defineCommand } from '@graphql-cli/common';
-import {
-  GlobalArgs,
-  parseGlobalArgs,
-  createInspectorExtension,
-  loaders,
-} from '@graphql-inspector/graphql-cli-common';
+import { GlobalArgs, parseGlobalArgs, createInspectorExtension, loaders } from '@graphql-inspector/graphql-cli-common';
 import { handler } from '@graphql-inspector/validate-command';
 
 export default defineCommand<
@@ -19,7 +14,7 @@ export default defineCommand<
     keepClientFields: boolean;
     maxDepth?: number;
   } & GlobalArgs
->((api) => {
+>(api => {
   return {
     command: 'validate [project]',
     describe: 'Validate Fragments and Operations',
@@ -59,8 +54,7 @@ export default defineCommand<
             default: false,
           },
           keepClientFields: {
-            describe:
-              'Keeps the fields with @client, but removes @client directive from them',
+            describe: 'Keeps the fields with @client, but removes @client directive from them',
             type: 'boolean',
             default: false,
           },

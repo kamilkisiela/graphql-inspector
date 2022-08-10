@@ -15,7 +15,9 @@ inputs:
   fail-on-breaking:
     description: 'Fail on breaking changes (enabled by default)'
   approve-label:
-    description: 'Label to mark Pull Request introducing breaking changes as safe and expected ("approved-breaking-change" by default)'
+    description:
+      'Label to mark Pull Request introducing breaking changes as safe and expected ("approved-breaking-change" by
+      default)'
   schema:
     description: |
       Ref and Path to GraphQL Schema (e.g. "master:schema.graphql")

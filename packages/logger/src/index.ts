@@ -52,10 +52,7 @@ export function unmockLogger() {
   mockedFn = null;
 }
 
-function emit(
-  type: 'success' | 'info' | 'log' | 'error' | 'warn',
-  msg: string,
-) {
+function emit(type: 'success' | 'info' | 'log' | 'error' | 'warn', msg: string) {
   if (mockedFn) {
     return mockedFn(msg);
   }

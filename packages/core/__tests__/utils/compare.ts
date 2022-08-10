@@ -18,21 +18,11 @@ test('isEqual', () => {
 
   expect(isEqual([{ test: 'a' }], [{ test: 'a' }])).toBe(true);
   expect(isEqual([{ test: 'a' }], [{ test: 'b' }])).toBe(false);
-  expect(isEqual([{ test: { deep: 'a' } }], [{ test: { deep: 'a' } }])).toBe(
-    true,
-  );
-  expect(isEqual([{ test: { deep: 'a' } }], [{ test: { deep: 'b' } }])).toBe(
-    false,
-  );
-  expect(isEqual([{ test: { deep: 'a' } }], [{ test: { deeper: 'a' } }])).toBe(
-    false,
-  );
-  expect(
-    isEqual([{ test: { deep: 'a' } }], [{ test: { deep: 'a', twoKeys: 'b' } }]),
-  ).toBe(false);
-  expect(
-    isEqual([{ test: { deep: 'a', twoKeys: 'b' } }], [{ test: { deep: 'a' } }]),
-  ).toBe(false);
+  expect(isEqual([{ test: { deep: 'a' } }], [{ test: { deep: 'a' } }])).toBe(true);
+  expect(isEqual([{ test: { deep: 'a' } }], [{ test: { deep: 'b' } }])).toBe(false);
+  expect(isEqual([{ test: { deep: 'a' } }], [{ test: { deeper: 'a' } }])).toBe(false);
+  expect(isEqual([{ test: { deep: 'a' } }], [{ test: { deep: 'a', twoKeys: 'b' } }])).toBe(false);
+  expect(isEqual([{ test: { deep: 'a', twoKeys: 'b' } }], [{ test: { deep: 'a' } }])).toBe(false);
 });
 
 test('isNotEqual', () => {
@@ -44,10 +34,6 @@ test('diffArrays', () => {
   expect(diffArrays(['a'], ['a'])).toEqual([]);
   expect(diffArrays(['a'], ['a', 'b'])).toEqual([]);
   expect(diffArrays(['a', 'b'], ['a'])).toEqual(['b']);
-  expect(
-    diffArrays(['a', { test: { deep: 'b' } }], [{ test: { deep: 'c' } }]),
-  ).toEqual(['a', { test: { deep: 'b' } }]);
-  expect(
-    diffArrays(['a', { test: { deep: 'b' } }], [{ test: { deep: 'b' } }]),
-  ).toEqual(['a']);
+  expect(diffArrays(['a', { test: { deep: 'b' } }], [{ test: { deep: 'c' } }])).toEqual(['a', { test: { deep: 'b' } }]);
+  expect(diffArrays(['a', { test: { deep: 'b' } }], [{ test: { deep: 'b' } }])).toEqual(['a']);
 });

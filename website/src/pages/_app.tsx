@@ -11,11 +11,7 @@ export default function App({ Component, pageProps, router }: AppProps) {
       <Script async src="https://the-guild.dev/static/crisp.js" />
       <Script {...analytics.loadScriptProps} />
       <Script {...analytics.configScriptProps} />
-      <Header
-        accentColor="#1cc8ee"
-        themeSwitch
-        searchBarProps={{ version: 'v2' }}
-      />
+      <Header accentColor="#1cc8ee" themeSwitch searchBarProps={{ version: 'v2' }} />
       <Component {...pageProps} />
       <FooterExtended />
     </ThemeProvider>
