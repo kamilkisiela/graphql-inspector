@@ -6,7 +6,7 @@ import { getReachableTypes } from '../../utils/graphql';
 export const safeUnreachable: Rule = ({ changes, oldSchema }) => {
   const reachable = getReachableTypes(oldSchema);
 
-  return changes.map((change) => {
+  return changes.map(change => {
     if (change.criticality.level === CriticalityLevel.Breaking && change.path) {
       const [typeName] = parsePath(change.path);
 

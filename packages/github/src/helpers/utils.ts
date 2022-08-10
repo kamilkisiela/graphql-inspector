@@ -13,9 +13,7 @@ export function quotesTransformer(msg: string, symbols: string = '**') {
     return `${symbols}${value}${symbols}`;
   }
 
-  return msg
-    .replace(findSingleQuotes, transformm)
-    .replace(findDoubleQuotes, transformm);
+  return msg.replace(findSingleQuotes, transformm).replace(findDoubleQuotes, transformm);
 }
 
 export function slackCoderize(msg: string): string {
@@ -30,20 +28,10 @@ export function filterChangesByLevel(level: CriticalityLevel) {
   return (change: Change) => change.criticality.level === level;
 }
 
-export function createSummary(
-  changes: Change[],
-  summaryLimit: number,
-  isLegacyConfig: boolean,
-) {
-  const breakingChanges = changes.filter(
-    filterChangesByLevel(CriticalityLevel.Breaking),
-  );
-  const dangerousChanges = changes.filter(
-    filterChangesByLevel(CriticalityLevel.Dangerous),
-  );
-  const safeChanges = changes.filter(
-    filterChangesByLevel(CriticalityLevel.NonBreaking),
-  );
+export function createSummary(changes: Change[], summaryLimit: number, isLegacyConfig: boolean) {
+  const breakingChanges = changes.filter(filterChangesByLevel(CriticalityLevel.Breaking));
+  const dangerousChanges = changes.filter(filterChangesByLevel(CriticalityLevel.Dangerous));
+  const safeChanges = changes.filter(filterChangesByLevel(CriticalityLevel.NonBreaking));
 
   const summary: string[] = [
     `# Found ${changes.length} change${changes.length > 1 ? 's' : ''}`,
@@ -59,7 +47,7 @@ export function createSummary(
         '',
         '> Legacy config detected, [please migrate to a new syntax](https://graphql-inspector.com/docs/products/github#full-configuration)',
         '',
-      ].join('\n'),
+      ].join('\n')
     );
   }
 
@@ -70,17 +58,13 @@ export function createSummary(
         `Total amount of changes (${changes.length}) is over the limit (${summaryLimit})`,
         'Adjust it using "summaryLimit" option',
         '',
-      ].join('\n'),
+      ].join('\n')
     );
   }
 
   function addChangesToSummary(type: string, changes: Change[]): void {
     if (changes.length <= summaryLimit) {
-      summary.push(
-        ...['', `## ${type} changes`].concat(
-          changes.map((change) => ` - ${bolderize(change.message)}`),
-        ),
-      );
+      summary.push(...['', `## ${type} changes`].concat(changes.map(change => ` - ${bolderize(change.message)}`)));
     }
 
     summaryLimit -= changes.length;
@@ -98,13 +82,7 @@ export function createSummary(
     addChangesToSummary('Safe', safeChanges);
   }
 
-  summary.push(
-    [
-      '',
-      '___',
-      `Looking for more advanced tool? Try [GraphQL Hive](https://graphql-hive.com)!`,
-    ].join('\n'),
-  );
+  summary.push(['', '___', `Looking for more advanced tool? Try [GraphQL Hive](https://graphql-hive.com)!`].join('\n'));
 
   return summary.join('\n');
 }

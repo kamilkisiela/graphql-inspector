@@ -1,10 +1,5 @@
 import { defineCommand } from '@graphql-cli/common';
-import {
-  GlobalArgs,
-  parseGlobalArgs,
-  createInspectorExtension,
-  loaders,
-} from '@graphql-inspector/graphql-cli-common';
+import { GlobalArgs, parseGlobalArgs, createInspectorExtension, loaders } from '@graphql-inspector/graphql-cli-common';
 import { handler } from '@graphql-inspector/diff-command';
 import { GraphQLSchema } from 'graphql';
 import { GraphQLProjectConfig } from 'graphql-config';
@@ -21,7 +16,7 @@ export default defineCommand<
     rule?: Array<string | number>;
     onComplete?: string;
   } & GlobalArgs
->((api) => {
+>(api => {
   return {
     command: 'diff [source] [target]',
     describe: 'Compare two GraphQL Schemas',

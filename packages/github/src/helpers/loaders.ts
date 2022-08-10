@@ -3,21 +3,16 @@ import * as probot from 'probot';
 import Dataloader from 'dataloader';
 import yaml from 'js-yaml';
 import axios from 'axios';
-import {
-  getIntrospectionQuery,
-  buildClientSchema,
-  printSchema,
-  Source,
-} from 'graphql';
+import { getIntrospectionQuery, buildClientSchema, printSchema, Source } from 'graphql';
 import { isNil, parseEndpoint, objectFromEntries } from './utils';
 
 function createGetFilesQuery(variableMap: Record<string, string>): string {
   const variables = Object.keys(variableMap)
-    .map((name) => `$${name}: String!`)
+    .map(name => `$${name}: String!`)
     .join(', ');
 
   const files = Object.keys(variableMap)
-    .map((name) => {
+    .map(name => {
       return `
       ${name}: object(expression: $${name}) {
         ... on Blob {
@@ -58,23 +53,18 @@ export type ConfigLoader = () => Promise<object | null | undefined>; // id is th
 
 export function createFileLoader(config: FileLoaderConfig): FileLoader {
   const loader = new Dataloader<FileLoaderInput, string | null, string>(
-    async (inputs) => {
-      const variablesMap = objectFromEntries(
-        inputs.map((input) => [input.alias, `${input.ref}:${input.path}`]),
-      );
+    async inputs => {
+      const variablesMap = objectFromEntries(inputs.map(input => [input.alias, `${input.ref}:${input.path}`]));
       const { context, repo, owner } = config;
 
-      const result: any = await context.octokit.graphql(
-        createGetFilesQuery(variablesMap),
-        {
-          repo,
-          owner,
-          ...variablesMap,
-        },
-      );
+      const result: any = await context.octokit.graphql(createGetFilesQuery(variablesMap), {
+        repo,
+        owner,
+        ...variablesMap,
+      });
 
       return Promise.all(
-        inputs.map(async (input) => {
+        inputs.map(async input => {
           const alias = input.alias;
 
           try {
@@ -88,9 +78,7 @@ export function createFileLoader(config: FileLoaderConfig): FileLoader {
 
             return (result as any).repository[alias].text as string;
           } catch (error) {
-            const failure = new Error(
-              `Failed to load '${input.path}' (ref: ${input.ref})`,
-            );
+            const failure = new Error(`Failed to load '${input.path}' (ref: ${input.ref})`);
 
             if (input.throwNotFound === false) {
               if (input.onError) {
@@ -104,7 +92,7 @@ export function createFileLoader(config: FileLoaderConfig): FileLoader {
 
             throw failure;
           }
-        }),
+        })
       );
     },
     {
@@ -113,27 +101,27 @@ export function createFileLoader(config: FileLoaderConfig): FileLoader {
       cacheKeyFn(obj) {
         return `${obj.ref} - ${obj.path}`;
       },
-    },
+    }
   );
 
-  return (input) => loader.load(input);
+  return input => loader.load(input);
 }
 
 export function createConfigLoader(
   config: FileLoaderConfig & {
     ref: string;
   },
-  loadFile: FileLoader,
+  loadFile: FileLoader
 ): ConfigLoader {
   const loader = new Dataloader<string, object | null, string>(
-    (ids) => {
+    ids => {
       const errors: Error[] = [];
       const onError = (error: any) => {
         errors.push(error);
       };
 
       return Promise.all(
-        ids.map(async (id) => {
+        ids.map(async id => {
           const [yamlConfig, ymlConfig, pkgFile] = await Promise.all([
             loadFile({
               ...config,
@@ -177,12 +165,12 @@ export function createConfigLoader(
           console.error([`Failed to load config:`, ...errors].join('\n'));
 
           return null;
-        }),
+        })
       );
     },
     {
       batch: false,
-    },
+    }
   );
 
   return () => loader.load('graphql-inspector');
@@ -204,7 +192,7 @@ export async function printSchemaFromEndpoint(endpoint: Endpoint) {
   return printSchema(
     buildClientSchema(introspection, {
       assumeValid: true,
-    }),
+    })
   );
 }
 
@@ -246,7 +234,7 @@ export async function loadSources({
         ? typeof config.endpoint! === 'string'
           ? config.endpoint
           : config.endpoint?.url
-        : `${oldPointer.ref}:${oldPointer.path}`,
+        : `${oldPointer.ref}:${oldPointer.path}`
     ),
     new: new Source(newFile!, `${newPointer.ref}:${newPointer.path}`),
   };

@@ -16,7 +16,7 @@ describe('multiple environments', () => {
           schema: 'schema.graphql',
         },
         dummySetConfig,
-        branches,
+        branches
       );
       expect(config.diff).toEqual({
         annotations: true,
@@ -36,7 +36,7 @@ describe('multiple environments', () => {
           schema: 'schema.graphql',
         },
         dummySetConfig,
-        branches,
+        branches
       );
       expect(config.diff).toBe(false);
     });
@@ -53,7 +53,7 @@ describe('multiple environments', () => {
           schema: 'schema.graphql',
         },
         dummySetConfig,
-        branches,
+        branches
       );
       expect(config.diff).toEqual({
         annotations: true,
@@ -72,7 +72,7 @@ describe('multiple environments', () => {
           schema: 'schema.graphql',
         },
         dummySetConfig,
-        branches,
+        branches
       );
       expect(config.branch).toBe('master');
     });
@@ -88,7 +88,7 @@ describe('multiple environments', () => {
           schema: 'schema.graphql',
         },
         dummySetConfig,
-        branches,
+        branches
       );
       expect(config.schema).toBe('schema.graphql');
     });
@@ -105,7 +105,7 @@ describe('multiple environments', () => {
           schema: 'schema.graphql',
         },
         dummySetConfig,
-        branches,
+        branches
       );
       expect(config.endpoint).toBe('api');
     });
@@ -121,7 +121,7 @@ describe('multiple environments', () => {
           schema: 'schema.graphql',
         },
         dummySetConfig,
-        branches,
+        branches
       );
       expect(config.notifications).toBe(false);
     });
@@ -142,7 +142,7 @@ describe('multiple environments', () => {
           schema: 'schema.graphql',
         },
         dummySetConfig,
-        branches,
+        branches
       );
       expect(config.diff).toEqual({
         annotations: true,
@@ -168,7 +168,7 @@ describe('multiple environments', () => {
           schema: 'schema.graphql',
         },
         dummySetConfig,
-        branches,
+        branches
       );
       expect(config.diff).toEqual({
         annotations: false,
@@ -191,7 +191,7 @@ describe('multiple environments', () => {
           schema: 'schema.graphql',
         },
         dummySetConfig,
-        branches,
+        branches
       );
       expect(config.notifications).toEqual({
         slack: 'slack',
@@ -215,7 +215,7 @@ describe('multiple environments', () => {
           schema: 'schema.graphql',
         },
         dummySetConfig,
-        branches,
+        branches
       );
       expect(config.notifications).toEqual({
         slack: 'local',
@@ -236,7 +236,7 @@ describe('multiple environments', () => {
           schema: 'schema.graphql',
         },
         dummySetConfig,
-        branches,
+        branches
       );
       expect(config.notifications).toEqual({
         slack: 'global',
@@ -255,7 +255,7 @@ describe('multiple environments', () => {
           },
           schema: 'schema.graphql',
         },
-        dummySetConfig,
+        dummySetConfig
       );
       expect(config.diff).toEqual({
         annotations: true,
@@ -274,7 +274,7 @@ describe('multiple environments', () => {
           },
           schema: 'schema.graphql',
         },
-        dummySetConfig,
+        dummySetConfig
       );
       expect(config.diff).toBe(false);
     });
@@ -297,7 +297,7 @@ describe('multiple environments', () => {
             },
           },
         },
-        dummySetConfig,
+        dummySetConfig
       );
       expect(config.diff).toEqual({
         annotations: false,
@@ -316,7 +316,7 @@ describe('multiple environments', () => {
           },
           schema: 'schema.graphql',
         },
-        dummySetConfig,
+        dummySetConfig
       );
       expect(config.diff).toEqual({
         annotations: true,
@@ -334,7 +334,7 @@ describe('multiple environments', () => {
           },
           schema: 'schema.graphql',
         },
-        dummySetConfig,
+        dummySetConfig
       );
       expect(config.branch).toBe('*');
     });
@@ -350,7 +350,7 @@ describe('multiple environments', () => {
           },
           schema: 'schema.graphql',
         },
-        dummySetConfig,
+        dummySetConfig
       );
       expect(config.endpoint).not.toBeDefined();
     });
@@ -365,7 +365,7 @@ describe('multiple environments', () => {
           },
           schema: 'schema.graphql',
         },
-        dummySetConfig,
+        dummySetConfig
       );
       expect(config.schema).toBe('schema.graphql');
     });
@@ -380,7 +380,7 @@ describe('multiple environments', () => {
           },
           schema: 'schema.graphql',
         },
-        dummySetConfig,
+        dummySetConfig
       );
       expect(config.notifications).toBe(false);
     });
@@ -400,7 +400,7 @@ describe('multiple environments', () => {
           },
           schema: 'schema.graphql',
         },
-        dummySetConfig,
+        dummySetConfig
       );
       expect(config.diff).toBe(false);
     });
@@ -422,7 +422,7 @@ describe('multiple environments', () => {
           },
           schema: 'schema.graphql',
         },
-        dummySetConfig,
+        dummySetConfig
       );
       expect(config.diff).toEqual({
         annotations: true,
@@ -444,7 +444,7 @@ describe('multiple environments', () => {
           },
           schema: 'schema.graphql',
         },
-        dummySetConfig,
+        dummySetConfig
       );
       expect(config.notifications).toBe(false);
     });
@@ -462,7 +462,7 @@ describe('multiple environments', () => {
           },
           schema: 'schema.graphql',
         },
-        dummySetConfig,
+        dummySetConfig
       );
       expect(config.notifications).toBe(false);
     });
@@ -480,7 +480,7 @@ describe('single environment', () => {
           schema: 'schema.graphql',
         },
         dummySetConfig,
-        branches,
+        branches
       );
       expect(config.diff).toEqual({
         annotations: true,
@@ -496,7 +496,7 @@ describe('single environment', () => {
           diff: false,
         },
         dummySetConfig,
-        branches,
+        branches
       );
       expect(config.diff).toBe(false);
     });
@@ -509,7 +509,7 @@ describe('single environment', () => {
           diff: true,
         },
         dummySetConfig,
-        branches,
+        branches
       );
       expect(config.diff).toEqual({
         annotations: true,
@@ -524,7 +524,7 @@ describe('single environment', () => {
           schema: 'schema.graphql',
         },
         dummySetConfig,
-        branches,
+        branches
       );
       expect(config.branch).toBe('master');
     });
@@ -537,7 +537,7 @@ describe('single environment', () => {
           schema: 'schema.graphql',
         },
         dummySetConfig,
-        branches,
+        branches
       );
       expect(config.endpoint).toBe('api');
     });
@@ -549,7 +549,7 @@ describe('single environment', () => {
           schema: 'schema.graphql',
         },
         dummySetConfig,
-        branches,
+        branches
       );
       expect(config.schema).toBe('schema.graphql');
     });
@@ -561,7 +561,7 @@ describe('single environment', () => {
           schema: 'schema.graphql',
         },
         dummySetConfig,
-        branches,
+        branches
       );
       expect(config.notifications).toBe(false);
     });
@@ -574,7 +574,7 @@ describe('single environment', () => {
           branch: 'master',
           schema: 'schema.graphql',
         },
-        dummySetConfig,
+        dummySetConfig
       );
       expect(config.diff).toEqual({
         annotations: true,
@@ -589,7 +589,7 @@ describe('single environment', () => {
           schema: 'schema.graphql',
           diff: false,
         },
-        dummySetConfig,
+        dummySetConfig
       );
       expect(config.diff).toBe(false);
     });
@@ -608,7 +608,7 @@ describe('single environment', () => {
             },
           },
         },
-        dummySetConfig,
+        dummySetConfig
       );
       expect(config.diff).toEqual({
         failOnBreaking: true,
@@ -623,7 +623,7 @@ describe('single environment', () => {
           schema: 'schema.graphql',
           diff: true,
         },
-        dummySetConfig,
+        dummySetConfig
       );
       expect(config.diff).toEqual({
         annotations: true,
@@ -637,7 +637,7 @@ describe('single environment', () => {
           branch: 'master',
           schema: 'schema.graphql',
         },
-        dummySetConfig,
+        dummySetConfig
       );
       expect(config.branch).toBe('*');
     });
@@ -649,7 +649,7 @@ describe('single environment', () => {
           endpoint: 'api',
           schema: 'schema.graphql',
         },
-        dummySetConfig,
+        dummySetConfig
       );
       expect(config.endpoint).not.toBeDefined();
     });
@@ -660,7 +660,7 @@ describe('single environment', () => {
           branch: 'master',
           schema: 'schema.graphql',
         },
-        dummySetConfig,
+        dummySetConfig
       );
       expect(config.schema).toBe('schema.graphql');
     });
@@ -671,7 +671,7 @@ describe('single environment', () => {
           branch: 'master',
           schema: 'schema.graphql',
         },
-        dummySetConfig,
+        dummySetConfig
       );
       expect(config.notifications).toBe(false);
     });
@@ -691,7 +691,7 @@ describe('legacy config', () => {
           },
         },
         dummySetConfig,
-        branches,
+        branches
       );
       expect(config.diff).toEqual({
         annotations: true,
@@ -709,7 +709,7 @@ describe('legacy config', () => {
           diff: false,
         },
         dummySetConfig,
-        branches,
+        branches
       );
       expect(config.diff).toBe(false);
     });
@@ -724,7 +724,7 @@ describe('legacy config', () => {
           diff: true,
         },
         dummySetConfig,
-        branches,
+        branches
       );
       expect(config.diff).toEqual({
         annotations: true,
@@ -744,7 +744,7 @@ describe('legacy config', () => {
           },
         },
         dummySetConfig,
-        branches,
+        branches
       );
       expect(config.diff).toEqual({
         annotations: true,
@@ -764,7 +764,7 @@ describe('legacy config', () => {
           },
         },
         dummySetConfig,
-        branches,
+        branches
       );
       expect(config.diff).toEqual({
         annotations: true,
@@ -785,7 +785,7 @@ describe('legacy config', () => {
           },
         },
         dummySetConfig,
-        branches,
+        branches
       );
       expect(config.diff).toEqual({
         failOnBreaking: true,
@@ -806,7 +806,7 @@ describe('legacy config', () => {
           },
         },
         dummySetConfig,
-        branches,
+        branches
       );
       expect(config.diff).toEqual({
         failOnBreaking: false,
@@ -824,7 +824,7 @@ describe('legacy config', () => {
           notifications: true,
         } as any,
         dummySetConfig,
-        branches,
+        branches
       );
       expect(config.notifications).toBe(false);
     });
@@ -841,7 +841,7 @@ describe('legacy config', () => {
           },
         } as any,
         dummySetConfig,
-        branches,
+        branches
       );
       expect(config.notifications).toEqual({
         slack: 'slack',
@@ -857,7 +857,7 @@ describe('legacy config', () => {
           },
         },
         dummySetConfig,
-        branches,
+        branches
       );
       expect(config.branch).toBe('master');
     });
@@ -871,7 +871,7 @@ describe('legacy config', () => {
           },
         },
         dummySetConfig,
-        branches,
+        branches
       );
       expect(config.schema).toBe('schema.graphql');
     });
@@ -886,7 +886,7 @@ describe('legacy config', () => {
           endpoint: 'api',
         },
         dummySetConfig,
-        branches,
+        branches
       );
       expect(config.endpoint).toBe('api');
     });
@@ -900,7 +900,7 @@ describe('legacy config', () => {
           },
         },
         dummySetConfig,
-        branches,
+        branches
       );
       expect(config.notifications).toBe(false);
     });
@@ -915,7 +915,7 @@ describe('legacy config', () => {
             path: 'schema.graphql',
           },
         },
-        dummySetConfig,
+        dummySetConfig
       );
       expect(config.diff).toEqual({
         annotations: true,
@@ -932,7 +932,7 @@ describe('legacy config', () => {
           },
           diff: false,
         },
-        dummySetConfig,
+        dummySetConfig
       );
       expect(config.diff).toBe(false);
     });
@@ -946,7 +946,7 @@ describe('legacy config', () => {
           },
           diff: true,
         },
-        dummySetConfig,
+        dummySetConfig
       );
       expect(config.diff).toEqual({
         annotations: true,
@@ -965,7 +965,7 @@ describe('legacy config', () => {
             annotations: true,
           },
         },
-        dummySetConfig,
+        dummySetConfig
       );
       expect(config.diff).toEqual({
         annotations: true,
@@ -984,7 +984,7 @@ describe('legacy config', () => {
             failOnBreaking: true,
           },
         },
-        dummySetConfig,
+        dummySetConfig
       );
       expect(config.diff).toEqual({
         annotations: true,
@@ -1004,7 +1004,7 @@ describe('legacy config', () => {
             annotations: false,
           },
         },
-        dummySetConfig,
+        dummySetConfig
       );
       expect(config.diff).toEqual({
         failOnBreaking: true,
@@ -1024,7 +1024,7 @@ describe('legacy config', () => {
             annotations: true,
           },
         },
-        dummySetConfig,
+        dummySetConfig
       );
       expect(config.diff).toEqual({
         failOnBreaking: false,
@@ -1041,7 +1041,7 @@ describe('legacy config', () => {
           },
           notifications: true,
         } as any,
-        dummySetConfig,
+        dummySetConfig
       );
       expect(config.notifications).toBe(false);
     });
@@ -1057,7 +1057,7 @@ describe('legacy config', () => {
             slack: 'slack',
           },
         } as any,
-        dummySetConfig,
+        dummySetConfig
       );
       expect(config.notifications).toEqual({
         slack: 'slack',
@@ -1072,7 +1072,7 @@ describe('legacy config', () => {
             path: 'schema.graphql',
           },
         },
-        dummySetConfig,
+        dummySetConfig
       );
       expect(config.branch).toBe('master');
     });
@@ -1085,7 +1085,7 @@ describe('legacy config', () => {
             path: 'schema.graphql',
           },
         },
-        dummySetConfig,
+        dummySetConfig
       );
       expect(config.schema).toBe('schema.graphql');
     });
@@ -1099,7 +1099,7 @@ describe('legacy config', () => {
           },
           endpoint: 'api',
         },
-        dummySetConfig,
+        dummySetConfig
       );
       expect(config.endpoint).not.toBeDefined();
     });
@@ -1112,7 +1112,7 @@ describe('legacy config', () => {
             path: 'schema.graphql',
           },
         },
-        dummySetConfig,
+        dummySetConfig
       );
       expect(config.notifications).toBe(false);
     });

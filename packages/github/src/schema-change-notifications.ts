@@ -2,17 +2,8 @@ import * as probot from 'probot';
 import { buildSchema } from 'graphql';
 import { diff } from '@graphql-inspector/core';
 import { FileLoader, ConfigLoader, loadSources } from './helpers/loaders';
-import {
-  SchemaPointer,
-  NormalizedEnvironment,
-  Notifications,
-  createConfig,
-} from './helpers/config';
-import {
-  notifyWithSlack,
-  notifyWithWebhook,
-  notifyWithDiscord,
-} from './helpers/notifications';
+import { SchemaPointer, NormalizedEnvironment, Notifications, createConfig } from './helpers/config';
+import { notifyWithSlack, notifyWithWebhook, notifyWithDiscord } from './helpers/notifications';
 import { createLogger } from './helpers/logger';
 import { ErrorHandler } from './helpers/types';
 
@@ -48,9 +39,7 @@ export async function handleSchemaChangeNotifications({
   const isBranchPush = ref.startsWith('refs/heads/');
 
   if (!isBranchPush) {
-    logger.warn(
-      `Received Push event is not a branch push event (ref "${ref}")`,
-    );
+    logger.warn(`Received Push event is not a branch push event (ref "${ref}")`);
     return;
   }
 
@@ -72,9 +61,7 @@ export async function handleSchemaChangeNotifications({
   }
 
   if (config.branch !== branch) {
-    logger.info(
-      `Received branch "${branch}" doesn't match expected branch "${config.branch}". Skipping...`,
-    );
+    logger.info(`Received branch "${branch}" doesn't match expected branch "${config.branch}". Skipping...`);
     return;
   }
 
@@ -138,8 +125,8 @@ export async function handleSchemaChangeNotifications({
             repo,
             owner,
             commit,
-          }),
-        ),
+          })
+        )
       );
     }
 
@@ -153,8 +140,8 @@ export async function handleSchemaChangeNotifications({
             repo,
             owner,
             commit,
-          }),
-        ),
+          })
+        )
       );
     }
 
@@ -168,8 +155,8 @@ export async function handleSchemaChangeNotifications({
             repo,
             owner,
             commit,
-          }),
-        ),
+          })
+        )
       );
     }
 
@@ -180,7 +167,7 @@ export async function handleSchemaChangeNotifications({
 }
 
 function hasNotificationsEnabled(
-  notifications: NormalizedEnvironment['notifications'],
+  notifications: NormalizedEnvironment['notifications']
 ): notifications is Notifications {
   return notifications && typeof notifications === 'object';
 }

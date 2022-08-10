@@ -23,26 +23,18 @@ export function typeAdded(type: GraphQLNamedType): Change {
     path: type.name,
   };
 }
-export function typeKindChanged(
-  oldType: GraphQLNamedType,
-  newType: GraphQLNamedType,
-): Change {
+export function typeKindChanged(oldType: GraphQLNamedType, newType: GraphQLNamedType): Change {
   return {
     criticality: {
       level: CriticalityLevel.Breaking,
       reason: `Changing the kind of a type is a breaking change because it can cause existing queries to error. For example, turning an object type to a scalar type would break queries that define a selection set for this type.`,
     },
     type: ChangeType.TypeKindChanged,
-    message: `'${oldType.name}' kind changed from '${getKind(
-      oldType,
-    )}' to '${getKind(newType)}'`,
+    message: `'${oldType.name}' kind changed from '${getKind(oldType)}' to '${getKind(newType)}'`,
     path: oldType.name,
   };
 }
-export function typeDescriptionChanged(
-  oldType: GraphQLNamedType,
-  newType: GraphQLNamedType,
-): Change {
+export function typeDescriptionChanged(oldType: GraphQLNamedType, newType: GraphQLNamedType): Change {
   return {
     criticality: {
       level: CriticalityLevel.NonBreaking,

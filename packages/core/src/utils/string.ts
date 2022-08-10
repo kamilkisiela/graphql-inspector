@@ -25,7 +25,7 @@ function compareTwoStrings(str1: string, str2: string) {
   const pairs2 = wordLetterPairs(str2);
   const union = pairs1.length + pairs2.length;
   let intersection = 0;
-  pairs1.forEach((pair1) => {
+  pairs1.forEach(pair1 => {
     for (let i = 0, pair2; (pair2 = pairs2[i]); i++) {
       if (pair1 !== pair2) continue;
       intersection++;
@@ -36,15 +36,10 @@ function compareTwoStrings(str1: string, str2: string) {
   return (intersection * 2) / union;
 }
 
-export function findBestMatch(
-  mainString: string,
-  targetStrings: Target[],
-): BestMatch {
+export function findBestMatch(mainString: string, targetStrings: Target[]): BestMatch {
   if (!areArgsValid(mainString, targetStrings))
-    throw new Error(
-      'Bad arguments: First argument should be a string, second should be an array of strings',
-    );
-  const ratings = targetStrings.map((target) => ({
+    throw new Error('Bad arguments: First argument should be a string, second should be an array of strings');
+  const ratings = targetStrings.map(target => ({
     target,
     rating: compareTwoStrings(mainString, target.value),
   }));
@@ -53,23 +48,20 @@ export function findBestMatch(
 }
 
 function flattenDeep(arr: any): string[] {
-  return Array.isArray(arr)
-    ? arr.reduce((a, b) => a.concat(flattenDeep(b)), [])
-    : [arr];
+  return Array.isArray(arr) ? arr.reduce((a, b) => a.concat(flattenDeep(b)), []) : [arr];
 }
 
 function areArgsValid(mainString: string, targetStrings: Target[]) {
   if (typeof mainString !== 'string') return false;
   if (!Array.isArray(targetStrings)) return false;
   if (!targetStrings.length) return false;
-  if (targetStrings.find((s) => typeof s.value !== 'string')) return false;
+  if (targetStrings.find(s => typeof s.value !== 'string')) return false;
   return true;
 }
 
 function letterPairs(str: string) {
   const pairs = [];
-  for (let i = 0, max = str.length - 1; i < max; i++)
-    pairs[i] = str.substring(i, i + 2);
+  for (let i = 0, max = str.length - 1; i < max; i++) pairs[i] = str.substring(i, i + 2);
   return pairs;
 }
 

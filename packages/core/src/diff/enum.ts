@@ -12,11 +12,7 @@ import {
 import { compareLists } from '../utils/compare';
 import { AddChange } from './schema';
 
-export function changesInEnum(
-  oldEnum: GraphQLEnumType,
-  newEnum: GraphQLEnumType,
-  addChange: AddChange,
-) {
+export function changesInEnum(oldEnum: GraphQLEnumType, newEnum: GraphQLEnumType, addChange: AddChange) {
   compareLists(oldEnum.getValues(), newEnum.getValues(), {
     onAdded(value) {
       addChange(enumValueAdded(newEnum, value));
@@ -34,17 +30,11 @@ export function changesInEnum(
 
       if (isNotEqual(oldValue.deprecationReason, newValue.deprecationReason)) {
         if (isVoid(oldValue.deprecationReason)) {
-          addChange(
-            enumValueDeprecationReasonAdded(newEnum, oldValue, newValue),
-          );
+          addChange(enumValueDeprecationReasonAdded(newEnum, oldValue, newValue));
         } else if (isVoid(newValue.deprecationReason)) {
-          addChange(
-            enumValueDeprecationReasonRemoved(newEnum, oldValue, newValue),
-          );
+          addChange(enumValueDeprecationReasonRemoved(newEnum, oldValue, newValue));
         } else {
-          addChange(
-            enumValueDeprecationReasonChanged(newEnum, oldValue, newValue),
-          );
+          addChange(enumValueDeprecationReasonChanged(newEnum, oldValue, newValue));
         }
       }
     },

@@ -2,10 +2,7 @@ import { GraphQLInterfaceType, GraphQLObjectType } from 'graphql';
 
 import { Change, CriticalityLevel, ChangeType } from './change';
 
-export function objectTypeInterfaceAdded(
-  iface: GraphQLInterfaceType,
-  type: GraphQLObjectType,
-): Change {
+export function objectTypeInterfaceAdded(iface: GraphQLInterfaceType, type: GraphQLObjectType): Change {
   return {
     criticality: {
       level: CriticalityLevel.Dangerous,
@@ -18,10 +15,7 @@ export function objectTypeInterfaceAdded(
   };
 }
 
-export function objectTypeInterfaceRemoved(
-  iface: GraphQLInterfaceType,
-  type: GraphQLObjectType,
-): Change {
+export function objectTypeInterfaceRemoved(iface: GraphQLInterfaceType, type: GraphQLObjectType): Change {
   return {
     criticality: {
       level: CriticalityLevel.Breaking,

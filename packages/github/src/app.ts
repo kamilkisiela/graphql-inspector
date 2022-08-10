@@ -22,7 +22,7 @@ export default function handleProbot(app: probot.Probot) {
 
   app.on(
     'check_run',
-    wrap(async (context) => {
+    wrap(async context => {
       const ref = context.payload.check_run.head_sha;
       const { owner, repo } = context.repo();
       const action = context.payload.action;
@@ -41,10 +41,7 @@ export default function handleProbot(app: probot.Probot) {
         release,
         action: fullAction,
       });
-      const loadConfig = createConfigLoader(
-        { context, owner, repo, ref, release, action: fullAction },
-        loadFile,
-      );
+      const loadConfig = createConfigLoader({ context, owner, repo, ref, release, action: fullAction }, loadFile);
 
       await handleSchemaDiff({
         release,
@@ -59,12 +56,12 @@ export default function handleProbot(app: probot.Probot) {
         pullRequests,
         onError,
       });
-    }),
+    })
   );
 
   app.on(
     'check_suite',
-    wrap(async (context) => {
+    wrap(async context => {
       const ref = context.payload.check_suite.head_sha;
       const { owner, repo } = context.repo();
       const action = context.payload.action;
@@ -83,10 +80,7 @@ export default function handleProbot(app: probot.Probot) {
         release,
         action: fullAction,
       });
-      const loadConfig = createConfigLoader(
-        { context, owner, repo, ref, release, action: fullAction },
-        loadFile,
-      );
+      const loadConfig = createConfigLoader({ context, owner, repo, ref, release, action: fullAction }, loadFile);
 
       await handleSchemaDiff({
         release,
@@ -101,12 +95,12 @@ export default function handleProbot(app: probot.Probot) {
         pullRequests,
         onError,
       });
-    }),
+    })
   );
 
   app.on(
     'pull_request',
-    wrap(async (context) => {
+    wrap(async context => {
       const ref = context.payload.pull_request.head.sha;
       const pullRequestNumber = context.payload.pull_request.number;
       const { owner, repo } = context.repo();
@@ -115,11 +109,7 @@ export default function handleProbot(app: probot.Probot) {
       const before = context.payload.pull_request.base.sha;
       const fullAction = 'pull_request.' + action;
 
-      if (
-        ['opened', 'synchronize', 'edited', 'labeled', 'unlabeled'].includes(
-          action,
-        ) === false
-      ) {
+      if (['opened', 'synchronize', 'edited', 'labeled', 'unlabeled'].includes(action) === false) {
         return;
       }
 
@@ -130,10 +120,7 @@ export default function handleProbot(app: probot.Probot) {
         release,
         action: fullAction,
       });
-      const loadConfig = createConfigLoader(
-        { context, owner, repo, ref, release, action: fullAction },
-        loadFile,
-      );
+      const loadConfig = createConfigLoader({ context, owner, repo, ref, release, action: fullAction }, loadFile);
 
       await handleSchemaDiff({
         release,
@@ -149,12 +136,12 @@ export default function handleProbot(app: probot.Probot) {
         pullRequestNumber,
         onError,
       });
-    }),
+    })
   );
 
   app.on(
     'push',
-    wrap(async (context) => {
+    wrap(async context => {
       const ref = context.payload.ref;
       const { owner, repo } = context.repo();
       const before = context.payload.before;
@@ -167,10 +154,7 @@ export default function handleProbot(app: probot.Probot) {
         release,
         action,
       });
-      const loadConfig = createConfigLoader(
-        { context, owner, repo, ref, release, action },
-        loadFile,
-      );
+      const loadConfig = createConfigLoader({ context, owner, repo, ref, release, action }, loadFile);
 
       await handleSchemaChangeNotifications({
         action,
@@ -184,6 +168,6 @@ export default function handleProbot(app: probot.Probot) {
         loadConfig,
         onError,
       });
-    }),
+    })
   );
 }
