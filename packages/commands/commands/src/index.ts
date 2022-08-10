@@ -83,16 +83,7 @@ export function parseGlobalArgs(args: GlobalArgs) {
 }
 
 export async function mockCommand(mod: Command, cmd: string) {
-  return new Promise<string>((resolve, reject) => {
-    yargs
-      .exitProcess(false)
+  return yargs
       .command(mod)
-      .parse(cmd, (err: Error, _: never, output: string) => {
-        if (err) {
-          reject(err);
-        } else {
-          resolve(output);
-        }
-      });
-  });
+      .parseAsync(cmd);
 }
