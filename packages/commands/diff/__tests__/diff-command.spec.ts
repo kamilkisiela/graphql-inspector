@@ -59,9 +59,7 @@ describe('diff', () => {
     spyProcessExit = jest.spyOn(process, 'exit');
     spyProcessExit.mockImplementation();
 
-    spyProcessCwd = jest
-      .spyOn(process, 'cwd')
-      .mockImplementation(() => __dirname);
+    spyProcessCwd = jest.spyOn(process, 'cwd').mockImplementation(() => __dirname);
 
     spyReporter = jest.fn();
     mockLogger(spyReporter as any);
@@ -79,75 +77,51 @@ describe('diff', () => {
     await mockCommand(diff, 'diff old.graphql old.graphql');
 
     expect(spyReporter).toHaveBeenCalledNormalized('No changes detected');
-    expect(spyReporter).not.toHaveBeenCalledNormalized(
-      'Detected the following changes',
-    );
+    expect(spyReporter).not.toHaveBeenCalledNormalized('Detected the following changes');
   });
 
   test('should load different schema from graphql file', async () => {
     await mockCommand(diff, 'diff old.graphql new.graphql');
 
     expect(spyReporter).not.toHaveBeenCalledWith('No changes detected');
-    expect(spyReporter).toHaveBeenCalledNormalized(
-      'Detected the following changes (4) between schemas:',
-    );
+    expect(spyReporter).toHaveBeenCalledNormalized('Detected the following changes (4) between schemas:');
 
     expect(spyProcessExit).toHaveBeenCalledWith(1);
   });
 
   test('should load rule by name', async () => {
-    await mockCommand(
-      diff,
-      'diff old.graphql new.graphql --rule suppressRemovalOfDeprecatedField',
-    );
+    await mockCommand(diff, 'diff old.graphql new.graphql --rule suppressRemovalOfDeprecatedField');
 
     expect(spyReporter).not.toHaveBeenCalledNormalized('does not exist');
   });
 
   test('should load rules with local path from fs', async () => {
-    await mockCommand(
-      diff,
-      'diff old.graphql new.graphql --rule ./assets/rule.js',
-    );
+    await mockCommand(diff, 'diff old.graphql new.graphql --rule ./assets/rule.js');
 
     expect(spyReporter).not.toHaveBeenCalledNormalized('does not exist');
   });
 
   test('should load rules with absolute path from fs', async () => {
-    await mockCommand(
-      diff,
-      `diff old.graphql new.graphql --rule ${resolve(
-        __dirname,
-        'assets/rule.js',
-      )}`,
-    );
+    await mockCommand(diff, `diff old.graphql new.graphql --rule ${resolve(__dirname, 'assets/rule.js')}`);
 
     expect(spyReporter).not.toHaveBeenCalledNormalized('does not exist');
   });
 
   test('should render error if file does not exist (--rule)', async () => {
-    await expect(
-      mockCommand(diff, `diff old.graphql new.graphql --rule noop.js`),
-    ).rejects.toThrow(/does not exist/);
+    await expect(mockCommand(diff, `diff old.graphql new.graphql --rule noop.js`)).rejects.toThrow(/does not exist/);
     expect(spyReporter).toHaveBeenCalledNormalized('does not exist');
   });
 
   test('should render error if file does not exist', async () => {
-    await mockCommand(
-      diff,
-      `diff old.graphql new.graphql --onComplete ${resolve(
-        __dirname,
-        'assets/onComplete.js',
-      )}`,
-    );
+    await mockCommand(diff, `diff old.graphql new.graphql --onComplete ${resolve(__dirname, 'assets/onComplete.js')}`);
 
     expect(spyProcessExit).toHaveBeenCalledWith(2);
   });
 
   test('should render error if file does not exist (--onComplete)', async () => {
-    await expect(
-      mockCommand(diff, `diff old.graphql new.graphql --onComplete noop.js`),
-    ).rejects.toThrow(/does not exist/);
+    await expect(mockCommand(diff, `diff old.graphql new.graphql --onComplete noop.js`)).rejects.toThrow(
+      /does not exist/
+    );
     expect(spyReporter).toHaveBeenCalledNormalized('does not exist');
   });
 });
