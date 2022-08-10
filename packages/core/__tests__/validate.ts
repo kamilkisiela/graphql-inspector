@@ -37,9 +37,7 @@ describe('validate', () => {
     expect(results[0].deprecated.length).toEqual(1);
 
     const deprecated = results[0].deprecated[0];
-    expect(deprecated.message).toMatch(
-      `The field 'Post.title' is deprecated. BECAUSE`,
-    );
+    expect(deprecated.message).toMatch(`The field 'Post.title' is deprecated. BECAUSE`);
   });
 
   test('multiple fragments across multiple files with nested fragments (#36)', async () => {
@@ -91,7 +89,7 @@ describe('validate', () => {
 
     const results = validate(
       schema,
-      docs.map((doc) => new Source(print(doc))),
+      docs.map(doc => new Source(print(doc)))
     );
 
     expect(results.length).toEqual(0);
@@ -138,7 +136,7 @@ describe('validate', () => {
 
     const results = validate(
       schema,
-      docs.map((doc) => new Source(print(doc))),
+      docs.map(doc => new Source(print(doc)))
     );
 
     expect(results.length).toEqual(1);
@@ -190,7 +188,7 @@ describe('validate', () => {
 
     const results = validate(
       schema,
-      docs.map((doc) => new Source(print(doc))),
+      docs.map(doc => new Source(print(doc)))
     );
 
     expect(results.length).toEqual(0);
@@ -242,10 +240,10 @@ describe('validate', () => {
 
     const results = validate(
       schema,
-      docs.map((doc) => new Source(print(doc))),
+      docs.map(doc => new Source(print(doc))),
       {
         maxDepth: 1,
-      },
+      }
     );
 
     expect(results.length).toEqual(1);
@@ -302,10 +300,10 @@ describe('validate', () => {
 
     const results = validate(
       schema,
-      docs.map((doc) => new Source(print(doc))),
+      docs.map(doc => new Source(print(doc))),
       {
         maxDepth: 1,
-      },
+      }
     );
 
     expect(results.length).toEqual(1);
@@ -360,10 +358,10 @@ describe('validate', () => {
 
     const results = validate(
       schema,
-      docs.map((doc) => new Source(print(doc))),
+      docs.map(doc => new Source(print(doc))),
       {
         maxDepth: 2,
-      },
+      }
     );
 
     expect(results.length).toEqual(0);
@@ -389,8 +387,7 @@ describe('validate', () => {
       type Query {
         findPost(
           searchQuery: PostQuery
-          query: LegacyPostQuery
-            @deprecated(reason: "Please use 'searchQuery' instead.")
+          query: LegacyPostQuery @deprecated(reason: "Please use 'searchQuery' instead.")
         ): Post
       }
 
@@ -415,7 +412,7 @@ describe('validate', () => {
 
     const deprecated = results[0].deprecated[0];
     expect(deprecated.message).toMatch(
-      `The argument 'query' of 'findPost' is deprecated. Please use 'searchQuery' instead.`,
+      `The argument 'query' of 'findPost' is deprecated. Please use 'searchQuery' instead.`
     );
   });
 
@@ -455,7 +452,7 @@ describe('validate', () => {
 
     const results = validate(
       schema,
-      docs.map((doc) => new Source(print(doc))),
+      docs.map(doc => new Source(print(doc)))
     );
 
     expect(results.length).toEqual(1);
@@ -463,8 +460,6 @@ describe('validate', () => {
     expect(results[0].deprecated.length).toEqual(1);
 
     const deprecated = results[0].deprecated[0];
-    expect(deprecated.message).toMatch(
-      `The field 'Post.title' is deprecated. BECAUSE`,
-    );
+    expect(deprecated.message).toMatch(`The field 'Post.title' is deprecated. BECAUSE`);
   });
 });

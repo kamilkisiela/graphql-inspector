@@ -6,12 +6,7 @@ import {
   CommandFactory,
 } from '@graphql-inspector/commands';
 import { Logger, figures, chalk } from '@graphql-inspector/logger';
-import {
-  similar as findSimilar,
-  getTypePrefix,
-  SimilarMap,
-  Rating,
-} from '@graphql-inspector/core';
+import { similar as findSimilar, getTypePrefix, SimilarMap, Rating } from '@graphql-inspector/core';
 import { extname } from 'path';
 import { GraphQLNamedType, GraphQLSchema } from 'graphql';
 import { writeFileSync } from 'fs';
@@ -38,9 +33,7 @@ export function handler({
     for (const typeName in similarMap) {
       if (similarMap.hasOwnProperty(typeName)) {
         const matches = similarMap[typeName];
-        const prefix = getTypePrefix(
-          schema.getType(typeName) as GraphQLNamedType,
-        );
+        const prefix = getTypePrefix(schema.getType(typeName) as GraphQLNamedType);
         const sourceType = chalk.bold(typeName);
         const name = matches.bestMatch.target.typeId;
 
@@ -48,7 +41,7 @@ export function handler({
         Logger.log(`${prefix} ${sourceType}`);
         Logger.log(printResult(name, matches.bestMatch.rating));
 
-        matches.ratings.forEach((match) => {
+        matches.ratings.forEach(match => {
           Logger.log(printResult(match.target.typeId, match.rating));
         });
       }
@@ -90,7 +83,7 @@ export default createCommand<
     threshold?: number;
     write?: string;
   } & GlobalArgs
->((api) => {
+>(api => {
   const { loaders } = api;
 
   return {
@@ -138,7 +131,7 @@ export default createCommand<
           method,
         },
         apolloFederation,
-        aws,
+        aws
       );
 
       return handler({ schema, writePath, type, threshold });
@@ -203,8 +196,8 @@ function printScale(ratio: number): string {
   const levels = [0, 30, 50, 70, 90];
 
   return levels
-    .map((level) => percentage >= level)
-    .map((enabled) => (enabled ? figures.bullet : chalk.gray(figures.bullet)))
+    .map(level => percentage >= level)
+    .map(enabled => (enabled ? figures.bullet : chalk.gray(figures.bullet)))
     .join('');
 }
 

@@ -121,9 +121,7 @@ describe('object', () => {
 
       expect(change.criticality.level).toEqual(CriticalityLevel.Breaking);
       expect(change.type).toEqual('OBJECT_TYPE_INTERFACE_REMOVED');
-      expect(change.message).toEqual(
-        "'Foo' object type no longer implements 'C' interface",
-      );
+      expect(change.message).toEqual("'Foo' object type no longer implements 'C' interface");
     });
   });
 
@@ -147,9 +145,7 @@ describe('object', () => {
 
       expect(change.criticality.level).toEqual(CriticalityLevel.NonBreaking);
       expect(change.type).toEqual('FIELD_ADDED');
-      expect(change.message).toEqual(
-        "Field 'c' was added to object type 'Foo'",
-      );
+      expect(change.message).toEqual("Field 'c' was added to object type 'Foo'");
     });
     test('removed', async () => {
       const a = buildSchema(/* GraphQL */ `
@@ -170,9 +166,7 @@ describe('object', () => {
 
       expect(change.criticality.level).toEqual(CriticalityLevel.Breaking);
       expect(change.type).toEqual('FIELD_REMOVED');
-      expect(change.message).toEqual(
-        "Field 'c' was removed from object type 'Foo'",
-      );
+      expect(change.message).toEqual("Field 'c' was removed from object type 'Foo'");
     });
 
     test('order changed', async () => {
@@ -218,21 +212,15 @@ describe('object', () => {
       // Whole new type
       expect(change.a.criticality.level).toEqual(CriticalityLevel.Breaking);
       expect(change.a.type).toEqual('FIELD_TYPE_CHANGED');
-      expect(change.a.message).toEqual(
-        "Field 'Foo.a' changed type from 'String!' to 'Int!'",
-      );
+      expect(change.a.message).toEqual("Field 'Foo.a' changed type from 'String!' to 'Int!'");
       // Nullable to non-nullable
       expect(change.b.criticality.level).toEqual(CriticalityLevel.NonBreaking);
       expect(change.b.type).toEqual('FIELD_TYPE_CHANGED');
-      expect(change.b.message).toEqual(
-        "Field 'Foo.b' changed type from 'String' to 'String!'",
-      );
+      expect(change.b.message).toEqual("Field 'Foo.b' changed type from 'String' to 'String!'");
       // Non-nullable to nullable
       expect(change.c.criticality.level).toEqual(CriticalityLevel.Breaking);
       expect(change.c.type).toEqual('FIELD_TYPE_CHANGED');
-      expect(change.c.message).toEqual(
-        "Field 'Foo.c' changed type from 'String!' to 'String'",
-      );
+      expect(change.c.message).toEqual("Field 'Foo.c' changed type from 'String!' to 'String'");
     });
 
     test('description changed / added / removed', async () => {
@@ -273,15 +261,11 @@ describe('object', () => {
       // Changed
       expect(change.a.criticality.level).toEqual(CriticalityLevel.NonBreaking);
       expect(change.a.type).toEqual('FIELD_DESCRIPTION_CHANGED');
-      expect(change.a.message).toEqual(
-        "Field 'Foo.a' description changed from 'OLD' to 'NEW'",
-      );
+      expect(change.a.message).toEqual("Field 'Foo.a' description changed from 'OLD' to 'NEW'");
       // Removed
       expect(change.b.criticality.level).toEqual(CriticalityLevel.NonBreaking);
       expect(change.b.type).toEqual('FIELD_DESCRIPTION_REMOVED');
-      expect(change.b.message).toEqual(
-        "Description was removed from field 'Foo.b'",
-      );
+      expect(change.b.message).toEqual("Description was removed from field 'Foo.b'");
       // Added
       expect(change.c.criticality.level).toEqual(CriticalityLevel.NonBreaking);
       expect(change.c.type).toEqual('FIELD_DESCRIPTION_ADDED');
@@ -314,21 +298,15 @@ describe('object', () => {
       // Changed
       expect(change.a.criticality.level).toEqual(CriticalityLevel.NonBreaking);
       expect(change.a.type).toEqual('FIELD_DEPRECATION_REASON_CHANGED');
-      expect(change.a.message).toEqual(
-        "Deprecation reason on field 'Foo.a' has changed from 'OLD' to 'NEW'",
-      );
+      expect(change.a.message).toEqual("Deprecation reason on field 'Foo.a' has changed from 'OLD' to 'NEW'");
       // Removed
       expect(change.b.criticality.level).toEqual(CriticalityLevel.NonBreaking);
       expect(change.b.type).toEqual('FIELD_DEPRECATION_REASON_REMOVED');
-      expect(change.b.message).toEqual(
-        "Deprecation reason was removed from field 'Foo.b'",
-      );
+      expect(change.b.message).toEqual("Deprecation reason was removed from field 'Foo.b'");
       // Added
       expect(change.c.criticality.level).toEqual(CriticalityLevel.NonBreaking);
       expect(change.c.type).toEqual('FIELD_DEPRECATION_REASON_ADDED');
-      expect(change.c.message).toEqual(
-        "Field 'Foo.c' has deprecation reason 'CCC'",
-      );
+      expect(change.c.message).toEqual("Field 'Foo.c' has deprecation reason 'CCC'");
     });
 
     test('deprecation added / removed', async () => {
@@ -378,24 +356,18 @@ describe('object', () => {
 
       expect(change.criticality.level).toEqual(CriticalityLevel.Breaking);
       expect(change.type).toEqual('FIELD_REMOVED');
-      expect(change.message).toEqual(
-        "Field 'b' (deprecated) was removed from object type 'Foo'",
-      );
+      expect(change.message).toEqual("Field 'b' (deprecated) was removed from object type 'Foo'");
 
       // suppressRemovalOfDeprecatedField rule should make it only Dangerous
 
       const changeWithRule = findFirstChangeByPath(
         await diff(a, b, [DiffRule.suppressRemovalOfDeprecatedField]),
-        'Foo.b',
+        'Foo.b'
       );
 
-      expect(changeWithRule.criticality.level).toEqual(
-        CriticalityLevel.Dangerous,
-      );
+      expect(changeWithRule.criticality.level).toEqual(CriticalityLevel.Dangerous);
       expect(changeWithRule.type).toEqual('FIELD_REMOVED');
-      expect(changeWithRule.message).toEqual(
-        "Field 'b' (deprecated) was removed from object type 'Foo'",
-      );
+      expect(changeWithRule.message).toEqual("Field 'b' (deprecated) was removed from object type 'Foo'");
     });
   });
 
@@ -422,21 +394,15 @@ describe('object', () => {
       // Whole new type
       expect(change.a.criticality.level).toEqual(CriticalityLevel.Breaking);
       expect(change.a.type).toEqual('FIELD_ARGUMENT_TYPE_CHANGED');
-      expect(change.a.message).toEqual(
-        "Type for argument 'a' on field 'Foo.foo' changed from 'String' to 'Int'",
-      );
+      expect(change.a.message).toEqual("Type for argument 'a' on field 'Foo.foo' changed from 'String' to 'Int'");
       // Nullable to non-nullable
       expect(change.b.criticality.level).toEqual(CriticalityLevel.Breaking);
       expect(change.b.type).toEqual('FIELD_ARGUMENT_TYPE_CHANGED');
-      expect(change.b.message).toEqual(
-        "Type for argument 'b' on field 'Foo.foo' changed from 'String' to 'String!'",
-      );
+      expect(change.b.message).toEqual("Type for argument 'b' on field 'Foo.foo' changed from 'String' to 'String!'");
       // Non-nullable to nullable
       expect(change.c.criticality.level).toEqual(CriticalityLevel.NonBreaking);
       expect(change.c.type).toEqual('FIELD_ARGUMENT_TYPE_CHANGED');
-      expect(change.c.message).toEqual(
-        "Type for argument 'c' on field 'Foo.foo' changed from 'String!' to 'String'",
-      );
+      expect(change.c.message).toEqual("Type for argument 'c' on field 'Foo.foo' changed from 'String!' to 'String'");
     });
 
     test('added', async () => {
@@ -460,15 +426,11 @@ describe('object', () => {
       // Added non-nullable
       expect(change.b.criticality.level).toEqual(CriticalityLevel.Breaking);
       expect(change.b.type).toEqual('FIELD_ARGUMENT_ADDED');
-      expect(change.b.message).toEqual(
-        "Argument 'b: String!' added to field 'Foo.foo'",
-      );
+      expect(change.b.message).toEqual("Argument 'b: String!' added to field 'Foo.foo'");
       // Added nullable
       expect(change.c.criticality.level).toEqual(CriticalityLevel.Dangerous);
       expect(change.c.type).toEqual('FIELD_ARGUMENT_ADDED');
-      expect(change.c.message).toEqual(
-        "Argument 'c: String' added to field 'Foo.foo'",
-      );
+      expect(change.c.message).toEqual("Argument 'c: String' added to field 'Foo.foo'");
     });
 
     test('removed', async () => {
@@ -492,15 +454,11 @@ describe('object', () => {
       // Removed non-nullable
       expect(change.b.criticality.level).toEqual(CriticalityLevel.Breaking);
       expect(change.b.type).toEqual('FIELD_ARGUMENT_REMOVED');
-      expect(change.b.message).toEqual(
-        "Argument 'b: String!' was removed from field 'Foo.foo'",
-      );
+      expect(change.b.message).toEqual("Argument 'b: String!' was removed from field 'Foo.foo'");
       // Removed nullable
       expect(change.c.criticality.level).toEqual(CriticalityLevel.Breaking);
       expect(change.c.type).toEqual('FIELD_ARGUMENT_REMOVED');
-      expect(change.c.message).toEqual(
-        "Argument 'c: String' was removed from field 'Foo.foo'",
-      );
+      expect(change.c.message).toEqual("Argument 'c: String' was removed from field 'Foo.foo'");
     });
   });
 });
