@@ -43,7 +43,7 @@ describe('introspect', () => {
   let spyProcessCwd: jest.SpyInstance;
 
   beforeEach(() => {
-    yargs.reset();
+    yargs();
 
     spyProcessCwd = jest
       .spyOn(process, 'cwd')
@@ -54,7 +54,7 @@ describe('introspect', () => {
   });
 
   afterEach(() => {
-    yargs.reset();
+    yargs();
     unmockLogger();
     spyProcessCwd.mockRestore();
     spyReporter.mockRestore();

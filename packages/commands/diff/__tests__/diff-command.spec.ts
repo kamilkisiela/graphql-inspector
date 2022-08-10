@@ -55,7 +55,7 @@ describe('diff', () => {
   let spyProcessCwd: jest.SpyInstance;
 
   beforeEach(() => {
-    yargs.reset();
+    yargs();
     spyProcessExit = jest.spyOn(process, 'exit');
     spyProcessExit.mockImplementation();
 
@@ -68,7 +68,7 @@ describe('diff', () => {
   });
 
   afterEach(() => {
-    yargs.reset();
+    yargs();
     unmockLogger();
     spyProcessExit.mockRestore();
     spyProcessCwd.mockRestore();
