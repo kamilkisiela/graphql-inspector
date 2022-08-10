@@ -1,5 +1,5 @@
 dist/
-website/
+.next/
 lib/
 .vscode/
 action/

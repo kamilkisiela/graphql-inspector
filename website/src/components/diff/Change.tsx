@@ -11,10 +11,7 @@ const ColorMap = {
 const SINGLE_QUOTES_REGEX = /'([^']+)'/g;
 const DOUBLE_QUOTES_REGEX = /"([^"]+)"/g;
 
-export default forwardRef<any, { value: Change }>(function ChangeComponent(
-  { value },
-  ref,
-) {
+export default forwardRef<any, { value: Change }>(function ChangeComponent({ value }, ref) {
   const { message, criticality } = value;
 
   const formatted = message
@@ -29,10 +26,7 @@ export default forwardRef<any, { value: Change }>(function ChangeComponent(
         borderLeftColor: ColorMap[criticality.level],
       }}
     >
-      <div
-        className={styles.changeMessage}
-        dangerouslySetInnerHTML={{ __html: formatted }}
-      />
+      <div className={styles.changeMessage} dangerouslySetInnerHTML={{ __html: formatted }} />
     </div>
   );
 });

@@ -20,9 +20,8 @@ function serverless(appFn) {
 
     function lowerCaseKeys(obj) {
       return Object.keys(obj).reduce(
-        (accumulator, key) =>
-          Object.assign(accumulator, { [key.toLocaleLowerCase()]: obj[key] }),
-        {},
+        (accumulator, key) => Object.assign(accumulator, { [key.toLocaleLowerCase()]: obj[key] }),
+        {}
       );
     }
 
@@ -63,8 +62,7 @@ function serverless(appFn) {
           id,
           name: ev,
           payload: req.body,
-          signature:
-            headers['x-hub-signature-256'] || headers['x-hub-signature'],
+          signature: headers['x-hub-signature-256'] || headers['x-hub-signature'],
         });
 
         res.status(200);

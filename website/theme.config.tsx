@@ -18,9 +18,7 @@ const config: DocsThemeConfig = {
       <InspectorLogo className="mr-1.5 h-9 w-9" />
       <div>
         <h1 className="md:text-md text-sm font-medium">{SITE_NAME}</h1>
-        <h2 className="hidden text-xs sm:!block">
-          Bulletproof your GraphQL
-        </h2>
+        <h2 className="hidden text-xs sm:!block">Bulletproof your GraphQL</h2>
       </div>
     </>
   ),
