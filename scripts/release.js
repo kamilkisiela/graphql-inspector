@@ -14,7 +14,7 @@ async function main() {
     .get('https://unpkg.com/@graphql-inspector/core/package.json', {
       responseType: 'json',
     })
-    .then((r) => r.data.version);
+    .then(r => r.data.version);
 
   const isCanary = versionOrCanary === 'canary';
   const isNext = versionOrCanary === 'next';
@@ -27,8 +27,8 @@ async function main() {
     : versionOrCanary;
 
   const packages = getWorkspaces()
-    .map((path) => join(rootDir, path))
-    .filter((name) => !name.includes('graphql-cli'));
+    .map(path => join(rootDir, path))
+    .filter(name => !name.includes('graphql-cli'));
 
   const branch = `release/v${version}`;
 
@@ -42,16 +42,14 @@ async function main() {
   }
 
   // Set version in packages
-  packages.map((dir) => {
-    updateString(join(dir, 'package.json'), (pkg) =>
-      pkg.replace(new RegExp(placeholder, 'g'), version),
-    );
+  packages.map(dir => {
+    updateString(join(dir, 'package.json'), pkg => pkg.replace(new RegExp(placeholder, 'g'), version));
   });
 
   if (isLatest) {
     // Bump version in changelog
-    updateString(join(rootDir, 'CHANGELOG.md'), (changelog) =>
-      changelog.replace('### vNEXT', `### vNEXT` + '\n\n' + `### v${version}`),
+    updateString(join(rootDir, 'CHANGELOG.md'), changelog =>
+      changelog.replace('### vNEXT', `### vNEXT` + '\n\n' + `### v${version}`)
     );
   }
 
@@ -61,17 +59,13 @@ async function main() {
   const cmd = `npm publish ${extra} --access public`;
 
   // Run npm publish in all libraries
-  packages.map((dir) => {
+  packages.map(dir => {
     exec(`(cd ${dir} && cd dist && ${cmd})`);
   });
 
   if (isLatest) {
     // Revert changes in libraries (back to placeholders)
-    exec(
-      `git checkout -- ${packages
-        .map((dir) => relative(rootDir, dir))
-        .join(' ')}`,
-    );
+    exec(`git checkout -- ${packages.map(dir => relative(rootDir, dir)).join(' ')}`);
 
     // Add changes and commit as `Release vX.X.X`
     exec(`git add . && git commit -m "Release v${version}"`);
@@ -119,7 +113,7 @@ async function main() {
   }
 }
 
-main().catch((error) => {
+main().catch(error => {
   console.error(error);
   process.exit(1);
 });
