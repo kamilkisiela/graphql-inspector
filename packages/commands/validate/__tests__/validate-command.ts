@@ -88,7 +88,7 @@ describe('validate', () => {
     spyProcessCwd.mockRestore();
     spyReporter.mockRestore();
     unmockLogger();
-    yargs.reset();
+    yargs();
   });
 
   test('should load graphql files', async () => {

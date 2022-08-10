@@ -1,0 +1,28 @@
+# Serve With Faked Data
+
+Takes a GraphQL schema and runs a server based on it, with faked data.
+
+## Usage
+
+Run the following command:
+
+```sh
+graphql-inspector serve SCHEMA
+```
+
+### Arguments
+
+- [`SCHEMA`](../api/schema) - point to a schema
+
+### Flags
+
+- `-r, --require <s>` - require a module
+- `-t, --token <s>` - an access token
+- `-h, --header <s>` - set HTTP header (`--header 'Auth: Basic 123'`)
+- `--method` - method on URL schema pointers (default: `POST`)
+- `--federation` - Support Apollo Federation directives (default: `false`)
+- `--aws` - Support AWS Appsync directives and scalar types (default: `false`)
+
+### Output
+
+A server running on port `4000`.

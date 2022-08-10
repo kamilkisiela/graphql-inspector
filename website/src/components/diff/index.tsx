@@ -4,7 +4,6 @@ import { diff, Change } from '@graphql-inspector/core';
 import { DiffEditor, OnMount } from '@monaco-editor/react';
 import FlipMove from 'react-flip-move';
 import ChangeComponent from './Change';
-import styles from './index.module.css';
 
 const FlipMoveAny = FlipMove as any;
 
@@ -65,31 +64,32 @@ const Diff: FC = () => {
   }
 
   return (
-    <div className={styles.diffContainer}>
-      <DiffEditor
-        width="100%"
-        height={300}
-        language="graphql"
-        theme="vs-dark"
-        original={OLD_SCHEMA}
-        modified={code}
-        onMount={handleEditorChange}
-        options={{
-          codeLens: false,
-          lineNumbers: 'off',
-          minimap: false,
-          originalEditable: false,
-        }}
-      />
-      <FlipMoveAny
-        className={styles.diffChanges}
-        enterAnimation="fade"
-        leaveAnimation="fade"
-      >
-        {changes.map((change, i) => (
-          <ChangeComponent key={i} value={change} />
-        ))}
-      </FlipMoveAny>
+    <div className="bg-gray-100 dark:bg-zinc-900 py-16 px-4">
+      <div className="xl:container flex flex-col md:flex-row gap-5">
+        <DiffEditor
+          height={300}
+          language="graphql"
+          theme="vs-dark"
+          original={OLD_SCHEMA}
+          modified={code}
+          onMount={handleEditorChange}
+          options={{
+            codeLens: false,
+            lineNumbers: 'off',
+            minimap: false,
+            originalEditable: false,
+          }}
+        />
+        <FlipMoveAny
+          className="shrink-0"
+          enterAnimation="fade"
+          leaveAnimation="fade"
+        >
+          {changes.map((change, i) => (
+            <ChangeComponent key={i} value={change} />
+          ))}
+        </FlipMoveAny>
+      </div>
     </div>
   );
 };

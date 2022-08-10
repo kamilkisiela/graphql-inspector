@@ -1,0 +1,34 @@
+# Schema Coverage
+
+Schema coverage is based on documents. Find out how many times types and fields are used in your application.
+
+![Coverage](../../../../public/assets/img/cli/coverage.jpg)
+
+## Usage
+
+Run the following command:
+
+```sh
+graphql-inspector coverage DOCUMENTS SCHEMA
+```
+
+### Arguments
+
+- [`DOCUMENTS`](../api/documents) - a glob pattern that points to GraphQL Documents / Operations
+- [`SCHEMA`](../api/schema) - point to a schema
+
+### Flags
+
+- `-s, --silent`- Do not render any stats in the terminal (default: `false`)
+- `-w, --write <s>` - Write a file with coverage stats (_disabled by default_)
+- `-d, --deprecated` - Fail on deprecated usage (default: `false`)
+- `-r, --require <s>` - require a module
+- `-t, --token <s>` - an access token
+- `-h, --header <s>` - set http header (`--header 'Auth: Basic 123'`)
+- `--method` - method on url schema pointers (default: `POST`)
+- `--federation` - Support Apollo Federation directives (default: `false`)
+- `--aws` - Support AWS Appsync directives and scalar types (default: `false`)
+
+### Output
+
+Depending on enabled flags, a printed GraphQL Schema with stats per each field and a JSON file with data.

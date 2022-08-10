@@ -1,0 +1,93 @@
+import { PackageCmd, Callout } from '@theguild/components'
+
+# Getting Started
+
+## GitHub Application
+
+Visit [GraphQL Inspector](https://github.com/marketplace/graphql-inspector) on GitHub Marketplace and complete installation.
+
+Read the ["GitHub Application"](../products/github) chapter to see the instructions.
+
+## GitHub Action
+
+Visit [GraphQL Inspector](https://github.com/marketplace/actions/graphql-inspector) on GitHub Marketplace and complete installation.
+
+Read the ["GitHub Action"](../products/action) chapter to see the instructions.
+
+## CLI
+
+Command Line Tool with all the features, installable with a single command:
+
+Install using:
+
+<PackageCmd packages={[{ name: '@graphql-inspector/cli graphql', isGlobal: true }]} />
+
+### Usage
+
+```sh
+graphql-inspector --help
+```
+
+## CLI for CI
+
+Works similar to regular CLI but every feature is pluggable to keep the size as low as possible.
+
+Install using:
+
+<PackageCmd packages={[{ name: '@graphql-inspector/ci', isGlobal: true }]} />
+
+### Commands
+
+Every command is installable through a package.
+
+- diff - `@graphql-inspector/diff-command`
+- validate - `@graphql-inspector/validate-command`
+- coverage - `@graphql-inspector/coverage-command`
+- similar - `@graphql-inspector/similar-command`
+- introspect - `@graphql-inspector/introspect-command`
+- serve - `@graphql-inspector/serve-command`
+
+<Callout>
+Please take a look at ["Continuous Integration"](../products/ci) chapter.
+</Callout>
+
+
+### Usage
+
+```sh
+graphql-inspector --help
+```
+
+## Programmatic API
+
+GraphQL Inspector comes with a programmatic API, here is how to use the Core package.
+
+Install using your favorite package manager:
+
+<PackageCmd packages={['@graphql-inspector/core']} />
+
+### Usage
+
+```ts
+import { diff, validate, coverage, ... } from '@graphql-inspector/core'
+```
+
+## Docker
+
+GraphQL Inspector is also available on Docker.
+
+```sh
+docker run kamilkisiela/graphql-inspector --help
+```
+
+Bind volumes to `/app` for working with local files, for example:
+
+```sh
+docker run -v $PWD:/app kamilkisiela/graphql-inspector graphql-inspector diff old.graphql new.graphql
+```
+
+To run commands interactively inside of the container, use the following:
+
+```sh
+docker run -it kamilkisiela/graphql-inspector
+```

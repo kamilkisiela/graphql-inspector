@@ -55,7 +55,7 @@ describe('diff', () => {
   let spyProcessCwd: jest.SpyInstance;
 
   beforeEach(() => {
-    yargs.reset();
+    yargs();
     spyProcessExit = jest.spyOn(process, 'exit');
     spyProcessExit.mockImplementation();
 
@@ -68,7 +68,7 @@ describe('diff', () => {
   });
 
   afterEach(() => {
-    yargs.reset();
+    yargs();
     unmockLogger();
     spyProcessExit.mockRestore();
     spyProcessCwd.mockRestore();
@@ -125,9 +125,8 @@ describe('diff', () => {
     expect(spyReporter).not.toHaveBeenCalledNormalized('does not exist');
   });
 
-  test('should render error if file does not exist', async () => {
-    await mockCommand(diff, `diff old.graphql new.graphql --rule noop.js`);
-
+  test('should render error if file does not exist (--rule)', async () => {
+    await expect(mockCommand(diff, `diff old.graphql new.graphql --rule noop.js`)).rejects.toThrow(/does not exist/)
     expect(spyReporter).toHaveBeenCalledNormalized('does not exist');
   });
 
@@ -143,12 +142,8 @@ describe('diff', () => {
     expect(spyProcessExit).toHaveBeenCalledWith(2);
   });
 
-  test('should render error if file does not exist', async () => {
-    await mockCommand(
-      diff,
-      `diff old.graphql new.graphql --onComplete noop.js`,
-    );
-
+  test('should render error if file does not exist (--onComplete)', async () => {
+    await expect(mockCommand(diff, `diff old.graphql new.graphql --onComplete noop.js`)).rejects.toThrow(/does not exist/)
     expect(spyReporter).toHaveBeenCalledNormalized('does not exist');
   });
 });
