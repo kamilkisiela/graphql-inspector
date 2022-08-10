@@ -83,7 +83,5 @@ export function parseGlobalArgs(args: GlobalArgs) {
 }
 
 export async function mockCommand(mod: Command, cmd: string) {
-  return yargs
-      .command(mod)
-      .parseAsync(cmd);
+  return yargs.command(mod).parseAsync(cmd);
 }

@@ -102,7 +102,11 @@ export function inputFieldDefaultValueChanged(
         'Changing the default value for an argument may change the runtime behavior of a field if it was never provided.',
     },
     type: ChangeType.InputFieldDefaultValueChanged,
-    message: `Input field '${input.name}.${oldField.name}' default value changed from '${safeString(oldField.defaultValue)}' to '${safeString(newField.defaultValue)}'`,
+    message: `Input field '${input.name}.${
+      oldField.name
+    }' default value changed from '${safeString(
+      oldField.defaultValue,
+    )}' to '${safeString(newField.defaultValue)}'`,
     path: [input.name, oldField.name].join('.'),
   };
 }

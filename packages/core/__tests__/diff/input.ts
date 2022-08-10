@@ -300,13 +300,13 @@ describe('input', () => {
       expect(change.b.type).toEqual('INPUT_FIELD_TYPE_CHANGED');
       expect(change.b.message).toEqual(
         "Input field 'Foo.b' changed type from '[String!]!' to '[String!]'",
-        );
+      );
       // List value
       expect(change.c.criticality.level).toEqual(CriticalityLevel.NonBreaking);
       expect(change.c.type).toEqual('INPUT_FIELD_TYPE_CHANGED');
       expect(change.c.message).toEqual(
         "Input field 'Foo.c' changed type from '[String!]!' to '[String]!'",
-        );
+      );
     });
 
     test('field made non-optional', async () => {
@@ -342,13 +342,13 @@ describe('input', () => {
       expect(change.b.type).toEqual('INPUT_FIELD_TYPE_CHANGED');
       expect(change.b.message).toEqual(
         "Input field 'Foo.b' changed type from '[String!]' to '[String!]!'",
-        );
+      );
       // List value
       expect(change.c.criticality.level).toEqual(CriticalityLevel.Breaking);
       expect(change.c.type).toEqual('INPUT_FIELD_TYPE_CHANGED');
       expect(change.c.message).toEqual(
         "Input field 'Foo.c' changed type from '[String]!' to '[String!]!'",
-        );
+      );
     });
   });
 

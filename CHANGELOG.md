@@ -4,7 +4,6 @@
 
 ### v3.3.0
 
-
 - **docker**: Publish images to the registry
 - **core**: Fix `Cannot convert object to primitive value` error for defaultValue in `ChangeType.InputFieldDefaultValueChanged`
 - **action**: Fix ignored `approve-label` for `push` events [#2133](https://github.com/kamilkisiela/graphql-inspector/pull/2133)
@@ -16,7 +15,6 @@
 - **action**: Diffing a graphql endpoint with a local .json schema file results in an error, fixed in [#2090](https://github.com/kamilkisiela/graphql-inspector/pull/2090)
 - **core**: Fix comparison of non-nullable fields [#2122](https://github.com/kamilkisiela/graphql-inspector/pull/2122)
 - **core**: Fix removal of a deprecated input field [#2103](https://github.com/kamilkisiela/graphql-inspector/pull/2103)
-
 
 ### v3.1.4
 

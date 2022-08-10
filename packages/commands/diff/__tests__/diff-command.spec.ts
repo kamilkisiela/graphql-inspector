@@ -126,7 +126,9 @@ describe('diff', () => {
   });
 
   test('should render error if file does not exist (--rule)', async () => {
-    await expect(mockCommand(diff, `diff old.graphql new.graphql --rule noop.js`)).rejects.toThrow(/does not exist/)
+    await expect(
+      mockCommand(diff, `diff old.graphql new.graphql --rule noop.js`),
+    ).rejects.toThrow(/does not exist/);
     expect(spyReporter).toHaveBeenCalledNormalized('does not exist');
   });
 
@@ -143,7 +145,9 @@ describe('diff', () => {
   });
 
   test('should render error if file does not exist (--onComplete)', async () => {
-    await expect(mockCommand(diff, `diff old.graphql new.graphql --onComplete noop.js`)).rejects.toThrow(/does not exist/)
+    await expect(
+      mockCommand(diff, `diff old.graphql new.graphql --onComplete noop.js`),
+    ).rejects.toThrow(/does not exist/);
     expect(spyReporter).toHaveBeenCalledNormalized('does not exist');
   });
 });

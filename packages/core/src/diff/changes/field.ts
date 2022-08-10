@@ -182,8 +182,10 @@ export function fieldArgumentAdded(
   field: GraphQLField<any, any, any>,
   arg: GraphQLArgument,
 ): Change {
-  const isBreaking = isNonNullType(arg.type) && typeof arg.defaultValue === 'undefined';
-  const defaultValueMsg = typeof arg.defaultValue !== 'undefined' ? ' (with default value) ' : ' ';
+  const isBreaking =
+    isNonNullType(arg.type) && typeof arg.defaultValue === 'undefined';
+  const defaultValueMsg =
+    typeof arg.defaultValue !== 'undefined' ? ' (with default value) ' : ' ';
 
   return {
     criticality: isBreaking

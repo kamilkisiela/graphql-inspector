@@ -1,4 +1,9 @@
-import { isObjectType, isInterfaceType, isEnumType, isInputObjectType } from 'graphql';
+import {
+  isObjectType,
+  isInterfaceType,
+  isEnumType,
+  isInputObjectType,
+} from 'graphql';
 
 import { CriticalityLevel, ChangeType } from './../changes/change';
 import { Rule } from './types';
