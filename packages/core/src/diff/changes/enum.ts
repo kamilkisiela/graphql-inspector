@@ -3,27 +3,21 @@ import { isDeprecated } from '../../utils/isDeprecated';
 
 import { Change, CriticalityLevel, ChangeType } from './change';
 
-export function enumValueRemoved(
-  oldEnum: GraphQLEnumType,
-  value: GraphQLEnumValue,
-): Change {
+export function enumValueRemoved(oldEnum: GraphQLEnumType, value: GraphQLEnumValue): Change {
   return {
     criticality: {
       level: CriticalityLevel.Breaking,
       reason: `Removing an enum value will cause existing queries that use this enum value to error.`,
     },
     type: ChangeType.EnumValueRemoved,
-    message: `Enum value '${value.name}' ${
-      isDeprecated(value) ? '(deprecated) ' : ''
-    }was removed from enum '${oldEnum.name}'`,
+    message: `Enum value '${value.name}' ${isDeprecated(value) ? '(deprecated) ' : ''}was removed from enum '${
+      oldEnum.name
+    }'`,
     path: [oldEnum.name, value.name].join('.'),
   };
 }
 
-export function enumValueAdded(
-  newEnum: GraphQLEnumType,
-  value: GraphQLEnumValue,
-): Change {
+export function enumValueAdded(newEnum: GraphQLEnumType, value: GraphQLEnumValue): Change {
   return {
     criticality: {
       level: CriticalityLevel.Dangerous,
@@ -38,7 +32,7 @@ export function enumValueAdded(
 export function enumValueDescriptionChanged(
   newEnum: GraphQLEnumType,
   oldValue: GraphQLEnumValue,
-  newValue: GraphQLEnumValue,
+  newValue: GraphQLEnumValue
 ): Change {
   return {
     criticality: {
@@ -56,7 +50,7 @@ export function enumValueDescriptionChanged(
 export function enumValueDeprecationReasonChanged(
   newEnum: GraphQLEnumType,
   oldValue: GraphQLEnumValue,
-  newValue: GraphQLEnumValue,
+  newValue: GraphQLEnumValue
 ): Change {
   return {
     criticality: {
@@ -71,7 +65,7 @@ export function enumValueDeprecationReasonChanged(
 export function enumValueDeprecationReasonAdded(
   newEnum: GraphQLEnumType,
   oldValue: GraphQLEnumValue,
-  newValue: GraphQLEnumValue,
+  newValue: GraphQLEnumValue
 ): Change {
   return {
     criticality: {
@@ -86,7 +80,7 @@ export function enumValueDeprecationReasonAdded(
 export function enumValueDeprecationReasonRemoved(
   newEnum: GraphQLEnumType,
   oldValue: GraphQLEnumValue,
-  newValue: GraphQLEnumValue,
+  newValue: GraphQLEnumValue
 ): Change {
   return {
     criticality: {

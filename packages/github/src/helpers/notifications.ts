@@ -34,11 +34,8 @@ export async function notifyWithWebhook({
     repo,
     owner,
     commit,
-    environment:
-      environment && environment !== defaultConfigName
-        ? environment
-        : 'default',
-    changes: changes.map((change) => ({
+    environment: environment && environment !== defaultConfigName ? environment : 'default',
+    changes: changes.map(change => ({
       message: change.message,
       level: change.criticality.level,
     })),
@@ -69,10 +66,7 @@ export async function notifyWithSlack({
   const totalChanges = changes.length;
   const schemaName = environment ? `${environment} schema` : `schema`;
   const sourceLink = commit
-    ? ` (<https://github.com/${owner}/${repo}/commit/${commit}|\`${commit.substr(
-        0,
-        7,
-      )}\`>)`
+    ? ` (<https://github.com/${owner}/${repo}/commit/${commit}|\`${commit.substr(0, 7)}\`>)`
     : '';
 
   const event = {
@@ -80,7 +74,7 @@ export async function notifyWithSlack({
     icon_url: 'https://graphql-inspector/img/logo-slack.png',
     text: `:male-detective: Hi, I found *${totalChanges} ${pluralize(
       'change',
-      totalChanges,
+      totalChanges
     )}* in ${schemaName}${sourceLink}:`,
     attachments: createAttachments(changes),
   };
@@ -110,10 +104,7 @@ export async function notifyWithDiscord({
   const totalChanges = changes.length;
   const schemaName = environment ? `${environment} schema` : `schema`;
   const sourceLink = commit
-    ? ` ([\`${commit.substr(
-        0,
-        7,
-      )}\`](https://github.com/${owner}/${repo}/commit/${commit}))`
+    ? ` ([\`${commit.substr(0, 7)}\`](https://github.com/${owner}/${repo}/commit/${commit}))`
     : '';
 
   const event = {
@@ -121,7 +112,7 @@ export async function notifyWithDiscord({
     avatar_url: 'https://graphql-inspector/img/logo-slack.png',
     content: `:detective: Hi, I found **${totalChanges} ${pluralize(
       'change',
-      totalChanges,
+      totalChanges
     )}** in ${schemaName}${sourceLink}:`,
     embeds: createDiscordEmbeds(changes),
   };
@@ -142,15 +133,9 @@ interface Attachment {
 }
 
 function createAttachments(changes: Change[]) {
-  const breakingChanges = changes.filter(
-    filterChangesByLevel(CriticalityLevel.Breaking),
-  );
-  const dangerousChanges = changes.filter(
-    filterChangesByLevel(CriticalityLevel.Dangerous),
-  );
-  const safeChanges = changes.filter(
-    filterChangesByLevel(CriticalityLevel.NonBreaking),
-  );
+  const breakingChanges = changes.filter(filterChangesByLevel(CriticalityLevel.Breaking));
+  const dangerousChanges = changes.filter(filterChangesByLevel(CriticalityLevel.Dangerous));
+  const safeChanges = changes.filter(filterChangesByLevel(CriticalityLevel.NonBreaking));
 
   const attachments: Attachment[] = [];
 
@@ -160,7 +145,7 @@ function createAttachments(changes: Change[]) {
         color: '#E74C3B',
         title: 'Breaking changes',
         changes: breakingChanges,
-      }),
+      })
     );
   }
 
@@ -170,7 +155,7 @@ function createAttachments(changes: Change[]) {
         color: '#F0C418',
         title: 'Dangerous changes',
         changes: dangerousChanges,
-      }),
+      })
     );
   }
 
@@ -180,25 +165,15 @@ function createAttachments(changes: Change[]) {
         color: '#23B99A',
         title: 'Safe changes',
         changes: safeChanges,
-      }),
+      })
     );
   }
 
   return attachments;
 }
 
-function renderAttachments({
-  changes,
-  title,
-  color,
-}: {
-  color: string;
-  title: string;
-  changes: Change[];
-}): Attachment {
-  const text = changes
-    .map((change) => slackCoderize(change.message))
-    .join('\n');
+function renderAttachments({ changes, title, color }: { color: string; title: string; changes: Change[] }): Attachment {
+  const text = changes.map(change => slackCoderize(change.message)).join('\n');
 
   return {
     mrkdwn_in: ['text', 'fallback'],
@@ -210,15 +185,9 @@ function renderAttachments({
 }
 
 function createDiscordEmbeds(changes: Change[]): DiscordEmbed[] {
-  const breakingChanges = changes.filter(
-    filterChangesByLevel(CriticalityLevel.Breaking),
-  );
-  const dangerousChanges = changes.filter(
-    filterChangesByLevel(CriticalityLevel.Dangerous),
-  );
-  const safeChanges = changes.filter(
-    filterChangesByLevel(CriticalityLevel.NonBreaking),
-  );
+  const breakingChanges = changes.filter(filterChangesByLevel(CriticalityLevel.Breaking));
+  const dangerousChanges = changes.filter(filterChangesByLevel(CriticalityLevel.Dangerous));
+  const safeChanges = changes.filter(filterChangesByLevel(CriticalityLevel.NonBreaking));
 
   const embeds: DiscordEmbed[] = [];
 
@@ -228,7 +197,7 @@ function createDiscordEmbeds(changes: Change[]): DiscordEmbed[] {
         color: 15158331, // '#E74C3B',
         title: 'Breaking changes',
         changes: breakingChanges,
-      }),
+      })
     );
   }
 
@@ -238,7 +207,7 @@ function createDiscordEmbeds(changes: Change[]): DiscordEmbed[] {
         color: 15778840, // '#F0C418',
         title: 'Dangerous changes',
         changes: dangerousChanges,
-      }),
+      })
     );
   }
 
@@ -248,7 +217,7 @@ function createDiscordEmbeds(changes: Change[]): DiscordEmbed[] {
         color: 2341274, // '#23B99A',
         title: 'Safe changes',
         changes: safeChanges,
-      }),
+      })
     );
   }
 
@@ -270,9 +239,7 @@ function renderDiscordEmbed({
   title: string;
   changes: Change[];
 }): DiscordEmbed {
-  const description = changes
-    .map((change) => discordCoderize(change.message))
-    .join('\n');
+  const description = changes.map(change => discordCoderize(change.message)).join('\n');
 
   return {
     color,

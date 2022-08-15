@@ -45,9 +45,7 @@ describe('interface', () => {
 
       expect(change.criticality.level).toEqual(CriticalityLevel.Breaking);
       expect(change.type).toEqual('FIELD_REMOVED');
-      expect(change.message).toEqual(
-        "Field 'c' was removed from interface 'Foo'",
-      );
+      expect(change.message).toEqual("Field 'c' was removed from interface 'Foo'");
     });
 
     test('order changed', async () => {
@@ -93,21 +91,15 @@ describe('interface', () => {
       // Whole new type
       expect(change.a.criticality.level).toEqual(CriticalityLevel.Breaking);
       expect(change.a.type).toEqual('FIELD_TYPE_CHANGED');
-      expect(change.a.message).toEqual(
-        "Field 'Foo.a' changed type from 'String!' to 'Int!'",
-      );
+      expect(change.a.message).toEqual("Field 'Foo.a' changed type from 'String!' to 'Int!'");
       // Nullable to non-nullable
       expect(change.b.criticality.level).toEqual(CriticalityLevel.NonBreaking);
       expect(change.b.type).toEqual('FIELD_TYPE_CHANGED');
-      expect(change.b.message).toEqual(
-        "Field 'Foo.b' changed type from 'String' to 'String!'",
-      );
+      expect(change.b.message).toEqual("Field 'Foo.b' changed type from 'String' to 'String!'");
       // Non-nullable to nullable
       expect(change.c.criticality.level).toEqual(CriticalityLevel.Breaking);
       expect(change.c.type).toEqual('FIELD_TYPE_CHANGED');
-      expect(change.c.message).toEqual(
-        "Field 'Foo.c' changed type from 'String!' to 'String'",
-      );
+      expect(change.c.message).toEqual("Field 'Foo.c' changed type from 'String!' to 'String'");
     });
 
     test('description changed / added / removed', async () => {
@@ -148,15 +140,11 @@ describe('interface', () => {
       // Changed
       expect(change.a.criticality.level).toEqual(CriticalityLevel.NonBreaking);
       expect(change.a.type).toEqual('FIELD_DESCRIPTION_CHANGED');
-      expect(change.a.message).toEqual(
-        "Field 'Foo.a' description changed from 'OLD' to 'NEW'",
-      );
+      expect(change.a.message).toEqual("Field 'Foo.a' description changed from 'OLD' to 'NEW'");
       // Removed
       expect(change.b.criticality.level).toEqual(CriticalityLevel.NonBreaking);
       expect(change.b.type).toEqual('FIELD_DESCRIPTION_REMOVED');
-      expect(change.b.message).toEqual(
-        "Description was removed from field 'Foo.b'",
-      );
+      expect(change.b.message).toEqual("Description was removed from field 'Foo.b'");
       // Added
       expect(change.c.criticality.level).toEqual(CriticalityLevel.NonBreaking);
       expect(change.c.type).toEqual('FIELD_DESCRIPTION_ADDED');
@@ -189,21 +177,15 @@ describe('interface', () => {
       // Changed
       expect(change.a.criticality.level).toEqual(CriticalityLevel.NonBreaking);
       expect(change.a.type).toEqual('FIELD_DEPRECATION_REASON_CHANGED');
-      expect(change.a.message).toEqual(
-        "Deprecation reason on field 'Foo.a' has changed from 'OLD' to 'NEW'",
-      );
+      expect(change.a.message).toEqual("Deprecation reason on field 'Foo.a' has changed from 'OLD' to 'NEW'");
       // Removed
       expect(change.b.criticality.level).toEqual(CriticalityLevel.NonBreaking);
       expect(change.b.type).toEqual('FIELD_DEPRECATION_REASON_REMOVED');
-      expect(change.b.message).toEqual(
-        "Deprecation reason was removed from field 'Foo.b'",
-      );
+      expect(change.b.message).toEqual("Deprecation reason was removed from field 'Foo.b'");
       // Added
       expect(change.c.criticality.level).toEqual(CriticalityLevel.NonBreaking);
       expect(change.c.type).toEqual('FIELD_DEPRECATION_REASON_ADDED');
-      expect(change.c.message).toEqual(
-        "Field 'Foo.c' has deprecation reason 'CCC'",
-      );
+      expect(change.c.message).toEqual("Field 'Foo.c' has deprecation reason 'CCC'");
     });
 
     test('deprecation added / removed', async () => {

@@ -1,10 +1,5 @@
 import { defineCommand } from '@graphql-cli/common';
-import {
-  GlobalArgs,
-  parseGlobalArgs,
-  createInspectorExtension,
-  loaders,
-} from '@graphql-inspector/graphql-cli-common';
+import { GlobalArgs, parseGlobalArgs, createInspectorExtension, loaders } from '@graphql-inspector/graphql-cli-common';
 import { handler } from '@graphql-inspector/similar-command';
 
 export default defineCommand<
@@ -15,7 +10,7 @@ export default defineCommand<
     threshold?: number;
     write?: string;
   } & GlobalArgs
->((api) => {
+>(api => {
   return {
     command: 'similar [project]',
     describe: 'Find similar types in a schema',

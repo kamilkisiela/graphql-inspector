@@ -1,9 +1,4 @@
-import {
-  GraphQLArgument,
-  GraphQLObjectType,
-  GraphQLField,
-  GraphQLInterfaceType,
-} from 'graphql';
+import { GraphQLArgument, GraphQLObjectType, GraphQLField, GraphQLInterfaceType } from 'graphql';
 
 import { Change, CriticalityLevel, ChangeType } from './change';
 import { safeChangeForInputValue } from '../../utils/graphql';
@@ -13,7 +8,7 @@ export function fieldArgumentDescriptionChanged(
   type: GraphQLObjectType | GraphQLInterfaceType,
   field: GraphQLField<any, any, any>,
   oldArg: GraphQLArgument,
-  newArg: GraphQLArgument,
+  newArg: GraphQLArgument
 ): Change {
   return {
     criticality: {
@@ -29,7 +24,7 @@ export function fieldArgumentDefaultChanged(
   type: GraphQLObjectType | GraphQLInterfaceType,
   field: GraphQLField<any, any, any>,
   oldArg: GraphQLArgument,
-  newArg: GraphQLArgument,
+  newArg: GraphQLArgument
 ): Change {
   return {
     criticality: {
@@ -40,16 +35,12 @@ export function fieldArgumentDefaultChanged(
     type: ChangeType.FieldArgumentDefaultChanged,
     message:
       typeof oldArg.defaultValue === 'undefined'
-        ? `Default value '${safeString(
-            newArg.defaultValue,
-          )}' was added to argument '${newArg.name}' on field '${type.name}.${
-            field.name
-          }'`
-        : `Default value for argument '${newArg.name}' on field '${type.name}.${
-            field.name
-          }' changed from '${safeString(oldArg.defaultValue)}' to '${safeString(
-            newArg.defaultValue,
-          )}'`,
+        ? `Default value '${safeString(newArg.defaultValue)}' was added to argument '${newArg.name}' on field '${
+            type.name
+          }.${field.name}'`
+        : `Default value for argument '${newArg.name}' on field '${type.name}.${field.name}' changed from '${safeString(
+            oldArg.defaultValue
+          )}' to '${safeString(newArg.defaultValue)}'`,
     path: [type.name, field.name, oldArg.name].join('.'),
   };
 }
@@ -58,7 +49,7 @@ export function fieldArgumentTypeChanged(
   type: GraphQLObjectType | GraphQLInterfaceType,
   field: GraphQLField<any, any, any>,
   oldArg: GraphQLArgument,
-  newArg: GraphQLArgument,
+  newArg: GraphQLArgument
 ): Change {
   return {
     criticality: safeChangeForInputValue(oldArg.type, newArg.type)

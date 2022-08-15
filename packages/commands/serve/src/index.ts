@@ -1,9 +1,4 @@
-import {
-  createCommand,
-  GlobalArgs,
-  parseGlobalArgs,
-  CommandFactory,
-} from '@graphql-inspector/commands';
+import { createCommand, GlobalArgs, parseGlobalArgs, CommandFactory } from '@graphql-inspector/commands';
 import { Logger } from '@graphql-inspector/logger';
 import { createServer } from '@graphql-yoga/node';
 import open from 'open';
@@ -17,7 +12,7 @@ export default createCommand<
     schema: string;
     port: number;
   } & GlobalArgs
->((api) => {
+>(api => {
   const { loaders } = api;
 
   return {
@@ -53,7 +48,7 @@ export default createCommand<
           method,
         },
         apolloFederation,
-        aws,
+        aws
       );
 
       const port = args.port;

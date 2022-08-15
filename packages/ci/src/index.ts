@@ -55,9 +55,7 @@ async function main() {
         Logger.error(`Command '${commandName}' not found`);
 
         if (availableCommands.includes(commandName)) {
-          Logger.log(
-            `  Try to install @graphql-inspector/${commandName}-command`,
-          );
+          Logger.log(`  Try to install @graphql-inspector/${commandName}-command`);
         }
       } else if (msg.includes('Not enough')) {
         Logger.error(msg);

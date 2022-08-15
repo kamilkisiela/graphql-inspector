@@ -1,0 +1,38 @@
+import { Callout } from '@theguild/components'
+
+# Introspection
+
+Dumps an introspection file based on a schema.
+
+## Usage
+
+Run the following command:
+
+```sh
+graphql-inspector introspect SCHEMA --write path/to/file
+```
+
+It supports `.graphql`, `.gql` and `.json` extensions.
+
+### Arguments
+
+- [`SCHEMA`](../api/schema) - point to a schema
+
+### Flags
+
+- `-w, --write <s>` - overwrite the output (default: `graphql.schema.json`)
+- `-r, --require <s>` - require a module
+- `-t, --token <s>` - an access token
+- `-h, --header <s>` - set HTTP header (`--header 'Auth: Basic 123'`)
+- `--method` - method on URL schema pointers (default: `POST`)
+- `--federation` - Support Apollo Federation directives (default: `false`)
+- `--aws` - Support AWS Appsync directives and scalar types (default: `false`)
+
+### Output
+
+Writes a file with introspection result.
+
+<Callout>
+  We recommend to use `introspect` as part of a git hook. Having an always up-to-date schema file might improve your
+  workflow.
+</Callout>

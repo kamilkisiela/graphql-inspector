@@ -1,23 +1,15 @@
-import {
-  GraphQLInputObjectType,
-  GraphQLInputField,
-  isNonNullType,
-} from 'graphql';
+import { GraphQLInputObjectType, GraphQLInputField, isNonNullType } from 'graphql';
 
 import { Change, CriticalityLevel, ChangeType } from './change';
 import { isDeprecated } from '../../utils/isDeprecated';
 import { safeChangeForInputValue } from '../../utils/graphql';
 import { safeString } from '../../utils/string';
 
-export function inputFieldRemoved(
-  input: GraphQLInputObjectType,
-  field: GraphQLInputField,
-): Change {
+export function inputFieldRemoved(input: GraphQLInputObjectType, field: GraphQLInputField): Change {
   return {
     criticality: {
       level: CriticalityLevel.Breaking,
-      reason:
-        'Removing an input field will cause existing queries that use this input field to error.',
+      reason: 'Removing an input field will cause existing queries that use this input field to error.',
     },
     type: ChangeType.InputFieldRemoved,
     message: `Input field '${field.name}' ${
@@ -27,10 +19,7 @@ export function inputFieldRemoved(
   };
 }
 
-export function inputFieldAdded(
-  input: GraphQLInputObjectType,
-  field: GraphQLInputField,
-): Change {
+export function inputFieldAdded(input: GraphQLInputObjectType, field: GraphQLInputField): Change {
   return {
     criticality: isNonNullType(field.type)
       ? {
@@ -47,10 +36,7 @@ export function inputFieldAdded(
   };
 }
 
-export function inputFieldDescriptionAdded(
-  type: GraphQLInputObjectType,
-  field: GraphQLInputField,
-): Change {
+export function inputFieldDescriptionAdded(type: GraphQLInputObjectType, field: GraphQLInputField): Change {
   return {
     criticality: {
       level: CriticalityLevel.NonBreaking,
@@ -61,10 +47,7 @@ export function inputFieldDescriptionAdded(
   };
 }
 
-export function inputFieldDescriptionRemoved(
-  type: GraphQLInputObjectType,
-  field: GraphQLInputField,
-): Change {
+export function inputFieldDescriptionRemoved(type: GraphQLInputObjectType, field: GraphQLInputField): Change {
   return {
     criticality: {
       level: CriticalityLevel.NonBreaking,
@@ -78,7 +61,7 @@ export function inputFieldDescriptionRemoved(
 export function inputFieldDescriptionChanged(
   input: GraphQLInputObjectType,
   oldField: GraphQLInputField,
-  newField: GraphQLInputField,
+  newField: GraphQLInputField
 ): Change {
   return {
     criticality: {
@@ -93,7 +76,7 @@ export function inputFieldDescriptionChanged(
 export function inputFieldDefaultValueChanged(
   input: GraphQLInputObjectType,
   oldField: GraphQLInputField,
-  newField: GraphQLInputField,
+  newField: GraphQLInputField
 ): Change {
   return {
     criticality: {
@@ -102,7 +85,9 @@ export function inputFieldDefaultValueChanged(
         'Changing the default value for an argument may change the runtime behavior of a field if it was never provided.',
     },
     type: ChangeType.InputFieldDefaultValueChanged,
-    message: `Input field '${input.name}.${oldField.name}' default value changed from '${safeString(oldField.defaultValue)}' to '${safeString(newField.defaultValue)}'`,
+    message: `Input field '${input.name}.${oldField.name}' default value changed from '${safeString(
+      oldField.defaultValue
+    )}' to '${safeString(newField.defaultValue)}'`,
     path: [input.name, oldField.name].join('.'),
   };
 }
@@ -110,19 +95,17 @@ export function inputFieldDefaultValueChanged(
 export function inputFieldTypeChanged(
   input: GraphQLInputObjectType,
   oldField: GraphQLInputField,
-  newField: GraphQLInputField,
+  newField: GraphQLInputField
 ): Change {
   return {
     criticality: safeChangeForInputValue(oldField.type, newField.type)
       ? {
           level: CriticalityLevel.NonBreaking,
-          reason:
-            'Changing an input field from non-null to null is considered non-breaking.',
+          reason: 'Changing an input field from non-null to null is considered non-breaking.',
         }
       : {
           level: CriticalityLevel.Breaking,
-          reason:
-            'Changing the type of an input field can cause existing queries that use this field to error.',
+          reason: 'Changing the type of an input field can cause existing queries that use this field to error.',
         },
     type: ChangeType.InputFieldTypeChanged,
     message: `Input field '${input.name}.${

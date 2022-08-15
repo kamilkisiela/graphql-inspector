@@ -75,9 +75,7 @@ describe('validate', () => {
     spyProcessExit = jest.spyOn(process, 'exit');
     spyProcessExit.mockImplementation();
 
-    spyProcessCwd = jest
-      .spyOn(process, 'cwd')
-      .mockImplementation(() => __dirname);
+    spyProcessCwd = jest.spyOn(process, 'cwd').mockImplementation(() => __dirname);
 
     spyReporter = jest.fn();
     mockLogger(spyReporter as any);
@@ -88,43 +86,29 @@ describe('validate', () => {
     spyProcessCwd.mockRestore();
     spyReporter.mockRestore();
     unmockLogger();
-    yargs.reset();
+    yargs();
   });
 
   test('should load graphql files', async () => {
     await mockCommand(validate, 'validate "*.graphql" schema.graphql');
 
-    expect(spyReporter).toHaveBeenCalledNormalized(
-      'Detected 2 invalid documents:',
-    );
+    expect(spyReporter).toHaveBeenCalledNormalized('Detected 2 invalid documents:');
     expect(spyReporter).toHaveBeenCalledNormalized('document.graphql:');
-    expect(spyReporter).toHaveBeenCalledNormalized(
-      'Cannot query field createdAtSomePoint on type Post',
-    );
-    expect(spyReporter).not.toHaveBeenCalledNormalized(
-      'All documents are valid',
-    );
+    expect(spyReporter).toHaveBeenCalledNormalized('Cannot query field createdAtSomePoint on type Post');
+    expect(spyReporter).not.toHaveBeenCalledNormalized('All documents are valid');
   });
 
   test('should allow to filter results by file paths', async () => {
-    await mockCommand(
-      validate,
-      'validate "*.graphql" schema.graphql --filter document2.graphql',
-    );
+    await mockCommand(validate, 'validate "*.graphql" schema.graphql --filter document2.graphql');
 
     expect(spyReporter).not.toHaveBeenCalledNormalized('document.graphql:');
     expect(spyReporter).toHaveBeenCalledNormalized('document2.graphql:');
   });
 
   test('should allow to show relative paths', async () => {
-    await mockCommand(
-      validate,
-      'validate "*.graphql" schema.graphql --relativePaths',
-    );
+    await mockCommand(validate, 'validate "*.graphql" schema.graphql --relativePaths');
 
-    expect(spyReporter).toHaveBeenCalledNormalized(
-      `in ${relative(process.cwd(), 'document.graphql')}:`,
-    );
+    expect(spyReporter).toHaveBeenCalledNormalized(`in ${relative(process.cwd(), 'document.graphql')}:`);
   });
 
   test('should allow for silent mode', async () => {

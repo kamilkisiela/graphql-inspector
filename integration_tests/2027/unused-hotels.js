@@ -6,8 +6,8 @@ const BREAKING = {
 /**
  * @type import('@graphql-inspector/core').UsageHandler
  */
-const checkUsage = (changes) => {
-  return changes.map((change) => {
+const checkUsage = changes => {
+  return changes.map(change => {
     if (change.type === 'Hotel') {
       return BREAKING.NOT;
     }

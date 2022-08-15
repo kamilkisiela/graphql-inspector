@@ -59,7 +59,7 @@ export async function annotate({
 
   try {
     await Promise.all(
-      batches.map(async (chunk) => {
+      batches.map(async chunk => {
         await context.octokit.checks.update({
           owner,
           repo,
@@ -71,7 +71,7 @@ export async function annotate({
           },
         });
         logger.info(`annotations sent (${chunk.length})`);
-      }),
+      })
     );
   } catch (error) {
     logger.error(`failed to send annotations`, error);

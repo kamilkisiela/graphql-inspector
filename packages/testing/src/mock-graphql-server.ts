@@ -15,11 +15,9 @@ export function mockGraphQLServer({
   const scope = nock(host);
   if (method === 'GET') {
     scope
-      .get((path) => path.startsWith(path))
+      .get(path => path.startsWith(path))
       .reply(async (unformattedQuery, _: any) => {
-        const query = new URL(host + unformattedQuery).searchParams.get(
-          'query',
-        );
+        const query = new URL(host + unformattedQuery).searchParams.get('query');
         try {
           const result = await execute({
             schema,
