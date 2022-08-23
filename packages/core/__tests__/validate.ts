@@ -472,4 +472,56 @@ describe('validate', () => {
       field: 'Post.title',
     });
   });
+
+  test('deprecated notice for enum values', () => {
+    const schema = buildSchema(/* GraphQL */ `
+      type Post {
+        id: ID
+        category: Category
+        title: String
+        author: String
+        createdAt: Int
+      }
+
+      input PostQuery {
+        title: String
+        category: Category
+      }
+
+      enum Category {
+        GENERAL
+        OFF_TOPIC @deprecated(reason: "use OTHER")
+        OTHER
+      }
+
+      type Query {
+        findPost(searchQuery: PostQuery): Post
+      }
+
+      schema {
+        query: Query
+      }
+    `);
+
+    const doc = parse(/* GraphQL */ `
+      query getPost {
+        findPost(searchQuery: { title: "hello world", category: OFF_TOPIC }) {
+          category
+        }
+      }
+    `);
+
+    const results = validate(schema, [new Source(print(doc))]);
+
+    expect(results.length).toEqual(1);
+    console.log(results[0].errors);
+    expect(results[0].errors.length).toEqual(0);
+    expect(results[0].deprecated.length).toEqual(1);
+
+    const deprecated = results[0].deprecated[0];
+    expect(deprecated.message).toMatch(`The enum value 'Category.OFF_TOPIC' is deprecated. use OTHER`);
+    expect(deprecated.extensions).toMatchObject({
+      enumValue: 'Category.OFF_TOPIC',
+    });
+  });
 });
