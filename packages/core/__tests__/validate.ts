@@ -528,7 +528,7 @@ describe('validate', () => {
     expect(deprecated.extensions).toMatchObject({
       type: 'enumValueDeprecation',
       namedType: 'Category',
-      enumVal: 'OFF_TOPIC',
+      enumValue: 'OFF_TOPIC',
     });
   });
 });

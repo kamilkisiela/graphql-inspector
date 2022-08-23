@@ -128,7 +128,7 @@ export interface FieldDeprecationExtensions extends GraphQLErrorExtensions {
 export interface EnumValueDeprecationExtensions extends GraphQLErrorExtensions {
   type: 'enumValueDeprecation';
   namedType: string;
-  enumVal: string;
+  enumValue: string;
 }
 
 export function findDeprecatedUsages(schema: GraphQLSchema, ast: DocumentNode): Array<GraphQLError> {
@@ -191,19 +191,19 @@ export function findDeprecatedUsages(schema: GraphQLSchema, ast: DocumentNode): 
         }
       },
       EnumValue(node) {
-        const enumVal = typeInfo.getEnumValue();
-        if (enumVal && isDeprecated(enumVal)) {
+        const enumValue = typeInfo.getEnumValue();
+        if (enumValue && isDeprecated(enumValue)) {
           const namedType = getNamedType(typeInfo.getInputType()!);
           if (namedType) {
-            const reason = enumVal.deprecationReason;
+            const reason = enumValue.deprecationReason;
             const extensions: DeprecationExtensions = {
               type: 'enumValueDeprecation',
               namedType: namedType.name,
-              enumVal: enumVal.name,
+              enumValue: enumValue.name,
             };
             errors.push(
               new GraphQLError(
-                `The enum value '${namedType.name}.${enumVal.name}' is deprecated.${reason ? ' ' + reason : ''}`,
+                `The enum value '${namedType.name}.${enumValue.name}' is deprecated.${reason ? ' ' + reason : ''}`,
                 [node],
                 undefined,
                 undefined,
