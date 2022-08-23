@@ -3,5 +3,11 @@ export { validate, InvalidDocument } from './validate';
 export { similar, SimilarMap } from './similar';
 export * from './coverage';
 export { Change, CriticalityLevel, Criticality, ChangeType } from './diff/changes/change';
-export { getTypePrefix } from './utils/graphql';
+export {
+  getTypePrefix,
+  DeprecationExtensions,
+  ArgumentDeprecationExtensions,
+  EnumValueDeprecationExtensions,
+  FieldDeprecationExtensions,
+} from './utils/graphql';
 export { Target, Rating, BestMatch } from './utils/string';
