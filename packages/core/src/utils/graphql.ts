@@ -142,7 +142,7 @@ export function findDeprecatedUsages(schema: GraphQLSchema, ast: DocumentNode): 
           if (reason) {
             const fieldDef = typeInfo.getFieldDef();
             if (fieldDef) {
-              const extensions: ArgumentDeprecationExtensions = { argument: argument?.name, field: fieldDef.name };
+              const extensions: ArgumentDeprecationExtensions = { argument: argument.name, field: fieldDef.name };
               errors.push(
                 new GraphQLError(
                   `The argument '${argument.name}' of '${fieldDef.name}' is deprecated. ${reason}`,
