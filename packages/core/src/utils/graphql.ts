@@ -116,7 +116,7 @@ export type DeprecationExtensions =
 export interface ArgumentDeprecationExtensions extends GraphQLErrorExtensions {
   type: 'argumentDeprecation';
   argument: string;
-  field: string;
+  fieldDef: string;
 }
 
 export interface FieldDeprecationExtensions extends GraphQLErrorExtensions {
@@ -148,7 +148,7 @@ export function findDeprecatedUsages(schema: GraphQLSchema, ast: DocumentNode): 
               const extensions: DeprecationExtensions = {
                 type: 'argumentDeprecation',
                 argument: argument.name,
-                field: fieldDef.name,
+                fieldDef: fieldDef.name,
               };
               errors.push(
                 new GraphQLError(

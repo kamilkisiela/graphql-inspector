@@ -422,7 +422,7 @@ describe('validate', () => {
     expect(deprecated.extensions).toMatchObject({
       type: 'argumentDeprecation',
       argument: 'query',
-      field: 'findPost',
+      fieldDef: 'findPost',
     });
   });
 
