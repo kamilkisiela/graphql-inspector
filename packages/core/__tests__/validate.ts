@@ -39,7 +39,8 @@ describe('validate', () => {
     const deprecated = results[0].deprecated[0];
     expect(deprecated.message).toMatch(`The field 'Post.title' is deprecated. BECAUSE`);
     expect(deprecated.extensions).toMatchObject({
-      field: 'Post.title',
+      parentType: 'Post',
+      fieldDef: 'title',
     });
   });
 
@@ -469,7 +470,8 @@ describe('validate', () => {
     const deprecated = results[0].deprecated[0];
     expect(deprecated.message).toMatch(`The field 'Post.title' is deprecated. BECAUSE`);
     expect(deprecated.extensions).toMatchObject({
-      field: 'Post.title',
+      parentType: 'Post',
+      fieldDef: 'title',
     });
   });
 
@@ -521,7 +523,8 @@ describe('validate', () => {
     const deprecated = results[0].deprecated[0];
     expect(deprecated.message).toMatch(`The enum value 'Category.OFF_TOPIC' is deprecated. use OTHER`);
     expect(deprecated.extensions).toMatchObject({
-      enumValue: 'Category.OFF_TOPIC',
+      type: 'Category',
+      enumVal: 'OFF_TOPIC',
     });
   });
 });
