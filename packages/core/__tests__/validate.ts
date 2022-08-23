@@ -38,6 +38,9 @@ describe('validate', () => {
 
     const deprecated = results[0].deprecated[0];
     expect(deprecated.message).toMatch(`The field 'Post.title' is deprecated. BECAUSE`);
+    expect(deprecated.extensions).toMatchObject({
+      field: 'Post.title',
+    });
   });
 
   test('multiple fragments across multiple files with nested fragments (#36)', async () => {
@@ -414,6 +417,10 @@ describe('validate', () => {
     expect(deprecated.message).toMatch(
       `The argument 'query' of 'findPost' is deprecated. Please use 'searchQuery' instead.`
     );
+    expect(deprecated.extensions).toMatchObject({
+      argument: 'query',
+      field: 'findPost',
+    });
   });
 
   test('deprecated notice for field on fragment in different file', () => {
@@ -461,5 +468,8 @@ describe('validate', () => {
 
     const deprecated = results[0].deprecated[0];
     expect(deprecated.message).toMatch(`The field 'Post.title' is deprecated. BECAUSE`);
+    expect(deprecated.extensions).toMatchObject({
+      field: 'Post.title',
+    });
   });
 });

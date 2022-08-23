@@ -122,9 +122,15 @@ export function findDeprecatedUsages(schema: GraphQLSchema, ast: DocumentNode): 
             const fieldDef = typeInfo.getFieldDef();
             if (fieldDef) {
               errors.push(
-                new GraphQLError(`The argument '${argument?.name}' of '${fieldDef.name}' is deprecated. ${reason}`, [
-                  node,
-                ])
+                new GraphQLError(
+                  `The argument '${argument?.name}' of '${fieldDef.name}' is deprecated. ${reason}`,
+                  [node],
+                  undefined,
+                  undefined,
+                  undefined,
+                  undefined,
+                  { argument: argument?.name, field: fieldDef.name }
+                )
               );
             }
           }
@@ -136,10 +142,18 @@ export function findDeprecatedUsages(schema: GraphQLSchema, ast: DocumentNode): 
           const parentType = typeInfo.getParentType();
           if (parentType) {
             const reason = fieldDef.deprecationReason;
+            const field = `${parentType.name}.${fieldDef.name}`;
             errors.push(
               new GraphQLError(
-                `The field '${parentType.name}.${fieldDef.name}' is deprecated.${reason ? ' ' + reason : ''}`,
-                [node]
+                `The field '${field}' is deprecated.${reason ? ' ' + reason : ''}`,
+                [node],
+                undefined,
+                undefined,
+                undefined,
+                undefined,
+                {
+                  field,
+                }
               )
             );
           }
@@ -151,10 +165,18 @@ export function findDeprecatedUsages(schema: GraphQLSchema, ast: DocumentNode): 
           const type = getNamedType(typeInfo.getInputType()!);
           if (type) {
             const reason = enumVal.deprecationReason;
+            const enumValue = `${type.name}.${enumVal.name}`;
             errors.push(
               new GraphQLError(
-                `The enum value '${type.name}.${enumVal.name}' is deprecated.${reason ? ' ' + reason : ''}`,
-                [node]
+                `The enum value '${enumValue}' is deprecated.${reason ? ' ' + reason : ''}`,
+                [node],
+                undefined,
+                undefined,
+                undefined,
+                undefined,
+                {
+                  enumValue,
+                }
               )
             );
           }
