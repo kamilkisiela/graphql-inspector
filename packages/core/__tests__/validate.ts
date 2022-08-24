@@ -519,7 +519,6 @@ describe('validate', () => {
     const results = validate(schema, [new Source(print(doc))]);
 
     expect(results.length).toEqual(1);
-    console.log(results[0].errors);
     expect(results[0].errors.length).toEqual(0);
     expect(results[0].deprecated.length).toEqual(1);
 
