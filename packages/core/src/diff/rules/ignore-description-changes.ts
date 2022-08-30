@@ -12,6 +12,8 @@ const descriptionChangeTypes: ChangeType[] = [
   ChangeType.InputFieldDescriptionAdded,
   ChangeType.InputFieldDescriptionRemoved,
   ChangeType.InputFieldDescriptionChanged,
+  ChangeType.TypeDescriptionAdded,
+  ChangeType.TypeDescriptionRemoved,
   ChangeType.TypeDescriptionChanged,
 ];
 
