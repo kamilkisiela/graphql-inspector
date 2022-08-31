@@ -13,6 +13,8 @@ export function handler({
   documents,
   strictFragments,
   maxDepth,
+  maxDirectiveCount,
+  maxAliasCount,
   apollo,
   keepClientFields,
   failOnDeprecated,
@@ -29,6 +31,8 @@ export function handler({
   apollo: boolean;
   keepClientFields: boolean;
   maxDepth?: number;
+  maxDirectiveCount?: number;
+  maxAliasCount?: number;
   filter?: string[];
   onlyErrors?: boolean;
   relativePaths?: boolean;
@@ -41,6 +45,8 @@ export function handler({
     {
       strictFragments,
       maxDepth,
+      maxAliasCount,
+      maxDirectiveCount,
       apollo,
       keepClientFields,
     }
@@ -174,6 +180,14 @@ export default createCommand<
           },
           maxDepth: {
             describe: 'Fail on deep operations',
+            type: 'number',
+          },
+          maxAliasCount: {
+            describe: 'Fail on operations with too many aliases',
+            type: 'number',
+          },
+          maxDirectiveCount: {
+            describe: 'Fail on operations with too many directives',
             type: 'number',
           },
           apollo: {

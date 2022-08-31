@@ -34,6 +34,10 @@ graphql-inspector validate './documents/*.graphql' http://localhost:3000/graphql
 - `--federation` - Support Apollo Federation directives (default: `false`)
 - `--aws` - Support AWS Appsync directives and scalar types (default: `false`)
 - `--maxDepth <n>` - Fail when operation depth exceeds maximum depth (default: `false`)
+- `--maxAliasCount <n>` - Fail when alias count (including the referenced fragments) exceeds maximum alias count
+  (default: `false`)
+- `--maxDirectiveCount <n>` - Fail when directive count in a operation (including the referenced fragments) exceeds
+  maximum directive count (default: `false`)
 - `--filter <s>` - show warnings and errors only for a file (or a list of files)
 - `--silent` - silent mode
 - `--output <s>` - writes errors to a file
