@@ -76,6 +76,7 @@
     "@graphql-inspector/similar-command": "0.0.0-PLACEHOLDER",
     "@graphql-inspector/url-loader": "0.0.0-PLACEHOLDER",
     "@graphql-inspector/validate-command": "0.0.0-PLACEHOLDER",
+    "@graphql-inspector/audit-command": "0.0.0-PLACEHOLDER",
     "tslib": "^2.0.0",
     "yargs": "17.2.1"
   }

@@ -5,3 +5,6 @@ export * from './coverage';
 export { Change, CriticalityLevel, Criticality, ChangeType } from './diff/changes/change';
 export { getTypePrefix } from './utils/graphql';
 export { Target, Rating, BestMatch } from './utils/string';
+export { countAliases } from './validate/alias-count';
+export { countDirectives } from './validate/directive-count';
+export { countDepth } from './validate/query-depth';

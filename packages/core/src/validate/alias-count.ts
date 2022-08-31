@@ -39,7 +39,7 @@ export function validateAliasCount({
   }
 }
 
-function countAliases(
+export function countAliases(
   node: FieldNode | FragmentDefinitionNode | InlineFragmentNode | OperationDefinitionNode | FragmentSpreadNode,
   getFragmentByName: (fragmentName: string) => FragmentDefinitionNode | undefined
 ) {

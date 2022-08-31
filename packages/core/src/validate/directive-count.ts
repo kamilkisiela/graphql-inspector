@@ -39,7 +39,7 @@ export function validateDirectiveCount({
   }
 }
 
-function countDirectives(
+export function countDirectives(
   node: FieldNode | FragmentDefinitionNode | InlineFragmentNode | OperationDefinitionNode | FragmentSpreadNode,
   getFragmentByName: (fragmentName: string) => FragmentDefinitionNode | undefined
 ) {

@@ -1,5 +1,16 @@
 import { DepGraph } from 'dependency-graph';
-import { DocumentNode, GraphQLError, ASTNode, Kind, FragmentDefinitionNode, Source } from 'graphql';
+import {
+  DocumentNode,
+  GraphQLError,
+  ASTNode,
+  Kind,
+  FragmentDefinitionNode,
+  Source,
+  FieldNode,
+  InlineFragmentNode,
+  OperationDefinitionNode,
+  FragmentSpreadNode,
+} from 'graphql';
 
 export function validateQueryDepth({
   source,
@@ -121,4 +132,25 @@ export function calculateDepth({
       throw new Error(`Couldn't handle ${node.kind}`);
     }
   }
+}
+
+export function countDepth(
+  node: FieldNode | FragmentDefinitionNode | InlineFragmentNode | OperationDefinitionNode | FragmentSpreadNode,
+  parentDepth: number,
+  getFragmentReference: (name: string) => FragmentDefinitionNode | undefined
+) {
+  let depth = parentDepth;
+
+  if ('selectionSet' in node && node.selectionSet) {
+    for (let child of node.selectionSet.selections) {
+      depth = Math.max(depth, countDepth(child, parentDepth + 1, getFragmentReference));
+    }
+  }
+  if (node.kind == Kind.FRAGMENT_SPREAD) {
+    const fragment = getFragmentReference(node.name.value);
+    if (fragment) {
+      depth = Math.max(depth, countDepth(fragment, parentDepth + 1, getFragmentReference));
+    }
+  }
+  return depth;
 }
