@@ -118,6 +118,30 @@ Audit your documents for useful metrics such as query depth, directive count and
 
 Not available
 
+```
+$ yarn graphql-inspector audit "packages/**/*.graphql|packages/**/*.ts(x)"
+
+Maximum depth is 16
+Maximum alias amount is 3
+Maximum directive amount is 6
+```
+
+```
+$ yarn graphql-inspector audit "packages/**/*.graphql|packages/**/*.ts(x)" --detail
+
+┌────────────────┬───────┬─────────┬────────────┐
+│ Operation Name │ Depth │ Aliases │ Directives │
+├────────────────┼───────┼─────────┼────────────┤
+│ getFoo         │ 1     │ 2       │ 6          │
+├────────────────┼───────┼─────────┼────────────┤
+│ getBar         │ 16    │ 3       │ 0          │
+└────────────────┴───────┴─────────┴────────────┘
+
+Maximum depth is 16
+Maximum alias amount is 3
+Maximum directive amount is 6
+```
+
 ### Serve faked GraphQL API
 
 Serves a GraphQL server with faked data and GraphQL Playground
