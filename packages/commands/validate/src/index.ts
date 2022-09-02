@@ -141,6 +141,8 @@ export default createCommand<
     apollo: boolean;
     keepClientFields: boolean;
     maxDepth?: number;
+    maxAliasCount?: number;
+    maxDirectiveCount?: number;
     filter?: string[];
     onlyErrors?: boolean;
     relativePaths?: boolean;
@@ -237,7 +239,9 @@ export default createCommand<
       const aws = args.aws || false;
       const apolloFederation = args.federation || false;
       const method = args.method?.toUpperCase() || 'POST';
-      const maxDepth = args.maxDepth || undefined;
+      const maxDepth = args.maxDepth != null ? args.maxDepth : undefined;
+      const maxAliasCount = args.maxAliasCount != null ? args.maxAliasCount : undefined;
+      const maxDirectiveCount = args.maxDirectiveCount != null ? args.maxDirectiveCount: undefined;
       const strictFragments = !args.noStrictFragments;
       const keepClientFields = args.keepClientFields || false;
       const failOnDeprecated = args.deprecated;
@@ -266,6 +270,8 @@ export default createCommand<
         documents,
         apollo,
         maxDepth,
+        maxAliasCount,
+        maxDirectiveCount,
         strictFragments,
         keepClientFields,
         failOnDeprecated,
