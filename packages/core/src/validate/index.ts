@@ -16,6 +16,7 @@ import { validateQueryDepth } from './query-depth';
 import { transformSchemaWithApollo, transformDocumentWithApollo } from '../utils/apollo';
 import { validateAliasCount } from './alias-count';
 import { validateDirectiveCount } from './directive-count';
+import { validateTokenCount } from './token-count';
 
 export interface InvalidDocument {
   source: Source;
@@ -59,6 +60,11 @@ export interface ValidateOptions {
    * @default Infinity
    */
   maxDirectiveCount?: number;
+  /**
+   * Fails when the token count exceeds maximum count for a single operation (including the referenced fragments).
+   * @default Infinity
+   */
+  maxTokenCount?: number;
 }
 
 export function validate(schema: GraphQLSchema, sources: Source[], options?: ValidateOptions): InvalidDocument[] {
@@ -161,6 +167,19 @@ export function validate(schema: GraphQLSchema, sources: Source[], options?: Val
 
         if (directiveError) {
           errors.push(directiveError);
+        }
+      }
+
+      if (config.maxTokenCount) {
+        const tokenCountError = validateTokenCount({
+          source: doc.source,
+          document: transformedDoc,
+          maxTokenCount: config.maxTokenCount,
+          getReferencedFragmentSource: fragmentName => print(graph.getNodeData(fragmentName)),
+        });
+
+        if (tokenCountError) {
+          errors.push(tokenCountError);
         }
       }
 

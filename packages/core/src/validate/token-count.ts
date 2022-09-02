@@ -1,4 +1,4 @@
-import { TokenKind, visit } from 'graphql';
+import { DocumentNode, GraphQLError, TokenKind, visit } from 'graphql';
 import type { ParseOptions, Source } from 'graphql';
 import { Parser } from 'graphql/language/parser';
 
@@ -50,4 +50,21 @@ export function calculateTokenCount(args: {
   });
 
   return tokenCount;
+}
+
+export function validateTokenCount(args: {
+  source: Source;
+  document: DocumentNode;
+  getReferencedFragmentSource: (fragmentName: string) => Source | string | undefined;
+  maxTokenCount: number;
+}): GraphQLError | void {
+  const tokenCount = calculateTokenCount(args);
+  if (tokenCount > args.maxTokenCount) {
+    return new GraphQLError(
+      `Query exceeds maximum token count of ${args.maxTokenCount} (actual: ${tokenCount})`,
+      args.document,
+      args.source,
+      args.document.loc && args.document.loc.start ? [args.document.loc.start] : undefined
+    );
+  }
 }

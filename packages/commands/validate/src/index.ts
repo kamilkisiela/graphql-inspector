@@ -15,6 +15,7 @@ export function handler({
   maxDepth,
   maxDirectiveCount,
   maxAliasCount,
+  maxTokenCount,
   apollo,
   keepClientFields,
   failOnDeprecated,
@@ -33,6 +34,7 @@ export function handler({
   maxDepth?: number;
   maxDirectiveCount?: number;
   maxAliasCount?: number;
+  maxTokenCount?: number;
   filter?: string[];
   onlyErrors?: boolean;
   relativePaths?: boolean;
@@ -47,6 +49,7 @@ export function handler({
       maxDepth,
       maxAliasCount,
       maxDirectiveCount,
+      maxTokenCount,
       apollo,
       keepClientFields,
     }
@@ -143,6 +146,7 @@ export default createCommand<
     maxDepth?: number;
     maxAliasCount?: number;
     maxDirectiveCount?: number;
+    maxTokenCount?: number;
     filter?: string[];
     onlyErrors?: boolean;
     relativePaths?: boolean;
@@ -190,6 +194,10 @@ export default createCommand<
           },
           maxDirectiveCount: {
             describe: 'Fail on operations with too many directives',
+            type: 'number',
+          },
+          maxTokenCount: {
+            describe: 'Fail on operations with too many tokens',
             type: 'number',
           },
           apollo: {
@@ -241,7 +249,8 @@ export default createCommand<
       const method = args.method?.toUpperCase() || 'POST';
       const maxDepth = args.maxDepth != null ? args.maxDepth : undefined;
       const maxAliasCount = args.maxAliasCount != null ? args.maxAliasCount : undefined;
-      const maxDirectiveCount = args.maxDirectiveCount != null ? args.maxDirectiveCount: undefined;
+      const maxDirectiveCount = args.maxDirectiveCount != null ? args.maxDirectiveCount : undefined;
+      const maxTokenCount = args.maxTokenCount != null ? args.maxTokenCount : undefined;
       const strictFragments = !args.noStrictFragments;
       const keepClientFields = args.keepClientFields || false;
       const failOnDeprecated = args.deprecated;
@@ -272,6 +281,7 @@ export default createCommand<
         maxDepth,
         maxAliasCount,
         maxDirectiveCount,
+        maxTokenCount,
         strictFragments,
         keepClientFields,
         failOnDeprecated,
