@@ -1,8 +1,14 @@
 import { createCommand, GlobalArgs } from '@graphql-inspector/commands';
-import { countAliases, countDepth, countDirectives, calculateOperationComplexity } from '@graphql-inspector/core';
+import {
+  countAliases,
+  countDepth,
+  countDirectives,
+  calculateOperationComplexity,
+  calculateTokenCount,
+} from '@graphql-inspector/core';
 import type { CalculateOperationComplexityConfig } from '@graphql-inspector/core';
 import { Source as DocumentSource } from '@graphql-tools/utils';
-import { FragmentDefinitionNode, OperationDefinitionNode } from 'graphql';
+import { FragmentDefinitionNode, OperationDefinitionNode, print } from 'graphql';
 import { Logger, chalk } from '@graphql-inspector/logger';
 import Table from 'cli-table3';
 
@@ -75,15 +81,19 @@ export function handler(args: {
   complexityConfig: CalculateOperationComplexityConfig;
 }) {
   const fragments = new Map<string, FragmentDefinitionNode>();
+  const fragmentStrings = new Map<string, string>();
+
   const operations = new Map<string, OperationDefinitionNode>();
 
   const getFragmentReference = (fragmentName: string) => fragments.get(fragmentName);
+  const getFragmentSource = (fragmentName: string) => fragmentStrings.get(fragmentName);
 
   for (const record of args.documents) {
     if (record.document) {
       for (const definition of record.document.definitions) {
         if (definition.kind === 'FragmentDefinition') {
           fragments.set(definition.name.value, definition);
+          fragmentStrings.set(definition.name.value, print(definition));
         } else if (definition.kind === 'OperationDefinition') {
           if (definition.name) {
             operations.set(definition.name.value, definition);
@@ -96,25 +106,33 @@ export function handler(args: {
   let maxDepth = 0;
   let maxAliases = 0;
   let maxDirectives = 0;
+  let maxTokenCount = 0;
   let maxComplexity = 0;
 
-  const results: Array<[name: string, depth: number, aliases: number, directives: number, complexity: number]> = [];
+  const results: Array<
+    [name: string, depth: number, aliases: number, directives: number, tokenCount: number, complexity: string]
+  > = [];
 
   for (const [name, operation] of operations.entries()) {
     const depth = countDepth(operation, 0, getFragmentReference);
     const aliases = countAliases(operation, getFragmentReference);
     const directives = countDirectives(operation, getFragmentReference);
+    const tokenCount = calculateTokenCount({
+      source: print(operation),
+      getReferencedFragmentSource: getFragmentSource,
+    });
     const complexity = calculateOperationComplexity(operation, args.complexityConfig, getFragmentReference);
-    results.push([name, depth, aliases, directives, complexity]);
+    results.push([name, depth, aliases, directives, tokenCount, complexity.toFixed(2)]);
     maxDepth = Math.max(maxDepth, depth);
     maxAliases = Math.max(maxAliases, aliases);
     maxDirectives = Math.max(maxDirectives, directives);
+    maxTokenCount = Math.max(maxTokenCount, tokenCount);
     maxComplexity = Math.max(maxComplexity, complexity);
   }
 
   if (args.detail) {
     const table = new Table({
-      head: ['Operation Name', 'Depth', 'Aliases', 'Directives', 'Complexity Score'],
+      head: ['Operation Name', 'Depth', 'Aliases', 'Directives', 'Token Count', 'Complexity Score'],
     });
     table.push(...results);
     Logger.log(table.toString());
@@ -123,5 +141,6 @@ export function handler(args: {
   Logger.log(`Maximum depth is ${chalk.bold(maxDepth)}`);
   Logger.log(`Maximum alias amount is ${chalk.bold(maxAliases)}`);
   Logger.log(`Maximum directive amount is ${chalk.bold(maxDirectives)}`);
-  Logger.log(`Maximum complexity score is ${chalk.bold(maxComplexity)}`);
+  Logger.log(`Maximum token count is ${chalk.bold(maxTokenCount)}`);
+  Logger.log(`Maximum complexity score is ${chalk.bold(maxComplexity.toFixed(2))}`);
 }
