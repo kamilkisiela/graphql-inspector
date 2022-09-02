@@ -8,3 +8,4 @@ export { Target, Rating, BestMatch } from './utils/string';
 export { countAliases } from './validate/alias-count';
 export { countDirectives } from './validate/directive-count';
 export { countDepth } from './validate/query-depth';
+export { calculateOperationComplexity, CalculateOperationComplexityConfig } from './validate/complexity';

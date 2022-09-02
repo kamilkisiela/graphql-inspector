@@ -25,6 +25,9 @@ graphql-inspector audit './documents/*.graphql'
 ### Flags
 
 - `-d, --detail` - Print statistics for each single GraphQL operation (default: `false`)
+- `--complexityScalarCost` - The cost of a scalar field for calculating the complexity score (default: `1`)
+- `--complexityObjectCost` - The cost of an object field for calculating the complexity score (default: `2`)
+- `--complexityDepthCostFactor` - The cost factor of a field per depth level for calculating the complexity score (default: `1.5`)
 
 ### Output
 
