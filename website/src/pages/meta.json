@@ -18,23 +18,5 @@
     "type": "page",
     "href": "https://graphql-hive.com",
     "newWindow": true
-  },
-  "contact-us-link": {
-    "title": "Contact Us",
-    "type": "page",
-    "href": "https://the-guild.dev/contact",
-    "newWindow": true
-  },
-  "404": {
-    "type": "page",
-    "theme": {
-      "layout": "full"
-    }
-  },
-  "500": {
-    "type": "page",
-    "theme": {
-      "layout": "full"
-    }
   }
 }
