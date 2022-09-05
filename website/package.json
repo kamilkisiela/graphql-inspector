@@ -13,6 +13,7 @@
     "analyze": "cross-env ANALYZE=true yarn build"
   },
   "dependencies": {
+    "next-videos": "1.5.0",
     "@theguild/components": "3.0.3",
     "guild-docs": "4.1.0",
     "next": "12.2.4",
