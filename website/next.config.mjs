@@ -26,6 +26,36 @@ export default withGuildDocs(
         destination: 'https://github.com/apps/graphql-inspector',
         permanent: true,
       },
+      {
+        source: '/enterprise',
+        destination: 'https://graphql-hive.com',
+        permanent: true,
+      },
+      {
+        source: '/docs/installation',
+        destination: '/docs/introduction/installation',
+        permanent: true,
+      },
+      {
+        source: '/docs',
+        destination: '/docs/introduction',
+        permanent: true,
+      },
+      {
+        source: '/docs/index',
+        destination: '/docs/introduction',
+        permanent: true,
+      },
+      {
+        source: '/products',
+        destination: '/docs/products/ci',
+        permanent: true,
+      },
+      {
+        source: '/docs/recipies/github',
+        destination: '/docs/products/github',
+        permanent: true,
+      },
     ],
   })
 );
