@@ -5,7 +5,7 @@ import yargs, { Argv } from 'yargs';
 async function main() {
   const config = {
     loaders: ['code', 'git', 'github', 'graphql', 'json', 'url'],
-    commands: ['docs', 'serve', 'diff', 'validate', 'coverage', 'introspect', 'similar'],
+    commands: ['docs', 'serve', 'diff', 'validate', 'coverage', 'introspect', 'similar', 'audit'],
   };
   const loaders = useLoaders(config);
   const commands = useCommands({ config, loaders });

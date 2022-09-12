@@ -14,6 +14,9 @@ import { readDocument } from '../ast/document';
 import { findDeprecatedUsages } from '../utils/graphql';
 import { validateQueryDepth } from './query-depth';
 import { transformSchemaWithApollo, transformDocumentWithApollo } from '../utils/apollo';
+import { validateAliasCount } from './alias-count';
+import { validateDirectiveCount } from './directive-count';
+import { validateTokenCount } from './token-count';
 
 export interface InvalidDocument {
   source: Source;
@@ -43,10 +46,25 @@ export interface ValidateOptions {
    */
   apollo?: boolean;
   /**
-   * Fails when operation depth exceeds maximum depth
-   * @default false
+   * Fails when operation depth exceeds maximum depth (including the referenced fragments).
+   * @default Infinity
    */
   maxDepth?: number;
+  /**
+   * Fails when alias count exceeds maximum count (including the referenced fragments).
+   * @default Infinity
+   */
+  maxAliasCount?: number;
+  /**
+   * Fails when the directive count exceeds maximum count for a single operation (including the referenced fragments).
+   * @default Infinity
+   */
+  maxDirectiveCount?: number;
+  /**
+   * Fails when the token count exceeds maximum count for a single operation (including the referenced fragments).
+   * @default Infinity
+   */
+  maxTokenCount?: number;
 }
 
 export function validate(schema: GraphQLSchema, sources: Source[], options?: ValidateOptions): InvalidDocument[] {
@@ -123,6 +141,45 @@ export function validate(schema: GraphQLSchema, sources: Source[], options?: Val
 
         if (depthError) {
           errors.push(depthError);
+        }
+      }
+
+      if (config.maxAliasCount) {
+        const aliasError = validateAliasCount({
+          source: doc.source,
+          doc: transformedDoc,
+          maxAliasCount: config.maxAliasCount,
+          fragmentGraph: graph,
+        });
+
+        if (aliasError) {
+          errors.push(aliasError);
+        }
+      }
+
+      if (config.maxDirectiveCount) {
+        const directiveError = validateDirectiveCount({
+          source: doc.source,
+          doc: transformedDoc,
+          maxDirectiveCount: config.maxDirectiveCount,
+          fragmentGraph: graph,
+        });
+
+        if (directiveError) {
+          errors.push(directiveError);
+        }
+      }
+
+      if (config.maxTokenCount) {
+        const tokenCountError = validateTokenCount({
+          source: doc.source,
+          document: transformedDoc,
+          maxTokenCount: config.maxTokenCount,
+          getReferencedFragmentSource: fragmentName => print(graph.getNodeData(fragmentName)),
+        });
+
+        if (tokenCountError) {
+          errors.push(tokenCountError);
         }
       }
 
