@@ -2,6 +2,8 @@
 
 ### vNEXT
 
+### v3.4.0
+
 - **cli**: New `audit` command [#2164](https://github.com/kamilkisiela/graphql-inspector/pull/2164)
 
 ### v3.3.0
