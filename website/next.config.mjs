@@ -5,6 +5,12 @@ import withVideos from 'next-videos';
 export default withGuildDocs(
   withVideos({
     basePath: process.env.NEXT_BASE_PATH && process.env.NEXT_BASE_PATH !== '' ? process.env.NEXT_BASE_PATH : undefined,
+    experimental: {
+      images: {
+        unoptimized: true, // doesn't work with `next export`
+        allowFutureImage: true,
+      },
+    },
     eslint: {
       ignoreDuringBuilds: true,
     },
@@ -20,42 +26,23 @@ export default withGuildDocs(
 
       return config;
     },
-    redirects: () => [
-      {
-        source: '/install',
-        destination: 'https://github.com/apps/graphql-inspector',
+    redirects: () =>
+      Object.entries({
+        '/install': '/docs',
+        '/enterprise': '/docs',
+        '/docs/installation': '/docs',
+        '/docs/index': '/docs',
+        '/products': '/docs/products/ci',
+        '/docs/recipies/github': '/docs/products/github',
+        '/docs/installation': '/docs/introduction/installation',
+        '/docs/api': '/docs/api/schema',
+        '/docs/recipes': '/docs/recipes/environments',
+        '/docs/recipes/github': '/docs/recipes/pull-requests',
+        '/docs/essentials': '/docs/essentials/diff',
+      }).map(([from, to]) => ({
+        source: from,
+        destination: to,
         permanent: true,
-      },
-      {
-        source: '/enterprise',
-        destination: 'https://graphql-hive.com',
-        permanent: true,
-      },
-      {
-        source: '/docs/installation',
-        destination: '/docs/introduction/installation',
-        permanent: true,
-      },
-      {
-        source: '/docs',
-        destination: '/docs/introduction',
-        permanent: true,
-      },
-      {
-        source: '/docs/index',
-        destination: '/docs/introduction',
-        permanent: true,
-      },
-      {
-        source: '/products',
-        destination: '/docs/products/ci',
-        permanent: true,
-      },
-      {
-        source: '/docs/recipies/github',
-        destination: '/docs/products/github',
-        permanent: true,
-      },
-    ],
+      })),
   })
 );
