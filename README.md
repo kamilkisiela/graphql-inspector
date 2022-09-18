@@ -37,7 +37,7 @@ Use GraphQL Inspector however you want:
 
 ## Use on GitHub
 
-![Github](./website/static/img/github/app-action.jpg)
+![Github](./website/public/assets/img/github/app-action.jpg)
 
 ## Use everywhere
 
