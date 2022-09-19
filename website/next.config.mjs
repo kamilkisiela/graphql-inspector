@@ -28,10 +28,11 @@ export default withGuildDocs(
     },
     redirects: () =>
       Object.entries({
-        '/install': '/docs',
-        '/enterprise': '/docs',
-        '/docs/installation': '/docs',
-        '/docs/index': '/docs',
+        '/install': '/docs/introduction/installation',
+        '/docs': '/docs/introduction',
+        '/enterprise': '/docs/introduction',
+        '/docs/installation': '/docs/introduction/installation',
+        '/docs/index': '/docs/introduction',
         '/products': '/docs/products/ci',
         '/docs/recipies/github': '/docs/products/github',
         '/docs/installation': '/docs/introduction/installation',
