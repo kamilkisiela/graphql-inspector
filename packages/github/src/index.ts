@@ -10,3 +10,4 @@ export { createFileLoader, printSchemaFromEndpoint } from './helpers/loaders';
 export { createSummary, quotesTransformer } from './helpers/utils';
 export { produceSchema } from './helpers/schema';
 export { setDiagnostics } from './helpers/diagnostics';
+export { notifyWithSlack } from './helpers/notifications';
