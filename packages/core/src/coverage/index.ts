@@ -21,6 +21,8 @@ export interface Location {
 
 export interface ArgumentCoverage {
   hits: number;
+  fieldsCount: number;
+  fieldsCountCovered: number;
   locations: {
     [name: string]: Array<Location>;
   };
@@ -28,6 +30,8 @@ export interface ArgumentCoverage {
 
 export interface TypeChildCoverage {
   hits: number;
+  fieldsCount: number;
+  fieldsCountCovered: number;
   locations: {
     [name: string]: Array<Location>;
   };
@@ -38,6 +42,8 @@ export interface TypeChildCoverage {
 
 export interface TypeCoverage {
   hits: number;
+  fieldsCount: number;
+  fieldsCountCovered: number;
   type: GraphQLNamedType;
   children: {
     [name: string]: TypeChildCoverage;
@@ -48,6 +54,13 @@ export interface SchemaCoverage {
   sources: Source[];
   types: {
     [typename: string]: TypeCoverage;
+  };
+  stats: {
+    numTypes: number;
+    numTypesCoveredFully: number;
+    numTypesCovered: number;
+    numFields: number;
+    numFiledsCovered: number;
   };
 }
 
@@ -60,6 +73,13 @@ export function coverage(schema: GraphQLSchema, sources: Source[]): SchemaCovera
   const coverage: SchemaCoverage = {
     sources,
     types: {},
+    stats: {
+      numTypes: 0,
+      numTypesCoveredFully: 0,
+      numTypesCovered: 0,
+      numFields: 0,
+      numFiledsCovered: 0,
+    },
   };
   const typeMap = schema.getTypeMap();
   const typeInfo = new TypeInfo(schema);
@@ -114,6 +134,8 @@ export function coverage(schema: GraphQLSchema, sources: Source[]): SchemaCovera
       if (isObjectType(type) || isInterfaceType(type)) {
         const typeCoverage: TypeCoverage = {
           hits: 0,
+          fieldsCount: 0,
+          fieldsCountCovered: 0,
           type,
           children: {},
         };
@@ -124,6 +146,8 @@ export function coverage(schema: GraphQLSchema, sources: Source[]): SchemaCovera
 
           typeCoverage.children[field.name] = {
             hits: 0,
+            fieldsCount: 0,
+            fieldsCountCovered: 0,
             locations: {},
             children: {},
           };
@@ -131,6 +155,8 @@ export function coverage(schema: GraphQLSchema, sources: Source[]): SchemaCovera
           for (const arg of field.args) {
             typeCoverage.children[field.name].children[arg.name] = {
               hits: 0,
+              fieldsCount: 0,
+              fieldsCountCovered: 0,
               locations: {},
             };
           }
@@ -153,5 +179,36 @@ export function coverage(schema: GraphQLSchema, sources: Source[]): SchemaCovera
     });
   });
 
+  for (const key in coverage.types) {
+    const me = coverage.types[key];
+    processStats(me);
+
+    coverage.stats.numTypes++;
+    if (me.fieldsCountCovered > 0) coverage.stats.numTypesCovered++;
+    if (me.fieldsCount == me.fieldsCountCovered) coverage.stats.numTypesCoveredFully++;
+    coverage.stats.numFields += me.fieldsCount;
+    coverage.stats.numFiledsCovered += me.fieldsCountCovered;
+  }
+
   return coverage;
+}
+
+function processStats(me: TypeCoverage | TypeChildCoverage) {
+  const children = me.children;
+  if (children) {
+    for (const k in children) {
+      const ch = children[k];
+
+      if ((ch as TypeChildCoverage).children !== undefined) {
+        processStats(ch as TypeChildCoverage);
+        me.fieldsCount += ch.fieldsCount;
+        me.fieldsCountCovered += ch.fieldsCountCovered;
+      }
+
+      me.fieldsCount++;
+      if (ch.hits > 0) {
+        me.fieldsCountCovered++;
+      }
+    }
+  }
 }

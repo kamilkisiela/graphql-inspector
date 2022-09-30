@@ -1,8 +1,16 @@
 {
   "sources": [
     {
-      "body": "query post {\n  post {\n    ... on Post {\n      id\n      title\n    }\n    createdAtSomePoint\n  }\n}\n",
-      "name": "./documents/post.graphql",
+      "body": "query depthPost {\n  post {\n    id\n    title @client\n    author {\n      id\n      name\n    }\n  }\n}",
+      "name": "/home/velias/Devel/projects/github/graphql-inspector/example/documents/depth-post.graphql",
+      "locationOffset": {
+        "line": 1,
+        "column": 1
+      }
+    },
+    {
+      "body": "query post {\n  post {\n    ... on Post {\n      id\n      title\n    }\n    createdAtSomePoint\n  }\n}",
+      "name": "/home/velias/Devel/projects/github/graphql-inspector/example/documents/post.graphql",
       "locationOffset": {
         "line": 1,
         "column": 1
@@ -10,62 +18,109 @@
     }
   ],
   "types": {
-    "Query": {
-      "hits": 1,
-      "type": "Query",
-      "children": {
-        "post": {
-          "hits": 1,
-          "locations": {
-            "./documents/post.graphql": [
-              {
-                "start": 15,
-                "end": 93
-              }
-            ]
-          }
-        },
-        "posts": {
-          "hits": 0,
-          "locations": {}
-        }
-      }
-    },
     "Post": {
-      "hits": 2,
+      "hits": 4,
+      "fieldsCount": 4,
+      "fieldsCountCovered": 2,
       "type": "Post",
       "children": {
         "id": {
-          "hits": 1,
+          "hits": 2,
+          "fieldsCount": 0,
+          "fieldsCountCovered": 0,
           "locations": {
-            "./documents/post.graphql": [
+            "/home/velias/Devel/projects/github/graphql-inspector/example/documents/depth-post.graphql": [
+              {
+                "start": 31,
+                "end": 33
+              }
+            ],
+            "/home/velias/Devel/projects/github/graphql-inspector/example/documents/post.graphql": [
               {
                 "start": 46,
                 "end": 48
               }
             ]
-          }
+          },
+          "children": {}
         },
         "title": {
-          "hits": 1,
+          "hits": 2,
+          "fieldsCount": 0,
+          "fieldsCountCovered": 0,
           "locations": {
-            "./documents/post.graphql": [
+            "/home/velias/Devel/projects/github/graphql-inspector/example/documents/depth-post.graphql": [
+              {
+                "start": 38,
+                "end": 51
+              }
+            ],
+            "/home/velias/Devel/projects/github/graphql-inspector/example/documents/post.graphql": [
               {
                 "start": 55,
                 "end": 60
               }
             ]
-          }
+          },
+          "children": {}
         },
         "createdAt": {
           "hits": 0,
-          "locations": {}
+          "fieldsCount": 0,
+          "fieldsCountCovered": 0,
+          "locations": {},
+          "children": {}
         },
         "modifiedAt": {
           "hits": 0,
-          "locations": {}
+          "fieldsCount": 0,
+          "fieldsCountCovered": 0,
+          "locations": {},
+          "children": {}
+        }
+      }
+    },
+    "Query": {
+      "hits": 2,
+      "fieldsCount": 2,
+      "fieldsCountCovered": 1,
+      "type": "Query",
+      "children": {
+        "post": {
+          "hits": 2,
+          "fieldsCount": 0,
+          "fieldsCountCovered": 0,
+          "locations": {
+            "/home/velias/Devel/projects/github/graphql-inspector/example/documents/depth-post.graphql": [
+              {
+                "start": 20,
+                "end": 94
+              }
+            ],
+            "/home/velias/Devel/projects/github/graphql-inspector/example/documents/post.graphql": [
+              {
+                "start": 15,
+                "end": 93
+              }
+            ]
+          },
+          "children": {}
+        },
+        "posts": {
+          "hits": 0,
+          "fieldsCount": 0,
+          "fieldsCountCovered": 0,
+          "locations": {},
+          "children": {}
         }
       }
     }
+  },
+  "stats": {
+    "numTypes": 2,
+    "numTypesCoveredFully": 0,
+    "numTypesCovered": 2,
+    "numFields": 6,
+    "numFiledsCovered": 3
   }
 }

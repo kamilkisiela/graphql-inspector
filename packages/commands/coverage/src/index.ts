@@ -165,6 +165,29 @@ function renderCoverage(coverage: SchemaCoverage) {
       Logger.log(chalk.grey('}\n'));
     }
   }
+
+  Logger.log(
+    `Types covered: ${
+      coverage.stats.numTypes > 0
+        ? ((coverage.stats.numTypesCovered / coverage.stats.numTypes) * 100).toFixed(1)
+        : 'N/A'
+    }%`,
+  );
+  Logger.log(
+    `Types covered fully: ${
+      coverage.stats.numTypes > 0
+        ? ((coverage.stats.numTypesCoveredFully / coverage.stats.numTypes) * 100).toFixed(1)
+        : 'N/A'
+    }%`,
+  );
+  Logger.log(
+    `Fields covered: ${
+      coverage.stats.numFields > 0
+        ? ((coverage.stats.numFiledsCovered / coverage.stats.numFields) * 100).toFixed(1)
+        : 'N/A'
+    }%`,
+  );
+  Logger.log(``);
 }
 
 function indent(line: string, space: number): string {
