@@ -4,7 +4,7 @@ const SITE_NAME = 'GraphQL Inspector';
 
 export default defineConfig({
   titleSuffix: ` – ${SITE_NAME}`,
-  docsRepositoryBase: 'https://github.com/kamilkisiela/graphql-inspector/tree/master/website/src/pages', // base URL for the docs repository
+  docsRepositoryBase: 'https://github.com/kamilkisiela/graphql-inspector/tree/master/website', // base URL for the docs repository
   logo: (
     <>
       <InspectorLogo className="mr-1.5 h-9 w-9" />
@@ -14,7 +14,7 @@ export default defineConfig({
       </div>
     </>
   ),
-  head: () => (
+  head: (
     <>
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <meta name="description" content={`${SITE_NAME}: documentation`} />
