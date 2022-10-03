@@ -1,6 +1,5 @@
 import { ReactElement } from 'react';
 import { FeatureList, HeroGradient, NPMBadge, HeroIllustration } from '@theguild/components';
-import { handlePushRoute } from 'guild-docs';
 import dynamic from 'next/dynamic';
 import hiveImage from '../../public/assets/img/illustrations/hive.png';
 import annotationsImage from '../../public/assets/img/ui/features/annotations.png';
@@ -82,7 +81,6 @@ export function IndexPage(): ReactElement {
           href: '/docs/introduction',
           children: 'Get Started',
           title: 'Get started with GraphQL Inspector Docs',
-          onClick: e => handlePushRoute('/docs/introduction', e),
         }}
         colors={['#2e2e2e', '#fff']}
         version={<NPMBadge name="@graphql-inspector/cli" />}
