@@ -45,7 +45,7 @@ const { loadDocuments } = require('@graphql-tools/load')
 const { GraphQLFileLoader } = require('@graphql-tools/graphql-file-loader')
 const graphql = require('graphql')
 
-const documents = loadDocuments('./src/**/*.graphql', {
+const documents = await loadDocuments('./src/**/*.graphql', {
   loaders: [new GraphQLFileLoader()]
 })
 
