@@ -1,0 +1,18 @@
+name: master
+
+on:
+  push:
+    branches:
+      - 'master'
+
+jobs:
+  algolia:
+    uses: the-guild-org/shared-config/.github/workflows/algolia-publish.yml@main
+    secrets:
+      githubToken: ${{ secrets.GITHUB_TOKEN }}
+      algoliaAppId: ${{ secrets.NEXT_PUBLIC_ALGOLIA_APP_ID }}
+      algoliaAdminApiKey: ${{ secrets.ALGOLIA_ADMIN_API_KEY }}
+      algoliaIndexName: ${{ secrets.NEXT_PUBLIC_ALGOLIA_INDEX_NAME }}
+    with:
+      domain: https://www.the-guild.dev/graphql/inspector/
+      source: 'Inspector'
