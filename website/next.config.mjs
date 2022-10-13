@@ -4,9 +4,6 @@ export default withGuildDocs({
   eslint: {
     ignoreDuringBuilds: true,
   },
-  images: {
-    unoptimized: true, // doesn't work with `next export`
-  },
   redirects: () =>
     Object.entries({
       '/install': '/docs/introduction/installation',
