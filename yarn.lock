@@ -2582,12 +2582,13 @@
   dependencies:
     defer-to-connect "^1.0.1"
 
-"@theguild/algolia@0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@theguild/algolia/-/algolia-0.1.0.tgz#3937ad35df42cde7972137369b2f23f2118eb1f3"
-  integrity sha512-bIC4qBUj1U/EOkNx7ncFP9uX3cc8u+rRx3duNQv3eA3NUIAn4VmQsAwPx8kKJwSsUSQ0H2vJAh3RtaG5kSVvHA==
+"@theguild/algolia@1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@theguild/algolia/-/algolia-1.0.1.tgz#002f638dbcb5be9c4c5ecb827c9f48d1f7c48210"
+  integrity sha512-9T57HvRGpylJAwFdLfIoEBDqfNTG7Z0u60j7RLQ1s5wyKcMpMpgnRmw96y7c+50pCeok/NmgsKZyDhUgsyzNDg==
   dependencies:
     algoliasearch "^4.13.1"
+    commander "^9.4.1"
     github-slugger "^1.4.0"
     glob "^8.0.3"
     gray-matter "^4.0.3"
@@ -4325,6 +4326,11 @@ commander@^6.2.0:
   version "6.2.0"
   resolved "https://registry.yarnpkg.com/commander/-/commander-6.2.0.tgz#b990bfb8ac030aedc6d11bc04d1488ffef56db75"
   integrity sha512-zP4jEKbe8SHzKJYQmq8Y9gYjtO/POJLgIdKgV7B9qNmABVFVc+ctqSX6iXh4mCpJfRBOabiZ2YKPg8ciDw6C+Q==
+
+commander@^9.4.1:
+  version "9.4.1"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-9.4.1.tgz#d1dd8f2ce6faf93147295c0df13c7c21141cfbdd"
+  integrity sha512-5EEkTNyHNGFPD2H+c/dXXfQZYa/scCKasxWcXJaWnNJ99pnQN9Vnmqow+p+PlFPE63Q6mThaZws1T+HxfpgtPw==
 
 commondir@^1.0.1:
   version "1.0.1"
