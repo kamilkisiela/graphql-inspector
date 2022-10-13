@@ -39,7 +39,7 @@
   },
   "dependencies": {
     "@graphql-cli/common": "4.1.0",
-    "@graphql-inspector/coverage-command": "0.0.0-PLACEHOLDER",
+    "@graphql-inspector/coverage-command": "0.0.0-canary.fec2df4",
     "@graphql-inspector/graphql-cli-common": "0.0.0-PLACEHOLDER",
     "tslib": "^2.0.0"
   },
