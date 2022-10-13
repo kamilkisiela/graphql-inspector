@@ -40,7 +40,7 @@
   "dependencies": {
     "@graphql-cli/common": "4.1.0",
     "@graphql-cli/loaders": "4.1.0",
-    "@graphql-inspector/diff-command": "0.0.0-PLACEHOLDER",
+    "@graphql-inspector/diff-command": "0.0.0-canary.fec2df4",
     "tslib": "^2.0.0"
   },
   "scripts": {
