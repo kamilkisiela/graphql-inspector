@@ -66,3 +66,25 @@ export function fieldArgumentTypeChanged(
     path: [type.name, field.name, oldArg.name].join('.'),
   };
 }
+
+export function fieldArgumentDeprecationAdded(type: GraphQLObjectType | GraphQLInterfaceType, field: GraphQLField<any, any, any>, arg: GraphQLArgument) {
+  return {
+      criticality: {
+          level: CriticalityLevel.NonBreaking,
+      },
+      type: ChangeType.FieldArgumentDeprecationAdded,
+      message: `Argument '${arg.name}' on field '${type.name}.${field.name}' is deprecated`,
+      path: [type.name, field.name].join('.'),
+  };
+}
+
+export function fieldArgumentDeprecationRemoved(type: GraphQLObjectType | GraphQLInterfaceType, field: GraphQLField<any, any, any>, arg: GraphQLArgument) {
+  return {
+      criticality: {
+          level: CriticalityLevel.NonBreaking,
+      },
+      type: ChangeType.FieldArgumentDeprecationRemoved,
+      message: `Argument '${arg.name}' on field '${type.name}.${field.name}' is no longer deprecated`,
+      path: [type.name, field.name].join('.'),
+  };
+}

@@ -3,6 +3,8 @@ export enum ChangeType {
   FieldArgumentDescriptionChanged = 'FIELD_ARGUMENT_DESCRIPTION_CHANGED',
   FieldArgumentDefaultChanged = 'FIELD_ARGUMENT_DEFAULT_CHANGED',
   FieldArgumentTypeChanged = 'FIELD_ARGUMENT_TYPE_CHANGED',
+  FieldArgumentDeprecationAdded = "FIELD_ARGUMENT_DEPRECATION_ADDED",
+  FieldArgumentDeprecationRemoved = "FIELD_ARGUMENT_DEPRECATION_REMOVED",
   // Directive
   DirectiveRemoved = 'DIRECTIVE_REMOVED',
   DirectiveAdded = 'DIRECTIVE_ADDED',
@@ -43,6 +45,8 @@ export enum ChangeType {
   InputFieldDescriptionChanged = 'INPUT_FIELD_DESCRIPTION_CHANGED',
   InputFieldDefaultValueChanged = 'INPUT_FIELD_DEFAULT_VALUE_CHANGED',
   InputFieldTypeChanged = 'INPUT_FIELD_TYPE_CHANGED',
+  InputFieldDeprecationAdded = "INPUT_FIELD_DEPRECATION_ADDED",
+  InputFieldDeprecationRemoved = "INPUT_FIELD_DEPRECATION_REMOVED",
   // Type
   ObjectTypeInterfaceAdded = 'OBJECT_TYPE_INTERFACE_ADDED',
   ObjectTypeInterfaceRemoved = 'OBJECT_TYPE_INTERFACE_REMOVED',

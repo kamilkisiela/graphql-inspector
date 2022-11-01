@@ -310,6 +310,36 @@ describe('input', () => {
       expect(change.c.type).toEqual('INPUT_FIELD_TYPE_CHANGED');
       expect(change.c.message).toEqual("Input field 'Foo.c' changed type from '[String]!' to '[String!]!'");
     });
+
+    test('deprecation added / removed', async () => {
+      const a = buildSchema(/* GraphQL */ `
+        input Foo {
+          a: String 
+          b: String @deprecated
+        }
+      `);
+      const b = buildSchema(/* GraphQL */ `
+        input Foo {
+          a: String @deprecated
+          b: String 
+        }
+      `);
+  
+      const changes = await diff(a, b);
+      const change = {
+        a: findFirstChangeByPath(changes, 'Foo.a'),
+        b: findFirstChangeByPath(changes, 'Foo.b'),
+      };
+  
+      // Added
+      expect(change.a.criticality.level).toEqual(CriticalityLevel.NonBreaking);
+      expect(change.a.type).toEqual('INPUT_FIELD_DEPRECATION_ADDED');
+      expect(change.a.message).toEqual("Input field 'Foo.a' is deprecated");
+      // Removed
+      expect(change.b.criticality.level).toEqual(CriticalityLevel.NonBreaking);
+      expect(change.b.type).toEqual('INPUT_FIELD_DEPRECATION_REMOVED');
+      expect(change.b.message).toEqual("Input field 'Foo.b' is no longer deprecated");
+    });
   });
 
   test('removal of a deprecated field', async () => {

@@ -114,3 +114,25 @@ export function inputFieldTypeChanged(
     path: [input.name, oldField.name].join('.'),
   };
 }
+
+export function inputFieldDeprecationAdded(input: GraphQLInputObjectType, field: GraphQLInputField) {
+  return {
+      criticality: {
+          level: CriticalityLevel.NonBreaking,
+      },
+      type: ChangeType.InputFieldDeprecationAdded,
+      message: `Input field '${input.name}.${field.name}' is deprecated`,
+      path: [input.name, field.name].join('.'),
+  };
+}
+
+export function inputFieldDeprecationRemoved(input: GraphQLInputObjectType, field: GraphQLInputField) {
+  return {
+      criticality: {
+          level: CriticalityLevel.NonBreaking,
+      },
+      type: ChangeType.InputFieldDeprecationRemoved,
+      message: `Input field '${input.name}.${field.name}' is no longer deprecated`,
+      path: [input.name, field.name].join('.'),
+  };
+}

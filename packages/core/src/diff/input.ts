@@ -2,6 +2,7 @@ import { GraphQLInputObjectType, GraphQLInputField } from 'graphql';
 
 import { diffArrays, isNotEqual, isVoid } from '../utils/compare';
 import { compareLists } from '../utils/compare';
+import { isDeprecated } from '../utils/isDeprecated';
 import {
   inputFieldAdded,
   inputFieldRemoved,
@@ -10,6 +11,8 @@ import {
   inputFieldDescriptionRemoved,
   inputFieldDefaultValueChanged,
   inputFieldTypeChanged,
+  inputFieldDeprecationAdded,
+  inputFieldDeprecationRemoved,
 } from './changes/input';
 import { AddChange } from './schema';
 
@@ -62,5 +65,14 @@ function changesInInputField(
 
   if (isNotEqual(oldField.type.toString(), newField.type.toString())) {
     addChange(inputFieldTypeChanged(input, oldField, newField));
+  }
+
+  if (isNotEqual(isDeprecated(oldField), isDeprecated(newField))) {
+    if (isDeprecated(newField)) {
+        addChange(inputFieldDeprecationAdded(input, newField));
+    }
+    else {
+        addChange(inputFieldDeprecationRemoved(input, oldField));
+    }
   }
 }
