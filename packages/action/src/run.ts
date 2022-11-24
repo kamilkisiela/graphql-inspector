@@ -59,6 +59,7 @@ async function getAssociatedPullRequest(octokit: OctokitInstance, commitSha: str
 export async function run() {
   core.info(`GraphQL Inspector started`);
 
+
   // env
   let ref = process.env.GITHUB_SHA!;
   const commitSha = getCurrentCommitSha();
@@ -67,12 +68,15 @@ export async function run() {
   core.info(`Commit SHA: ${commitSha}`);
 
   const token = core.getInput('github-token', { required: true });
+  if (!token) {
+    return core.info('Missing `github-token` variable');
+  }
   const checkName = core.getInput('name') || CHECK_NAME;
 
   let workspace = process.env.GITHUB_WORKSPACE;
 
   if (!workspace) {
-    return core.setFailed(
+    return core.info(
       'Failed to resolve workspace directory. GITHUB_WORKSPACE is missing',
     );
   }
@@ -85,6 +89,9 @@ export async function run() {
     core.getInput('approve-label') || 'approved-breaking-change';
 
   const octokit = github.getOctokit(token);
+  if (!octokit) {
+    return core.setFailed('Failed to create octokit instance');
+  }
 
   // repo
   const { owner, repo } = github.context.repo;
@@ -173,6 +180,7 @@ export async function run() {
       ),
       new: new Source(printSchema(newSchema), schemaPath),
     };
+
   } else {
     sources = {
       old: new Source(oldFile, endpoint || `${schemaRef}:${schemaPath}`),
@@ -181,6 +189,7 @@ export async function run() {
 
     oldSchema = produceSchema(sources.old);
     newSchema = produceSchema(sources.new);
+
   }
 
   const schemas = {
@@ -192,11 +201,13 @@ export async function run() {
 
   core.info(`Start comparing schemas`);
 
+
   const action = await diff({
     path: schemaPath,
     schemas,
     sources,
   });
+
 
   let conclusion = action.conclusion;
   let annotations = action.annotations || [];

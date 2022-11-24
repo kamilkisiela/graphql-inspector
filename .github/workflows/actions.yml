@@ -25,7 +25,8 @@ jobs:
         uses: ./
         id: inspector
         with:
-          schema: 'master:example/schemas/schema.graphql'
+          experimental_merge: false
+          schema: "master:example/schemas/schema.graphql"
 
       - name: Validate result
         if: steps.inspector.outputs.changes != 3
