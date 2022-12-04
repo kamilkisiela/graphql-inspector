@@ -58,7 +58,7 @@ async function getAssociatedPullRequest(octokit: OctokitInstance, commitSha: str
 
 export async function run() {
   core.info(`GraphQL Inspector started`);
-
+  core.info(`test`);
   // env
   let ref = process.env.GITHUB_SHA!;
   const commitSha = getCurrentCommitSha();
@@ -187,6 +187,11 @@ export async function run() {
     old: oldSchema,
     new: newSchema,
   };
+  console.log(schemas);
+  console.log('new',schemas.new);
+  console.log('old',schemas.new);
+
+
 
   core.info(`Built both schemas`);
 
@@ -197,6 +202,11 @@ export async function run() {
     schemas,
     sources,
   });
+
+  console.log(action);
+  console.log('annotations',action.annotations);
+  console.log('changes',action.changes);
+  console.log('conclusion',action.conclusion);
 
   let conclusion = action.conclusion;
   let annotations = action.annotations || [];
