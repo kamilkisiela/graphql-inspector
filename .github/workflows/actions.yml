@@ -23,6 +23,10 @@ jobs:
         id: inspector
         with:
           schema: "master:example/schemas/schema.graphql"
+      - name: Test
+        run: |
+          echo ${{ steps.inspector.outputs.changes }}
+          cat ./example/schemas/schema.graphql
 
       - name: Validate result
         if: steps.inspector.outputs.changes != 3
