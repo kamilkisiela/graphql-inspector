@@ -26,6 +26,9 @@ jobs:
       - name: Test
         run: |
           echo ${{ steps.inspector.outputs.changes }}
+          echo ${{ steps.inspector.outputs }}
+          echo ${{ steps.inspector }}
+          echo ${{ steps }}
           cat ./example/schemas/schema.graphql
 
       - name: Validate result
