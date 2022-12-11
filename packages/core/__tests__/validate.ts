@@ -462,4 +462,192 @@ describe('validate', () => {
     const deprecated = results[0].deprecated[0];
     expect(deprecated.message).toMatch(`The field 'Post.title' is deprecated. BECAUSE`);
   });
+
+  test('pass when not exceeded max complexity score', async () => {
+    const schema = buildSchema(/* GraphQL */ `
+      type Post {
+        id: ID
+        title: String
+        createdAt: Int
+        author: User
+      }
+
+      type User {
+        id: ID
+        name: String
+        posts: [Post]
+      }
+
+      type Query {
+        post: Post
+      }
+
+      schema {
+        query: Query
+      }
+    `);
+
+    const docs = [
+      parse(/* GraphQL */ `
+        query getPost {
+          post {
+            ...PostInfo
+          }
+        }
+      `),
+      parse(/* GraphQL */ `
+        fragment PostInfo on Post {
+          id
+          author {
+            ...UserInfo
+          }
+        }
+      `),
+      parse(/* GraphQL */ `
+        fragment UserInfo on User {
+          id
+        }
+      `),
+    ];
+
+    const results = validate(
+      schema,
+      docs.map(doc => new Source(print(doc))),
+      {
+        validateComplexityConfig: {
+          maxComplexityScore: 100,
+          complexityScalarCost: 1,
+          complexityObjectCost: 2,
+          complexityDepthCostFactor: 1.5,
+        },
+      }
+    );
+
+    expect(results.length).toEqual(0);
+  });
+
+  test('fail when exceeded max complexity score (inline fragment)', async () => {
+    const schema = buildSchema(/* GraphQL */ `
+      type Post {
+        id: ID
+        title: String
+        createdAt: Int
+        author: User
+      }
+
+      type User {
+        id: ID
+        name: String
+        posts: [Post]
+      }
+
+      type Query {
+        post: Post
+      }
+
+      schema {
+        query: Query
+      }
+    `);
+
+    const docs = [
+      parse(/* GraphQL */ `
+        query getPost {
+          post {
+            ...PostInfo
+          }
+        }
+      `),
+      parse(/* GraphQL */ `
+        fragment PostInfo on Post {
+          id
+          author {
+            ... on User {
+              id
+            }
+          }
+        }
+      `),
+    ];
+
+    const results = validate(
+      schema,
+      docs.map(doc => new Source(print(doc))),
+      {
+        validateComplexityConfig: {
+          maxComplexityScore: 50,
+          complexityScalarCost: 1,
+          complexityObjectCost: 2,
+          complexityDepthCostFactor: 1.5,
+        },
+      }
+    );
+
+    expect(results.length).toEqual(1);
+  });
+
+  test('fail when exceeded max complexity score (spread fragments)', async () => {
+    const schema = buildSchema(/* GraphQL */ `
+      type Post {
+        id: ID
+        title: String
+        createdAt: Int
+        author: User
+      }
+
+      type User {
+        id: ID
+        name: String
+        posts: [Post]
+      }
+
+      type Query {
+        post: Post
+      }
+
+      schema {
+        query: Query
+      }
+    `);
+
+    const docs = [
+      parse(/* GraphQL */ `
+        query getPost {
+          post {
+            ...PostInfo
+          }
+        }
+      `),
+      parse(/* GraphQL */ `
+        fragment PostInfo on Post {
+          id
+          title
+          author {
+            ...UserInfo
+          }
+        }
+      `),
+      parse(/* GraphQL */ `
+        fragment UserInfo on User {
+          id
+          name
+        }
+      `),
+    ];
+
+    const results = validate(
+      schema,
+      docs.map(doc => new Source(print(doc))),
+      {
+        validateComplexityConfig: {
+          maxComplexityScore: 50,
+          complexityScalarCost: 1,
+          complexityObjectCost: 2,
+          complexityDepthCostFactor: 1.5,
+        },
+      }
+    );
+
+    expect(results.length).toEqual(1);
+  });
 });
