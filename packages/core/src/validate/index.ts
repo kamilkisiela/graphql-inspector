@@ -13,6 +13,7 @@ import { DepGraph } from 'dependency-graph';
 import { readDocument } from '../ast/document';
 import { findDeprecatedUsages } from '../utils/graphql';
 import { validateQueryDepth } from './query-depth';
+import { ValidateOperationComplexityConfig, validateComplexity } from './complexity';
 import { transformSchemaWithApollo, transformDocumentWithApollo } from '../utils/apollo';
 import { validateAliasCount } from './alias-count';
 import { validateDirectiveCount } from './directive-count';
@@ -65,6 +66,11 @@ export interface ValidateOptions {
    * @default Infinity
    */
   maxTokenCount?: number;
+  /**
+   * Fails when complexity score exceeds maximum complexity score (including the referenced fragments).
+   * @default Infinity
+   */
+  validateComplexityConfig?: ValidateOperationComplexityConfig;
 }
 
 export function validate(schema: GraphQLSchema, sources: Source[], options?: ValidateOptions): InvalidDocument[] {
@@ -141,6 +147,24 @@ export function validate(schema: GraphQLSchema, sources: Source[], options?: Val
 
         if (depthError) {
           errors.push(depthError);
+        }
+      }
+
+      if (config.validateComplexityConfig) {
+        const complexityScoreError = validateComplexity({
+          source: doc.source,
+          doc: transformedDoc,
+          maxComplexityScore: config.validateComplexityConfig.maxComplexityScore,
+          config: {
+            scalarCost: config.validateComplexityConfig.complexityScalarCost,
+            objectCost: config.validateComplexityConfig.complexityObjectCost,
+            depthCostFactor: config.validateComplexityConfig.complexityDepthCostFactor,
+          },
+          fragmentGraph: graph,
+        });
+
+        if (complexityScoreError) {
+          errors.push(complexityScoreError);
         }
       }
 
