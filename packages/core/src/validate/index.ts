@@ -1,3 +1,11 @@
+import { readDocument } from '../ast/document.js';
+import { transformDocumentWithApollo, transformSchemaWithApollo } from '../utils/apollo.js';
+import { findDeprecatedUsages } from '../utils/graphql.js';
+import { validateAliasCount } from './alias-count.js';
+import { ValidateOperationComplexityConfig, validateComplexity } from './complexity';
+import { validateDirectiveCount } from './directive-count.js';
+import { validateQueryDepth } from './query-depth.js';
+import { validateTokenCount } from './token-count.js';
 import { DepGraph } from 'dependency-graph';
 import {
   DocumentNode,
@@ -9,13 +17,6 @@ import {
   Source,
   validate as validateDocument,
 } from 'graphql';
-import { readDocument } from '../ast/document.js';
-import { transformDocumentWithApollo, transformSchemaWithApollo } from '../utils/apollo.js';
-import { findDeprecatedUsages } from '../utils/graphql.js';
-import { validateAliasCount } from './alias-count.js';
-import { validateDirectiveCount } from './directive-count.js';
-import { validateQueryDepth } from './query-depth.js';
-import { validateTokenCount } from './token-count.js';
 
 export interface InvalidDocument {
   source: Source;
@@ -64,13 +65,14 @@ export interface ValidateOptions {
    * @default Infinity
    */
   maxTokenCount?: number;
+  /**
+   * Fails when complexity score exceeds maximum complexity score (including the referenced fragments).
+   * @default Infinity
+   */
+  validateComplexityConfig?: ValidateOperationComplexityConfig;
 }
 
-export function validate(
-  schema: GraphQLSchema,
-  sources: Source[],
-  options?: ValidateOptions,
-): InvalidDocument[] {
+export function validate(schema: GraphQLSchema, sources: Source[], options?: ValidateOptions): InvalidDocument[] {
   const config: ValidateOptions = {
     strictDeprecated: true,
     strictFragments: true,
@@ -144,6 +146,37 @@ export function validate(
       if (depthError) {
         errors.push(depthError);
       }
+
+      if (config.validateComplexityConfig) {
+        const complexityScoreError = validateComplexity({
+          source: doc.source,
+          doc: transformedDoc,
+          maxComplexityScore: config.validateComplexityConfig.maxComplexityScore,
+          config: {
+            scalarCost: config.validateComplexityConfig.complexityScalarCost,
+            objectCost: config.validateComplexityConfig.complexityObjectCost,
+            depthCostFactor: config.validateComplexityConfig.complexityDepthCostFactor,
+          },
+          fragmentGraph: graph,
+        });
+
+        if (complexityScoreError) {
+          errors.push(complexityScoreError);
+        }
+      }
+
+      if (config.maxAliasCount) {
+        const aliasError = validateAliasCount({
+          source: doc.source,
+          doc: transformedDoc,
+          maxAliasCount: config.maxAliasCount,
+          fragmentGraph: graph,
+        });
+
+        if (aliasError) {
+          errors.push(aliasError);
+        }
+      }
     }
 
     if (config.maxAliasCount) {
@@ -185,12 +218,8 @@ export function validate(
       }
     }
 
-    const deprecated = config.strictDeprecated
-      ? findDeprecatedUsages(transformedSchema, transformedDoc)
-      : [];
-    const duplicatedFragments = config.strictFragments
-      ? findDuplicatedFragments(fragmentNames)
-      : [];
+    const deprecated = config.strictDeprecated ? findDeprecatedUsages(transformedSchema, transformedDoc) : [];
+    const duplicatedFragments = config.strictFragments ? findDuplicatedFragments(fragmentNames) : [];
 
     if (sumLengths(errors, duplicatedFragments, deprecated) > 0) {
       invalidDocuments.push({
@@ -216,14 +245,11 @@ function findDuplicatedFragments(fragmentNames: string[]) {
 //
 function resolveFragment(
   fragment: FragmentDefinitionNode,
-  graph: DepGraph<FragmentDefinitionNode>,
+  graph: DepGraph<FragmentDefinitionNode>
 ): FragmentDefinitionNode[] {
   return graph
     .dependenciesOf(fragment.name.value)
-    .reduce(
-      (list, current) => [...list, ...resolveFragment(graph.getNodeData(current), graph)],
-      [fragment],
-    );
+    .reduce((list, current) => [...list, ...resolveFragment(graph.getNodeData(current), graph)], [fragment]);
 }
 
 function extractFragments(document: string): string[] | undefined {

@@ -1,15 +1,11 @@
-import { writeFileSync } from 'fs';
-import { relative } from 'path';
-import { GraphQLError, GraphQLSchema, print, Source } from 'graphql';
-import {
-  CommandFactory,
-  createCommand,
-  GlobalArgs,
-  parseGlobalArgs,
-} from '@graphql-inspector/commands';
+import { CommandFactory, createCommand, GlobalArgs, parseGlobalArgs } from '@graphql-inspector/commands';
 import { InvalidDocument, validate as validateDocuments } from '@graphql-inspector/core';
 import { bolderize, chalk, Logger } from '@graphql-inspector/logger';
 import { Source as DocumentSource } from '@graphql-tools/utils';
+import { writeFileSync } from 'fs';
+import { GraphQLError, GraphQLSchema, print, Source } from 'graphql';
+import { ValidateOperationComplexityConfig } from 'packages/core/src/validate/complexity';
+import { relative } from 'path';
 
 export { CommandFactory };
 
@@ -29,6 +25,7 @@ export function handler({
   relativePaths,
   output,
   silent,
+  validateComplexityConfig,
 }: {
   schema: GraphQLSchema;
   documents: DocumentSource[];
@@ -45,6 +42,7 @@ export function handler({
   relativePaths?: boolean;
   output?: string;
   silent?: boolean;
+  validateComplexityConfig?: ValidateOperationComplexityConfig;
 }) {
   let invalidDocuments = validateDocuments(
     schema,
@@ -57,7 +55,8 @@ export function handler({
       maxTokenCount,
       apollo,
       keepClientFields,
-    },
+      validateComplexityConfig,
+    }
   );
 
   if (!invalidDocuments.length) {
@@ -88,9 +87,7 @@ export function handler({
 
   if (deprecated && !onlyErrors) {
     if (!silent) {
-      Logger.info(
-        `\nDetected ${deprecated} document${deprecated > 1 ? 's' : ''} with deprecated fields:\n`,
-      );
+      Logger.info(`\nDetected ${deprecated} document${deprecated > 1 ? 's' : ''} with deprecated fields:\n`);
     }
 
     printInvalidDocuments(useFilter(invalidDocuments, filter), 'deprecated', false, silent);
@@ -105,9 +102,9 @@ export function handler({
           documents: useFilter(invalidDocuments, filter),
         },
         null,
-        2,
+        2
       ),
-      'utf8',
+      'utf8'
     );
   }
 
@@ -158,6 +155,10 @@ export default createCommand<
     output?: string;
     silent?: boolean;
     ignore?: string[];
+    maxComplexityScore?: number;
+    complexityScalarCost: number;
+    complexityObjectCost: number;
+    complexityDepthCostFactor: number;
   } & GlobalArgs
 >(api => {
   const { loaders } = api;
@@ -244,6 +245,25 @@ export default createCommand<
             describe: 'Output JSON file',
             type: 'string',
           },
+          maxComplexityScore: {
+            describe: 'Fail on complexity score operations',
+            type: 'number',
+          },
+          complexityScalarCost: {
+            describe: 'Scarlar cost config to use with maxComplexityScore',
+            type: 'number',
+            default: 1,
+          },
+          complexityObjectCost: {
+            describe: 'Object cost config to use with maxComplexityScore',
+            type: 'number',
+            default: 2,
+          },
+          complexityDepthCostFactor: {
+            describe: 'Depth cost factor config to use with maxComplexityScore',
+            type: 'number',
+            default: 1.5,
+          },
         });
     },
     async handler(args) {
@@ -265,6 +285,17 @@ export default createCommand<
       const onlyErrors = args.onlyErrors || false;
       const ignore = args.ignore || [];
 
+      const validateComplexityConfig: ValidateOperationComplexityConfig | undefined = (() => {
+        if (args.maxComplexityScore == null) return;
+
+        return {
+          maxComplexityScore: args.maxComplexityScore,
+          complexityScalarCost: args.complexityScalarCost,
+          complexityObjectCost: args.complexityObjectCost,
+          complexityDepthCostFactor: args.complexityDepthCostFactor,
+        };
+      })();
+
       const schema = await loaders.loadSchema(
         args.schema,
         {
@@ -273,7 +304,7 @@ export default createCommand<
           method,
         },
         apolloFederation,
-        aws,
+        aws
       );
       const documents = await loaders.loadDocuments(args.documents, {
         ignore,
@@ -295,6 +326,7 @@ export default createCommand<
         output,
         relativePaths,
         onlyErrors,
+        validateComplexityConfig,
       });
     },
   };
@@ -320,7 +352,7 @@ function printInvalidDocuments(
   invalidDocuments: InvalidDocument[],
   listKey: 'errors' | 'deprecated',
   isError = false,
-  silent = false,
+  silent = false
 ): void {
   if (silent) {
     return;
