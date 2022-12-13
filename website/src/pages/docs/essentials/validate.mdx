@@ -34,6 +34,10 @@ graphql-inspector validate './documents/*.graphql' http://localhost:3000/graphql
 - `--federation` - Support Apollo Federation directives (default: `false`)
 - `--aws` - Support AWS Appsync directives and scalar types (default: `false`)
 - `--maxDepth <n>` - Fail when operation depth exceeds maximum depth (default: `false`)
+- `--maxComplexityScore <n>` - Fails when complexity score exceeds maximum complexity score (default: `false`)
+- `--complexityScalarCost <n>` - Scarlar cost config to use with maxComplexityScore (default: `1`)
+- `--complexityObjectCost <n>` - Object cost config to use with maxComplexityScore (default: `2`)
+- `--complexityDepthCostFactor <n>` - Depth cost factor config to use with maxComplexityScore (default: `1.5`)
 - `--maxAliasCount <n>` - Fail when alias count (including the referenced fragments) exceeds maximum alias count
   (default: `false`)
 - `--maxDirectiveCount <n>` - Fail when directive count in a operation (including the referenced fragments) exceeds
