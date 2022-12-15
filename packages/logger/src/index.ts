@@ -1,13 +1,13 @@
-import env from 'std-env';
 import chalk from 'chalk';
-import symbols from 'log-symbols';
 import figures from 'figures';
+import symbols from 'log-symbols';
+import env from 'std-env';
 
-export { chalk, symbols, figures };
+export { chalk, figures, symbols };
 
 export function bolderize(msg: string): string {
-  const findSingleQuotes = /\'([^']+)\'/gim;
-  const findDoubleQuotes = /\"([^"]+)\"/gim;
+  const findSingleQuotes = /'([^']+)'/gim;
+  const findDoubleQuotes = /"([^"]+)"/gim;
 
   return msg
     .replace(findSingleQuotes, (_: string, value: string) => chalk.bold(value))

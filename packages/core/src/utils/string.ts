@@ -72,6 +72,6 @@ function wordLetterPairs(str: string) {
 
 export function safeString(obj: any) {
   return inspect(obj)
-    .replace(/\[Object\: null prototype\] /g, '')
+    .replace(/\[Object: null prototype\] /g, '')
     .replace(/(^')|('$)/g, '');
 }
