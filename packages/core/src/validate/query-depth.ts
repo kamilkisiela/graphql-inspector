@@ -84,7 +84,7 @@ export function calculateDepth({
         ...node.selections.map(selection => {
           return calculateDepth({
             node: selection,
-            currentDepth: currentDepth,
+            currentDepth,
             maxDepth,
             getFragment,
           });
@@ -97,7 +97,7 @@ export function calculateDepth({
         ...node.definitions.map(def => {
           return calculateDepth({
             node: def,
-            currentDepth: currentDepth,
+            currentDepth,
             maxDepth,
             getFragment,
           });
