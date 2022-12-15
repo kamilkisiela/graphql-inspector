@@ -217,7 +217,7 @@ function resolveFragment(
 }
 
 function extractFragments(document: string): string[] | undefined {
-  return (document.match(/[\.]{3}[a-z0-9\_]+\b/gi) || []).map(name => name.replace('...', ''));
+  return (document.match(/[.]{3}[a-z0-9\_]+\b/gi) || []).map(name => name.replace('...', ''));
 }
 
 function sumLengths(...arrays: any[][]): number {

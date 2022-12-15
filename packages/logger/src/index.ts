@@ -6,8 +6,8 @@ import env from 'std-env';
 export { chalk, symbols, figures };
 
 export function bolderize(msg: string): string {
-  const findSingleQuotes = /\'([^']+)\'/gim;
-  const findDoubleQuotes = /\"([^"]+)\"/gim;
+  const findSingleQuotes = /'([^']+)'/gim;
+  const findDoubleQuotes = /"([^"]+)"/gim;
 
   return msg
     .replace(findSingleQuotes, (_: string, value: string) => chalk.bold(value))
