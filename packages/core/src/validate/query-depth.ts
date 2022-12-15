@@ -142,7 +142,7 @@ export function countDepth(
   let depth = parentDepth;
 
   if ('selectionSet' in node && node.selectionSet) {
-    for (let child of node.selectionSet.selections) {
+    for (const child of node.selectionSet.selections) {
       depth = Math.max(depth, countDepth(child, parentDepth + 1, getFragmentReference));
     }
   }

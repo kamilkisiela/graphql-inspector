@@ -48,7 +48,7 @@ export function countDirectives(
     directives += node.directives.length;
   }
   if ('selectionSet' in node && node.selectionSet) {
-    for (let child of node.selectionSet.selections) {
+    for (const child of node.selectionSet.selections) {
       directives += countDirectives(child, getFragmentByName);
     }
   }

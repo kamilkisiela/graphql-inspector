@@ -48,7 +48,7 @@ export function countAliases(
     ++aliases;
   }
   if ('selectionSet' in node && node.selectionSet) {
-    for (let child of node.selectionSet.selections) {
+    for (const child of node.selectionSet.selections) {
       aliases += countAliases(child, getFragmentByName);
     }
   } else if (node.kind === Kind.FRAGMENT_SPREAD) {
