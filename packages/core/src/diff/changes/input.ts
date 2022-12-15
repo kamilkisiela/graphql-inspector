@@ -1,8 +1,11 @@
-import { GraphQLInputField, GraphQLInputObjectType, isNonNullType } from 'graphql';
+import { GraphQLInputObjectType, GraphQLInputField, isNonNullType } from 'graphql';
+
+import { Change, CriticalityLevel, ChangeType } from './change';
+import { isDeprecated } from '../../utils/is-deprecated';
 import { safeChangeForInputValue } from '../../utils/graphql';
 import { isDeprecated } from '../../utils/isDeprecated';
 import { safeString } from '../../utils/string';
-import { Change, ChangeType,CriticalityLevel } from './change';
+import { Change, ChangeType, CriticalityLevel } from './change';
 
 export function inputFieldRemoved(input: GraphQLInputObjectType, field: GraphQLInputField): Change {
   return {

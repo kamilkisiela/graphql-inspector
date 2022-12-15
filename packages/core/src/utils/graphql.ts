@@ -27,7 +27,7 @@ import {
   visit,
   visitWithTypeInfo,
 } from 'graphql';
-import { isDeprecated } from './isDeprecated';
+import { isDeprecated } from './is-deprecated';
 
 export function safeChangeForField(oldType: GraphQLOutputType, newType: GraphQLOutputType): boolean {
   if (!isWrappingType(oldType) && !isWrappingType(newType)) {
