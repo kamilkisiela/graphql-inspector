@@ -1,7 +1,6 @@
 import {
   parse,
   print,
-  // buildSchema,
   Source,
 } from 'graphql';
 import { LoadersRegistry } from '@graphql-inspector/loaders';
