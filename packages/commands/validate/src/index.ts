@@ -1,10 +1,10 @@
-import { createCommand, GlobalArgs, parseGlobalArgs, CommandFactory } from '@graphql-inspector/commands';
-import { Logger, bolderize, chalk } from '@graphql-inspector/logger';
-import { validate as validateDocuments, InvalidDocument } from '@graphql-inspector/core';
-import { Source as DocumentSource } from '@graphql-tools/utils';
-import { relative } from 'path';
 import { writeFileSync } from 'fs';
-import { Source, print, GraphQLSchema, GraphQLError } from 'graphql';
+import { relative } from 'path';
+import { GraphQLError,GraphQLSchema, print, Source } from 'graphql';
+import { CommandFactory,createCommand, GlobalArgs, parseGlobalArgs } from '@graphql-inspector/commands';
+import { InvalidDocument,validate as validateDocuments } from '@graphql-inspector/core';
+import { bolderize, chalk,Logger } from '@graphql-inspector/logger';
+import { Source as DocumentSource } from '@graphql-tools/utils';
 
 export { CommandFactory };
 

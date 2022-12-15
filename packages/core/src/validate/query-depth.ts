@@ -1,16 +1,16 @@
-import { DepGraph } from 'dependency-graph';
 import {
-  DocumentNode,
-  GraphQLError,
   ASTNode,
-  Kind,
-  FragmentDefinitionNode,
-  Source,
+  DocumentNode,
   FieldNode,
-  InlineFragmentNode,
-  OperationDefinitionNode,
+  FragmentDefinitionNode,
   FragmentSpreadNode,
+  GraphQLError,
+  InlineFragmentNode,
+  Kind,
+  OperationDefinitionNode,
+  Source,
 } from 'graphql';
+import { DepGraph } from 'dependency-graph';
 
 export function validateQueryDepth({
   source,

@@ -1,15 +1,14 @@
 import {
-  GraphQLObjectType,
-  GraphQLField,
   GraphQLArgument,
-  isNonNullType,
+  GraphQLField,
   GraphQLInterfaceType,
+  GraphQLObjectType,
   isInterfaceType,
+  isNonNullType,
 } from 'graphql';
-
-import { Change, CriticalityLevel, ChangeType } from './change';
 import { safeChangeForField } from '../../utils/graphql';
 import { isDeprecated } from '../../utils/isDeprecated';
+import { Change, ChangeType,CriticalityLevel } from './change';
 
 export function fieldRemoved(
   type: GraphQLObjectType | GraphQLInterfaceType,

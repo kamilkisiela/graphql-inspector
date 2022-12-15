@@ -1,5 +1,5 @@
-import stripAnsi from 'strip-ansi';
 import jsesc from 'jsesc';
+import stripAnsi from 'strip-ansi';
 
 export { mockGraphQLServer } from './mock-graphql-server';
 

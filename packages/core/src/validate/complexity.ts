@@ -1,14 +1,14 @@
+import { GraphQLError, Kind } from 'graphql';
 import { DepGraph } from 'dependency-graph';
 import type {
   DocumentNode,
-  FragmentDefinitionNode,
-  Source,
   FieldNode,
+  FragmentDefinitionNode,
+  FragmentSpreadNode,
   InlineFragmentNode,
   OperationDefinitionNode,
-  FragmentSpreadNode,
+  Source,
 } from 'graphql';
-import { GraphQLError, Kind } from 'graphql';
 
 export type CalculateOperationComplexityConfig = {
   scalarCost: number;

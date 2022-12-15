@@ -1,14 +1,13 @@
-import { GraphQLInputObjectType, GraphQLInputField } from 'graphql';
-
+import { GraphQLInputField,GraphQLInputObjectType } from 'graphql';
 import { diffArrays, isNotEqual, isVoid } from '../utils/compare';
 import { compareLists } from '../utils/compare';
 import {
   inputFieldAdded,
-  inputFieldRemoved,
-  inputFieldDescriptionChanged,
-  inputFieldDescriptionAdded,
-  inputFieldDescriptionRemoved,
   inputFieldDefaultValueChanged,
+  inputFieldDescriptionAdded,
+  inputFieldDescriptionChanged,
+  inputFieldDescriptionRemoved,
+  inputFieldRemoved,
   inputFieldTypeChanged,
 } from './changes/input';
 import { AddChange } from './schema';

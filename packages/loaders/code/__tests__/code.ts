@@ -1,4 +1,4 @@
-import { GraphQLObjectType, buildSchema } from 'graphql';
+import { buildSchema,GraphQLObjectType } from 'graphql';
 import loader from '../src';
 
 test('should contain descriptions (#1604)', async () => {

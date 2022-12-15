@@ -1,7 +1,6 @@
 import { buildSchema } from 'graphql';
-
-import { diff } from '../../src/index';
 import { CriticalityLevel } from '../../src/diff/changes/change';
+import { diff } from '../../src/index';
 import { findChangesByPath, findFirstChangeByPath } from '../../utils/testing';
 
 describe('union', () => {

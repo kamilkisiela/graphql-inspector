@@ -1,8 +1,8 @@
-import { createCommand, GlobalArgs, CommandFactory, parseGlobalArgs } from '@graphql-inspector/commands';
-import { Logger } from '@graphql-inspector/logger';
 import { writeFileSync } from 'fs';
-import { resolve, extname } from 'path';
-import { introspectionFromSchema, lexicographicSortSchema, printSchema, GraphQLSchema } from 'graphql';
+import { extname,resolve } from 'path';
+import { GraphQLSchema,introspectionFromSchema, lexicographicSortSchema, printSchema } from 'graphql';
+import { CommandFactory, createCommand, GlobalArgs, parseGlobalArgs } from '@graphql-inspector/commands';
+import { Logger } from '@graphql-inspector/logger';
 
 export { CommandFactory };
 

@@ -1,6 +1,6 @@
 import { defineCommand } from '@graphql-cli/common';
-import { GlobalArgs, parseGlobalArgs, createInspectorExtension, loaders } from '@graphql-inspector/graphql-cli-common';
 import { handler } from '@graphql-inspector/coverage-command';
+import { createInspectorExtension, GlobalArgs, loaders,parseGlobalArgs } from '@graphql-inspector/graphql-cli-common';
 
 export default defineCommand<
   {},

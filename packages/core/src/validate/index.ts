@@ -1,21 +1,20 @@
 import {
-  GraphQLSchema,
-  GraphQLError,
-  Source,
-  print,
-  validate as validateDocument,
-  FragmentDefinitionNode,
   DocumentNode,
+  FragmentDefinitionNode,
+  GraphQLError,
+  GraphQLSchema,
   Kind,
+  print,
+  Source,
+  validate as validateDocument,
 } from 'graphql';
 import { DepGraph } from 'dependency-graph';
-
 import { readDocument } from '../ast/document';
+import { transformDocumentWithApollo,transformSchemaWithApollo } from '../utils/apollo';
 import { findDeprecatedUsages } from '../utils/graphql';
-import { validateQueryDepth } from './query-depth';
-import { transformSchemaWithApollo, transformDocumentWithApollo } from '../utils/apollo';
 import { validateAliasCount } from './alias-count';
 import { validateDirectiveCount } from './directive-count';
+import { validateQueryDepth } from './query-depth';
 import { validateTokenCount } from './token-count';
 
 export interface InvalidDocument {

@@ -1,9 +1,8 @@
 import { GraphQLSchema } from 'graphql';
-
-import { diffSchema } from './schema';
 import { Change } from './changes/change';
-import { Rule } from './rules/types';
 import * as rules from './rules';
+import { Rule } from './rules/types';
+import { diffSchema } from './schema';
 
 export * from './rules/types';
 export const DiffRule = rules;
