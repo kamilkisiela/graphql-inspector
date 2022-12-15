@@ -132,8 +132,7 @@ export function fake(schema: GraphQLSchema): void {
     const isOnMutationType: boolean =
       typeof schema.getMutationType() === 'object' && schema.getMutationType()!.name === typeName;
 
-    if (isOnQueryType || isOnMutationType) {
-      if (mockFunctionMap.has(typeName)) {
+    if ((isOnQueryType || isOnMutationType) && mockFunctionMap.has(typeName)) {
         const rootMock = mockFunctionMap.get(typeName);
         // XXX: BUG in here, need to provide proper signature for rootMock.
         if (typeof (rootMock!(undefined, {}, {}, {} as any) as any)[fieldName] === 'function') {
@@ -149,7 +148,6 @@ export function fake(schema: GraphQLSchema): void {
           };
         }
       }
-    }
     mockResolver = mockType(field.type, fieldName);
     field.resolve = mockResolver;
   });
