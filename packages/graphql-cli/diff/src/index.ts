@@ -100,7 +100,7 @@ export default defineCommand<
       }
 
       function resolveSchema(pointer: string) {
-        return !!config.projects[pointer]
+        return config.projects[pointer]
           ? config.getProject(pointer).getSchema()
           : loadSchema(pointer, {
               headers,
