@@ -37,7 +37,7 @@ export async function handler(input: {
           const rule = resolveRule(name);
 
           if (!rule) {
-            throw new Error(`\Rule '${name}' does not exist!\n`);
+            throw new Error(`Rule '${name}' does not exist!\n`);
           }
 
           return rule;

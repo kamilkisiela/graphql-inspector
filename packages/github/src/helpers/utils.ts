@@ -6,8 +6,8 @@ export function bolderize(msg: string): string {
 }
 
 export function quotesTransformer(msg: string, symbols: string = '**') {
-  const findSingleQuotes = /\'([^']+)\'/gim;
-  const findDoubleQuotes = /\"([^"]+)\"/gim;
+  const findSingleQuotes = /'([^']+)'/gim;
+  const findDoubleQuotes = /"([^"]+)"/gim;
 
   function transformm(_: string, value: string) {
     return `${symbols}${value}${symbols}`;

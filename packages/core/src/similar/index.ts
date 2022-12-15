@@ -60,7 +60,7 @@ function similarTo(type: GraphQLNamedType, targets: Target[], threshold: number)
 function stripType(type: GraphQLNamedType): string {
   return printType(type)
     .trim()
-    .replace(/^[a-z]+ [^\{]+\{/g, '')
+    .replace(/^[a-z]+ [^{]+\{/g, '')
     .replace(/\}$/g, '')
     .trim()
     .split('\n')
