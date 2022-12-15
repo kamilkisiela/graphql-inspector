@@ -1,7 +1,6 @@
-import { printType, GraphQLNamedType, GraphQLSchema } from 'graphql';
-
-import { isPrimitive, isForIntrospection } from '../utils/graphql';
-import { findBestMatch, BestMatch, Target, Rating } from '../utils/string';
+import { GraphQLNamedType, GraphQLSchema,printType } from 'graphql';
+import { isForIntrospection,isPrimitive } from '../utils/graphql';
+import { BestMatch, findBestMatch, Rating,Target } from '../utils/string';
 
 export interface SimilarMap {
   [name: string]: BestMatch;

@@ -1,17 +1,16 @@
-import { GraphQLDirective, GraphQLArgument } from 'graphql';
-
+import { GraphQLArgument,GraphQLDirective } from 'graphql';
 import { isNotEqual } from '../utils/compare';
+import { compareLists,diffArrays } from '../utils/compare';
 import {
+  directiveArgumentAdded,
+  directiveArgumentDefaultValueChanged,
+  directiveArgumentDescriptionChanged,
+  directiveArgumentRemoved,
+  directiveArgumentTypeChanged,
   directiveDescriptionChanged,
   directiveLocationAdded,
   directiveLocationRemoved,
-  directiveArgumentAdded,
-  directiveArgumentRemoved,
-  directiveArgumentDescriptionChanged,
-  directiveArgumentDefaultValueChanged,
-  directiveArgumentTypeChanged,
 } from './changes/directive';
-import { diffArrays, compareLists } from '../utils/compare';
 import { AddChange } from './schema';
 
 export function changesInDirective(

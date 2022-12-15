@@ -1,5 +1,4 @@
-import { buildSchema, Source, parse, print, getIntrospectionQuery } from 'graphql';
-
+import { buildSchema, getIntrospectionQuery,parse, print, Source } from 'graphql';
 import { coverage } from '../../src/index';
 
 describe('coverage', () => {

@@ -1,11 +1,10 @@
 import {
+  parse,
+  print,
   // buildSchema,
   Source,
-  print,
-  parse,
 } from 'graphql';
 import { LoadersRegistry } from '@graphql-inspector/loaders';
-
 import { validate } from '../../src/validate';
 
 describe('aws', () => {

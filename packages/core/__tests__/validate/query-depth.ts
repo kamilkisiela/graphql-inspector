@@ -1,5 +1,4 @@
 import { parse } from 'graphql';
-
 import { calculateDepth } from '../../src/validate/query-depth';
 
 describe('calculateDepth', () => {

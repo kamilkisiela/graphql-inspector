@@ -1,3 +1,5 @@
+import { existsSync } from 'fs';
+import { GraphQLSchema } from 'graphql';
 import {
   CommandFactory,
   createCommand,
@@ -9,15 +11,13 @@ import {
   Change,
   CompletionArgs,
   CompletionHandler,
-  UsageHandler,
   CriticalityLevel,
   diff as diffSchema,
   DiffRule,
   Rule,
+  UsageHandler,
 } from '@graphql-inspector/core';
 import { bolderize, Logger, symbols } from '@graphql-inspector/logger';
-import { existsSync } from 'fs';
-import { GraphQLSchema } from 'graphql';
 
 export { CommandFactory };
 

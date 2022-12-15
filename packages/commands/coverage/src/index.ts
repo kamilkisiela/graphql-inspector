@@ -1,16 +1,16 @@
-import {
-  createCommand,
-  GlobalArgs,
-  ensureAbsolute,
-  parseGlobalArgs,
-  CommandFactory,
-} from '@graphql-inspector/commands';
-import { Logger, chalk } from '@graphql-inspector/logger';
-import { coverage as calculateCoverage, SchemaCoverage, getTypePrefix } from '@graphql-inspector/core';
-import { Source as DocumentSource } from '@graphql-tools/utils';
-import { Source, print, GraphQLSchema } from 'graphql';
-import { extname } from 'path';
 import { writeFileSync } from 'fs';
+import { extname } from 'path';
+import { GraphQLSchema,print, Source } from 'graphql';
+import {
+  CommandFactory,
+  createCommand,
+  ensureAbsolute,
+  GlobalArgs,
+  parseGlobalArgs,
+} from '@graphql-inspector/commands';
+import { coverage as calculateCoverage, getTypePrefix,SchemaCoverage } from '@graphql-inspector/core';
+import { chalk,Logger } from '@graphql-inspector/logger';
+import { Source as DocumentSource } from '@graphql-tools/utils';
 
 export { CommandFactory };
 

@@ -1,15 +1,15 @@
+import { FragmentDefinitionNode, OperationDefinitionNode, print } from 'graphql';
 import { createCommand, GlobalArgs } from '@graphql-inspector/commands';
+import type { CalculateOperationComplexityConfig } from '@graphql-inspector/core';
 import {
+  calculateOperationComplexity,
+  calculateTokenCount,
   countAliases,
   countDepth,
   countDirectives,
-  calculateOperationComplexity,
-  calculateTokenCount,
 } from '@graphql-inspector/core';
-import type { CalculateOperationComplexityConfig } from '@graphql-inspector/core';
+import { chalk,Logger } from '@graphql-inspector/logger';
 import { Source as DocumentSource } from '@graphql-tools/utils';
-import { FragmentDefinitionNode, OperationDefinitionNode, print } from 'graphql';
-import { Logger, chalk } from '@graphql-inspector/logger';
 import Table from 'cli-table3';
 
 export default createCommand<

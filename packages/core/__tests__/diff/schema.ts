@@ -1,7 +1,6 @@
-import { buildSchema, introspectionFromSchema, buildClientSchema } from 'graphql';
-
+import { buildClientSchema,buildSchema, introspectionFromSchema } from 'graphql';
+import { Change,CriticalityLevel } from '../../src/diff/changes/change';
 import { diff } from '../../src/index';
-import { CriticalityLevel, Change } from '../../src/diff/changes/change';
 import { findBestMatch } from '../../src/utils/string';
 
 test('same schema', async () => {

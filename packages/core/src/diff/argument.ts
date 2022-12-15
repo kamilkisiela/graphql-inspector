@@ -1,9 +1,8 @@
-import { GraphQLArgument, GraphQLObjectType, GraphQLField, GraphQLInterfaceType } from 'graphql';
-
+import { GraphQLArgument, GraphQLField, GraphQLInterfaceType,GraphQLObjectType } from 'graphql';
 import { diffArrays, isNotEqual } from '../utils/compare';
 import {
-  fieldArgumentDescriptionChanged,
   fieldArgumentDefaultChanged,
+  fieldArgumentDescriptionChanged,
   fieldArgumentTypeChanged,
 } from './changes/argument';
 import { AddChange } from './schema';

@@ -1,7 +1,7 @@
-import env from 'std-env';
 import chalk from 'chalk';
-import symbols from 'log-symbols';
 import figures from 'figures';
+import symbols from 'log-symbols';
+import env from 'std-env';
 
 export { chalk, symbols, figures };
 

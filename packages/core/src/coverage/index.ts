@@ -1,17 +1,16 @@
 import {
-  GraphQLSchema,
+  ASTVisitor,
+  FieldNode,
   GraphQLError,
-  Source,
+  GraphQLNamedType,
+  GraphQLSchema,
   isInterfaceType,
   isObjectType,
+  Source,
+  TypeInfo,
   visit,
   visitWithTypeInfo,
-  TypeInfo,
-  ASTVisitor,
-  GraphQLNamedType,
-  FieldNode,
 } from 'graphql';
-
 import { readDocument } from '../ast/document';
 import { isForIntrospection, isPrimitive } from '../utils/graphql';
 

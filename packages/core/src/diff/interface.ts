@@ -1,8 +1,7 @@
 import { GraphQLInterfaceType } from 'graphql';
-
-import { fieldRemoved, fieldAdded } from './changes/field';
-import { changesInField } from './field';
 import { compareLists } from '../utils/compare';
+import { fieldAdded,fieldRemoved } from './changes/field';
+import { changesInField } from './field';
 import { AddChange } from './schema';
 
 export function changesInInterface(

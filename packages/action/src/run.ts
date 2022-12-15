@@ -1,17 +1,16 @@
+import { execSync } from 'child_process';
+import { readFileSync } from 'fs';
+import { extname,resolve } from 'path';
+import { buildClientSchema, buildSchema, GraphQLSchema, printSchema,Source } from 'graphql';
+import * as core from '@actions/core';
+import * as github from '@actions/github';
 import {
   CheckConclusion,
-  diff,
   createSummary,
+  diff,
   printSchemaFromEndpoint,
   produceSchema,
 } from '@graphql-inspector/github';
-import { Source, GraphQLSchema, buildClientSchema, buildSchema, printSchema } from 'graphql';
-import { readFileSync } from 'fs';
-import { resolve, extname } from 'path';
-import { execSync } from 'child_process';
-
-import * as core from '@actions/core';
-import * as github from '@actions/github';
 import { OctokitResponse } from '@octokit/types';
 import { batch } from './utils';
 

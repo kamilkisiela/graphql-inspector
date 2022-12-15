@@ -1,10 +1,10 @@
-import * as probot from 'probot';
 import { buildSchema } from 'graphql';
 import { diff } from '@graphql-inspector/core';
-import { FileLoader, ConfigLoader, loadSources } from './helpers/loaders';
-import { SchemaPointer, NormalizedEnvironment, Notifications, createConfig } from './helpers/config';
-import { notifyWithSlack, notifyWithWebhook, notifyWithDiscord } from './helpers/notifications';
+import * as probot from 'probot';
+import { createConfig,NormalizedEnvironment, Notifications, SchemaPointer } from './helpers/config';
+import { ConfigLoader, FileLoader, loadSources } from './helpers/loaders';
 import { createLogger } from './helpers/logger';
+import { notifyWithDiscord,notifyWithSlack, notifyWithWebhook } from './helpers/notifications';
 import { ErrorHandler } from './helpers/types';
 
 export async function handleSchemaChangeNotifications({

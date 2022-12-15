@@ -1,6 +1,6 @@
-import { FC, useEffect, useRef, useState, KeyboardEvent } from 'react';
+import { FC, KeyboardEvent,useEffect, useRef, useState } from 'react';
 import { buildSchema } from 'graphql';
-import { diff, Change } from '@graphql-inspector/core';
+import { Change,diff } from '@graphql-inspector/core';
 import { DiffEditor, OnMount } from '@monaco-editor/react';
 import FlipMove from 'react-flip-move';
 import ChangeComponent from './Change';
