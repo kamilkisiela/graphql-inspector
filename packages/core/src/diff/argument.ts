@@ -1,9 +1,12 @@
 import { GraphQLArgument, GraphQLField, GraphQLInterfaceType,GraphQLObjectType } from 'graphql';
 import { diffArrays, isNotEqual } from '../utils/compare';
+import { isDeprecated } from '../utils/isDeprecated';
 import {
   fieldArgumentDefaultChanged,
   fieldArgumentDescriptionChanged,
   fieldArgumentTypeChanged,
+  fieldArgumentDeprecationAdded,
+  fieldArgumentDeprecationRemoved,
 } from './changes/argument';
 import { AddChange } from './schema';
 
@@ -31,5 +34,14 @@ export function changesInArgument(
 
   if (isNotEqual(oldArg.type.toString(), newArg.type.toString())) {
     addChange(fieldArgumentTypeChanged(type, field, oldArg, newArg));
+  }
+
+  if (isNotEqual(isDeprecated(oldArg), isDeprecated(newArg))) {
+    if (isDeprecated(newArg)) {
+        addChange(fieldArgumentDeprecationAdded(type, field, newArg));
+    }
+    else {
+        addChange(fieldArgumentDeprecationRemoved(type, field, oldArg));
+    }
   }
 }
