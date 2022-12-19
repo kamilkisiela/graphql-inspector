@@ -1,10 +1,10 @@
-import { NormalizedEnvironment, SchemaPointer, Endpoint } from './config';
-import * as probot from 'probot';
+import { buildClientSchema, getIntrospectionQuery, printSchema, Source } from 'graphql';
+import axios from 'axios';
 import Dataloader from 'dataloader';
 import yaml from 'js-yaml';
-import axios from 'axios';
-import { getIntrospectionQuery, buildClientSchema, printSchema, Source } from 'graphql';
-import { isNil, parseEndpoint, objectFromEntries } from './utils';
+import * as probot from 'probot';
+import { Endpoint,NormalizedEnvironment, SchemaPointer } from './config';
+import { isNil, objectFromEntries,parseEndpoint } from './utils';
 
 function createGetFilesQuery(variableMap: Record<string, string>): string {
   const variables = Object.keys(variableMap)

@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
-import webm from '../../public/assets/img/cli/demo.webm';
 import mp4 from '../../public/assets/img/cli/demo.mp4';
+import webm from '../../public/assets/img/cli/demo.webm';
 
 export function CliDemo(): ReactElement {
   return (

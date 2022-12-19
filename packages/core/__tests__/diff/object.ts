@@ -1,7 +1,6 @@
 import { buildSchema } from 'graphql';
-
-import { diff, DiffRule, CriticalityLevel } from '../../src/index';
-import { findFirstChangeByPath, findChangesByPath } from '../../utils/testing';
+import { CriticalityLevel,diff, DiffRule } from '../../src/index';
+import { findChangesByPath,findFirstChangeByPath } from '../../utils/testing';
 
 describe('object', () => {
   test('added', async () => {

@@ -1,6 +1,6 @@
+import { parsePath } from '../../utils/path';
 import { CriticalityLevel } from './../changes/change';
 import { Rule } from './types';
-import { parsePath } from '../../utils/path';
 
 export type UsageHandler = (input: Array<{ type: string; field?: string; argument?: string }>) => Promise<boolean[]>;
 

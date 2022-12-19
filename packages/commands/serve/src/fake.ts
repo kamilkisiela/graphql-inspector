@@ -1,18 +1,18 @@
 import {
-  GraphQLSchema,
-  GraphQLObjectType,
+  getNamedType,
+  getNullableType,
   GraphQLEnumType,
-  GraphQLUnionType,
+  GraphQLField,
+  GraphQLFieldResolver,
   GraphQLInterfaceType,
   GraphQLList,
-  GraphQLType,
-  GraphQLField,
-  GraphQLResolveInfo,
-  getNullableType,
-  getNamedType,
-  GraphQLFieldResolver,
   GraphQLNonNull,
   GraphQLNullableType,
+  GraphQLObjectType,
+  GraphQLResolveInfo,
+  GraphQLSchema,
+  GraphQLType,
+  GraphQLUnionType,
 } from 'graphql';
 
 const defaultMockMap: Map<string, GraphQLFieldResolver<any, any>> = new Map();

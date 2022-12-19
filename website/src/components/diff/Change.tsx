@@ -1,5 +1,5 @@
 import { forwardRef } from 'react';
-import { CriticalityLevel, Change } from '@graphql-inspector/core';
+import { Change,CriticalityLevel } from '@graphql-inspector/core';
 import styles from './change.module.css';
 
 const ColorMap = {

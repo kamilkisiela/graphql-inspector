@@ -1,3 +1,5 @@
+import { existsSync } from 'fs';
+import { GraphQLSchema } from 'graphql';
 import {
   CommandFactory,
   createCommand,
@@ -9,15 +11,13 @@ import {
   Change,
   CompletionArgs,
   CompletionHandler,
-  UsageHandler,
   CriticalityLevel,
   diff as diffSchema,
   DiffRule,
   Rule,
+  UsageHandler,
 } from '@graphql-inspector/core';
 import { bolderize, Logger, symbols } from '@graphql-inspector/logger';
-import { existsSync } from 'fs';
-import { GraphQLSchema } from 'graphql';
 
 export { CommandFactory };
 
@@ -37,7 +37,7 @@ export async function handler(input: {
           const rule = resolveRule(name);
 
           if (!rule) {
-            throw new Error(`\Rule '${name}' does not exist!\n`);
+            throw new Error(`Rule '${name}' does not exist!\n`);
           }
 
           return rule;

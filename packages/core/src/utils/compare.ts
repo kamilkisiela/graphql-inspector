@@ -9,7 +9,7 @@ export function isEqual<T>(a: T, b: T): boolean {
   if (Array.isArray(a) && Array.isArray(b)) {
     if (a.length !== b.length) return false;
 
-    for (var index = 0; index < a.length; index++) {
+    for (let index = 0; index < a.length; index++) {
       if (!isEqual(a[index], b[index])) {
         return false;
       }

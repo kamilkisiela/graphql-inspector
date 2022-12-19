@@ -1,34 +1,33 @@
 import {
-  GraphQLSchema,
   GraphQLNamedType,
   GraphQLObjectType,
+  GraphQLSchema,
   isEnumType,
-  isUnionType,
   isInputObjectType,
-  isObjectType,
   isInterfaceType,
+  isObjectType,
   isScalarType,
+  isUnionType,
 } from 'graphql';
-
 import { compareLists, isNotEqual, isVoid } from '../utils/compare';
 import { isPrimitive } from '../utils/graphql';
 import { Change } from './changes/change';
-import { schemaQueryTypeChanged, schemaMutationTypeChanged, schemaSubscriptionTypeChanged } from './changes/schema';
+import { directiveAdded,directiveRemoved } from './changes/directive';
+import { schemaMutationTypeChanged, schemaQueryTypeChanged, schemaSubscriptionTypeChanged } from './changes/schema';
 import {
-  typeRemoved,
   typeAdded,
-  typeKindChanged,
-  typeDescriptionChanged,
   typeDescriptionAdded,
+  typeDescriptionChanged,
   typeDescriptionRemoved,
+  typeKindChanged,
+  typeRemoved,
 } from './changes/type';
-import { directiveRemoved, directiveAdded } from './changes/directive';
-import { changesInEnum } from './enum';
-import { changesInUnion } from './union';
-import { changesInInputObject } from './input';
-import { changesInObject } from './object';
-import { changesInInterface } from './interface';
 import { changesInDirective } from './directive';
+import { changesInEnum } from './enum';
+import { changesInInputObject } from './input';
+import { changesInInterface } from './interface';
+import { changesInObject } from './object';
+import { changesInUnion } from './union';
 
 export type AddChange = (change: Change) => void;
 

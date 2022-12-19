@@ -1,5 +1,5 @@
-import { GraphQLExtensionDeclaration } from 'graphql-config';
 import { loaders } from '@graphql-cli/loaders';
+import { GraphQLExtensionDeclaration } from 'graphql-config';
 
 export { loaders };
 

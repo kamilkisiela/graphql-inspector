@@ -1,15 +1,15 @@
-import {
-  createCommand,
-  GlobalArgs,
-  ensureAbsolute,
-  parseGlobalArgs,
-  CommandFactory,
-} from '@graphql-inspector/commands';
-import { Logger, figures, chalk } from '@graphql-inspector/logger';
-import { similar as findSimilar, getTypePrefix, SimilarMap, Rating } from '@graphql-inspector/core';
+import { writeFileSync } from 'fs';
 import { extname } from 'path';
 import { GraphQLNamedType, GraphQLSchema } from 'graphql';
-import { writeFileSync } from 'fs';
+import {
+  CommandFactory,
+  createCommand,
+  ensureAbsolute,
+  GlobalArgs,
+  parseGlobalArgs,
+} from '@graphql-inspector/commands';
+import { getTypePrefix, Rating,similar as findSimilar, SimilarMap } from '@graphql-inspector/core';
+import { chalk,figures, Logger } from '@graphql-inspector/logger';
 
 export { CommandFactory };
 

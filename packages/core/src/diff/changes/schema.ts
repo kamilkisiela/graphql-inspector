@@ -1,6 +1,5 @@
 import { GraphQLSchema } from 'graphql';
-
-import { Change, CriticalityLevel, ChangeType } from './change';
+import { Change, ChangeType,CriticalityLevel } from './change';
 
 export function schemaQueryTypeChanged(oldSchema: GraphQLSchema, newSchema: GraphQLSchema): Change {
   const oldName = (oldSchema.getQueryType() || ({} as any)).name || 'unknown';

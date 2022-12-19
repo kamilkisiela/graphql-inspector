@@ -1,16 +1,16 @@
 import { ReactElement } from 'react';
-import { FeatureList, HeroGradient, NPMBadge, HeroIllustration } from '@theguild/components';
 import dynamic from 'next/dynamic';
+import { FeatureList, HeroGradient, HeroIllustration,NPMBadge } from '@theguild/components';
+import githubImage from '../../public/assets/img/illustrations/github.png';
+import hackerMindsetImage from '../../public/assets/img/illustrations/hacker-mindset.png';
 import hiveImage from '../../public/assets/img/illustrations/hive.png';
+import resultImage from '../../public/assets/img/illustrations/result.png';
+import typewritterImage from '../../public/assets/img/illustrations/typewriter.png';
+import coverImage from '../../public/assets/img/ui/cover.svg';
 import annotationsImage from '../../public/assets/img/ui/features/annotations.png';
+import interceptImage from '../../public/assets/img/ui/features/intercept.png';
 import notificationsImage from '../../public/assets/img/ui/features/notifications.png';
 import schemaCheckImage from '../../public/assets/img/ui/features/schema-check.png';
-import githubImage from '../../public/assets/img/illustrations/github.png';
-import resultImage from '../../public/assets/img/illustrations/result.png';
-import coverImage from '../../public/assets/img/ui/cover.svg';
-import typewritterImage from '../../public/assets/img/illustrations/typewriter.png';
-import hackerMindsetImage from '../../public/assets/img/illustrations/hacker-mindset.png';
-import interceptImage from '../../public/assets/img/ui/features/intercept.png';
 
 export const Diff = dynamic(() => import('./diff'));
 

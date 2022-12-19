@@ -1,8 +1,7 @@
 import { buildSchema } from 'graphql';
-
-import { findFirstChangeByPath } from '../../utils/testing';
-import { diff } from '../../src/index';
 import { CriticalityLevel } from '../../src/diff/changes/change';
+import { diff } from '../../src/index';
+import { findFirstChangeByPath } from '../../utils/testing';
 
 describe('directive', () => {
   test('added', async () => {
@@ -23,7 +22,7 @@ describe('directive', () => {
 
     expect(change.criticality.level).toEqual(CriticalityLevel.NonBreaking);
     expect(change.type).toEqual('DIRECTIVE_ADDED');
-    expect(change.message).toEqual(`Directive \'foo\' was added`);
+    expect(change.message).toEqual(`Directive 'foo' was added`);
   });
   test('removed', async () => {
     const a = buildSchema(/* GraphQL */ `
@@ -43,7 +42,7 @@ describe('directive', () => {
 
     expect(change.criticality.level).toEqual(CriticalityLevel.Breaking);
     expect(change.type).toEqual('DIRECTIVE_REMOVED');
-    expect(change.message).toEqual(`Directive \'foo\' was removed`);
+    expect(change.message).toEqual(`Directive 'foo' was removed`);
   });
 
   test('description', async () => {
