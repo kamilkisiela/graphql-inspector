@@ -167,7 +167,7 @@ export function findDeprecatedUsages(schema: GraphQLSchema, ast: DocumentNode): 
 }
 
 export function removeFieldIfDirectives(node: FieldNode, directiveNames: string[]): FieldNode | null {
-  if (node.directives && node.directives.some(d => directiveNames.includes(d.name.value))) {
+  if (node.directives?.some(d => directiveNames.includes(d.name.value))) {
       return null;
     }
 
