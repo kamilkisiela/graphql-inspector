@@ -40,6 +40,12 @@ jobs:
       - name: Test
         run: yarn test
 
+      - name: Lint ESLint
+        run: yarn lint
+
+      - name: Lint Prettier
+        run: yarn lint:prettier
+
       - name: Integration tests
         run: |
           chmod +x ./packages/cli/dist/index.js
@@ -65,9 +71,3 @@ jobs:
 
           echo 2088
           ./packages/cli/dist/index.js diff ./integration_tests/2088/old.graphql ./integration_tests/2088/new.graphql --rule suppressRemovalOfDeprecatedField
-
-      - name: Lint ESLint
-        run: yarn lint
-
-      - name: Lint Prettier
-        run: yarn lint:prettier
