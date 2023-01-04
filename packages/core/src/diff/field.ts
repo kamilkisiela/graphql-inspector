@@ -1,6 +1,6 @@
 import { GraphQLField, GraphQLInterfaceType, GraphQLObjectType } from 'graphql';
 import { compareLists, isNotEqual, isVoid } from '../utils/compare';
-import { isDeprecated } from '../utils/isDeprecated';
+import { isDeprecated } from '../utils/is-deprecated';
 import { changesInArgument } from './argument';
 import {
   fieldArgumentAdded,

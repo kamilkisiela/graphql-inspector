@@ -1,6 +1,6 @@
 import { GraphQLInputField, GraphQLInputObjectType, isNonNullType } from 'graphql';
 import { safeChangeForInputValue } from '../../utils/graphql';
-import { isDeprecated } from '../../utils/isDeprecated';
+import { isDeprecated } from '../../utils/is-deprecated';
 import { safeString } from '../../utils/string';
 import { Change, ChangeType, CriticalityLevel } from './change';
 

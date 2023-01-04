@@ -48,7 +48,7 @@
     "shelljs": "0.8.5"
   },
   "devDependencies": {
-    "@theguild/eslint-config": "0.4.0",
+    "@theguild/eslint-config": "0.4.1",
     "@theguild/prettier-config": "1.0.0",
     "@types/body-parser": "1.19.2",
     "@types/cors": "2.8.12",
