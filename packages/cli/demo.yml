@@ -85,7 +85,7 @@ config:
 
   # Theme
   theme:
-    background: 'transparent'
+    background: transparent
     foreground: '#afafaf'
     cursor: '#c7c7c7'
     black: '#232628'

@@ -3,7 +3,7 @@ name: master
 on:
   push:
     branches:
-      - 'master'
+      - master
 
 jobs:
   algolia:
@@ -15,4 +15,4 @@ jobs:
       algoliaIndexName: ${{ secrets.NEXT_PUBLIC_ALGOLIA_INDEX_NAME }}
     with:
       domain: https://www.the-guild.dev/graphql/inspector/
-      source: 'Inspector'
+      source: Inspector

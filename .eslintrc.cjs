@@ -15,7 +15,6 @@ module.exports = {
         'unicorn/filename-case': 'off',
         '@typescript-eslint/no-unused-vars': 'off',
         'yml/no-empty-mapping-value': 'off',
-        'yml/plain-scalar': 'off',
         '@typescript-eslint/no-var-requires': 'off',
         'no-undef': 'off',
         'unicorn/prefer-node-protocol': 'off',

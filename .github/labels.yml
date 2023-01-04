@@ -42,19 +42,19 @@
   name: ⛑️ help wanted
 - color: 692A4E
   description: Good for newcomers
-  name: "\U0001F393 good first issue"
+  name: 🎓 good first issue
 - color: FFF9D2
   description: Further information is requested
-  name: "\U0001F399️ question"
+  name: 🎙️ question
 - color: FF6F61
   description: Something isn't working
-  name: "\U0001F41E bug"
+  name: 🐞 bug
 - color: 1C77A4
   description: This issue or pull request is released
-  name: "\U0001F4E6 released"
+  name: 📦 released
 - color: D4E1E8
   description: This will not be worked on
-  name: "\U0001F512 wontfix"
+  name: 🔒 wontfix
 - color: a2eeef
   description: New feature or request
-  name: "\U0001F680 enhancement"
+  name: 🚀 enhancement
