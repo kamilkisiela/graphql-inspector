@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
 import dynamic from 'next/dynamic';
-import { FeatureList, HeroGradient, HeroIllustration,NPMBadge } from '@theguild/components';
+import { FeatureList, HeroGradient, HeroIllustration, NPMBadge } from '@theguild/components';
 import githubImage from '../../public/assets/img/illustrations/github.png';
 import hackerMindsetImage from '../../public/assets/img/illustrations/hacker-mindset.png';
 import hiveImage from '../../public/assets/img/illustrations/hive.png';
