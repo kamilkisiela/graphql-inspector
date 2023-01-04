@@ -8,7 +8,8 @@ export function inputFieldRemoved(input: GraphQLInputObjectType, field: GraphQLI
   return {
     criticality: {
       level: CriticalityLevel.Breaking,
-      reason: 'Removing an input field will cause existing queries that use this input field to error.',
+      reason:
+        'Removing an input field will cause existing queries that use this input field to error.',
     },
     type: ChangeType.InputFieldRemoved,
     message: `Input field '${field.name}' ${
@@ -35,7 +36,10 @@ export function inputFieldAdded(input: GraphQLInputObjectType, field: GraphQLInp
   };
 }
 
-export function inputFieldDescriptionAdded(type: GraphQLInputObjectType, field: GraphQLInputField): Change {
+export function inputFieldDescriptionAdded(
+  type: GraphQLInputObjectType,
+  field: GraphQLInputField,
+): Change {
   return {
     criticality: {
       level: CriticalityLevel.NonBreaking,
@@ -46,7 +50,10 @@ export function inputFieldDescriptionAdded(type: GraphQLInputObjectType, field: 
   };
 }
 
-export function inputFieldDescriptionRemoved(type: GraphQLInputObjectType, field: GraphQLInputField): Change {
+export function inputFieldDescriptionRemoved(
+  type: GraphQLInputObjectType,
+  field: GraphQLInputField,
+): Change {
   return {
     criticality: {
       level: CriticalityLevel.NonBreaking,
@@ -60,7 +67,7 @@ export function inputFieldDescriptionRemoved(type: GraphQLInputObjectType, field
 export function inputFieldDescriptionChanged(
   input: GraphQLInputObjectType,
   oldField: GraphQLInputField,
-  newField: GraphQLInputField
+  newField: GraphQLInputField,
 ): Change {
   return {
     criticality: {
@@ -75,7 +82,7 @@ export function inputFieldDescriptionChanged(
 export function inputFieldDefaultValueChanged(
   input: GraphQLInputObjectType,
   oldField: GraphQLInputField,
-  newField: GraphQLInputField
+  newField: GraphQLInputField,
 ): Change {
   return {
     criticality: {
@@ -85,7 +92,7 @@ export function inputFieldDefaultValueChanged(
     },
     type: ChangeType.InputFieldDefaultValueChanged,
     message: `Input field '${input.name}.${oldField.name}' default value changed from '${safeString(
-      oldField.defaultValue
+      oldField.defaultValue,
     )}' to '${safeString(newField.defaultValue)}'`,
     path: [input.name, oldField.name].join('.'),
   };
@@ -94,7 +101,7 @@ export function inputFieldDefaultValueChanged(
 export function inputFieldTypeChanged(
   input: GraphQLInputObjectType,
   oldField: GraphQLInputField,
-  newField: GraphQLInputField
+  newField: GraphQLInputField,
 ): Change {
   return {
     criticality: safeChangeForInputValue(oldField.type, newField.type)
@@ -104,7 +111,8 @@ export function inputFieldTypeChanged(
         }
       : {
           level: CriticalityLevel.Breaking,
-          reason: 'Changing the type of an input field can cause existing queries that use this field to error.',
+          reason:
+            'Changing the type of an input field can cause existing queries that use this field to error.',
         },
     type: ChangeType.InputFieldTypeChanged,
     message: `Input field '${input.name}.${

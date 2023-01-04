@@ -34,15 +34,23 @@ export function fake(schema: GraphQLSchema): void {
   // use Map internally, because that API is nicer.
   const mockFunctionMap: Map<string, GraphQLFieldResolver<any, any>> = new Map();
 
-  const mockType = function (type: GraphQLType, fieldName?: string): GraphQLFieldResolver<any, any> {
-    // order of precendence for mocking:
+  const mockType = function (
+    type: GraphQLType,
+    fieldName?: string,
+  ): GraphQLFieldResolver<any, any> {
+    // order of precedence for mocking:
     // 1. if the object passed in already has fieldName, just use that
     // --> if it's a function, that becomes your resolver
     // --> if it's a value, the mock resolver will return that
     // 2. if the nullableType is a list, recurse
     // 2. if there's a mock defined for this typeName, that will be used
     // 3. if there's no mock defined, use the default mocks for this type
-    return (root: any, args: { [key: string]: any }, context: any, info: GraphQLResolveInfo): any => {
+    return (
+      root: any,
+      args: { [key: string]: any },
+      context: any,
+      info: GraphQLResolveInfo,
+    ): any => {
       // nullability doesn't matter for the purpose of mocking.
       const fieldType = getNullableType(type) as GraphQLNullableType;
       const namedFieldType = getNamedType(fieldType);
@@ -54,7 +62,14 @@ export function fake(schema: GraphQLSchema): void {
         if (typeof root[fieldName!] === 'function') {
           result = root[fieldName!](root, args, context, info);
           if (result instanceof MockList) {
-            result = result.mock(root, args, context, info, fieldType as GraphQLList<any>, mockType);
+            result = result.mock(
+              root,
+              args,
+              context,
+              info,
+              fieldType as GraphQLList<any>,
+              mockType,
+            );
           }
         } else {
           result = root[fieldName!];
@@ -63,7 +78,10 @@ export function fake(schema: GraphQLSchema): void {
         // Now we merge the result with the default mock for this type.
         // This allows overriding defaults while writing very little code.
         if (mockFunctionMap.has(namedFieldType.name)) {
-          result = mergeMocks(mockFunctionMap.get(namedFieldType.name)!.bind(null, root, args, context, info), result);
+          result = mergeMocks(
+            mockFunctionMap.get(namedFieldType.name)!.bind(null, root, args, context, info),
+            result,
+          );
         }
         return result;
       }
@@ -90,7 +108,12 @@ export function fake(schema: GraphQLSchema): void {
       if (fieldType instanceof GraphQLUnionType || fieldType instanceof GraphQLInterfaceType) {
         let implementationType;
         if (mockFunctionMap.has(fieldType.name)) {
-          const interfaceMockObj: any = mockFunctionMap.get(fieldType.name)!(root, args, context, info);
+          const interfaceMockObj: any = mockFunctionMap.get(fieldType.name)!(
+            root,
+            args,
+            context,
+            info,
+          );
           if (!interfaceMockObj || !interfaceMockObj.__typename) {
             return Error(`Please return a __typename in "${fieldType.name}"`);
           }
@@ -101,7 +124,7 @@ export function fake(schema: GraphQLSchema): void {
         }
         return Object.assign(
           { __typename: implementationType },
-          mockType(implementationType)(root, args, context, info)
+          mockType(implementationType)(root, args, context, info),
         );
       }
 
@@ -136,7 +159,12 @@ export function fake(schema: GraphQLSchema): void {
       const rootMock = mockFunctionMap.get(typeName);
       // XXX: BUG in here, need to provide proper signature for rootMock.
       if (typeof (rootMock!(undefined, {}, {}, {} as any) as any)[fieldName] === 'function') {
-        mockResolver = (root: any, args: { [key: string]: any }, context: any, info: GraphQLResolveInfo) => {
+        mockResolver = (
+          root: any,
+          args: { [key: string]: any },
+          context: any,
+          info: GraphQLResolveInfo,
+        ) => {
           const updatedRoot = root || {}; // TODO: should we clone instead?
           updatedRoot[fieldName] = (rootMock!(root, args, context, info) as any)[fieldName];
           // XXX this is a bit of a hack to still use mockType, which
@@ -185,7 +213,10 @@ function assignResolveType(type: GraphQLType) {
   const fieldType = getNullableType(type) as GraphQLNullableType;
   const namedFieldType = getNamedType(fieldType);
 
-  if (namedFieldType instanceof GraphQLUnionType || namedFieldType instanceof GraphQLInterfaceType) {
+  if (
+    namedFieldType instanceof GraphQLUnionType ||
+    namedFieldType instanceof GraphQLInterfaceType
+  ) {
     // the default `resolveType` always returns null. We add a fallback
     // resolution that works with how unions and interface are mocked
     namedFieldType.resolveType = (data: any) => data.__typename;
@@ -229,7 +260,7 @@ class MockList {
     context: any,
     info: GraphQLResolveInfo,
     fieldType: GraphQLList<any>,
-    mockTypeFunc: any
+    mockTypeFunc: any,
   ) {
     let arr: any[];
     if (Array.isArray(this.len)) {

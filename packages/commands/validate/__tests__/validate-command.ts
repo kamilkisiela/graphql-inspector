@@ -94,7 +94,9 @@ describe('validate', () => {
 
     expect(spyReporter).toHaveBeenCalledNormalized('Detected 2 invalid documents:');
     expect(spyReporter).toHaveBeenCalledNormalized('document.graphql:');
-    expect(spyReporter).toHaveBeenCalledNormalized('Cannot query field createdAtSomePoint on type Post');
+    expect(spyReporter).toHaveBeenCalledNormalized(
+      'Cannot query field createdAtSomePoint on type Post',
+    );
     expect(spyReporter).not.toHaveBeenCalledNormalized('All documents are valid');
   });
 
@@ -108,7 +110,9 @@ describe('validate', () => {
   test('should allow to show relative paths', async () => {
     await mockCommand(validate, 'validate "*.graphql" schema.graphql --relativePaths');
 
-    expect(spyReporter).toHaveBeenCalledNormalized(`in ${relative(process.cwd(), 'document.graphql')}:`);
+    expect(spyReporter).toHaveBeenCalledNormalized(
+      `in ${relative(process.cwd(), 'document.graphql')}:`,
+    );
   });
 
   test('should allow for silent mode', async () => {

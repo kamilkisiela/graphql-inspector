@@ -297,7 +297,9 @@ describe('object', () => {
       // Changed
       expect(change.a.criticality.level).toEqual(CriticalityLevel.NonBreaking);
       expect(change.a.type).toEqual('FIELD_DEPRECATION_REASON_CHANGED');
-      expect(change.a.message).toEqual("Deprecation reason on field 'Foo.a' has changed from 'OLD' to 'NEW'");
+      expect(change.a.message).toEqual(
+        "Deprecation reason on field 'Foo.a' has changed from 'OLD' to 'NEW'",
+      );
       // Removed
       expect(change.b.criticality.level).toEqual(CriticalityLevel.NonBreaking);
       expect(change.b.type).toEqual('FIELD_DEPRECATION_REASON_REMOVED');
@@ -361,12 +363,14 @@ describe('object', () => {
 
       const changeWithRule = findFirstChangeByPath(
         await diff(a, b, [DiffRule.suppressRemovalOfDeprecatedField]),
-        'Foo.b'
+        'Foo.b',
       );
 
       expect(changeWithRule.criticality.level).toEqual(CriticalityLevel.Dangerous);
       expect(changeWithRule.type).toEqual('FIELD_REMOVED');
-      expect(changeWithRule.message).toEqual("Field 'b' (deprecated) was removed from object type 'Foo'");
+      expect(changeWithRule.message).toEqual(
+        "Field 'b' (deprecated) was removed from object type 'Foo'",
+      );
     });
   });
 
@@ -393,15 +397,21 @@ describe('object', () => {
       // Whole new type
       expect(change.a.criticality.level).toEqual(CriticalityLevel.Breaking);
       expect(change.a.type).toEqual('FIELD_ARGUMENT_TYPE_CHANGED');
-      expect(change.a.message).toEqual("Type for argument 'a' on field 'Foo.foo' changed from 'String' to 'Int'");
+      expect(change.a.message).toEqual(
+        "Type for argument 'a' on field 'Foo.foo' changed from 'String' to 'Int'",
+      );
       // Nullable to non-nullable
       expect(change.b.criticality.level).toEqual(CriticalityLevel.Breaking);
       expect(change.b.type).toEqual('FIELD_ARGUMENT_TYPE_CHANGED');
-      expect(change.b.message).toEqual("Type for argument 'b' on field 'Foo.foo' changed from 'String' to 'String!'");
+      expect(change.b.message).toEqual(
+        "Type for argument 'b' on field 'Foo.foo' changed from 'String' to 'String!'",
+      );
       // Non-nullable to nullable
       expect(change.c.criticality.level).toEqual(CriticalityLevel.NonBreaking);
       expect(change.c.type).toEqual('FIELD_ARGUMENT_TYPE_CHANGED');
-      expect(change.c.message).toEqual("Type for argument 'c' on field 'Foo.foo' changed from 'String!' to 'String'");
+      expect(change.c.message).toEqual(
+        "Type for argument 'c' on field 'Foo.foo' changed from 'String!' to 'String'",
+      );
     });
 
     test('added', async () => {

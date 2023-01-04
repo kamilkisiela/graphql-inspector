@@ -2,7 +2,9 @@ import { parsePath } from '../../utils/path';
 import { CriticalityLevel } from './../changes/change';
 import { Rule } from './types';
 
-export type UsageHandler = (input: Array<{ type: string; field?: string; argument?: string }>) => Promise<boolean[]>;
+export type UsageHandler = (
+  input: Array<{ type: string; field?: string; argument?: string }>,
+) => Promise<boolean[]>;
 
 export interface ConsiderUsageConfig {
   /**

@@ -33,7 +33,10 @@ export function typeKindChanged(oldType: GraphQLNamedType, newType: GraphQLNamed
     path: oldType.name,
   };
 }
-export function typeDescriptionChanged(oldType: GraphQLNamedType, newType: GraphQLNamedType): Change {
+export function typeDescriptionChanged(
+  oldType: GraphQLNamedType,
+  newType: GraphQLNamedType,
+): Change {
   return {
     criticality: {
       level: CriticalityLevel.NonBreaking,

@@ -131,7 +131,7 @@ export default createCommand<
           method,
         },
         apolloFederation,
-        aws
+        aws,
       );
 
       return handler({ schema, writePath, type, threshold });

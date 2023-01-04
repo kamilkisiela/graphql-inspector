@@ -13,7 +13,10 @@ export function schemaQueryTypeChanged(oldSchema: GraphQLSchema, newSchema: Grap
     message: `Schema query root has changed from '${oldName}' to '${newName}'`,
   };
 }
-export function schemaMutationTypeChanged(oldSchema: GraphQLSchema, newSchema: GraphQLSchema): Change {
+export function schemaMutationTypeChanged(
+  oldSchema: GraphQLSchema,
+  newSchema: GraphQLSchema,
+): Change {
   const oldName = (oldSchema.getMutationType() || ({} as any)).name || 'unknown';
   const newName = (newSchema.getMutationType() || ({} as any)).name || 'unknown';
 
@@ -25,7 +28,10 @@ export function schemaMutationTypeChanged(oldSchema: GraphQLSchema, newSchema: G
     message: `Schema mutation root has changed from '${oldName}' to '${newName}'`,
   };
 }
-export function schemaSubscriptionTypeChanged(oldSchema: GraphQLSchema, newSchema: GraphQLSchema): Change {
+export function schemaSubscriptionTypeChanged(
+  oldSchema: GraphQLSchema,
+  newSchema: GraphQLSchema,
+): Change {
   const oldName = (oldSchema.getSubscriptionType() || ({} as any)).name || 'unknown';
   const newName = (newSchema.getSubscriptionType() || ({} as any)).name || 'unknown';
 

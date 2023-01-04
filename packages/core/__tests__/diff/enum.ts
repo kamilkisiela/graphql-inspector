@@ -102,7 +102,9 @@ describe('enum', () => {
 
     expect(changes.length).toEqual(1);
     expect(change.criticality.level).toEqual(CriticalityLevel.NonBreaking);
-    expect(change.message).toEqual(`Description 'Old Description' on type 'enumA' has changed to 'New Description'`);
+    expect(change.message).toEqual(
+      `Description 'Old Description' on type 'enumA' has changed to 'New Description'`,
+    );
   });
 
   test('deprecation reason changed', async () => {
@@ -133,7 +135,9 @@ describe('enum', () => {
 
     expect(changes.length).toEqual(1);
     expect(change.criticality.level).toEqual(CriticalityLevel.NonBreaking);
-    expect(change.message).toEqual(`Enum value 'enumA.A' deprecation reason changed from 'Old Reason' to 'New Reason'`);
+    expect(change.message).toEqual(
+      `Enum value 'enumA.A' deprecation reason changed from 'Old Reason' to 'New Reason'`,
+    );
   });
 
   test('deprecation reason added', async () => {
@@ -234,7 +238,9 @@ describe('enum', () => {
 
     expect(changesWithRule.length).toEqual(1);
     expect(changeWithRule.criticality.level).toEqual(CriticalityLevel.Dangerous);
-    expect(changeWithRule.message).toEqual("Enum value 'A' (deprecated) was removed from enum 'enumA'");
+    expect(changeWithRule.message).toEqual(
+      "Enum value 'A' (deprecated) was removed from enum 'enumA'",
+    );
   });
 
   test('value added should be Breaking when dangerousBreaking rule is used', async () => {
