@@ -43,13 +43,15 @@ async function main() {
 
   // Set version in packages
   packages.map(dir => {
-    updateString(join(dir, 'package.json'), pkg => pkg.replace(new RegExp(placeholder, 'g'), version));
+    updateString(join(dir, 'package.json'), pkg =>
+      pkg.replace(new RegExp(placeholder, 'g'), version),
+    );
   });
 
   if (isLatest) {
     // Bump version in changelog
     updateString(join(rootDir, 'CHANGELOG.md'), changelog =>
-      changelog.replace('### vNEXT', `### vNEXT` + '\n\n' + `### v${version}`)
+      changelog.replace('### vNEXT', `### vNEXT` + '\n\n' + `### v${version}`),
     );
   }
 

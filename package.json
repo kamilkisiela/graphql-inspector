@@ -1,6 +1,22 @@
 {
-  "private": true,
   "description": "Tooling for GraphQL. Compare GraphQL Schemas, check documents, find breaking changes, find similar types.",
+  "repository": {
+    "type": "git",
+    "url": "kamilkisiela/graphql-inspector"
+  },
+  "author": {
+    "name": "Kamil Kisiela",
+    "email": "kamil.kisiela@gmail.com",
+    "url": "https://github.com/kamilkisiela"
+  },
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "packages/commands/*",
+    "packages/loaders/*",
+    "website"
+  ],
   "keywords": [
     "graphql",
     "graphql-inspector",
@@ -9,30 +25,27 @@
     "api",
     "ui"
   ],
-  "sideEffects": false,
-  "author": {
-    "name": "Kamil Kisiela",
-    "email": "kamil.kisiela@gmail.com",
-    "url": "https://github.com/kamilkisiela"
-  },
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "kamilkisiela/graphql-inspector"
-  },
   "scripts": {
-    "build": "tsc --project tsconfig.json && bob build",
-    "test": "jest",
-    "prebuild": "rimraf \"packages/**/dist/\"",
     "action": "ncc build packages/action/src/action.ts --out action --minify --transpile-only",
+    "build": "tsc --project tsconfig.json && bob build",
     "bundle": "webpack",
     "lint": "eslint --cache --ignore-path .gitignore .",
-    "prettier": "prettier --cache --write --list-different .",
     "lint:prettier": "prettier --cache --check .",
+    "prebuild": "rimraf \"packages/**/dist/\"",
+    "precommit": "lint-staged",
     "prerelease": "yarn action",
+    "prettier": "prettier --cache --write --list-different .",
     "release": "node ./scripts/release.js",
     "release:canary": "npm run release -- canary",
-    "precommit": "lint-staged"
+    "test": "jest"
+  },
+  "dependencies": {
+    "@sentry/node": "6.10.0",
+    "@sentry/tracing": "6.10.0",
+    "husky": "4.3.8",
+    "immer": "9.0.6",
+    "probot": "11.3.0",
+    "shelljs": "0.8.5"
   },
   "devDependencies": {
     "@theguild/eslint-config": "0.4.0",
@@ -62,20 +75,7 @@
     "ts-jest": "27.0.5",
     "typescript": "4.2.4"
   },
-  "dependencies": {
-    "@sentry/node": "6.10.0",
-    "@sentry/tracing": "6.10.0",
-    "husky": "4.3.8",
-    "immer": "9.0.6",
-    "probot": "11.3.0",
-    "shelljs": "0.8.5"
-  },
-  "workspaces": [
-    "packages/*",
-    "packages/commands/*",
-    "packages/loaders/*",
-    "website"
-  ],
+  "sideEffects": false,
   "lint-staged": {
     "*.{js,jsx,mjs,json,md,ts,tsx,graphql,gql,yaml,yml}": [
       "prettier --write",
