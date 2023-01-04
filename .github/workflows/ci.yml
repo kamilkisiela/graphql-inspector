@@ -68,3 +68,6 @@ jobs:
 
       - name: Lint ESLint
         run: yarn lint
+
+      - name: Lint Prettier
+        run: yarn lint:prettier
