@@ -93,9 +93,8 @@ export async function handleSchemaDiff({
         logger,
       });
       return;
-    } else {
-      logger.info(`enabled`);
     }
+    logger.info(`enabled`);
 
     if (!config.branch || /^[0]+$/.test(config.branch)) {
       logger.info(`Nothing to compare with. Skipping...`);

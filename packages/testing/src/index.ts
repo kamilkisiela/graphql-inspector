@@ -29,13 +29,12 @@ expect.extend({
         message: () => `expected not to be a called with ${expected}`,
         pass: true,
       };
-    } else {
-      const message = `expected to be called with ${expected}`;
-
-      return {
-        message: () => message,
-        pass: false,
-      };
     }
+    const message = `expected to be called with ${expected}`;
+
+    return {
+      message: () => message,
+      pass: false,
+    };
   },
 });

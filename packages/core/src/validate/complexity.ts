@@ -66,7 +66,7 @@ export function calculateOperationComplexity(
   let cost = config.scalarCost;
   if ('selectionSet' in node && node.selectionSet) {
     cost = config.objectCost;
-    for (let child of node.selectionSet.selections) {
+    for (const child of node.selectionSet.selections) {
       cost +=
         config.depthCostFactor *
         calculateOperationComplexity(child, config, getFragmentByName, depth + 1);

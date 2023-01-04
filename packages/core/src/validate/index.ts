@@ -124,7 +124,7 @@ export function validate(
         definitions: [...docWithOperations.definitions, ...extractedFragments],
       };
 
-      let transformedSchema = config.apollo ? transformSchemaWithApollo(schema) : schema;
+      const transformedSchema = config.apollo ? transformSchemaWithApollo(schema) : schema;
 
       const transformedDoc = config.apollo
         ? transformDocumentWithApollo(merged, {

@@ -216,7 +216,8 @@ export function getReachableTypes(schema: GraphQLSchema): Set<string> {
 
     if (isScalarType(type)) {
       return;
-    } else if (isInterfaceType(type) || isObjectType(type)) {
+    }
+    if (isInterfaceType(type) || isObjectType(type)) {
       if (isInterfaceType(type)) {
         const { objects, interfaces } = schema.getImplementations(type);
 

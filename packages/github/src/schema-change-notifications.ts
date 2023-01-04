@@ -61,9 +61,8 @@ export async function handleSchemaChangeNotifications({
   if (!config.notifications) {
     logger.info(`disabled. Skipping...`);
     return;
-  } else {
-    logger.info(`enabled`);
   }
+  logger.info(`enabled`);
 
   if (config.branch !== branch) {
     logger.info(

@@ -71,12 +71,11 @@ function serverless(appFn) {
         });
 
         return;
-      } else {
-        res.status(500);
-        res.send('unknown error');
-
-        return;
       }
+      res.status(500);
+      res.send('unknown error');
+
+      return;
     } catch (error) {
       console.error(error);
       res.status(500);
