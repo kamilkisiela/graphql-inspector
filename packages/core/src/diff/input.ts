@@ -1,6 +1,5 @@
 import { GraphQLInputField, GraphQLInputObjectType } from 'graphql';
-import { diffArrays, isNotEqual, isVoid } from '../utils/compare';
-import { compareLists } from '../utils/compare';
+import { compareLists, diffArrays, isNotEqual, isVoid } from '../utils/compare';
 import {
   inputFieldAdded,
   inputFieldDefaultValueChanged,

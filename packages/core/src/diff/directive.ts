@@ -1,6 +1,5 @@
 import { GraphQLArgument, GraphQLDirective } from 'graphql';
-import { isNotEqual } from '../utils/compare';
-import { compareLists, diffArrays } from '../utils/compare';
+import { compareLists, diffArrays, isNotEqual } from '../utils/compare';
 import {
   directiveArgumentAdded,
   directiveArgumentDefaultValueChanged,

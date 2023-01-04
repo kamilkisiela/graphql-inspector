@@ -1,6 +1,5 @@
 import { GraphQLEnumType } from 'graphql';
-import { isNotEqual, isVoid } from '../utils/compare';
-import { compareLists } from '../utils/compare';
+import { compareLists, isNotEqual, isVoid } from '../utils/compare';
 import {
   enumValueAdded,
   enumValueDeprecationReasonAdded,
