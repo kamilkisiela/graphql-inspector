@@ -1,3 +1,4 @@
+import { DepGraph } from 'dependency-graph';
 import {
   ASTNode,
   DocumentNode,
@@ -10,7 +11,6 @@ import {
   OperationDefinitionNode,
   Source,
 } from 'graphql';
-import { DepGraph } from 'dependency-graph';
 
 export function validateQueryDepth({
   source,

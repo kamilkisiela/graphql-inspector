@@ -1,5 +1,5 @@
-import { parse, print, Source } from 'graphql';
 import { LoadersRegistry } from '@graphql-inspector/loaders';
+import { parse, print, Source } from 'graphql';
 import { validate } from '../../src/validate';
 
 describe('aws', () => {

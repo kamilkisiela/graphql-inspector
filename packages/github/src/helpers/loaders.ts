@@ -1,6 +1,6 @@
-import { buildClientSchema, getIntrospectionQuery, printSchema, Source } from 'graphql';
 import axios from 'axios';
 import Dataloader from 'dataloader';
+import { buildClientSchema, getIntrospectionQuery, printSchema, Source } from 'graphql';
 import yaml from 'js-yaml';
 import * as probot from 'probot';
 import { Endpoint, NormalizedEnvironment, SchemaPointer } from './config';

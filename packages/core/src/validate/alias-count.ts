@@ -1,4 +1,3 @@
-import { GraphQLError, Kind } from 'graphql';
 import { DepGraph } from 'dependency-graph';
 import type {
   DocumentNode,
@@ -9,6 +8,7 @@ import type {
   OperationDefinitionNode,
   Source,
 } from 'graphql';
+import { GraphQLError, Kind } from 'graphql';
 
 export function validateAliasCount({
   source,

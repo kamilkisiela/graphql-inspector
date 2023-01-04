@@ -1,5 +1,5 @@
-import { buildSchema, Source } from 'graphql';
 import { CriticalityLevel } from '@graphql-inspector/core';
+import { buildSchema, Source } from 'graphql';
 import nock from 'nock';
 import { diff, DiffInterceptorPayload, DiffInterceptorResponse } from '../src/helpers/diff';
 import { CheckConclusion } from '../src/helpers/types';

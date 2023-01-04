@@ -1,4 +1,3 @@
-import { buildSchema, GraphQLSchema } from 'graphql';
 import { InspectorConfig } from '@graphql-inspector/config';
 import {
   loadDocuments,
@@ -7,6 +6,7 @@ import {
   LoadTypedefsOptions,
 } from '@graphql-tools/load';
 import { Loader, Source } from '@graphql-tools/utils';
+import { buildSchema, GraphQLSchema } from 'graphql';
 
 export class LoadersRegistry {
   private loaders: Loader[] = [];

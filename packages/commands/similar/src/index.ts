@@ -1,6 +1,5 @@
 import { writeFileSync } from 'fs';
 import { extname } from 'path';
-import { GraphQLNamedType, GraphQLSchema } from 'graphql';
 import {
   CommandFactory,
   createCommand,
@@ -10,6 +9,7 @@ import {
 } from '@graphql-inspector/commands';
 import { getTypePrefix, Rating, similar as findSimilar, SimilarMap } from '@graphql-inspector/core';
 import { chalk, figures, Logger } from '@graphql-inspector/logger';
+import { GraphQLNamedType, GraphQLSchema } from 'graphql';
 
 export { CommandFactory };
 

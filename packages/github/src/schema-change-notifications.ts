@@ -1,5 +1,5 @@
-import { buildSchema } from 'graphql';
 import { diff } from '@graphql-inspector/core';
+import { buildSchema } from 'graphql';
 import * as probot from 'probot';
 import {
   createConfig,

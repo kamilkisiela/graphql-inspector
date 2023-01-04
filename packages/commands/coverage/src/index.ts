@@ -1,6 +1,5 @@
 import { writeFileSync } from 'fs';
 import { extname } from 'path';
-import { GraphQLSchema, print, Source } from 'graphql';
 import {
   CommandFactory,
   createCommand,
@@ -15,6 +14,7 @@ import {
 } from '@graphql-inspector/core';
 import { chalk, Logger } from '@graphql-inspector/logger';
 import { Source as DocumentSource } from '@graphql-tools/utils';
+import { GraphQLSchema, print, Source } from 'graphql';
 
 export { CommandFactory };
 

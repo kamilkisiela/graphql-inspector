@@ -1,3 +1,4 @@
+import { DepGraph } from 'dependency-graph';
 import {
   DocumentNode,
   FragmentDefinitionNode,
@@ -8,7 +9,6 @@ import {
   Source,
   validate as validateDocument,
 } from 'graphql';
-import { DepGraph } from 'dependency-graph';
 import { readDocument } from '../ast/document';
 import { transformDocumentWithApollo, transformSchemaWithApollo } from '../utils/apollo';
 import { findDeprecatedUsages } from '../utils/graphql';
