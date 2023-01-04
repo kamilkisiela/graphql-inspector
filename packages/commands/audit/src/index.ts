@@ -94,11 +94,9 @@ export function handler(args: {
         if (definition.kind === 'FragmentDefinition') {
           fragments.set(definition.name.value, definition);
           fragmentStrings.set(definition.name.value, print(definition));
-        } else if (definition.kind === 'OperationDefinition') {
-          if (definition.name) {
+        } else if (definition.kind === 'OperationDefinition' && definition.name) {
             operations.set(definition.name.value, definition);
           }
-        }
       }
     }
   }
