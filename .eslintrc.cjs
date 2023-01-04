@@ -30,7 +30,6 @@ module.exports = {
     'no-empty': 'off',
     '@typescript-eslint/no-empty-function': 'off',
     'n/no-restricted-import': 'off',
-    'unicorn/numeric-separators-style': 'off',
     'no-inner-declarations': 'off',
   },
 };

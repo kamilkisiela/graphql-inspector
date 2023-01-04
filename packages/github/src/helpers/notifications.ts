@@ -202,7 +202,7 @@ function createDiscordEmbeds(changes: Change[]): DiscordEmbed[] {
   if (breakingChanges.length) {
     embeds.push(
       renderDiscordEmbed({
-        color: 15158331, // '#E74C3B',
+        color: 15_158_331, // '#E74C3B',
         title: 'Breaking changes',
         changes: breakingChanges,
       }),
@@ -212,7 +212,7 @@ function createDiscordEmbeds(changes: Change[]): DiscordEmbed[] {
   if (dangerousChanges.length) {
     embeds.push(
       renderDiscordEmbed({
-        color: 15778840, // '#F0C418',
+        color: 15_778_840, // '#F0C418',
         title: 'Dangerous changes',
         changes: dangerousChanges,
       }),
@@ -222,7 +222,7 @@ function createDiscordEmbeds(changes: Change[]): DiscordEmbed[] {
   if (safeChanges.length) {
     embeds.push(
       renderDiscordEmbed({
-        color: 2341274, // '#23B99A',
+        color: 2_341_274, // '#23B99A',
         title: 'Safe changes',
         changes: safeChanges,
       }),

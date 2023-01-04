@@ -92,7 +92,7 @@ export function IndexPage(): ReactElement {
         }}
       />
 
-      <FeatureList items={FEATURE_LIST} className={'dark:[&_img]:invert py-16'} />
+      <FeatureList items={FEATURE_LIST} className="dark:[&_img]:invert py-16" />
 
       <HeroIllustration
         title="GraphQL Hive"
@@ -113,7 +113,7 @@ export function IndexPage(): ReactElement {
           children: 'Take me to GraphQL Hive',
           title: 'Visit GraphQL Hive',
         }}
-        className={'bg-gray-100 dark:bg-zinc-900'}
+        className="bg-gray-100 dark:bg-zinc-900"
         flipped
       />
 
