@@ -89,7 +89,7 @@ export function getTypePrefix(type: GraphQLNamedType): string {
 }
 
 export function isPrimitive(type: GraphQLNamedType | string): boolean {
-  return ['String', 'Int', 'Float', 'Boolean', 'ID'].indexOf(typeof type === 'string' ? type : type.name) !== -1;
+  return ['String', 'Int', 'Float', 'Boolean', 'ID'].includes(typeof type === 'string' ? type : type.name);
 }
 
 export function isForIntrospection(type: GraphQLNamedType | string): boolean {
@@ -103,7 +103,7 @@ export function isForIntrospection(type: GraphQLNamedType | string): boolean {
       '__EnumValue',
       '__Directive',
       '__DirectiveLocation',
-    ].indexOf(typeof type === 'string' ? type : type.name) !== -1
+    ].includes(typeof type === 'string' ? type : type.name)
   );
 }
 
@@ -168,7 +168,7 @@ export function findDeprecatedUsages(schema: GraphQLSchema, ast: DocumentNode): 
 
 export function removeFieldIfDirectives(node: FieldNode, directiveNames: string[]): FieldNode | null {
   if (node.directives) {
-    if (node.directives.some(d => directiveNames.indexOf(d.name.value) !== -1)) {
+    if (node.directives.some(d => directiveNames.includes(d.name.value))) {
       return null;
     }
   }
@@ -180,7 +180,7 @@ export function removeDirectives(node: FieldNode, directiveNames: string[]): Fie
   if (node.directives) {
     return {
       ...node,
-      directives: node.directives.filter(d => directiveNames.indexOf(d.name.value) === -1),
+      directives: node.directives.filter(d => !directiveNames.includes(d.name.value)),
     };
   }
 

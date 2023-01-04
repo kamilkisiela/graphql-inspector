@@ -49,7 +49,7 @@ test('renamed query', async () => {
   const changes = await diff(schemaA, schemaB);
 
   // Type Added
-  const added = changes.find(c => c.message.indexOf('added') !== -1) as Change;
+  const added = changes.find(c => c.message.includes('added')) as Change;
 
   expect(added).toBeDefined();
   expect(added.criticality.level).toEqual(CriticalityLevel.NonBreaking);
@@ -57,7 +57,7 @@ test('renamed query', async () => {
   expect(added.path).toEqual(`RootQuery`);
 
   // Type Removed
-  const removed = changes.find(c => c.message.indexOf('removed') !== -1) as Change;
+  const removed = changes.find(c => c.message.includes('removed')) as Change;
 
   expect(removed).toBeDefined();
   expect(removed.criticality.level).toEqual(CriticalityLevel.Breaking);
@@ -65,7 +65,7 @@ test('renamed query', async () => {
   expect(removed.path).toEqual(`Query`);
 
   // Root Type Changed
-  const changed = changes.find(c => c.message.indexOf('changed') !== -1) as Change;
+  const changed = changes.find(c => c.message.includes('changed')) as Change;
 
   expect(changed).toBeDefined();
   expect(changed.criticality.level).toEqual(CriticalityLevel.Breaking);
