@@ -6,7 +6,7 @@ export interface SimilarMap {
   [name: string]: BestMatch;
 }
 
-export function similar(schema: GraphQLSchema, typeName: string | undefined, threshold: number = 0.4): SimilarMap {
+export function similar(schema: GraphQLSchema, typeName: string | undefined, threshold = 0.4): SimilarMap {
   const typeMap = schema.getTypeMap();
   const targets: Target[] = Object.keys(schema.getTypeMap())
     .filter(name => !isPrimitive(name) && !isForIntrospection(name))

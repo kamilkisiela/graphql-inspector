@@ -3,7 +3,7 @@ import { Parser } from 'graphql/language/parser';
 import type { ParseOptions, Source } from 'graphql';
 
 class ParserWithLexer extends Parser {
-  private __tokenCount: number = 0;
+  private __tokenCount = 0;
 
   get tokenCount() {
     return this.__tokenCount;

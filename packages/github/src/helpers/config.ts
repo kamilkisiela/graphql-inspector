@@ -246,7 +246,7 @@ function findConfigByBranch(
 function findConfigByBranch(
   branch: string,
   config: NormalizedConfig,
-  throwOnMissing: boolean = true
+  throwOnMissing = true
 ): NormalizedEnvironment | null | never {
   const branches: string[] = [];
 
