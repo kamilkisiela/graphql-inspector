@@ -51,7 +51,7 @@ export function calculateOperationComplexity(
   node: FieldNode | FragmentDefinitionNode | InlineFragmentNode | OperationDefinitionNode | FragmentSpreadNode,
   config: CalculateOperationComplexityConfig,
   getFragmentByName: (fragmentName: string) => FragmentDefinitionNode | undefined,
-  depth: number = 0
+  depth = 0
 ) {
   let cost = config.scalarCost;
   if ('selectionSet' in node && node.selectionSet) {
