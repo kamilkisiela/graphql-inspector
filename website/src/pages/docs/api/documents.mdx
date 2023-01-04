@@ -12,8 +12,8 @@ GraphQL Inspector supports glob pattern.
 ./src/app/**/*.ts
 ```
 
-Given the example above, Inspector will search every file that matches that pattern and extract operations and fragments
-wrapped with `gql` or `graphql` template literal tag.
+Given the example above, Inspector will search every file that matches that pattern and extract
+operations and fragments wrapped with `gql` or `graphql` template literal tag.
 
 Supported extensions: `.ts`, `.tsx`, `.js` and `.jsx`.
 
@@ -25,17 +25,19 @@ GraphQL Inspector supports glob pattern.
 ./src/app/**/*.graphql
 ```
 
-Given the example above, Inspector will search every file that matches that pattern and extract operations and
-fragments.
+Given the example above, Inspector will search every file that matches that pattern and extract
+operations and fragments.
 
 Supported extensions: `.graphql`, `.graphqls` and `.gql`.
 
-<Callout type="warning">Remember to wrap a glob pattern with quotes: `"./src/app/**/*.graphql"`</Callout>
+<Callout type="warning">
+  Remember to wrap a glob pattern with quotes: `"./src/app/**/*.graphql"`
+</Callout>
 
 ## Programmatic API
 
-If you are using programmatic API, you might find `@graphql-tools/load` package useful for loading documents. Learn more
-[here](https://graphql-tools.com/docs/documents-loading).
+If you are using programmatic API, you might find `@graphql-tools/load` package useful for loading
+documents. Learn more [here](https://graphql-tools.com/docs/documents-loading).
 
 ```js
 const { validate } = require('@graphql-inspector/core')

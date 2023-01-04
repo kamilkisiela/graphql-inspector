@@ -1,17 +1,17 @@
 # Intercepting Schema Changes
 
-GraphQL Inspector lets you intercept schema changes via HTTP. You're able to decide which changes are acceptable and
-which are not and all of this through even a serverless function.
+GraphQL Inspector lets you intercept schema changes via HTTP. You're able to decide which changes
+are acceptable and which are not and all of this through even a serverless function.
 
-Whenever GraphQL Inspector runs schema checking triggered by Push or Pull Request events, your HTTP endpoint receives a
-list of changes, a list of related Pull Requests or a commit SHA.
+Whenever GraphQL Inspector runs schema checking triggered by Push or Pull Request events, your HTTP
+endpoint receives a list of changes, a list of related Pull Requests or a commit SHA.
 
 ![Intercept](../../../../public/assets/img/github/intercept.png)
 
 ## Usage
 
-Configuring an interceptor looks fairly similar to [`endpoints`](endpoints), except you can't modify a method, it's
-always POST request.
+Configuring an interceptor looks fairly similar to [`endpoints`](endpoints), except you can't modify
+a method, it's always POST request.
 
 ### Single Environment Setup
 
@@ -70,8 +70,9 @@ module.exports = (req, res) => {
 }
 ```
 
-There's so much freedom here. Because you know which commit or a pull request triggered the check, you're able to decide
-if submitted changes should be rejected or accepted by fetching information from GitHub API or your internal APIs.
+There's so much freedom here. Because you know which commit or a pull request triggered the check,
+you're able to decide if submitted changes should be rejected or accepted by fetching information
+from GitHub API or your internal APIs.
 
 ## Payload and Response Structures
 

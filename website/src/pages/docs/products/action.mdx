@@ -1,10 +1,10 @@
 # GitHub Action
 
-[GraphQL Inspector Action](https://github.com/marketplace/actions/graphql-inspector) is a GitHub Action that you can
-install in any of your repositories.
+[GraphQL Inspector Action](https://github.com/marketplace/actions/graphql-inspector) is a GitHub
+Action that you can install in any of your repositories.
 
-GraphQL Inspector Action checks your Pull Request to find breaking changes (and others) in a GraphQL Schema, against
-your `master` branch.
+GraphQL Inspector Action checks your Pull Request to find breaking changes (and others) in a GraphQL
+Schema, against your `master` branch.
 
 ![Application](../../../../public/assets/img/github/app-action.jpg)
 
@@ -29,8 +29,8 @@ jobs:
           schema: 'master:schema.graphql'
 ```
 
-Now on every commit or every Pull Request, the GraphQL Inspector App will annotate every change, next to the line in the
-code where it happened.
+Now on every commit or every Pull Request, the GraphQL Inspector App will annotate every change,
+next to the line in the code where it happened.
 
 ## Inputs
 
@@ -38,8 +38,8 @@ code where it happened.
 
 The name of the check (`GraphQL Inspector` by default).
 
-In case of multiple GraphQL Inspector Actions, use `name` to prevent GitHub from overwriting results. For example,
-"Check Public API" and "Check Internal API".
+In case of multiple GraphQL Inspector Actions, use `name` to prevent GitHub from overwriting
+results. For example, "Check Public API" and "Check Internal API".
 
 ```yaml
 - uses: kamilkisiela/graphql-inspector@master
@@ -77,8 +77,9 @@ Fail on breaking changes (`true` by default).
 
 ### `approve-label`
 
-Label to mark Pull Request introducing breaking changes as safe and expected By default, GraphQL Inspector fails the
-Pull Request when it detects any breaking changes (`approved-breaking-change` by default).
+Label to mark Pull Request introducing breaking changes as safe and expected By default, GraphQL
+Inspector fails the Pull Request when it detects any breaking changes (`approved-breaking-change` by
+default).
 
 ```yaml
 - uses: kamilkisiela/graphql-inspector@master
@@ -87,7 +88,8 @@ Pull Request when it detects any breaking changes (`approved-breaking-change` by
     approve-label: expected-breaking-change
 ```
 
-To mark the breaking change as safe, apply the `approved-breaking-change` label or define your own in `approve-label`.
+To mark the breaking change as safe, apply the `approved-breaking-change` label or define your own
+in `approve-label`.
 
 ### `endpoint`
 
