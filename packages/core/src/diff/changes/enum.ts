@@ -1,5 +1,5 @@
 import { GraphQLEnumType, GraphQLEnumValue } from 'graphql';
-import { isDeprecated } from '../../utils/isDeprecated';
+import { isDeprecated } from '../../utils/is-deprecated';
 import { Change, ChangeType, CriticalityLevel } from './change';
 
 export function enumValueRemoved(oldEnum: GraphQLEnumType, value: GraphQLEnumValue): Change {

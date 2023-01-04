@@ -48,7 +48,7 @@
     "shelljs": "0.8.5"
   },
   "devDependencies": {
-    "@theguild/eslint-config": "0.4.0",
+    "@theguild/eslint-config": "0.4.1",
     "@theguild/prettier-config": "1.0.0",
     "@types/body-parser": "1.19.2",
     "@types/cors": "2.8.12",
@@ -59,8 +59,7 @@
     "@zeit/ncc": "0.22.3",
     "axios": "0.21.4",
     "bob-the-bundler": "1.5.1",
-    "eslint": "8.29.0",
-    "eslint-interactive": "10.3.0",
+    "eslint": "8.31.0",
     "graphql": "16.0.0",
     "graphql-config": "4.0.1",
     "jest": "27.5.1",
@@ -68,7 +67,7 @@
     "lint-staged": "11.0.0",
     "lodash": "4.17.21",
     "nock": "13.0.11",
-    "prettier": "2.7.1",
+    "prettier": "2.8.1",
     "rimraf": "3.0.2",
     "smee-client": "1.2.2",
     "strip-ansi": "6.0.0",

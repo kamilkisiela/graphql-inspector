@@ -1,5 +1,5 @@
 import { isEnumType, isInputObjectType, isInterfaceType, isObjectType } from 'graphql';
-import { isDeprecated } from '../../utils/isDeprecated';
+import { isDeprecated } from '../../utils/is-deprecated';
 import { parsePath } from '../../utils/path';
 import { ChangeType, CriticalityLevel } from './../changes/change';
 import { Rule } from './types';

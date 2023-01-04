@@ -122,7 +122,7 @@ describe('diff', () => {
   test('should render error if file does not exist', async () => {
     await mockCommand(
       diff,
-      `diff old.graphql new.graphql --onComplete ${resolve(__dirname, 'assets/onComplete.js')}`,
+      `diff old.graphql new.graphql --onComplete ${resolve(__dirname, 'assets/on-complete.js')}`,
     );
 
     expect(spyProcessExit).toHaveBeenCalledWith(2);

@@ -7,7 +7,7 @@ import {
   isNonNullType,
 } from 'graphql';
 import { safeChangeForField } from '../../utils/graphql';
-import { isDeprecated } from '../../utils/isDeprecated';
+import { isDeprecated } from '../../utils/is-deprecated';
 import { Change, ChangeType, CriticalityLevel } from './change';
 
 export function fieldRemoved(

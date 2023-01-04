@@ -3,7 +3,7 @@ import { Change, diff } from '@graphql-inspector/core';
 import { DiffEditor, OnMount } from '@monaco-editor/react';
 import { buildSchema } from 'graphql';
 import FlipMove from 'react-flip-move';
-import ChangeComponent from './Change';
+import ChangeComponent from './change';
 
 const FlipMoveAny = FlipMove as any;
 
