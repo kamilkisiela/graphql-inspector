@@ -1,6 +1,5 @@
 import { writeFileSync } from 'fs';
 import { extname } from 'path';
-import { GraphQLSchema,print, Source } from 'graphql';
 import {
   CommandFactory,
   createCommand,
@@ -8,9 +7,14 @@ import {
   GlobalArgs,
   parseGlobalArgs,
 } from '@graphql-inspector/commands';
-import { coverage as calculateCoverage, getTypePrefix,SchemaCoverage } from '@graphql-inspector/core';
-import { chalk,Logger } from '@graphql-inspector/logger';
+import {
+  coverage as calculateCoverage,
+  getTypePrefix,
+  SchemaCoverage,
+} from '@graphql-inspector/core';
+import { chalk, Logger } from '@graphql-inspector/logger';
 import { Source as DocumentSource } from '@graphql-tools/utils';
+import { GraphQLSchema, print, Source } from 'graphql';
 
 export { CommandFactory };
 
@@ -28,7 +32,7 @@ export function handler({
   const shouldWrite = typeof writePath !== 'undefined';
   const coverage = calculateCoverage(
     schema,
-    documents.map(doc => new Source(print(doc.document!), doc.location))
+    documents.map(doc => new Source(print(doc.document!), doc.location)),
   );
 
   if (silent !== true) {
@@ -116,7 +120,7 @@ export default createCommand<
           method,
         },
         apolloFederation,
-        aws
+        aws,
       );
       const documents = await loaders.loadDocuments(args.documents);
 
@@ -136,14 +140,22 @@ function renderCoverage(coverage: SchemaCoverage) {
     if (coverage.types.hasOwnProperty(typeName)) {
       const typeCoverage = coverage.types[typeName];
 
-      Logger.log([chalk.grey(getTypePrefix(typeCoverage.type)), chalk.bold(`${typeName}`), chalk.grey('{')].join(' '));
+      Logger.log(
+        [
+          chalk.grey(getTypePrefix(typeCoverage.type)),
+          chalk.bold(`${typeName}`),
+          chalk.grey('{'),
+        ].join(' '),
+      );
 
       for (const childName in typeCoverage.children) {
         if (typeCoverage.children.hasOwnProperty(childName)) {
           const childCoverage = typeCoverage.children[childName];
 
           if (childCoverage.hits) {
-            Logger.log([indent(childName, 2), chalk.italic.grey(`x ${childCoverage.hits}`)].join(' '));
+            Logger.log(
+              [indent(childName, 2), chalk.italic.grey(`x ${childCoverage.hits}`)].join(' '),
+            );
           } else {
             Logger.log([chalk.redBright(indent(childName, 2)), chalk.italic.grey('x 0')].join(' '));
           }

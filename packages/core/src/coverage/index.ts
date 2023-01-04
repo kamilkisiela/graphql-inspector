@@ -96,7 +96,10 @@ export function coverage(schema: GraphQLSchema, sources: Source[]): SchemaCovera
             argCoverage.hits++;
 
             if (argNode.loc) {
-              argCoverage.locations[sourceName] = [argNode.loc!, ...(argCoverage.locations[sourceName] || [])];
+              argCoverage.locations[sourceName] = [
+                argNode.loc!,
+                ...(argCoverage.locations[sourceName] || []),
+              ];
             }
           }
         }

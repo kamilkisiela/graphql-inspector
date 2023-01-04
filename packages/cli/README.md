@@ -2,9 +2,9 @@
 
 [![npm version](https://badge.fury.io/js/%40graphql-inspector%2Fcli.svg)](https://npmjs.com/package/@graphql-inspector/cli)
 
-**GraphQL Inspector** ouputs a list of changes between two GraphQL schemas. Every change is precisely explained and
-marked as breaking, non-breaking or dangerous. It helps you validate documents and fragments against a schema and even
-find similar or duplicated types.
+**GraphQL Inspector** ouputs a list of changes between two GraphQL schemas. Every change is
+precisely explained and marked as breaking, non-breaking or dangerous. It helps you validate
+documents and fragments against a schema and even find similar or duplicated types.
 
 ![Example](./demo.gif)
 
@@ -21,8 +21,8 @@ Major features:
 - **GitHub Bot**
 - **GitHub Actions**
 
-GraphQL Inspector has a **CLI** and also a **programatic API**, so you can use it however you want to and even build
-tools on top of it.
+GraphQL Inspector has a **CLI** and also a **programatic API**, so you can use it however you want
+to and even build tools on top of it.
 
 ## Installation
 
@@ -72,7 +72,8 @@ const similar: SimilarMap = similar(schema, typename, threshold)
 
 ### Check coverage
 
-Schema coverage based on documents. Find out how many times types and fields are used in your application.
+Schema coverage based on documents. Find out how many times types and fields are used in your
+application.
 
 **CLI:**
 
@@ -288,7 +289,8 @@ Example:
 
     graphql-inspector validate ./src/**/*.{js,jsx,tsx,graphql} https://localhost:3000/graphql
 
-Supports TypeScript, JavaScript and GraphQL Files (_Extensions: ts,tsx,js,jsx,graphql,gql,graphqls_).
+Supports TypeScript, JavaScript and GraphQL Files (_Extensions:
+ts,tsx,js,jsx,graphql,gql,graphqls_).
 
 ### Help
 

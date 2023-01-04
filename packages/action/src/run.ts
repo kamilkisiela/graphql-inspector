@@ -1,7 +1,6 @@
 import { execSync } from 'child_process';
 import { readFileSync } from 'fs';
 import { extname,resolve } from 'path';
-import { buildClientSchema, buildSchema, GraphQLSchema, printSchema,Source } from 'graphql';
 import * as core from '@actions/core';
 import * as github from '@actions/github';
 import {
@@ -12,6 +11,7 @@ import {
   produceSchema,
 } from '@graphql-inspector/github';
 import { OctokitResponse } from '@octokit/types';
+import { buildClientSchema, buildSchema, GraphQLSchema, printSchema,Source } from 'graphql';
 import { batch } from './utils';
 
 type OctokitInstance = ReturnType<typeof github.getOctokit>;

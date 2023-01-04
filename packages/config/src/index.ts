@@ -6,7 +6,15 @@ export interface InspectorConfig {
   commands: string[];
 }
 
-export const availableCommands = ['coverage', 'diff', 'docs', 'introspect', 'serve', 'similar', 'validate'];
+export const availableCommands = [
+  'coverage',
+  'diff',
+  'docs',
+  'introspect',
+  'serve',
+  'similar',
+  'validate',
+];
 
 export const availableLoaders = ['code', 'git', 'github', 'graphql', 'json', 'url'];
 

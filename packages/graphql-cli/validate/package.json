@@ -2,11 +2,17 @@
   "name": "@graphql-cli/validate",
   "version": "0.0.0-PLACEHOLDER",
   "description": "Find similar types in GraphQL Schema",
-  "keywords": [
-    "graphql-cli",
-    "graphql-cli-plugin"
-  ],
-  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "kamilkisiela/graphql-inspector",
+    "directory": "packages/graphql-cli/validate"
+  },
+  "author": {
+    "name": "Kamil Kisiela",
+    "email": "kamil.kisiela@gmail.com",
+    "url": "https://github.com/kamilkisiela"
+  },
+  "license": "MIT",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "exports": {
@@ -20,19 +26,12 @@
     }
   },
   "typings": "dist/index.d.ts",
-  "typescript": {
-    "definition": "dist/index.d.ts"
-  },
-  "author": {
-    "name": "Kamil Kisiela",
-    "email": "kamil.kisiela@gmail.com",
-    "url": "https://github.com/kamilkisiela"
-  },
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "kamilkisiela/graphql-inspector",
-    "directory": "packages/graphql-cli/validate"
+  "keywords": [
+    "graphql-cli",
+    "graphql-cli-plugin"
+  ],
+  "scripts": {
+    "prepack": "bob prepack"
   },
   "peerDependencies": {
     "graphql": "^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0"
@@ -43,7 +42,8 @@
     "@graphql-inspector/validate-command": "0.0.0-PLACEHOLDER",
     "tslib": "^2.0.0"
   },
-  "scripts": {
-    "prepack": "bob prepack"
+  "sideEffects": false,
+  "typescript": {
+    "definition": "dist/index.d.ts"
   }
 }

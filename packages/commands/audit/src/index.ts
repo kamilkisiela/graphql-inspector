@@ -1,4 +1,3 @@
-import { FragmentDefinitionNode, OperationDefinitionNode, print } from 'graphql';
 import { createCommand, GlobalArgs } from '@graphql-inspector/commands';
 import type { CalculateOperationComplexityConfig } from '@graphql-inspector/core';
 import {
@@ -8,9 +7,10 @@ import {
   countDepth,
   countDirectives,
 } from '@graphql-inspector/core';
-import { chalk,Logger } from '@graphql-inspector/logger';
+import { chalk, Logger } from '@graphql-inspector/logger';
 import { Source as DocumentSource } from '@graphql-tools/utils';
 import Table from 'cli-table3';
+import { FragmentDefinitionNode, OperationDefinitionNode, print } from 'graphql';
 
 export default createCommand<
   {},
@@ -51,7 +51,8 @@ export default createCommand<
             default: 2,
           },
           complexityDepthCostFactor: {
-            describe: 'The cost factor per introduced depth level for calculating the complexity score.',
+            describe:
+              'The cost factor per introduced depth level for calculating the complexity score.',
             type: 'number',
             default: 1.5,
           },
@@ -95,8 +96,8 @@ export function handler(args: {
           fragments.set(definition.name.value, definition);
           fragmentStrings.set(definition.name.value, print(definition));
         } else if (definition.kind === 'OperationDefinition' && definition.name) {
-            operations.set(definition.name.value, definition);
-          }
+          operations.set(definition.name.value, definition);
+        }
       }
     }
   }
@@ -108,7 +109,14 @@ export function handler(args: {
   let maxComplexity = 0;
 
   const results: Array<
-    [name: string, depth: number, aliases: number, directives: number, tokenCount: number, complexity: string]
+    [
+      name: string,
+      depth: number,
+      aliases: number,
+      directives: number,
+      tokenCount: number,
+      complexity: string,
+    ]
   > = [];
 
   for (const [name, operation] of operations.entries()) {
@@ -119,7 +127,11 @@ export function handler(args: {
       source: print(operation),
       getReferencedFragmentSource: getFragmentSource,
     });
-    const complexity = calculateOperationComplexity(operation, args.complexityConfig, getFragmentReference);
+    const complexity = calculateOperationComplexity(
+      operation,
+      args.complexityConfig,
+      getFragmentReference,
+    );
     results.push([name, depth, aliases, directives, tokenCount, complexity.toFixed(2)]);
     maxDepth = Math.max(maxDepth, depth);
     maxAliases = Math.max(maxAliases, aliases);

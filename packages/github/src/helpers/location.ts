@@ -17,7 +17,13 @@ import {
   UnionTypeDefinitionNode,
 } from 'graphql';
 
-export function getLocationByPath({ path, source }: { path: string; source: Source }): SourceLocation {
+export function getLocationByPath({
+  path,
+  source,
+}: {
+  path: string;
+  source: Source;
+}): SourceLocation {
   const [typeName, ...rest] = path.split('.');
   const isDirective = typeName.startsWith('@');
 
@@ -45,7 +51,10 @@ export function getLocationByPath({ path, source }: { path: string; source: Sour
       break;
     }
 
-    if (definition.kind === Kind.INPUT_OBJECT_TYPE_DEFINITION && definition.name.value === typeName) {
+    if (
+      definition.kind === Kind.INPUT_OBJECT_TYPE_DEFINITION &&
+      definition.name.value === typeName
+    ) {
       resolvedNode = resolveInputObjectTypeDefinition(rest, definition);
       break;
     }
@@ -77,11 +86,17 @@ type Node =
   | EnumValueDefinitionNode
   | undefined;
 
-function resolveScalarTypeDefinitionNode(_path: string[], definition: ScalarTypeDefinitionNode): Node {
+function resolveScalarTypeDefinitionNode(
+  _path: string[],
+  definition: ScalarTypeDefinitionNode,
+): Node {
   return definition;
 }
 
-function resolveUnionTypeDefinitionNode(_path: string[], definition: UnionTypeDefinitionNode): Node {
+function resolveUnionTypeDefinitionNode(
+  _path: string[],
+  definition: UnionTypeDefinitionNode,
+): Node {
   return definition;
 }
 
@@ -93,12 +108,15 @@ function resolveArgument(argName: string, field: FieldDefinitionNode) {
 
 function resolveFieldDefinition(
   path: string[],
-  definition: InterfaceTypeDefinitionNode | InputObjectTypeDefinitionNode | ObjectTypeDefinitionNode
+  definition:
+    | InterfaceTypeDefinitionNode
+    | InputObjectTypeDefinitionNode
+    | ObjectTypeDefinitionNode,
 ): Node {
   const [fieldName, argName] = path;
 
   const fieldIndex = definition.fields?.findIndex(
-    (f: InputValueDefinitionNode | FieldDefinitionNode) => f.name.value === fieldName
+    (f: InputValueDefinitionNode | FieldDefinitionNode) => f.name.value === fieldName,
   );
 
   if (typeof fieldIndex === 'number' && fieldIndex > -1) {
@@ -114,7 +132,10 @@ function resolveFieldDefinition(
   return definition;
 }
 
-function resolveInterfaceTypeDefinition(path: string[], definition: InterfaceTypeDefinitionNode): Node {
+function resolveInterfaceTypeDefinition(
+  path: string[],
+  definition: InterfaceTypeDefinitionNode,
+): Node {
   const [fieldName, argName] = path;
 
   if (fieldName) {
@@ -124,7 +145,10 @@ function resolveInterfaceTypeDefinition(path: string[], definition: InterfaceTyp
   return definition;
 }
 
-function resolveInputObjectTypeDefinition(path: string[], definition: InputObjectTypeDefinitionNode): Node {
+function resolveInputObjectTypeDefinition(
+  path: string[],
+  definition: InputObjectTypeDefinitionNode,
+): Node {
   const [fieldName] = path;
 
   if (fieldName) {

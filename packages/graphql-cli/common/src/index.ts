@@ -57,15 +57,16 @@ function compatibleLoader<TSource>(loader: {
   };
 }
 
-export const createInspectorExtension: (name: string) => GraphQLExtensionDeclaration = (name: string) => api => {
-  loaders.forEach(loader => {
-    api.loaders.schema.register(compatibleLoader(loader));
-  });
-  loaders.forEach(loader => {
-    api.loaders.documents.register(compatibleLoader(loader));
-  });
+export const createInspectorExtension: (name: string) => GraphQLExtensionDeclaration =
+  (name: string) => api => {
+    loaders.forEach(loader => {
+      api.loaders.schema.register(compatibleLoader(loader));
+    });
+    loaders.forEach(loader => {
+      api.loaders.documents.register(compatibleLoader(loader));
+    });
 
-  return {
-    name,
+    return {
+      name,
+    };
   };
-};
