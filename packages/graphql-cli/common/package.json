@@ -2,7 +2,17 @@
   "name": "@graphql-inspector/graphql-cli-common",
   "version": "0.0.0-PLACEHOLDER",
   "description": "Internal",
-  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "kamilkisiela/graphql-inspector",
+    "directory": "packages/graphql-cli/common"
+  },
+  "author": {
+    "name": "Kamil Kisiela",
+    "email": "kamil.kisiela@gmail.com",
+    "url": "https://github.com/kamilkisiela"
+  },
+  "license": "MIT",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "exports": {
@@ -16,19 +26,8 @@
     }
   },
   "typings": "dist/index.d.ts",
-  "typescript": {
-    "definition": "dist/index.d.ts"
-  },
-  "author": {
-    "name": "Kamil Kisiela",
-    "email": "kamil.kisiela@gmail.com",
-    "url": "https://github.com/kamilkisiela"
-  },
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "kamilkisiela/graphql-inspector",
-    "directory": "packages/graphql-cli/common"
+  "scripts": {
+    "prepack": "bob prepack"
   },
   "peerDependencies": {
     "graphql-config": "^3.0.0"
@@ -37,7 +36,8 @@
     "@graphql-cli/loaders": "4.1.0",
     "tslib": "^2.0.0"
   },
-  "scripts": {
-    "prepack": "bob prepack"
+  "sideEffects": false,
+  "typescript": {
+    "definition": "dist/index.d.ts"
   }
 }

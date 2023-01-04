@@ -140,7 +140,7 @@ test('should work with comments and descriptions', async () => {
         description: String!
         name: String
       }
-    `
+    `,
   );
 
   const action = await diff({
@@ -179,7 +179,9 @@ test('use interceptor to modify changes', async () => {
 
   expect(action.annotations).toHaveLength(7);
   expect(action.changes).toHaveLength(7);
-  expect(action.changes.every(change => change.criticality.level === CriticalityLevel.NonBreaking)).toBe(true);
+  expect(
+    action.changes.every(change => change.criticality.level === CriticalityLevel.NonBreaking),
+  ).toBe(true);
   expect(action.conclusion).toBe(CheckConclusion.Success);
 
   scope.done();

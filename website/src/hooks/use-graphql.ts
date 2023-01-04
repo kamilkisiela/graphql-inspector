@@ -53,7 +53,7 @@ export function useMutation(query: string): [State, Mutate] {
         });
       }
     },
-    [query]
+    [query],
   );
 
   return [state, mutate];

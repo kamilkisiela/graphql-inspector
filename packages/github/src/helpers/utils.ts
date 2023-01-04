@@ -47,7 +47,7 @@ export function createSummary(changes: Change[], summaryLimit: number, isLegacyC
         '',
         '> Legacy config detected, [please migrate to a new syntax](https://graphql-inspector.com/docs/products/github#full-configuration)',
         '',
-      ].join('\n')
+      ].join('\n'),
     );
   }
 
@@ -58,13 +58,17 @@ export function createSummary(changes: Change[], summaryLimit: number, isLegacyC
         `Total amount of changes (${changes.length}) is over the limit (${summaryLimit})`,
         'Adjust it using "summaryLimit" option',
         '',
-      ].join('\n')
+      ].join('\n'),
     );
   }
 
   function addChangesToSummary(type: string, changes: Change[]): void {
     if (changes.length <= summaryLimit) {
-      summary.push(...['', `## ${type} changes`].concat(changes.map(change => ` - ${bolderize(change.message)}`)));
+      summary.push(
+        ...['', `## ${type} changes`].concat(
+          changes.map(change => ` - ${bolderize(change.message)}`),
+        ),
+      );
     }
 
     summaryLimit -= changes.length;
@@ -82,7 +86,13 @@ export function createSummary(changes: Change[], summaryLimit: number, isLegacyC
     addChangesToSummary('Safe', safeChanges);
   }
 
-  summary.push(['', '___', `Looking for more advanced tool? Try [GraphQL Hive](https://graphql-hive.com)!`].join('\n'));
+  summary.push(
+    [
+      '',
+      '___',
+      `Looking for more advanced tool? Try [GraphQL Hive](https://graphql-hive.com)!`,
+    ].join('\n'),
+  );
 
   return summary.join('\n');
 }

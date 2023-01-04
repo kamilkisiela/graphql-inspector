@@ -78,7 +78,7 @@ export async function handleSchemaDiff({
         isLegacyConfig = configKind === 'legacy';
       },
       branches,
-      fallbackBranch // we will probably throw an error when both are not defined
+      fallbackBranch, // we will probably throw an error when both are not defined
     );
 
     if (!config.diff) {
@@ -183,14 +183,16 @@ export async function handleSchemaDiff({
     }
 
     const title =
-      conclusion === CheckConclusion.Failure ? 'Something is wrong with your schema' : 'Everything looks good';
+      conclusion === CheckConclusion.Failure
+        ? 'Something is wrong with your schema'
+        : 'Everything looks good';
 
     if (config.diff.annotations === false) {
       logger.info(`Anotations are disabled. Skipping annotations...`);
       annotations = [];
     } else if (annotations.length > summaryLimit) {
       logger.info(
-        `Total amount of annotations is over the limit (${annotations.length} > ${summaryLimit}). Skipping annotations...`
+        `Total amount of annotations is over the limit (${annotations.length} > ${summaryLimit}). Skipping annotations...`,
       );
       annotations = [];
     } else {

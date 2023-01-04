@@ -74,7 +74,7 @@ export async function notifyWithSlack({
     icon_url: 'https://graphql-inspector/img/logo-slack.png',
     text: `:male-detective: Hi, I found *${totalChanges} ${pluralize(
       'change',
-      totalChanges
+      totalChanges,
     )}* in ${schemaName}${sourceLink}:`,
     attachments: createAttachments(changes),
   };
@@ -112,7 +112,7 @@ export async function notifyWithDiscord({
     avatar_url: 'https://graphql-inspector/img/logo-slack.png',
     content: `:detective: Hi, I found **${totalChanges} ${pluralize(
       'change',
-      totalChanges
+      totalChanges,
     )}** in ${schemaName}${sourceLink}:`,
     embeds: createDiscordEmbeds(changes),
   };
@@ -145,7 +145,7 @@ function createAttachments(changes: Change[]) {
         color: '#E74C3B',
         title: 'Breaking changes',
         changes: breakingChanges,
-      })
+      }),
     );
   }
 
@@ -155,7 +155,7 @@ function createAttachments(changes: Change[]) {
         color: '#F0C418',
         title: 'Dangerous changes',
         changes: dangerousChanges,
-      })
+      }),
     );
   }
 
@@ -165,14 +165,22 @@ function createAttachments(changes: Change[]) {
         color: '#23B99A',
         title: 'Safe changes',
         changes: safeChanges,
-      })
+      }),
     );
   }
 
   return attachments;
 }
 
-function renderAttachments({ changes, title, color }: { color: string; title: string; changes: Change[] }): Attachment {
+function renderAttachments({
+  changes,
+  title,
+  color,
+}: {
+  color: string;
+  title: string;
+  changes: Change[];
+}): Attachment {
   const text = changes.map(change => slackCoderize(change.message)).join('\n');
 
   return {
@@ -197,7 +205,7 @@ function createDiscordEmbeds(changes: Change[]): DiscordEmbed[] {
         color: 15158331, // '#E74C3B',
         title: 'Breaking changes',
         changes: breakingChanges,
-      })
+      }),
     );
   }
 
@@ -207,7 +215,7 @@ function createDiscordEmbeds(changes: Change[]): DiscordEmbed[] {
         color: 15778840, // '#F0C418',
         title: 'Dangerous changes',
         changes: dangerousChanges,
-      })
+      }),
     );
   }
 
@@ -217,7 +225,7 @@ function createDiscordEmbeds(changes: Change[]): DiscordEmbed[] {
         color: 2341274, // '#23B99A',
         title: 'Safe changes',
         changes: safeChanges,
-      })
+      }),
     );
   }
 

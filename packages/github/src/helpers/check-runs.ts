@@ -71,7 +71,7 @@ export async function annotate({
           },
         });
         logger.info(`annotations sent (${chunk.length})`);
-      })
+      }),
     );
   } catch (error) {
     logger.error(`failed to send annotations`, error);

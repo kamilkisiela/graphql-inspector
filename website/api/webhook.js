@@ -21,7 +21,7 @@ function serverless(appFn) {
     function lowerCaseKeys(obj) {
       return Object.keys(obj).reduce(
         (accumulator, key) => Object.assign(accumulator, { [key.toLocaleLowerCase()]: obj[key] }),
-        {}
+        {},
       );
     }
 

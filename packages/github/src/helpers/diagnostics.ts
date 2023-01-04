@@ -3,7 +3,10 @@ import { ErrorHandler } from './types';
 
 const key = Symbol.for('inspector-diagnostics');
 
-export function setDiagnostics(app: Probot, diagnostics: { onError: ErrorHandler; release: string }) {
+export function setDiagnostics(
+  app: Probot,
+  diagnostics: { onError: ErrorHandler; release: string },
+) {
   (app as any)[key] = diagnostics;
 }
 
