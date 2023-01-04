@@ -1,6 +1,6 @@
 import { writeFileSync } from 'fs';
 import { extname } from 'path';
-import { GraphQLSchema,print, Source } from 'graphql';
+import { GraphQLSchema, print, Source } from 'graphql';
 import {
   CommandFactory,
   createCommand,
@@ -8,8 +8,8 @@ import {
   GlobalArgs,
   parseGlobalArgs,
 } from '@graphql-inspector/commands';
-import { coverage as calculateCoverage, getTypePrefix,SchemaCoverage } from '@graphql-inspector/core';
-import { chalk,Logger } from '@graphql-inspector/logger';
+import { coverage as calculateCoverage, getTypePrefix, SchemaCoverage } from '@graphql-inspector/core';
+import { chalk, Logger } from '@graphql-inspector/logger';
 import { Source as DocumentSource } from '@graphql-tools/utils';
 
 export { CommandFactory };

@@ -8,7 +8,7 @@ import {
   countDepth,
   countDirectives,
 } from '@graphql-inspector/core';
-import { chalk,Logger } from '@graphql-inspector/logger';
+import { chalk, Logger } from '@graphql-inspector/logger';
 import { Source as DocumentSource } from '@graphql-tools/utils';
 import Table from 'cli-table3';
 
@@ -95,8 +95,8 @@ export function handler(args: {
           fragments.set(definition.name.value, definition);
           fragmentStrings.set(definition.name.value, print(definition));
         } else if (definition.kind === 'OperationDefinition' && definition.name) {
-            operations.set(definition.name.value, definition);
-          }
+          operations.set(definition.name.value, definition);
+        }
       }
     }
   }

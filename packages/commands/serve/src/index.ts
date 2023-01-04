@@ -1,4 +1,4 @@
-import { CommandFactory,createCommand, GlobalArgs, parseGlobalArgs } from '@graphql-inspector/commands';
+import { CommandFactory, createCommand, GlobalArgs, parseGlobalArgs } from '@graphql-inspector/commands';
 import { Logger } from '@graphql-inspector/logger';
 import { createServer } from '@graphql-yoga/node';
 import open from 'open';

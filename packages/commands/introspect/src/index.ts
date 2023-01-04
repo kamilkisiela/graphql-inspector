@@ -1,6 +1,6 @@
 import { writeFileSync } from 'fs';
-import { extname,resolve } from 'path';
-import { GraphQLSchema,introspectionFromSchema, lexicographicSortSchema, printSchema } from 'graphql';
+import { extname, resolve } from 'path';
+import { GraphQLSchema, introspectionFromSchema, lexicographicSortSchema, printSchema } from 'graphql';
 import { CommandFactory, createCommand, GlobalArgs, parseGlobalArgs } from '@graphql-inspector/commands';
 import { Logger } from '@graphql-inspector/logger';
 

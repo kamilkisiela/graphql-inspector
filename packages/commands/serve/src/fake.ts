@@ -133,21 +133,21 @@ export function fake(schema: GraphQLSchema): void {
       typeof schema.getMutationType() === 'object' && schema.getMutationType()!.name === typeName;
 
     if ((isOnQueryType || isOnMutationType) && mockFunctionMap.has(typeName)) {
-        const rootMock = mockFunctionMap.get(typeName);
-        // XXX: BUG in here, need to provide proper signature for rootMock.
-        if (typeof (rootMock!(undefined, {}, {}, {} as any) as any)[fieldName] === 'function') {
-          mockResolver = (root: any, args: { [key: string]: any }, context: any, info: GraphQLResolveInfo) => {
-            const updatedRoot = root || {}; // TODO: should we clone instead?
-            updatedRoot[fieldName] = (rootMock!(root, args, context, info) as any)[fieldName];
-            // XXX this is a bit of a hack to still use mockType, which
-            // lets you mock lists etc. as well
-            // otherwise we could just set field.resolve to rootMock()[fieldName]
-            // it's like pretending there was a resolve function that ran before
-            // the root resolve function.
-            return mockType(field.type, fieldName)(updatedRoot, args, context, info);
-          };
-        }
+      const rootMock = mockFunctionMap.get(typeName);
+      // XXX: BUG in here, need to provide proper signature for rootMock.
+      if (typeof (rootMock!(undefined, {}, {}, {} as any) as any)[fieldName] === 'function') {
+        mockResolver = (root: any, args: { [key: string]: any }, context: any, info: GraphQLResolveInfo) => {
+          const updatedRoot = root || {}; // TODO: should we clone instead?
+          updatedRoot[fieldName] = (rootMock!(root, args, context, info) as any)[fieldName];
+          // XXX this is a bit of a hack to still use mockType, which
+          // lets you mock lists etc. as well
+          // otherwise we could just set field.resolve to rootMock()[fieldName]
+          // it's like pretending there was a resolve function that ran before
+          // the root resolve function.
+          return mockType(field.type, fieldName)(updatedRoot, args, context, info);
+        };
       }
+    }
     mockResolver = mockType(field.type, fieldName);
     field.resolve = mockResolver;
   });

@@ -1,4 +1,4 @@
-import { existsSync, readFileSync,unlinkSync } from 'fs';
+import { existsSync, readFileSync, unlinkSync } from 'fs';
 import { buildSchema } from 'graphql';
 import { mockCommand } from '@graphql-inspector/commands';
 import { LoadersRegistry } from '@graphql-inspector/loaders';
