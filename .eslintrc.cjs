@@ -9,6 +9,7 @@ module.exports = {
     },
   ],
   rules: {
+    // TODO: enable following rules
     '@typescript-eslint/no-namespace': 'off',
     'unicorn/filename-case': 'off',
     '@typescript-eslint/no-unused-vars': 'off',
