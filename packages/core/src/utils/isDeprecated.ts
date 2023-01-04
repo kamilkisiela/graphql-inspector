@@ -1,3 +1,4 @@
+/* eslint-disable unicorn/filename-case */
 import { GraphQLEnumValue, GraphQLField,GraphQLInputField } from 'graphql';
 
 export function isDeprecated(fieldOrEnumValue: GraphQLField<any, any> | GraphQLEnumValue | GraphQLInputField) {
