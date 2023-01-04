@@ -1,9 +1,9 @@
 import { GraphQLSchema, Source } from 'graphql';
-import { Change,CriticalityLevel, diff as diffSchemas } from '@graphql-inspector/core';
+import { Change, CriticalityLevel, diff as diffSchemas } from '@graphql-inspector/core';
 import axios from 'axios';
 import { getLocationByPath } from './location';
 import { ActionResult, Annotation, AnnotationLevel, CheckConclusion, PullRequest } from './types';
-import { isNil,parseEndpoint } from './utils';
+import { isNil, parseEndpoint } from './utils';
 
 export type DiffInterceptor =
   | string

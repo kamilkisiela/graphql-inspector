@@ -1,4 +1,4 @@
-import { buildSchema,GraphQLObjectType } from 'graphql';
+import { buildSchema, GraphQLObjectType } from 'graphql';
 import { mockGraphQLServer } from '@graphql-inspector/testing';
 import loader from '../src';
 

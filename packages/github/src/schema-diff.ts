@@ -1,6 +1,6 @@
 import * as probot from 'probot';
-import { annotate,complete, start } from './helpers/check-runs';
-import { createConfig, defaultFallbackBranch,SchemaPointer } from './helpers/config';
+import { annotate, complete, start } from './helpers/check-runs';
+import { createConfig, defaultFallbackBranch, SchemaPointer } from './helpers/config';
 import { diff } from './helpers/diff';
 import { MissingConfigError } from './helpers/errors';
 import { ConfigLoader, FileLoader, loadSources } from './helpers/loaders';

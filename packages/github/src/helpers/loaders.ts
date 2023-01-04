@@ -3,8 +3,8 @@ import axios from 'axios';
 import Dataloader from 'dataloader';
 import yaml from 'js-yaml';
 import * as probot from 'probot';
-import { Endpoint,NormalizedEnvironment, SchemaPointer } from './config';
-import { isNil, objectFromEntries,parseEndpoint } from './utils';
+import { Endpoint, NormalizedEnvironment, SchemaPointer } from './config';
+import { isNil, objectFromEntries, parseEndpoint } from './utils';
 
 function createGetFilesQuery(variableMap: Record<string, string>): string {
   const variables = Object.keys(variableMap)

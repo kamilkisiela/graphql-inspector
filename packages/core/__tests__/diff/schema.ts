@@ -1,5 +1,5 @@
-import { buildClientSchema,buildSchema, introspectionFromSchema } from 'graphql';
-import { Change,CriticalityLevel } from '../../src/diff/changes/change';
+import { buildClientSchema, buildSchema, introspectionFromSchema } from 'graphql';
+import { Change, CriticalityLevel } from '../../src/diff/changes/change';
 import { diff } from '../../src/index';
 import { findBestMatch } from '../../src/utils/string';
 

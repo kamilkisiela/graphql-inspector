@@ -1,7 +1,7 @@
 import { GraphQLSchema } from 'graphql';
 import { defineCommand } from '@graphql-cli/common';
 import { handler } from '@graphql-inspector/diff-command';
-import { createInspectorExtension, GlobalArgs, loaders,parseGlobalArgs } from '@graphql-inspector/graphql-cli-common';
+import { createInspectorExtension, GlobalArgs, loaders, parseGlobalArgs } from '@graphql-inspector/graphql-cli-common';
 import { GraphQLProjectConfig } from 'graphql-config';
 
 interface ExtensionConfig {

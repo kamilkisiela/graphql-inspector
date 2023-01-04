@@ -1,4 +1,4 @@
-import { Change,CriticalityLevel } from '@graphql-inspector/core';
+import { Change, CriticalityLevel } from '@graphql-inspector/core';
 import { Endpoint } from './config';
 
 export function bolderize(msg: string): string {
