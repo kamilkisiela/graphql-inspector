@@ -12,7 +12,7 @@ import {
 import { compareLists, isNotEqual, isVoid } from '../utils/compare';
 import { isPrimitive } from '../utils/graphql';
 import { Change } from './changes/change';
-import { directiveAdded,directiveRemoved } from './changes/directive';
+import { directiveAdded, directiveRemoved } from './changes/directive';
 import { schemaMutationTypeChanged, schemaQueryTypeChanged, schemaSubscriptionTypeChanged } from './changes/schema';
 import {
   typeAdded,

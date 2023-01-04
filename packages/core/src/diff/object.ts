@@ -1,6 +1,6 @@
 import { GraphQLObjectType } from 'graphql';
 import { compareLists } from '../utils/compare';
-import { fieldAdded,fieldRemoved } from './changes/field';
+import { fieldAdded, fieldRemoved } from './changes/field';
 import { objectTypeInterfaceAdded, objectTypeInterfaceRemoved } from './changes/object';
 import { changesInField } from './field';
 import { AddChange } from './schema';

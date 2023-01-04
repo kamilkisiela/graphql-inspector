@@ -1,5 +1,5 @@
-import { DocumentNode, extendSchema,GraphQLSchema, parse, visit } from 'graphql';
-import { removeDirectives,removeFieldIfDirectives } from './graphql';
+import { DocumentNode, extendSchema, GraphQLSchema, parse, visit } from 'graphql';
+import { removeDirectives, removeFieldIfDirectives } from './graphql';
 
 export function transformDocumentWithApollo(
   doc: DocumentNode,

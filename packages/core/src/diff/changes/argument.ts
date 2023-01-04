@@ -1,7 +1,7 @@
-import { GraphQLArgument, GraphQLField, GraphQLInterfaceType,GraphQLObjectType } from 'graphql';
+import { GraphQLArgument, GraphQLField, GraphQLInterfaceType, GraphQLObjectType } from 'graphql';
 import { safeChangeForInputValue } from '../../utils/graphql';
 import { safeString } from '../../utils/string';
-import { Change, ChangeType,CriticalityLevel } from './change';
+import { Change, ChangeType, CriticalityLevel } from './change';
 
 export function fieldArgumentDescriptionChanged(
   type: GraphQLObjectType | GraphQLInterfaceType,

@@ -10,7 +10,7 @@ import {
 } from 'graphql';
 import { DepGraph } from 'dependency-graph';
 import { readDocument } from '../ast/document';
-import { transformDocumentWithApollo,transformSchemaWithApollo } from '../utils/apollo';
+import { transformDocumentWithApollo, transformSchemaWithApollo } from '../utils/apollo';
 import { findDeprecatedUsages } from '../utils/graphql';
 import { validateAliasCount } from './alias-count';
 import { validateDirectiveCount } from './directive-count';

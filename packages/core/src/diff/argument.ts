@@ -1,4 +1,4 @@
-import { GraphQLArgument, GraphQLField, GraphQLInterfaceType,GraphQLObjectType } from 'graphql';
+import { GraphQLArgument, GraphQLField, GraphQLInterfaceType, GraphQLObjectType } from 'graphql';
 import { diffArrays, isNotEqual } from '../utils/compare';
 import {
   fieldArgumentDefaultChanged,

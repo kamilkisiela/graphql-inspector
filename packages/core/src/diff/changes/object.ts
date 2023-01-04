@@ -1,5 +1,5 @@
 import { GraphQLInterfaceType, GraphQLObjectType } from 'graphql';
-import { Change, ChangeType,CriticalityLevel } from './change';
+import { Change, ChangeType, CriticalityLevel } from './change';
 
 export function objectTypeInterfaceAdded(iface: GraphQLInterfaceType, type: GraphQLObjectType): Change {
   return {

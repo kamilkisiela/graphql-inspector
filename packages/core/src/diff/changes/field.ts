@@ -8,7 +8,7 @@ import {
 } from 'graphql';
 import { safeChangeForField } from '../../utils/graphql';
 import { isDeprecated } from '../../utils/isDeprecated';
-import { Change, ChangeType,CriticalityLevel } from './change';
+import { Change, ChangeType, CriticalityLevel } from './change';
 
 export function fieldRemoved(
   type: GraphQLObjectType | GraphQLInterfaceType,

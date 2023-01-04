@@ -1,6 +1,6 @@
 import { DirectiveLocationEnum, GraphQLArgument, GraphQLDirective, isNonNullType } from 'graphql';
 import { safeChangeForInputValue } from '../../utils/graphql';
-import { Change, ChangeType,CriticalityLevel } from './change';
+import { Change, ChangeType, CriticalityLevel } from './change';
 
 export function directiveRemoved(directive: GraphQLDirective): Change {
   return {
