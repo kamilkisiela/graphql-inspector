@@ -28,7 +28,9 @@ export async function handler(input: {
   onUsage?: string;
   rules?: Array<string | number>;
 }) {
-  const onComplete = input.onComplete ? resolveCompletionHandler(input.onComplete) : failOnBreakingChanges;
+  const onComplete = input.onComplete
+    ? resolveCompletionHandler(input.onComplete)
+    : failOnBreakingChanges;
 
   const rules = input.rules
     ? input.rules
@@ -56,9 +58,15 @@ export async function handler(input: {
 
   Logger.log(`\nDetected the following changes (${changes.length}) between schemas:\n`);
 
-  const breakingChanges = changes.filter(change => change.criticality.level === CriticalityLevel.Breaking);
-  const dangerousChanges = changes.filter(change => change.criticality.level === CriticalityLevel.Dangerous);
-  const nonBreakingChanges = changes.filter(change => change.criticality.level === CriticalityLevel.NonBreaking);
+  const breakingChanges = changes.filter(
+    change => change.criticality.level === CriticalityLevel.Breaking,
+  );
+  const dangerousChanges = changes.filter(
+    change => change.criticality.level === CriticalityLevel.Dangerous,
+  );
+  const nonBreakingChanges = changes.filter(
+    change => change.criticality.level === CriticalityLevel.NonBreaking,
+  );
 
   if (breakingChanges.length) {
     reportBreakingChanges(breakingChanges);
@@ -143,7 +151,7 @@ export default createCommand<
             method,
           },
           apolloFederation,
-          aws
+          aws,
         );
         const newSchema = await loaders.loadSchema(
           newSchemaPointer,
@@ -153,7 +161,7 @@ export default createCommand<
             method,
           },
           apolloFederation,
-          aws
+          aws,
         );
 
         await handler({

@@ -84,7 +84,9 @@ describe('diff', () => {
     await mockCommand(diff, 'diff old.graphql new.graphql');
 
     expect(spyReporter).not.toHaveBeenCalledWith('No changes detected');
-    expect(spyReporter).toHaveBeenCalledNormalized('Detected the following changes (4) between schemas:');
+    expect(spyReporter).toHaveBeenCalledNormalized(
+      'Detected the following changes (4) between schemas:',
+    );
 
     expect(spyProcessExit).toHaveBeenCalledWith(1);
   });
@@ -102,26 +104,34 @@ describe('diff', () => {
   });
 
   test('should load rules with absolute path from fs', async () => {
-    await mockCommand(diff, `diff old.graphql new.graphql --rule ${resolve(__dirname, 'assets/rule.js')}`);
+    await mockCommand(
+      diff,
+      `diff old.graphql new.graphql --rule ${resolve(__dirname, 'assets/rule.js')}`,
+    );
 
     expect(spyReporter).not.toHaveBeenCalledNormalized('does not exist');
   });
 
   test('should render error if file does not exist (--rule)', async () => {
-    await expect(mockCommand(diff, `diff old.graphql new.graphql --rule noop.js`)).rejects.toThrow(/does not exist/);
+    await expect(mockCommand(diff, `diff old.graphql new.graphql --rule noop.js`)).rejects.toThrow(
+      /does not exist/,
+    );
     expect(spyReporter).toHaveBeenCalledNormalized('does not exist');
   });
 
   test('should render error if file does not exist', async () => {
-    await mockCommand(diff, `diff old.graphql new.graphql --onComplete ${resolve(__dirname, 'assets/onComplete.js')}`);
+    await mockCommand(
+      diff,
+      `diff old.graphql new.graphql --onComplete ${resolve(__dirname, 'assets/onComplete.js')}`,
+    );
 
     expect(spyProcessExit).toHaveBeenCalledWith(2);
   });
 
   test('should render error if file does not exist (--onComplete)', async () => {
-    await expect(mockCommand(diff, `diff old.graphql new.graphql --onComplete noop.js`)).rejects.toThrow(
-      /does not exist/
-    );
+    await expect(
+      mockCommand(diff, `diff old.graphql new.graphql --onComplete noop.js`),
+    ).rejects.toThrow(/does not exist/);
     expect(spyReporter).toHaveBeenCalledNormalized('does not exist');
   });
 });
