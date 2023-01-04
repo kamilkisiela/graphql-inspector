@@ -7,7 +7,7 @@ import { AddChange } from './schema';
 export function changesInInterface(
   oldInterface: GraphQLInterfaceType,
   newInterface: GraphQLInterfaceType,
-  addChange: AddChange
+  addChange: AddChange,
 ) {
   compareLists(Object.values(oldInterface.getFields()), Object.values(newInterface.getFields()), {
     onAdded(field) {

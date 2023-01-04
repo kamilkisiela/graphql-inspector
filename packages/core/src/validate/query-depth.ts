@@ -43,7 +43,7 @@ export function validateQueryDepth({
       `Query exceeds maximum depth of ${maxDepth}`,
       node,
       source,
-      node.loc && node.loc.start ? [node.loc.start] : undefined
+      node.loc && node.loc.start ? [node.loc.start] : undefined,
     );
   }
 }
@@ -88,7 +88,7 @@ export function calculateDepth({
             maxDepth,
             getFragment,
           });
-        })
+        }),
       );
     }
 
@@ -101,7 +101,7 @@ export function calculateDepth({
             maxDepth,
             getFragment,
           });
-        })
+        }),
       );
     }
 
@@ -116,7 +116,7 @@ export function calculateDepth({
             maxDepth,
             getFragment,
           });
-        })
+        }),
       );
     }
 
@@ -135,9 +135,14 @@ export function calculateDepth({
 }
 
 export function countDepth(
-  node: FieldNode | FragmentDefinitionNode | InlineFragmentNode | OperationDefinitionNode | FragmentSpreadNode,
+  node:
+    | FieldNode
+    | FragmentDefinitionNode
+    | InlineFragmentNode
+    | OperationDefinitionNode
+    | FragmentSpreadNode,
   parentDepth: number,
-  getFragmentReference: (name: string) => FragmentDefinitionNode | undefined
+  getFragmentReference: (name: string) => FragmentDefinitionNode | undefined,
 ) {
   let depth = parentDepth;
 

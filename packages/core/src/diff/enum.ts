@@ -11,7 +11,11 @@ import {
 } from './changes/enum';
 import { AddChange } from './schema';
 
-export function changesInEnum(oldEnum: GraphQLEnumType, newEnum: GraphQLEnumType, addChange: AddChange) {
+export function changesInEnum(
+  oldEnum: GraphQLEnumType,
+  newEnum: GraphQLEnumType,
+  addChange: AddChange,
+) {
   compareLists(oldEnum.getValues(), newEnum.getValues(), {
     onAdded(value) {
       addChange(enumValueAdded(newEnum, value));

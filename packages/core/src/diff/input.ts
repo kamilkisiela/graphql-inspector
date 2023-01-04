@@ -15,7 +15,7 @@ import { AddChange } from './schema';
 export function changesInInputObject(
   oldInput: GraphQLInputObjectType,
   newInput: GraphQLInputObjectType,
-  addChange: AddChange
+  addChange: AddChange,
 ) {
   const oldFields = oldInput.getFields();
   const newFields = newInput.getFields();
@@ -37,7 +37,7 @@ function changesInInputField(
   input: GraphQLInputObjectType,
   oldField: GraphQLInputField,
   newField: GraphQLInputField,
-  addChange: AddChange
+  addChange: AddChange,
 ) {
   if (isNotEqual(oldField.description, newField.description)) {
     if (isVoid(oldField.description)) {

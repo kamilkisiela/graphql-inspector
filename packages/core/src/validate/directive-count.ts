@@ -21,7 +21,8 @@ export function validateDirectiveCount({
   maxDirectiveCount: number;
   fragmentGraph: DepGraph<FragmentDefinitionNode>;
 }): GraphQLError | void {
-  const getFragmentByFragmentName = (fragmentName: string) => fragmentGraph.getNodeData(fragmentName);
+  const getFragmentByFragmentName = (fragmentName: string) =>
+    fragmentGraph.getNodeData(fragmentName);
 
   for (const definition of doc.definitions) {
     if (definition.kind !== Kind.OPERATION_DEFINITION) {
@@ -33,15 +34,20 @@ export function validateDirectiveCount({
         `Too many directives (${directiveCount}). Maximum allowed is ${maxDirectiveCount}`,
         [definition],
         source,
-        definition.loc && definition.loc.start ? [definition.loc.start] : undefined
+        definition.loc && definition.loc.start ? [definition.loc.start] : undefined,
       );
     }
   }
 }
 
 export function countDirectives(
-  node: FieldNode | FragmentDefinitionNode | InlineFragmentNode | OperationDefinitionNode | FragmentSpreadNode,
-  getFragmentByName: (fragmentName: string) => FragmentDefinitionNode | undefined
+  node:
+    | FieldNode
+    | FragmentDefinitionNode
+    | InlineFragmentNode
+    | OperationDefinitionNode
+    | FragmentSpreadNode,
+  getFragmentByName: (fragmentName: string) => FragmentDefinitionNode | undefined,
 ) {
   let directives = 0;
   if (node.directives) {

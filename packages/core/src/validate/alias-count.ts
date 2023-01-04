@@ -21,7 +21,8 @@ export function validateAliasCount({
   maxAliasCount: number;
   fragmentGraph: DepGraph<FragmentDefinitionNode>;
 }): GraphQLError | void {
-  const getFragmentByFragmentName = (fragmentName: string) => fragmentGraph.getNodeData(fragmentName);
+  const getFragmentByFragmentName = (fragmentName: string) =>
+    fragmentGraph.getNodeData(fragmentName);
 
   for (const definition of doc.definitions) {
     if (definition.kind !== Kind.OPERATION_DEFINITION) {
@@ -33,15 +34,20 @@ export function validateAliasCount({
         `Too many aliases (${aliasCount}). Maximum allowed is ${maxAliasCount}`,
         [definition],
         source,
-        definition.loc && definition.loc.start ? [definition.loc.start] : undefined
+        definition.loc && definition.loc.start ? [definition.loc.start] : undefined,
       );
     }
   }
 }
 
 export function countAliases(
-  node: FieldNode | FragmentDefinitionNode | InlineFragmentNode | OperationDefinitionNode | FragmentSpreadNode,
-  getFragmentByName: (fragmentName: string) => FragmentDefinitionNode | undefined
+  node:
+    | FieldNode
+    | FragmentDefinitionNode
+    | InlineFragmentNode
+    | OperationDefinitionNode
+    | FragmentSpreadNode,
+  getFragmentByName: (fragmentName: string) => FragmentDefinitionNode | undefined,
 ) {
   let aliases = 0;
   if ('alias' in node && node.alias) {

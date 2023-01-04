@@ -16,7 +16,7 @@ import { AddChange } from './schema';
 export function changesInDirective(
   oldDirective: GraphQLDirective,
   newDirective: GraphQLDirective,
-  addChange: AddChange
+  addChange: AddChange,
 ) {
   if (isNotEqual(oldDirective.description, newDirective.description)) {
     addChange(directiveDescriptionChanged(oldDirective, newDirective));
@@ -28,10 +28,14 @@ export function changesInDirective(
   };
 
   // locations added
-  locations.added.forEach(location => addChange(directiveLocationAdded(newDirective, location as any)));
+  locations.added.forEach(location =>
+    addChange(directiveLocationAdded(newDirective, location as any)),
+  );
 
   // locations removed
-  locations.removed.forEach(location => addChange(directiveLocationRemoved(oldDirective, location as any)));
+  locations.removed.forEach(location =>
+    addChange(directiveLocationRemoved(oldDirective, location as any)),
+  );
 
   compareLists(oldDirective.args, newDirective.args, {
     onAdded(arg) {
@@ -50,7 +54,7 @@ function changesInDirectiveArgument(
   directive: GraphQLDirective,
   oldArg: GraphQLArgument,
   newArg: GraphQLArgument,
-  addChange: AddChange
+  addChange: AddChange,
 ) {
   if (isNotEqual(oldArg.description, newArg.description)) {
     addChange(directiveArgumentDescriptionChanged(directive, oldArg, newArg));

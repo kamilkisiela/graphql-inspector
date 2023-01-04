@@ -29,7 +29,10 @@ import {
 } from 'graphql';
 import { isDeprecated } from './isDeprecated';
 
-export function safeChangeForField(oldType: GraphQLOutputType, newType: GraphQLOutputType): boolean {
+export function safeChangeForField(
+  oldType: GraphQLOutputType,
+  newType: GraphQLOutputType,
+): boolean {
   if (!isWrappingType(oldType) && !isWrappingType(newType)) {
     return oldType.toString() === newType.toString();
   }
@@ -50,7 +53,10 @@ export function safeChangeForField(oldType: GraphQLOutputType, newType: GraphQLO
   return false;
 }
 
-export function safeChangeForInputValue(oldType: GraphQLInputType, newType: GraphQLInputType): boolean {
+export function safeChangeForInputValue(
+  oldType: GraphQLInputType,
+  newType: GraphQLInputType,
+): boolean {
   if (!isWrappingType(oldType) && !isWrappingType(newType)) {
     return oldType.toString() === newType.toString();
   }
@@ -89,7 +95,9 @@ export function getTypePrefix(type: GraphQLNamedType): string {
 }
 
 export function isPrimitive(type: GraphQLNamedType | string): boolean {
-  return ['String', 'Int', 'Float', 'Boolean', 'ID'].includes(typeof type === 'string' ? type : type.name);
+  return ['String', 'Int', 'Float', 'Boolean', 'ID'].includes(
+    typeof type === 'string' ? type : type.name,
+  );
 }
 
 export function isForIntrospection(type: GraphQLNamedType | string): boolean {
@@ -105,7 +113,10 @@ export function isForIntrospection(type: GraphQLNamedType | string): boolean {
   ].includes(typeof type === 'string' ? type : type.name);
 }
 
-export function findDeprecatedUsages(schema: GraphQLSchema, ast: DocumentNode): Array<GraphQLError> {
+export function findDeprecatedUsages(
+  schema: GraphQLSchema,
+  ast: DocumentNode,
+): Array<GraphQLError> {
   const errors: GraphQLError[] = [];
   const typeInfo = new TypeInfo(schema);
 
@@ -120,9 +131,10 @@ export function findDeprecatedUsages(schema: GraphQLSchema, ast: DocumentNode): 
             const fieldDef = typeInfo.getFieldDef();
             if (fieldDef) {
               errors.push(
-                new GraphQLError(`The argument '${argument?.name}' of '${fieldDef.name}' is deprecated. ${reason}`, [
-                  node,
-                ])
+                new GraphQLError(
+                  `The argument '${argument?.name}' of '${fieldDef.name}' is deprecated. ${reason}`,
+                  [node],
+                ),
               );
             }
           }
@@ -136,9 +148,11 @@ export function findDeprecatedUsages(schema: GraphQLSchema, ast: DocumentNode): 
             const reason = fieldDef.deprecationReason;
             errors.push(
               new GraphQLError(
-                `The field '${parentType.name}.${fieldDef.name}' is deprecated.${reason ? ' ' + reason : ''}`,
-                [node]
-              )
+                `The field '${parentType.name}.${fieldDef.name}' is deprecated.${
+                  reason ? ' ' + reason : ''
+                }`,
+                [node],
+              ),
             );
           }
         }
@@ -151,20 +165,25 @@ export function findDeprecatedUsages(schema: GraphQLSchema, ast: DocumentNode): 
             const reason = enumVal.deprecationReason;
             errors.push(
               new GraphQLError(
-                `The enum value '${type.name}.${enumVal.name}' is deprecated.${reason ? ' ' + reason : ''}`,
-                [node]
-              )
+                `The enum value '${type.name}.${enumVal.name}' is deprecated.${
+                  reason ? ' ' + reason : ''
+                }`,
+                [node],
+              ),
             );
           }
         }
       },
-    })
+    }),
   );
 
   return errors;
 }
 
-export function removeFieldIfDirectives(node: FieldNode, directiveNames: string[]): FieldNode | null {
+export function removeFieldIfDirectives(
+  node: FieldNode,
+  directiveNames: string[],
+): FieldNode | null {
   if (node.directives?.some(d => directiveNames.includes(d.name.value))) {
     return null;
   }
@@ -240,7 +259,11 @@ export function getReachableTypes(schema: GraphQLSchema): Set<string> {
     }
   };
 
-  for (const type of [schema.getQueryType(), schema.getMutationType(), schema.getSubscriptionType()]) {
+  for (const type of [
+    schema.getQueryType(),
+    schema.getMutationType(),
+    schema.getSubscriptionType(),
+  ]) {
     if (type) {
       collect(type);
     }
@@ -250,8 +273,13 @@ export function getReachableTypes(schema: GraphQLSchema): Set<string> {
 }
 
 function resolveOutputType(
-  output: GraphQLOutputType
-): GraphQLScalarType | GraphQLObjectType | GraphQLInterfaceType | GraphQLUnionType | GraphQLEnumType {
+  output: GraphQLOutputType,
+):
+  | GraphQLScalarType
+  | GraphQLObjectType
+  | GraphQLInterfaceType
+  | GraphQLUnionType
+  | GraphQLEnumType {
   if (isListType(output) || isNonNullType(output)) {
     return resolveOutputType(output.ofType);
   }
@@ -259,7 +287,9 @@ function resolveOutputType(
   return output;
 }
 
-function resolveInputType(input: GraphQLInputType): GraphQLScalarType | GraphQLEnumType | GraphQLInputObjectType {
+function resolveInputType(
+  input: GraphQLInputType,
+): GraphQLScalarType | GraphQLEnumType | GraphQLInputObjectType {
   if (isListType(input) || isNonNullType(input)) {
     return resolveInputType(input.ofType);
   }

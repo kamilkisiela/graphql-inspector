@@ -58,7 +58,7 @@ export function compareLists<T extends { name: string }>(
     onAdded?(t: T): void;
     onRemoved?(t: T): void;
     onMutual?(t: { newVersion: T; oldVersion: T }): void;
-  }
+  },
 ) {
   const oldMap = keyMap(oldList, ({ name }) => name);
   const newMap = keyMap(newList, ({ name }) => name);

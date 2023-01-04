@@ -66,7 +66,11 @@ export interface ValidateOptions {
   maxTokenCount?: number;
 }
 
-export function validate(schema: GraphQLSchema, sources: Source[], options?: ValidateOptions): InvalidDocument[] {
+export function validate(
+  schema: GraphQLSchema,
+  sources: Source[],
+  options?: ValidateOptions,
+): InvalidDocument[] {
   const config: ValidateOptions = {
     strictDeprecated: true,
     strictFragments: true,
@@ -182,8 +186,12 @@ export function validate(schema: GraphQLSchema, sources: Source[], options?: Val
         }
       }
 
-      const deprecated = config.strictDeprecated ? findDeprecatedUsages(transformedSchema, transformedDoc) : [];
-      const duplicatedFragments = config.strictFragments ? findDuplicatedFragments(fragmentNames) : [];
+      const deprecated = config.strictDeprecated
+        ? findDeprecatedUsages(transformedSchema, transformedDoc)
+        : [];
+      const duplicatedFragments = config.strictFragments
+        ? findDuplicatedFragments(fragmentNames)
+        : [];
 
       if (sumLengths(errors, duplicatedFragments, deprecated) > 0) {
         invalidDocuments.push({
@@ -209,11 +217,14 @@ function findDuplicatedFragments(fragmentNames: string[]) {
 //
 function resolveFragment(
   fragment: FragmentDefinitionNode,
-  graph: DepGraph<FragmentDefinitionNode>
+  graph: DepGraph<FragmentDefinitionNode>,
 ): FragmentDefinitionNode[] {
   return graph
     .dependenciesOf(fragment.name.value)
-    .reduce((list, current) => [...list, ...resolveFragment(graph.getNodeData(current), graph)], [fragment]);
+    .reduce(
+      (list, current) => [...list, ...resolveFragment(graph.getNodeData(current), graph)],
+      [fragment],
+    );
 }
 
 function extractFragments(document: string): string[] | undefined {
