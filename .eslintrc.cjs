@@ -33,5 +33,11 @@ module.exports = {
         'no-inner-declarations': 'off',
       },
     },
+    {
+      files: ['.github/**/*'],
+      rules: {
+        'yml/plain-scalar': 'off',
+      }
+    },
   ],
 };
