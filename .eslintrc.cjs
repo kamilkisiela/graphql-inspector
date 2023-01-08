@@ -37,7 +37,7 @@ module.exports = {
       files: ['.github/**/*'],
       rules: {
         'yml/plain-scalar': 'off',
-      }
+      },
     },
   ],
 };
