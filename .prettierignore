@@ -8,3 +8,4 @@ action/
 website/src/pages/docs/api/schema.mdx
 website/algolia-lockfile.json
 .bob/
+.changeset/*.md

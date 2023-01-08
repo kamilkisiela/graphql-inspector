@@ -1,6 +1,6 @@
 {
   "name": "@graphql-inspector/github-loader",
-  "version": "0.0.0-PLACEHOLDER",
+  "version": "3.4.0",
   "description": "Load GraphQL Schema and Documents from GitHub repository",
   "repository": {
     "type": "git",
@@ -41,6 +41,10 @@
   "dependencies": {
     "@graphql-tools/github-loader": "^7.1.1",
     "tslib": "^2.0.0"
+  },
+  "publishConfig": {
+    "directory": "dist",
+    "access": "public"
   },
   "sideEffects": false,
   "typescript": {

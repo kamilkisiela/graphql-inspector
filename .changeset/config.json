@@ -1,0 +1,14 @@
+{
+  "$schema": "https://unpkg.com/@changesets/config@2.3.0/schema.json",
+  "changelog": ["@changesets/changelog-github", { "repo": "kamilkisiela/graphql-inspector" }],
+  "commit": false,
+  "fixed": [["@graphql-inspector/*"]],
+  "linked": [],
+  "access": "restricted",
+  "baseBranch": "master",
+  "ignore": ["website"],
+  "snapshot": {
+    "useCalculatedVersion": true,
+    "prereleaseTemplate": "{tag}-{datetime}-{commit}"
+  }
+}
