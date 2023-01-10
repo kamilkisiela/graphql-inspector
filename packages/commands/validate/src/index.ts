@@ -1,10 +1,15 @@
 import { writeFileSync } from 'fs';
 import { relative } from 'path';
-import { GraphQLError,GraphQLSchema, print, Source } from 'graphql';
-import { CommandFactory,createCommand, GlobalArgs, parseGlobalArgs } from '@graphql-inspector/commands';
-import { InvalidDocument,validate as validateDocuments } from '@graphql-inspector/core';
-import { bolderize, chalk,Logger } from '@graphql-inspector/logger';
+import {
+  CommandFactory,
+  createCommand,
+  GlobalArgs,
+  parseGlobalArgs,
+} from '@graphql-inspector/commands';
+import { InvalidDocument, validate as validateDocuments } from '@graphql-inspector/core';
+import { bolderize, chalk, Logger } from '@graphql-inspector/logger';
 import { Source as DocumentSource } from '@graphql-tools/utils';
+import { GraphQLError, GraphQLSchema, print, Source } from 'graphql';
 
 export { CommandFactory };
 
@@ -52,7 +57,7 @@ export function handler({
       maxTokenCount,
       apollo,
       keepClientFields,
-    }
+    },
   );
 
   if (!invalidDocuments.length) {
@@ -82,7 +87,9 @@ export function handler({
 
     if (deprecated && !onlyErrors) {
       if (!silent) {
-        Logger.info(`\nDetected ${deprecated} document${deprecated > 1 ? 's' : ''} with deprecated fields:\n`);
+        Logger.info(
+          `\nDetected ${deprecated} document${deprecated > 1 ? 's' : ''} with deprecated fields:\n`,
+        );
       }
 
       printInvalidDocuments(useFilter(invalidDocuments, filter), 'deprecated', false, silent);
@@ -97,11 +104,11 @@ export function handler({
             documents: useFilter(invalidDocuments, filter),
           },
           null,
-          2
+          2,
         ),
         {
           encoding: 'utf-8',
-        }
+        },
       );
     }
 
@@ -268,7 +275,7 @@ export default createCommand<
           method,
         },
         apolloFederation,
-        aws
+        aws,
       );
       const documents = await loaders.loadDocuments(args.documents, {
         ignore,
@@ -315,7 +322,7 @@ function printInvalidDocuments(
   invalidDocuments: InvalidDocument[],
   listKey: 'errors' | 'deprecated',
   isError = false,
-  silent = false
+  silent = false,
 ): void {
   if (silent) {
     return;

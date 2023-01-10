@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
 import dynamic from 'next/dynamic';
-import { FeatureList, HeroGradient, HeroIllustration,NPMBadge } from '@theguild/components';
+import { FeatureList, HeroGradient, HeroIllustration, NPMBadge } from '@theguild/components';
 import githubImage from '../../public/assets/img/illustrations/github.png';
 import hackerMindsetImage from '../../public/assets/img/illustrations/hacker-mindset.png';
 import hiveImage from '../../public/assets/img/illustrations/hive.png';
@@ -92,7 +92,7 @@ export function IndexPage(): ReactElement {
         }}
       />
 
-      <FeatureList items={FEATURE_LIST} className={'dark:[&_img]:invert py-16'} />
+      <FeatureList items={FEATURE_LIST} className="dark:[&_img]:invert py-16" />
 
       <HeroIllustration
         title="GraphQL Hive"
@@ -113,7 +113,7 @@ export function IndexPage(): ReactElement {
           children: 'Take me to GraphQL Hive',
           title: 'Visit GraphQL Hive',
         }}
-        className={'bg-gray-100 dark:bg-zinc-900'}
+        className="bg-gray-100 dark:bg-zinc-900"
         flipped
       />
 

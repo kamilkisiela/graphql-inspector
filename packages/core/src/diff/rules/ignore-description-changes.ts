@@ -16,5 +16,5 @@ const descriptionChangeTypes: ChangeType[] = [
 ];
 
 export const ignoreDescriptionChanges: Rule = ({ changes }) => {
-  return changes.filter(change => descriptionChangeTypes.indexOf(change.type) === -1);
+  return changes.filter(change => !descriptionChangeTypes.includes(change.type));
 };

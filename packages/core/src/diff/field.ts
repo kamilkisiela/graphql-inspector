@@ -1,7 +1,6 @@
-import { GraphQLField, GraphQLInterfaceType,GraphQLObjectType } from 'graphql';
-import { isNotEqual, isVoid } from '../utils/compare';
-import { compareLists } from '../utils/compare';
-import { isDeprecated } from '../utils/isDeprecated';
+import { GraphQLField, GraphQLInterfaceType, GraphQLObjectType } from 'graphql';
+import { compareLists, isNotEqual, isVoid } from '../utils/compare';
+import { isDeprecated } from '../utils/is-deprecated';
 import { changesInArgument } from './argument';
 import {
   fieldArgumentAdded,
@@ -22,7 +21,7 @@ export function changesInField(
   type: GraphQLObjectType | GraphQLInterfaceType,
   oldField: GraphQLField<any, any>,
   newField: GraphQLField<any, any>,
-  addChange: AddChange
+  addChange: AddChange,
 ) {
   if (isNotEqual(oldField.description, newField.description)) {
     if (isVoid(oldField.description)) {

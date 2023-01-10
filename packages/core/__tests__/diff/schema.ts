@@ -1,5 +1,5 @@
-import { buildClientSchema,buildSchema, introspectionFromSchema } from 'graphql';
-import { Change,CriticalityLevel } from '../../src/diff/changes/change';
+import { buildClientSchema, buildSchema, introspectionFromSchema } from 'graphql';
+import { Change, CriticalityLevel } from '../../src/diff/changes/change';
 import { diff } from '../../src/index';
 import { findBestMatch } from '../../src/utils/string';
 
@@ -49,7 +49,7 @@ test('renamed query', async () => {
   const changes = await diff(schemaA, schemaB);
 
   // Type Added
-  const added = changes.find(c => c.message.indexOf('added') !== -1) as Change;
+  const added = changes.find(c => c.message.includes('added')) as Change;
 
   expect(added).toBeDefined();
   expect(added.criticality.level).toEqual(CriticalityLevel.NonBreaking);
@@ -57,7 +57,7 @@ test('renamed query', async () => {
   expect(added.path).toEqual(`RootQuery`);
 
   // Type Removed
-  const removed = changes.find(c => c.message.indexOf('removed') !== -1) as Change;
+  const removed = changes.find(c => c.message.includes('removed')) as Change;
 
   expect(removed).toBeDefined();
   expect(removed.criticality.level).toEqual(CriticalityLevel.Breaking);
@@ -65,7 +65,7 @@ test('renamed query', async () => {
   expect(removed.path).toEqual(`Query`);
 
   // Root Type Changed
-  const changed = changes.find(c => c.message.indexOf('changed') !== -1) as Change;
+  const changed = changes.find(c => c.message.includes('changed')) as Change;
 
   expect(changed).toBeDefined();
   expect(changed.criticality.level).toEqual(CriticalityLevel.Breaking);
@@ -330,7 +330,7 @@ test('huge test', async () => {
         changes.map(c => ({
           typeId: c.path || '',
           value: c.message,
-        }))
+        })),
       );
 
       if (match.bestMatch) {
@@ -430,7 +430,7 @@ test('array as default value in argument (different)', async () => {
   expect(changes[0]).toBeDefined();
   expect(changes[0].criticality.level).toEqual(CriticalityLevel.Dangerous);
   expect(changes[0].message).toEqual(
-    `Default value for argument 'b' on field 'MyInterface.a' changed from '[ 'Hello' ]' to '[ 'Goodbye' ]'`
+    `Default value for argument 'b' on field 'MyInterface.a' changed from '[ 'Hello' ]' to '[ 'Goodbye' ]'`,
   );
   expect(changes[0].path).toEqual(`MyInterface.a.b`);
 });
@@ -530,7 +530,7 @@ test('array as default value in input (different)', async () => {
   expect(changes[0]).toBeDefined();
   expect(changes[0].criticality.level).toEqual(CriticalityLevel.Dangerous);
   expect(changes[0].message).toEqual(
-    `Input field 'CommentQuery.sortOrder' default value changed from '[ 'ASC' ]' to '[ 'DEC' ]'`
+    `Input field 'CommentQuery.sortOrder' default value changed from '[ 'ASC' ]' to '[ 'DEC' ]'`,
   );
   expect(changes[0].path).toEqual(`CommentQuery.sortOrder`);
 });
@@ -572,20 +572,26 @@ test('Input fields becoming nullable is a non-breaking change', async () => {
 
   expect(changes[0]).toBeDefined();
   expect(changes[0].criticality.level).toEqual(CriticalityLevel.NonBreaking);
-  expect(changes[0].message).toEqual(`Input field 'CommentQuery.limit' changed type from 'Int!' to 'Int'`);
+  expect(changes[0].message).toEqual(
+    `Input field 'CommentQuery.limit' changed type from 'Int!' to 'Int'`,
+  );
 
   expect(changes[1]).toBeDefined();
   expect(changes[1].criticality.level).toEqual(CriticalityLevel.NonBreaking);
-  expect(changes[1].message).toEqual(`Input field 'CommentQuery.query' changed type from 'String!' to 'String'`);
+  expect(changes[1].message).toEqual(
+    `Input field 'CommentQuery.query' changed type from 'String!' to 'String'`,
+  );
 
   expect(changes[2]).toBeDefined();
   expect(changes[2].criticality.level).toEqual(CriticalityLevel.NonBreaking);
-  expect(changes[2].message).toEqual(`Input field 'CommentQuery.detail' changed type from 'Detail!' to 'Detail'`);
+  expect(changes[2].message).toEqual(
+    `Input field 'CommentQuery.detail' changed type from 'Detail!' to 'Detail'`,
+  );
 
   expect(changes[3]).toBeDefined();
   expect(changes[3].criticality.level).toEqual(CriticalityLevel.NonBreaking);
   expect(changes[3].message).toEqual(
-    `Input field 'CommentQuery.customScalar' changed type from 'CustomScalar!' to 'CustomScalar'`
+    `Input field 'CommentQuery.customScalar' changed type from 'CustomScalar!' to 'CustomScalar'`,
   );
 });
 
@@ -626,20 +632,26 @@ test('Input fields becoming non-nullable is a breaking change', async () => {
 
   expect(changes[0]).toBeDefined();
   expect(changes[0].criticality.level).toEqual(CriticalityLevel.Breaking);
-  expect(changes[0].message).toEqual(`Input field 'CommentQuery.limit' changed type from 'Int' to 'Int!'`);
+  expect(changes[0].message).toEqual(
+    `Input field 'CommentQuery.limit' changed type from 'Int' to 'Int!'`,
+  );
 
   expect(changes[1]).toBeDefined();
   expect(changes[1].criticality.level).toEqual(CriticalityLevel.Breaking);
-  expect(changes[1].message).toEqual(`Input field 'CommentQuery.query' changed type from 'String' to 'String!'`);
+  expect(changes[1].message).toEqual(
+    `Input field 'CommentQuery.query' changed type from 'String' to 'String!'`,
+  );
 
   expect(changes[2]).toBeDefined();
   expect(changes[2].criticality.level).toEqual(CriticalityLevel.Breaking);
-  expect(changes[2].message).toEqual(`Input field 'CommentQuery.detail' changed type from 'Detail' to 'Detail!'`);
+  expect(changes[2].message).toEqual(
+    `Input field 'CommentQuery.detail' changed type from 'Detail' to 'Detail!'`,
+  );
 
   expect(changes[3]).toBeDefined();
   expect(changes[3].criticality.level).toEqual(CriticalityLevel.Breaking);
   expect(changes[3].message).toEqual(
-    `Input field 'CommentQuery.customScalar' changed type from 'CustomScalar' to 'CustomScalar!'`
+    `Input field 'CommentQuery.customScalar' changed type from 'CustomScalar' to 'CustomScalar!'`,
   );
 });
 
@@ -684,16 +696,20 @@ test('Query fields becoming non-nullable is a non-breaking change', async () => 
 
   expect(changes[1]).toBeDefined();
   expect(changes[1].criticality.level).toEqual(CriticalityLevel.NonBreaking);
-  expect(changes[1].message).toEqual(`Field 'Comment.query' changed type from 'String' to 'String!'`);
+  expect(changes[1].message).toEqual(
+    `Field 'Comment.query' changed type from 'String' to 'String!'`,
+  );
 
   expect(changes[2]).toBeDefined();
   expect(changes[2].criticality.level).toEqual(CriticalityLevel.NonBreaking);
-  expect(changes[2].message).toEqual(`Field 'Comment.detail' changed type from 'Detail' to 'Detail!'`);
+  expect(changes[2].message).toEqual(
+    `Field 'Comment.detail' changed type from 'Detail' to 'Detail!'`,
+  );
 
   expect(changes[3]).toBeDefined();
   expect(changes[3].criticality.level).toEqual(CriticalityLevel.NonBreaking);
   expect(changes[3].message).toEqual(
-    `Field 'Comment.customScalar' changed type from 'CustomScalar' to 'CustomScalar!'`
+    `Field 'Comment.customScalar' changed type from 'CustomScalar' to 'CustomScalar!'`,
   );
 });
 
@@ -738,16 +754,20 @@ test('Query fields becoming nullable is a breaking change', async () => {
 
   expect(changes[1]).toBeDefined();
   expect(changes[1].criticality.level).toEqual(CriticalityLevel.Breaking);
-  expect(changes[1].message).toEqual(`Field 'Comment.query' changed type from 'String!' to 'String'`);
+  expect(changes[1].message).toEqual(
+    `Field 'Comment.query' changed type from 'String!' to 'String'`,
+  );
 
   expect(changes[2]).toBeDefined();
   expect(changes[2].criticality.level).toEqual(CriticalityLevel.Breaking);
-  expect(changes[2].message).toEqual(`Field 'Comment.detail' changed type from 'Detail!' to 'Detail'`);
+  expect(changes[2].message).toEqual(
+    `Field 'Comment.detail' changed type from 'Detail!' to 'Detail'`,
+  );
 
   expect(changes[3]).toBeDefined();
   expect(changes[3].criticality.level).toEqual(CriticalityLevel.Breaking);
   expect(changes[3].message).toEqual(
-    `Field 'Comment.customScalar' changed type from 'CustomScalar!' to 'CustomScalar'`
+    `Field 'Comment.customScalar' changed type from 'CustomScalar!' to 'CustomScalar'`,
   );
 });
 
@@ -762,7 +782,7 @@ test('should work with with missing directive definitions', async () => {
     {
       assumeValid: true,
       assumeValidSDL: true,
-    }
+    },
   );
 
   const schemaB = buildSchema(
@@ -775,7 +795,7 @@ test('should work with with missing directive definitions', async () => {
     {
       assumeValid: true,
       assumeValidSDL: true,
-    }
+    },
   );
 
   const changes = await diff(schemaA, schemaB);

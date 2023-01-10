@@ -1,11 +1,15 @@
 import { GraphQLObjectType } from 'graphql';
 import { compareLists } from '../utils/compare';
-import { fieldAdded,fieldRemoved } from './changes/field';
+import { fieldAdded, fieldRemoved } from './changes/field';
 import { objectTypeInterfaceAdded, objectTypeInterfaceRemoved } from './changes/object';
 import { changesInField } from './field';
 import { AddChange } from './schema';
 
-export function changesInObject(oldType: GraphQLObjectType, newType: GraphQLObjectType, addChange: AddChange) {
+export function changesInObject(
+  oldType: GraphQLObjectType,
+  newType: GraphQLObjectType,
+  addChange: AddChange,
+) {
   const oldInterfaces = oldType.getInterfaces();
   const newInterfaces = newType.getInterfaces();
 

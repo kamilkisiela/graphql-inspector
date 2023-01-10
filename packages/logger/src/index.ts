@@ -3,7 +3,7 @@ import figures from 'figures';
 import symbols from 'log-symbols';
 import env from 'std-env';
 
-export { chalk, symbols, figures };
+export { chalk, figures, symbols };
 
 export function bolderize(msg: string): string {
   const findSingleQuotes = /'([^']+)'/gim;

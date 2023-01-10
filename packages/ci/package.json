@@ -2,14 +2,20 @@
   "name": "@graphql-inspector/ci",
   "version": "0.0.0-PLACEHOLDER",
   "description": "Tooling for GraphQL. Compare GraphQL Schemas, check documents, find breaking changes, find similar types.",
-  "keywords": [
-    "graphql",
-    "graphql-inspector",
-    "tools",
-    "cli",
-    "ci"
-  ],
-  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "kamilkisiela/graphql-inspector",
+    "directory": "packages/ci"
+  },
+  "author": {
+    "name": "Kamil Kisiela",
+    "email": "kamil.kisiela@gmail.com",
+    "url": "https://github.com/kamilkisiela"
+  },
+  "license": "MIT",
+  "bin": {
+    "graphql-inspector": "dist/index.js"
+  },
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "exports": {
@@ -23,37 +29,20 @@
     }
   },
   "typings": "dist/index.d.ts",
-  "typescript": {
-    "definition": "dist/index.d.ts"
-  },
-  "bin": {
-    "graphql-inspector": "dist/index.js"
-  },
-  "buildOptions": {
-    "bin": {
-      "graphql-inspector": {
-        "input": "src/index.ts"
-      }
-    }
-  },
-  "author": {
-    "name": "Kamil Kisiela",
-    "email": "kamil.kisiela@gmail.com",
-    "url": "https://github.com/kamilkisiela"
-  },
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "kamilkisiela/graphql-inspector",
-    "directory": "packages/ci"
-  },
+  "keywords": [
+    "graphql",
+    "graphql-inspector",
+    "tools",
+    "cli",
+    "ci"
+  ],
   "scripts": {
     "build": "tsc",
-    "test": "jest",
     "clean": "rm -rf dist/",
     "prebuild": "yarn clean",
+    "prepack": "bob prepack",
     "prepublishOnly": "yarn build",
-    "prepack": "bob prepack"
+    "test": "jest"
   },
   "peerDependencies": {
     "graphql": "^14.0.0 || ^15.0.0 || ^16.0.0"
@@ -65,5 +54,16 @@
     "@graphql-inspector/logger": "0.0.0-PLACEHOLDER",
     "tslib": "^2.0.0",
     "yargs": "17.2.1"
+  },
+  "sideEffects": false,
+  "buildOptions": {
+    "bin": {
+      "graphql-inspector": {
+        "input": "src/index.ts"
+      }
+    }
+  },
+  "typescript": {
+    "definition": "dist/index.d.ts"
   }
 }

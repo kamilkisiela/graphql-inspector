@@ -3,7 +3,7 @@ name: master
 on:
   push:
     branches:
-      - 'master'
+      - master
 
 jobs:
   algolia:

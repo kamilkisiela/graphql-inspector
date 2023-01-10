@@ -41,7 +41,10 @@ export default function handleProbot(app: probot.Probot) {
         release,
         action: fullAction,
       });
-      const loadConfig = createConfigLoader({ context, owner, repo, ref, release, action: fullAction }, loadFile);
+      const loadConfig = createConfigLoader(
+        { context, owner, repo, ref, release, action: fullAction },
+        loadFile,
+      );
 
       await handleSchemaDiff({
         release,
@@ -56,7 +59,7 @@ export default function handleProbot(app: probot.Probot) {
         pullRequests,
         onError,
       });
-    })
+    }),
   );
 
   app.on(
@@ -80,7 +83,10 @@ export default function handleProbot(app: probot.Probot) {
         release,
         action: fullAction,
       });
-      const loadConfig = createConfigLoader({ context, owner, repo, ref, release, action: fullAction }, loadFile);
+      const loadConfig = createConfigLoader(
+        { context, owner, repo, ref, release, action: fullAction },
+        loadFile,
+      );
 
       await handleSchemaDiff({
         release,
@@ -95,7 +101,7 @@ export default function handleProbot(app: probot.Probot) {
         pullRequests,
         onError,
       });
-    })
+    }),
   );
 
   app.on(
@@ -120,7 +126,10 @@ export default function handleProbot(app: probot.Probot) {
         release,
         action: fullAction,
       });
-      const loadConfig = createConfigLoader({ context, owner, repo, ref, release, action: fullAction }, loadFile);
+      const loadConfig = createConfigLoader(
+        { context, owner, repo, ref, release, action: fullAction },
+        loadFile,
+      );
 
       await handleSchemaDiff({
         release,
@@ -136,7 +145,7 @@ export default function handleProbot(app: probot.Probot) {
         pullRequestNumber,
         onError,
       });
-    })
+    }),
   );
 
   app.on(
@@ -154,7 +163,10 @@ export default function handleProbot(app: probot.Probot) {
         release,
         action,
       });
-      const loadConfig = createConfigLoader({ context, owner, repo, ref, release, action }, loadFile);
+      const loadConfig = createConfigLoader(
+        { context, owner, repo, ref, release, action },
+        loadFile,
+      );
 
       await handleSchemaChangeNotifications({
         action,
@@ -168,6 +180,6 @@ export default function handleProbot(app: probot.Probot) {
         loadConfig,
         onError,
       });
-    })
+    }),
   );
 }

@@ -1,12 +1,15 @@
-export { diff, DiffRule, Rule, CompletionArgs, CompletionHandler, UsageHandler } from './diff';
-export { validate, InvalidDocument } from './validate';
-export { similar, SimilarMap } from './similar';
 export * from './coverage';
-export { Change, CriticalityLevel, Criticality, ChangeType } from './diff/changes/change';
+export { CompletionArgs, CompletionHandler, diff, DiffRule, Rule, UsageHandler } from './diff';
+export { Change, ChangeType, Criticality, CriticalityLevel } from './diff/changes/change';
+export { similar, SimilarMap } from './similar';
 export { getTypePrefix } from './utils/graphql';
-export { Target, Rating, BestMatch } from './utils/string';
+export { BestMatch, Rating, Target } from './utils/string';
+export { InvalidDocument, validate } from './validate';
 export { countAliases } from './validate/alias-count';
+export {
+  calculateOperationComplexity,
+  CalculateOperationComplexityConfig,
+} from './validate/complexity';
 export { countDirectives } from './validate/directive-count';
 export { countDepth } from './validate/query-depth';
-export { calculateOperationComplexity, CalculateOperationComplexityConfig } from './validate/complexity';
 export { calculateTokenCount } from './validate/token-count';

@@ -1,12 +1,16 @@
-import { GraphQLNamedType, GraphQLSchema,printType } from 'graphql';
-import { isForIntrospection,isPrimitive } from '../utils/graphql';
-import { BestMatch, findBestMatch, Rating,Target } from '../utils/string';
+import { GraphQLNamedType, GraphQLSchema, printType } from 'graphql';
+import { isForIntrospection, isPrimitive } from '../utils/graphql';
+import { BestMatch, findBestMatch, Rating, Target } from '../utils/string';
 
 export interface SimilarMap {
   [name: string]: BestMatch;
 }
 
-export function similar(schema: GraphQLSchema, typeName: string | undefined, threshold: number = 0.4): SimilarMap {
+export function similar(
+  schema: GraphQLSchema,
+  typeName: string | undefined,
+  threshold = 0.4,
+): SimilarMap {
   const typeMap = schema.getTypeMap();
   const targets: Target[] = Object.keys(schema.getTypeMap())
     .filter(name => !isPrimitive(name) && !isForIntrospection(name))
@@ -25,7 +29,7 @@ export function similar(schema: GraphQLSchema, typeName: string | undefined, thr
     const matchWith = targets.filter(
       target =>
         (schema.getType(target.typeId) as any).astNode.kind === (sourceType.astNode as any).kind &&
-        target.typeId !== source.typeId
+        target.typeId !== source.typeId,
     );
 
     if (matchWith.length > 0) {
@@ -40,7 +44,11 @@ export function similar(schema: GraphQLSchema, typeName: string | undefined, thr
   return results;
 }
 
-function similarTo(type: GraphQLNamedType, targets: Target[], threshold: number): BestMatch | undefined {
+function similarTo(
+  type: GraphQLNamedType,
+  targets: Target[],
+  threshold: number,
+): BestMatch | undefined {
   const types = targets.filter(target => target.typeId !== type.name);
   const result = findBestMatch(stripType(type), types);
 

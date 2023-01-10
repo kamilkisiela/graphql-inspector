@@ -21,7 +21,7 @@ function serverless(appFn) {
     function lowerCaseKeys(obj) {
       return Object.keys(obj).reduce(
         (accumulator, key) => Object.assign(accumulator, { [key.toLocaleLowerCase()]: obj[key] }),
-        {}
+        {},
       );
     }
 
@@ -71,12 +71,11 @@ function serverless(appFn) {
         });
 
         return;
-      } else {
-        res.status(500);
-        res.send('unknown error');
-
-        return;
       }
+      res.status(500);
+      res.send('unknown error');
+
+      return;
     } catch (error) {
       console.error(error);
       res.status(500);

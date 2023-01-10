@@ -1,5 +1,5 @@
-import { buildSchema,GraphQLObjectType } from 'graphql';
 import { mockGraphQLServer } from '@graphql-inspector/testing';
+import { buildSchema, GraphQLObjectType } from 'graphql';
 import loader from '../src';
 
 test('should contain descriptions', async () => {

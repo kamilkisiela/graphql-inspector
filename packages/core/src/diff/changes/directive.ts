@@ -1,6 +1,6 @@
 import { DirectiveLocationEnum, GraphQLArgument, GraphQLDirective, isNonNullType } from 'graphql';
 import { safeChangeForInputValue } from '../../utils/graphql';
-import { Change, ChangeType,CriticalityLevel } from './change';
+import { Change, ChangeType, CriticalityLevel } from './change';
 
 export function directiveRemoved(directive: GraphQLDirective): Change {
   return {
@@ -23,7 +23,10 @@ export function directiveAdded(directive: GraphQLDirective): Change {
   };
 }
 
-export function directiveDescriptionChanged(oldDirective: GraphQLDirective, newDirective: GraphQLDirective): Change {
+export function directiveDescriptionChanged(
+  oldDirective: GraphQLDirective,
+  newDirective: GraphQLDirective,
+): Change {
   return {
     criticality: {
       level: CriticalityLevel.NonBreaking,
@@ -34,7 +37,10 @@ export function directiveDescriptionChanged(oldDirective: GraphQLDirective, newD
   };
 }
 
-export function directiveLocationAdded(directive: GraphQLDirective, location: DirectiveLocationEnum): Change {
+export function directiveLocationAdded(
+  directive: GraphQLDirective,
+  location: DirectiveLocationEnum,
+): Change {
   return {
     criticality: {
       level: CriticalityLevel.NonBreaking,
@@ -45,7 +51,10 @@ export function directiveLocationAdded(directive: GraphQLDirective, location: Di
   };
 }
 
-export function directiveLocationRemoved(directive: GraphQLDirective, location: DirectiveLocationEnum): Change {
+export function directiveLocationRemoved(
+  directive: GraphQLDirective,
+  location: DirectiveLocationEnum,
+): Change {
   return {
     criticality: {
       level: CriticalityLevel.Breaking,
@@ -67,7 +76,10 @@ export function directiveArgumentAdded(directive: GraphQLDirective, arg: GraphQL
   };
 }
 
-export function directiveArgumentRemoved(directive: GraphQLDirective, arg: GraphQLArgument): Change {
+export function directiveArgumentRemoved(
+  directive: GraphQLDirective,
+  arg: GraphQLArgument,
+): Change {
   return {
     criticality: {
       level: CriticalityLevel.Breaking,
@@ -81,7 +93,7 @@ export function directiveArgumentRemoved(directive: GraphQLDirective, arg: Graph
 export function directiveArgumentDescriptionChanged(
   directive: GraphQLDirective,
   oldArg: GraphQLArgument,
-  newArg: GraphQLArgument
+  newArg: GraphQLArgument,
 ): Change {
   return {
     criticality: {
@@ -96,7 +108,7 @@ export function directiveArgumentDescriptionChanged(
 export function directiveArgumentDefaultValueChanged(
   directive: GraphQLDirective,
   oldArg: GraphQLArgument,
-  newArg: GraphQLArgument
+  newArg: GraphQLArgument,
 ): Change {
   return {
     criticality: {
@@ -116,7 +128,7 @@ export function directiveArgumentDefaultValueChanged(
 export function directiveArgumentTypeChanged(
   directive: GraphQLDirective,
   oldArg: GraphQLArgument,
-  newArg: GraphQLArgument
+  newArg: GraphQLArgument,
 ): Change {
   return {
     criticality: safeChangeForInputValue(oldArg.type, newArg.type)

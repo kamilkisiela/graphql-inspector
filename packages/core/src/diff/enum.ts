@@ -1,6 +1,5 @@
 import { GraphQLEnumType } from 'graphql';
-import { isNotEqual, isVoid } from '../utils/compare';
-import { compareLists } from '../utils/compare';
+import { compareLists, isNotEqual, isVoid } from '../utils/compare';
 import {
   enumValueAdded,
   enumValueDeprecationReasonAdded,
@@ -11,7 +10,11 @@ import {
 } from './changes/enum';
 import { AddChange } from './schema';
 
-export function changesInEnum(oldEnum: GraphQLEnumType, newEnum: GraphQLEnumType, addChange: AddChange) {
+export function changesInEnum(
+  oldEnum: GraphQLEnumType,
+  newEnum: GraphQLEnumType,
+  addChange: AddChange,
+) {
   compareLists(oldEnum.getValues(), newEnum.getValues(), {
     onAdded(value) {
       addChange(enumValueAdded(newEnum, value));
