@@ -5,6 +5,7 @@
   "fixed": [["@graphql-inspector/*"]],
   "linked": [],
   "access": "restricted",
+  "updateInternalDependencies": "patch",
   "baseBranch": "master",
   "ignore": ["website"],
   "snapshot": {
