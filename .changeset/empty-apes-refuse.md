@@ -2,4 +2,4 @@
 '@graphql-inspector/commands': minor
 ---
 
-test minor
+test minor again
