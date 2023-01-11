@@ -13,3 +13,12 @@ jobs:
     with:
       domain: https://www.the-guild.dev/graphql/inspector/
       source: 'Inspector'
+  release:
+    uses: the-guild-org/shared-config/.github/workflows/release-snapshot.yml@main
+    with:
+      npmTag: alpha
+      buildScript: build
+      nodeVersion: 16
+    secrets:
+      githubToken: ${{ secrets.GITHUB_TOKEN }}
+      npmToken: ${{ secrets.NPM_TOKEN }}

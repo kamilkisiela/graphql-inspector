@@ -1,6 +1,6 @@
 {
   "name": "@graphql-inspector/core",
-  "version": "0.0.0-PLACEHOLDER",
+  "version": "3.4.0",
   "description": "Tooling for GraphQL. Compare GraphQL Schemas, check documents, find breaking changes, find similar types.",
   "repository": {
     "type": "git",
@@ -44,6 +44,10 @@
   },
   "devDependencies": {
     "@types/object-inspect": "1.8.0"
+  },
+  "publishConfig": {
+    "directory": "dist",
+    "access": "public"
   },
   "sideEffects": false,
   "typescript": {

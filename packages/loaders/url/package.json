@@ -1,6 +1,6 @@
 {
   "name": "@graphql-inspector/url-loader",
-  "version": "0.0.0-PLACEHOLDER",
+  "version": "3.4.0",
   "description": "Load GraphQL Schema from GraphQL endpoint (introspection)",
   "repository": {
     "type": "git",
@@ -41,6 +41,10 @@
   "dependencies": {
     "@graphql-tools/url-loader": "^7.4.2",
     "tslib": "^2.0.0"
+  },
+  "publishConfig": {
+    "directory": "dist",
+    "access": "public"
   },
   "sideEffects": false,
   "typescript": {

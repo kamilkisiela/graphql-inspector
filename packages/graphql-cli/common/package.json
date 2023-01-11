@@ -1,6 +1,6 @@
 {
   "name": "@graphql-inspector/graphql-cli-common",
-  "version": "0.0.0-PLACEHOLDER",
+  "version": "3.4.0",
   "description": "Internal",
   "repository": {
     "type": "git",

@@ -1,6 +1,6 @@
 {
   "name": "@graphql-inspector/logger",
-  "version": "0.0.0-PLACEHOLDER",
+  "version": "3.4.0",
   "description": "Logger for GraphQL Inspector",
   "repository": {
     "type": "git",
@@ -35,6 +35,10 @@
     "log-symbols": "^4.1.0",
     "std-env": "2.3.0",
     "tslib": "^2.0.0"
+  },
+  "publishConfig": {
+    "directory": "dist",
+    "access": "public"
   },
   "sideEffects": false,
   "typescript": {
