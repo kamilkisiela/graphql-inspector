@@ -75,6 +75,25 @@ export const suppressRemovalOfDeprecatedField: Rule = ({ changes, oldSchema }) =
       }
     }
 
+    if (
+      change.type === ChangeType.TypeRemoved &&
+      change.criticality.level === CriticalityLevel.Breaking &&
+      change.path
+    ) {
+      const [typeName] = parsePath(change.path);
+      const type = oldSchema.getType(typeName);
+
+      if (!type) {
+        return {
+          ...change,
+          criticality: {
+            ...change.criticality,
+            level: CriticalityLevel.Dangerous,
+          },
+        };
+      }
+    }
+
     return change;
   });
 };
