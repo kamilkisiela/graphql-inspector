@@ -4,7 +4,7 @@ import { parsePath } from '../../utils/path';
 import { ChangeType, CriticalityLevel } from './../changes/change';
 import { Rule } from './types';
 
-export const suppressRemovalOfDeprecatedField: Rule = ({ changes, oldSchema }) => {
+export const suppressRemovalOfDeprecatedField: Rule = ({ changes, oldSchema, newSchema }) => {
   return changes.map(change => {
     if (
       change.type === ChangeType.FieldRemoved &&
@@ -81,7 +81,7 @@ export const suppressRemovalOfDeprecatedField: Rule = ({ changes, oldSchema }) =
       change.path
     ) {
       const [typeName] = parsePath(change.path);
-      const type = oldSchema.getType(typeName);
+      const type = newSchema.getType(typeName);
 
       if (!type) {
         return {
