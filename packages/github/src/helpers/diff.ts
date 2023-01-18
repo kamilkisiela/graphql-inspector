@@ -1,9 +1,9 @@
-import { GraphQLSchema, Source } from 'graphql';
-import { Change,CriticalityLevel, diff as diffSchemas } from '@graphql-inspector/core';
+import { Change, CriticalityLevel, diff as diffSchemas } from '@graphql-inspector/core';
 import axios from 'axios';
+import { GraphQLSchema, Source } from 'graphql';
 import { getLocationByPath } from './location';
 import { ActionResult, Annotation, AnnotationLevel, CheckConclusion, PullRequest } from './types';
-import { isNil,parseEndpoint } from './utils';
+import { isNil, parseEndpoint } from './utils';
 
 export type DiffInterceptor =
   | string
@@ -66,7 +66,9 @@ export async function diff({
     forcedConclusion = interceptionResult.conclusion || null;
   }
 
-  const annotations = await Promise.all(changes.map(change => annotate({ path, change, source: sources.new })));
+  const annotations = await Promise.all(
+    changes.map(change => annotate({ path, change, source: sources.new })),
+  );
   let conclusion: CheckConclusion = CheckConclusion.Success;
 
   if (changes.some(change => change.criticality.level === CriticalityLevel.Breaking)) {
@@ -90,9 +92,19 @@ const levelMap = {
   [CriticalityLevel.NonBreaking]: AnnotationLevel.Notice,
 };
 
-function annotate({ path, change, source }: { path: string; change: Change; source: Source }): Annotation {
+function annotate({
+  path,
+  change,
+  source,
+}: {
+  path: string;
+  change: Change;
+  source: Source;
+}): Annotation {
   const level = change.criticality.level;
-  const loc = change.path ? getLocationByPath({ path: change.path, source }) : { line: 1, column: 1 };
+  const loc = change.path
+    ? getLocationByPath({ path: change.path, source })
+    : { line: 1, column: 1 };
 
   return {
     title: change.message,
@@ -106,7 +118,7 @@ function annotate({ path, change, source }: { path: string; change: Change; sour
 
 async function interceptChanges(
   interceptor: DiffInterceptor,
-  payload: DiffInterceptorPayload
+  payload: DiffInterceptorPayload,
 ): Promise<DiffInterceptorResponse> {
   const endpoint = parseEndpoint(interceptor);
 

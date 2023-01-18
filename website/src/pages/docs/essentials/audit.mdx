@@ -1,8 +1,9 @@
 # Audit Documents
 
-Audit your documents for useful metrics such as query depth, directive count and alias count. This is useful if you want
-to introduce security rules on your GraphQL server (e.g. via
-[`graphql-armor`](https://github.com/Escape-Technologies/graphql-armor)) and need to figure out the values for doing so.
+Audit your documents for useful metrics such as query depth, directive count and alias count. This
+is useful if you want to introduce security rules on your GraphQL server (e.g. via
+[`graphql-armor`](https://github.com/Escape-Technologies/graphql-armor)) and need to figure out the
+values for doing so.
 
 ## Usage
 
@@ -25,15 +26,19 @@ graphql-inspector audit './documents/*.graphql'
 ### Flags
 
 - `-d, --detail` - Print statistics for each single GraphQL operation (default: `false`)
-- `--complexityScalarCost` - The cost of a scalar field for calculating the complexity score (default: `1`)
-- `--complexityObjectCost` - The cost of an object field for calculating the complexity score (default: `2`)
-- `--complexityDepthCostFactor` - The cost factor of a field per depth level for calculating the complexity score (default: `1.5`)
+- `--complexityScalarCost` - The cost of a scalar field for calculating the complexity score
+  (default: `1`)
+- `--complexityObjectCost` - The cost of an object field for calculating the complexity score
+  (default: `2`)
+- `--complexityDepthCostFactor` - The cost factor of a field per depth level for calculating the
+  complexity score (default: `1.5`)
 
 ### Output
 
-A list of metrics including the maximum depth limit, maximum alias count and maximum directive count.
+A list of metrics including the maximum depth limit, maximum alias count and maximum directive
+count.
 
-This process does not fail, as it is mainly for showing useful information. In case you want to enforce a certain query
-deth, directive count or alias count limit check the
+This process does not fail, as it is mainly for showing useful information. In case you want to
+enforce a certain query deth, directive count or alias count limit check the
 [`--maxDepth`, `--maxAliasCount` and `--maxDirectiveCount` flags in the Validate Documents](./validate)
 documentation.

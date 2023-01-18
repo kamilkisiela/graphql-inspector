@@ -1,10 +1,10 @@
-import { existsSync, readFileSync,unlinkSync } from 'fs';
-import { buildSchema } from 'graphql';
+import { existsSync, readFileSync, unlinkSync } from 'fs';
 import { mockCommand } from '@graphql-inspector/commands';
 import { LoadersRegistry } from '@graphql-inspector/loaders';
 import { mockLogger, unmockLogger } from '@graphql-inspector/logger';
 import { mockGraphQLServer } from '@graphql-inspector/testing';
 import loader from '@graphql-inspector/url-loader';
+import { buildSchema } from 'graphql';
 import yargs from 'yargs';
 import createCommand from '../src';
 
@@ -103,7 +103,10 @@ describe('introspect', () => {
       path: '/graphql',
       method: 'GET',
     });
-    await mockCommand(introspect, 'introspect https://example.com/graphql -w schema.graphql --method GET');
+    await mockCommand(
+      introspect,
+      'introspect https://example.com/graphql -w schema.graphql --method GET',
+    );
     await sleepFor(500);
 
     done();

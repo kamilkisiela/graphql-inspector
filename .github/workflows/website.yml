@@ -11,7 +11,9 @@ on:
 jobs:
   deployment:
     runs-on: ubuntu-latest
-    if: github.event.pull_request.head.repo.full_name == github.repository || github.event_name == 'push'
+    if:
+      github.event.pull_request.head.repo.full_name == github.repository || github.event_name ==
+      'push'
     steps:
       - name: checkout
         uses: actions/checkout@v3
@@ -22,13 +24,15 @@ jobs:
         name: setup env
         with:
           nodeVersion: 18
-          packageManager: yarn 
+          packageManager: yarn
 
       - uses: the-guild-org/shared-config/website-cf@main
         name: build and deploy website
         env:
           NEXT_BASE_PATH: ${{ github.ref == 'refs/heads/master' && '/graphql/inspector' || '' }}
-          SITE_URL: ${{ github.ref == 'refs/heads/master' && 'https://the-guild.dev/graphql/inspector' || '' }}
+          SITE_URL:
+            ${{ github.ref == 'refs/heads/master' && 'https://the-guild.dev/graphql/inspector' || ''
+            }}
           NEXT_PUBLIC_ALGOLIA_INDEX_NAME: ${{ secrets.NEXT_PUBLIC_ALGOLIA_INDEX_NAME }}
           NEXT_PUBLIC_ALGOLIA_SEARCH_API_KEY: ${{ secrets.NEXT_PUBLIC_ALGOLIA_SEARCH_API_KEY }}
           NEXT_PUBLIC_ALGOLIA_APP_ID: ${{ secrets.NEXT_PUBLIC_ALGOLIA_APP_ID }}

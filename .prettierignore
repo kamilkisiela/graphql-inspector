@@ -7,3 +7,5 @@ action/
 # remove when prettier will support MDX (v3)
 website/src/pages/docs/api/schema.mdx
 website/algolia-lockfile.json
+.bob/
+.changeset/*.md

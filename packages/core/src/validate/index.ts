@@ -1,3 +1,4 @@
+import { DepGraph } from 'dependency-graph';
 import {
   DocumentNode,
   FragmentDefinitionNode,
@@ -8,7 +9,6 @@ import {
   Source,
   validate as validateDocument,
 } from 'graphql';
-import { DepGraph } from 'dependency-graph';
 import { readDocument } from '../ast/document';
 import { transformDocumentWithApollo, transformSchemaWithApollo } from '../utils/apollo';
 import { findDeprecatedUsages } from '../utils/graphql';
@@ -72,7 +72,11 @@ export interface ValidateOptions {
   validateComplexityConfig?: ValidateOperationComplexityConfig;
 }
 
-export function validate(schema: GraphQLSchema, sources: Source[], options?: ValidateOptions): InvalidDocument[] {
+export function validate(
+  schema: GraphQLSchema,
+  sources: Source[],
+  options?: ValidateOptions,
+): InvalidDocument[] {
   const config: ValidateOptions = {
     strictDeprecated: true,
     strictFragments: true,
@@ -126,7 +130,7 @@ export function validate(schema: GraphQLSchema, sources: Source[], options?: Val
         definitions: [...docWithOperations.definitions, ...extractedFragments],
       };
 
-      let transformedSchema = config.apollo ? transformSchemaWithApollo(schema) : schema;
+      const transformedSchema = config.apollo ? transformSchemaWithApollo(schema) : schema;
 
       const transformedDoc = config.apollo
         ? transformDocumentWithApollo(merged, {
@@ -206,8 +210,12 @@ export function validate(schema: GraphQLSchema, sources: Source[], options?: Val
         }
       }
 
-      const deprecated = config.strictDeprecated ? findDeprecatedUsages(transformedSchema, transformedDoc) : [];
-      const duplicatedFragments = config.strictFragments ? findDuplicatedFragments(fragmentNames) : [];
+      const deprecated = config.strictDeprecated
+        ? findDeprecatedUsages(transformedSchema, transformedDoc)
+        : [];
+      const duplicatedFragments = config.strictFragments
+        ? findDuplicatedFragments(fragmentNames)
+        : [];
 
       if (sumLengths(errors, duplicatedFragments, deprecated) > 0) {
         invalidDocuments.push({
@@ -233,15 +241,18 @@ function findDuplicatedFragments(fragmentNames: string[]) {
 //
 function resolveFragment(
   fragment: FragmentDefinitionNode,
-  graph: DepGraph<FragmentDefinitionNode>
+  graph: DepGraph<FragmentDefinitionNode>,
 ): FragmentDefinitionNode[] {
   return graph
     .dependenciesOf(fragment.name.value)
-    .reduce((list, current) => [...list, ...resolveFragment(graph.getNodeData(current), graph)], [fragment]);
+    .reduce(
+      (list, current) => [...list, ...resolveFragment(graph.getNodeData(current), graph)],
+      [fragment],
+    );
 }
 
 function extractFragments(document: string): string[] | undefined {
-  return (document.match(/[.]{3}[a-z0-9\_]+\b/gi) || []).map(name => name.replace('...', ''));
+  return (document.match(/[.]{3}[a-z0-9_]+\b/gi) || []).map(name => name.replace('...', ''));
 }
 
 function sumLengths(...arrays: any[][]): number {

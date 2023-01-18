@@ -13,7 +13,6 @@ export default withGuildDocs({
       '/docs/index': '/docs/introduction',
       '/products': '/docs/products/ci',
       '/docs/recipies/github': '/docs/products/github',
-      '/docs/installation': '/docs/introduction/installation',
       '/docs/api': '/docs/api/schema',
       '/docs/recipes': '/docs/recipes/environments',
       '/docs/recipes/github': '/docs/recipes/pull-requests',

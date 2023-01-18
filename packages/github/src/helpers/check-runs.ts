@@ -1,6 +1,6 @@
 import { Context } from 'probot';
 import { Logger } from './logger';
-import { Annotation, CheckConclusion,CheckStatus } from './types';
+import { Annotation, CheckConclusion, CheckStatus } from './types';
 import { batch } from './utils';
 
 export async function start({
@@ -71,7 +71,7 @@ export async function annotate({
           },
         });
         logger.info(`annotations sent (${chunk.length})`);
-      })
+      }),
     );
   } catch (error) {
     logger.error(`failed to send annotations`, error);

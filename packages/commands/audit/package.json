@@ -1,14 +1,18 @@
 {
   "name": "@graphql-inspector/audit-command",
-  "version": "0.0.0-PLACEHOLDER",
+  "version": "3.4.0",
   "description": "Audit Documents in GraphQL Inspector",
-  "keywords": [
-    "graphql",
-    "graphql-inspector",
-    "graphql-inspector-command",
-    "tools"
-  ],
-  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "kamilkisiela/graphql-inspector",
+    "directory": "packages/commands/audit"
+  },
+  "author": {
+    "name": "Laurin Quast",
+    "email": "laurinquast@googlemail.com",
+    "url": "https://github.com/kamilkisiela"
+  },
+  "license": "MIT",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "exports": {
@@ -22,31 +26,31 @@
     }
   },
   "typings": "dist/index.d.ts",
-  "typescript": {
-    "definition": "dist/index.d.ts"
-  },
-  "author": {
-    "name": "Laurin Quast",
-    "email": "laurinquast@googlemail.com",
-    "url": "https://github.com/kamilkisiela"
-  },
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "kamilkisiela/graphql-inspector",
-    "directory": "packages/commands/audit"
+  "keywords": [
+    "graphql",
+    "graphql-inspector",
+    "graphql-inspector-command",
+    "tools"
+  ],
+  "scripts": {
+    "prepack": "bob prepack"
   },
   "peerDependencies": {
     "graphql": "^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0"
   },
   "dependencies": {
-    "@graphql-inspector/commands": "0.0.0-PLACEHOLDER",
-    "@graphql-inspector/core": "0.0.0-PLACEHOLDER",
-    "@graphql-inspector/logger": "0.0.0-PLACEHOLDER",
-    "tslib": "^2.0.0",
-    "cli-table3": "0.6.2"
+    "@graphql-inspector/commands": "3.4.0",
+    "@graphql-inspector/core": "3.4.0",
+    "@graphql-inspector/logger": "3.4.0",
+    "cli-table3": "0.6.2",
+    "tslib": "^2.0.0"
   },
-  "scripts": {
-    "prepack": "bob prepack"
+  "publishConfig": {
+    "directory": "dist",
+    "access": "public"
+  },
+  "sideEffects": false,
+  "typescript": {
+    "definition": "dist/index.d.ts"
   }
 }

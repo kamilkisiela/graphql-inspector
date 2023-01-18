@@ -1,9 +1,9 @@
+import type { ParseOptions, Source } from 'graphql';
 import { DocumentNode, GraphQLError, TokenKind, visit } from 'graphql';
 import { Parser } from 'graphql/language/parser';
-import type { ParseOptions, Source } from 'graphql';
 
 class ParserWithLexer extends Parser {
-  private __tokenCount: number = 0;
+  private __tokenCount = 0;
 
   get tokenCount() {
     return this.__tokenCount;
@@ -64,7 +64,7 @@ export function validateTokenCount(args: {
       `Query exceeds maximum token count of ${args.maxTokenCount} (actual: ${tokenCount})`,
       args.document,
       args.source,
-      args.document.loc && args.document.loc.start ? [args.document.loc.start] : undefined
+      args.document.loc && args.document.loc.start ? [args.document.loc.start] : undefined,
     );
   }
 }

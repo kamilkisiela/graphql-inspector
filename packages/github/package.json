@@ -1,16 +1,18 @@
 {
   "name": "@graphql-inspector/github",
-  "version": "0.0.0-PLACEHOLDER",
+  "version": "3.4.0",
   "description": "GraphQL Inspector's Probot. Compare GraphQL Schemas, check documents, find breaking changes, find similar types.",
-  "keywords": [
-    "graphql",
-    "graphql-inspector",
-    "tools",
-    "probot",
-    "probot-plugin",
-    "github"
-  ],
-  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "kamilkisiela/graphql-inspector",
+    "directory": "packages/github"
+  },
+  "author": {
+    "name": "Kamil Kisiela",
+    "email": "kamil.kisiela@gmail.com",
+    "url": "https://github.com/kamilkisiela"
+  },
+  "license": "MIT",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "exports": {
@@ -24,37 +26,31 @@
     }
   },
   "typings": "dist/index.d.ts",
-  "typescript": {
-    "definition": "dist/index.d.ts"
-  },
-  "author": {
-    "name": "Kamil Kisiela",
-    "email": "kamil.kisiela@gmail.com",
-    "url": "https://github.com/kamilkisiela"
-  },
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "kamilkisiela/graphql-inspector",
-    "directory": "packages/github"
-  },
+  "keywords": [
+    "graphql",
+    "graphql-inspector",
+    "tools",
+    "probot",
+    "probot-plugin",
+    "github"
+  ],
   "scripts": {
-    "start": "probot run ./dist/index.js",
-    "dev": "yarn build && yarn start",
-    "test": "jest",
     "build": "tsc",
     "clean": "rm -rf dist/",
     "deploy": "now --docker",
+    "dev": "yarn build && yarn start",
     "prebuild": "yarn clean",
+    "prepack": "bob prepack",
     "prepublishOnly": "yarn build",
-    "prepack": "bob prepack"
+    "start": "probot run ./dist/index.js",
+    "test": "jest"
   },
   "peerDependencies": {
     "graphql": "^14.0.0 || ^15.0.0 || ^16.0.0",
     "probot": "^9.0.1 || ^10.0.0 || ^11.0.0"
   },
   "dependencies": {
-    "@graphql-inspector/core": "0.0.0-PLACEHOLDER",
+    "@graphql-inspector/core": "3.4.0",
     "axios": "0.21.4",
     "dataloader": "2.0.0",
     "js-yaml": "4.1.0",
@@ -64,5 +60,13 @@
     "@types/express": "4.17.15",
     "probot": "11.3.0",
     "smee-client": "1.2.2"
+  },
+  "publishConfig": {
+    "directory": "dist",
+    "access": "public"
+  },
+  "sideEffects": false,
+  "typescript": {
+    "definition": "dist/index.d.ts"
   }
 }

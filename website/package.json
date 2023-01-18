@@ -1,26 +1,34 @@
 {
   "name": "website",
-  "private": true,
-  "type": "module",
   "version": "0.0.0",
+  "type": "module",
+  "private": true,
   "scripts": {
-    "lint": "eslint --ignore-path ../.gitignore --ext js,jsx,cjs,mjs,ts,tsx,cts,mts .",
-    "dev": "next dev",
+    "analyze": "cross-env ANALYZE=true yarn build",
     "build": "next build && next-sitemap --config next-sitemap.config.cjs",
+    "dev": "next dev",
     "export": "next export",
-    "start": "next start",
     "next": "next",
-    "analyze": "cross-env ANALYZE=true yarn build"
+    "start": "next start"
   },
   "dependencies": {
+    "@graphql-inspector/core": "latest",
+    "@graphql-inspector/github": "latest",
+    "@monaco-editor/react": "4.3.1",
     "@theguild/components": "4.4.3",
     "next": "13.0.6",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "@graphql-inspector/core": "latest",
-    "@graphql-inspector/github": "latest",
-    "@monaco-editor/react": "4.3.1",
     "react-flip-move": "3.0.4"
+  },
+  "devDependencies": {
+    "@theguild/algolia": "1.0.2",
+    "@theguild/tailwind-config": "0.2.1",
+    "@types/node": "18.6.5",
+    "@types/react": "18.0.26",
+    "cross-env": "7.0.3",
+    "next-sitemap": "3.1.21",
+    "typescript": "4.7.4"
   },
   "browserslist": {
     "production": [
@@ -33,18 +41,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "devDependencies": {
-    "next-sitemap": "3.1.21",
-    "@theguild/algolia": "1.0.2",
-    "@theguild/tailwind-config": "0.2.1",
-    "@types/node": "18.6.5",
-    "@types/react": "18.0.17",
-    "@typescript-eslint/eslint-plugin": "5.33.0",
-    "@typescript-eslint/parser": "5.33.0",
-    "cross-env": "7.0.3",
-    "eslint-config-next": "12.2.4",
-    "eslint-config-prettier": "8.5.0",
-    "typescript": "4.7.4"
   }
 }

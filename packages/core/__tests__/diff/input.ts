@@ -103,11 +103,15 @@ describe('input', () => {
       // Nullable to non-nullable
       expect(change.b.criticality.level).toEqual(CriticalityLevel.Breaking);
       expect(change.b.type).toEqual('INPUT_FIELD_TYPE_CHANGED');
-      expect(change.b.message).toEqual("Input field 'Foo.b' changed type from 'String' to 'String!'");
+      expect(change.b.message).toEqual(
+        "Input field 'Foo.b' changed type from 'String' to 'String!'",
+      );
       // Non-nullable to nullable
       expect(change.c.criticality.level).toEqual(CriticalityLevel.NonBreaking);
       expect(change.c.type).toEqual('INPUT_FIELD_TYPE_CHANGED');
-      expect(change.c.message).toEqual("Input field 'Foo.c' changed type from 'String!' to 'String'");
+      expect(change.c.message).toEqual(
+        "Input field 'Foo.c' changed type from 'String!' to 'String'",
+      );
     });
 
     test('description changed / added / removed', async () => {
@@ -148,7 +152,9 @@ describe('input', () => {
       // Changed
       expect(change.a.criticality.level).toEqual(CriticalityLevel.NonBreaking);
       expect(change.a.type).toEqual('INPUT_FIELD_DESCRIPTION_CHANGED');
-      expect(change.a.message).toEqual("Input field 'Foo.a' description changed from 'OLD' to 'NEW'");
+      expect(change.a.message).toEqual(
+        "Input field 'Foo.a' description changed from 'OLD' to 'NEW'",
+      );
       // Removed
       expect(change.b.criticality.level).toEqual(CriticalityLevel.NonBreaking);
       expect(change.b.type).toEqual('INPUT_FIELD_DESCRIPTION_REMOVED');
@@ -181,11 +187,15 @@ describe('input', () => {
       // Non-nullable
       expect(change.a.criticality.level).toEqual(CriticalityLevel.Dangerous);
       expect(change.a.type).toEqual('INPUT_FIELD_DEFAULT_VALUE_CHANGED');
-      expect(change.a.message).toEqual("Input field 'Foo.a' default value changed from 'undefined' to 'Aaa'");
+      expect(change.a.message).toEqual(
+        "Input field 'Foo.a' default value changed from 'undefined' to 'Aaa'",
+      );
       // Nullable
       expect(change.b.criticality.level).toEqual(CriticalityLevel.Dangerous);
       expect(change.b.type).toEqual('INPUT_FIELD_DEFAULT_VALUE_CHANGED');
-      expect(change.b.message).toEqual("Input field 'Foo.b' default value changed from 'undefined' to 'Bbb'");
+      expect(change.b.message).toEqual(
+        "Input field 'Foo.b' default value changed from 'undefined' to 'Bbb'",
+      );
     });
 
     test('default value removed', async () => {
@@ -210,11 +220,15 @@ describe('input', () => {
       // Non-nullable
       expect(change.a.criticality.level).toEqual(CriticalityLevel.Dangerous);
       expect(change.a.type).toEqual('INPUT_FIELD_DEFAULT_VALUE_CHANGED');
-      expect(change.a.message).toEqual("Input field 'Foo.a' default value changed from 'Aaa' to 'undefined'");
+      expect(change.a.message).toEqual(
+        "Input field 'Foo.a' default value changed from 'Aaa' to 'undefined'",
+      );
       // Nullable
       expect(change.b.criticality.level).toEqual(CriticalityLevel.Dangerous);
       expect(change.b.type).toEqual('INPUT_FIELD_DEFAULT_VALUE_CHANGED');
-      expect(change.b.message).toEqual("Input field 'Foo.b' default value changed from 'Bbb' to 'undefined'");
+      expect(change.b.message).toEqual(
+        "Input field 'Foo.b' default value changed from 'Bbb' to 'undefined'",
+      );
     });
     test('field removed', async () => {
       const a = buildSchema(/* GraphQL */ `
@@ -263,15 +277,21 @@ describe('input', () => {
       // Scalar
       expect(change.a.criticality.level).toEqual(CriticalityLevel.NonBreaking);
       expect(change.a.type).toEqual('INPUT_FIELD_TYPE_CHANGED');
-      expect(change.a.message).toEqual("Input field 'Foo.a' changed type from 'String!' to 'String'");
+      expect(change.a.message).toEqual(
+        "Input field 'Foo.a' changed type from 'String!' to 'String'",
+      );
       // List
       expect(change.b.criticality.level).toEqual(CriticalityLevel.NonBreaking);
       expect(change.b.type).toEqual('INPUT_FIELD_TYPE_CHANGED');
-      expect(change.b.message).toEqual("Input field 'Foo.b' changed type from '[String!]!' to '[String!]'");
+      expect(change.b.message).toEqual(
+        "Input field 'Foo.b' changed type from '[String!]!' to '[String!]'",
+      );
       // List value
       expect(change.c.criticality.level).toEqual(CriticalityLevel.NonBreaking);
       expect(change.c.type).toEqual('INPUT_FIELD_TYPE_CHANGED');
-      expect(change.c.message).toEqual("Input field 'Foo.c' changed type from '[String!]!' to '[String]!'");
+      expect(change.c.message).toEqual(
+        "Input field 'Foo.c' changed type from '[String!]!' to '[String]!'",
+      );
     });
 
     test('field made non-optional', async () => {
@@ -299,15 +319,21 @@ describe('input', () => {
       // Scalar
       expect(change.a.criticality.level).toEqual(CriticalityLevel.Breaking);
       expect(change.a.type).toEqual('INPUT_FIELD_TYPE_CHANGED');
-      expect(change.a.message).toEqual("Input field 'Foo.a' changed type from 'String' to 'String!'");
+      expect(change.a.message).toEqual(
+        "Input field 'Foo.a' changed type from 'String' to 'String!'",
+      );
       // List
       expect(change.b.criticality.level).toEqual(CriticalityLevel.Breaking);
       expect(change.b.type).toEqual('INPUT_FIELD_TYPE_CHANGED');
-      expect(change.b.message).toEqual("Input field 'Foo.b' changed type from '[String!]' to '[String!]!'");
+      expect(change.b.message).toEqual(
+        "Input field 'Foo.b' changed type from '[String!]' to '[String!]!'",
+      );
       // List value
       expect(change.c.criticality.level).toEqual(CriticalityLevel.Breaking);
       expect(change.c.type).toEqual('INPUT_FIELD_TYPE_CHANGED');
-      expect(change.c.message).toEqual("Input field 'Foo.c' changed type from '[String]!' to '[String!]!'");
+      expect(change.c.message).toEqual(
+        "Input field 'Foo.c' changed type from '[String]!' to '[String!]!'",
+      );
     });
   });
 
@@ -332,7 +358,9 @@ describe('input', () => {
 
     expect(changes.length).toEqual(1);
     expect(change.criticality.level).toEqual(CriticalityLevel.Breaking);
-    expect(change.message).toEqual(`Input field 'c' (deprecated) was removed from input object type 'Foo'`);
+    expect(change.message).toEqual(
+      `Input field 'c' (deprecated) was removed from input object type 'Foo'`,
+    );
 
     // suppressRemovalOfDeprecatedField rule should make it only Dangerous
 
@@ -341,6 +369,8 @@ describe('input', () => {
 
     expect(changesWithRule.length).toEqual(1);
     expect(changeWithRule.criticality.level).toEqual(CriticalityLevel.Dangerous);
-    expect(changeWithRule.message).toEqual("Input field 'c' (deprecated) was removed from input object type 'Foo'");
+    expect(changeWithRule.message).toEqual(
+      "Input field 'c' (deprecated) was removed from input object type 'Foo'",
+    );
   });
 });

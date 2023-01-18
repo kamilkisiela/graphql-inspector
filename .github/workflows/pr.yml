@@ -8,8 +8,21 @@ on:
 jobs:
   algolia:
     uses: the-guild-org/shared-config/.github/workflows/algolia-integrity.yml@main
+    secrets:
+      githubToken: ${{ secrets.GUILD_BOT_TOKEN }}
     with:
       domain: https://www.the-guild.dev/graphql/inspector/
       source: 'Inspector'
+  release:
+    uses: the-guild-org/shared-config/.github/workflows/release-snapshot.yml@main
+    with:
+      npmTag: alpha
+      buildScript: build
+      nodeVersion: 18
+    secrets:
+      githubToken: ${{ secrets.GITHUB_TOKEN }}
+      npmToken: ${{ secrets.NPM_TOKEN }}
+  dependencies:
+    uses: the-guild-org/shared-config/.github/workflows/changesets-dependencies.yaml@main
     secrets:
       githubToken: ${{ secrets.GITHUB_TOKEN }}

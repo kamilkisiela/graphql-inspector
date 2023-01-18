@@ -1,6 +1,6 @@
 import { buildSchema } from 'graphql';
-import { CriticalityLevel,diff } from '../../src/index';
-import { findChangesByPath,findFirstChangeByPath } from '../../utils/testing';
+import { CriticalityLevel, diff } from '../../src/index';
+import { findChangesByPath, findFirstChangeByPath } from '../../utils/testing';
 
 describe('interface', () => {
   describe('fields', () => {
@@ -176,7 +176,9 @@ describe('interface', () => {
       // Changed
       expect(change.a.criticality.level).toEqual(CriticalityLevel.NonBreaking);
       expect(change.a.type).toEqual('FIELD_DEPRECATION_REASON_CHANGED');
-      expect(change.a.message).toEqual("Deprecation reason on field 'Foo.a' has changed from 'OLD' to 'NEW'");
+      expect(change.a.message).toEqual(
+        "Deprecation reason on field 'Foo.a' has changed from 'OLD' to 'NEW'",
+      );
       // Removed
       expect(change.b.criticality.level).toEqual(CriticalityLevel.NonBreaking);
       expect(change.b.type).toEqual('FIELD_DEPRECATION_REASON_REMOVED');

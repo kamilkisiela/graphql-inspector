@@ -34,6 +34,9 @@ test('diffArrays', () => {
   expect(diffArrays(['a'], ['a'])).toEqual([]);
   expect(diffArrays(['a'], ['a', 'b'])).toEqual([]);
   expect(diffArrays(['a', 'b'], ['a'])).toEqual(['b']);
-  expect(diffArrays(['a', { test: { deep: 'b' } }], [{ test: { deep: 'c' } }])).toEqual(['a', { test: { deep: 'b' } }]);
+  expect(diffArrays(['a', { test: { deep: 'b' } }], [{ test: { deep: 'c' } }])).toEqual([
+    'a',
+    { test: { deep: 'b' } },
+  ]);
   expect(diffArrays(['a', { test: { deep: 'b' } }], [{ test: { deep: 'b' } }])).toEqual(['a']);
 });

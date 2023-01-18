@@ -1,7 +1,17 @@
 {
   "name": "@graphql-inspector/config",
-  "version": "0.0.0-PLACEHOLDER",
-  "sideEffects": false,
+  "version": "3.4.0",
+  "repository": {
+    "type": "git",
+    "url": "kamilkisiela/graphql-inspector",
+    "directory": "packages/config"
+  },
+  "author": {
+    "name": "Kamil Kisiela",
+    "email": "kamil.kisiela@gmail.com",
+    "url": "https://github.com/kamilkisiela"
+  },
+  "license": "MIT",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "exports": {
@@ -15,24 +25,18 @@
     }
   },
   "typings": "dist/index.d.ts",
-  "typescript": {
-    "definition": "dist/index.d.ts"
-  },
-  "author": {
-    "name": "Kamil Kisiela",
-    "email": "kamil.kisiela@gmail.com",
-    "url": "https://github.com/kamilkisiela"
-  },
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "kamilkisiela/graphql-inspector",
-    "directory": "packages/config"
+  "scripts": {
+    "prepack": "bob prepack"
   },
   "peerDependencies": {
     "graphql": "^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0"
   },
-  "scripts": {
-    "prepack": "bob prepack"
+  "publishConfig": {
+    "directory": "dist",
+    "access": "public"
+  },
+  "sideEffects": false,
+  "typescript": {
+    "definition": "dist/index.d.ts"
   }
 }

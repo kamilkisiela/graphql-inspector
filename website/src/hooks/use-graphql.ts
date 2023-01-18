@@ -1,4 +1,4 @@
-import { useCallback,useState } from 'react';
+import { useCallback, useState } from 'react';
 
 type State = {
   complete: boolean;
@@ -53,7 +53,7 @@ export function useMutation(query: string): [State, Mutate] {
         });
       }
     },
-    [query]
+    [query],
   );
 
   return [state, mutate];

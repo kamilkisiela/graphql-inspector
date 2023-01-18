@@ -2,7 +2,7 @@
 
 Validate documents against a schema and looks for deprecated usage.
 
-![Validate](../../../../public/assets/img/cli/validate.jpg)
+![Validate](/assets/img/cli/validate.jpg)
 
 ## Usage
 
@@ -28,8 +28,8 @@ graphql-inspector validate './documents/*.graphql' http://localhost:3000/graphql
 - `-d, --deprecated` - Fail on deprecated usage (default: `false`)
 - `--noStrictFragments` - Do not fail on duplicated fragment names (default: `false`)
 - `--apollo` - Support Apollo directives (`@client` and `@connection`) (default: `false`)
-- `--keepClientFields <b>` - Keeps the fields with `@client`, but removes `@client` directive from them - works only
-  with combination of `--apollo` (default: `false`)
+- `--keepClientFields <b>` - Keeps the fields with `@client`, but removes `@client` directive from
+  them - works only with combination of `--apollo` (default: `false`)
 - `--method` - method on url schema pointers (default: `POST`)
 - `--federation` - Support Apollo Federation directives (default: `false`)
 - `--aws` - Support AWS Appsync directives and scalar types (default: `false`)
@@ -38,12 +38,12 @@ graphql-inspector validate './documents/*.graphql' http://localhost:3000/graphql
 - `--complexityScalarCost <n>` - Scarlar cost config to use with maxComplexityScore (default: `1`)
 - `--complexityObjectCost <n>` - Object cost config to use with maxComplexityScore (default: `2`)
 - `--complexityDepthCostFactor <n>` - Depth cost factor config to use with maxComplexityScore (default: `1.5`)
-- `--maxAliasCount <n>` - Fail when alias count (including the referenced fragments) exceeds maximum alias count
-  (default: `false`)
-- `--maxDirectiveCount <n>` - Fail when directive count in a operation (including the referenced fragments) exceeds
-  maximum directive count (default: `false`)
-- `--maxTokenCount <n>` - Fail when token count (including the referenced fragments) exceeds maximum token count
-  (default: `false`)
+- `--maxAliasCount <n>` - Fail when alias count (including the referenced fragments) exceeds maximum
+  alias count (default: `false`)
+- `--maxDirectiveCount <n>` - Fail when directive count in a operation (including the referenced
+  fragments) exceeds maximum directive count (default: `false`)
+- `--maxTokenCount <n>` - Fail when token count (including the referenced fragments) exceeds maximum
+  token count (default: `false`)
 - `--filter <s>` - show warnings and errors only for a file (or a list of files)
 - `--silent` - silent mode
 - `--output <s>` - writes errors to a file
@@ -57,4 +57,5 @@ graphql-inspector validate './documents/*.graphql' http://localhost:3000/graphql
 
 A list of errors found in documents. A second list with every deprecated usage.
 
-When there's at least one error or a deprecated usage (when `--deprecated` flag is enabled), the process fails.
+When there's at least one error or a deprecated usage (when `--deprecated` flag is enabled), the
+process fails.

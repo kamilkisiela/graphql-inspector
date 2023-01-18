@@ -1,14 +1,18 @@
 {
   "name": "@graphql-inspector/github-loader",
-  "version": "0.0.0-PLACEHOLDER",
+  "version": "3.4.0",
   "description": "Load GraphQL Schema and Documents from GitHub repository",
-  "keywords": [
-    "graphql",
-    "graphql-inspector",
-    "graphql-inspector-plugin",
-    "tools"
-  ],
-  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "kamilkisiela/graphql-inspector",
+    "directory": "packages/plugins/loaders/github"
+  },
+  "author": {
+    "name": "Kamil Kisiela",
+    "email": "kamil.kisiela@gmail.com",
+    "url": "https://github.com/kamilkisiela"
+  },
+  "license": "MIT",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "exports": {
@@ -22,19 +26,14 @@
     }
   },
   "typings": "dist/index.d.ts",
-  "typescript": {
-    "definition": "dist/index.d.ts"
-  },
-  "author": {
-    "name": "Kamil Kisiela",
-    "email": "kamil.kisiela@gmail.com",
-    "url": "https://github.com/kamilkisiela"
-  },
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "kamilkisiela/graphql-inspector",
-    "directory": "packages/plugins/loaders/github"
+  "keywords": [
+    "graphql",
+    "graphql-inspector",
+    "graphql-inspector-plugin",
+    "tools"
+  ],
+  "scripts": {
+    "prepack": "bob prepack"
   },
   "peerDependencies": {
     "graphql": "^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0"
@@ -43,7 +42,12 @@
     "@graphql-tools/github-loader": "^7.1.1",
     "tslib": "^2.0.0"
   },
-  "scripts": {
-    "prepack": "bob prepack"
+  "publishConfig": {
+    "directory": "dist",
+    "access": "public"
+  },
+  "sideEffects": false,
+  "typescript": {
+    "definition": "dist/index.d.ts"
   }
 }

@@ -12,8 +12,12 @@ import {
 import { compareLists, isNotEqual, isVoid } from '../utils/compare';
 import { isPrimitive } from '../utils/graphql';
 import { Change } from './changes/change';
-import { directiveAdded,directiveRemoved } from './changes/directive';
-import { schemaMutationTypeChanged, schemaQueryTypeChanged, schemaSubscriptionTypeChanged } from './changes/schema';
+import { directiveAdded, directiveRemoved } from './changes/directive';
+import {
+  schemaMutationTypeChanged,
+  schemaQueryTypeChanged,
+  schemaSubscriptionTypeChanged,
+} from './changes/schema';
 import {
   typeAdded,
   typeDescriptionAdded,
@@ -53,7 +57,7 @@ export function diffSchema(oldSchema: GraphQLSchema, newSchema: GraphQLSchema): 
       onMutual(type) {
         changesInType(type.oldVersion, type.newVersion, addChange);
       },
-    }
+    },
   );
 
   compareLists(oldSchema.getDirectives(), newSchema.getDirectives(), {
@@ -79,13 +83,19 @@ function changesInSchema(oldSchema: GraphQLSchema, newSchema: GraphQLSchema, add
   };
   const oldRoot = {
     query: (oldSchema.getQueryType() || ({} as GraphQLObjectType)).name ?? defaultNames.query,
-    mutation: (oldSchema.getMutationType() || ({} as GraphQLObjectType)).name ?? defaultNames.mutation,
-    subscription: (oldSchema.getSubscriptionType() || ({} as GraphQLObjectType)).name ?? defaultNames.subscription,
+    mutation:
+      (oldSchema.getMutationType() || ({} as GraphQLObjectType)).name ?? defaultNames.mutation,
+    subscription:
+      (oldSchema.getSubscriptionType() || ({} as GraphQLObjectType)).name ??
+      defaultNames.subscription,
   };
   const newRoot = {
     query: (newSchema.getQueryType() || ({} as GraphQLObjectType)).name ?? defaultNames.query,
-    mutation: (newSchema.getMutationType() || ({} as GraphQLObjectType)).name ?? defaultNames.mutation,
-    subscription: (newSchema.getSubscriptionType() || ({} as GraphQLObjectType)).name ?? defaultNames.subscription,
+    mutation:
+      (newSchema.getMutationType() || ({} as GraphQLObjectType)).name ?? defaultNames.mutation,
+    subscription:
+      (newSchema.getSubscriptionType() || ({} as GraphQLObjectType)).name ??
+      defaultNames.subscription,
   };
 
   if (isNotEqual(oldRoot.query, newRoot.query)) {

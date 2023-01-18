@@ -20,21 +20,24 @@
 
 - **action**: Use GitHub REST API to retrieve the full blob content if schema is truncated
   [#2131](https://github.com/kamilkisiela/graphql-inspector/pull/2131)
-- **action**: Diffing a graphql endpoint with a local .json schema file results in an error, fixed in
-  [#2090](https://github.com/kamilkisiela/graphql-inspector/pull/2090)
-- **core**: Fix comparison of non-nullable fields [#2122](https://github.com/kamilkisiela/graphql-inspector/pull/2122)
-- **core**: Fix removal of a deprecated input field [#2103](https://github.com/kamilkisiela/graphql-inspector/pull/2103)
+- **action**: Diffing a graphql endpoint with a local .json schema file results in an error, fixed
+  in [#2090](https://github.com/kamilkisiela/graphql-inspector/pull/2090)
+- **core**: Fix comparison of non-nullable fields
+  [#2122](https://github.com/kamilkisiela/graphql-inspector/pull/2122)
+- **core**: Fix removal of a deprecated input field
+  [#2103](https://github.com/kamilkisiela/graphql-inspector/pull/2103)
 
 ### v3.1.4
 
-- **core**: Fix regression [#2128](https://github.com/kamilkisiela/graphql-inspector/issues/2128) introduced in
-  [#2100](https://github.com/kamilkisiela/graphql-inspector/pull/2100)
+- **core**: Fix regression [#2128](https://github.com/kamilkisiela/graphql-inspector/issues/2128)
+  introduced in [#2100](https://github.com/kamilkisiela/graphql-inspector/pull/2100)
 
 ### v3.1.3
 
 - **core**: Fix missing export of `safeUnreachable` rule
   [#2063](https://github.com/kamilkisiela/graphql-inspector/issues/2063)
-- **core**: Fix equality for objects [#2100](https://github.com/kamilkisiela/graphql-inspector/pull/2100)
+- **core**: Fix equality for objects
+  [#2100](https://github.com/kamilkisiela/graphql-inspector/pull/2100)
 
 ### v3.1.2
 
@@ -87,7 +90,8 @@
 
 ### v2.7.0
 
-- **core**: collect arguments in Schema Coverage [#1962](https://github.com/kamilkisiela/graphql-inspector/issues/1962)
+- **core**: collect arguments in Schema Coverage
+  [#1962](https://github.com/kamilkisiela/graphql-inspector/issues/1962)
 - **ci**, **cli**: allow to filter results by file paths when validating documents
 
 ### v2.6.2
@@ -112,9 +116,10 @@
 
 ### v2.5.0
 
-- **action**: Accepts a GitHub Label to mark Pull Request with breaking changes as something expected and safe
-  [#1852](https://github.com/kamilkisiela/graphql-inspector/pull/1852)
-- **action**: Send annotations in batches [#1854](https://github.com/kamilkisiela/graphql-inspector/pull/1854)
+- **action**: Accepts a GitHub Label to mark Pull Request with breaking changes as something
+  expected and safe [#1852](https://github.com/kamilkisiela/graphql-inspector/pull/1852)
+- **action**: Send annotations in batches
+  [#1854](https://github.com/kamilkisiela/graphql-inspector/pull/1854)
 - **action**: Fix missing "path" when using "endpoint"
   [#1855](https://github.com/kamilkisiela/graphql-inspector/pull/1855)
 - **core**: Fix no deprecation notice for field on fragment in a different document
@@ -122,7 +127,8 @@
 
 ### v2.4.0
 
-- **cli**: Support GET method in URL loaders [#1797](https://github.com/kamilkisiela/graphql-inspector/pull/1797)
+- **cli**: Support GET method in URL loaders
+  [#1797](https://github.com/kamilkisiela/graphql-inspector/pull/1797)
   [#1796](https://github.com/kamilkisiela/graphql-inspector/pull/1796)
 - **cli**: Support AWS types [#1793](https://github.com/kamilkisiela/graphql-inspector/pull/1793)
 - **github**: Detection of a legacy config + note in a summary
@@ -135,20 +141,22 @@
 
 ### v2.3.0
 
-- **action,github**: EXPERIMENTAL - Merge Pull Request's branch with the target branch to get the schema. Helps to get
-  the correct state of schema when Pull Request is behind the target branch. _(disabled by default)_ -
-  [docs](https://graphql-inspector.com/docs/products/github#experimental)
-- **github**: Accepts a GitHub Label to mark Pull Request with breaking changes as something expected and safe
-  [PR #1711](https://github.com/kamilkisiela/graphql-inspector/pull/1711) -
+- **action,github**: EXPERIMENTAL - Merge Pull Request's branch with the target branch to get the
+  schema. Helps to get the correct state of schema when Pull Request is behind the target branch.
+  _(disabled by default)_ - [docs](https://graphql-inspector.com/docs/products/github#experimental)
+- **github**: Accepts a GitHub Label to mark Pull Request with breaking changes as something
+  expected and safe [PR #1711](https://github.com/kamilkisiela/graphql-inspector/pull/1711) -
   [docs](https://graphql-inspector.com/docs/products/github#approved-breaking-change-label)
 - **cli**: Add support for Apollo Federation directives
-  [PR #1661](https://github.com/kamilkisiela/graphql-inspector/pull/1661) - by [@jinhong-](https://github.com/jinhong-)
+  [PR #1661](https://github.com/kamilkisiela/graphql-inspector/pull/1661) - by
+  [@jinhong-](https://github.com/jinhong-)
 
 ### v2.2.0
 
-- **core**: Adds two additional change types for enum value deprecations (added and removed) to match behavior with
-  fields
-- **core**: Fixes the type returned by `enumValueDeprecationReasonChanged` (was `EnumValueDescriptionChanged`).
+- **core**: Adds two additional change types for enum value deprecations (added and removed) to
+  match behavior with fields
+- **core**: Fixes the type returned by `enumValueDeprecationReasonChanged` (was
+  `EnumValueDescriptionChanged`).
 
 ### v2.1.0
 
@@ -180,12 +188,14 @@ Read ["New GraphQL Inspector"](https://the-guild.dev/blog/new-graphql-inspector)
   [PR #1440](https://github.com/kamilkisiela/graphql-inspector/pull/1440)
 - **github** **action** assume valid schema to avoid missing directive definitions
   [PR #1440](https://github.com/kamilkisiela/graphql-inspector/pull/1440)
-- **cli** **ci** fix `--header` and `--token` [PR #1442](https://github.com/kamilkisiela/graphql-inspector/pull/1442)
-- **cli** **ci** BREAKING: don't use preceding comments as the description by default (`--comments` flag to enable
-  comments) [PR #1443](https://github.com/kamilkisiela/graphql-inspector/pull/1443)
+- **cli** **ci** fix `--header` and `--token`
+  [PR #1442](https://github.com/kamilkisiela/graphql-inspector/pull/1442)
+- **cli** **ci** BREAKING: don't use preceding comments as the description by default (`--comments`
+  flag to enable comments) [PR #1443](https://github.com/kamilkisiela/graphql-inspector/pull/1443)
 - **github** use SHA of the most recent commit on ref before the push
   [PR #1448](https://github.com/kamilkisiela/graphql-inspector/pull/1448)
-- **github** send annotations in batches [PR #1402](https://github.com/kamilkisiela/graphql-inspector/pull/1402)
+- **github** send annotations in batches
+  [PR #1402](https://github.com/kamilkisiela/graphql-inspector/pull/1402)
 - **github** use `failure` instead of `action_required` - allows to call re-runs
 - **github** reduce the number of GitHub API calls by batching file fetching calls
   [PR #1460](https://github.com/kamilkisiela/graphql-inspector/pull/1460)
@@ -227,9 +237,10 @@ Read ["New GraphQL Inspector"](https://the-guild.dev/blog/new-graphql-inspector)
   - @graphql-inspector/url-loader
 - New package for internal usage: `@graphql-inspector/logger` and `@graphql-inspector/config`
 - Rename package: `@graphql-inspector/action` (was `@graphql-inspector/actions`)
-- **core**: introduce `removed` and `added` change types for description of Object Type (before it was showing all
-  changes as `changed`)
-- **github**, **action**: fix import of `chalk` [#1341](https://github.com/kamilkisiela/graphql-inspector/issues/1341)
+- **core**: introduce `removed` and `added` change types for description of Object Type (before it
+  was showing all changes as `changed`)
+- **github**, **action**: fix import of `chalk`
+  [#1341](https://github.com/kamilkisiela/graphql-inspector/issues/1341)
 - **github**, **action**: adjust annotations to show up in correct lines
   [#907](https://github.com/kamilkisiela/graphql-inspector/issues/907)
 - **github**, **action**: fix an issue with `@action/core` import
@@ -247,13 +258,15 @@ Read ["New GraphQL Inspector"](https://the-guild.dev/blog/new-graphql-inspector)
 ### v1.26.0
 
 -- **core**: add rule to ignore description changes
-[PR #687](https://github.com/kamilkisiela/graphql-inspector/pull/687) [@fabsrc](https://github.com/fabsrc) -- **cli**:
-custom rules from local fs [PR #665](https://github.com/kamilkisiela/graphql-inspector/pull/665)
+[PR #687](https://github.com/kamilkisiela/graphql-inspector/pull/687)
+[@fabsrc](https://github.com/fabsrc) -- **cli**: custom rules from local fs
+[PR #665](https://github.com/kamilkisiela/graphql-inspector/pull/665)
 [@chunksnbits](https://github.com/chunksnbits)
 
 ### v1.25.0
 
-- **action**: log more errors (in loadConfig) [PR #606](https://github.com/kamilkisiela/graphql-inspector/pull/606)
+- **action**: log more errors (in loadConfig)
+  [PR #606](https://github.com/kamilkisiela/graphql-inspector/pull/606)
 - **docker**: make the docker image suitable for CI and document usage
   [PR #633](https://github.com/kamilkisiela/graphql-inspector/pull/633)
 
@@ -261,8 +274,10 @@ custom rules from local fs [PR #665](https://github.com/kamilkisiela/graphql-ins
 
 - **load**: support `.graphqls` and `.gqls` extensions
   [PR #576](https://github.com/kamilkisiela/graphql-inspector/pull/576)
-- **load**: include `graphql-tag-pluck` [PR #577](https://github.com/kamilkisiela/graphql-inspector/pull/577)
-- **cli**: [available in Docker](https://cloud.docker.com/repository/docker/kamilkisiela/graphql-inspector)
+- **load**: include `graphql-tag-pluck`
+  [PR #577](https://github.com/kamilkisiela/graphql-inspector/pull/577)
+- **cli**:
+  [available in Docker](https://cloud.docker.com/repository/docker/kamilkisiela/graphql-inspector)
   [PR #578](https://github.com/kamilkisiela/graphql-inspector/pull/578)
   [PR #518](https://github.com/kamilkisiela/graphql-inspector/pull/518)
 - **load**: make git and github loaders accept introspection results file
@@ -272,17 +287,21 @@ custom rules from local fs [PR #665](https://github.com/kamilkisiela/graphql-ins
 
 ### v1.23.0
 
-- **action**: fail on missing check [PR #504](https://github.com/kamilkisiela/graphql-inspector/pull/504)
+- **action**: fail on missing check
+  [PR #504](https://github.com/kamilkisiela/graphql-inspector/pull/504)
 - **cli**: Allow to supress removal of deprecated fields
   [PR #506](https://github.com/kamilkisiela/graphql-inspector/pull/506)
-- **cli**: Support Apollo directives [PR #505](https://github.com/kamilkisiela/graphql-inspector/pull/505)
+- **cli**: Support Apollo directives
+  [PR #505](https://github.com/kamilkisiela/graphql-inspector/pull/505)
 
 ### v1.22.1
 
 ### v1.22.0
 
-- **cli**: maximum depth of operations [PR #432](https://github.com/kamilkisiela/graphql-inspector/pull/432)
-- **core**: maximum depth of operations [PR #432](https://github.com/kamilkisiela/graphql-inspector/pull/432)
+- **cli**: maximum depth of operations
+  [PR #432](https://github.com/kamilkisiela/graphql-inspector/pull/432)
+- **core**: maximum depth of operations
+  [PR #432](https://github.com/kamilkisiela/graphql-inspector/pull/432)
 
 ### v1.21.0
 
@@ -295,7 +314,8 @@ custom rules from local fs [PR #665](https://github.com/kamilkisiela/graphql-ins
 
 - **core**: `strictFragments` and `strictDeprecated` falgs in `validate()`
   [PR #321](https://github.com/kamilkisiela/graphql-inspector/pull/321)
-- **cli**: `noStrictFragments` flag [PR #321](https://github.com/kamilkisiela/graphql-inspector/pull/321)
+- **cli**: `noStrictFragments` flag
+  [PR #321](https://github.com/kamilkisiela/graphql-inspector/pull/321)
 - **core**: fix schema coverage by skipping `__typename`
   [PR #353](https://github.com/kamilkisiela/graphql-inspector/pull/353) - thanks to
   [@loremaps](http://github.com/loremaps)
@@ -303,7 +323,8 @@ custom rules from local fs [PR #665](https://github.com/kamilkisiela/graphql-ins
 ### v1.19.0
 
 - **core**: include Interfaces in schema coverage
-  [PR #271](https://github.com/kamilkisiela/graphql-inspector/pull/271) - thanks to [@alx13](http://github.com/alx13)
+  [PR #271](https://github.com/kamilkisiela/graphql-inspector/pull/271) - thanks to
+  [@alx13](http://github.com/alx13)
 - **cli**: add http headers [PR #281](https://github.com/kamilkisiela/graphql-inspector/pull/281)
 - **cli**: support gql and graphqls files as an introspect output
   [PR #295](https://github.com/kamilkisiela/graphql-inspector/pull/295)
@@ -317,7 +338,8 @@ custom rules from local fs [PR #665](https://github.com/kamilkisiela/graphql-ins
 
 ### v1.18.0
 
-- **github**: load `.yaml` file too [PR #216](https://github.com/kamilkisiela/graphql-inspector/pull/216)
+- **github**: load `.yaml` file too
+  [PR #216](https://github.com/kamilkisiela/graphql-inspector/pull/216)
 
 ### v1.17.0
 
@@ -337,16 +359,18 @@ custom rules from local fs [PR #665](https://github.com/kamilkisiela/graphql-ins
 ### v1.15.0
 
 - **action**: No double check [PR #111](https://github.com/kamilkisiela/graphql-inspector/pull/111)
-- **action**: Way more independent of the github package - uses `actions-toolkit` instead of `probot`
-  [PR #111](https://github.com/kamilkisiela/graphql-inspector/pull/111)
-- **github**: Fix location of a targeted entity [PR #104](https://github.com/kamilkisiela/graphql-inspector/pull/104)
+- **action**: Way more independent of the github package - uses `actions-toolkit` instead of
+  `probot` [PR #111](https://github.com/kamilkisiela/graphql-inspector/pull/111)
+- **github**: Fix location of a targeted entity
+  [PR #104](https://github.com/kamilkisiela/graphql-inspector/pull/104)
 - **github**: Support .github/graphql-inspector.yml config
   [PR #105](https://github.com/kamilkisiela/graphql-inspector/pull/105)
   [PR #109](https://github.com/kamilkisiela/graphql-inspector/pull/109)
 
 ### v1.14.0
 
-- **core**: Fix how GraphQL Schema is fetched [PR #101](https://github.com/kamilkisiela/graphql-inspector/pull/101)
+- **core**: Fix how GraphQL Schema is fetched
+  [PR #101](https://github.com/kamilkisiela/graphql-inspector/pull/101)
 - **core**: Added diff support for arrays and objects (arguments)
   [PR #95](https://github.com/kamilkisiela/graphql-inspector/pull/95) - thanks to
   [@mkaradeniz](http://github.com/mkaradeniz)
@@ -359,27 +383,34 @@ custom rules from local fs [PR #665](https://github.com/kamilkisiela/graphql-ins
 
 ### v0.13.2
 
-- **github**: annotation's `message` was empty [PR #87](https://github.com/kamilkisiela/graphql-inspector/pull/87)
+- **github**: annotation's `message` was empty
+  [PR #87](https://github.com/kamilkisiela/graphql-inspector/pull/87)
 
 ### v0.13.1
 
-- **cli**: bump `apollo-server@2.4.0` [PR #86](https://github.com/kamilkisiela/graphql-inspector/pull/86)
+- **cli**: bump `apollo-server@2.4.0`
+  [PR #86](https://github.com/kamilkisiela/graphql-inspector/pull/86)
 
 ### v0.13.0
 
-- **load**: use The Guild's `graphql-toolkit` [PR #77](https://github.com/kamilkisiela/graphql-inspector/pull/77)
-- **cli**: pass `--token` to introspection [PR #77](https://github.com/kamilkisiela/graphql-inspector/pull/77)
-- **cli**: pass `--token` to introspection command [PR #77](https://github.com/kamilkisiela/graphql-inspector/pull/77)
+- **load**: use The Guild's `graphql-toolkit`
+  [PR #77](https://github.com/kamilkisiela/graphql-inspector/pull/77)
+- **cli**: pass `--token` to introspection
+  [PR #77](https://github.com/kamilkisiela/graphql-inspector/pull/77)
+- **cli**: pass `--token` to introspection command
+  [PR #77](https://github.com/kamilkisiela/graphql-inspector/pull/77)
 
 ### v0.12.0
 
-- Move `graphql` to peer dependencies [PR #70](https://github.com/kamilkisiela/graphql-inspector/pull/70)
+- Move `graphql` to peer dependencies
+  [PR #70](https://github.com/kamilkisiela/graphql-inspector/pull/70)
 
 ### v0.11.0
 
 - **cli**: Make `--require` accept multiple values `--require a --require b`
   [PR #67](https://github.com/kamilkisiela/graphql-inspector/pull/67)
-- **cli**: Fix `--require` not loading modules [PR #67](https://github.com/kamilkisiela/graphql-inspector/pull/67)
+- **cli**: Fix `--require` not loading modules
+  [PR #67](https://github.com/kamilkisiela/graphql-inspector/pull/67)
 - **github**: Use message as a title and reason as a message
   [PR #67](https://github.com/kamilkisiela/graphql-inspector/pull/67)
 

@@ -1,10 +1,15 @@
-import { buildSchema } from 'graphql';
 import { diff } from '@graphql-inspector/core';
+import { buildSchema } from 'graphql';
 import * as probot from 'probot';
-import { createConfig,NormalizedEnvironment, Notifications, SchemaPointer } from './helpers/config';
+import {
+  createConfig,
+  NormalizedEnvironment,
+  Notifications,
+  SchemaPointer,
+} from './helpers/config';
 import { ConfigLoader, FileLoader, loadSources } from './helpers/loaders';
 import { createLogger } from './helpers/logger';
-import { notifyWithDiscord,notifyWithSlack, notifyWithWebhook } from './helpers/notifications';
+import { notifyWithDiscord, notifyWithSlack, notifyWithWebhook } from './helpers/notifications';
 import { ErrorHandler } from './helpers/types';
 
 export async function handleSchemaChangeNotifications({
@@ -56,12 +61,13 @@ export async function handleSchemaChangeNotifications({
   if (!config.notifications) {
     logger.info(`disabled. Skipping...`);
     return;
-  } else {
-    logger.info(`enabled`);
   }
+  logger.info(`enabled`);
 
   if (config.branch !== branch) {
-    logger.info(`Received branch "${branch}" doesn't match expected branch "${config.branch}". Skipping...`);
+    logger.info(
+      `Received branch "${branch}" doesn't match expected branch "${config.branch}". Skipping...`,
+    );
     return;
   }
 
@@ -125,8 +131,8 @@ export async function handleSchemaChangeNotifications({
             repo,
             owner,
             commit,
-          })
-        )
+          }),
+        ),
       );
     }
 
@@ -140,8 +146,8 @@ export async function handleSchemaChangeNotifications({
             repo,
             owner,
             commit,
-          })
-        )
+          }),
+        ),
       );
     }
 
@@ -155,8 +161,8 @@ export async function handleSchemaChangeNotifications({
             repo,
             owner,
             commit,
-          })
-        )
+          }),
+        ),
       );
     }
 
@@ -167,7 +173,7 @@ export async function handleSchemaChangeNotifications({
 }
 
 function hasNotificationsEnabled(
-  notifications: NormalizedEnvironment['notifications']
+  notifications: NormalizedEnvironment['notifications'],
 ): notifications is Notifications {
   return notifications && typeof notifications === 'object';
 }

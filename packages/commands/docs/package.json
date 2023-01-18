@@ -1,14 +1,18 @@
 {
   "name": "@graphql-inspector/docs-command",
-  "version": "0.0.0-PLACEHOLDER",
+  "version": "3.4.0",
   "description": "Open GraphQL Inspector Documentation",
-  "keywords": [
-    "graphql",
-    "graphql-inspector",
-    "graphql-inspector-command",
-    "tools"
-  ],
-  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "kamilkisiela/graphql-inspector",
+    "directory": "packages/commands/docs"
+  },
+  "author": {
+    "name": "Kamil Kisiela",
+    "email": "kamil.kisiela@gmail.com",
+    "url": "https://github.com/kamilkisiela"
+  },
+  "license": "MIT",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "exports": {
@@ -22,29 +26,29 @@
     }
   },
   "typings": "dist/index.d.ts",
-  "typescript": {
-    "definition": "dist/index.d.ts"
-  },
-  "author": {
-    "name": "Kamil Kisiela",
-    "email": "kamil.kisiela@gmail.com",
-    "url": "https://github.com/kamilkisiela"
-  },
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "kamilkisiela/graphql-inspector",
-    "directory": "packages/commands/docs"
+  "keywords": [
+    "graphql",
+    "graphql-inspector",
+    "graphql-inspector-command",
+    "tools"
+  ],
+  "scripts": {
+    "prepack": "bob prepack"
   },
   "peerDependencies": {
     "graphql": "^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0"
   },
   "dependencies": {
-    "@graphql-inspector/commands": "0.0.0-PLACEHOLDER",
+    "@graphql-inspector/commands": "3.4.0",
     "open": "8.2.1",
     "tslib": "^2.0.0"
   },
-  "scripts": {
-    "prepack": "bob prepack"
+  "publishConfig": {
+    "directory": "dist",
+    "access": "public"
+  },
+  "sideEffects": false,
+  "typescript": {
+    "definition": "dist/index.d.ts"
   }
 }

@@ -1,15 +1,21 @@
 {
   "name": "@graphql-inspector/ci",
-  "version": "0.0.0-PLACEHOLDER",
+  "version": "3.4.0",
   "description": "Tooling for GraphQL. Compare GraphQL Schemas, check documents, find breaking changes, find similar types.",
-  "keywords": [
-    "graphql",
-    "graphql-inspector",
-    "tools",
-    "cli",
-    "ci"
-  ],
-  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "kamilkisiela/graphql-inspector",
+    "directory": "packages/ci"
+  },
+  "author": {
+    "name": "Kamil Kisiela",
+    "email": "kamil.kisiela@gmail.com",
+    "url": "https://github.com/kamilkisiela"
+  },
+  "license": "MIT",
+  "bin": {
+    "graphql-inspector": "dist/index.js"
+  },
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "exports": {
@@ -23,12 +29,37 @@
     }
   },
   "typings": "dist/index.d.ts",
-  "typescript": {
-    "definition": "dist/index.d.ts"
+  "keywords": [
+    "graphql",
+    "graphql-inspector",
+    "tools",
+    "cli",
+    "ci"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "clean": "rm -rf dist/",
+    "prebuild": "yarn clean",
+    "prepack": "bob prepack",
+    "prepublishOnly": "yarn build",
+    "test": "jest"
   },
-  "bin": {
-    "graphql-inspector": "dist/index.js"
+  "peerDependencies": {
+    "graphql": "^14.0.0 || ^15.0.0 || ^16.0.0"
   },
+  "dependencies": {
+    "@graphql-inspector/commands": "3.4.0",
+    "@graphql-inspector/config": "3.4.0",
+    "@graphql-inspector/loaders": "3.4.0",
+    "@graphql-inspector/logger": "3.4.0",
+    "tslib": "^2.0.0",
+    "yargs": "17.2.1"
+  },
+  "publishConfig": {
+    "directory": "dist",
+    "access": "public"
+  },
+  "sideEffects": false,
   "buildOptions": {
     "bin": {
       "graphql-inspector": {
@@ -36,34 +67,7 @@
       }
     }
   },
-  "author": {
-    "name": "Kamil Kisiela",
-    "email": "kamil.kisiela@gmail.com",
-    "url": "https://github.com/kamilkisiela"
-  },
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "kamilkisiela/graphql-inspector",
-    "directory": "packages/ci"
-  },
-  "scripts": {
-    "build": "tsc",
-    "test": "jest",
-    "clean": "rm -rf dist/",
-    "prebuild": "yarn clean",
-    "prepublishOnly": "yarn build",
-    "prepack": "bob prepack"
-  },
-  "peerDependencies": {
-    "graphql": "^14.0.0 || ^15.0.0 || ^16.0.0"
-  },
-  "dependencies": {
-    "@graphql-inspector/commands": "0.0.0-PLACEHOLDER",
-    "@graphql-inspector/config": "0.0.0-PLACEHOLDER",
-    "@graphql-inspector/loaders": "0.0.0-PLACEHOLDER",
-    "@graphql-inspector/logger": "0.0.0-PLACEHOLDER",
-    "tslib": "^2.0.0",
-    "yargs": "17.2.1"
+  "typescript": {
+    "definition": "dist/index.d.ts"
   }
 }

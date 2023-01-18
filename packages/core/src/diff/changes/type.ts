@@ -1,6 +1,6 @@
 import { GraphQLNamedType } from 'graphql';
 import { getKind } from '../../utils/graphql';
-import { Change, ChangeType,CriticalityLevel } from './change';
+import { Change, ChangeType, CriticalityLevel } from './change';
 
 export function typeRemoved(type: GraphQLNamedType): Change {
   return {
@@ -33,7 +33,10 @@ export function typeKindChanged(oldType: GraphQLNamedType, newType: GraphQLNamed
     path: oldType.name,
   };
 }
-export function typeDescriptionChanged(oldType: GraphQLNamedType, newType: GraphQLNamedType): Change {
+export function typeDescriptionChanged(
+  oldType: GraphQLNamedType,
+  newType: GraphQLNamedType,
+): Change {
   return {
     criticality: {
       level: CriticalityLevel.NonBreaking,

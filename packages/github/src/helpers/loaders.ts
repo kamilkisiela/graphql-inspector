@@ -1,10 +1,10 @@
-import { buildClientSchema, getIntrospectionQuery, printSchema, Source } from 'graphql';
 import axios from 'axios';
 import Dataloader from 'dataloader';
+import { buildClientSchema, getIntrospectionQuery, printSchema, Source } from 'graphql';
 import yaml from 'js-yaml';
 import * as probot from 'probot';
-import { Endpoint,NormalizedEnvironment, SchemaPointer } from './config';
-import { isNil, objectFromEntries,parseEndpoint } from './utils';
+import { Endpoint, NormalizedEnvironment, SchemaPointer } from './config';
+import { isNil, objectFromEntries, parseEndpoint } from './utils';
 
 function createGetFilesQuery(variableMap: Record<string, string>): string {
   const variables = Object.keys(variableMap)
@@ -54,7 +54,9 @@ export type ConfigLoader = () => Promise<object | null | undefined>; // id is th
 export function createFileLoader(config: FileLoaderConfig): FileLoader {
   const loader = new Dataloader<FileLoaderInput, string | null, string>(
     async inputs => {
-      const variablesMap = objectFromEntries(inputs.map(input => [input.alias, `${input.ref}:${input.path}`]));
+      const variablesMap = objectFromEntries(
+        inputs.map(input => [input.alias, `${input.ref}:${input.path}`]),
+      );
       const { context, repo, owner } = config;
 
       const result: any = await context.octokit.graphql(createGetFilesQuery(variablesMap), {
@@ -92,7 +94,7 @@ export function createFileLoader(config: FileLoaderConfig): FileLoader {
 
             throw failure;
           }
-        })
+        }),
       );
     },
     {
@@ -101,7 +103,7 @@ export function createFileLoader(config: FileLoaderConfig): FileLoader {
       cacheKeyFn(obj) {
         return `${obj.ref} - ${obj.path}`;
       },
-    }
+    },
   );
 
   return input => loader.load(input);
@@ -111,7 +113,7 @@ export function createConfigLoader(
   config: FileLoaderConfig & {
     ref: string;
   },
-  loadFile: FileLoader
+  loadFile: FileLoader,
 ): ConfigLoader {
   const loader = new Dataloader<string, object | null, string>(
     ids => {
@@ -165,12 +167,12 @@ export function createConfigLoader(
           console.error([`Failed to load config:`, ...errors].join('\n'));
 
           return null;
-        })
+        }),
       );
     },
     {
       batch: false,
-    }
+    },
   );
 
   return () => loader.load('graphql-inspector');
@@ -192,7 +194,7 @@ export async function printSchemaFromEndpoint(endpoint: Endpoint) {
   return printSchema(
     buildClientSchema(introspection, {
       assumeValid: true,
-    })
+    }),
   );
 }
 
@@ -234,7 +236,7 @@ export async function loadSources({
         ? typeof config.endpoint! === 'string'
           ? config.endpoint
           : config.endpoint?.url
-        : `${oldPointer.ref}:${oldPointer.path}`
+        : `${oldPointer.ref}:${oldPointer.path}`,
     ),
     new: new Source(newFile!, `${newPointer.ref}:${newPointer.path}`),
   };

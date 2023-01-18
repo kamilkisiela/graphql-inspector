@@ -1,6 +1,6 @@
 import * as probot from 'probot';
-import { annotate,complete, start } from './helpers/check-runs';
-import { createConfig, defaultFallbackBranch,SchemaPointer } from './helpers/config';
+import { annotate, complete, start } from './helpers/check-runs';
+import { createConfig, defaultFallbackBranch, SchemaPointer } from './helpers/config';
 import { diff } from './helpers/diff';
 import { MissingConfigError } from './helpers/errors';
 import { ConfigLoader, FileLoader, loadSources } from './helpers/loaders';
@@ -78,7 +78,7 @@ export async function handleSchemaDiff({
         isLegacyConfig = configKind === 'legacy';
       },
       branches,
-      fallbackBranch // we will probably throw an error when both are not defined
+      fallbackBranch, // we will probably throw an error when both are not defined
     );
 
     if (!config.diff) {
@@ -93,9 +93,8 @@ export async function handleSchemaDiff({
         logger,
       });
       return;
-    } else {
-      logger.info(`enabled`);
     }
+    logger.info(`enabled`);
 
     if (!config.branch || /^[0]+$/.test(config.branch)) {
       logger.info(`Nothing to compare with. Skipping...`);
@@ -183,14 +182,16 @@ export async function handleSchemaDiff({
     }
 
     const title =
-      conclusion === CheckConclusion.Failure ? 'Something is wrong with your schema' : 'Everything looks good';
+      conclusion === CheckConclusion.Failure
+        ? 'Something is wrong with your schema'
+        : 'Everything looks good';
 
     if (config.diff.annotations === false) {
       logger.info(`Anotations are disabled. Skipping annotations...`);
       annotations = [];
     } else if (annotations.length > summaryLimit) {
       logger.info(
-        `Total amount of annotations is over the limit (${annotations.length} > ${summaryLimit}). Skipping annotations...`
+        `Total amount of annotations is over the limit (${annotations.length} > ${summaryLimit}). Skipping annotations...`,
       );
       annotations = [];
     } else {

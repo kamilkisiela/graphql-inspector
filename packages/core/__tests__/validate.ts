@@ -1,4 +1,4 @@
-import { buildSchema, parse,print, Source } from 'graphql';
+import { buildSchema, parse, print, Source } from 'graphql';
 import { validate } from '../src/index';
 
 describe('validate', () => {
@@ -88,7 +88,7 @@ describe('validate', () => {
 
     const results = validate(
       schema,
-      docs.map(doc => new Source(print(doc)))
+      docs.map(doc => new Source(print(doc))),
     );
 
     expect(results.length).toEqual(0);
@@ -135,7 +135,7 @@ describe('validate', () => {
 
     const results = validate(
       schema,
-      docs.map(doc => new Source(print(doc)))
+      docs.map(doc => new Source(print(doc))),
     );
 
     expect(results.length).toEqual(1);
@@ -187,7 +187,7 @@ describe('validate', () => {
 
     const results = validate(
       schema,
-      docs.map(doc => new Source(print(doc)))
+      docs.map(doc => new Source(print(doc))),
     );
 
     expect(results.length).toEqual(0);
@@ -242,7 +242,7 @@ describe('validate', () => {
       docs.map(doc => new Source(print(doc))),
       {
         maxDepth: 1,
-      }
+      },
     );
 
     expect(results.length).toEqual(1);
@@ -302,7 +302,7 @@ describe('validate', () => {
       docs.map(doc => new Source(print(doc))),
       {
         maxDepth: 1,
-      }
+      },
     );
 
     expect(results.length).toEqual(1);
@@ -360,7 +360,7 @@ describe('validate', () => {
       docs.map(doc => new Source(print(doc))),
       {
         maxDepth: 2,
-      }
+      },
     );
 
     expect(results.length).toEqual(0);
@@ -411,7 +411,7 @@ describe('validate', () => {
 
     const deprecated = results[0].deprecated[0];
     expect(deprecated.message).toMatch(
-      `The argument 'query' of 'findPost' is deprecated. Please use 'searchQuery' instead.`
+      `The argument 'query' of 'findPost' is deprecated. Please use 'searchQuery' instead.`,
     );
   });
 
@@ -451,7 +451,7 @@ describe('validate', () => {
 
     const results = validate(
       schema,
-      docs.map(doc => new Source(print(doc)))
+      docs.map(doc => new Source(print(doc))),
     );
 
     expect(results.length).toEqual(1);
