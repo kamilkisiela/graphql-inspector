@@ -1,6 +1,6 @@
 {
   "name": "@graphql-inspector/diff-command",
-  "version": "3.4.0",
+  "version": "3.4.1",
   "description": "Compare GraphQL Schemas",
   "repository": {
     "type": "git",
@@ -40,7 +40,7 @@
   },
   "dependencies": {
     "@graphql-inspector/commands": "3.4.0",
-    "@graphql-inspector/core": "3.4.0",
+    "@graphql-inspector/core": "3.5.0",
     "@graphql-inspector/logger": "3.4.0",
     "tslib": "^2.0.0"
   },
