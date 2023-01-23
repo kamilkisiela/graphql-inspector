@@ -102,6 +102,26 @@ into a dangerous change, so it won't fail a process or a CI check.
 graphql-inspector diff https://api.com/graphql schema.graphql --rule suppressRemovalOfDeprecatedField
 ```
 
+Here is an example of a breaking change:
+
+```graphql filename="OLD_SCHEMA"
+type User {
+  id: ID
+  name: String
+  age: Int @deprecated
+}
+```
+
+```graphql filename="NEW_SCHEMA"
+type User {
+  id: ID
+  name: String
+}
+```
+
+- When "suppressRemovalOfDeprecatedField" rule enabled, it will not consider the removal of the
+  `age` field as a breaking change.
+
 #### `ignoreDescriptionChanges`
 
 Changes in descriptions are filtered out and are not displayed in the CLI result.
