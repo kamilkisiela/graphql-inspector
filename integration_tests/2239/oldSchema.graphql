@@ -1,0 +1,8 @@
+type Query {
+  oldQuery: OldType @deprecated(reason: "use newQuery")
+  newQuery: Int!
+}
+
+type OldType {
+  field: String!
+}
