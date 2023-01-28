@@ -33,6 +33,7 @@ export async function diff({
   pullRequests,
   ref,
   rules,
+  config,
 }: {
   path: string;
   schemas: {
@@ -47,8 +48,9 @@ export async function diff({
   pullRequests?: PullRequest[];
   ref?: string;
   rules?: Rule[];
+  config?: Parameters<typeof diffSchemas>[3];
 }): Promise<ActionResult> {
-  let changes = await diffSchemas(schemas.old, schemas.new, rules);
+  let changes = await diffSchemas(schemas.old, schemas.new, rules, config);
   let forcedConclusion: CheckConclusion | null = null;
 
   if (!changes || !changes.length) {
