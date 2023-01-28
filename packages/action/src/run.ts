@@ -1,8 +1,10 @@
 import { execSync } from 'child_process';
-import { readFileSync } from 'fs';
+import { existsSync, readFileSync } from 'fs';
 import { extname,resolve } from 'path';
 import * as core from '@actions/core';
 import * as github from '@actions/github';
+import { ensureAbsolute } from '@graphql-inspector/commands';
+import { DiffRule, Rule } from "@graphql-inspector/core";
 import {
   CheckConclusion,
   createSummary,
@@ -10,7 +12,7 @@ import {
   printSchemaFromEndpoint,
   produceSchema,
 } from '@graphql-inspector/github';
-import { buildClientSchema, buildSchema, GraphQLSchema, printSchema,Source } from 'graphql';
+import { buildClientSchema, buildSchema, GraphQLSchema, printSchema, Source } from 'graphql';
 import { batch } from './utils';
 
 type OctokitInstance = ReturnType<typeof github.getOctokit>;
@@ -49,6 +51,25 @@ async function getAssociatedPullRequest(octokit: OctokitInstance, commitSha: str
   return result.data.length > 0 ? result.data[0] : null
 }
 
+function getInputAsArray (
+  name: string,
+  options?: core.InputOptions
+): string[] {
+  return core
+      .getInput(name, options)
+      .split("\n")
+      .filter(x => x !== "");
+}
+
+function resolveRule(name: string): Rule | undefined {
+  const filepath = ensureAbsolute(name);
+  if (existsSync(filepath)) {
+    return require(filepath);
+  }
+
+  return DiffRule[name as keyof typeof DiffRule];
+}
+
 export async function run() {
   core.info(`GraphQL Inspector started`);
 
@@ -76,6 +97,7 @@ export async function run() {
   const endpoint: string = core.getInput('endpoint');
   const approveLabel: string =
     core.getInput('approve-label') || 'approved-breaking-change';
+  const rulesList = getInputAsArray("rules") || [];
 
   const octokit = github.getOctokit(token);
 
@@ -110,6 +132,21 @@ export async function run() {
   if (!schemaPointer) {
     core.error('No `schema` variable');
     return core.setFailed('Failed to find `schema` variable');
+  }
+
+  const rules = rulesList.map((r) => {
+    const rule = resolveRule(r);
+
+    if (!rule) {
+      core.error(`Rule ${r} is invalid. Did you specify the correct path?`)
+    }
+
+    return rule
+  }).filter(Boolean) as Rule[]
+
+  // Different lengths mean some rules were resolved to undefined
+  if (rules.length !== rulesList.length) {
+    return core.setFailed("Some rules weren't recognised")
   }
 
   let [schemaRef, schemaPath] = schemaPointer.split(':');
@@ -189,6 +226,7 @@ export async function run() {
     path: schemaPath,
     schemas,
     sources,
+    rules,
   });
 
   let conclusion = action.conclusion;
