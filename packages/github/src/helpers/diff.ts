@@ -1,4 +1,4 @@
-import { Change, CriticalityLevel, diff as diffSchemas } from '@graphql-inspector/core';
+import { Change, CriticalityLevel, diff as diffSchemas, Rule } from '@graphql-inspector/core';
 import axios from 'axios';
 import { GraphQLSchema, Source } from 'graphql';
 import { getLocationByPath } from './location';
@@ -32,6 +32,8 @@ export async function diff({
   interceptor,
   pullRequests,
   ref,
+  rules,
+  config,
 }: {
   path: string;
   schemas: {
@@ -45,8 +47,10 @@ export async function diff({
   interceptor?: DiffInterceptor;
   pullRequests?: PullRequest[];
   ref?: string;
+  rules?: Rule[];
+  config?: Parameters<typeof diffSchemas>[3];
 }): Promise<ActionResult> {
-  let changes = await diffSchemas(schemas.old, schemas.new);
+  let changes = await diffSchemas(schemas.old, schemas.new, rules, config);
   let forcedConclusion: CheckConclusion | null = null;
 
   if (!changes || !changes.length) {
