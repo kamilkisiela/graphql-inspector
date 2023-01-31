@@ -10,20 +10,10 @@ import {
   printSchemaFromEndpoint,
   produceSchema,
 } from '@graphql-inspector/github';
-import { OctokitResponse } from '@octokit/types';
 import { buildClientSchema, buildSchema, GraphQLSchema, printSchema,Source } from 'graphql';
 import { batch } from './utils';
 
 type OctokitInstance = ReturnType<typeof github.getOctokit>;
-interface PullRequest {
-  base: { ref: string };
-  url: string;
-  id: number;
-  number: number;
-  state: "open" | "closed";
-  labels?: Array<{ name: string }>;
-}
-
 const CHECK_NAME = 'GraphQL Inspector';
 
 function getCurrentCommitSha() {
@@ -48,9 +38,13 @@ function getCurrentCommitSha() {
 }
 
 async function getAssociatedPullRequest(octokit: OctokitInstance, commitSha: string) {
-  const result: OctokitResponse<[PullRequest]> = await octokit.request('GET /repos/{owner}/{repo}/commits/{commit_sha}/pulls', {
+  const result = await octokit.request('GET /repos/{owner}/{repo}/commits/{commit_sha}/pulls', {
     ...github.context.repo,
-    commit_sha: commitSha
+    commit_sha: commitSha,
+    mediaType: {
+      format: 'json',
+      previews: ['groot'],
+    }
   })  
   return result.data.length > 0 ? result.data[0] : null
 }
