@@ -1,6 +1,6 @@
 {
   "name": "@graphql-inspector/action",
-  "version": "3.4.1",
+  "version": "3.4.2",
   "description": "GraphQL Inspector functionality for GitHub Actions",
   "sideEffects": false,
   "main": "dist/index.js",
@@ -53,7 +53,7 @@
     "@actions/core": "1.5.0",
     "@actions/github": "4.0.0",
     "@graphql-inspector/core": "3.5.0",
-    "@graphql-inspector/github": "3.4.1",
+    "@graphql-inspector/github": "3.4.2",
     "js-yaml": "4.1.0",
     "probot": "11.3.0",
     "tslib": "^2.0.0"
