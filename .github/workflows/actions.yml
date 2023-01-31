@@ -16,7 +16,7 @@ jobs:
 
       - name: Make changes to schema
         run: |
-          sed -i 's/title: String @deprecated(reason: "No more used")/d' ./example/schemas/schema.graphql
+          sed -i '/title: String @deprecated(reason: "No more used")/d' ./example/schemas/schema.graphql
           sed -i 's/createdAt: String/createdAt: String!/g' ./example/schemas/schema.graphql
           sed -i 's/modifiedAt: String/modifiedAt: String!/g' ./example/schemas/schema.graphql
           sed -i 's/post: Post!/post(id: ID): Post!/g' ./example/schemas/schema.graphql
