@@ -46,6 +46,13 @@ inputs:
 
       Rules should be listed as a multiline YAML string, not a list
     required: false
+  onUsage:
+    description: |
+      Used only when the `considerUsage` rule is provided, otherwise this field is ignored.
+
+      Should be a path to a JS file as described in https://the-guild.dev/graphql/inspector/docs/essentials/diff#considerusage
+    required: false
+
 outputs:
   changes:
     description: Total number of changes
