@@ -50,6 +50,7 @@
     "@graphql-inspector/audit-command": "3.4.1",
     "@graphql-inspector/code-loader": "3.4.0",
     "@graphql-inspector/commands": "3.4.0",
+    "@graphql-inspector/config": "3.4.0",
     "@graphql-inspector/coverage-command": "3.4.1",
     "@graphql-inspector/diff-command": "3.4.1",
     "@graphql-inspector/docs-command": "3.4.0",
