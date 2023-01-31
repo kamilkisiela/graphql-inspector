@@ -30,7 +30,7 @@ jobs:
           schema: 'master:example/schemas/schema.graphql'
           rules: |
             suppressRemovalOfDeprecatedField
-            ./example/rules/customRule.js
+            ./example/rules/custom-rule.js
 
       - name: Validate result
         if: steps.inspector.outputs.changes != 4
