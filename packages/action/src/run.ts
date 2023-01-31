@@ -47,10 +47,13 @@ function getCurrentCommitSha() {
   return sha;
 }
 
-async function getAssociatedPullRequest(octokit: OctokitInstance, commitSha: string) {
-  const result: OctokitResponse<[PullRequest]> = await octokit.request('GET /repos/{owner}/{repo}/commits/{commit_sha}/pulls', {
+async function getAssociatedPullRequest(octokit: OctokitInstance, commitSha: string, mediaType?: { previews: string[] }) {
+  const result: OctokitResponse<[PullRequest], number> = await octokit.request('GET /repos/{owner}/{repo}/commits/{commit_sha}/pulls', {
     ...github.context.repo,
-    commit_sha: commitSha
+    commit_sha: commitSha,
+    mediaType: {
+      previews: mediaType?.previews,
+    }
   })  
   return result.data.length > 0 ? result.data[0] : null
 }
