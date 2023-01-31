@@ -16,6 +16,7 @@ jobs:
 
       - name: Make changes to schema
         run: |
+          sed -i 's/title: String @deprecated(reason: "No more used")/d' ./example/schemas/schema.graphql
           sed -i 's/createdAt: String/createdAt: String!/g' ./example/schemas/schema.graphql
           sed -i 's/modifiedAt: String/modifiedAt: String!/g' ./example/schemas/schema.graphql
           sed -i 's/post: Post!/post(id: ID): Post!/g' ./example/schemas/schema.graphql
@@ -27,7 +28,10 @@ jobs:
         with:
           experimental_merge: false
           schema: 'master:example/schemas/schema.graphql'
+          rules: |
+            suppressRemovalOfDeprecatedField
+            ./example/rules/customRule.js
 
       - name: Validate result
-        if: steps.inspector.outputs.changes != 3
-        run: echo 'Expected 3 changes received ${{ steps.inspector.outputs.changes }}' && exit 1
+        if: steps.inspector.outputs.changes != 4
+        run: echo 'Expected 4 changes received ${{ steps.inspector.outputs.changes }}' && exit 1

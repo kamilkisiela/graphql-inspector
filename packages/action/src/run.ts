@@ -98,6 +98,7 @@ export async function run() {
   const approveLabel: string =
     core.getInput('approve-label') || 'approved-breaking-change';
   const rulesList = getInputAsArray("rules") || [];
+  const onUsage = core.getInput('getUsage')
 
   const octokit = github.getOctokit(token);
 
@@ -147,6 +148,18 @@ export async function run() {
   // Different lengths mean some rules were resolved to undefined
   if (rules.length !== rulesList.length) {
     return core.setFailed("Some rules weren't recognised")
+  }
+
+  let config;
+
+  if (onUsage) {
+    const checkUsage = require(onUsage)
+
+    if (checkUsage) {
+      config = {
+        checkUsage
+      }
+    }
   }
 
   let [schemaRef, schemaPath] = schemaPointer.split(':');
@@ -227,6 +240,7 @@ export async function run() {
     schemas,
     sources,
     rules,
+    config
   });
 
   let conclusion = action.conclusion;
