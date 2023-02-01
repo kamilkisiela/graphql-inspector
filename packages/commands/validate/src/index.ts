@@ -1,5 +1,6 @@
 import { writeFileSync } from 'fs';
 import { relative } from 'path';
+import { GraphQLError, GraphQLSchema, print, Source } from 'graphql';
 import {
   CommandFactory,
   createCommand,
@@ -9,7 +10,6 @@ import {
 import { InvalidDocument, validate as validateDocuments } from '@graphql-inspector/core';
 import { bolderize, chalk, Logger } from '@graphql-inspector/logger';
 import { Source as DocumentSource } from '@graphql-tools/utils';
-import { GraphQLError, GraphQLSchema, print, Source } from 'graphql';
 
 export { CommandFactory };
 
