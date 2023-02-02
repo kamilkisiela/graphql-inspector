@@ -14,7 +14,7 @@
   "dependencies": {
     "@graphql-inspector/core": "latest",
     "@graphql-inspector/github": "latest",
-    "@monaco-editor/react": "4.3.1",
+    "@monaco-editor/react": "4.4.6",
     "@theguild/components": "4.5.4",
     "next": "13.1.6",
     "react": "18.2.0",
