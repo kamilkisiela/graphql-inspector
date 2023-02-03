@@ -111,6 +111,34 @@ If you want to use GraphQL API endpoint as source of "after" schema:
     endpoint: 'https://my-app.com/graphql'
 ```
 
+### `rules`
+
+Apply [rules](../essentials/diff#rules) included with the Inspector as well as your own
+[custom rules](../essentials/diff#custom-rules)
+
+```yaml
+- uses: kamilkisiela/graphql-inspector@master
+  with:
+    schema: 'master:schema.graphql'
+    rules: |
+      suppressRemovalOfDeprecatedField
+      custom-rule.js
+```
+
+### `onUsage`
+
+Must be used with the `rules` input. Required to apply the custom logic for the
+[`considerUsage`](../essentials/diff#considerusage) rule
+
+```yaml
+- uses: kamilkisiela/graphql-inspector@master
+  with:
+    schema: 'master:schema.graphql'
+    rules: |
+      considerusage
+    onUsage: check-usage.js
+```
+
 ## Outputs
 
 Read
