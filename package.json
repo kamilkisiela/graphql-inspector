@@ -57,7 +57,7 @@
     "@types/express": "4.17.15",
     "@types/jest": "26.0.24",
     "@types/node": "14.14.45",
-    "@types/yargs": "17.0.3",
+    "@types/yargs": "17.0.22",
     "@zeit/ncc": "0.22.3",
     "axios": "0.21.4",
     "bob-the-bundler": "1.5.1",
