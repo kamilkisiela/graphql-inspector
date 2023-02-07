@@ -34,7 +34,7 @@ export function validateDirectiveCount({
         `Too many directives (${directiveCount}). Maximum allowed is ${maxDirectiveCount}`,
         [definition],
         source,
-        definition.loc && definition.loc.start ? [definition.loc.start] : undefined,
+        definition.loc?.start ? [definition.loc.start] : undefined,
       );
     }
   }

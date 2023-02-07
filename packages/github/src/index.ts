@@ -1,8 +1,4 @@
-import app from './app';
-
-export default app;
-
-export { app };
+export { default, default as app } from './app';
 export { createConfig, NormalizedConfig, SchemaPointer } from './helpers/config';
 export { setDiagnostics } from './helpers/diagnostics';
 export { diff } from './helpers/diff';

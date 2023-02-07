@@ -53,7 +53,7 @@ export async function diff({
   let changes = await diffSchemas(schemas.old, schemas.new, rules, config);
   let forcedConclusion: CheckConclusion | null = null;
 
-  if (!changes || !changes.length) {
+  if (!changes?.length) {
     return {
       conclusion: CheckConclusion.Success,
     };
