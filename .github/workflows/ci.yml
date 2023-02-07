@@ -19,7 +19,7 @@ jobs:
       CI: true
 
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v3
 
       - name: Use Node.js ${{ matrix.node_version }}
         uses: actions/setup-node@master
