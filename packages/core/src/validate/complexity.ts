@@ -46,7 +46,7 @@ export function validateComplexity({
         `Too high complexity score (${complexityScore}). Maximum allowed is ${maxComplexityScore}`,
         [definition],
         source,
-        definition.loc && definition.loc.start ? [definition.loc.start] : undefined,
+        definition.loc?.start ? [definition.loc.start] : undefined,
       );
     }
   }

@@ -134,7 +134,7 @@ function renderCoverage(coverage: SchemaCoverage) {
   Logger.info('Schema coverage based on documents:\n');
 
   for (const typeName in coverage.types) {
-    if (Object.prototype.hasOwnProperty.call(coverage.types, typeName)) {
+    if (Object.hasOwn(coverage.types, typeName)) {
       const typeCoverage = coverage.types[typeName];
 
       Logger.log(
@@ -146,7 +146,7 @@ function renderCoverage(coverage: SchemaCoverage) {
       );
 
       for (const childName in typeCoverage.children) {
-        if (Object.prototype.hasOwnProperty.call(typeCoverage.children, childName)) {
+        if (Object.hasOwn(typeCoverage.children, childName)) {
           const childCoverage = typeCoverage.children[childName];
 
           if (childCoverage.hits) {

@@ -31,7 +31,7 @@ export function handler({
     Logger.info('No similar types found');
   } else {
     for (const typeName in similarMap) {
-      if (Object.prototype.hasOwnProperty.call(similarMap, typeName)) {
+      if (Object.hasOwn(similarMap, typeName)) {
         const matches = similarMap[typeName];
         const prefix = getTypePrefix(schema.getType(typeName) as GraphQLNamedType);
         const sourceType = chalk.bold(typeName);

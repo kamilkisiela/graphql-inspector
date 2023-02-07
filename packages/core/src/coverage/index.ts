@@ -69,8 +69,7 @@ export function coverage(schema: GraphQLSchema, sources: Source[]): SchemaCovera
       const parent = typeInfo.getParentType();
 
       if (
-        parent &&
-        parent.name &&
+        parent?.name &&
         !isForIntrospection(parent.name) &&
         fieldDef &&
         fieldDef.name &&
