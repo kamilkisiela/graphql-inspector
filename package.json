@@ -51,7 +51,7 @@
     "@changesets/changelog-github": "0.4.8",
     "@changesets/cli": "2.26.0",
     "@theguild/eslint-config": "0.4.1",
-    "@theguild/prettier-config": "1.0.0",
+    "@theguild/prettier-config": "1.1.1",
     "@types/body-parser": "1.19.2",
     "@types/cors": "2.8.13",
     "@types/express": "4.17.17",
