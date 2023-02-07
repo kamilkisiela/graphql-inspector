@@ -34,7 +34,7 @@ export function validateAliasCount({
         `Too many aliases (${aliasCount}). Maximum allowed is ${maxAliasCount}`,
         [definition],
         source,
-        definition.loc && definition.loc.start ? [definition.loc.start] : undefined,
+        definition.loc?.start ? [definition.loc.start] : undefined,
       );
     }
   }

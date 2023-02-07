@@ -109,16 +109,16 @@ export async function handleSchemaChangeNotifications({
   }
 
   const notifications = config.notifications;
-  if (hasNotificationsEnabled(notifications)) {
-    async function actionRunner(target: string, fn: () => Promise<void>) {
-      try {
-        await fn();
-      } catch (error) {
-        onError(error);
-        logger.error(`Failed to send a notification via ${target}`, error);
-      }
+  async function actionRunner(target: string, fn: () => Promise<void>) {
+    try {
+      await fn();
+    } catch (error) {
+      onError(error);
+      logger.error(`Failed to send a notification via ${target}`, error);
     }
+  }
 
+  if (hasNotificationsEnabled(notifications)) {
     const actions: Array<Promise<void>> = [];
     const commit: string | undefined = context.payload.commits?.[0]?.id;
 

@@ -197,7 +197,7 @@ function resolveDirectiveDefinition(path: string[], defininition: DirectiveDefin
 }
 
 function resolveNodeSourceLocation(source: Source, node: Node): SourceLocation {
-  if (!node || !node.loc) {
+  if (!node?.loc) {
     return {
       line: 1,
       column: 1,
@@ -206,7 +206,7 @@ function resolveNodeSourceLocation(source: Source, node: Node): SourceLocation {
 
   const nodeLocation = getLocation(source, node.loc.start);
 
-  if (node.description && node.description.loc) {
+  if (node.description?.loc) {
     return {
       line: getLocation(source, node.description.loc.end).line + 1,
       column: nodeLocation.column,

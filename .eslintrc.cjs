@@ -10,7 +10,7 @@ module.exports = {
     {
       files: ['**'],
       rules: {
-        'simple-import-sort/imports': 'off',
+        'prefer-object-has-own': 'off', // enable in next major
         // TODO: enable following rules
         '@typescript-eslint/no-explicit-any': 'off',
         '@typescript-eslint/no-non-null-assertion': 'off',
@@ -23,7 +23,6 @@ module.exports = {
         'import/extensions': 'off',
         'no-console': 'off',
         'import/no-default-export': 'off',
-        'no-inner-declarations': 'off',
       },
     },
     {

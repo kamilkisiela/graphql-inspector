@@ -42,6 +42,7 @@ async function main() {
       },
     });
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-expressions
   commands
     .reduce((cli, cmd) => cli.command(cmd), root)
     .demandCommand()

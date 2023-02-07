@@ -206,19 +206,12 @@ export function createConfig(
   }
 
   for (const branch of branches) {
-    if (!config) {
-      config = findConfigByBranch(branch, normalizedConfig, false);
-    }
-
+    config ||= findConfigByBranch(branch, normalizedConfig, false);
     if (config) {
       break;
     }
   }
-
-  if (!config) {
-    config = getGlobalConfig(rawConfig as any, fallbackBranch);
-  }
-
+  config ||= getGlobalConfig(rawConfig as any, fallbackBranch);
   return config;
 }
 

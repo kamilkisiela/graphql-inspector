@@ -114,7 +114,7 @@ export function useLoaders(config: InspectorConfig): Loaders {
 function loadModule<T>(name: string): T {
   const mod = require(name);
 
-  return mod.default ? mod.default : mod;
+  return mod.default || mod;
 }
 
 /**

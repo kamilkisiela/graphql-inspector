@@ -62,57 +62,57 @@ export function handler({
 
   if (!invalidDocuments.length) {
     Logger.success('All documents are valid');
+    return;
+  }
+  if (failOnDeprecated) {
+    invalidDocuments = moveDeprecatedToErrors(invalidDocuments);
+  }
+
+  if (relativePaths) {
+    invalidDocuments = useRelativePaths(invalidDocuments);
+  }
+
+  const errorsCount = countErrors(invalidDocuments);
+  const deprecated = countDeprecated(invalidDocuments);
+  const shouldFailProcess = errorsCount > 0;
+
+  if (errorsCount) {
+    if (!silent) {
+      Logger.log(`\nDetected ${errorsCount} invalid document${errorsCount > 1 ? 's' : ''}:\n`);
+    }
+
+    printInvalidDocuments(useFilter(invalidDocuments, filter), 'errors', true, silent);
   } else {
-    if (failOnDeprecated) {
-      invalidDocuments = moveDeprecatedToErrors(invalidDocuments);
-    }
+    Logger.success('All documents are valid');
+  }
 
-    if (relativePaths) {
-      invalidDocuments = useRelativePaths(invalidDocuments);
-    }
-
-    const errorsCount = countErrors(invalidDocuments);
-    const deprecated = countDeprecated(invalidDocuments);
-    const shouldFailProcess = errorsCount > 0;
-
-    if (errorsCount) {
-      if (!silent) {
-        Logger.log(`\nDetected ${errorsCount} invalid document${errorsCount > 1 ? 's' : ''}:\n`);
-      }
-
-      printInvalidDocuments(useFilter(invalidDocuments, filter), 'errors', true, silent);
-    } else {
-      Logger.success('All documents are valid');
-    }
-
-    if (deprecated && !onlyErrors) {
-      if (!silent) {
-        Logger.info(
-          `\nDetected ${deprecated} document${deprecated > 1 ? 's' : ''} with deprecated fields:\n`,
-        );
-      }
-
-      printInvalidDocuments(useFilter(invalidDocuments, filter), 'deprecated', false, silent);
-    }
-
-    if (output) {
-      writeFileSync(
-        output,
-        JSON.stringify(
-          {
-            status: !shouldFailProcess,
-            documents: useFilter(invalidDocuments, filter),
-          },
-          null,
-          2,
-        ),
-        'utf8',
+  if (deprecated && !onlyErrors) {
+    if (!silent) {
+      Logger.info(
+        `\nDetected ${deprecated} document${deprecated > 1 ? 's' : ''} with deprecated fields:\n`,
       );
     }
 
-    if (shouldFailProcess) {
-      process.exit(1);
-    }
+    printInvalidDocuments(useFilter(invalidDocuments, filter), 'deprecated', false, silent);
+  }
+
+  if (output) {
+    writeFileSync(
+      output,
+      JSON.stringify(
+        {
+          status: !shouldFailProcess,
+          documents: useFilter(invalidDocuments, filter),
+        },
+        null,
+        2,
+      ),
+      'utf8',
+    );
+  }
+
+  if (shouldFailProcess) {
+    process.exit(1);
   }
 }
 
@@ -132,7 +132,7 @@ function useRelativePaths(docs: InvalidDocument[]) {
 }
 
 function useFilter(docs: InvalidDocument[], patterns?: string[]) {
-  if (!patterns || !patterns.length) {
+  if (!patterns?.length) {
     return docs;
   }
 
@@ -252,10 +252,10 @@ export default createCommand<
       const aws = args.aws || false;
       const apolloFederation = args.federation || false;
       const method = args.method?.toUpperCase() || 'POST';
-      const maxDepth = args.maxDepth != null ? args.maxDepth : undefined;
-      const maxAliasCount = args.maxAliasCount != null ? args.maxAliasCount : undefined;
-      const maxDirectiveCount = args.maxDirectiveCount != null ? args.maxDirectiveCount : undefined;
-      const maxTokenCount = args.maxTokenCount != null ? args.maxTokenCount : undefined;
+      const maxDepth = args.maxDepth == null ? undefined : args.maxDepth;
+      const maxAliasCount = args.maxAliasCount == null ? undefined : args.maxAliasCount;
+      const maxDirectiveCount = args.maxDirectiveCount == null ? undefined : args.maxDirectiveCount;
+      const maxTokenCount = args.maxTokenCount == null ? undefined : args.maxTokenCount;
       const strictFragments = !args.noStrictFragments;
       const keepClientFields = args.keepClientFields || false;
       const failOnDeprecated = args.deprecated;
@@ -302,7 +302,7 @@ export default createCommand<
 
 function countErrors(invalidDocuments: InvalidDocument[]): number {
   if (invalidDocuments.length) {
-    return invalidDocuments.filter(doc => doc.errors && doc.errors.length).length;
+    return invalidDocuments.filter(doc => doc.errors?.length).length;
   }
 
   return 0;
@@ -310,7 +310,7 @@ function countErrors(invalidDocuments: InvalidDocument[]): number {
 
 function countDeprecated(invalidDocuments: InvalidDocument[]): number {
   if (invalidDocuments.length) {
-    return invalidDocuments.filter(doc => doc.deprecated && doc.deprecated.length).length;
+    return invalidDocuments.filter(doc => doc.deprecated?.length).length;
   }
 
   return 0;

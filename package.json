@@ -27,7 +27,7 @@
   ],
   "scripts": {
     "action": "ncc build packages/action/src/action.ts --out action --minify --transpile-only",
-    "build": "tsc --project tsconfig.json && bob build",
+    "build": "tsc && bob build",
     "bundle": "webpack",
     "lint": "eslint --cache --ignore-path .gitignore .",
     "lint:prettier": "prettier --cache --check .",
@@ -50,7 +50,7 @@
   "devDependencies": {
     "@changesets/changelog-github": "0.4.8",
     "@changesets/cli": "2.26.0",
-    "@theguild/eslint-config": "0.4.1",
+    "@theguild/eslint-config": "0.8.0",
     "@theguild/prettier-config": "1.1.1",
     "@types/body-parser": "1.19.2",
     "@types/cors": "2.8.13",

@@ -114,7 +114,7 @@ export function fake(schema: GraphQLSchema): void {
             context,
             info,
           );
-          if (!interfaceMockObj || !interfaceMockObj.__typename) {
+          if (!interfaceMockObj?.__typename) {
             return Error(`Please return a __typename in "${fieldType.name}"`);
           }
           implementationType = schema.getType(interfaceMockObj.__typename);
