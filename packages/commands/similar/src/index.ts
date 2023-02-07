@@ -31,7 +31,7 @@ export function handler({
     Logger.info('No similar types found');
   } else {
     for (const typeName in similarMap) {
-      if (similarMap.hasOwnProperty(typeName)) {
+      if (Object.prototype.hasOwnProperty.call(similarMap, typeName)) {
         const matches = similarMap[typeName];
         const prefix = getTypePrefix(schema.getType(typeName) as GraphQLNamedType);
         const sourceType = chalk.bold(typeName);
@@ -63,10 +63,7 @@ export function handler({
       }
 
       if (output) {
-        writeFileSync(absPath, output, {
-          encoding: 'utf-8',
-        });
-
+        writeFileSync(absPath, output, 'utf8');
         Logger.success(`Available at ${absPath}\n`);
       } else {
         throw new Error(`Extension ${ext} is not supported`);
@@ -156,7 +153,7 @@ function transformMap(similarMap: SimilarMap): SimilarResults {
   const results: SimilarResults = {};
 
   for (const typename in similarMap) {
-    if (similarMap.hasOwnProperty(typename)) {
+    if (Object.prototype.hasOwnProperty.call(similarMap, typename)) {
       const result = similarMap[typename];
 
       results[typename] = [];

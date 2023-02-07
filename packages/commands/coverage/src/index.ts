@@ -54,10 +54,7 @@ export function handler({
     }
 
     if (output) {
-      writeFileSync(absPath, output, {
-        encoding: 'utf-8',
-      });
-
+      writeFileSync(absPath, output, 'utf8');
       Logger.success(`Available at ${absPath}\n`);
     } else {
       throw new Error(`Extension ${ext} is not supported`);
@@ -137,19 +134,19 @@ function renderCoverage(coverage: SchemaCoverage) {
   Logger.info('Schema coverage based on documents:\n');
 
   for (const typeName in coverage.types) {
-    if (coverage.types.hasOwnProperty(typeName)) {
+    if (Object.prototype.hasOwnProperty.call(coverage.types, typeName)) {
       const typeCoverage = coverage.types[typeName];
 
       Logger.log(
         [
           chalk.grey(getTypePrefix(typeCoverage.type)),
-          chalk.bold(`${typeName}`),
+          chalk.bold(String(typeName)),
           chalk.grey('{'),
         ].join(' '),
       );
 
       for (const childName in typeCoverage.children) {
-        if (typeCoverage.children.hasOwnProperty(childName)) {
+        if (Object.prototype.hasOwnProperty.call(typeCoverage.children, childName)) {
           const childCoverage = typeCoverage.children[childName];
 
           if (childCoverage.hits) {
