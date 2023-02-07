@@ -59,7 +59,7 @@
   "devDependencies": {
     "@types/express": "4.17.17",
     "probot": "11.3.0",
-    "smee-client": "1.2.2"
+    "smee-client": "1.2.3"
   },
   "publishConfig": {
     "directory": "dist",
