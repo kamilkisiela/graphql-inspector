@@ -40,8 +40,8 @@
     "test": "jest"
   },
   "dependencies": {
-    "@sentry/node": "7.33.0",
-    "@sentry/tracing": "7.33.0",
+    "@sentry/node": "7.36.0",
+    "@sentry/tracing": "7.36.0",
     "husky": "4.3.8",
     "immer": "9.0.19",
     "probot": "12.3.0",
