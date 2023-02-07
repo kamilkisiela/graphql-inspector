@@ -106,9 +106,7 @@ export function handler({
           null,
           2,
         ),
-        {
-          encoding: 'utf-8',
-        },
+        'utf8',
       );
     }
 

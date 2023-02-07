@@ -56,6 +56,7 @@ export async function handleSchemaChangeNotifications({
   }
 
   const branch = ref.replace('refs/heads/', '');
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   const config = createConfig(rawConfig as any, () => {}, [branch]);
 
   if (!config.notifications) {

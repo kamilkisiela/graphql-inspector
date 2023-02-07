@@ -135,12 +135,12 @@ export default createCommand<
         const { headers, leftHeaders, rightHeaders, token } = parseGlobalArgs(args);
 
         const oldSchemaHeaders = {
-          ...(headers ?? {}),
-          ...(leftHeaders ?? {}),
+          ...headers,
+          ...leftHeaders,
         };
         const newSchemaHeaders = {
-          ...(headers ?? {}),
-          ...(rightHeaders ?? {}),
+          ...headers,
+          ...rightHeaders,
         };
 
         const oldSchema = await loaders.loadSchema(
@@ -254,7 +254,6 @@ function resolveUsageHandler(name: string): UsageHandler | never {
   } catch (error) {
     throw new Error(`UsageHandler '${name}' does not exist!`);
   }
-
   const mod = require(filepath);
 
   return mod?.default || mod;

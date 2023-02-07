@@ -46,9 +46,7 @@ export function handler({
       throw new Error('Only .graphql, .gql and .json files are supported');
   }
 
-  writeFileSync(output, content!, {
-    encoding: 'utf-8',
-  });
+  writeFileSync(output, content!, 'utf8');
 
   Logger.success(`Saved to ${filepath}`);
 }
