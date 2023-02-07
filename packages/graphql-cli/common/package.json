@@ -30,7 +30,7 @@
     "prepack": "bob prepack"
   },
   "peerDependencies": {
-    "graphql-config": "^3.0.0"
+    "graphql-config": "^3.0.0 || ^4.0.0"
   },
   "dependencies": {
     "@graphql-cli/loaders": "4.1.0",
