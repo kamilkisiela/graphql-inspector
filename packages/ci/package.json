@@ -53,7 +53,7 @@
     "@graphql-inspector/loaders": "3.4.0",
     "@graphql-inspector/logger": "3.4.0",
     "tslib": "^2.0.0",
-    "yargs": "17.6.2"
+    "yargs": "17.2.1"
   },
   "publishConfig": {
     "directory": "dist",
