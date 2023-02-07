@@ -61,7 +61,7 @@
     "@zeit/ncc": "0.22.3",
     "axios": "0.27.2",
     "bob-the-bundler": "1.7.3",
-    "eslint": "8.31.0",
+    "eslint": "8.33.0",
     "graphql": "16.6.0",
     "graphql-config": "4.0.1",
     "jest": "27.5.1",
