@@ -45,7 +45,7 @@ Compares schemas and finds breaking or dangerous changes.
 **API:**
 
 ```typescript
-import { diff, Change } from '@graphql-inspector/core'
+import { Change, diff } from '@graphql-inspector/core'
 
 const changes: Change[] = diff(schemaA, schemaB)
 ```
@@ -100,7 +100,7 @@ Validates documents against a schema and looks for deprecated usage.
 **API:**
 
 ```typescript
-import { validate, InvalidDocument } from '@graphql-inspector/core'
+import { InvalidDocument, validate } from '@graphql-inspector/core'
 
 const invalid: InvalidDocument[] = validate(documentsGlob, schema)
 ```

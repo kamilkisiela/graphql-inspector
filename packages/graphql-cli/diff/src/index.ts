@@ -1,3 +1,5 @@
+import { GraphQLSchema } from 'graphql';
+import { GraphQLProjectConfig } from 'graphql-config';
 import { defineCommand } from '@graphql-cli/common';
 import { handler } from '@graphql-inspector/diff-command';
 import {
@@ -6,8 +8,6 @@ import {
   loaders,
   parseGlobalArgs,
 } from '@graphql-inspector/graphql-cli-common';
-import { GraphQLSchema } from 'graphql';
-import { GraphQLProjectConfig } from 'graphql-config';
 
 interface ExtensionConfig {
   baseSchema: string;

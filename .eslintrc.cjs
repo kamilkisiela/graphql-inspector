@@ -10,6 +10,7 @@ module.exports = {
     {
       files: ['**'],
       rules: {
+        'simple-import-sort/imports': 'off',
         // TODO: enable following rules
         '@typescript-eslint/no-explicit-any': 'off',
         '@typescript-eslint/no-non-null-assertion': 'off',
