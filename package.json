@@ -27,7 +27,7 @@
   ],
   "scripts": {
     "action": "ncc build packages/action/src/action.ts --out action --minify --transpile-only",
-    "build": "tsc --project tsconfig.json && bob build",
+    "build": "tsc && bob build",
     "bundle": "webpack",
     "lint": "eslint --cache --ignore-path .gitignore .",
     "lint:prettier": "prettier --cache --check .",
