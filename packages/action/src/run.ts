@@ -45,7 +45,7 @@ async function getAssociatedPullRequest(octokit: OctokitInstance, commitSha: str
       format: 'json',
       previews: ['groot'],
     }
-  })  
+  })
   return result.data.length > 0 ? result.data[0] : null
 }
 
@@ -195,7 +195,7 @@ export async function run() {
   let annotations = action.annotations || [];
   const changes = action.changes || [];
 
-  core.setOutput('changes', `${changes.length || 0}`);
+  core.setOutput('changes', String(changes.length || 0));
   core.info(`Changes: ${changes.length || 0}`);
 
   const hasApprovedBreakingChangeLabel = pullRequest?.labels?.some(
@@ -274,11 +274,8 @@ function fileLoader({
     workspace?: string;
   }): Promise<string> {
     if (file.workspace) {
-      return readFileSync(resolve(file.workspace, file.path), {
-        encoding: 'utf-8',
-      });
+      return readFileSync(resolve(file.workspace, file.path), 'utf8');
     }
-
     const result: any = await octokit.graphql(query, {
       repo,
       owner,
