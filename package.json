@@ -60,7 +60,7 @@
     "@types/yargs": "17.0.3",
     "@zeit/ncc": "0.22.3",
     "axios": "0.27.2",
-    "bob-the-bundler": "1.5.1",
+    "bob-the-bundler": "1.7.3",
     "eslint": "8.31.0",
     "graphql": "16.0.0",
     "graphql-config": "4.0.1",
