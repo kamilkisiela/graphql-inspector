@@ -65,7 +65,7 @@
     "@graphql-inspector/url-loader": "3.4.0",
     "@graphql-inspector/validate-command": "3.4.1",
     "tslib": "^2.0.0",
-    "yargs": "17.6.2"
+    "yargs": "17.2.1"
   },
   "publishConfig": {
     "directory": "dist",
