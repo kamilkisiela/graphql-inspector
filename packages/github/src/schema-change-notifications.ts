@@ -1,6 +1,3 @@
-import { buildSchema } from 'graphql';
-import * as probot from 'probot';
-import { diff } from '@graphql-inspector/core';
 import {
   createConfig,
   NormalizedEnvironment,
@@ -11,6 +8,9 @@ import { ConfigLoader, FileLoader, loadSources } from './helpers/loaders';
 import { createLogger } from './helpers/logger';
 import { notifyWithDiscord, notifyWithSlack, notifyWithWebhook } from './helpers/notifications';
 import { ErrorHandler } from './helpers/types';
+import { diff } from '@graphql-inspector/core';
+import { buildSchema } from 'graphql';
+import * as probot from 'probot';
 
 export async function handleSchemaChangeNotifications({
   context,
@@ -109,16 +109,16 @@ export async function handleSchemaChangeNotifications({
   }
 
   const notifications = config.notifications;
-  if (hasNotificationsEnabled(notifications)) {
-    async function actionRunner(target: string, fn: () => Promise<void>) {
-      try {
-        await fn();
-      } catch (error) {
-        onError(error);
-        logger.error(`Failed to send a notification via ${target}`, error);
-      }
+  async function actionRunner(target: string, fn: () => Promise<void>) {
+    try {
+      await fn();
+    } catch (error) {
+      onError(error);
+      logger.error(`Failed to send a notification via ${target}`, error);
     }
+  }
 
+  if (hasNotificationsEnabled(notifications)) {
     const actions: Array<Promise<void>> = [];
     const commit: string | undefined = context.payload.commits?.[0]?.id;
 

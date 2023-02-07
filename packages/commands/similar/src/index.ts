@@ -32,7 +32,7 @@ export function handler({
     return;
   }
   for (const typeName in similarMap) {
-    if (Object.hasOwn(similarMap, typeName)) {
+    if (Object.prototype.hasOwnProperty.call(similarMap, typeName)) {
       const matches = similarMap[typeName];
       const prefix = getTypePrefix(schema.getType(typeName) as GraphQLNamedType);
       const sourceType = chalk.bold(typeName);
@@ -153,7 +153,7 @@ function transformMap(similarMap: SimilarMap): SimilarResults {
   const results: SimilarResults = {};
 
   for (const typename in similarMap) {
-    if (Object.hasOwn(similarMap, typename)) {
+    if (Object.prototype.hasOwnProperty.call(similarMap, typename)) {
       const result = similarMap[typename];
 
       results[typename] = [];

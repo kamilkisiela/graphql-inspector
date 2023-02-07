@@ -143,7 +143,7 @@ function normalizeConfig(config: Config): {
     const normalized: NormalizedConfig = {};
 
     for (const envName in config.env) {
-      if (Object.hasOwn(config.env, envName)) {
+      if (Object.prototype.hasOwnProperty.call(config.env, envName)) {
         const env = config.env[envName];
 
         normalized[envName] = {
@@ -253,7 +253,7 @@ function findConfigByBranch(
   const branches: string[] = [];
 
   for (const name in config) {
-    if (Object.hasOwn(config, name)) {
+    if (Object.prototype.hasOwnProperty.call(config, name)) {
       const env = config[name];
 
       if (env.branch === branch) {

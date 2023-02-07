@@ -1,6 +1,3 @@
-import { writeFileSync } from 'fs';
-import { extname } from 'path';
-import { GraphQLSchema, print, Source } from 'graphql';
 import {
   CommandFactory,
   createCommand,
@@ -15,6 +12,9 @@ import {
 } from '@graphql-inspector/core';
 import { chalk, Logger } from '@graphql-inspector/logger';
 import { Source as DocumentSource } from '@graphql-tools/utils';
+import { writeFileSync } from 'fs';
+import { GraphQLSchema, print, Source } from 'graphql';
+import { extname } from 'path';
 
 export { CommandFactory };
 
@@ -134,7 +134,7 @@ function renderCoverage(coverage: SchemaCoverage) {
   Logger.info('Schema coverage based on documents:\n');
 
   for (const typeName in coverage.types) {
-    if (Object.hasOwn(coverage.types, typeName)) {
+    if (Object.prototype.hasOwnProperty.call(coverage.types, typeName)) {
       const typeCoverage = coverage.types[typeName];
 
       Logger.log(
@@ -146,7 +146,7 @@ function renderCoverage(coverage: SchemaCoverage) {
       );
 
       for (const childName in typeCoverage.children) {
-        if (Object.hasOwn(typeCoverage.children, childName)) {
+        if (Object.prototype.hasOwnProperty.call(typeCoverage.children, childName)) {
           const childCoverage = typeCoverage.children[childName];
 
           if (childCoverage.hits) {
