@@ -14,7 +14,7 @@ function serverless(appFn) {
     if (req.method === 'GET') {
       res.setHeader('Content-Type', 'text/plain');
       res.status(200);
-      res.send(`Visit graphql-inspector.com`);
+      res.send('Visit graphql-inspector.com');
       return;
     }
 

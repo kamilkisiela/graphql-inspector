@@ -17,7 +17,7 @@ export const Diff = dynamic(() => import('./diff'));
 export const FEATURE_LIST = [
   {
     title: 'Works with GitHub',
-    description: `Start using our GitHub Application, setup everything within few clicks. Using GitHub workflows? Try out the GitHub Action.`,
+    description: 'Start using our GitHub Application, setup everything within few clicks. Using GitHub workflows? Try out the GitHub Action.',
     image: {
       src: githubImage,
       alt: 'GitHub',
@@ -32,7 +32,7 @@ export const FEATURE_LIST = [
   },
   {
     title: 'CI/CD',
-    description: `GraphQL Inspector can be used in any Continuous Integration service. Use our modularized, CI suited version of CLI.`,
+    description: 'GraphQL Inspector can be used in any Continuous Integration service. Use our modularized, CI suited version of CLI.',
     image: { src: resultImage, alt: 'CI', loading: 'eager' as const },
     linkProps: {
       children: 'Learn more',
@@ -42,7 +42,7 @@ export const FEATURE_LIST = [
   },
   {
     title: 'Command-Line',
-    description: `GraphQL Inspector offers a CLI that lets you analyze your GraphQL API but also client-side applications.`,
+    description: 'GraphQL Inspector offers a CLI that lets you analyze your GraphQL API but also client-side applications.',
     image: {
       src: typewritterImage,
       alt: 'CLI',
@@ -56,7 +56,7 @@ export const FEATURE_LIST = [
   },
   {
     title: 'Open Source',
-    description: `Our codebase is publicly available on GitHub and it's easy to deploy and use your GitHub Application.`,
+    description: 'Our codebase is publicly available on GitHub and it\'s easy to deploy and use your GitHub Application.',
     image: {
       src: hackerMindsetImage,
       alt: 'cli',

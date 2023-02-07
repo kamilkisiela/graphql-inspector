@@ -1,9 +1,9 @@
 import chalk from 'chalk';
-import figures from 'figures';
-import symbols from 'log-symbols';
 import env from 'std-env';
 
-export { chalk, figures, symbols };
+export { default as figures } from 'figures';
+export { default as symbols } from 'log-symbols';
+export { chalk };
 
 export function bolderize(msg: string): string {
   const findSingleQuotes = /'([^']+)'/gim;
