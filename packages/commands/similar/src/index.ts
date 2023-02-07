@@ -153,7 +153,7 @@ function transformMap(similarMap: SimilarMap): SimilarResults {
   const results: SimilarResults = {};
 
   for (const typename in similarMap) {
-    if (Object.prototype.hasOwnProperty.call(similarMap, typename)) {
+    if (Object.hasOwn(similarMap, typename)) {
       const result = similarMap[typename];
 
       results[typename] = [];

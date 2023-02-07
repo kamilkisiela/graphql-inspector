@@ -76,7 +76,7 @@ export function safeChangeForInputValue(
 
 export function getKind(type: GraphQLNamedType): KindEnum {
   const node = type.astNode as any;
-  return (node && node.kind) || '';
+  return node?.kind || '';
 }
 
 export function getTypePrefix(type: GraphQLNamedType): string {

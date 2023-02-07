@@ -206,19 +206,12 @@ export function createConfig(
   }
 
   for (const branch of branches) {
-    if (!config) {
-      config = findConfigByBranch(branch, normalizedConfig, false);
-    }
-
+    config ||= findConfigByBranch(branch, normalizedConfig, false);
     if (config) {
       break;
     }
   }
-
-  if (!config) {
-    config = getGlobalConfig(rawConfig as any, fallbackBranch);
-  }
-
+  config ||= getGlobalConfig(rawConfig as any, fallbackBranch);
   return config;
 }
 
@@ -260,7 +253,7 @@ function findConfigByBranch(
   const branches: string[] = [];
 
   for (const name in config) {
-    if (Object.prototype.hasOwnProperty.call(config, name)) {
+    if (Object.hasOwn(config, name)) {
       const env = config[name];
 
       if (env.branch === branch) {
