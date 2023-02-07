@@ -1,6 +1,6 @@
 import { buildSchema } from 'graphql';
+import { CriticalityLevel, diff } from '../../../src';
 import { suppressRemovalOfDeprecatedField } from '../../../src/diff/rules';
-import { CriticalityLevel, diff } from '../../../src/index';
 import { findFirstChangeByPath } from '../../../utils/testing';
 
 describe('suppressRemovalOfDeprecatedFields rule', () => {

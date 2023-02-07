@@ -41,7 +41,7 @@
     "prebuild": "pnpm clean",
     "prepack": "bob prepack",
     "prepublishOnly": "pnpm build",
-    "test": "jest"
+    "test": "vitest ."
   },
   "peerDependencies": {
     "graphql": "^14.0.0 || ^15.0.0 || ^16.0.0"

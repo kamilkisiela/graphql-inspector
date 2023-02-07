@@ -3,7 +3,6 @@ import { buildSchema, parse } from 'graphql';
 import yargs from 'yargs';
 import { mockCommand } from '@graphql-inspector/commands';
 import { mockLogger, unmockLogger } from '@graphql-inspector/logger';
-import '@graphql-inspector/testing';
 import createCommand from '../src';
 
 const schema = buildSchema(/* GraphQL */ `
@@ -67,18 +66,15 @@ const validate = createCommand({
 });
 
 describe('validate', () => {
-  let spyReporter: jest.SpyInstance;
-  let spyProcessExit: jest.SpyInstance;
-  let spyProcessCwd: jest.SpyInstance;
+  let spyReporter: vi.SpyInstance;
+  let spyProcessExit: vi.SpyInstance;
+  let spyProcessCwd: vi.SpyInstance;
 
   beforeEach(() => {
-    spyProcessExit = jest.spyOn(process, 'exit');
-    spyProcessExit.mockImplementation();
-
-    spyProcessCwd = jest.spyOn(process, 'cwd').mockImplementation(() => __dirname);
-
-    spyReporter = jest.fn();
-    mockLogger(spyReporter as any);
+    spyProcessExit = vi.spyOn(process, 'exit').mockImplementation(() => null);
+    spyProcessCwd = vi.spyOn(process, 'cwd').mockImplementation(() => __dirname);
+    spyReporter = vi.fn();
+    mockLogger(spyReporter);
   });
 
   afterEach(() => {

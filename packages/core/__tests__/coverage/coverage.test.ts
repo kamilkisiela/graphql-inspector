@@ -1,5 +1,5 @@
 import { buildSchema, getIntrospectionQuery, parse, print, Source } from 'graphql';
-import { coverage } from '../../src/index';
+import { coverage } from '../../src';
 
 describe('coverage', () => {
   const schema = buildSchema(/* GraphQL */ `

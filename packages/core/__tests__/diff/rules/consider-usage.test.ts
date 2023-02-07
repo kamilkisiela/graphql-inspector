@@ -1,6 +1,6 @@
 import { buildSchema } from 'graphql';
-import { considerUsage } from '../../../src/diff/rules/consider-usage';
-import { CriticalityLevel, diff } from '../../../src/index';
+import { CriticalityLevel, diff } from '../../../src';
+import { considerUsage } from '../../../src/diff/rules';
 import { findFirstChangeByPath } from '../../../utils/testing';
 
 describe('considerUsage rule', () => {

@@ -1,4 +1,4 @@
-import { calculateTokenCount } from '../../src/validate/token-count';
+import { calculateTokenCount } from '../../src';
 
 describe('calculateDepth', () => {
   it('calculate easy operation', () => {

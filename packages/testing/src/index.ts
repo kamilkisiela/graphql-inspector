@@ -1,41 +1,50 @@
-import jsesc from 'jsesc';
-import stripAnsi from 'strip-ansi';
+import { execute, GraphQLSchema, parse } from 'graphql';
+import nock from 'nock';
 
-export { mockGraphQLServer } from './mock-graphql-server';
-
-export function nonTTY(msg: string) {
-  return stripAnsi(jsesc(stripAnsi(msg)));
-}
-
-declare global {
-  // eslint-disable-next-line @typescript-eslint/no-namespace
-  namespace jest {
-    interface Matchers<R> {
-      /**
-       * Strips and normalizes logs
-       */
-      toHaveBeenCalledNormalized(expected: string): R;
-    }
+export function mockGraphQLServer({
+  schema,
+  host,
+  path,
+  method = 'POST',
+}: {
+  schema: GraphQLSchema;
+  host: string;
+  path: string;
+  method?: 'GET' | 'POST';
+}) {
+  const scope = nock(host);
+  if (method === 'GET') {
+    scope
+      .get(path => path.startsWith(path))
+      .reply(async (unformattedQuery, _: any) => {
+        const query = new URL(host + unformattedQuery).searchParams.get('query');
+        try {
+          const result = await execute({
+            schema,
+            document: parse(query || ''),
+          });
+          return [200, result];
+        } catch (error) {
+          return [500, error];
+        }
+      });
+  } else {
+    scope.post(path).reply(async (_, body: any) => {
+      try {
+        const result = await execute({
+          schema,
+          document: parse(body.query),
+          operationName: body.operationName,
+          variableValues: body.variables,
+        });
+        return [200, result];
+      } catch (error) {
+        return [500, error];
+      }
+    });
   }
+
+  return () => {
+    scope.done();
+  };
 }
-
-expect.extend({
-  toHaveBeenCalledNormalized(spy: jest.SpyInstance, expected: string) {
-    const normalizedExpected = nonTTY(expected);
-    const calls = spy.mock.calls;
-    const contain = calls.some(args => nonTTY(args.join(' ')).includes(normalizedExpected));
-
-    if (contain) {
-      return {
-        message: () => `expected not to be a called with ${expected}`,
-        pass: true,
-      };
-    }
-    const message = `expected to be called with ${expected}`;
-
-    return {
-      message: () => message,
-      pass: false,
-    };
-  },
-});
