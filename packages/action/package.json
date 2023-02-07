@@ -55,7 +55,7 @@
     "@graphql-inspector/core": "3.5.0",
     "@graphql-inspector/github": "3.4.2",
     "js-yaml": "4.1.0",
-    "probot": "11.3.0",
+    "probot": "11.4.1",
     "tslib": "^2.0.0"
   },
   "devDependencies": {
