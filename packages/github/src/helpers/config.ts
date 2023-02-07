@@ -143,7 +143,7 @@ function normalizeConfig(config: Config): {
     const normalized: NormalizedConfig = {};
 
     for (const envName in config.env) {
-      if (Object.prototype.hasOwnProperty.call(config.env, envName)) {
+      if (Object.hasOwn(config.env, envName)) {
         const env = config.env[envName];
 
         normalized[envName] = {
