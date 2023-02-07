@@ -1,3 +1,4 @@
+import open from 'open';
 import {
   CommandFactory,
   createCommand,
@@ -6,7 +7,6 @@ import {
 } from '@graphql-inspector/commands';
 import { Logger } from '@graphql-inspector/logger';
 import { createServer } from '@graphql-yoga/node';
-import open from 'open';
 import { fake } from './fake';
 
 export { CommandFactory };

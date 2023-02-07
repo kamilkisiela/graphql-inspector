@@ -1,6 +1,6 @@
-import { CriticalityLevel, DiffRule } from '@graphql-inspector/core';
 import { buildSchema, Source } from 'graphql';
 import nock from 'nock';
+import { CriticalityLevel, DiffRule } from '@graphql-inspector/core';
 import { diff, DiffInterceptorPayload, DiffInterceptorResponse } from '../src/helpers/diff';
 import { CheckConclusion } from '../src/helpers/types';
 

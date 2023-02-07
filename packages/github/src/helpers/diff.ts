@@ -1,6 +1,6 @@
-import { Change, CriticalityLevel, diff as diffSchemas, Rule } from '@graphql-inspector/core';
 import axios from 'axios';
 import { GraphQLSchema, Source } from 'graphql';
+import { Change, CriticalityLevel, diff as diffSchemas, Rule } from '@graphql-inspector/core';
 import { getLocationByPath } from './location';
 import { ActionResult, Annotation, AnnotationLevel, CheckConclusion, PullRequest } from './types';
 import { isNil, parseEndpoint } from './utils';

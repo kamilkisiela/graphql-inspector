@@ -1,9 +1,9 @@
-import '@graphql-inspector/testing';
 import { resolve } from 'path';
-import { mockCommand } from '@graphql-inspector/commands';
-import { mockLogger, unmockLogger } from '@graphql-inspector/logger';
 import { buildSchema } from 'graphql';
 import yargs from 'yargs';
+import { mockCommand } from '@graphql-inspector/commands';
+import { mockLogger, unmockLogger } from '@graphql-inspector/logger';
+import '@graphql-inspector/testing';
 import createCommand from '../src';
 
 const oldSchema = buildSchema(/* GraphQL */ `
