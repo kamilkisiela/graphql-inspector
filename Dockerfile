@@ -1,4 +1,4 @@
-FROM node:16-alpine AS build
+FROM node:19-alpine AS build
 ENV NODE_ENV=development
 ENV DISTDIR=/usr/local/share/graphql-inspector
 
@@ -9,7 +9,7 @@ COPY . .
 RUN yarn install
 RUN yarn build
 
-FROM node:16-alpine AS dist
+FROM node:19-alpine AS dist
 ENV NODE_ENV=production
 
 COPY --from=build /app/packages "${DISTDIR}"/packages
