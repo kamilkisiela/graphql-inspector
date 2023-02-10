@@ -1,3 +1,5 @@
+import Table from 'cli-table3';
+import { FragmentDefinitionNode, OperationDefinitionNode, print } from 'graphql';
 import { createCommand, GlobalArgs } from '@graphql-inspector/commands';
 import type { CalculateOperationComplexityConfig } from '@graphql-inspector/core';
 import {
@@ -9,8 +11,6 @@ import {
 } from '@graphql-inspector/core';
 import { chalk, Logger } from '@graphql-inspector/logger';
 import { Source as DocumentSource } from '@graphql-tools/utils';
-import Table from 'cli-table3';
-import { FragmentDefinitionNode, OperationDefinitionNode, print } from 'graphql';
 
 export default createCommand<
   {},

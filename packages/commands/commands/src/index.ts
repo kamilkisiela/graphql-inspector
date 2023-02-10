@@ -1,7 +1,7 @@
 import { isAbsolute, resolve } from 'path';
+import yargs, { CommandModule as Command } from 'yargs';
 import { InspectorConfig } from '@graphql-inspector/config';
 import { Loaders } from '@graphql-inspector/loaders';
-import yargs, { CommandModule as Command } from 'yargs';
 
 export { Command };
 

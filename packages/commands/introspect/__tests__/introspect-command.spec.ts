@@ -1,11 +1,11 @@
 import { existsSync, readFileSync, unlinkSync } from 'fs';
+import { buildSchema } from 'graphql';
+import yargs from 'yargs';
 import { mockCommand } from '@graphql-inspector/commands';
 import { LoadersRegistry } from '@graphql-inspector/loaders';
 import { mockLogger, unmockLogger } from '@graphql-inspector/logger';
 import { mockGraphQLServer } from '@graphql-inspector/testing';
 import loader from '@graphql-inspector/url-loader';
-import { buildSchema } from 'graphql';
-import yargs from 'yargs';
 import createCommand from '../src';
 
 function sleepFor(ms: number) {
@@ -58,7 +58,9 @@ describe('introspect', () => {
     spyReporter.mockRestore();
     try {
       unlinkSync('graphql.schema.json');
-    } catch (e) {}
+    } catch {
+      /* ignore */
+    }
   });
 
   test('graphql api with port and ws in name using url-loader', async () => {
@@ -85,10 +87,7 @@ describe('introspect', () => {
 
     done();
     expect(existsSync('schema.graphql')).toBe(true);
-
-    const printed = readFileSync('schema.graphql', {
-      encoding: 'utf-8',
-    });
+    const printed = readFileSync('schema.graphql', 'utf8');
     unlinkSync('schema.graphql');
 
     const builtSchema = buildSchema(printed);
@@ -111,10 +110,7 @@ describe('introspect', () => {
 
     done();
     expect(existsSync('schema.graphql')).toBe(true);
-
-    const printed = readFileSync('schema.graphql', {
-      encoding: 'utf-8',
-    });
+    const printed = readFileSync('schema.graphql', 'utf8');
     unlinkSync('schema.graphql');
 
     const builtSchema = buildSchema(printed);

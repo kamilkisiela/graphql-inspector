@@ -1,6 +1,6 @@
 {
   "name": "@graphql-inspector/audit-command",
-  "version": "3.4.0",
+  "version": "3.4.1",
   "description": "Audit Documents in GraphQL Inspector",
   "repository": {
     "type": "git",
@@ -40,9 +40,9 @@
   },
   "dependencies": {
     "@graphql-inspector/commands": "3.4.0",
-    "@graphql-inspector/core": "3.4.0",
+    "@graphql-inspector/core": "3.5.0",
     "@graphql-inspector/logger": "3.4.0",
-    "cli-table3": "0.6.2",
+    "cli-table3": "0.6.3",
     "tslib": "^2.0.0"
   },
   "publishConfig": {

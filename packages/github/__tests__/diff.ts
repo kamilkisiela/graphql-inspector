@@ -1,6 +1,6 @@
-import { CriticalityLevel } from '@graphql-inspector/core';
 import { buildSchema, Source } from 'graphql';
 import nock from 'nock';
+import { CriticalityLevel, DiffRule } from '@graphql-inspector/core';
 import { diff, DiffInterceptorPayload, DiffInterceptorResponse } from '../src/helpers/diff';
 import { CheckConclusion } from '../src/helpers/types';
 
@@ -208,4 +208,41 @@ test('use interceptor to modify check conclusion', async () => {
   expect(action.conclusion).toBe(CheckConclusion.Neutral);
 
   scope.done();
+});
+
+test('should apply the rule suppressRemovalOfDeprecatedField to the diff', async () => {
+  const { schemas, sources } = build(
+    /* GraphQL */ `
+      type Post {
+        id: ID!
+        title: String @deprecated(reason: "No more used")
+        createdAt: String!
+      }
+
+      type Query {
+        post: Post!
+      }
+    `,
+    /* GraphQL */ `
+      type Post {
+        id: ID!
+        createdAt: String!
+      }
+
+      type Query {
+        post: Post!
+      }
+    `,
+  );
+
+  const action = await diff({
+    path: 'schema.graphql',
+    rules: [DiffRule.suppressRemovalOfDeprecatedField],
+    schemas,
+    sources,
+  });
+
+  expect(action.annotations).toHaveLength(1);
+  expect(action.changes).toHaveLength(1);
+  expect(action.conclusion).toBe(CheckConclusion.Success);
 });

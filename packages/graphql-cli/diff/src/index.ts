@@ -1,3 +1,5 @@
+import { GraphQLSchema } from 'graphql';
+import { GraphQLProjectConfig } from 'graphql-config';
 import { defineCommand } from '@graphql-cli/common';
 import { handler } from '@graphql-inspector/diff-command';
 import {
@@ -6,8 +8,6 @@ import {
   loaders,
   parseGlobalArgs,
 } from '@graphql-inspector/graphql-cli-common';
-import { GraphQLSchema } from 'graphql';
-import { GraphQLProjectConfig } from 'graphql-config';
 
 interface ExtensionConfig {
   baseSchema: string;
@@ -78,7 +78,13 @@ export default defineCommand<
       let baseSchema: GraphQLSchema;
       let newSchema: GraphQLSchema;
 
-      if (!args.target) {
+      if (args.target) {
+        // Case 3: <source> <target>
+        //    Base schema - `project` or `pointer`
+        //    New schema - `project` or `pointer`
+        baseSchema = await resolveSchema(args.source!);
+        newSchema = await resolveSchema(args.target!);
+      } else {
         // Case 1: <no args>
         //    Base schema - `diff` extension
         //    New schema - default project
@@ -90,12 +96,6 @@ export default defineCommand<
 
         baseSchema = await resolveBaseSchema(project);
         newSchema = await project.getSchema();
-      } else {
-        // Case 3: <source> <target>
-        //    Base schema - `project` or `pointer`
-        //    New schema - `project` or `pointer`
-        baseSchema = await resolveSchema(args.source!);
-        newSchema = await resolveSchema(args.target!);
       }
 
       function resolveBaseSchema(project: GraphQLProjectConfig) {

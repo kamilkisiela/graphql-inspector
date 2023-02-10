@@ -1,6 +1,6 @@
-import { diff } from '@graphql-inspector/core';
 import { buildSchema } from 'graphql';
 import * as probot from 'probot';
+import { diff } from '@graphql-inspector/core';
 import {
   createConfig,
   NormalizedEnvironment,
@@ -56,6 +56,7 @@ export async function handleSchemaChangeNotifications({
   }
 
   const branch = ref.replace('refs/heads/', '');
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   const config = createConfig(rawConfig as any, () => {}, [branch]);
 
   if (!config.notifications) {
@@ -108,16 +109,16 @@ export async function handleSchemaChangeNotifications({
   }
 
   const notifications = config.notifications;
-  if (hasNotificationsEnabled(notifications)) {
-    async function actionRunner(target: string, fn: () => Promise<void>) {
-      try {
-        await fn();
-      } catch (error) {
-        onError(error);
-        logger.error(`Failed to send a notification via ${target}`, error);
-      }
+  async function actionRunner(target: string, fn: () => Promise<void>) {
+    try {
+      await fn();
+    } catch (error) {
+      onError(error);
+      logger.error(`Failed to send a notification via ${target}`, error);
     }
+  }
 
+  if (hasNotificationsEnabled(notifications)) {
     const actions: Array<Promise<void>> = [];
     const commit: string | undefined = context.payload.commits?.[0]?.id;
 

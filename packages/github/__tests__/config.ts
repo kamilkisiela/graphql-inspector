@@ -1,5 +1,6 @@
 import { createConfig } from '../src/helpers/config';
 
+// eslint-disable-next-line @typescript-eslint/no-empty-function
 const dummySetConfig = () => {};
 describe('multiple environments', () => {
   describe('when branch matches environment', () => {

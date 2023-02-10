@@ -14,21 +14,21 @@
   "dependencies": {
     "@graphql-inspector/core": "latest",
     "@graphql-inspector/github": "latest",
-    "@monaco-editor/react": "4.3.1",
-    "@theguild/components": "4.4.3",
-    "next": "13.0.6",
+    "@monaco-editor/react": "4.4.6",
+    "@theguild/components": "4.5.4",
+    "next": "13.1.6",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-flip-move": "3.0.4"
+    "react-flip-move": "3.0.5"
   },
   "devDependencies": {
-    "@theguild/algolia": "1.0.2",
+    "@theguild/algolia": "1.1.2",
     "@theguild/tailwind-config": "0.2.1",
-    "@types/node": "18.6.5",
-    "@types/react": "18.0.26",
+    "@types/node": "18.11.18",
+    "@types/react": "18.0.27",
     "cross-env": "7.0.3",
-    "next-sitemap": "3.1.21",
-    "typescript": "4.7.4"
+    "next-sitemap": "3.1.50",
+    "typescript": "4.9.4"
   },
   "browserslist": {
     "production": [

@@ -4,7 +4,6 @@
     "baseUrl": ".",
     "rootDir": "packages",
     "outDir": "dist",
-
     "target": "es2015",
     "module": "esnext",
     "moduleResolution": "node",

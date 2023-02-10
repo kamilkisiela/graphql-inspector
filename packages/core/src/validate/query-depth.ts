@@ -43,7 +43,7 @@ export function validateQueryDepth({
       `Query exceeds maximum depth of ${maxDepth}`,
       node,
       source,
-      node.loc && node.loc.start ? [node.loc.start] : undefined,
+      node.loc?.start ? [node.loc.start] : undefined,
     );
   }
 }

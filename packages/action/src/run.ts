@@ -10,20 +10,10 @@ import {
   printSchemaFromEndpoint,
   produceSchema,
 } from '@graphql-inspector/github';
-import { OctokitResponse } from '@octokit/types';
 import { buildClientSchema, buildSchema, GraphQLSchema, printSchema,Source } from 'graphql';
 import { batch } from './utils';
 
 type OctokitInstance = ReturnType<typeof github.getOctokit>;
-interface PullRequest {
-  base: { ref: string };
-  url: string;
-  id: number;
-  number: number;
-  state: "open" | "closed";
-  labels?: Array<{ name: string }>;
-}
-
 const CHECK_NAME = 'GraphQL Inspector';
 
 function getCurrentCommitSha() {
@@ -48,10 +38,14 @@ function getCurrentCommitSha() {
 }
 
 async function getAssociatedPullRequest(octokit: OctokitInstance, commitSha: string) {
-  const result: OctokitResponse<[PullRequest]> = await octokit.request('GET /repos/{owner}/{repo}/commits/{commit_sha}/pulls', {
+  const result = await octokit.request('GET /repos/{owner}/{repo}/commits/{commit_sha}/pulls', {
     ...github.context.repo,
-    commit_sha: commitSha
-  })  
+    commit_sha: commitSha,
+    mediaType: {
+      format: 'json',
+      previews: ['groot'],
+    }
+  })
   return result.data.length > 0 ? result.data[0] : null
 }
 
@@ -201,7 +195,7 @@ export async function run() {
   let annotations = action.annotations || [];
   const changes = action.changes || [];
 
-  core.setOutput('changes', `${changes.length || 0}`);
+  core.setOutput('changes', String(changes.length || 0));
   core.info(`Changes: ${changes.length || 0}`);
 
   const hasApprovedBreakingChangeLabel = pullRequest?.labels?.some(
@@ -280,11 +274,8 @@ function fileLoader({
     workspace?: string;
   }): Promise<string> {
     if (file.workspace) {
-      return readFileSync(resolve(file.workspace, file.path), {
-        encoding: 'utf-8',
-      });
+      return readFileSync(resolve(file.workspace, file.path), 'utf8');
     }
-
     const result: any = await octokit.graphql(query, {
       repo,
       owner,

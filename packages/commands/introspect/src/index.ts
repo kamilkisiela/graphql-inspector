@@ -1,18 +1,18 @@
 import { writeFileSync } from 'fs';
 import { extname, resolve } from 'path';
 import {
+  GraphQLSchema,
+  introspectionFromSchema,
+  lexicographicSortSchema,
+  printSchema,
+} from 'graphql';
+import {
   CommandFactory,
   createCommand,
   GlobalArgs,
   parseGlobalArgs,
 } from '@graphql-inspector/commands';
 import { Logger } from '@graphql-inspector/logger';
-import {
-  GraphQLSchema,
-  introspectionFromSchema,
-  lexicographicSortSchema,
-  printSchema,
-} from 'graphql';
 
 export { CommandFactory };
 
@@ -46,9 +46,7 @@ export function handler({
       throw new Error('Only .graphql, .gql and .json files are supported');
   }
 
-  writeFileSync(output, content!, {
-    encoding: 'utf-8',
-  });
+  writeFileSync(output, content!, 'utf8');
 
   Logger.success(`Saved to ${filepath}`);
 }

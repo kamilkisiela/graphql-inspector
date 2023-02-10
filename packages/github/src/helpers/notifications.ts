@@ -1,5 +1,5 @@
-import { Change, CriticalityLevel } from '@graphql-inspector/core';
 import axios from 'axios';
+import { Change, CriticalityLevel } from '@graphql-inspector/core';
 import { defaultConfigName } from './config';
 import { discordCoderize, filterChangesByLevel, slackCoderize } from './utils';
 

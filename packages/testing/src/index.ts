@@ -8,8 +8,9 @@ export function nonTTY(msg: string) {
 }
 
 declare global {
+  // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace jest {
-    interface Matchers<R, T> {
+    interface Matchers<R> {
       /**
        * Strips and normalizes logs
        */
