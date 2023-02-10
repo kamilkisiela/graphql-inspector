@@ -1,10 +1,7 @@
-import { execSync } from 'child_process';
-import { existsSync, readFileSync } from 'fs';
-import { extname, resolve } from 'path';
+import { extname } from 'path';
 import * as core from '@actions/core';
 import * as github from '@actions/github';
-import { ensureAbsolute } from '@graphql-inspector/commands';
-import { DiffRule, Rule } from '@graphql-inspector/core';
+import { Rule } from '@graphql-inspector/core';
 import {
   CheckConclusion,
   createSummary,
@@ -13,59 +10,12 @@ import {
   produceSchema,
 } from '@graphql-inspector/github';
 import { buildClientSchema, buildSchema, GraphQLSchema, printSchema, Source } from 'graphql';
-import { batch } from './utils';
+import { updateCheckRun } from './checks';
+import { fileLoader } from './files';
+import { getAssociatedPullRequest, getCurrentCommitSha } from './git';
+import { castToBoolean, getInputAsArray, resolveRule } from './utils';
 
-type OctokitInstance = ReturnType<typeof github.getOctokit>;
 const CHECK_NAME = 'GraphQL Inspector';
-
-function getCurrentCommitSha() {
-  const sha = execSync(`git rev-parse HEAD`).toString().trim();
-
-  try {
-    const msg = execSync(`git show ${sha} -s --format=%s`).toString().trim();
-    const PR_MSG = /Merge (\w+) into \w+/i;
-
-    if (PR_MSG.test(msg)) {
-      const result = PR_MSG.exec(msg);
-
-      if (result) {
-        return result[1];
-      }
-    }
-  } catch (e) {
-    //
-  }
-
-  return sha;
-}
-
-async function getAssociatedPullRequest(octokit: OctokitInstance, commitSha: string) {
-  const result = await octokit.request('GET /repos/{owner}/{repo}/commits/{commit_sha}/pulls', {
-    ...github.context.repo,
-    commit_sha: commitSha,
-    mediaType: {
-      format: 'json',
-      previews: ['groot'],
-    },
-  });
-  return result.data.length > 0 ? result.data[0] : null;
-}
-
-function getInputAsArray(name: string, options?: core.InputOptions): string[] {
-  return core
-    .getInput(name, options)
-    .split('\n')
-    .filter(x => x !== '');
-}
-
-function resolveRule(name: string): Rule | undefined {
-  const filepath = ensureAbsolute(name);
-  if (existsSync(filepath)) {
-    return require(filepath);
-  }
-
-  return DiffRule[name as keyof typeof DiffRule];
-}
 
 export async function run() {
   core.info(`GraphQL Inspector started`);
@@ -288,150 +238,4 @@ export async function run() {
 
     return core.setFailed(title);
   }
-}
-
-function fileLoader({
-  octokit,
-  owner,
-  repo,
-}: {
-  octokit: OctokitInstance;
-  owner: string;
-  repo: string;
-}) {
-  const query = /* GraphQL */ `
-    query GetFile($repo: String!, $owner: String!, $expression: String!) {
-      repository(name: $repo, owner: $owner) {
-        object(expression: $expression) {
-          ... on Blob {
-            isTruncated
-            oid
-            text
-          }
-        }
-      }
-    }
-  `;
-
-  return async function loadFile(file: {
-    ref: string;
-    path: string;
-    workspace?: string;
-  }): Promise<string> {
-    if (file.workspace) {
-      return readFileSync(resolve(file.workspace, file.path), 'utf8');
-    }
-    const result: any = await octokit.graphql(query, {
-      repo,
-      owner,
-      expression: `${file.ref}:${file.path}`,
-    });
-    core.info(`Query ${file.ref}:${file.path} from ${owner}/${repo}`);
-
-    try {
-      if (result?.repository?.object?.oid && result?.repository?.object?.isTruncated) {
-        const oid = result?.repository?.object?.oid;
-        const getBlobResponse = await octokit.git.getBlob({
-          owner,
-          repo,
-          file_sha: oid,
-        });
-
-        if (getBlobResponse?.data?.content) {
-          return Buffer.from(getBlobResponse?.data?.content, 'base64').toString('utf-8');
-        }
-
-        throw new Error('getBlobResponse.data.content is null');
-      }
-
-      if (result?.repository?.object?.text) {
-        if (result?.repository?.object?.isTruncated === false) {
-          return result.repository.object.text;
-        }
-
-        throw new Error('result.repository.object.text is truncated and oid is null');
-      }
-
-      throw new Error('result.repository.object.text is null');
-    } catch (error) {
-      console.log(result);
-      console.error(error);
-      throw new Error(`Failed to load '${file.path}' (ref: ${file.ref})`);
-    }
-  };
-}
-
-type UpdateCheckRunOptions = Required<
-  Pick<NonNullable<Parameters<OctokitInstance['checks']['update']>[0]>, 'conclusion' | 'output'>
->;
-
-async function updateCheckRun(
-  octokit: OctokitInstance,
-  checkId: number,
-  { conclusion, output }: UpdateCheckRunOptions,
-) {
-  core.info(`Updating check: ${checkId}`);
-
-  const { title, summary, annotations = [] } = output;
-  const batches = batch(annotations, 50);
-
-  core.info(`annotations to be sent: ${annotations.length}`);
-
-  await octokit.checks.update({
-    check_run_id: checkId,
-    completed_at: new Date().toISOString(),
-    status: 'completed',
-    ...github.context.repo,
-    conclusion,
-    output: {
-      title,
-      summary,
-    },
-  });
-
-  try {
-    await Promise.all(
-      batches.map(async chunk => {
-        await octokit.checks.update({
-          check_run_id: checkId,
-          ...github.context.repo,
-          output: {
-            title,
-            summary,
-            annotations: chunk,
-          },
-        } as any);
-        core.info(`annotations sent (${chunk.length})`);
-      }),
-    );
-  } catch (error) {
-    core.error(`failed to send annotations: ${error}`);
-    throw error;
-  }
-
-  // Fail
-  if (conclusion === CheckConclusion.Failure) {
-    return core.setFailed(output.title!);
-  }
-
-  // Success or Neutral
-}
-
-/**
- * Treats non-falsy value as true
- */
-function castToBoolean(value: string | boolean, defaultValue?: boolean): boolean {
-  if (typeof value === 'boolean') {
-    return value;
-  }
-
-  if (value === 'true' || value === 'false') {
-    return value === 'true';
-  }
-
-  if (typeof defaultValue === 'boolean') {
-    return defaultValue;
-  }
-
-  return true;
 }

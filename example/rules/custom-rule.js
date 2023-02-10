@@ -1,5 +1,6 @@
 module.exports = ({ changes }) => {
-  changes.forEach(c => console.log(c));
-
-  return changes;
+  return changes.map(c => ({
+    ...c,
+    criticality: { ...c.criticality, level: 'DANGEROUS' },
+  }));
 };
