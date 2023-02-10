@@ -5,6 +5,6 @@ import { run } from './run';
   userAgent: 'node.js',
 };
 
-run().catch((e) => {
+run().catch(e => {
   core.setFailed(e.message || e);
 });

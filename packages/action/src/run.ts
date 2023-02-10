@@ -1,10 +1,10 @@
 import { execSync } from 'child_process';
 import { existsSync, readFileSync } from 'fs';
-import { extname,resolve } from 'path';
+import { extname, resolve } from 'path';
 import * as core from '@actions/core';
 import * as github from '@actions/github';
 import { ensureAbsolute } from '@graphql-inspector/commands';
-import { DiffRule, Rule } from "@graphql-inspector/core";
+import { DiffRule, Rule } from '@graphql-inspector/core';
 import {
   CheckConclusion,
   createSummary,
@@ -46,19 +46,16 @@ async function getAssociatedPullRequest(octokit: OctokitInstance, commitSha: str
     mediaType: {
       format: 'json',
       previews: ['groot'],
-    }
-  })
-  return result.data.length > 0 ? result.data[0] : null
+    },
+  });
+  return result.data.length > 0 ? result.data[0] : null;
 }
 
-function getInputAsArray (
-  name: string,
-  options?: core.InputOptions
-): string[] {
+function getInputAsArray(name: string, options?: core.InputOptions): string[] {
   return core
-      .getInput(name, options)
-      .split("\n")
-      .filter(x => x !== "");
+    .getInput(name, options)
+    .split('\n')
+    .filter(x => x !== '');
 }
 
 function resolveRule(name: string): Rule | undefined {
@@ -86,19 +83,16 @@ export async function run() {
   let workspace = process.env.GITHUB_WORKSPACE;
 
   if (!workspace) {
-    return core.setFailed(
-      'Failed to resolve workspace directory. GITHUB_WORKSPACE is missing',
-    );
+    return core.setFailed('Failed to resolve workspace directory. GITHUB_WORKSPACE is missing');
   }
 
   const useMerge = castToBoolean(core.getInput('experimental_merge'), true);
   const useAnnotations = castToBoolean(core.getInput('annotations'));
   const failOnBreaking = castToBoolean(core.getInput('fail-on-breaking'));
   const endpoint: string = core.getInput('endpoint');
-  const approveLabel: string =
-    core.getInput('approve-label') || 'approved-breaking-change';
-  const rulesList = getInputAsArray("rules") || [];
-  const onUsage = core.getInput('getUsage')
+  const approveLabel: string = core.getInput('approve-label') || 'approved-breaking-change';
+  const rulesList = getInputAsArray('rules') || [];
+  const onUsage = core.getInput('getUsage');
 
   const octokit = github.getOctokit(token);
 
@@ -106,7 +100,7 @@ export async function run() {
   const { owner, repo } = github.context.repo;
 
   // pull request
-  const pullRequest = await getAssociatedPullRequest(octokit, commitSha)
+  const pullRequest = await getAssociatedPullRequest(octokit, commitSha);
 
   core.info(`Creating a check named "${checkName}"`);
 
@@ -135,30 +129,32 @@ export async function run() {
     return core.setFailed('Failed to find `schema` variable');
   }
 
-  const rules = rulesList.map((r) => {
-    const rule = resolveRule(r);
+  const rules = rulesList
+    .map(r => {
+      const rule = resolveRule(r);
 
-    if (!rule) {
-      core.error(`Rule ${r} is invalid. Did you specify the correct path?`)
-    }
+      if (!rule) {
+        core.error(`Rule ${r} is invalid. Did you specify the correct path?`);
+      }
 
-    return rule
-  }).filter(Boolean) as Rule[]
+      return rule;
+    })
+    .filter(Boolean) as Rule[];
 
   // Different lengths mean some rules were resolved to undefined
   if (rules.length !== rulesList.length) {
-    return core.setFailed("Some rules weren't recognised")
+    return core.setFailed("Some rules weren't recognised");
   }
 
   let config;
 
   if (onUsage) {
-    const checkUsage = require(onUsage)
+    const checkUsage = require(onUsage);
 
     if (checkUsage) {
       config = {
-        checkUsage
-      }
+        checkUsage,
+      };
     }
   }
 
@@ -205,15 +201,12 @@ export async function run() {
   let newSchema: GraphQLSchema;
   let sources: { new: Source; old: Source };
 
-  if (extname(schemaPath.toLowerCase()) === ".json") {
+  if (extname(schemaPath.toLowerCase()) === '.json') {
     oldSchema = endpoint ? buildSchema(oldFile) : buildClientSchema(JSON.parse(oldFile));
     newSchema = buildClientSchema(JSON.parse(newFile));
 
     sources = {
-      old: new Source(
-        printSchema(oldSchema),
-        endpoint || `${schemaRef}:${schemaPath}`,
-      ),
+      old: new Source(printSchema(oldSchema), endpoint || `${schemaRef}:${schemaPath}`),
       new: new Source(printSchema(newSchema), schemaPath),
     };
   } else {
@@ -240,7 +233,7 @@ export async function run() {
     schemas,
     sources,
     rules,
-    config
+    config,
   });
 
   let conclusion = action.conclusion;
@@ -337,24 +330,22 @@ function fileLoader({
 
     try {
       if (result?.repository?.object?.oid && result?.repository?.object?.isTruncated) {
-        const oid = result?.repository?.object?.oid
+        const oid = result?.repository?.object?.oid;
         const getBlobResponse = await octokit.git.getBlob({
           owner,
           repo,
           file_sha: oid,
         });
 
-        if(getBlobResponse?.data?.content) {
-          return Buffer.from(getBlobResponse?.data?.content, 'base64').toString('utf-8')
+        if (getBlobResponse?.data?.content) {
+          return Buffer.from(getBlobResponse?.data?.content, 'base64').toString('utf-8');
         }
 
         throw new Error('getBlobResponse.data.content is null');
       }
 
-      if (
-        result?.repository?.object?.text
-      ) {
-        if(result?.repository?.object?.isTruncated === false) {
+      if (result?.repository?.object?.text) {
+        if (result?.repository?.object?.isTruncated === false) {
           return result.repository.object.text;
         }
 
@@ -371,10 +362,7 @@ function fileLoader({
 }
 
 type UpdateCheckRunOptions = Required<
-  Pick<
-    NonNullable<Parameters<OctokitInstance['checks']['update']>[0]>,
-    'conclusion' | 'output'
-  >
+  Pick<NonNullable<Parameters<OctokitInstance['checks']['update']>[0]>, 'conclusion' | 'output'>
 >;
 
 async function updateCheckRun(
@@ -403,7 +391,7 @@ async function updateCheckRun(
 
   try {
     await Promise.all(
-      batches.map(async (chunk) => {
+      batches.map(async chunk => {
         await octokit.checks.update({
           check_run_id: checkId,
           ...github.context.repo,
@@ -432,10 +420,7 @@ async function updateCheckRun(
 /**
  * Treats non-falsy value as true
  */
-function castToBoolean(
-  value: string | boolean,
-  defaultValue?: boolean,
-): boolean {
+function castToBoolean(value: string | boolean, defaultValue?: boolean): boolean {
   if (typeof value === 'boolean') {
     return value;
   }
