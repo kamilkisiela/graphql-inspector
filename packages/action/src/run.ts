@@ -1,4 +1,5 @@
 import { extname } from 'path';
+import { buildClientSchema, buildSchema, GraphQLSchema, printSchema, Source } from 'graphql';
 import * as core from '@actions/core';
 import * as github from '@actions/github';
 import { Rule } from '@graphql-inspector/core';
@@ -9,7 +10,6 @@ import {
   printSchemaFromEndpoint,
   produceSchema,
 } from '@graphql-inspector/github';
-import { buildClientSchema, buildSchema, GraphQLSchema, printSchema, Source } from 'graphql';
 import { updateCheckRun } from './checks';
 import { fileLoader } from './files';
 import { getAssociatedPullRequest, getCurrentCommitSha } from './git';
