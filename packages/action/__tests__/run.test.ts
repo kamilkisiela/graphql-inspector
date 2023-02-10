@@ -3,7 +3,7 @@ import * as github from '@actions/github';
 import { CheckConclusion } from '@graphql-inspector/github';
 import { updateCheckRun } from '../src/checks';
 import { fileLoader } from '../src/files';
-import { getAssociatedPullRequest, getCurrentCommitSha } from '../src/git';
+import { getAssociatedPullRequest } from '../src/git';
 import { run } from '../src/run';
 
 jest.mock('../src/checks');
@@ -14,9 +14,6 @@ const mockUpdateCheckRun = updateCheckRun as jest.MockedFunction<typeof updateCh
 const mockFileLoader = fileLoader as jest.MockedFunction<typeof fileLoader>;
 const mockGetAssociatedPullRequest = getAssociatedPullRequest as jest.MockedFunction<
   typeof getAssociatedPullRequest
->;
-const mockGetCurrentCommitSha = getCurrentCommitSha as jest.MockedFunction<
-  typeof getCurrentCommitSha
 >;
 
 describe('Inspector Action', () => {
