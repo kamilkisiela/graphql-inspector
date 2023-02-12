@@ -2338,10 +2338,10 @@
     eslint-plugin-unicorn "^45.0.2"
     eslint-plugin-yml "^1.4.0"
 
-"@theguild/prettier-config@1.1.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@theguild/prettier-config/-/prettier-config-1.1.1.tgz#c0961df348a333e0c41fc99da16d32a179f157ff"
-  integrity sha512-tcMAzhyWLORFKCoG97uYGyRW2HIzroba2ie+V5tsOGRlgAesv+86cPVf6DSfb6J/KHqDLsu8jU0iaBgkjgCERw==
+"@theguild/prettier-config@1.1.2":
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/@theguild/prettier-config/-/prettier-config-1.1.2.tgz#c092f8edde35014d9aea3371d28517c6f837a249"
+  integrity sha512-G4zChCRSSv6B9usDnJNkJOL6as/TmfP6LMLbmpnbATVARzArY4nGTRFD5NQBH64SbVLrmfvtbOGJJIBUtDOU+w==
   dependencies:
     "@trivago/prettier-plugin-sort-imports" "^4.0.0"
     prettier-plugin-pkg "^0.17.1"
