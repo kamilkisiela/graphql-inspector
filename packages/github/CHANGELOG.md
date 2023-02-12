@@ -1,5 +1,18 @@
 # @graphql-inspector/github
 
+## 3.4.3
+
+### Patch Changes
+
+- [#2279](https://github.com/kamilkisiela/graphql-inspector/pull/2279)
+  [`5147c450`](https://github.com/kamilkisiela/graphql-inspector/commit/5147c4501f75a99092c5e0799cc2cdeb9e77485d)
+  Thanks [@renovate](https://github.com/apps/renovate)! - dependencies updates:
+  - Updated dependency [`axios@0.27.2` ↗︎](https://www.npmjs.com/package/axios/v/0.27.2) (from
+    `0.21.4`, in `dependencies`)
+- Updated dependencies
+  [[`dd840130`](https://github.com/kamilkisiela/graphql-inspector/commit/dd8401300512497adb4301e1f2004865941b132f)]:
+  - @graphql-inspector/core@3.5.1
+
 ## 3.4.2
 
 ### Patch Changes
