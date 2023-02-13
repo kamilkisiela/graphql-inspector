@@ -66,7 +66,7 @@
     "graphql-config": "4.4.1",
     "jest": "27.5.1",
     "jsesc": "3.0.2",
-    "lint-staged": "13.1.1",
+    "lint-staged": "13.1.2",
     "lodash": "4.17.21",
     "nock": "13.3.0",
     "prettier": "2.8.4",
