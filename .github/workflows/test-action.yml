@@ -11,6 +11,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@master
 
-      - uses: master
+      - uses: feat/rules-in-action-diff
         with:
           schema: "master:schema.graphql"
