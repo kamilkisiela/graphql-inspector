@@ -1,6 +1,6 @@
 {
   "name": "@graphql-inspector/ci",
-  "version": "3.4.0",
+  "version": "3.4.1",
   "description": "Tooling for GraphQL. Compare GraphQL Schemas, check documents, find breaking changes, find similar types.",
   "repository": {
     "type": "git",
@@ -48,10 +48,10 @@
     "graphql": "^14.0.0 || ^15.0.0 || ^16.0.0"
   },
   "dependencies": {
-    "@graphql-inspector/commands": "3.4.0",
+    "@graphql-inspector/commands": "3.4.1",
     "@graphql-inspector/config": "3.4.0",
-    "@graphql-inspector/loaders": "3.4.0",
-    "@graphql-inspector/logger": "3.4.0",
+    "@graphql-inspector/loaders": "3.4.1",
+    "@graphql-inspector/logger": "3.4.1",
     "tslib": "^2.0.0",
     "yargs": "17.2.1"
   },

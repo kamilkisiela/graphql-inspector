@@ -1,6 +1,6 @@
 {
   "name": "@graphql-inspector/docs-command",
-  "version": "3.4.0",
+  "version": "3.4.1",
   "description": "Open GraphQL Inspector Documentation",
   "repository": {
     "type": "git",
@@ -39,7 +39,7 @@
     "graphql": "^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0"
   },
   "dependencies": {
-    "@graphql-inspector/commands": "3.4.0",
+    "@graphql-inspector/commands": "3.4.1",
     "open": "8.2.1",
     "tslib": "^2.0.0"
   },
