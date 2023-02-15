@@ -42,7 +42,7 @@
     "@graphql-inspector/commands": "3.4.1",
     "@graphql-inspector/logger": "3.4.1",
     "@graphql-yoga/node": "2.0.0",
-    "open": "8.2.1",
+    "open": "8.4.1",
     "tslib": "^2.0.0"
   },
   "publishConfig": {
