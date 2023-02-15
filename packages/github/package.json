@@ -52,7 +52,7 @@
   "dependencies": {
     "@graphql-inspector/core": "3.5.1",
     "@whatwg-node/fetch": "0.8.1",
-    "dataloader": "2.0.0",
+    "dataloader": "2.2.2",
     "js-yaml": "4.1.0",
     "tslib": "^2.0.0"
   },
