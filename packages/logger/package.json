@@ -1,6 +1,6 @@
 {
   "name": "@graphql-inspector/logger",
-  "version": "3.4.1",
+  "version": "3.4.2",
   "description": "Logger for GraphQL Inspector",
   "repository": {
     "type": "git",

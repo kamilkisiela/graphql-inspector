@@ -1,5 +1,15 @@
 # @graphql-inspector/diff-command
 
+## 3.4.3
+
+### Patch Changes
+
+- Updated dependencies
+  [[`2f1ca44f`](https://github.com/kamilkisiela/graphql-inspector/commit/2f1ca44f9283aee6c35feb95d384c1bf8e71cfb9),
+  [`a7b691fc`](https://github.com/kamilkisiela/graphql-inspector/commit/a7b691fcce2545b9369c88b53f067216053fe2e1),
+  [`6e141f8b`](https://github.com/kamilkisiela/graphql-inspector/commit/6e141f8ba332347f4804bc06df764cb263163ef3)]:
+  - @graphql-inspector/logger@3.4.2
+
 ## 3.4.2
 
 ### Patch Changes
