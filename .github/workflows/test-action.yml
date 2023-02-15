@@ -11,6 +11,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@master
 
-      - uses: "Tohaker/graphql-inspector@rules-in-action-diff"
+      - uses: Tohaker/graphql-inspector@v1
         with:
           schema: "master:schema.graphql"
