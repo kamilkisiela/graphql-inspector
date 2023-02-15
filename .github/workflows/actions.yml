@@ -1,6 +1,5 @@
 name: Integration
-on:
-[push]
+on: [push]
 jobs:
   Action:
     name: Test Inspector Action
@@ -22,7 +21,7 @@ jobs:
         id: inspector
         with:
           experimental_merge: false
-          schema: 'master:example/schemas/schema.graphql'
+          schema: "master:example/schemas/schema.graphql"
           rules: |
             suppressRemovalOfDeprecatedField
             ./example/rules/custom-rule.js
