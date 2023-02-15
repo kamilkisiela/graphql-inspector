@@ -24,7 +24,7 @@ to and even build tools on top of it.
 ## Installation
 
 ```bash
-pnpm install @graphql-inspector/core
+pnpm i @graphql-inspector/core
 ```
 
 ## Examples

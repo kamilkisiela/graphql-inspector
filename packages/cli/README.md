@@ -28,10 +28,10 @@ to and even build tools on top of it.
 
 ```bash
 # CLI
-pnpm install @graphql-inspector/cli
+pnpm i @graphql-inspector/cli
 
 # Core API for programatic usage
-pnpm install @graphql-inspector/core
+pnpm i @graphql-inspector/core
 ```
 
 ### Compare schemas
