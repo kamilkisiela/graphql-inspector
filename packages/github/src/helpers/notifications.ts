@@ -1,5 +1,5 @@
-import axios from 'axios';
 import { Change, CriticalityLevel } from '@graphql-inspector/core';
+import { fetch } from '@whatwg-node/fetch';
 import { defaultConfigName } from './config';
 import { discordCoderize, filterChangesByLevel, slackCoderize } from './utils';
 
@@ -41,10 +41,12 @@ export async function notifyWithWebhook({
     })),
   };
 
-  await axios.post(url, event, {
+  await fetch(url, {
+    method: 'POST',
     headers: {
       'content-type': 'application/json',
     },
+    body: JSON.stringify(event),
   });
 }
 
@@ -79,10 +81,12 @@ export async function notifyWithSlack({
     attachments: createAttachments(changes),
   };
 
-  await axios.post(url, event, {
+  await fetch(url, {
+    method: 'POST',
     headers: {
       'content-type': 'application/json',
     },
+    body: JSON.stringify(event),
   });
 }
 
@@ -117,10 +121,12 @@ export async function notifyWithDiscord({
     embeds: createDiscordEmbeds(changes),
   };
 
-  await axios.post(url, event, {
+  await fetch(url, {
+    method: 'POST',
     headers: {
       'content-type': 'application/json',
     },
+    body: JSON.stringify(event),
   });
 }
 

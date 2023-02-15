@@ -1,4 +1,5 @@
 import { useCallback, useState } from 'react';
+import { fetch } from '@whatwg-node/fetch';
 
 type State = {
   complete: boolean;
