@@ -1,0 +1,16 @@
+name: Test Action
+
+on: [push]
+
+jobs:
+  test:
+    name: Check Schema
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+
+      - uses: Tohaker/graphql-inspector@rules-in-action-diff
+        with:
+          schema: "master:schema.graphql"
