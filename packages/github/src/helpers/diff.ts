@@ -1,6 +1,6 @@
-import axios from 'axios';
 import { GraphQLSchema, Source } from 'graphql';
 import { Change, CriticalityLevel, diff as diffSchemas, Rule } from '@graphql-inspector/core';
+import { fetch } from '@whatwg-node/fetch';
 import { getLocationByPath } from './location';
 import { ActionResult, Annotation, AnnotationLevel, CheckConclusion, PullRequest } from './types';
 import { isNil, parseEndpoint } from './utils';
@@ -126,11 +126,13 @@ async function interceptChanges(
 ): Promise<DiffInterceptorResponse> {
   const endpoint = parseEndpoint(interceptor);
 
-  const { data } = await axios.request({
-    url: endpoint.url,
+  const response = await fetch(endpoint.url, {
     method: endpoint.method,
-    data: payload,
+    body: JSON.stringify(payload),
+    headers: { 'Content-Type': 'application/json' },
   });
+
+  const data = await response.json();
 
   return data;
 }

@@ -51,7 +51,7 @@
   },
   "dependencies": {
     "@graphql-inspector/core": "3.5.1",
-    "axios": "0.27.2",
+    "@whatwg-node/fetch": "0.8.1",
     "dataloader": "2.0.0",
     "js-yaml": "4.1.0",
     "tslib": "^2.0.0"

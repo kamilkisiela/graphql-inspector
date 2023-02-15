@@ -1,8 +1,8 @@
-import axios from 'axios';
 import Dataloader from 'dataloader';
 import { buildClientSchema, getIntrospectionQuery, printSchema, Source } from 'graphql';
 import yaml from 'js-yaml';
 import * as probot from 'probot';
+import { fetch } from '@whatwg-node/fetch';
 import { Endpoint, NormalizedEnvironment, SchemaPointer } from './config';
 import { isNil, objectFromEntries, parseEndpoint } from './utils';
 
@@ -181,15 +181,17 @@ export function createConfigLoader(
 export async function printSchemaFromEndpoint(endpoint: Endpoint) {
   const config = parseEndpoint(endpoint);
 
-  const { data: response } = await axios.request({
+  const response = await fetch(config.url, {
     method: config.method,
-    url: config.url,
     headers: config.headers,
-    data: {
+    body: JSON.stringify({
       query: getIntrospectionQuery().replace(/\s+/g, ' ').trim(),
-    },
+    }),
   });
-  const introspection = response.data;
+
+  const { data } = await response.json();
+
+  const introspection = data;
 
   return printSchema(
     buildClientSchema(introspection, {
