@@ -72,7 +72,7 @@ config:
   # Font family
   # You can use any font that is installed on your machine
   # in CSS-like syntax
-  fontFamily: 'Monaco, Lucida Console, Ubuntu Mono, Monospace'
+  fontFamily: "Monaco, Lucida Console, Ubuntu Mono, Monospace"
 
   # The size of the font
   fontSize: 16
@@ -86,24 +86,24 @@ config:
   # Theme
   theme:
     background: transparent
-    foreground: '#afafaf'
-    cursor: '#c7c7c7'
-    black: '#232628'
-    red: '#fc4384'
-    green: '#b3e33b'
-    yellow: '#ffa727'
-    blue: '#75dff2'
-    magenta: '#ae89fe'
-    cyan: '#708387'
-    white: '#d5d5d0'
-    brightBlack: '#626566'
-    brightRed: '#ff7fac'
-    brightGreen: '#c8ed71'
-    brightYellow: '#ebdf86'
-    brightBlue: '#75dff2'
-    brightMagenta: '#ae89fe'
-    brightCyan: '#b1c6ca'
-    brightWhite: '#f9f9f4'
+    foreground: "#afafaf"
+    cursor: "#c7c7c7"
+    black: "#232628"
+    red: "#fc4384"
+    green: "#b3e33b"
+    yellow: "#ffa727"
+    blue: "#75dff2"
+    magenta: "#ae89fe"
+    cyan: "#708387"
+    white: "#d5d5d0"
+    brightBlack: "#626566"
+    brightRed: "#ff7fac"
+    brightGreen: "#c8ed71"
+    brightYellow: "#ebdf86"
+    brightBlue: "#75dff2"
+    brightMagenta: "#ae89fe"
+    brightCyan: "#b1c6ca"
+    brightWhite: "#f9f9f4"
 
 # Records, feel free to edit them
 records:
@@ -127,7 +127,7 @@ records:
   - delay: 17
     content:
       "\e[2K\e[1G\e[31merror\e[39m Command failed with exit code 1.\r\n\e[2K\e[1G\e[34minfo\e[39m
-      Visit \e[1mhttps://yarnpkg.com/en/docs/cli/run\e[22m for documentation about this command.\r\n"
+      Visit \e[1mhttps://pnpm.js.org/docs/en/pnpm-run.html\e[22m for documentation about this command.\r\n"
   - delay: 3000
     content: clear
   - delay: 100
@@ -149,8 +149,7 @@ records:
   - delay: 242
     content: "\r\n"
   - delay: 162
-    content:
-      "\r\nDetected 1 invalid document:\r\n\r\n\e[91merror\e[39m in
+    content: "\r\nDetected 1 invalid document:\r\n\r\n\e[91merror\e[39m in
       ./documents/post.graphql:\r\n\r\n  - Cannot query field \e[1mcreatedAtSomePoint\e[22m on type
       \e[1mPost\e[22m. Did you mean \e[1mcreatedAt\e[22m? \r\n\r\n\r\n\r\nDetected 1 document with
       deprecated fields:\r\n\r\n\e[93mwarn\e[39m in ./documents/post.graphql:\r\n\r\n  - The field
@@ -158,7 +157,7 @@ records:
   - delay: 18
     content:
       "\e[2K\e[1G\e[31merror\e[39m Command failed with exit code 1.\r\n\e[2K\e[1G\e[34minfo\e[39m
-      Visit \e[1mhttps://yarnpkg.com/en/docs/cli/run\e[22m for documentation about this command.\r\n"
+      Visit \e[1mhttps://pnpm.js.org/docs/en/pnpm-run.html\e[22m for documentation about this command.\r\n"
   - delay: 3000
     content: clear
   - delay: 100

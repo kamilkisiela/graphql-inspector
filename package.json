@@ -11,12 +11,6 @@
   },
   "license": "MIT",
   "private": true,
-  "workspaces": [
-    "packages/*",
-    "packages/commands/*",
-    "packages/loaders/*",
-    "website"
-  ],
   "keywords": [
     "graphql",
     "graphql-inspector",
@@ -33,9 +27,9 @@
     "lint:prettier": "prettier --cache --check .",
     "prebuild": "rimraf \"packages/**/dist/\"",
     "precommit": "lint-staged",
-    "prerelease": "yarn action",
+    "prerelease": "pnpm action",
     "prettier": "prettier --cache --write --list-different .",
-    "release": "yarn build && changeset publish",
+    "release": "pnpm build && changeset publish",
     "release:canary": "npm run release -- canary",
     "test": "jest"
   },

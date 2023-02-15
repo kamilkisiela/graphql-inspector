@@ -328,7 +328,7 @@ type UpdateCheckRunOptions = Required<
 async function updateCheckRun(
   octokit: OctokitInstance,
   checkId: number,
-  { conclusion, output }: UpdateCheckRunOptions,
+  { conclusion, output }: UpdateCheckRunOptions | any,
 ) {
   core.info(`Updating check: ${checkId}`);
 

@@ -38,10 +38,10 @@
     "build": "tsc",
     "clean": "rm -rf dist/",
     "deploy": "now --docker",
-    "dev": "yarn build && yarn start",
-    "prebuild": "yarn clean",
+    "dev": "pnpm build && pnpm start",
+    "prebuild": "pnpm clean",
     "prepack": "bob prepack",
-    "prepublishOnly": "yarn build",
+    "prepublishOnly": "pnpm build",
     "start": "probot run ./dist/index.js",
     "test": "jest"
   },

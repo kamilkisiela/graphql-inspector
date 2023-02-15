@@ -45,8 +45,8 @@
     "build": "tsc",
     "clean": "rm -rf dist/",
     "deploy": "now --docker",
-    "prebuild": "yarn clean",
-    "prepublishOnly": "yarn build",
+    "prebuild": "pnpm clean",
+    "prepublishOnly": "pnpm build",
     "prepack": "bob prepack"
   },
   "dependencies": {
@@ -57,9 +57,6 @@
     "js-yaml": "4.1.0",
     "probot": "11.4.1",
     "tslib": "^2.0.0"
-  },
-  "devDependencies": {
-    "@types/js-yaml": "4.0.5"
   },
   "publishConfig": {
     "directory": "dist",

@@ -4,7 +4,7 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "analyze": "cross-env ANALYZE=true yarn build",
+    "analyze": "cross-env ANALYZE=true pnpm build",
     "build": "next build && next-sitemap --config next-sitemap.config.cjs",
     "dev": "next dev",
     "export": "next export",

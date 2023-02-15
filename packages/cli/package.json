@@ -38,9 +38,9 @@
   "scripts": {
     "build": "tsc",
     "clean": "rm -rf dist/",
-    "prebuild": "yarn clean",
+    "prebuild": "pnpm clean",
     "prepack": "bob prepack",
-    "prepublishOnly": "yarn build",
+    "prepublishOnly": "pnpm build",
     "test": "jest"
   },
   "peerDependencies": {

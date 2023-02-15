@@ -28,10 +28,10 @@ to and even build tools on top of it.
 
 ```bash
 # CLI
-yarn add @graphql-inspector/cli
+pnpm install @graphql-inspector/cli
 
 # Core API for programatic usage
-yarn add @graphql-inspector/core
+pnpm install @graphql-inspector/core
 ```
 
 ### Compare schemas
@@ -120,7 +120,7 @@ Audit your documents for useful metrics such as query depth, directive count and
 Not available
 
 ```
-$ yarn graphql-inspector audit "packages/**/*.graphql|packages/**/*.ts(x)"
+$ pnpm graphql-inspector audit "packages/**/*.graphql|packages/**/*.ts(x)"
 
 Maximum depth is 16
 Maximum alias amount is 3
@@ -128,7 +128,7 @@ Maximum directive amount is 6
 ```
 
 ```
-$ yarn graphql-inspector audit "packages/**/*.graphql|packages/**/*.ts(x)" --detail
+$ pnpm graphql-inspector audit "packages/**/*.graphql|packages/**/*.ts(x)" --detail
 
 ┌────────────────┬───────┬─────────┬────────────┐
 │ Operation Name │ Depth │ Aliases │ Directives │
@@ -173,7 +173,7 @@ Have a per-repository, self-hosted GraphQL Inspector service or deploy it with D
 
 ```bash
 # install
-yarn global add @graphql-inspector/actions
+pnpm add --global @graphql-inspector/actions
 
 # use
 
