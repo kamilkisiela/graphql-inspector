@@ -1,6 +1,6 @@
 name: Test Action
 
-on: [push, pull_request]
+on: [push, pull_request, fork]
 
 jobs:
   test:
@@ -11,6 +11,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@master
 
-      - uses: feat/rules-in-action-diff
+      - uses: master
         with:
           schema: "master:schema.graphql"
