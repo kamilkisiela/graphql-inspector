@@ -1,6 +1,6 @@
 {
   "name": "@graphql-inspector/cli",
-  "version": "3.4.3",
+  "version": "3.4.4",
   "description": "Tooling for GraphQL. Compare GraphQL Schemas, check documents, find breaking changes, find similar types.",
   "repository": {
     "type": "git",
@@ -51,7 +51,7 @@
     "@graphql-inspector/code-loader": "3.4.0",
     "@graphql-inspector/commands": "3.4.1",
     "@graphql-inspector/config": "3.4.0",
-    "@graphql-inspector/coverage-command": "3.4.2",
+    "@graphql-inspector/coverage-command": "3.4.3",
     "@graphql-inspector/diff-command": "3.4.2",
     "@graphql-inspector/docs-command": "3.4.1",
     "@graphql-inspector/git-loader": "3.4.0",

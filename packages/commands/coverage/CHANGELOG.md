@@ -1,5 +1,14 @@
 # @graphql-inspector/coverage-command
 
+## 3.4.3
+
+### Patch Changes
+
+- [#2184](https://github.com/kamilkisiela/graphql-inspector/pull/2184)
+  [`1118f360`](https://github.com/kamilkisiela/graphql-inspector/commit/1118f3604a68db20a6a3a9013ef8a954034362f3)
+  Thanks [@velias](https://github.com/velias)! - coverage: overall statistics about coverage
+  provided
+
 ## 3.4.2
 
 ### Patch Changes
