@@ -1,5 +1,25 @@
 # @graphql-inspector/github
 
+## 3.4.4
+
+### Patch Changes
+
+- [#2316](https://github.com/kamilkisiela/graphql-inspector/pull/2316)
+  [`cadd5b50`](https://github.com/kamilkisiela/graphql-inspector/commit/cadd5b501c293eb443d031d097e30b0c109d895c)
+  Thanks [@renovate](https://github.com/apps/renovate)! - dependencies updates:
+
+  - Updated dependency [`dataloader@2.2.2` ↗︎](https://www.npmjs.com/package/dataloader/v/2.2.2)
+    (from `2.0.0`, in `dependencies`)
+
+- [#2334](https://github.com/kamilkisiela/graphql-inspector/pull/2334)
+  [`8f353c10`](https://github.com/kamilkisiela/graphql-inspector/commit/8f353c10e95651d47649b2a30e7ced69d4248ae6)
+  Thanks [@TuvalSimha](https://github.com/TuvalSimha)! - dependencies updates:
+  - Added dependency
+    [`@whatwg-node/fetch@0.8.1` ↗︎](https://www.npmjs.com/package/@whatwg-node/fetch/v/0.8.1) (to
+    `dependencies`)
+  - Removed dependency [`axios@0.27.2` ↗︎](https://www.npmjs.com/package/axios/v/0.27.2) (from
+    `dependencies`)
+
 ## 3.4.3
 
 ### Patch Changes
