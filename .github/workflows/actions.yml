@@ -1,11 +1,6 @@
 name: Integration
 on:
-  push:
-    branches-ignore:
-      - master
-  pull_request:
-    branches-ignore:
-      - master
+[push]
 jobs:
   Action:
     name: Test Inspector Action
