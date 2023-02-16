@@ -1,6 +1,6 @@
 {
   "name": "@graphql-inspector/github",
-  "version": "3.4.4",
+  "version": "3.4.5",
   "description": "GraphQL Inspector's Probot. Compare GraphQL Schemas, check documents, find breaking changes, find similar types.",
   "repository": {
     "type": "git",
@@ -50,7 +50,7 @@
     "probot": "^9.0.1 || ^10.0.0 || ^11.0.0"
   },
   "dependencies": {
-    "@graphql-inspector/core": "3.5.1",
+    "@graphql-inspector/core": "4.0.0",
     "@whatwg-node/fetch": "0.8.1",
     "dataloader": "2.2.2",
     "js-yaml": "4.1.0",

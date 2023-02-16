@@ -1,5 +1,19 @@
 # @graphql-inspector/coverage-command
 
+## 4.0.0
+
+### Major Changes
+
+- [#2341](https://github.com/kamilkisiela/graphql-inspector/pull/2341)
+  [`b17ee0a3`](https://github.com/kamilkisiela/graphql-inspector/commit/b17ee0a380a7153bf4c0a1a23e5a725726e51d0f)
+  Thanks [@velias](https://github.com/velias)! - fix: core bump to patch coverage
+
+### Patch Changes
+
+- Updated dependencies
+  [[`b17ee0a3`](https://github.com/kamilkisiela/graphql-inspector/commit/b17ee0a380a7153bf4c0a1a23e5a725726e51d0f)]:
+  - @graphql-inspector/core@4.0.0
+
 ## 3.4.4
 
 ### Patch Changes
