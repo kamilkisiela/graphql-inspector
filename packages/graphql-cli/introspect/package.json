@@ -39,7 +39,7 @@
   "dependencies": {
     "@graphql-cli/common": "4.1.0",
     "@graphql-cli/loaders": "4.1.0",
-    "@graphql-inspector/introspect-command": "3.4.1",
+    "@graphql-inspector/introspect-command": "3.4.3",
     "tslib": "^2.0.0"
   },
   "sideEffects": false,
