@@ -24,6 +24,7 @@
     "build": "tsc && bob build",
     "bundle": "webpack",
     "lint": "eslint --cache --ignore-path .gitignore .",
+    "lint:fix": "pnpm lint --fix",
     "lint:prettier": "prettier --cache --check .",
     "prebuild": "rimraf \"packages/**/dist/\"",
     "precommit": "lint-staged",
