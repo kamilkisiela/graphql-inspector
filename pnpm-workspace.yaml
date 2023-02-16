@@ -1,5 +1,5 @@
 packages:
-  - "packages/*"
-  - "packages/commands/*"
-  - "packages/loaders/*"
-  - "website"
+  - 'packages/*'
+  - 'packages/commands/*'
+  - 'packages/loaders/*'
+  - website
