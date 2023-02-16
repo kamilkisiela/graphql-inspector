@@ -52,11 +52,11 @@ jobs:
       - name: Test
         run: pnpm test
 
-      - name: Lint ESLint
-        run: pnpm lint
-
       - name: Lint --fix
         run: pnpm lint --fix
+
+      - name: Lint ESLint
+        run: pnpm lint
 
       - name: Lint Prettier
         run: pnpm lint:prettier
