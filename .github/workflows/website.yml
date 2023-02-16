@@ -11,9 +11,7 @@ on:
 jobs:
   deployment:
     runs-on: ubuntu-latest
-    if:
-      github.event.pull_request.head.repo.full_name == github.repository || github.event_name ==
-      'push'
+    if: github.event.pull_request.head.repo.full_name == github.repository || github.event_name == 'push'
     steps:
       - name: checkout
         uses: actions/checkout@v3
@@ -29,10 +27,8 @@ jobs:
       - uses: the-guild-org/shared-config/website-cf@main
         name: build and deploy website
         env:
-          NEXT_BASE_PATH: ${{ github.ref == 'refs/heads/master' && '/graphql/inspector' || '' }}
-          SITE_URL:
-            ${{ github.ref == 'refs/heads/master' && 'https://the-guild.dev/graphql/inspector' || ''
-            }}
+          NEXT_BASE_PATH: ${{ github.ref == 'refs/heads/main' && '/graphql/yoga-server' || '' }}
+          SITE_URL: ${{ github.ref == 'refs/heads/main' && 'https://the-guild.dev/graphql/inspector' || '' }}
           NEXT_PUBLIC_ALGOLIA_INDEX_NAME: ${{ secrets.NEXT_PUBLIC_ALGOLIA_INDEX_NAME }}
           NEXT_PUBLIC_ALGOLIA_SEARCH_API_KEY: ${{ secrets.NEXT_PUBLIC_ALGOLIA_SEARCH_API_KEY }}
           NEXT_PUBLIC_ALGOLIA_APP_ID: ${{ secrets.NEXT_PUBLIC_ALGOLIA_APP_ID }}
@@ -42,6 +38,7 @@ jobs:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
           projectName: graphql-inspector
           prId: ${{ github.event.pull_request.number }}
+          mainBranch: master
           websiteDirectory: ./
-          buildScript: pnpm build && cd website && pnpm build && pnpm export
+          buildScript: pnpm build && cd website && pnpm build && pnpm next export
           artifactDir: website/out
