@@ -410,7 +410,7 @@ importers:
       typescript: 4.9.4
     dependencies:
       '@graphql-inspector/core': link:../packages/core
-      '@graphql-inspector/github': link:../packages/github
+      '@graphql-inspector/github': 3.4.4_@types+node@18.11.18
       '@monaco-editor/react': 4.4.6_biqbaboplfbrettd7655fr4n2y
       '@theguild/components': 4.5.4_3vryta7zmbcsw4rrqf4axjqggm
       next: 13.1.6_biqbaboplfbrettd7655fr4n2y
@@ -1333,6 +1333,17 @@ packages:
       giscus: 1.2.6
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
+    dev: false
+
+  /@graphql-inspector/github/3.4.4_@types+node@18.11.18:
+    resolution: {integrity: sha512-gnOPnxlsYgMQP2gYgmriULR1dpyywF8SbhSJHWzRnqQ7ls+woLyc0xCVIzMjq/XQ+lNn7T74HiXjK1OxvzwU8A==}
+    peerDependencies:
+      graphql: ^14.0.0 || ^15.0.0 || ^16.0.0
+      probot: ^9.0.1 || ^10.0.0 || ^11.0.0
+    dependencies:
+      '@whatwg-node/fetch': 0.8.1_@types+node@18.11.18
+    transitivePeerDependencies:
+      - '@types/node'
     dev: false
 
   /@graphql-tools/batch-execute/8.5.17:
@@ -3843,6 +3854,18 @@ packages:
       - '@types/node'
     dev: true
 
+  /@whatwg-node/fetch/0.8.1_@types+node@18.11.18:
+    resolution: {integrity: sha512-Fkd1qQHK2tAWxKlC85h9L86Lgbq3BzxMnHSnTsnzNZMMzn6Xi+HlN8/LJ90LxorhSqD54td+Q864LgwUaYDj1Q==}
+    dependencies:
+      '@peculiar/webcrypto': 1.4.1
+      '@whatwg-node/node-fetch': 0.3.0_@types+node@18.11.18
+      busboy: 1.6.0
+      urlpattern-polyfill: 6.0.2
+      web-streams-polyfill: 3.2.1
+    transitivePeerDependencies:
+      - '@types/node'
+    dev: false
+
   /@whatwg-node/node-fetch/0.3.0:
     resolution: {integrity: sha512-mPM8WnuHiI/3kFxDeE0SQQXAElbz4onqmm64fEGCwYEcBes2UsvIDI8HwQIqaXCH42A9ajJUPv4WsYoN/9oG6w==}
     peerDependencies:
@@ -3867,6 +3890,19 @@ packages:
       fast-url-parser: 1.1.3
       tslib: 2.5.0
     dev: true
+
+  /@whatwg-node/node-fetch/0.3.0_@types+node@18.11.18:
+    resolution: {integrity: sha512-mPM8WnuHiI/3kFxDeE0SQQXAElbz4onqmm64fEGCwYEcBes2UsvIDI8HwQIqaXCH42A9ajJUPv4WsYoN/9oG6w==}
+    peerDependencies:
+      '@types/node': ^18.0.6
+    dependencies:
+      '@types/node': 18.11.18
+      '@whatwg-node/events': 0.0.2
+      busboy: 1.6.0
+      fast-querystring: 1.1.1
+      fast-url-parser: 1.1.3
+      tslib: 2.5.0
+    dev: false
 
   /@zeit/ncc/0.22.3:
     resolution: {integrity: sha512-jnCLpLXWuw/PAiJiVbLjA8WBC0IJQbFeUwF4I9M+23MvIxTxk5pD4Q8byQBSPmHQjz5aBoA7AKAElQxMpjrCLQ==}
