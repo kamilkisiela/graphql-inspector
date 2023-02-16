@@ -395,7 +395,7 @@ importers:
 
   website:
     specifiers:
-      '@graphql-inspector/core': latest
+      '@graphql-inspector/core': 3.5.1
       '@graphql-inspector/github': latest
       '@monaco-editor/react': 4.4.6
       '@theguild/algolia': 1.1.2
