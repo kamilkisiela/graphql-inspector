@@ -79,8 +79,8 @@ importers:
     specifiers:
       '@actions/core': 1.10.0
       '@actions/github': 4.0.0
-      '@graphql-inspector/core': 3.5.1
-      '@graphql-inspector/github': 3.4.4
+      '@graphql-inspector/core': 4.0.0
+      '@graphql-inspector/github': 3.4.5
       js-yaml: 4.1.0
       probot: 11.4.1
       tslib: ^2.0.0
@@ -113,23 +113,23 @@ importers:
 
   packages/cli:
     specifiers:
-      '@graphql-inspector/audit-command': 3.4.3
+      '@graphql-inspector/audit-command': 3.4.4
       '@graphql-inspector/code-loader': 3.4.0
       '@graphql-inspector/commands': 3.4.1
       '@graphql-inspector/config': 3.4.0
-      '@graphql-inspector/coverage-command': 3.4.4
-      '@graphql-inspector/diff-command': 3.4.3
+      '@graphql-inspector/coverage-command': 4.0.0
+      '@graphql-inspector/diff-command': 3.4.4
       '@graphql-inspector/docs-command': 3.4.2
       '@graphql-inspector/git-loader': 3.4.0
       '@graphql-inspector/github-loader': 3.4.0
       '@graphql-inspector/graphql-loader': 3.4.0
-      '@graphql-inspector/introspect-command': 3.4.3
+      '@graphql-inspector/introspect-command': 3.4.4
       '@graphql-inspector/json-loader': 3.4.0
       '@graphql-inspector/loaders': 3.4.1
       '@graphql-inspector/serve-command': 3.4.2
-      '@graphql-inspector/similar-command': 3.4.3
+      '@graphql-inspector/similar-command': 3.4.4
       '@graphql-inspector/url-loader': 3.4.0
-      '@graphql-inspector/validate-command': 3.4.3
+      '@graphql-inspector/validate-command': 3.4.4
       tslib: ^2.0.0
       yargs: 17.2.1
     dependencies:
@@ -157,7 +157,7 @@ importers:
   packages/commands/audit:
     specifiers:
       '@graphql-inspector/commands': 3.4.1
-      '@graphql-inspector/core': 3.5.1
+      '@graphql-inspector/core': 4.0.0
       '@graphql-inspector/logger': 3.4.2
       '@graphql-tools/utils': ^6.0.0 || ^7.0.0 || ^8.0.0 || ^9.0.0
       cli-table3: 0.6.3
@@ -181,7 +181,7 @@ importers:
   packages/commands/coverage:
     specifiers:
       '@graphql-inspector/commands': 3.4.1
-      '@graphql-inspector/core': 3.5.1
+      '@graphql-inspector/core': 4.0.0
       '@graphql-inspector/logger': 3.4.2
       '@graphql-tools/utils': ^6.0.0 || ^7.0.0 || ^8.0.0 || ^9.0.0
       tslib: ^2.0.0
@@ -196,7 +196,7 @@ importers:
   packages/commands/diff:
     specifiers:
       '@graphql-inspector/commands': 3.4.1
-      '@graphql-inspector/core': 3.5.1
+      '@graphql-inspector/core': 4.0.0
       '@graphql-inspector/logger': 3.4.2
       tslib: ^2.0.0
     dependencies:
@@ -220,7 +220,7 @@ importers:
   packages/commands/introspect:
     specifiers:
       '@graphql-inspector/commands': 3.4.1
-      '@graphql-inspector/core': 3.5.1
+      '@graphql-inspector/core': 4.0.0
       '@graphql-inspector/logger': 3.4.2
       tslib: ^2.0.0
     dependencies:
@@ -248,7 +248,7 @@ importers:
   packages/commands/similar:
     specifiers:
       '@graphql-inspector/commands': 3.4.1
-      '@graphql-inspector/core': 3.5.1
+      '@graphql-inspector/core': 4.0.0
       '@graphql-inspector/logger': 3.4.2
       tslib: ^2.0.0
     dependencies:
@@ -261,7 +261,7 @@ importers:
   packages/commands/validate:
     specifiers:
       '@graphql-inspector/commands': 3.4.1
-      '@graphql-inspector/core': 3.5.1
+      '@graphql-inspector/core': 4.0.0
       '@graphql-inspector/logger': 3.4.2
       '@graphql-tools/utils': ^6.0.0 || ^7.0.0 || ^8.0.0 || ^9.0.0
       tslib: ^2.0.0
@@ -293,7 +293,7 @@ importers:
 
   packages/github:
     specifiers:
-      '@graphql-inspector/core': 3.5.1
+      '@graphql-inspector/core': 4.0.0
       '@types/express': 4.17.17
       '@whatwg-node/fetch': 0.8.1
       dataloader: 2.2.2
@@ -395,8 +395,8 @@ importers:
 
   website:
     specifiers:
-      '@graphql-inspector/core': 3.5.1
-      '@graphql-inspector/github': latest
+      '@graphql-inspector/core': 4.0.0
+      '@graphql-inspector/github': 3.4.5
       '@monaco-editor/react': 4.4.6
       '@theguild/algolia': 1.1.2
       '@theguild/components': 4.5.4
