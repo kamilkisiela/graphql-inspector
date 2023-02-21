@@ -3,5 +3,6 @@
   "essentials": "Essentials",
   "recipes": "Recipes",
   "products": "Products",
-  "api": "API"
+  "api": "API",
+  "migration-guides": "Migration Guides"
 }
