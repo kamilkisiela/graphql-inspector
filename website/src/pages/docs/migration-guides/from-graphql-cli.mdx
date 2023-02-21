@@ -1,14 +1,17 @@
-import { Callout, PackageCmd, Tabs, Tab } from '@theguild/components'
+import { Callout, PackageCmd, Tab, Tabs } from '@theguild/components'
 
 # Migrating from GraphQL-CLI to Inspector CLI
 
-As such, it's a good idea to start thinking about migrating to using `graphql-inspector` directly - it is actively maintained and supported, and provides the same functionality as GraphQL-CLI with some additional, new features.
+As such, it's a good idea to start thinking about migrating to using `graphql-inspector` directly -
+it is actively maintained and supported, and provides the same functionality as GraphQL-CLI with
+some additional, new features.
 
 <Callout type="warning">The package @graphql-cli is deprecated, and no longer maintained!</Callout>
 
 ## Introduction
 
-Today, GraphQL-CLI was wrapping the commands implemented in GraphQL-Inspector, in order to provide a unified experience. You can switch to using GraphQL-Inspector directly. 
+Today, GraphQL-CLI was wrapping the commands implemented in GraphQL-Inspector, in order to provide a
+unified experience. You can switch to using GraphQL-Inspector directly.
 
 ## Migration Steps
 
@@ -65,7 +68,9 @@ graphql validate './documents/*.graphql' http://localhost:3000/graphql
 </Tab>
 <Tab>
 ```
-graphql-inspector validate './documents/*.graphql' http://localhost:3000/graphql
+
+graphql-inspector validate './documents/\*.graphql' http://localhost:3000/graphql
+
 ```
 </Tab>
 </Tabs>
@@ -78,12 +83,16 @@ graphql-inspector validate './documents/*.graphql' http://localhost:3000/graphql
 <Tabs items={['Before (GraphQL - CLI)', 'After (GraphQL-Inspector)']}>
 <Tab>
 ```
+
 graphql diff schema.graphql schema2.graphql
+
 ```
 </Tab>
 <Tab>
 ```
+
 graphql-inspector diff schema.graphql schema2.graphql
+
 ```
 </Tab>
 </Tabs>
@@ -94,12 +103,16 @@ graphql-inspector diff schema.graphql schema2.graphql
 <Tabs items={['Before (GraphQL - CLI)', 'After (GraphQL-Inspector)']}>
 <Tab>
 ```
+
 graphql common schema.graphql schema2.graphql
+
 ```
 </Tab>
 <Tab>
 ```
+
 graphql-inspector common schema.graphql schema2.graphql
+
 ```
 </Tab>
 </Tabs>
@@ -112,12 +125,16 @@ graphql-inspector common schema.graphql schema2.graphql
 <Tabs items={['Before (GraphQL - CLI)', 'After (GraphQL-Inspector)']}>
 <Tab>
 ```
-graphql coverage schema.graphql --queries="queries/**/*.graphql"
+
+graphql coverage schema.graphql --queries="queries/\*_/_.graphql"
+
 ```
 </Tab>
 <Tab>
 ```
-graphql-inspector coverage schema.graphql --queries "queries/**/*.graphql"
+
+graphql-inspector coverage schema.graphql --queries "queries/\*_/_.graphql"
+
 ```
 </Tab>
 </Tabs>
@@ -129,12 +146,16 @@ graphql-inspector coverage schema.graphql --queries "queries/**/*.graphql"
 <Tabs items={['Before (GraphQL - CLI)', 'After (GraphQL-Inspector)']}>
 <Tab>
 ```
+
 graphql similar schema.graphql schema2.graphql
+
 ```
 </Tab>
 <Tab>
 ```
+
 graphql-inspector similar schema.graphql schema2.graphql
+
 ```
 </Tab>
 </Tabs>
@@ -154,3 +175,4 @@ If you're still using GraphQL-CLI and want to take advantage of the additional f
 offered by Inspector CLI, we highly recommend migrating as soon as possible. With Inspector CLI,
 you'll have a more powerful and flexible tool for working with GraphQL schemas, and you'll be better
 equipped to handle the evolving needs of your GraphQL workflow.
+```
