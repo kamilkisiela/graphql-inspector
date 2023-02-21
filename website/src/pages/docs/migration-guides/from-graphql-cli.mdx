@@ -1,20 +1,14 @@
-import { Callout, PackageCmd } from '@theguild/components'
+import { Callout, PackageCmd, Tabs, Tab } from '@theguild/components'
 
 # Migrating from GraphQL-CLI to Inspector CLI
 
-If you're currently using GraphQL-CLI in your GraphQL workflow, you may have noticed that it's no
-longer being actively maintained. As such, it's a good idea to start thinking about migrating to a
-newer tool that's actively maintained and supported. One such tool is Inspector CLI, which provides
-similar functionality to GraphQL-CLI with some additional features.
+As such, it's a good idea to start thinking about migrating to using `graphql-inspector` directly - it is actively maintained and supported, and provides the same functionality as GraphQL-CLI with some additional, new features.
 
 <Callout type="warning">The package @graphql-cli is deprecated, and no longer maintained!</Callout>
 
 ## Introduction
 
-Inspector CLI is a powerful tool that allows you to analyze and manipulate GraphQL schemas. It
-provides a number of useful actions, including `common`, `coverage`, `diff`, `introspect`,
-`similar`, and `validate`. In this post, we'll explore how to migrate from GraphQL-CLI to Inspector
-CLI and how to use the different actions.
+Today, GraphQL-CLI was wrapping the commands implemented in GraphQL-Inspector, in order to provide a unified experience. You can switch to using GraphQL-Inspector directly. 
 
 ## Migration Steps
 
@@ -47,88 +41,104 @@ Here are examples of how to perform some common actions with both GraphQL-CLI an
 
 ### Introspect
 
-GraphQL-CLI:
-
+<Tabs items={['Before (GraphQL - CLI)', 'After (GraphQL-Inspector)']}>
+<Tab>
 ```
 graphql get-schema --endpoint=https://api.example.com/graphql --header="Authorization: Bearer YOUR_TOKEN" > schema.graphql
 ```
-
-Inspector CLI:
-
+</Tab>
+<Tab>
 ```
 graphql-inspector introspect https://api.example.com/graphql --headers '{"Authorization": "Bearer YOUR_TOKEN"}' > schema.graphql
 ```
+</Tab>
+</Tabs>
 
 ### Validate
 
-GraphQL-CLI:
-
+<Tabs items={['Before (GraphQL - CLI)', 'After (GraphQL-Inspector)']}>
+<Tab>
 ```
 graphql validate './documents/*.graphql' http://localhost:3000/graphql
 
 ```
-
-Inspector CLI:
-
+</Tab>
+<Tab>
 ```
 graphql-inspector validate './documents/*.graphql' http://localhost:3000/graphql
 ```
+</Tab>
+</Tabs>
+
+
+
 
 ### Diff
 
-GraphQL-CLI:
-
+<Tabs items={['Before (GraphQL - CLI)', 'After (GraphQL-Inspector)']}>
+<Tab>
 ```
 graphql diff schema.graphql schema2.graphql
 ```
-
-Inspector CLI:
-
+</Tab>
+<Tab>
 ```
 graphql-inspector diff schema.graphql schema2.graphql
 ```
+</Tab>
+</Tabs>
+
 
 ### Common
 
-GraphQL-CLI:
-
+<Tabs items={['Before (GraphQL - CLI)', 'After (GraphQL-Inspector)']}>
+<Tab>
 ```
 graphql common schema.graphql schema2.graphql
 ```
-
-Inspector CLI:
-
+</Tab>
+<Tab>
 ```
 graphql-inspector common schema.graphql schema2.graphql
 ```
+</Tab>
+</Tabs>
+
+
+
 
 ### Coverage
 
-GraphQL-CLI:
-
+<Tabs items={['Before (GraphQL - CLI)', 'After (GraphQL-Inspector)']}>
+<Tab>
 ```
 graphql coverage schema.graphql --queries="queries/**/*.graphql"
 ```
-
-Inspector CLI:
-
+</Tab>
+<Tab>
 ```
 graphql-inspector coverage schema.graphql --queries "queries/**/*.graphql"
 ```
+</Tab>
+</Tabs>
+
+
 
 ### Similar
 
-GraphQL-CLI:
-
+<Tabs items={['Before (GraphQL - CLI)', 'After (GraphQL-Inspector)']}>
+<Tab>
 ```
 graphql similar schema.graphql schema2.graphql
 ```
-
-Inspector CLI:
-
+</Tab>
+<Tab>
 ```
 graphql-inspector similar schema.graphql schema2.graphql
 ```
+</Tab>
+</Tabs>
+
 
 ## Conclusion
 
