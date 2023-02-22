@@ -4,6 +4,7 @@ import * as core from '@actions/core';
 import * as github from '@actions/github';
 import { Rule } from '@graphql-inspector/core';
 import {
+  Annotation,
   CheckConclusion,
   createSummary,
   diff,
@@ -238,4 +239,164 @@ export async function run() {
 
     return core.setFailed(title);
   }
+}
+
+function fileLoader({
+  octokit,
+  owner,
+  repo,
+}: {
+  octokit: OctokitInstance;
+  owner: string;
+  repo: string;
+}) {
+  const query = /* GraphQL */ `
+    query GetFile($repo: String!, $owner: String!, $expression: String!) {
+      repository(name: $repo, owner: $owner) {
+        object(expression: $expression) {
+          ... on Blob {
+            isTruncated
+            oid
+            text
+          }
+        }
+      }
+    }
+  `;
+
+  return async function loadFile(file: {
+    ref: string;
+    path: string;
+    workspace?: string;
+  }): Promise<string> {
+    if (file.workspace) {
+      return readFileSync(resolve(file.workspace, file.path), 'utf8');
+    }
+    const result: any = await octokit.graphql(query, {
+      repo,
+      owner,
+      expression: `${file.ref}:${file.path}`,
+    });
+    core.info(`Query ${file.ref}:${file.path} from ${owner}/${repo}`);
+
+    try {
+      if (result?.repository?.object?.oid && result?.repository?.object?.isTruncated) {
+        const oid = result?.repository?.object?.oid
+        const getBlobResponse = await octokit.git.getBlob({
+          owner,
+          repo,
+          file_sha: oid,
+        });
+
+        if(getBlobResponse?.data?.content) {
+          return Buffer.from(getBlobResponse?.data?.content, 'base64').toString('utf-8')
+        }
+
+        throw new Error('getBlobResponse.data.content is null');
+      }
+
+      if (
+        result?.repository?.object?.text
+      ) {
+        if(result?.repository?.object?.isTruncated === false) {
+          return result.repository.object.text;
+        }
+
+        throw new Error('result.repository.object.text is truncated and oid is null');
+      }
+
+      throw new Error('result.repository.object.text is null');
+    } catch (error) {
+      console.log(result);
+      console.error(error);
+      throw new Error(`Failed to load '${file.path}' (ref: ${file.ref})`);
+    }
+  };
+}
+
+type UpdateCheckRunOptions = {
+  conclusion: CheckConclusion;
+  output: {
+    title: string;
+    summary: string;
+    annotations?: Annotation[];
+  };
+};
+
+
+
+
+
+async function updateCheckRun(
+  octokit: OctokitInstance,
+  checkId: number,
+  { conclusion, output }: UpdateCheckRunOptions,
+) {
+  core.info(`Updating check: ${checkId}`);
+
+  const { title, summary, annotations = [] } = output;
+  const batches = batch(annotations, 50);
+
+  core.info(`annotations to be sent: ${annotations.length}`);
+
+  await octokit.checks.update({
+    check_run_id: checkId,
+    completed_at: new Date().toISOString(),
+    status: 'completed',
+    ...github.context.repo,
+    conclusion,
+    output: {
+      title,
+      summary,
+    },
+  });
+
+  try {
+    await Promise.all(
+      batches.map(async (chunk) => {
+        await octokit.checks.update({
+          check_run_id: checkId,
+          ...github.context.repo,
+          output: {
+            title,
+            summary,
+            annotations: chunk,
+          },
+        } as any);
+        core.info(`annotations sent (${chunk.length})`);
+      }),
+    );
+  } catch (error) {
+    core.error(`failed to send annotations: ${error}`);
+    throw error;
+  }
+
+  // Fail
+  if (conclusion === CheckConclusion.Failure) {
+    return core.setFailed(output.title!);
+  }
+
+  // Success or Neutral
+}
+
+/**
+ * Treats non-falsy value as true
+ */
+function castToBoolean(
+  value: string | boolean,
+  defaultValue?: boolean,
+): boolean {
+  if (typeof value === 'boolean') {
+    return value;
+  }
+
+  if (value === 'true' || value === 'false') {
+    return value === 'true';
+  }
+
+  if (typeof defaultValue === 'boolean') {
+    return defaultValue;
+  }
+
+  return true;
 }

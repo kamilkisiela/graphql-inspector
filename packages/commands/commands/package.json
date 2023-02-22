@@ -42,6 +42,14 @@
     "yargs": "17.2.1"
   },
   "dependencies": {
+    "@graphql-inspector/audit-command": "3.4.1",
+    "@graphql-inspector/coverage-command": "3.4.1",
+    "@graphql-inspector/diff-command": "3.4.1",
+    "@graphql-inspector/docs-command": "3.4.1",
+    "@graphql-inspector/introspect-command": "3.4.1",
+    "@graphql-inspector/serve-command": "3.4.1",
+    "@graphql-inspector/similar-command": "3.4.1",
+    "@graphql-inspector/validate-command": "3.4.1",
     "tslib": "^2.0.0"
   },
   "publishConfig": {
