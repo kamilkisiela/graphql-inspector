@@ -626,6 +626,79 @@
     "type": "Documentation"
   },
   {
+    "objectID": "inspector-docs-migration-guides-from-graphql-cli",
+    "headings": [
+      "Introduction",
+      "Migration Steps",
+      "Examples",
+      "Conclusion"
+    ],
+    "toc": [
+      {
+        "children": [],
+        "title": "Introduction",
+        "anchor": "introduction"
+      },
+      {
+        "children": [],
+        "title": "Migration Steps",
+        "anchor": "migration-steps"
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "children": [],
+                "title": "Validate",
+                "anchor": "validate"
+              },
+              {
+                "children": [],
+                "title": "Diff",
+                "anchor": "diff"
+              },
+              {
+                "children": [],
+                "title": "Common",
+                "anchor": "common"
+              },
+              {
+                "children": [],
+                "title": "Coverage",
+                "anchor": "coverage"
+              },
+              {
+                "children": [],
+                "title": "Similar",
+                "anchor": "similar"
+              }
+            ],
+            "title": "Introspect",
+            "anchor": "introspect"
+          }
+        ],
+        "title": "Examples",
+        "anchor": "examples"
+      },
+      {
+        "children": [],
+        "title": "Conclusion",
+        "anchor": "conclusion"
+      }
+    ],
+    "content": "806db2f5b5ece1f5610bdb7f893305c1",
+    "url": "https://www.the-guild.dev/graphql/inspector/docs/migration-guides/from-graphql-cli",
+    "domain": "https://www.the-guild.dev/graphql/inspector/",
+    "hierarchy": [
+      "Docs",
+      "Migration Guides"
+    ],
+    "source": "Inspector",
+    "title": "From GraphQL-CLI",
+    "type": "Documentation"
+  },
+  {
     "objectID": "inspector-docs-products-action",
     "headings": [
       "Usage",
