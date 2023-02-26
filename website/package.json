@@ -15,7 +15,7 @@
     "@graphql-inspector/core": "4.0.0",
     "@graphql-inspector/github": "3.4.5",
     "@monaco-editor/react": "4.4.6",
-    "@theguild/components": "4.5.4",
+    "@theguild/components": "4.5.5",
     "@whatwg-node/fetch": "0.8.1",
     "next": "13.1.6",
     "react": "18.2.0",
@@ -23,7 +23,7 @@
     "react-flip-move": "3.0.5"
   },
   "devDependencies": {
-    "@theguild/algolia": "1.1.2",
+    "@theguild/algolia": "1.1.4",
     "@theguild/tailwind-config": "0.2.1",
     "@types/node": "18.11.18",
     "@types/react": "18.0.28",
