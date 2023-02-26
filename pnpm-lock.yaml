@@ -120,23 +120,23 @@ importers:
 
   packages/cli:
     specifiers:
-      '@graphql-inspector/audit-command': 3.4.4
-      '@graphql-inspector/code-loader': 3.4.0
-      '@graphql-inspector/commands': 3.4.1
-      '@graphql-inspector/config': 3.4.0
-      '@graphql-inspector/coverage-command': 4.0.0
-      '@graphql-inspector/diff-command': 3.4.4
-      '@graphql-inspector/docs-command': 3.4.2
-      '@graphql-inspector/git-loader': 3.4.0
-      '@graphql-inspector/github-loader': 3.4.0
-      '@graphql-inspector/graphql-loader': 3.4.0
-      '@graphql-inspector/introspect-command': 3.4.4
-      '@graphql-inspector/json-loader': 3.4.0
-      '@graphql-inspector/loaders': 3.4.1
-      '@graphql-inspector/serve-command': 3.4.2
-      '@graphql-inspector/similar-command': 3.4.4
-      '@graphql-inspector/url-loader': 3.4.0
-      '@graphql-inspector/validate-command': 3.4.4
+      '@graphql-inspector/audit-command': workspace:*
+      '@graphql-inspector/code-loader': workspace:*
+      '@graphql-inspector/commands': workspace:*
+      '@graphql-inspector/config': workspace:*
+      '@graphql-inspector/coverage-command': workspace:*
+      '@graphql-inspector/diff-command': workspace:*
+      '@graphql-inspector/docs-command': workspace:*
+      '@graphql-inspector/git-loader': workspace:*
+      '@graphql-inspector/github-loader': workspace:*
+      '@graphql-inspector/graphql-loader': workspace:*
+      '@graphql-inspector/introspect-command': workspace:*
+      '@graphql-inspector/json-loader': workspace:*
+      '@graphql-inspector/loaders': workspace:*
+      '@graphql-inspector/serve-command': workspace:*
+      '@graphql-inspector/similar-command': workspace:*
+      '@graphql-inspector/url-loader': workspace:*
+      '@graphql-inspector/validate-command': workspace:*
       tslib: ^2.0.0
       yargs: 17.2.1
     dependencies:
