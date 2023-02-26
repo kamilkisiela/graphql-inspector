@@ -1,5 +1,17 @@
 [
   {
+    "objectID": "inspector-",
+    "headings": [],
+    "toc": [],
+    "content": "d41d8cd98f00b204e9800998ecf8427e",
+    "url": "https://www.the-guild.dev/graphql/inspector/",
+    "domain": "https://www.the-guild.dev/graphql/inspector",
+    "hierarchy": [],
+    "source": "Inspector",
+    "title": "Home",
+    "type": "Documentation"
+  },
+  {
     "objectID": "inspector-docs-api-documents",
     "headings": [
       "JavaScript And TypeScript Files",
@@ -23,9 +35,9 @@
         "anchor": "programmatic-api"
       }
     ],
-    "content": "fa7a7313300bbcde1b7a397927d179f2",
+    "content": "36ff24831dc0223409000c5c9273a95c",
     "url": "https://www.the-guild.dev/graphql/inspector/docs/api/documents",
-    "domain": "https://www.the-guild.dev/graphql/inspector/",
+    "domain": "https://www.the-guild.dev/graphql/inspector",
     "hierarchy": [
       "Docs",
       "API"
@@ -82,9 +94,9 @@
         "anchor": "programmatic-api"
       }
     ],
-    "content": "130b57f734850ef8a8ab5e9d53f8212e",
+    "content": "93bbc17c48fcb9329b792ce6b5840ee3",
     "url": "https://www.the-guild.dev/graphql/inspector/docs/api/schema",
-    "domain": "https://www.the-guild.dev/graphql/inspector/",
+    "domain": "https://www.the-guild.dev/graphql/inspector",
     "hierarchy": [
       "Docs",
       "API"
@@ -127,9 +139,9 @@
         "anchor": "usage"
       }
     ],
-    "content": "338710dd0b89f2a5c6addbc1f7148afb",
+    "content": "f658f7ef807d4fc3b25969ead7214ae0",
     "url": "https://www.the-guild.dev/graphql/inspector/docs/essentials/audit",
-    "domain": "https://www.the-guild.dev/graphql/inspector/",
+    "domain": "https://www.the-guild.dev/graphql/inspector",
     "hierarchy": [
       "Docs",
       "Essentials"
@@ -167,9 +179,9 @@
         "anchor": "usage"
       }
     ],
-    "content": "e86a208fdde612a9a3e39259ad127f4f",
+    "content": "8df97bf311b450f2abfe362f21cfb54b",
     "url": "https://www.the-guild.dev/graphql/inspector/docs/essentials/coverage",
-    "domain": "https://www.the-guild.dev/graphql/inspector/",
+    "domain": "https://www.the-guild.dev/graphql/inspector",
     "hierarchy": [
       "Docs",
       "Essentials"
@@ -235,9 +247,9 @@
         "anchor": "using-cli"
       }
     ],
-    "content": "ea19ed5badf174a17f28d3c7663b3e38",
+    "content": "4216d3b41ae3af3580da354b1cc6dd17",
     "url": "https://www.the-guild.dev/graphql/inspector/docs/essentials/diff",
-    "domain": "https://www.the-guild.dev/graphql/inspector/",
+    "domain": "https://www.the-guild.dev/graphql/inspector",
     "hierarchy": [
       "Docs",
       "Essentials"
@@ -275,9 +287,9 @@
         "anchor": "usage"
       }
     ],
-    "content": "93beaac082f89520eac59a97a6e625fb",
+    "content": "735d35735800f484fe6a894de561b8c4",
     "url": "https://www.the-guild.dev/graphql/inspector/docs/essentials/introspect",
-    "domain": "https://www.the-guild.dev/graphql/inspector/",
+    "domain": "https://www.the-guild.dev/graphql/inspector",
     "hierarchy": [
       "Docs",
       "Essentials"
@@ -340,9 +352,9 @@
         "anchor": "notifications-via-webhook"
       }
     ],
-    "content": "fed90ae49a4f3e4de3b1f7834915681f",
+    "content": "e3e65231ca517f1a351b4b366463fa37",
     "url": "https://www.the-guild.dev/graphql/inspector/docs/essentials/notifications",
-    "domain": "https://www.the-guild.dev/graphql/inspector/",
+    "domain": "https://www.the-guild.dev/graphql/inspector",
     "hierarchy": [
       "Docs",
       "Essentials"
@@ -380,9 +392,9 @@
         "anchor": "usage"
       }
     ],
-    "content": "22e84a2568da9a6849c3b4ed2c979f22",
+    "content": "54cb60fba29ce62a7e49c7987fb98972",
     "url": "https://www.the-guild.dev/graphql/inspector/docs/essentials/serve",
-    "domain": "https://www.the-guild.dev/graphql/inspector/",
+    "domain": "https://www.the-guild.dev/graphql/inspector",
     "hierarchy": [
       "Docs",
       "Essentials"
@@ -420,9 +432,9 @@
         "anchor": "usage"
       }
     ],
-    "content": "fbdc2d82cfb558b9b0b9135bfbefe8d7",
+    "content": "adeb3f2dd52e60d1bba6cf1adf44903d",
     "url": "https://www.the-guild.dev/graphql/inspector/docs/essentials/similar",
-    "domain": "https://www.the-guild.dev/graphql/inspector/",
+    "domain": "https://www.the-guild.dev/graphql/inspector",
     "hierarchy": [
       "Docs",
       "Essentials"
@@ -465,9 +477,9 @@
         "anchor": "usage"
       }
     ],
-    "content": "4e90c0042c3506a9062f9b9de916ec0b",
+    "content": "1f703f53abf2bb42434d26656f31a927",
     "url": "https://www.the-guild.dev/graphql/inspector/docs/essentials/validate",
-    "domain": "https://www.the-guild.dev/graphql/inspector/",
+    "domain": "https://www.the-guild.dev/graphql/inspector",
     "hierarchy": [
       "Docs",
       "Essentials"
@@ -477,7 +489,7 @@
     "type": "Documentation"
   },
   {
-    "objectID": "inspector-docs-introduction-index",
+    "objectID": "inspector-docs-introduction-",
     "headings": [
       "GitHub Application and Action",
       "Command Line Tool",
@@ -537,9 +549,9 @@
         "anchor": "features"
       }
     ],
-    "content": "496c400b43f1433b323161ed6848f260",
-    "url": "https://www.the-guild.dev/graphql/inspector/docs/introduction/index",
-    "domain": "https://www.the-guild.dev/graphql/inspector/",
+    "content": "512445a920fb23fd64ea412b7eea6070",
+    "url": "https://www.the-guild.dev/graphql/inspector/docs/introduction/",
+    "domain": "https://www.the-guild.dev/graphql/inspector",
     "hierarchy": [
       "Docs",
       "Introduction"
@@ -614,9 +626,9 @@
         "anchor": "docker"
       }
     ],
-    "content": "85a178d8f55dbf0621c44be0600480ee",
+    "content": "a1de75dd936356ad5fdb0c0dd05d9a9e",
     "url": "https://www.the-guild.dev/graphql/inspector/docs/introduction/installation",
-    "domain": "https://www.the-guild.dev/graphql/inspector/",
+    "domain": "https://www.the-guild.dev/graphql/inspector",
     "hierarchy": [
       "Docs",
       "Introduction"
@@ -687,9 +699,9 @@
         "anchor": "conclusion"
       }
     ],
-    "content": "806db2f5b5ece1f5610bdb7f893305c1",
+    "content": "b8d939b48651904107615e0360ef2150",
     "url": "https://www.the-guild.dev/graphql/inspector/docs/migration-guides/from-graphql-cli",
-    "domain": "https://www.the-guild.dev/graphql/inspector/",
+    "domain": "https://www.the-guild.dev/graphql/inspector",
     "hierarchy": [
       "Docs",
       "Migration Guides"
@@ -755,9 +767,9 @@
         "anchor": "outputs"
       }
     ],
-    "content": "3f5e9c4dedd3fb707c6b48f4691d90ed",
+    "content": "10d39e618662e837df1e54f8f31bf90f",
     "url": "https://www.the-guild.dev/graphql/inspector/docs/products/action",
-    "domain": "https://www.the-guild.dev/graphql/inspector/",
+    "domain": "https://www.the-guild.dev/graphql/inspector",
     "hierarchy": [
       "Docs",
       "Products"
@@ -814,9 +826,9 @@
         "anchor": "using-docker-image"
       }
     ],
-    "content": "ca63074fe710ba20bf26648697fcc7f0",
+    "content": "007eeef6460bb5994d4406b131e26713",
     "url": "https://www.the-guild.dev/graphql/inspector/docs/products/ci",
-    "domain": "https://www.the-guild.dev/graphql/inspector/",
+    "domain": "https://www.the-guild.dev/graphql/inspector",
     "hierarchy": [
       "Docs",
       "Products"
@@ -925,9 +937,9 @@
         "anchor": "other"
       }
     ],
-    "content": "e17b55e5770070c28846dcb9789dc7d4",
+    "content": "c48442885499618952647ed56fad927e",
     "url": "https://www.the-guild.dev/graphql/inspector/docs/products/github",
-    "domain": "https://www.the-guild.dev/graphql/inspector/",
+    "domain": "https://www.the-guild.dev/graphql/inspector",
     "hierarchy": [
       "Docs",
       "Products"
@@ -960,9 +972,9 @@
         "anchor": "disabling-annotations"
       }
     ],
-    "content": "aa5f4b19e082938f6764060b7c8745ed",
+    "content": "de04c143eaa07a6c799c792bf9274552",
     "url": "https://www.the-guild.dev/graphql/inspector/docs/recipes/annotations",
-    "domain": "https://www.the-guild.dev/graphql/inspector/",
+    "domain": "https://www.the-guild.dev/graphql/inspector",
     "hierarchy": [
       "Docs",
       "Recipes"
@@ -1001,9 +1013,9 @@
         "anchor": "how-it-works"
       }
     ],
-    "content": "2e852c09baaf22a40b27c63cd07dd88e",
+    "content": "4ea70e6a66e286935e881322a0d4397f",
     "url": "https://www.the-guild.dev/graphql/inspector/docs/recipes/endpoints",
-    "domain": "https://www.the-guild.dev/graphql/inspector/",
+    "domain": "https://www.the-guild.dev/graphql/inspector",
     "hierarchy": [
       "Docs",
       "Recipes"
@@ -1030,9 +1042,9 @@
         "anchor": "global-configuration"
       }
     ],
-    "content": "729448c6f8289030e6ecaaec3953f1e6",
+    "content": "6c48b327e6e41e61b5900f4bdcf6eb9a",
     "url": "https://www.the-guild.dev/graphql/inspector/docs/recipes/environments",
-    "domain": "https://www.the-guild.dev/graphql/inspector/",
+    "domain": "https://www.the-guild.dev/graphql/inspector",
     "hierarchy": [
       "Docs",
       "Recipes"
@@ -1089,9 +1101,9 @@
         "anchor": "payload-and-response-structures"
       }
     ],
-    "content": "fd1816f48b4eed469ae74c0ec5da0112",
+    "content": "bfe86f1e95ec4a7caaecd0c63a0e95b8",
     "url": "https://www.the-guild.dev/graphql/inspector/docs/recipes/intercept",
-    "domain": "https://www.the-guild.dev/graphql/inspector/",
+    "domain": "https://www.the-guild.dev/graphql/inspector",
     "hierarchy": [
       "Docs",
       "Recipes"
@@ -1124,27 +1136,15 @@
         "anchor": "disabling-github-action"
       }
     ],
-    "content": "a3f4e8c859da4ae2718f0c97244ad1d7",
+    "content": "15b396d3451af4300d87412b102c193f",
     "url": "https://www.the-guild.dev/graphql/inspector/docs/recipes/pull-requests",
-    "domain": "https://www.the-guild.dev/graphql/inspector/",
+    "domain": "https://www.the-guild.dev/graphql/inspector",
     "hierarchy": [
       "Docs",
       "Recipes"
     ],
     "source": "Inspector",
     "title": "Managing Pull Requests",
-    "type": "Documentation"
-  },
-  {
-    "objectID": "inspector-index",
-    "headings": [],
-    "toc": [],
-    "content": "d41d8cd98f00b204e9800998ecf8427e",
-    "url": "https://www.the-guild.dev/graphql/inspector//index",
-    "domain": "https://www.the-guild.dev/graphql/inspector/",
-    "hierarchy": [],
-    "source": "Inspector",
-    "title": "Home",
     "type": "Documentation"
   }
 ]
