@@ -36,6 +36,7 @@
   "dependencies": {
     "@sentry/node": "7.38.0",
     "@sentry/tracing": "7.38.0",
+    "@types/pino-std-serializers": "4.0.0",
     "@whatwg-node/fetch": "0.8.1",
     "husky": "8.0.3",
     "immer": "9.0.19",
