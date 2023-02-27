@@ -1,8 +1,8 @@
-import { execSync } from 'child_process';
-import { readFileSync } from 'fs';
-import { extname,resolve } from 'path';
+import { extname } from 'path';
+import { buildClientSchema, buildSchema, GraphQLSchema, printSchema, Source } from 'graphql';
 import * as core from '@actions/core';
 import * as github from '@actions/github';
+import { Rule } from '@graphql-inspector/core';
 import {
   CheckConclusion,
   createSummary,
@@ -10,44 +10,12 @@ import {
   printSchemaFromEndpoint,
   produceSchema,
 } from '@graphql-inspector/github';
-import { buildClientSchema, buildSchema, GraphQLSchema, printSchema,Source } from 'graphql';
-import { batch } from './utils';
+import { updateCheckRun } from './checks';
+import { fileLoader } from './files';
+import { getAssociatedPullRequest, getCurrentCommitSha } from './git';
+import { castToBoolean, getInputAsArray, resolveRule } from './utils';
 
-type OctokitInstance = ReturnType<typeof github.getOctokit>;
 const CHECK_NAME = 'GraphQL Inspector';
-
-function getCurrentCommitSha() {
-  const sha = execSync(`git rev-parse HEAD`).toString().trim();
-
-  try {
-    const msg = execSync(`git show ${sha} -s --format=%s`).toString().trim();
-    const PR_MSG = /Merge (\w+) into \w+/i;
-
-    if (PR_MSG.test(msg)) {
-      const result = PR_MSG.exec(msg);
-
-      if (result) {
-        return result[1];
-      }
-    }
-  } catch (e) {
-    //
-  }
-
-  return sha;
-}
-
-async function getAssociatedPullRequest(octokit: OctokitInstance, commitSha: string) {
-  const result = await octokit.request('GET /repos/{owner}/{repo}/commits/{commit_sha}/pulls', {
-    ...github.context.repo,
-    commit_sha: commitSha,
-    mediaType: {
-      format: 'json',
-      previews: ['groot'],
-    }
-  })
-  return result.data.length > 0 ? result.data[0] : null
-}
 
 export async function run() {
   core.info(`GraphQL Inspector started`);
@@ -65,17 +33,16 @@ export async function run() {
   let workspace = process.env.GITHUB_WORKSPACE;
 
   if (!workspace) {
-    return core.setFailed(
-      'Failed to resolve workspace directory. GITHUB_WORKSPACE is missing',
-    );
+    return core.setFailed('Failed to resolve workspace directory. GITHUB_WORKSPACE is missing');
   }
 
   const useMerge = castToBoolean(core.getInput('experimental_merge'), true);
   const useAnnotations = castToBoolean(core.getInput('annotations'));
   const failOnBreaking = castToBoolean(core.getInput('fail-on-breaking'));
   const endpoint: string = core.getInput('endpoint');
-  const approveLabel: string =
-    core.getInput('approve-label') || 'approved-breaking-change';
+  const approveLabel: string = core.getInput('approve-label') || 'approved-breaking-change';
+  const rulesList = getInputAsArray('rules') || [];
+  const onUsage = core.getInput('getUsage');
 
   const octokit = github.getOctokit(token);
 
@@ -83,7 +50,7 @@ export async function run() {
   const { owner, repo } = github.context.repo;
 
   // pull request
-  const pullRequest = await getAssociatedPullRequest(octokit, commitSha)
+  const pullRequest = await getAssociatedPullRequest(octokit, commitSha);
 
   core.info(`Creating a check named "${checkName}"`);
 
@@ -110,6 +77,35 @@ export async function run() {
   if (!schemaPointer) {
     core.error('No `schema` variable');
     return core.setFailed('Failed to find `schema` variable');
+  }
+
+  const rules = rulesList
+    .map(r => {
+      const rule = resolveRule(r);
+
+      if (!rule) {
+        core.error(`Rule ${r} is invalid. Did you specify the correct path?`);
+      }
+
+      return rule;
+    })
+    .filter(Boolean) as Rule[];
+
+  // Different lengths mean some rules were resolved to undefined
+  if (rules.length !== rulesList.length) {
+    return core.setFailed("Some rules weren't recognised");
+  }
+
+  let config;
+
+  if (onUsage) {
+    const checkUsage = require(onUsage);
+
+    if (checkUsage) {
+      config = {
+        checkUsage,
+      };
+    }
   }
 
   let [schemaRef, schemaPath] = schemaPointer.split(':');
@@ -155,15 +151,12 @@ export async function run() {
   let newSchema: GraphQLSchema;
   let sources: { new: Source; old: Source };
 
-  if (extname(schemaPath.toLowerCase()) === ".json") {
+  if (extname(schemaPath.toLowerCase()) === '.json') {
     oldSchema = endpoint ? buildSchema(oldFile) : buildClientSchema(JSON.parse(oldFile));
     newSchema = buildClientSchema(JSON.parse(newFile));
 
     sources = {
-      old: new Source(
-        printSchema(oldSchema),
-        endpoint || `${schemaRef}:${schemaPath}`,
-      ),
+      old: new Source(printSchema(oldSchema), endpoint || `${schemaRef}:${schemaPath}`),
       new: new Source(printSchema(newSchema), schemaPath),
     };
   } else {
@@ -189,6 +182,8 @@ export async function run() {
     path: schemaPath,
     schemas,
     sources,
+    rules,
+    config,
   });
 
   let conclusion = action.conclusion;
@@ -243,158 +238,4 @@ export async function run() {
 
     return core.setFailed(title);
   }
-}
-
-function fileLoader({
-  octokit,
-  owner,
-  repo,
-}: {
-  octokit: OctokitInstance;
-  owner: string;
-  repo: string;
-}) {
-  const query = /* GraphQL */ `
-    query GetFile($repo: String!, $owner: String!, $expression: String!) {
-      repository(name: $repo, owner: $owner) {
-        object(expression: $expression) {
-          ... on Blob {
-            isTruncated
-            oid
-            text
-          }
-        }
-      }
-    }
-  `;
-
-  return async function loadFile(file: {
-    ref: string;
-    path: string;
-    workspace?: string;
-  }): Promise<string> {
-    if (file.workspace) {
-      return readFileSync(resolve(file.workspace, file.path), 'utf8');
-    }
-    const result: any = await octokit.graphql(query, {
-      repo,
-      owner,
-      expression: `${file.ref}:${file.path}`,
-    });
-    core.info(`Query ${file.ref}:${file.path} from ${owner}/${repo}`);
-
-    try {
-      if (result?.repository?.object?.oid && result?.repository?.object?.isTruncated) {
-        const oid = result?.repository?.object?.oid
-        const getBlobResponse = await octokit.git.getBlob({
-          owner,
-          repo,
-          file_sha: oid,
-        });
-
-        if(getBlobResponse?.data?.content) {
-          return Buffer.from(getBlobResponse?.data?.content, 'base64').toString('utf-8')
-        }
-
-        throw new Error('getBlobResponse.data.content is null');
-      }
-
-      if (
-        result?.repository?.object?.text
-      ) {
-        if(result?.repository?.object?.isTruncated === false) {
-          return result.repository.object.text;
-        }
-
-        throw new Error('result.repository.object.text is truncated and oid is null');
-      }
-
-      throw new Error('result.repository.object.text is null');
-    } catch (error) {
-      console.log(result);
-      console.error(error);
-      throw new Error(`Failed to load '${file.path}' (ref: ${file.ref})`);
-    }
-  };
-}
-
-type UpdateCheckRunOptions = Required<
-  Pick<
-    NonNullable<Parameters<OctokitInstance['checks']['update']>[0]>,
-    'conclusion' | 'output'
-  >
->;
-
-async function updateCheckRun(
-  octokit: OctokitInstance,
-  checkId: number,
-  { conclusion, output }: UpdateCheckRunOptions,
-) {
-  core.info(`Updating check: ${checkId}`);
-
-  const { title, summary, annotations = [] } = output;
-  const batches = batch(annotations, 50);
-
-  core.info(`annotations to be sent: ${annotations.length}`);
-
-  await octokit.checks.update({
-    check_run_id: checkId,
-    completed_at: new Date().toISOString(),
-    status: 'completed',
-    ...github.context.repo,
-    conclusion,
-    output: {
-      title,
-      summary,
-    },
-  });
-
-  try {
-    await Promise.all(
-      batches.map(async (chunk) => {
-        await octokit.checks.update({
-          check_run_id: checkId,
-          ...github.context.repo,
-          output: {
-            title,
-            summary,
-            annotations: chunk,
-          },
-        } as any);
-        core.info(`annotations sent (${chunk.length})`);
-      }),
-    );
-  } catch (error) {
-    core.error(`failed to send annotations: ${error}`);
-    throw error;
-  }
-
-  // Fail
-  if (conclusion === CheckConclusion.Failure) {
-    return core.setFailed(output.title!);
-  }
-
-  // Success or Neutral
-}
-
-/**
- * Treats non-falsy value as true
- */
-function castToBoolean(
-  value: string | boolean,
-  defaultValue?: boolean,
-): boolean {
-  if (typeof value === 'boolean') {
-    return value;
-  }
-
-  if (value === 'true' || value === 'false') {
-    return value === 'true';
-  }
-
-  if (typeof defaultValue === 'boolean') {
-    return defaultValue;
-  }
-
-  return true;
 }

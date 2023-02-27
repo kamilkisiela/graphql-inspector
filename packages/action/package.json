@@ -2,7 +2,20 @@
   "name": "@graphql-inspector/action",
   "version": "3.4.5",
   "description": "GraphQL Inspector functionality for GitHub Actions",
-  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "kamilkisiela/graphql-inspector",
+    "directory": "packages/action"
+  },
+  "author": {
+    "name": "Kamil Kisiela",
+    "email": "kamil.kisiela@gmail.com",
+    "url": "https://github.com/kamilkisiela"
+  },
+  "license": "MIT",
+  "bin": {
+    "graphql-inspector-github": "./dist/index.js"
+  },
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "exports": {
@@ -16,23 +29,6 @@
     }
   },
   "typings": "dist/index.d.ts",
-  "typescript": {
-    "definition": "dist/index.d.ts"
-  },
-  "bin": {
-    "graphql-inspector-github": "./dist/index.js"
-  },
-  "author": {
-    "name": "Kamil Kisiela",
-    "email": "kamil.kisiela@gmail.com",
-    "url": "https://github.com/kamilkisiela"
-  },
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "kamilkisiela/graphql-inspector",
-    "directory": "packages/action"
-  },
   "keywords": [
     "graphql",
     "graphql-inspector",
@@ -46,12 +42,14 @@
     "clean": "rm -rf dist/",
     "deploy": "now --docker",
     "prebuild": "yarn clean",
+    "prepack": "bob prepack",
     "prepublishOnly": "yarn build",
-    "prepack": "bob prepack"
+    "test": "jest"
   },
   "dependencies": {
     "@actions/core": "1.10.0",
     "@actions/github": "4.0.0",
+    "@graphql-inspector/commands": "3.4.0",
     "@graphql-inspector/core": "4.0.0",
     "@graphql-inspector/github": "3.4.5",
     "js-yaml": "4.1.0",
@@ -64,5 +62,9 @@
   "publishConfig": {
     "directory": "dist",
     "access": "public"
+  },
+  "sideEffects": false,
+  "typescript": {
+    "definition": "dist/index.d.ts"
   }
 }
