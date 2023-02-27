@@ -1,4 +1,5 @@
-import { extname } from 'path';
+import { readFileSync } from 'fs';
+import { extname, resolve } from 'path';
 import { buildClientSchema, buildSchema, GraphQLSchema, printSchema, Source } from 'graphql';
 import * as core from '@actions/core';
 import * as github from '@actions/github';
@@ -11,10 +12,9 @@ import {
   printSchemaFromEndpoint,
   produceSchema,
 } from '@graphql-inspector/github';
-import { updateCheckRun } from './checks';
-import { fileLoader } from './files';
 import { getAssociatedPullRequest, getCurrentCommitSha } from './git';
-import { castToBoolean, getInputAsArray, resolveRule } from './utils';
+import { OctokitInstance } from './types';
+import { batch, getInputAsArray, resolveRule } from './utils';
 
 const CHECK_NAME = 'GraphQL Inspector';
 
@@ -281,24 +281,22 @@ function fileLoader({
 
     try {
       if (result?.repository?.object?.oid && result?.repository?.object?.isTruncated) {
-        const oid = result?.repository?.object?.oid
+        const oid = result?.repository?.object?.oid;
         const getBlobResponse = await octokit.git.getBlob({
           owner,
           repo,
           file_sha: oid,
         });
 
-        if(getBlobResponse?.data?.content) {
-          return Buffer.from(getBlobResponse?.data?.content, 'base64').toString('utf-8')
+        if (getBlobResponse?.data?.content) {
+          return Buffer.from(getBlobResponse?.data?.content, 'base64').toString('utf-8');
         }
 
         throw new Error('getBlobResponse.data.content is null');
       }
 
-      if (
-        result?.repository?.object?.text
-      ) {
-        if(result?.repository?.object?.isTruncated === false) {
+      if (result?.repository?.object?.text) {
+        if (result?.repository?.object?.isTruncated === false) {
           return result.repository.object.text;
         }
 
@@ -322,10 +320,6 @@ type UpdateCheckRunOptions = {
     annotations?: Annotation[];
   };
 };
-
-
-
-
 
 async function updateCheckRun(
   octokit: OctokitInstance,
@@ -353,7 +347,7 @@ async function updateCheckRun(
 
   try {
     await Promise.all(
-      batches.map(async (chunk) => {
+      batches.map(async chunk => {
         await octokit.checks.update({
           check_run_id: checkId,
           ...github.context.repo,
@@ -382,10 +376,7 @@ async function updateCheckRun(
 /**
  * Treats non-falsy value as true
  */
-function castToBoolean(
-  value: string | boolean,
-  defaultValue?: boolean,
-): boolean {
+function castToBoolean(value: string | boolean, defaultValue?: boolean): boolean {
   if (typeof value === 'boolean') {
     return value;
   }

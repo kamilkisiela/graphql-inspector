@@ -85,6 +85,7 @@ importers:
     specifiers:
       '@actions/core': 1.10.0
       '@actions/github': 4.0.0
+      '@graphql-inspector/commands': 3.4.0
       '@graphql-inspector/core': 4.0.0
       '@graphql-inspector/github': 3.4.5
       '@types/js-yaml': 4.0.5
@@ -94,6 +95,7 @@ importers:
     dependencies:
       '@actions/core': 1.10.0
       '@actions/github': 4.0.0
+      '@graphql-inspector/commands': 3.4.0
       '@graphql-inspector/core': link:../core
       '@graphql-inspector/github': link:../github
       js-yaml: 4.1.0
@@ -1381,6 +1383,17 @@ packages:
       giscus: 1.2.6
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
+    dev: false
+
+  /@graphql-inspector/commands/3.4.0:
+    resolution: {integrity: sha512-Nrq1N0FBxa53+Cbzdr59qrsKN68an6SAb2IMbYaNi16nJUzvjT9ZcT8p98BK6RyDP4kGos4GxZD9lqAt1tvEgA==}
+    peerDependencies:
+      '@graphql-inspector/config': 3.4.0
+      '@graphql-inspector/loaders': 3.4.0
+      graphql: ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
+      yargs: 17.2.1
+    dependencies:
+      tslib: 2.5.0
     dev: false
 
   /@graphql-tools/batch-execute/8.5.17:
