@@ -12,8 +12,8 @@
     "start": "next start"
   },
   "dependencies": {
-    "@graphql-inspector/core": "4.0.0",
-    "@graphql-inspector/github": "3.4.5",
+    "@graphql-inspector/core": "workspace:*",
+    "@graphql-inspector/github": "workspace:*",
     "@monaco-editor/react": "4.4.6",
     "@theguild/components": "4.5.6",
     "@whatwg-node/fetch": "0.8.1",

@@ -86,9 +86,9 @@ importers:
     specifiers:
       '@actions/core': 1.10.0
       '@actions/github': 4.0.0
-      '@graphql-inspector/commands': 3.4.0
-      '@graphql-inspector/core': 4.0.0
-      '@graphql-inspector/github': 3.4.5
+      '@graphql-inspector/commands': workspace:*
+      '@graphql-inspector/core': workspace:*
+      '@graphql-inspector/github': workspace:*
       '@types/js-yaml': 4.0.5
       js-yaml: 4.1.0
       probot: 11.4.1
@@ -96,7 +96,7 @@ importers:
     dependencies:
       '@actions/core': 1.10.0
       '@actions/github': 4.0.0
-      '@graphql-inspector/commands': 3.4.0
+      '@graphql-inspector/commands': link:../commands/commands
       '@graphql-inspector/core': link:../core
       '@graphql-inspector/github': link:../github
       js-yaml: 4.1.0
@@ -324,7 +324,7 @@ importers:
 
   packages/github:
     specifiers:
-      '@graphql-inspector/core': 4.0.0
+      '@graphql-inspector/core': workspace:*
       '@types/express': 4.17.17
       '@whatwg-node/fetch': 0.8.1
       dataloader: 2.2.2
@@ -391,12 +391,12 @@ importers:
 
   packages/loaders/loaders:
     specifiers:
-      '@graphql-inspector/code-loader': 3.4.0
-      '@graphql-inspector/git-loader': 3.4.0
-      '@graphql-inspector/github-loader': 3.4.0
-      '@graphql-inspector/graphql-loader': 3.4.0
-      '@graphql-inspector/json-loader': 3.4.0
-      '@graphql-inspector/url-loader': 3.4.0
+      '@graphql-inspector/code-loader': workspace:*
+      '@graphql-inspector/git-loader': workspace:*
+      '@graphql-inspector/github-loader': workspace:*
+      '@graphql-inspector/graphql-loader': workspace:*
+      '@graphql-inspector/json-loader': workspace:*
+      '@graphql-inspector/url-loader': workspace:*
       '@graphql-tools/code-file-loader': ^7.2.2
       '@graphql-tools/load': ^7.4.1
       '@graphql-tools/utils': ^6.0.0 || ^7.0.0 || ^8.0.0 || ^9.0.0
@@ -440,8 +440,8 @@ importers:
 
   website:
     specifiers:
-      '@graphql-inspector/core': 4.0.0
-      '@graphql-inspector/github': 3.4.5
+      '@graphql-inspector/core': workspace:*
+      '@graphql-inspector/github': workspace:*
       '@monaco-editor/react': 4.4.6
       '@theguild/algolia': 1.1.4
       '@theguild/components': 4.5.5
@@ -1387,17 +1387,6 @@ packages:
       giscus: 1.2.6
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
-    dev: false
-
-  /@graphql-inspector/commands/3.4.0:
-    resolution: {integrity: sha512-Nrq1N0FBxa53+Cbzdr59qrsKN68an6SAb2IMbYaNi16nJUzvjT9ZcT8p98BK6RyDP4kGos4GxZD9lqAt1tvEgA==}
-    peerDependencies:
-      '@graphql-inspector/config': 3.4.0
-      '@graphql-inspector/loaders': 3.4.0
-      graphql: ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
-      yargs: 17.2.1
-    dependencies:
-      tslib: 2.5.0
     dev: false
 
   /@graphql-tools/batch-execute/8.5.17:
