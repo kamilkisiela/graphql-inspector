@@ -78,5 +78,10 @@
       "prettier --write",
       "git add"
     ]
+  },
+  "pnpm": {
+    "overrides": {
+      "@octokit/types": "5.4.1"
+    }
   }
 }
