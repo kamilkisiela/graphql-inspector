@@ -27,3 +27,7 @@ jobs:
     uses: the-guild-org/shared-config/.github/workflows/changesets-dependencies.yaml@main
     secrets:
       githubToken: ${{ secrets.GITHUB_TOKEN }}
+    with:
+      installDependencies: true
+      packageManager: pnpm
+      nodeVersion: 18
