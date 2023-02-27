@@ -746,6 +746,16 @@
                 "children": [],
                 "title": "`endpoint`",
                 "anchor": "endpoint"
+              },
+              {
+                "children": [],
+                "title": "`rules`",
+                "anchor": "rules"
+              },
+              {
+                "children": [],
+                "title": "`onUsage`",
+                "anchor": "onusage"
               }
             ],
             "title": "`name`",
@@ -767,7 +777,7 @@
         "anchor": "outputs"
       }
     ],
-    "content": "10d39e618662e837df1e54f8f31bf90f",
+    "content": "70b22eb74518c11a4c7d6a8035b85fd6",
     "url": "https://www.the-guild.dev/graphql/inspector/docs/products/action",
     "domain": "https://www.the-guild.dev/graphql/inspector",
     "hierarchy": [
