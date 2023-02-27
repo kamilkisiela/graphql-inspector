@@ -16,6 +16,7 @@ importers:
       '@types/jest': 26.0.24
       '@types/js-yaml': 4.0.5
       '@types/node': 14.18.36
+      '@types/pino-std-serializers': 4.0.0
       '@types/yargs': 17.0.3
       '@whatwg-node/fetch': 0.8.1
       '@zeit/ncc': 0.22.3
@@ -43,6 +44,7 @@ importers:
     dependencies:
       '@sentry/node': 7.38.0
       '@sentry/tracing': 7.38.0
+      '@types/pino-std-serializers': 4.0.0
       '@whatwg-node/fetch': 0.8.1_@types+node@14.18.36
       husky: 8.0.3
       immer: 9.0.19
