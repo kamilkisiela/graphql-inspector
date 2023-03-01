@@ -1,5 +1,4 @@
-import { readFileSync } from 'fs';
-import { extname, resolve } from 'path';
+import { extname } from 'path';
 import { buildClientSchema, buildSchema, GraphQLSchema, printSchema, Source } from 'graphql';
 import * as core from '@actions/core';
 import * as github from '@actions/github';
@@ -11,9 +10,10 @@ import {
   printSchemaFromEndpoint,
   produceSchema,
 } from '@graphql-inspector/github';
+import { updateCheckRun } from './checks';
+import { fileLoader } from './files';
 import { getAssociatedPullRequest, getCurrentCommitSha } from './git';
-import { OctokitInstance } from './types';
-import { batch, getInputAsArray, resolveRule } from './utils';
+import { castToBoolean, getInputAsArray, resolveRule } from './utils';
 
 const CHECK_NAME = 'GraphQL Inspector';
 
