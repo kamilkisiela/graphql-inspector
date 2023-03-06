@@ -21,7 +21,7 @@ Use GraphQL Inspector however you want:
 - [**GitHub Application**](https://graphql-inspector.com/install)
 - [**GitHub Action**](https://github.com/marketplace/actions/graphql-inspector)
 - [**CLI**](https://graphql-inspector.com/docs/installation#cli)
-- [**Programatic API**](https://graphql-inspector.com/docs/installation#programatic-api)
+- [**Programmatic API**](https://graphql-inspector.com/docs/installation#programmatic-api)
 
 ## Features
 

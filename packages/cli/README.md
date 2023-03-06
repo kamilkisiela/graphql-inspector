@@ -2,7 +2,7 @@
 
 [![npm version](https://badge.fury.io/js/%40graphql-inspector%2Fcli.svg)](https://npmjs.com/package/@graphql-inspector/cli)
 
-**GraphQL Inspector** ouputs a list of changes between two GraphQL schemas. Every change is
+**GraphQL Inspector** outputs a list of changes between two GraphQL schemas. Every change is
 precisely explained and marked as breaking, non-breaking or dangerous. It helps you validate
 documents and fragments against a schema and even find similar or duplicated types.
 
@@ -21,7 +21,7 @@ Major features:
 - **GitHub Bot**
 - **GitHub Actions**
 
-GraphQL Inspector has a **CLI** and also a **programatic API**, so you can use it however you want
+GraphQL Inspector has a **CLI** and also a **programmatic API**, so you can use it however you want
 to and even build tools on top of it.
 
 ## Installation
@@ -30,7 +30,7 @@ to and even build tools on top of it.
 # CLI
 yarn add @graphql-inspector/cli
 
-# Core API for programatic usage
+# Core API for programmatic usage
 yarn add @graphql-inspector/core
 ```
 
