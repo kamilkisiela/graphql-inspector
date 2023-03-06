@@ -243,7 +243,7 @@ Read ["New GraphQL Inspector"](https://the-guild.dev/blog/new-graphql-inspector)
   [#1341](https://github.com/kamilkisiela/graphql-inspector/issues/1341)
 - **github**, **action**: adjust annotations to show up in correct lines
   [#907](https://github.com/kamilkisiela/graphql-inspector/issues/907)
-- **github**, **action**: fix an issue with `@action/core` import
+- **github**, **action**: fix an issue with `@actions/core` import
   [#1056](https://github.com/kamilkisiela/graphql-inspector/issues/1056)
 - **action**: create integration test
 - **cli**: fix an issue with empty descriptions when using URL pointer
