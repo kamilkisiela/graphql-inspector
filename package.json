@@ -63,7 +63,7 @@
     "bob-the-bundler": "1.7.3",
     "eslint": "8.35.0",
     "graphql": "16.6.0",
-    "graphql-config": "4.4.1",
+    "graphql-config": "4.5.0",
     "jest": "27.5.1",
     "jsesc": "3.0.2",
     "lint-staged": "13.1.2",
