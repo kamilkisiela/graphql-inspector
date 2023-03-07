@@ -756,10 +756,10 @@
   resolved "https://registry.yarnpkg.com/@colors/colors/-/colors-1.5.0.tgz#bb504579c1cae923e6576a4f5da43d25f97bdbd9"
   integrity sha512-ooWCrlZP11i8GImSjTHYHLkvFDP48nS4+204nGb1RiX/WXYHmJA2III9/e2DWVabCESdW7hBAEzHRqUn9OUVvQ==
 
-"@corex/deepmerge@^4.0.29":
-  version "4.0.29"
-  resolved "https://registry.yarnpkg.com/@corex/deepmerge/-/deepmerge-4.0.29.tgz#af9debf07d7f6b0d2a9d04a266abf2c1418ed2f6"
-  integrity sha512-q/yVUnqckA8Do+EvAfpy7RLdumnBy9ZsducMUtZTvpdbJC7azEf1hGtnYYxm0QfphYxjwggv6XtH64prvS1W+A==
+"@corex/deepmerge@^4.0.37":
+  version "4.0.37"
+  resolved "https://registry.yarnpkg.com/@corex/deepmerge/-/deepmerge-4.0.37.tgz#873dcf71aee46596d7e385437b0d94770ef4c85f"
+  integrity sha512-PX90bEnrLdxd5e6rSFWsghExMuSw0Uov3fWJuuaoFuUQIS/446diu/4seExK5b+43L+SOBbd2uBGwYUkG1JfCw==
 
 "@envelop/core@^2.0.0":
   version "2.2.0"
@@ -9105,10 +9105,10 @@ minimist-options@^4.0.2:
     is-plain-obj "^1.1.0"
     kind-of "^6.0.3"
 
-minimist@^1.2.0, minimist@^1.2.5, minimist@^1.2.6, minimist@^1.2.7:
-  version "1.2.7"
-  resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.7.tgz#daa1c4d91f507390437c6a8bc01078e7000c4d18"
-  integrity sha512-bzfL1YUZsP41gmu/qjrEk0Q6i2ix/cVeAhbCbqH9u3zYutS1cLg00qhrD0M2MVdCcx4Sc0UpP2eBWo9rotpq6g==
+minimist@^1.2.0, minimist@^1.2.5, minimist@^1.2.6, minimist@^1.2.8:
+  version "1.2.8"
+  resolved "https://registry.yarnpkg.com/minimist/-/minimist-1.2.8.tgz#c1a464e7693302e082a075cee0c057741ac4772c"
+  integrity sha512-2yyAR8qBkN3YuheJanUpWC5U3bb5osDywNB8RzDVlDwDHbocAJveqqj1u8+SVD7jkWT4yvsHCpWqqWqAxb0zCA==
 
 mixme@^0.5.1:
   version "0.5.4"
@@ -9215,13 +9215,13 @@ next-seo@^5.5.0:
   resolved "https://registry.yarnpkg.com/next-seo/-/next-seo-5.14.1.tgz#d07322edc37634fbd9beca51fb04177910d8031c"
   integrity sha512-NiJeQbxYP3z+EMp52q8k3Q+OfX2+Yv2WehERDj98r2wjXxL+woKpRBdsSVYolTD0Hm8IWs42SzaISE93RoQdOw==
 
-next-sitemap@3.1.54:
-  version "3.1.54"
-  resolved "https://registry.yarnpkg.com/next-sitemap/-/next-sitemap-3.1.54.tgz#a3cabce0a7c308106cd898a8ee0e6b16c18c2bb7"
-  integrity sha512-/uzk8hjHU5o6ZelzkLt/LJw9MyFhRiz9VKIst9EhZfF1C/Bw4OCGzLmA+8ImUnTzSxFyuiWr6P1sjFJxKBhjAA==
+next-sitemap@4.0.4:
+  version "4.0.4"
+  resolved "https://registry.yarnpkg.com/next-sitemap/-/next-sitemap-4.0.4.tgz#c20a638159ee40b3abe864281325cacc30581d9d"
+  integrity sha512-4/bUDeWNx03fc8ac+5wA55H1Zn3X3c1qj5iq3Mk5eidzxnBzIuUt4NJ+1TpB0n1m7HUgEtE+kaUGShFK0McZVg==
   dependencies:
-    "@corex/deepmerge" "^4.0.29"
-    minimist "^1.2.7"
+    "@corex/deepmerge" "^4.0.37"
+    minimist "^1.2.8"
 
 next-themes@^0.2.1:
   version "0.2.1"
