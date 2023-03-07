@@ -859,6 +859,13 @@
   dependencies:
     tslib "^2.0.0"
 
+"@graphql-inspector/commands@3.4.0":
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/@graphql-inspector/commands/-/commands-3.4.0.tgz#4d94ebb2d1dd7e2cda9c376fbacc75ea19e89f3d"
+  integrity sha512-Nrq1N0FBxa53+Cbzdr59qrsKN68an6SAb2IMbYaNi16nJUzvjT9ZcT8p98BK6RyDP4kGos4GxZD9lqAt1tvEgA==
+  dependencies:
+    tslib "^2.0.0"
+
 "@graphql-tools/batch-execute@8.5.17":
   version "8.5.17"
   resolved "https://registry.yarnpkg.com/@graphql-tools/batch-execute/-/batch-execute-8.5.17.tgz#1d3294becfd2c3c6bddfe56ff3507ce89ca236a2"
@@ -2659,10 +2666,10 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-18.11.18.tgz#8dfb97f0da23c2293e554c5a50d61ef134d7697f"
   integrity sha512-DHQpWGjyQKSHj3ebjFI/wRKcqQcdR+MoFBygntYOZytCqNfkd2ZC4ARDJ2DQqhjH5p85Nnd3jhUJIXrszFX/JA==
 
-"@types/node@14.18.36":
-  version "14.18.36"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.18.36.tgz#c414052cb9d43fab67d679d5f3c641be911f5835"
-  integrity sha512-FXKWbsJ6a1hIrRxv+FoukuHnGTgEzKYGi7kilfMae96AL9UNkPFNWJEEYWzdRI9ooIkbr4AKldyuSTLql06vLQ==
+"@types/node@14.18.37":
+  version "14.18.37"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-14.18.37.tgz#0bfcd173e8e1e328337473a8317e37b3b14fd30d"
+  integrity sha512-7GgtHCs/QZrBrDzgIJnQtuSvhFSwhyYSI2uafSwZoNt1iOGhEN5fwNrQMjtONyHm9+/LoA4453jH0CMYcr06Pg==
 
 "@types/node@^12.7.1":
   version "12.20.55"
