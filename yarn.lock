@@ -838,34 +838,6 @@
   dependencies:
     tslib "^2.0.0"
 
-"@graphql-inspector/commands@3.4.0":
-  version "3.4.0"
-  resolved "https://registry.yarnpkg.com/@graphql-inspector/commands/-/commands-3.4.0.tgz#4d94ebb2d1dd7e2cda9c376fbacc75ea19e89f3d"
-  integrity sha512-Nrq1N0FBxa53+Cbzdr59qrsKN68an6SAb2IMbYaNi16nJUzvjT9ZcT8p98BK6RyDP4kGos4GxZD9lqAt1tvEgA==
-  dependencies:
-    tslib "^2.0.0"
-
-"@graphql-inspector/commands@3.4.0":
-  version "3.4.0"
-  resolved "https://registry.yarnpkg.com/@graphql-inspector/commands/-/commands-3.4.0.tgz#4d94ebb2d1dd7e2cda9c376fbacc75ea19e89f3d"
-  integrity sha512-Nrq1N0FBxa53+Cbzdr59qrsKN68an6SAb2IMbYaNi16nJUzvjT9ZcT8p98BK6RyDP4kGos4GxZD9lqAt1tvEgA==
-  dependencies:
-    tslib "^2.0.0"
-
-"@graphql-inspector/commands@3.4.0":
-  version "3.4.0"
-  resolved "https://registry.yarnpkg.com/@graphql-inspector/commands/-/commands-3.4.0.tgz#4d94ebb2d1dd7e2cda9c376fbacc75ea19e89f3d"
-  integrity sha512-Nrq1N0FBxa53+Cbzdr59qrsKN68an6SAb2IMbYaNi16nJUzvjT9ZcT8p98BK6RyDP4kGos4GxZD9lqAt1tvEgA==
-  dependencies:
-    tslib "^2.0.0"
-
-"@graphql-inspector/commands@3.4.0":
-  version "3.4.0"
-  resolved "https://registry.yarnpkg.com/@graphql-inspector/commands/-/commands-3.4.0.tgz#4d94ebb2d1dd7e2cda9c376fbacc75ea19e89f3d"
-  integrity sha512-Nrq1N0FBxa53+Cbzdr59qrsKN68an6SAb2IMbYaNi16nJUzvjT9ZcT8p98BK6RyDP4kGos4GxZD9lqAt1tvEgA==
-  dependencies:
-    tslib "^2.0.0"
-
 "@graphql-tools/batch-execute@8.5.17":
   version "8.5.17"
   resolved "https://registry.yarnpkg.com/@graphql-tools/batch-execute/-/batch-execute-8.5.17.tgz#1d3294becfd2c3c6bddfe56ff3507ce89ca236a2"
@@ -9270,10 +9242,10 @@ next-seo@^5.5.0:
   resolved "https://registry.yarnpkg.com/next-seo/-/next-seo-5.14.1.tgz#d07322edc37634fbd9beca51fb04177910d8031c"
   integrity sha512-NiJeQbxYP3z+EMp52q8k3Q+OfX2+Yv2WehERDj98r2wjXxL+woKpRBdsSVYolTD0Hm8IWs42SzaISE93RoQdOw==
 
-next-sitemap@4.0.4:
-  version "4.0.4"
-  resolved "https://registry.yarnpkg.com/next-sitemap/-/next-sitemap-4.0.4.tgz#c20a638159ee40b3abe864281325cacc30581d9d"
-  integrity sha512-4/bUDeWNx03fc8ac+5wA55H1Zn3X3c1qj5iq3Mk5eidzxnBzIuUt4NJ+1TpB0n1m7HUgEtE+kaUGShFK0McZVg==
+next-sitemap@4.0.5:
+  version "4.0.5"
+  resolved "https://registry.yarnpkg.com/next-sitemap/-/next-sitemap-4.0.5.tgz#389980d79ada1580b793bad913ec8e993d3a6881"
+  integrity sha512-kIABX4n8wJqY2sttRjivBF2r1MgQ1pg12y87qGT+5meippq0ivxaNSRldMDOj8pIGhXW6uFAsCxyH/JftqkwWQ==
   dependencies:
     "@corex/deepmerge" "^4.0.37"
     minimist "^1.2.8"
