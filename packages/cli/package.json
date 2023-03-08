@@ -44,7 +44,7 @@
     "test": "jest"
   },
   "peerDependencies": {
-    "graphql": "^14.0.0 || ^15.0.0 || ^16.0.0"
+    "graphql": "^15.4.0 || ^16.0.0"
   },
   "dependencies": {
     "@graphql-inspector/audit-command": "3.4.4",
