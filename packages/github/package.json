@@ -58,6 +58,7 @@
   },
   "devDependencies": {
     "@types/express": "4.17.17",
+    "@types/js-yaml": "4.0.5",
     "probot": "11.4.1",
     "smee-client": "1.2.3"
   },

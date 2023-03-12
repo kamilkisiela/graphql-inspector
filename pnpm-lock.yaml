@@ -324,6 +324,7 @@ importers:
     specifiers:
       '@graphql-inspector/core': 4.0.0
       '@types/express': 4.17.17
+      '@types/js-yaml': 4.0.5
       '@whatwg-node/fetch': 0.8.1
       dataloader: 2.2.2
       js-yaml: 4.1.0
@@ -338,6 +339,7 @@ importers:
       tslib: 2.5.0
     devDependencies:
       '@types/express': 4.17.17
+      '@types/js-yaml': 4.0.5
       probot: 11.4.1
       smee-client: 1.2.3
     publishDirectory: dist
