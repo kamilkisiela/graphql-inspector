@@ -41,20 +41,19 @@
     "build": "tsc",
     "clean": "rm -rf dist/",
     "deploy": "now --docker",
-    "prebuild": "yarn clean",
+    "prebuild": "pnpm clean",
     "prepack": "bob prepack",
-    "prepublishOnly": "yarn build",
-    "test": "jest"
+    "prepublishOnly": "pnpm build"
   },
   "dependencies": {
     "@actions/core": "1.10.0",
     "@actions/github": "4.0.0",
-    "@graphql-inspector/commands": "3.4.0",
+    "@graphql-inspector/commands": "3.4.1",
     "@graphql-inspector/core": "4.0.0",
     "@graphql-inspector/github": "3.4.5",
     "js-yaml": "4.1.0",
     "probot": "11.4.1",
-    "tslib": "^2.0.0"
+    "tslib": "2.5.0"
   },
   "devDependencies": {
     "@types/js-yaml": "4.0.5"

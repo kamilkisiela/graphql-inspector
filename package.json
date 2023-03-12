@@ -11,12 +11,6 @@
   },
   "license": "MIT",
   "private": true,
-  "workspaces": [
-    "packages/*",
-    "packages/commands/*",
-    "packages/loaders/*",
-    "website"
-  ],
   "keywords": [
     "graphql",
     "graphql-inspector",
@@ -33,9 +27,9 @@
     "lint:prettier": "prettier --cache --check .",
     "prebuild": "rimraf \"packages/**/dist/\"",
     "precommit": "lint-staged",
-    "prerelease": "yarn action",
+    "prerelease": "pnpm action",
     "prettier": "prettier --cache --write --list-different .",
-    "release": "yarn build && changeset publish",
+    "release": "pnpm build && changeset publish",
     "release:canary": "npm run release -- canary",
     "test": "jest"
   },
@@ -45,8 +39,10 @@
     "@whatwg-node/fetch": "0.8.1",
     "husky": "8.0.3",
     "immer": "9.0.19",
+    "js-yaml": "4.1.0",
     "probot": "12.3.0",
-    "shelljs": "0.8.5"
+    "shelljs": "0.8.5",
+    "yargs": "17.2.1"
   },
   "devDependencies": {
     "@changesets/changelog-github": "0.4.8",
@@ -82,5 +78,10 @@
       "prettier --write",
       "git add"
     ]
+  },
+  "pnpm": {
+    "overrides": {
+      "@octokit/types": "5.4.1"
+    }
   }
 }
