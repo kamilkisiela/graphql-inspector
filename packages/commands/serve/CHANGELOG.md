@@ -1,5 +1,18 @@
 # @graphql-inspector/serve-command
 
+## 3.4.3
+
+### Patch Changes
+
+- [#2350](https://github.com/kamilkisiela/graphql-inspector/pull/2350)
+  [`5cdc5ae9`](https://github.com/kamilkisiela/graphql-inspector/commit/5cdc5ae995df39f12b5a4731be488ff1aa2add08)
+  Thanks [@renovate](https://github.com/apps/renovate)! - dependencies updates:
+  - Updated dependency [`open@8.4.2` ↗︎](https://www.npmjs.com/package/open/v/8.4.2) (from `8.4.1`,
+    in `dependencies`)
+- Updated dependencies
+  [[`0d6ff6db`](https://github.com/kamilkisiela/graphql-inspector/commit/0d6ff6dbdfd51caffae30715bd66c77e7156a641)]:
+  - @graphql-inspector/commands@3.4.2
+
 ## 3.4.2
 
 ### Patch Changes

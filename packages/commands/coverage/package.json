@@ -1,6 +1,6 @@
 {
   "name": "@graphql-inspector/coverage-command",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "description": "Schema Coverage in GraphQL Inspector",
   "repository": {
     "type": "git",
@@ -39,7 +39,7 @@
     "graphql": "^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0"
   },
   "dependencies": {
-    "@graphql-inspector/commands": "3.4.1",
+    "@graphql-inspector/commands": "3.4.2",
     "@graphql-inspector/core": "4.0.0",
     "@graphql-inspector/logger": "3.4.2",
     "@graphql-tools/utils": "^6.0.0 || ^7.0.0 || ^8.0.0 || ^9.0.0",
