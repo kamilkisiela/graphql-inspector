@@ -1,6 +1,6 @@
 {
   "name": "@graphql-inspector/similar-command",
-  "version": "3.4.4",
+  "version": "3.4.5",
   "description": "Find similar types in GraphQL Schema",
   "repository": {
     "type": "git",
@@ -39,7 +39,7 @@
     "graphql": "^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0"
   },
   "dependencies": {
-    "@graphql-inspector/commands": "3.4.1",
+    "@graphql-inspector/commands": "3.4.2",
     "@graphql-inspector/core": "4.0.0",
     "@graphql-inspector/logger": "3.4.2",
     "tslib": "^2.0.0"

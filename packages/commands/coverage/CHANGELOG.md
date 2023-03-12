@@ -1,5 +1,19 @@
 # @graphql-inspector/coverage-command
 
+## 4.0.1
+
+### Patch Changes
+
+- [#2349](https://github.com/kamilkisiela/graphql-inspector/pull/2349)
+  [`0d6ff6db`](https://github.com/kamilkisiela/graphql-inspector/commit/0d6ff6dbdfd51caffae30715bd66c77e7156a641)
+  Thanks [@TuvalSimha](https://github.com/TuvalSimha)! - dependencies updates:
+  - Added dependency
+    [`@graphql-tools/utils@^6.0.0 || ^7.0.0 || ^8.0.0 || ^9.0.0` ↗︎](https://www.npmjs.com/package/@graphql-tools/utils/v/6.0.0)
+    (to `dependencies`)
+- Updated dependencies
+  [[`0d6ff6db`](https://github.com/kamilkisiela/graphql-inspector/commit/0d6ff6dbdfd51caffae30715bd66c77e7156a641)]:
+  - @graphql-inspector/commands@3.4.2
+
 ## 4.0.0
 
 ### Major Changes

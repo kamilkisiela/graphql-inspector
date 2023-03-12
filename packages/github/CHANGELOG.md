@@ -1,5 +1,13 @@
 # @graphql-inspector/github
 
+## 3.4.6
+
+### Patch Changes
+
+- [#2266](https://github.com/kamilkisiela/graphql-inspector/pull/2266)
+  [`c55aa0c4`](https://github.com/kamilkisiela/graphql-inspector/commit/c55aa0c41f37c6cfc88eb9dae36505f4f335b6f0)
+  Thanks [@Tohaker](https://github.com/Tohaker)! - Allowing rules to be passed through to `diff`
+
 ## 3.4.5
 
 ### Patch Changes
