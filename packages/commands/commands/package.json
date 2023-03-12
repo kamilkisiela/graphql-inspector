@@ -36,20 +36,20 @@
     "prepack": "bob prepack"
   },
   "peerDependencies": {
-    "@graphql-inspector/config": "3.4.1",
-    "@graphql-inspector/loaders": "3.4.2",
+    "@graphql-inspector/config": "3.4.0",
+    "@graphql-inspector/loaders": "3.4.1",
     "graphql": "^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0",
     "yargs": "17.2.1"
   },
   "dependencies": {
-    "@graphql-inspector/audit-command": "3.4.5",
-    "@graphql-inspector/coverage-command": "4.0.1",
-    "@graphql-inspector/diff-command": "3.4.5",
-    "@graphql-inspector/docs-command": "3.4.3",
-    "@graphql-inspector/introspect-command": "3.4.5",
-    "@graphql-inspector/serve-command": "3.4.3",
-    "@graphql-inspector/similar-command": "3.4.5",
-    "@graphql-inspector/validate-command": "3.4.5",
+    "@graphql-inspector/audit-command": "3.4.4",
+    "@graphql-inspector/coverage-command": "4.0.0",
+    "@graphql-inspector/diff-command": "3.4.4",
+    "@graphql-inspector/docs-command": "3.4.2",
+    "@graphql-inspector/introspect-command": "3.4.4",
+    "@graphql-inspector/serve-command": "3.4.2",
+    "@graphql-inspector/similar-command": "3.4.4",
+    "@graphql-inspector/validate-command": "3.4.4",
     "tslib": "^2.0.0"
   },
   "publishConfig": {
