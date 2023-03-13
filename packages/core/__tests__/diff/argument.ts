@@ -55,6 +55,36 @@ describe('argument', () => {
       );
     });
 
+    test('added (undefined -> null)', async () => {
+      const a = buildSchema(/* GraphQL */ `
+        input Foo {
+          a: String!
+        }
+
+        type Dummy {
+          field(foo: Foo): String
+        }
+      `);
+      const b = buildSchema(/* GraphQL */ `
+        input Foo {
+          a: String!
+        }
+
+        type Dummy {
+          field(foo: Foo = null): String
+        }
+      `);
+
+      const change = findFirstChangeByPath(await diff(a, b), 'Dummy.field.foo');
+      console.log(change);
+
+      expect(change.criticality.level).toEqual(CriticalityLevel.Dangerous);
+      expect(change.type).toEqual('FIELD_ARGUMENT_DEFAULT_CHANGED');
+      expect(change.message).toEqual(
+        "Default value 'null' was added to argument 'foo' on field 'Dummy.field'",
+      );
+    });
+
     test('changed', async () => {
       const a = buildSchema(/* GraphQL */ `
         input Foo {
@@ -81,6 +111,35 @@ describe('argument', () => {
       expect(change.type).toEqual('FIELD_ARGUMENT_DEFAULT_CHANGED');
       expect(change.message).toEqual(
         "Default value for argument 'foo' on field 'Dummy.field' changed from '{ a: 'a' }' to '{ a: 'new-value' }'",
+      );
+    });
+
+    test('changed (null -> undefined)', async () => {
+      const a = buildSchema(/* GraphQL */ `
+        input Foo {
+          a: String!
+        }
+
+        type Dummy {
+          field(foo: Foo = null): String
+        }
+      `);
+      const b = buildSchema(/* GraphQL */ `
+        input Foo {
+          a: String!
+        }
+
+        type Dummy {
+          field(foo: Foo): String
+        }
+      `);
+
+      const change = findFirstChangeByPath(await diff(a, b), 'Dummy.field.foo');
+
+      expect(change.criticality.level).toEqual(CriticalityLevel.Dangerous);
+      expect(change.type).toEqual('FIELD_ARGUMENT_DEFAULT_CHANGED');
+      expect(change.message).toEqual(
+        "Default value for argument 'foo' on field 'Dummy.field' changed from 'null' to 'undefined'",
       );
     });
   });
