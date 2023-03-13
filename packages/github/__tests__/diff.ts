@@ -162,7 +162,7 @@ test('should work with comments and descriptions', async () => {
 test('use interceptor to modify changes', async () => {
   const scope = nock('https://api.com')
     .post('/intercept')
-    .reply(async (_, body: DiffInterceptorPayload) => {
+    .reply((async (_: any, body: DiffInterceptorPayload) => {
       const response: DiffInterceptorResponse = {
         changes: body.changes.map(c => {
           c.criticality.level = 'NON_BREAKING' as any;
@@ -170,7 +170,7 @@ test('use interceptor to modify changes', async () => {
         }),
       };
       return [200, response];
-    });
+    }) as any);
   const action = await diff({
     path: 'schema.graphql',
     ...build(oldSchema, newSchema),
@@ -180,7 +180,7 @@ test('use interceptor to modify changes', async () => {
   expect(action.annotations).toHaveLength(7);
   expect(action.changes).toHaveLength(7);
   expect(
-    action.changes.every(change => change.criticality.level === CriticalityLevel.NonBreaking),
+    action.changes?.every(change => change.criticality.level === CriticalityLevel.NonBreaking),
   ).toBe(true);
   expect(action.conclusion).toBe(CheckConclusion.Success);
 
@@ -190,13 +190,13 @@ test('use interceptor to modify changes', async () => {
 test('use interceptor to modify check conclusion', async () => {
   const scope = nock('https://api.com')
     .post('/intercept')
-    .reply(async (_, body: DiffInterceptorPayload) => {
+    .reply((async (_: any, body: DiffInterceptorPayload) => {
       const response: DiffInterceptorResponse = {
         changes: body.changes,
         conclusion: 'neutral' as any,
       };
       return [200, response];
-    });
+    }) as any);
   const action = await diff({
     path: 'schema.graphql',
     ...build(oldSchema, newSchema),

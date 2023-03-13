@@ -28,7 +28,7 @@ export function filterChangesByLevel(level: CriticalityLevel) {
   return (change: Change) => change.criticality.level === level;
 }
 
-export function createSummary(changes: Change[], summaryLimit: number, isLegacyConfig: boolean) {
+export function createSummary(changes: Change[], summaryLimit: number, isLegacyConfig = false) {
   const breakingChanges = changes.filter(filterChangesByLevel(CriticalityLevel.Breaking));
   const dangerousChanges = changes.filter(filterChangesByLevel(CriticalityLevel.Dangerous));
   const safeChanges = changes.filter(filterChangesByLevel(CriticalityLevel.NonBreaking));
