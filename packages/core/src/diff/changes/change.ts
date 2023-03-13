@@ -75,9 +75,564 @@ export interface Criticality {
   reason?: string;
 }
 
-export interface Change {
+export interface Change<TChange extends keyof Changes = any> {
   message: string;
   path?: string;
-  type: ChangeType;
+  type: TChange;
+  meta: Changes[TChange]['meta'];
   criticality: Criticality;
 }
+
+// Directive
+
+export type FieldArgumentDescriptionChanged = {
+  type: ChangeType.FieldArgumentDescriptionChanged;
+  meta: {
+    typeName: string;
+    fieldName: string;
+    argumentName: string;
+    oldDescription: string | null;
+    newDescription: string | null;
+  };
+};
+
+export type FieldArgumentDefaultChanged = {
+  type: ChangeType.FieldArgumentDefaultChanged;
+  meta: {
+    typeName: string;
+    fieldName: string;
+    argumentName: string;
+    oldDefaultValue: string | undefined;
+    newDefaultValue: string | undefined;
+  };
+};
+
+export type FieldArgumentTypeChanged = {
+  type: ChangeType.FieldArgumentTypeChanged;
+  meta: {
+    typeName: string;
+    fieldName: string;
+    argumentName: string;
+    oldArgumentType: string;
+    newArgumentType: string;
+  };
+};
+
+export type DirectiveRemoved = {
+  type: ChangeType.DirectiveRemoved;
+  meta: {
+    removedDirectiveName: string;
+  };
+};
+
+export type DirectiveAdded = {
+  type: ChangeType.DirectiveAdded;
+  meta: {
+    addedDirectiveName: string;
+  };
+};
+
+export type DirectiveDescriptionChanged = {
+  type: ChangeType.DirectiveDescriptionChanged;
+  meta: {
+    directiveName: string;
+    oldDirectiveDescription: string | null;
+    newDirectiveDescription: string | null;
+  };
+};
+
+export type DirectiveLocationAdded = {
+  type: ChangeType.DirectiveLocationAdded;
+  meta: {
+    directiveName: string;
+    addedDirectiveLocation: string;
+  };
+};
+
+export type DirectiveLocationRemoved = {
+  type: ChangeType.DirectiveLocationAdded;
+  meta: {
+    directiveName: string;
+    removedDirectiveLocation: string;
+  };
+};
+
+export type DirectiveArgumentAdded = {
+  type: ChangeType.DirectiveArgumentAdded;
+  meta: {
+    directiveName: string;
+    addedDirectiveArgumentName: string;
+    addedDirectiveArgumentType: string;
+  };
+};
+
+export type DirectiveArgumentRemoved = {
+  type: ChangeType.DirectiveArgumentRemoved;
+  meta: {
+    directiveName: string;
+    removedDirectiveArgumentName: string;
+    removedDirectiveArgumentType: string;
+  };
+};
+
+export type DirectiveArgumentDescriptionChanged = {
+  type: ChangeType.DirectiveArgumentDescriptionChanged;
+  meta: {
+    directiveName: string;
+    directiveArgumentName: string;
+    oldDirectiveArgumentDescription: string | null;
+    newDirectiveArgumentDescription: string | null;
+  };
+};
+
+export type DirectiveArgumentDefaultValueChanged = {
+  type: ChangeType.DirectiveArgumentDefaultValueChanged;
+  meta: {
+    directiveName: string;
+    directiveArgumentName: string;
+    oldDirectiveArgumentDefaultValue: string;
+    newDirectiveArgumentDefaultValue: string;
+  };
+};
+
+export type DirectiveArgumentTypeChanged = {
+  type: ChangeType.DirectiveArgumentTypeChanged;
+  meta: {
+    directiveName: string;
+    directiveArgumentName: string;
+    oldDirectiveArgumentType: string;
+    newDirectiveArgumentType: string;
+  };
+};
+
+// Enum
+
+export type EnumValueRemoved = {
+  type: ChangeType.EnumValueRemoved;
+  meta: {
+    enumName: string;
+    removedEnumValueName: string;
+    isEnumValueDeprecated: boolean;
+  };
+};
+
+export type EnumValueAdded = {
+  type: ChangeType.EnumValueAdded;
+  meta: {
+    enumName: string;
+    addedEnumValueName: string;
+  };
+};
+
+export type EnumValueDescriptionChanged = {
+  type: ChangeType.EnumValueDescriptionChanged;
+  meta: {
+    enumName: string;
+    enumValueName: string;
+    oldEnumValueDescription: string | null;
+    newEnumValueDescription: string | null;
+  };
+};
+
+export type EnumValueDeprecationReasonChanged = {
+  type: ChangeType.EnumValueDeprecationReasonChanged;
+  meta: {
+    enumName: string;
+    enumValueName: string;
+    oldEnumValueDeprecationReason: string;
+    newEnumValueDeprecationReason: string;
+  };
+};
+
+export type EnumValueDeprecationReasonAdded = {
+  type: ChangeType.EnumValueDeprecationReasonAdded;
+  meta: {
+    enumName: string;
+    enumValueName: string;
+    addedValueDeprecationReason: string;
+  };
+};
+
+export type EnumValueDeprecationReasonRemoved = {
+  type: ChangeType.EnumValueDeprecationReasonRemoved;
+  meta: {
+    enumName: string;
+    enumValueName: string;
+    removedEnumValueDeprecationReason: string;
+  };
+};
+
+// Field
+
+export type FieldRemoved = {
+  type: ChangeType.FieldRemoved;
+  meta: {
+    typeName: string;
+    removedFieldName: string;
+    isRemovedFieldDeprecated: boolean;
+    typeType: string;
+  };
+};
+
+export type FieldAdded = {
+  type: ChangeType.FieldAdded;
+  meta: {
+    typeName: string;
+    addedFieldName: string;
+    typeType: string;
+  };
+};
+
+export type FieldDescriptionChanged = {
+  type: ChangeType.FieldDescriptionChanged;
+  meta: {
+    typeName: string;
+    fieldName: string;
+    oldDescription: string;
+    newDescription: string;
+  };
+};
+
+export type FieldDescriptionAdded = {
+  type: ChangeType.FieldDescriptionAdded;
+  meta: {
+    typeName: string;
+    fieldName: string;
+    addedDescription: string;
+  };
+};
+
+export type FieldDescriptionRemoved = {
+  type: ChangeType.FieldDescriptionRemoved;
+  meta: {
+    typeName: string;
+    fieldName: string;
+  };
+};
+
+export type FieldDeprecationAdded = {
+  type: ChangeType.FieldDeprecationAdded;
+  meta: {
+    typeName: string;
+    fieldName: string;
+  };
+};
+
+export type FieldDeprecationRemoved = {
+  type: ChangeType.FieldDeprecationRemoved;
+  meta: {
+    typeName: string;
+    fieldName: string;
+  };
+};
+
+export type FieldDeprecationReasonChanged = {
+  type: ChangeType.FieldDeprecationReasonChanged;
+  meta: {
+    typeName: string;
+    fieldName: string;
+    oldDeprecationReason: string;
+    newDeprecationReason: string;
+  };
+};
+
+export type FieldDeprecationReasonAdded = {
+  type: ChangeType.FieldDeprecationReasonAdded;
+  meta: {
+    typeName: string;
+    fieldName: string;
+    addedDeprecationReason: string;
+  };
+};
+
+export type FieldDeprecationReasonRemoved = {
+  type: ChangeType.FieldDeprecationReasonRemoved;
+  meta: {
+    typeName: string;
+    fieldName: string;
+  };
+};
+
+export type FieldTypeChanged = {
+  type: ChangeType.FieldTypeChanged;
+  meta: {
+    typeName: string;
+    fieldName: string;
+    oldFieldType: string;
+    newFieldType: string;
+  };
+};
+
+export type FieldArgumentAdded = {
+  type: ChangeType.FieldArgumentAdded;
+  meta: {
+    typeName: string;
+    fieldName: string;
+    addedArgumentName: string;
+    addedArgumentType: string;
+    hasDefaultValue: boolean;
+  };
+};
+
+export type FieldArgumentRemoved = {
+  type: ChangeType.FieldArgumentRemoved;
+  meta: {
+    typeName: string;
+    fieldName: string;
+    removedFieldArgumentName: string;
+    removedFieldType: string;
+  };
+};
+
+// Input
+
+export type InputFieldRemoved = {
+  type: ChangeType.InputFieldRemoved;
+  meta: {
+    inputName: string;
+    removedFieldName: string;
+    isInputFieldDeprecated: boolean;
+  };
+};
+
+export type InputFieldAdded = {
+  type: ChangeType.InputFieldAdded;
+  meta: {
+    inputName: string;
+    addedInputFieldName: string;
+  };
+};
+
+export type InputFieldDescriptionAdded = {
+  type: ChangeType.InputFieldDescriptionAdded;
+  meta: {
+    inputName: string;
+    inputFieldName: string;
+    addedInputFieldDescription: string;
+  };
+};
+
+export type InputFieldDescriptionRemoved = {
+  type: ChangeType.InputFieldDescriptionRemoved;
+  meta: {
+    inputName: string;
+    inputFieldName: string;
+  };
+};
+
+export type InputFieldDescriptionChanged = {
+  type: ChangeType.InputFieldDescriptionChanged;
+  meta: {
+    inputName: string;
+    inputFieldName: string;
+    oldInputFieldDescription: string;
+    newInputFieldDescription: string;
+  };
+};
+
+export type InputFieldDefaultValueChanged = {
+  type: ChangeType.InputFieldDefaultValueChanged;
+  meta: {
+    inputName: string;
+    inputFieldName: string;
+    oldDefaultValue: string /* null | */ | undefined;
+    newDefaultValue: string /* null | */ | undefined;
+  };
+};
+
+export type InputFieldTypeChanged = {
+  type: ChangeType.InputFieldTypeChanged;
+  meta: {
+    inputName: string;
+    inputFieldName: string;
+    oldInputFieldType: string;
+    newInputFieldType: string;
+  };
+};
+
+// Type
+
+export type ObjectTypeInterfaceAdded = {
+  type: ChangeType.ObjectTypeInterfaceAdded;
+  meta: {
+    objectTypeName: string;
+    addedInterfaceName: string;
+  };
+};
+
+export type ObjectTypeInterfaceRemoved = {
+  type: ChangeType.ObjectTypeInterfaceRemoved;
+  meta: {
+    objectTypeName: string;
+    removedInterfaceName: string;
+  };
+};
+
+// Schema
+
+export type SchemaQueryTypeChanged = {
+  type: ChangeType.SchemaQueryTypeChanged;
+  meta: {
+    oldQueryTypeName: string;
+    newQueryTypeName: string;
+  };
+};
+
+export type SchemaMutationTypeChanged = {
+  type: ChangeType.SchemaMutationTypeChanged;
+  meta: {
+    oldMutationTypeName: string;
+    newMutationTypeName: string;
+  };
+};
+
+export type SchemaSubscriptionTypeChanged = {
+  type: ChangeType.SchemaSubscriptionTypeChanged;
+  meta: {
+    oldSubscriptionTypeName: string;
+    newSubscriptionTypeName: string;
+  };
+};
+
+// Type
+
+export type TypeRemoved = {
+  type: ChangeType.TypeRemoved;
+  meta: {
+    removedTypeName: string;
+  };
+};
+
+export type TypeAdded = {
+  type: ChangeType.TypeAdded;
+  meta: {
+    addedTypeName: string;
+  };
+};
+
+export type TypeKindChanged = {
+  type: ChangeType.TypeKindChanged;
+  meta: {
+    typeName: string;
+    oldTypeKind: string;
+    newTypeKind: string;
+  };
+};
+
+export type TypeDescriptionChanged = {
+  type: ChangeType.TypeDescriptionChanged;
+  meta: {
+    typeName: string;
+    oldTypeDescription: string;
+    newTypeDescription: string;
+  };
+};
+
+export type TypeDescriptionAdded = {
+  type: ChangeType.TypeDescriptionAdded;
+  meta: {
+    typeName: string;
+    addedTypeDescription: string;
+  };
+};
+
+export type TypeDescriptionRemoved = {
+  type: ChangeType.TypeDescriptionRemoved;
+  meta: {
+    typeName: string;
+    removedTypeDescription: string;
+  };
+};
+
+// Union
+
+export type UnionMemberRemoved = {
+  type: ChangeType.UnionMemberRemoved;
+  meta: {
+    unionName: string;
+    removedUnionMemberTypeName: string;
+  };
+};
+
+export type UnionMemberAdded = {
+  type: ChangeType.UnionMemberAdded;
+  meta: {
+    unionName: string;
+    addedUnionMemberTypeName: string;
+  };
+};
+
+type Changes = {
+  [ChangeType.TypeAdded]: TypeAdded;
+  [ChangeType.TypeRemoved]: TypeRemoved;
+  [ChangeType.TypeKindChanged]: TypeKindChanged;
+  [ChangeType.TypeDescriptionChanged]: TypeDescriptionChanged;
+  [ChangeType.TypeDescriptionAdded]: TypeDescriptionAdded;
+  [ChangeType.TypeDescriptionRemoved]: TypeDescriptionRemoved;
+  [ChangeType.UnionMemberRemoved]: UnionMemberRemoved;
+  [ChangeType.UnionMemberAdded]: UnionMemberAdded;
+  [ChangeType.SchemaQueryTypeChanged]: SchemaQueryTypeChanged;
+  [ChangeType.SchemaMutationTypeChanged]: SchemaMutationTypeChanged;
+  [ChangeType.SchemaSubscriptionTypeChanged]: SchemaSubscriptionTypeChanged;
+  [ChangeType.ObjectTypeInterfaceAdded]: ObjectTypeInterfaceAdded;
+  [ChangeType.ObjectTypeInterfaceRemoved]: ObjectTypeInterfaceRemoved;
+  [ChangeType.InputFieldRemoved]: InputFieldRemoved;
+  [ChangeType.InputFieldAdded]: InputFieldAdded;
+  [ChangeType.InputFieldDescriptionAdded]: InputFieldDescriptionAdded;
+  [ChangeType.InputFieldDescriptionRemoved]: InputFieldDescriptionRemoved;
+  [ChangeType.InputFieldDescriptionChanged]: InputFieldDescriptionChanged;
+  [ChangeType.InputFieldDefaultValueChanged]: InputFieldDefaultValueChanged;
+  [ChangeType.InputFieldTypeChanged]: InputFieldTypeChanged;
+  [ChangeType.FieldRemoved]: FieldRemoved;
+  [ChangeType.FieldAdded]: FieldAdded;
+  [ChangeType.FieldDescriptionAdded]: FieldDescriptionAdded;
+  [ChangeType.FieldDescriptionRemoved]: FieldDescriptionRemoved;
+  [ChangeType.FieldDescriptionChanged]: FieldDescriptionChanged;
+  [ChangeType.FieldArgumentAdded]: FieldArgumentAdded;
+  [ChangeType.FieldArgumentRemoved]: FieldArgumentRemoved;
+  [ChangeType.InputFieldRemoved]: InputFieldRemoved;
+  [ChangeType.InputFieldAdded]: InputFieldAdded;
+  [ChangeType.InputFieldDescriptionAdded]: InputFieldDescriptionAdded;
+  [ChangeType.InputFieldDescriptionRemoved]: InputFieldDescriptionRemoved;
+  [ChangeType.InputFieldDescriptionChanged]: InputFieldDescriptionChanged;
+  [ChangeType.InputFieldDefaultValueChanged]: InputFieldDefaultValueChanged;
+  [ChangeType.InputFieldTypeChanged]: InputFieldTypeChanged;
+  [ChangeType.ObjectTypeInterfaceAdded]: ObjectTypeInterfaceAdded;
+  [ChangeType.ObjectTypeInterfaceRemoved]: ObjectTypeInterfaceRemoved;
+  [ChangeType.SchemaQueryTypeChanged]: SchemaQueryTypeChanged;
+  [ChangeType.SchemaMutationTypeChanged]: SchemaMutationTypeChanged;
+  [ChangeType.SchemaSubscriptionTypeChanged]: SchemaSubscriptionTypeChanged;
+  [ChangeType.TypeAdded]: TypeAdded;
+  [ChangeType.TypeRemoved]: TypeRemoved;
+  [ChangeType.TypeKindChanged]: TypeKindChanged;
+  [ChangeType.TypeDescriptionChanged]: TypeDescriptionChanged;
+  [ChangeType.TypeDescriptionRemoved]: TypeDescriptionRemoved;
+  [ChangeType.TypeDescriptionAdded]: TypeDescriptionAdded;
+  [ChangeType.UnionMemberAdded]: UnionMemberAdded;
+  [ChangeType.UnionMemberRemoved]: UnionMemberRemoved;
+  [ChangeType.DirectiveRemoved]: DirectiveRemoved;
+  [ChangeType.DirectiveAdded]: DirectiveAdded;
+  [ChangeType.DirectiveArgumentAdded]: DirectiveArgumentAdded;
+  [ChangeType.DirectiveArgumentRemoved]: DirectiveArgumentRemoved;
+  [ChangeType.DirectiveArgumentDescriptionChanged]: DirectiveArgumentDescriptionChanged;
+  [ChangeType.DirectiveArgumentDefaultValueChanged]: DirectiveArgumentDefaultValueChanged;
+  [ChangeType.DirectiveArgumentTypeChanged]: DirectiveArgumentTypeChanged;
+  [ChangeType.DirectiveDescriptionChanged]: DirectiveDescriptionChanged;
+  [ChangeType.FieldArgumentDescriptionChanged]: FieldArgumentDescriptionChanged;
+  [ChangeType.FieldArgumentDefaultChanged]: FieldArgumentDefaultChanged;
+  [ChangeType.FieldArgumentTypeChanged]: FieldArgumentTypeChanged;
+  [ChangeType.DirectiveLocationAdded]: DirectiveLocationAdded;
+  [ChangeType.DirectiveLocationRemoved]: DirectiveLocationRemoved;
+  [ChangeType.EnumValueRemoved]: EnumValueRemoved;
+  [ChangeType.EnumValueDescriptionChanged]: EnumValueDescriptionChanged;
+  [ChangeType.EnumValueDeprecationReasonChanged]: EnumValueDeprecationReasonChanged;
+  [ChangeType.EnumValueDeprecationReasonAdded]: EnumValueDeprecationReasonAdded;
+  [ChangeType.EnumValueDeprecationReasonRemoved]: EnumValueDeprecationReasonRemoved;
+  [ChangeType.EnumValueAdded]: EnumValueAdded;
+  [ChangeType.FieldDeprecationAdded]: FieldDeprecationAdded;
+  [ChangeType.FieldDeprecationRemoved]: FieldDeprecationRemoved;
+  [ChangeType.FieldDeprecationReasonChanged]: FieldDeprecationReasonChanged;
+  [ChangeType.FieldDeprecationReasonAdded]: FieldDeprecationReasonAdded;
+  [ChangeType.FieldDeprecationReasonRemoved]: FieldDeprecationReasonRemoved;
+  [ChangeType.FieldTypeChanged]: FieldTypeChanged;
+};

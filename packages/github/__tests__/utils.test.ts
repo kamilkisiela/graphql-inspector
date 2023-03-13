@@ -11,6 +11,12 @@ describe('Limit summary', () => {
           criticality: {
             level: CriticalityLevel.Breaking,
           },
+          meta: {
+            typeName: 'foo',
+            removedFieldName: 'bar',
+            isRemovedFieldDeprecated: false,
+            typeType: 'INPUT_OBJECT',
+          },
         },
         {
           type: ChangeType.FieldRemoved,
@@ -18,12 +24,22 @@ describe('Limit summary', () => {
           criticality: {
             level: CriticalityLevel.Breaking,
           },
+          meta: {
+            typeName: 'foo',
+            removedFieldName: 'bar',
+            isRemovedFieldDeprecated: false,
+            typeType: 'INPUT_OBJECT',
+          },
         },
         {
           type: ChangeType.FieldAdded,
           message: 'safe-3',
           criticality: {
             level: CriticalityLevel.NonBreaking,
+          },
+          meta: {
+            typeName: 'foo',
+            addedFieldName: 'bar',
           },
         },
       ],
@@ -45,12 +61,24 @@ describe('Limit summary', () => {
           criticality: {
             level: CriticalityLevel.Breaking,
           },
+          meta: {
+            typeName: 'foo',
+            removedFieldName: 'bar',
+            isRemovedFieldDeprecated: false,
+            typeType: 'INPUT_OBJECT',
+          },
         },
         {
           type: ChangeType.FieldRemoved,
           message: 'breaking-2',
           criticality: {
             level: CriticalityLevel.Breaking,
+          },
+          meta: {
+            typeName: 'foo',
+            removedFieldName: 'bar',
+            isRemovedFieldDeprecated: false,
+            typeType: 'INPUT_OBJECT',
           },
         },
         {
@@ -59,12 +87,22 @@ describe('Limit summary', () => {
           criticality: {
             level: CriticalityLevel.Breaking,
           },
+          meta: {
+            typeName: 'foo',
+            removedFieldName: 'bar',
+            isRemovedFieldDeprecated: false,
+            typeType: 'INPUT_OBJECT',
+          },
         },
         {
           type: ChangeType.FieldAdded,
           message: 'safe-4',
           criticality: {
             level: CriticalityLevel.NonBreaking,
+          },
+          meta: {
+            typeName: 'foo',
+            addedFieldName: 'bar',
           },
         },
       ],
@@ -87,12 +125,24 @@ describe('Limit summary', () => {
           criticality: {
             level: CriticalityLevel.Breaking,
           },
+          meta: {
+            typeName: 'foo',
+            removedFieldName: 'bar',
+            isRemovedFieldDeprecated: false,
+            typeType: 'INPUT_OBJECT',
+          },
         },
         {
           type: ChangeType.FieldRemoved,
           message: 'breaking-2',
           criticality: {
             level: CriticalityLevel.Breaking,
+          },
+          meta: {
+            typeName: 'foo',
+            removedFieldName: 'bar',
+            isRemovedFieldDeprecated: false,
+            typeType: 'INPUT_OBJECT',
           },
         },
         {
@@ -101,12 +151,22 @@ describe('Limit summary', () => {
           criticality: {
             level: CriticalityLevel.Breaking,
           },
+          meta: {
+            typeName: 'foo',
+            removedFieldName: 'bar',
+            isRemovedFieldDeprecated: false,
+            typeType: 'INPUT_OBJECT',
+          },
         },
         {
           type: ChangeType.FieldAdded,
           message: 'safe-4',
           criticality: {
             level: CriticalityLevel.NonBreaking,
+          },
+          meta: {
+            typeName: 'foo',
+            addedFieldName: 'bar',
           },
         },
       ],
