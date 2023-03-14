@@ -299,16 +299,20 @@ export function directiveArgumentDefaultValueChanged(
   oldArg: GraphQLArgument,
   newArg: GraphQLArgument,
 ): Change<ChangeType.DirectiveArgumentDefaultValueChanged> {
+  const meta: DirectiveArgumentDefaultValueChanged['meta'] = {
+    directiveName: directive.name,
+    directiveArgumentName: oldArg.name,
+  };
+  if (oldArg.defaultValue !== undefined) {
+    meta.oldDirectiveArgumentDefaultValue = safeString(oldArg.defaultValue);
+  }
+  if (newArg.defaultValue !== undefined) {
+    meta.newDirectiveArgumentDefaultValue = safeString(newArg.defaultValue);
+  }
+
   return directiveArgumentDefaultValueChangedFromMeta({
     type: ChangeType.DirectiveArgumentDefaultValueChanged,
-    meta: {
-      directiveName: directive.name,
-      directiveArgumentName: oldArg.name,
-      oldDirectiveArgumentDefaultValue:
-        oldArg.defaultValue === undefined ? undefined : safeString(oldArg.defaultValue),
-      newDirectiveArgumentDefaultValue:
-        newArg.defaultValue === undefined ? undefined : safeString(newArg.defaultValue),
-    },
+    meta,
   });
 }
 

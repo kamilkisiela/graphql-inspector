@@ -199,14 +199,20 @@ export function inputFieldDefaultValueChanged(
   oldField: GraphQLInputField,
   newField: GraphQLInputField,
 ): Change<ChangeType.InputFieldDefaultValueChanged> {
+  const meta: InputFieldDefaultValueChanged['meta'] = {
+    inputName: input.name,
+    inputFieldName: oldField.name,
+  };
+
+  if (oldField.defaultValue !== undefined) {
+    meta.oldDefaultValue = safeString(oldField.defaultValue);
+  }
+  if (newField.defaultValue !== undefined) {
+    meta.newDefaultValue = safeString(newField.defaultValue);
+  }
   return inputFieldDefaultValueChangedFromMeta({
     type: ChangeType.InputFieldDefaultValueChanged,
-    meta: {
-      inputName: input.name,
-      inputFieldName: oldField.name,
-      newDefaultValue: newField.defaultValue ? safeString(newField.defaultValue) : undefined,
-      oldDefaultValue: oldField.defaultValue ? safeString(oldField.defaultValue) : undefined,
-    },
+    meta,
   });
 }
 

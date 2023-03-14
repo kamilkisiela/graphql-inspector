@@ -102,8 +102,8 @@ export type FieldArgumentDefaultChanged = {
     typeName: string;
     fieldName: string;
     argumentName: string;
-    oldDefaultValue: string | undefined;
-    newDefaultValue: string | undefined;
+    oldDefaultValue?: string;
+    newDefaultValue?: string;
   };
 };
 
@@ -190,8 +190,8 @@ export type DirectiveArgumentDefaultValueChanged = {
   meta: {
     directiveName: string;
     directiveArgumentName: string;
-    oldDirectiveArgumentDefaultValue: string /* | null */ | undefined;
-    newDirectiveArgumentDefaultValue: string /* | null */ | undefined;
+    oldDirectiveArgumentDefaultValue?: string /* | null */;
+    newDirectiveArgumentDefaultValue?: string /* | null */;
   };
 };
 
@@ -440,8 +440,8 @@ export type InputFieldDefaultValueChanged = {
   meta: {
     inputName: string;
     inputFieldName: string;
-    oldDefaultValue: string /* null | */ | undefined;
-    newDefaultValue: string /* null | */ | undefined;
+    oldDefaultValue?: string /* null | */;
+    newDefaultValue?: string /* null | */;
   };
 };
 

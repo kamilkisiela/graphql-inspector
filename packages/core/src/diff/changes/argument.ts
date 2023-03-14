@@ -76,17 +76,22 @@ export function fieldArgumentDefaultChanged(
   oldArg: GraphQLArgument,
   newArg: GraphQLArgument,
 ): Change<ChangeType.FieldArgumentDefaultChanged> {
+  const meta: FieldArgumentDefaultChanged['meta'] = {
+    typeName: type.name,
+    fieldName: field.name,
+    argumentName: newArg.name,
+  };
+
+  if (oldArg.defaultValue !== undefined) {
+    meta.oldDefaultValue = safeString(oldArg.defaultValue);
+  }
+  if (newArg.defaultValue !== undefined) {
+    meta.newDefaultValue = safeString(newArg.defaultValue);
+  }
+
   return fieldArgumentDefaultChangedFromMeta({
     type: ChangeType.FieldArgumentDefaultChanged,
-    meta: {
-      typeName: type.name,
-      fieldName: field.name,
-      argumentName: newArg.name,
-      oldDefaultValue:
-        oldArg.defaultValue == undefined ? undefined : safeString(oldArg.defaultValue),
-      newDefaultValue:
-        newArg.defaultValue == undefined ? undefined : safeString(newArg.defaultValue),
-    },
+    meta,
   });
 }
 
