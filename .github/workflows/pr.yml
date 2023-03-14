@@ -10,6 +10,7 @@ jobs:
     uses: the-guild-org/shared-config/.github/workflows/algolia-integrity.yml@main
     with:
       domain: https://www.the-guild.dev/graphql/inspector/
+      source: "Inspector"
     secrets:
       githubToken: ${{ secrets.GITHUB_TOKEN }}
 
