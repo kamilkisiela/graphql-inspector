@@ -11,8 +11,8 @@ jobs:
     secrets:
       githubToken: ${{ secrets.GUILD_BOT_TOKEN }}
     with:
-      domain: https://www.the-guild.dev/graphql/inspector/
-      source: 'Inspector'
+      domain: https://www.the-guild.dev/graphql/inspector
+      source: "Inspector"
   release:
     uses: the-guild-org/shared-config/.github/workflows/release-snapshot.yml@main
     with:
