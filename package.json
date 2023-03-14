@@ -29,7 +29,7 @@
     "precommit": "lint-staged",
     "prerelease": "pnpm action",
     "prettier": "prettier --cache --write --list-different .",
-    "release": "pnpm install && pnpm build && changeset publish",
+    "release": "pnpm install && pnpm build && pnpm changeset publish",
     "release:canary": "npm run release -- canary",
     "test": "jest"
   },
