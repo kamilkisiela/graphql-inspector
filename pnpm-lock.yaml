@@ -11,6 +11,7 @@ importers:
       '@changesets/cli': 2.26.0
       '@sentry/node': 7.41.0
       '@sentry/tracing': 7.41.0
+      '@theguild/algolia': 1.1.4
       '@theguild/eslint-config': 0.8.0
       '@theguild/prettier-config': 1.1.2
       '@types/body-parser': 1.19.2
@@ -45,6 +46,7 @@ importers:
     dependencies:
       '@sentry/node': 7.41.0
       '@sentry/tracing': 7.41.0
+      '@theguild/algolia': 1.1.4
       '@whatwg-node/fetch': 0.8.1_@types+node@14.18.37
       husky: 8.0.3
       immer: 9.0.19
@@ -3222,7 +3224,6 @@ packages:
       gray-matter: 4.0.3
       lodash.sortby: 4.7.0
       remove-markdown: 0.5.0
-    dev: true
 
   /@theguild/components/4.5.6_nvzgbose6yf6w7ijjprgspqefi:
     resolution: {integrity: sha512-2xwEcCvPIX4VYosWd5K0MGsvOl6m7qkB2O819PUC+6kc6nkjgX3T2aElm5MC9m6snoxcE9ASjzWQOUFnAMGeXQ==}
@@ -4860,7 +4861,6 @@ packages:
   /commander/10.0.0:
     resolution: {integrity: sha512-zS5PnTI22FIRM6ylNW8G4Ap0IEOyk62fhLSD0+uHRT9McRCLGpkVNvao4bjimpK/GShynyQkFFxHhwMcETmduA==}
     engines: {node: '>=14'}
-    dev: true
 
   /commander/2.20.3:
     resolution: {integrity: sha512-GpVkmM8vF2vQUkj2LvZmD35JxeJOLCwJ9cUkugyk2nuhbv3+mJvpLYYt+0+USMxE+oj+ey/lJEnhZw75x/OMcQ==}
@@ -9129,7 +9129,6 @@ packages:
 
   /lodash.sortby/4.7.0:
     resolution: {integrity: sha512-HDWXG8isMntAyRF5vZ7xKuEvOhT4AhlRt/3czTSjvGUxjYCBVRQY48ViDHyfYz9VIoBkW4TMGQNapx+l3RUwdA==}
-    dev: true
 
   /lodash.startcase/4.4.0:
     resolution: {integrity: sha512-+WKqsK294HMSc2jEbNgpHpd0JfIBhp7rEV4aqXWqFr6AlXov+SlcgB1Fv01y2kGe3Gc8nMW7VA0SrGuSkRfIEg==}
@@ -11833,7 +11832,6 @@ packages:
 
   /remove-markdown/0.5.0:
     resolution: {integrity: sha512-x917M80K97K5IN1L8lUvFehsfhR8cYjGQ/yAMRI9E7JIKivtl5Emo5iD13DhMr+VojzMCiYk8V2byNPwT/oapg==}
-    dev: true
 
   /remove-trailing-separator/1.1.0:
     resolution: {integrity: sha512-/hS+Y0u3aOfIETiaiirUFwDBDzmXPvO+jAfKTitUngIPzdKc6Z0LoFjM/CK5PL4C+eKwHohlHAb6H0VFfmmUsw==}

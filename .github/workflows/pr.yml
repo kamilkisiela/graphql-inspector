@@ -8,11 +8,11 @@ on:
 jobs:
   algolia:
     uses: the-guild-org/shared-config/.github/workflows/algolia-integrity.yml@main
-    secrets:
-      githubToken: ${{ secrets.GUILD_BOT_TOKEN }}
     with:
-      domain: https://www.the-guild.dev/graphql/inspector
-      source: "Inspector"
+      domain: https://www.the-guild.dev/graphql/inspector/
+    secrets:
+      githubToken: ${{ secrets.GITHUB_TOKEN }}
+
   release:
     uses: the-guild-org/shared-config/.github/workflows/release-snapshot.yml@main
     with:
