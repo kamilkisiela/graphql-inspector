@@ -15,116 +15,149 @@ import {
   InputFieldTypeChanged,
 } from './change';
 
-function buildInputFieldRemovedMessage(args: InputFieldRemoved) {
-  return `Input field '${args.meta.removedFieldName}' ${
-    args.meta.isInputFieldDeprecated ? '(deprecated) ' : ''
-  }was removed from input object type '${args.meta.inputName}'`;
+function buildInputFieldRemovedMessage(args: InputFieldRemoved['meta']) {
+  return `Input field '${args.removedFieldName}' ${
+    args.isInputFieldDeprecated ? '(deprecated) ' : ''
+  }was removed from input object type '${args.inputName}'`;
+}
+
+export function inputFieldRemovedFromMeta(args: InputFieldRemoved) {
+  return {
+    type: ChangeType.InputFieldRemoved,
+    criticality: {
+      level: CriticalityLevel.Breaking,
+      reason:
+        'Removing an input field will cause existing queries that use this input field to error.',
+    },
+    message: buildInputFieldRemovedMessage(args.meta),
+    meta: args.meta,
+    path: [args.meta.inputName, args.meta.removedFieldName].join('.'),
+  } as const;
 }
 
 export function inputFieldRemoved(
   input: GraphQLInputObjectType,
   field: GraphQLInputField,
 ): Change<ChangeType.InputFieldRemoved> {
-  return {
-    criticality: {
-      level: CriticalityLevel.Breaking,
-      reason:
-        'Removing an input field will cause existing queries that use this input field to error.',
-    },
+  return inputFieldRemovedFromMeta({
     type: ChangeType.InputFieldRemoved,
-    get message() {
-      return buildInputFieldRemovedMessage(this);
-    },
-    path: [input.name, field.name].join('.'),
     meta: {
       inputName: input.name,
       removedFieldName: field.name,
       isInputFieldDeprecated: isDeprecated(field),
     },
-  };
+  });
 }
 
-export function buildInputFieldAddedMessage(args: InputFieldAdded) {
-  return `Input field '${args.meta.addedInputFieldName}' was added to input object type '${args.meta.inputName}'`;
+export function buildInputFieldAddedMessage(args: InputFieldAdded['meta']) {
+  return `Input field '${args.addedInputFieldName}' was added to input object type '${args.inputName}'`;
+}
+
+export function inputFieldAddedFromMeta(args: InputFieldAdded) {
+  return {
+    type: ChangeType.InputFieldAdded,
+    criticality: args.meta.isAddedInputFieldTypeNullable
+      ? {
+          level: CriticalityLevel.Dangerous,
+        }
+      : {
+          level: CriticalityLevel.Breaking,
+          reason:
+            'Adding a required input field to an existing input object type is a breaking change because it will cause existing uses of this input object type to error.',
+        },
+    message: buildInputFieldAddedMessage(args.meta),
+    meta: args.meta,
+    path: [args.meta.inputName, args.meta.addedInputFieldName].join('.'),
+  } as const;
 }
 
 export function inputFieldAdded(
   input: GraphQLInputObjectType,
   field: GraphQLInputField,
 ): Change<ChangeType.InputFieldAdded> {
-  return {
-    criticality: isNonNullType(field.type)
-      ? {
-          level: CriticalityLevel.Breaking,
-          reason:
-            'Adding a required input field to an existing input object type is a breaking change because it will cause existing uses of this input object type to error.',
-        }
-      : {
-          level: CriticalityLevel.Dangerous,
-        },
+  return inputFieldAddedFromMeta({
     type: ChangeType.InputFieldAdded,
-    get message() {
-      return buildInputFieldAddedMessage(this);
-    },
-    path: [input.name, field.name].join('.'),
     meta: {
       inputName: input.name,
       addedInputFieldName: field.name,
+      isAddedInputFieldTypeNullable: !isNonNullType(field.type),
     },
-  };
+  });
 }
 
-function buildInputFieldDescriptionAddedMessage(args: InputFieldDescriptionAdded) {
-  return `Input field '${args.meta.inputName}.${args.meta.inputFieldName}' has description '${args.meta.addedInputFieldDescription}'`;
+function buildInputFieldDescriptionAddedMessage(args: InputFieldDescriptionAdded['meta']) {
+  return `Input field '${args.inputName}.${args.inputFieldName}' has description '${args.addedInputFieldDescription}'`;
+}
+
+export function inputFieldDescriptionAddedFromMeta(args: InputFieldDescriptionAdded) {
+  return {
+    type: ChangeType.InputFieldDescriptionAdded,
+    criticality: {
+      level: CriticalityLevel.NonBreaking,
+    },
+    message: buildInputFieldDescriptionAddedMessage(args.meta),
+    meta: args.meta,
+    path: [args.meta.inputName, args.meta.inputFieldName].join('.'),
+  } as const;
 }
 
 export function inputFieldDescriptionAdded(
   type: GraphQLInputObjectType,
   field: GraphQLInputField,
 ): Change<ChangeType.InputFieldDescriptionAdded> {
-  return {
-    criticality: {
-      level: CriticalityLevel.NonBreaking,
-    },
+  return inputFieldDescriptionAddedFromMeta({
     type: ChangeType.InputFieldDescriptionAdded,
-    get message() {
-      return buildInputFieldDescriptionAddedMessage(this);
-    },
-    path: [type.name, field.name].join('.'),
     meta: {
       inputName: type.name,
       inputFieldName: field.name,
       addedInputFieldDescription: safeString(field.description),
     },
-  };
+  });
 }
 
-function buildInputFieldDescriptionRemovedMessage(args: InputFieldDescriptionRemoved) {
-  return `Description was removed from input field '${args.meta.inputName}.${args.meta.inputFieldName}'`;
+function buildInputFieldDescriptionRemovedMessage(args: InputFieldDescriptionRemoved['meta']) {
+  return `Description was removed from input field '${args.inputName}.${args.inputFieldName}'`;
+}
+
+export function inputFieldDescriptionRemovedFromMeta(args: InputFieldDescriptionRemoved) {
+  return {
+    type: ChangeType.InputFieldDescriptionRemoved,
+    criticality: {
+      level: CriticalityLevel.NonBreaking,
+    },
+    message: buildInputFieldDescriptionRemovedMessage(args.meta),
+    meta: args.meta,
+    path: [args.meta.inputName, args.meta.inputFieldName].join('.'),
+  } as const;
 }
 
 export function inputFieldDescriptionRemoved(
   type: GraphQLInputObjectType,
   field: GraphQLInputField,
 ): Change<ChangeType.InputFieldDescriptionRemoved> {
-  return {
-    criticality: {
-      level: CriticalityLevel.NonBreaking,
-    },
+  return inputFieldDescriptionRemovedFromMeta({
     type: ChangeType.InputFieldDescriptionRemoved,
-    get message() {
-      return buildInputFieldDescriptionRemovedMessage(this);
-    },
-    path: [type.name, field.name].join('.'),
     meta: {
       inputName: type.name,
       inputFieldName: field.name,
     },
-  };
+  });
 }
 
-function buildInputFieldDescriptionChangedMessage(args: InputFieldDescriptionChanged) {
-  return `Input field '${args.meta.inputName}.${args.meta.inputFieldName}' description changed from '${args.meta.oldInputFieldDescription}' to '${args.meta.newInputFieldDescription}'`;
+function buildInputFieldDescriptionChangedMessage(args: InputFieldDescriptionChanged['meta']) {
+  return `Input field '${args.inputName}.${args.inputFieldName}' description changed from '${args.oldInputFieldDescription}' to '${args.newInputFieldDescription}'`;
+}
+
+export function inputFieldDescriptionChangedFromMeta(args: InputFieldDescriptionChanged) {
+  return {
+    type: ChangeType.InputFieldDescriptionChanged,
+    criticality: {
+      level: CriticalityLevel.NonBreaking,
+    },
+    message: buildInputFieldDescriptionChangedMessage(args.meta),
+    meta: args.meta,
+    path: [args.meta.inputName, args.meta.inputFieldName].join('.'),
+  } as const;
 }
 
 export function inputFieldDescriptionChanged(
@@ -132,26 +165,33 @@ export function inputFieldDescriptionChanged(
   oldField: GraphQLInputField,
   newField: GraphQLInputField,
 ): Change<ChangeType.InputFieldDescriptionChanged> {
-  return {
-    criticality: {
-      level: CriticalityLevel.NonBreaking,
-    },
+  return inputFieldDescriptionChangedFromMeta({
     type: ChangeType.InputFieldDescriptionChanged,
-    get message() {
-      return buildInputFieldDescriptionChangedMessage(this);
-    },
-    path: [input.name, oldField.name].join('.'),
     meta: {
       inputName: input.name,
       inputFieldName: oldField.name,
       oldInputFieldDescription: oldField.description ?? '',
       newInputFieldDescription: newField.description ?? '',
     },
-  };
+  });
 }
 
-function buildInputFieldDefaultValueChangedMessage(args: InputFieldDefaultValueChanged) {
-  return `Input field '${args.meta.inputName}.${args.meta.inputFieldName}' default value changed from '${args.meta.oldDefaultValue}' to '${args.meta.newDefaultValue}'`;
+function buildInputFieldDefaultValueChangedMessage(args: InputFieldDefaultValueChanged['meta']) {
+  return `Input field '${args.inputName}.${args.inputFieldName}' default value changed from '${args.oldDefaultValue}' to '${args.newDefaultValue}'`;
+}
+
+export function inputFieldDefaultValueChangedFromMeta(args: InputFieldDefaultValueChanged) {
+  return {
+    type: ChangeType.InputFieldDefaultValueChanged,
+    criticality: {
+      level: CriticalityLevel.Dangerous,
+      reason:
+        'Changing the default value for an argument may change the runtime behavior of a field if it was never provided.',
+    },
+    message: buildInputFieldDefaultValueChangedMessage(args.meta),
+    meta: args.meta,
+    path: [args.meta.inputName, args.meta.inputFieldName].join('.'),
+  } as const;
 }
 
 export function inputFieldDefaultValueChanged(
@@ -159,37 +199,25 @@ export function inputFieldDefaultValueChanged(
   oldField: GraphQLInputField,
   newField: GraphQLInputField,
 ): Change<ChangeType.InputFieldDefaultValueChanged> {
-  return {
-    criticality: {
-      level: CriticalityLevel.Dangerous,
-      reason:
-        'Changing the default value for an argument may change the runtime behavior of a field if it was never provided.',
-    },
+  return inputFieldDefaultValueChangedFromMeta({
     type: ChangeType.InputFieldDefaultValueChanged,
-    get message() {
-      return buildInputFieldDefaultValueChangedMessage(this);
-    },
-    path: [input.name, oldField.name].join('.'),
     meta: {
       inputName: input.name,
       inputFieldName: oldField.name,
       newDefaultValue: newField.defaultValue ? safeString(newField.defaultValue) : undefined,
       oldDefaultValue: oldField.defaultValue ? safeString(oldField.defaultValue) : undefined,
     },
-  };
+  });
 }
 
-function buildInputFieldTypeChangedMessage(args: InputFieldTypeChanged) {
-  return `Input field '${args.meta.inputName}.${args.meta.inputFieldName}' changed type from '${args.meta.oldInputFieldType}' to '${args.meta.newInputFieldType}'`;
+function buildInputFieldTypeChangedMessage(args: InputFieldTypeChanged['meta']) {
+  return `Input field '${args.inputName}.${args.inputFieldName}' changed type from '${args.oldInputFieldType}' to '${args.newInputFieldType}'`;
 }
 
-export function inputFieldTypeChanged(
-  input: GraphQLInputObjectType,
-  oldField: GraphQLInputField,
-  newField: GraphQLInputField,
-): Change<ChangeType.InputFieldTypeChanged> {
+export function inputFieldTypeChangedFromMeta(args: InputFieldTypeChanged) {
   return {
-    criticality: safeChangeForInputValue(oldField.type, newField.type)
+    type: ChangeType.InputFieldTypeChanged,
+    criticality: args.meta.isInputFieldTypeChangeSafe
       ? {
           level: CriticalityLevel.NonBreaking,
           reason: 'Changing an input field from non-null to null is considered non-breaking.',
@@ -199,16 +227,25 @@ export function inputFieldTypeChanged(
           reason:
             'Changing the type of an input field can cause existing queries that use this field to error.',
         },
+    message: buildInputFieldTypeChangedMessage(args.meta),
+    meta: args.meta,
+    path: [args.meta.inputName, args.meta.inputFieldName].join('.'),
+  } as const;
+}
+
+export function inputFieldTypeChanged(
+  input: GraphQLInputObjectType,
+  oldField: GraphQLInputField,
+  newField: GraphQLInputField,
+): Change<ChangeType.InputFieldTypeChanged> {
+  return inputFieldTypeChangedFromMeta({
     type: ChangeType.InputFieldTypeChanged,
-    get message() {
-      return buildInputFieldTypeChangedMessage(this);
-    },
-    path: [input.name, oldField.name].join('.'),
     meta: {
       inputName: input.name,
       inputFieldName: oldField.name,
       oldInputFieldType: oldField.type.toString(),
       newInputFieldType: newField.type.toString(),
+      isInputFieldTypeChangeSafe: safeChangeForInputValue(oldField.type, newField.type),
     },
-  };
+  });
 }

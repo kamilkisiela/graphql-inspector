@@ -17,6 +17,8 @@ import {
   FieldDeprecationAdded,
   FieldDeprecationReasonAdded,
   FieldDeprecationReasonChanged,
+  FieldDeprecationReasonRemoved,
+  FieldDeprecationRemoved,
   FieldDescriptionAdded,
   FieldDescriptionChanged,
   FieldDescriptionRemoved,
@@ -24,10 +26,25 @@ import {
   FieldTypeChanged,
 } from './change';
 
-function buildFieldRemovedMessage(args: FieldRemoved) {
-  return `Field '${args.meta.removedFieldName}' ${
-    args.meta.isRemovedFieldDeprecated ? '(deprecated) ' : ''
-  }was removed from ${args.meta.typeType} '${args.meta.typeName}'`;
+function buildFieldRemovedMessage(args: FieldRemoved['meta']) {
+  return `Field '${args.removedFieldName}' ${
+    args.isRemovedFieldDeprecated ? '(deprecated) ' : ''
+  }was removed from ${args.typeType} '${args.typeName}'`;
+}
+
+export function fieldRemovedFromMeta(args: FieldRemoved) {
+  return {
+    type: ChangeType.FieldRemoved,
+    criticality: {
+      level: CriticalityLevel.Breaking,
+      reason: args.meta.isRemovedFieldDeprecated
+        ? `Removing a deprecated field is a breaking change. Before removing it, you may want to look at the field's usage to see the impact of removing the field.`
+        : `Removing a field is a breaking change. It is preferable to deprecate the field before removing it.`,
+    },
+    message: buildFieldRemovedMessage(args.meta),
+    meta: args.meta,
+    path: [args.meta.typeName, args.meta.removedFieldName].join('.'),
+  } as const;
 }
 
 export function fieldRemoved(
@@ -35,29 +52,31 @@ export function fieldRemoved(
   field: GraphQLField<any, any, any>,
 ): Change<ChangeType.FieldRemoved> {
   const entity = isInterfaceType(type) ? 'interface' : 'object type';
-  return {
-    criticality: {
-      level: CriticalityLevel.Breaking,
-      reason: field.deprecationReason
-        ? `Removing a deprecated field is a breaking change. Before removing it, you may want to look at the field's usage to see the impact of removing the field.`
-        : `Removing a field is a breaking change. It is preferable to deprecate the field before removing it.`,
-    },
+  return fieldRemovedFromMeta({
     type: ChangeType.FieldRemoved,
-    get message() {
-      return buildFieldRemovedMessage(this);
-    },
-    path: [type.name, field.name].join('.'),
     meta: {
       typeName: type.name,
       removedFieldName: field.name,
       isRemovedFieldDeprecated: field.deprecationReason != null,
       typeType: entity,
     },
-  };
+  });
 }
 
-function buildFieldAddedMessage(args: FieldAdded) {
-  return `Field '${args.meta.addedFieldName}' was added to ${args.meta.typeType} '${args.meta.typeName}'`;
+function buildFieldAddedMessage(args: FieldAdded['meta']) {
+  return `Field '${args.addedFieldName}' was added to ${args.typeType} '${args.typeName}'`;
+}
+
+export function fieldAddedFromMeta(args: FieldAdded) {
+  return {
+    type: ChangeType.FieldAdded,
+    criticality: {
+      level: CriticalityLevel.NonBreaking,
+    },
+    message: buildFieldAddedMessage(args.meta),
+    meta: args.meta,
+    path: [args.meta.typeName, args.meta.addedFieldName].join('.'),
+  } as const;
 }
 
 export function fieldAdded(
@@ -65,25 +84,30 @@ export function fieldAdded(
   field: GraphQLField<any, any, any>,
 ): Change<ChangeType.FieldAdded> {
   const entity = isInterfaceType(type) ? 'interface' : 'object type';
-  return {
-    criticality: {
-      level: CriticalityLevel.NonBreaking,
-    },
+  return fieldAddedFromMeta({
     type: ChangeType.FieldAdded,
-    get message() {
-      return buildFieldAddedMessage(this);
-    },
-    path: [type.name, field.name].join('.'),
     meta: {
       typeName: type.name,
       addedFieldName: field.name,
       typeType: entity,
     },
-  };
+  });
 }
 
-function buildFieldDescriptionChangedMessage(args: FieldDescriptionChanged) {
-  return `Field '${args.meta.typeName}.${args.meta.fieldName}' description changed from '${args.meta.oldDescription}' to '${args.meta.newDescription}'`;
+function buildFieldDescriptionChangedMessage(args: FieldDescriptionChanged['meta']) {
+  return `Field '${args.typeName}.${args.fieldName}' description changed from '${args.oldDescription}' to '${args.newDescription}'`;
+}
+
+export function fieldDescriptionChangedFromMeta(args: FieldDescriptionChanged) {
+  return {
+    type: ChangeType.FieldDescriptionChanged,
+    criticality: {
+      level: CriticalityLevel.NonBreaking,
+    },
+    message: buildFieldDescriptionChangedMessage(args.meta),
+    meta: args.meta,
+    path: [args.meta.typeName, args.meta.fieldName].join('.'),
+  } as const;
 }
 
 export function fieldDescriptionChanged(
@@ -91,117 +115,144 @@ export function fieldDescriptionChanged(
   oldField: GraphQLField<any, any>,
   newField: GraphQLField<any, any>,
 ): Change<ChangeType.FieldDescriptionChanged> {
-  return {
-    criticality: {
-      level: CriticalityLevel.NonBreaking,
-    },
+  return fieldDescriptionChangedFromMeta({
     type: ChangeType.FieldDescriptionChanged,
-    get message() {
-      return buildFieldDescriptionChangedMessage(this);
-    },
-    path: [type.name, oldField.name].join('.'),
     meta: {
       fieldName: oldField.name,
       typeName: type.name,
       oldDescription: oldField.description ?? '',
       newDescription: newField.description ?? '',
     },
-  };
+  });
 }
 
-function buildFieldDescriptionAddedMessage(args: FieldDescriptionAdded) {
-  return `Field '${args.meta.typeName}.${args.meta.fieldName}' has description '${args.meta.addedDescription}'`;
+function buildFieldDescriptionAddedMessage(args: FieldDescriptionAdded['meta']) {
+  return `Field '${args.typeName}.${args.fieldName}' has description '${args.addedDescription}'`;
+}
+
+export function fieldDescriptionAddedFromMeta(args: FieldDescriptionAdded) {
+  return {
+    type: ChangeType.FieldDescriptionAdded,
+    criticality: {
+      level: CriticalityLevel.NonBreaking,
+    },
+    message: buildFieldDescriptionAddedMessage(args.meta),
+    meta: args.meta,
+    path: [args.meta.typeName, args.meta.fieldName].join('.'),
+  } as const;
 }
 
 export function fieldDescriptionAdded(
   type: GraphQLObjectType | GraphQLInterfaceType,
   field: GraphQLField<any, any>,
 ): Change<ChangeType.FieldDescriptionAdded> {
-  return {
-    criticality: {
-      level: CriticalityLevel.NonBreaking,
-    },
+  return fieldDescriptionAddedFromMeta({
     type: ChangeType.FieldDescriptionAdded,
-    get message() {
-      return buildFieldDescriptionAddedMessage(this);
-    },
-    path: [type.name, field.name].join('.'),
     meta: {
       typeName: type.name,
       fieldName: field.name,
       addedDescription: field.description ?? '',
     },
-  };
+  });
 }
 
-function buildFieldDescriptionRemovedMessage(args: FieldDescriptionRemoved) {
-  return `Description was removed from field '${args.meta.typeName}.${args.meta.fieldName}'`;
+function buildFieldDescriptionRemovedMessage(args: FieldDescriptionRemoved['meta']) {
+  return `Description was removed from field '${args.typeName}.${args.fieldName}'`;
+}
+
+export function fieldDescriptionRemovedFromMeta(args: FieldDescriptionRemoved) {
+  return {
+    type: ChangeType.FieldDescriptionRemoved,
+    criticality: {
+      level: CriticalityLevel.NonBreaking,
+    },
+    message: buildFieldDescriptionRemovedMessage(args.meta),
+    meta: args.meta,
+    path: [args.meta.typeName, args.meta.fieldName].join('.'),
+  } as const;
 }
 
 export function fieldDescriptionRemoved(
   type: GraphQLObjectType | GraphQLInterfaceType,
   field: GraphQLField<any, any>,
 ): Change<ChangeType.FieldDescriptionRemoved> {
-  return {
-    criticality: {
-      level: CriticalityLevel.NonBreaking,
-    },
+  return fieldDescriptionRemovedFromMeta({
     type: ChangeType.FieldDescriptionRemoved,
-    get message() {
-      return buildFieldDescriptionRemovedMessage(this);
-    },
-    path: [type.name, field.name].join('.'),
     meta: {
       typeName: type.name,
       fieldName: field.name,
     },
-  };
+  });
 }
 
-function buildFieldDeprecatedAddedMessage(args: FieldDeprecationAdded) {
-  return `Field '${args.meta.typeName}.${args.meta.fieldName}' is deprecated`;
+function buildFieldDeprecatedAddedMessage(args: FieldDeprecationAdded['meta']) {
+  return `Field '${args.typeName}.${args.fieldName}' is deprecated`;
+}
+
+export function fieldDeprecationAddedFromMeta(args: FieldDeprecationAdded) {
+  return {
+    type: ChangeType.FieldDeprecationAdded,
+    criticality: {
+      level: CriticalityLevel.NonBreaking,
+    },
+    message: buildFieldDeprecatedAddedMessage(args.meta),
+    meta: args.meta,
+    path: [args.meta.typeName, args.meta.fieldName].join('.'),
+  } as const;
 }
 
 export function fieldDeprecationAdded(
   type: GraphQLObjectType | GraphQLInterfaceType,
   field: GraphQLField<any, any>,
 ): Change<ChangeType.FieldDeprecationAdded> {
-  return {
-    criticality: {
-      level: CriticalityLevel.NonBreaking,
-    },
+  return fieldDeprecationAddedFromMeta({
     type: ChangeType.FieldDeprecationAdded,
-    get message() {
-      return buildFieldDeprecatedAddedMessage(this);
-    },
-    path: [type.name, field.name].join('.'),
     meta: {
       typeName: type.name,
       fieldName: field.name,
     },
-  };
+  });
+}
+
+export function fieldDeprecationRemovedFromMeta(args: FieldDeprecationRemoved) {
+  return {
+    type: ChangeType.FieldDeprecationRemoved,
+    criticality: {
+      level: CriticalityLevel.Dangerous,
+    },
+    message: `Field '${args.meta.typeName}.${args.meta.fieldName}' is no longer deprecated`,
+    meta: args.meta,
+    path: [args.meta.typeName, args.meta.fieldName].join('.'),
+  } as const;
 }
 
 export function fieldDeprecationRemoved(
   type: GraphQLObjectType | GraphQLInterfaceType,
   field: GraphQLField<any, any>,
 ): Change<ChangeType.FieldDeprecationRemoved> {
-  return {
-    criticality: {
-      level: CriticalityLevel.Dangerous,
-    },
+  return fieldDeprecationRemovedFromMeta({
     type: ChangeType.FieldDeprecationRemoved,
-    message: `Field '${type.name}.${field.name}' is no longer deprecated`,
-    path: [type.name, field.name].join('.'),
     meta: {
       fieldName: field.name,
       typeName: type.name,
     },
-  };
+  });
 }
 
-function buildFieldDeprecationReasonChangedMessage(args: FieldDeprecationReasonChanged) {
-  return `Deprecation reason on field '${args.meta.typeName}.${args.meta.fieldName}' has changed from '${args.meta.oldDeprecationReason}' to '${args.meta.newDeprecationReason}'`;
+function buildFieldDeprecationReasonChangedMessage(args: FieldDeprecationReasonChanged['meta']) {
+  return `Deprecation reason on field '${args.typeName}.${args.fieldName}' has changed from '${args.oldDeprecationReason}' to '${args.newDeprecationReason}'`;
+}
+
+export function fieldDeprecationReasonChangedFromMeta(args: FieldDeprecationReasonChanged) {
+  return {
+    type: ChangeType.FieldDeprecationReasonChanged,
+    criticality: {
+      level: CriticalityLevel.NonBreaking,
+    },
+    message: buildFieldDeprecationReasonChangedMessage(args.meta),
+    meta: args.meta,
+    path: [args.meta.typeName, args.meta.fieldName].join('.'),
+  } as const;
 }
 
 export function fieldDeprecationReasonChanged(
@@ -209,69 +260,88 @@ export function fieldDeprecationReasonChanged(
   oldField: GraphQLField<any, any>,
   newField: GraphQLField<any, any>,
 ): Change<ChangeType.FieldDeprecationReasonChanged> {
-  return {
-    criticality: {
-      level: CriticalityLevel.NonBreaking,
-    },
+  return fieldDeprecationReasonChangedFromMeta({
     type: ChangeType.FieldDeprecationReasonChanged,
-    get message() {
-      return buildFieldDeprecationReasonChangedMessage(this);
-    },
-    path: [type.name, oldField.name].join('.'),
     meta: {
       fieldName: newField.name,
       typeName: type.name,
       newDeprecationReason: newField.deprecationReason ?? '',
       oldDeprecationReason: oldField.deprecationReason ?? '',
     },
-  };
+  });
 }
 
-function buildFieldDeprecationReasonAddedMessage(args: FieldDeprecationReasonAdded) {
-  return `Field '${args.meta.typeName}.${args.meta.fieldName}' has deprecation reason '${args.meta.addedDeprecationReason}'`;
+function buildFieldDeprecationReasonAddedMessage(args: FieldDeprecationReasonAdded['meta']) {
+  return `Field '${args.typeName}.${args.fieldName}' has deprecation reason '${args.addedDeprecationReason}'`;
+}
+
+export function fieldDeprecationReasonAddedFromMeta(args: FieldDeprecationReasonAdded) {
+  return {
+    type: ChangeType.FieldDeprecationReasonAdded,
+    criticality: {
+      level: CriticalityLevel.NonBreaking,
+    },
+    message: buildFieldDeprecationReasonAddedMessage(args.meta),
+    meta: args.meta,
+    path: [args.meta.typeName, args.meta.fieldName].join('.'),
+  } as const;
 }
 
 export function fieldDeprecationReasonAdded(
   type: GraphQLObjectType | GraphQLInterfaceType,
   field: GraphQLField<any, any>,
 ): Change<ChangeType.FieldDeprecationReasonAdded> {
-  return {
-    criticality: {
-      level: CriticalityLevel.NonBreaking,
-    },
+  return fieldDeprecationReasonAddedFromMeta({
     type: ChangeType.FieldDeprecationReasonAdded,
-    get message() {
-      return buildFieldDeprecationReasonAddedMessage(this);
-    },
-    path: [type.name, field.name].join('.'),
     meta: {
       typeName: type.name,
       fieldName: field.name,
       addedDeprecationReason: field.deprecationReason ?? '',
     },
-  };
+  });
+}
+
+export function fieldDeprecationReasonRemovedFromMeta(args: FieldDeprecationReasonRemoved) {
+  return {
+    type: ChangeType.FieldDeprecationReasonRemoved,
+    criticality: {
+      level: CriticalityLevel.NonBreaking,
+    },
+    message: `Deprecation reason was removed from field '${args.meta.typeName}.${args.meta.fieldName}'`,
+    meta: args.meta,
+    path: [args.meta.typeName, args.meta.fieldName].join('.'),
+  } as const;
 }
 
 export function fieldDeprecationReasonRemoved(
   type: GraphQLObjectType | GraphQLInterfaceType,
   field: GraphQLField<any, any>,
 ): Change<ChangeType.FieldDeprecationReasonRemoved> {
-  return {
-    criticality: {
-      level: CriticalityLevel.NonBreaking,
-    },
+  return fieldDeprecationReasonRemovedFromMeta({
     type: ChangeType.FieldDeprecationReasonRemoved,
-    message: `Deprecation reason was removed from field '${type.name}.${field.name}'`,
-    path: [type.name, field.name].join('.'),
     meta: {
       typeName: type.name,
       fieldName: field.name,
     },
-  };
+  });
 }
 
 function buildFieldTypeChangedMessage(args: FieldTypeChanged) {
   return `Field '${args.meta.typeName}.${args.meta.fieldName}' changed type from '${args.meta.oldFieldType}' to '${args.meta.newFieldType}'`;
+}
+
+export function fieldTypeChangedFromMeta(args: FieldTypeChanged) {
+  return {
+    type: ChangeType.FieldTypeChanged,
+    criticality: {
+      level: args.meta.isSafeFieldTypeChange
+        ? CriticalityLevel.NonBreaking
+        : CriticalityLevel.Breaking,
+    },
+    message: buildFieldTypeChangedMessage(args),
+    meta: args.meta,
+    path: [args.meta.typeName, args.meta.fieldName].join('.'),
+  } as const;
 }
 
 export function fieldTypeChanged(
@@ -279,30 +349,36 @@ export function fieldTypeChanged(
   oldField: GraphQLField<any, any, any>,
   newField: GraphQLField<any, any, any>,
 ): Change<ChangeType.FieldTypeChanged> {
-  return {
-    criticality: {
-      level: safeChangeForField(oldField.type, newField.type)
-        ? CriticalityLevel.NonBreaking
-        : CriticalityLevel.Breaking,
-    },
+  return fieldTypeChangedFromMeta({
     type: ChangeType.FieldTypeChanged,
-    get message() {
-      return buildFieldTypeChangedMessage(this);
-    },
-    path: [type.name, oldField.name].join('.'),
     meta: {
       typeName: type.name,
       fieldName: oldField.name,
       oldFieldType: oldField.type.toString(),
       newFieldType: newField.type.toString(),
+      isSafeFieldTypeChange: safeChangeForField(oldField.type, newField.type),
     },
-  };
+  });
 }
 
-function buildFieldArgumentAddedMessage(args: FieldArgumentAdded) {
-  return `Argument '${args.meta.addedArgumentName}: ${args.meta.addedArgumentType}'${
-    args.meta.hasDefaultValue ? ' (with default value) ' : ' '
-  }added to field '${args.meta.typeName}.${args.meta.fieldName}'`;
+function buildFieldArgumentAddedMessage(args: FieldArgumentAdded['meta']) {
+  return `Argument '${args.addedArgumentName}: ${args.addedArgumentType}'${
+    args.hasDefaultValue ? ' (with default value) ' : ' '
+  }added to field '${args.typeName}.${args.fieldName}'`;
+}
+
+export function fieldArgumentAddedFromMeta(args: FieldArgumentAdded) {
+  return {
+    type: ChangeType.FieldArgumentAdded,
+    criticality: {
+      level: args.meta.isAddedFieldArgumentBreaking
+        ? CriticalityLevel.Breaking
+        : CriticalityLevel.Dangerous,
+    },
+    message: buildFieldArgumentAddedMessage(args.meta),
+    meta: args.meta,
+    path: [args.meta.typeName, args.meta.fieldName, args.meta.addedArgumentName].join('.'),
+  } as const;
 }
 
 export function fieldArgumentAdded(
@@ -312,33 +388,33 @@ export function fieldArgumentAdded(
 ): Change<ChangeType.FieldArgumentAdded> {
   const isBreaking = isNonNullType(arg.type) && typeof arg.defaultValue === 'undefined';
 
-  return {
-    criticality: isBreaking
-      ? {
-          level: CriticalityLevel.Breaking,
-          reason: `Adding a required argument to an existing field is a breaking change because it will cause existing uses of this field to error.`,
-        }
-      : {
-          level: CriticalityLevel.Dangerous,
-          reason: `Adding a new argument to an existing field may involve a change in resolve function logic that potentially may cause some side effects.`,
-        },
+  return fieldArgumentAddedFromMeta({
     type: ChangeType.FieldArgumentAdded,
-    get message() {
-      return buildFieldArgumentAddedMessage(this);
-    },
-    path: [type.name, field.name, arg.name].join('.'),
     meta: {
       typeName: type.name,
       fieldName: field.name,
       addedArgumentName: arg.name,
       addedArgumentType: arg.type.toString(),
       hasDefaultValue: arg.defaultValue != null,
+      isAddedFieldArgumentBreaking: isBreaking,
     },
-  };
+  });
 }
 
 function buildFieldArgumentRemovedMessage(args: FieldArgumentRemoved) {
   return `Argument '${args.meta.removedFieldArgumentName}: ${args.meta.removedFieldType}' was removed from field '${args.meta.typeName}.${args.meta.fieldName}'`;
+}
+
+export function fieldArgumentRemovedFromMeta(args: FieldArgumentRemoved) {
+  return {
+    type: ChangeType.FieldArgumentRemoved,
+    criticality: {
+      level: CriticalityLevel.Breaking,
+    },
+    message: buildFieldArgumentRemovedMessage(args),
+    meta: args.meta,
+    path: [args.meta.typeName, args.meta.fieldName, args.meta.removedFieldArgumentName].join('.'),
+  } as const;
 }
 
 export function fieldArgumentRemoved(
@@ -346,21 +422,13 @@ export function fieldArgumentRemoved(
   field: GraphQLField<any, any, any>,
   arg: GraphQLArgument,
 ): Change<ChangeType.FieldArgumentRemoved> {
-  return {
-    criticality: {
-      level: CriticalityLevel.Breaking,
-      reason: `Removing a field argument is a breaking change because it will cause existing queries that use this argument to error.`,
-    },
+  return fieldArgumentRemovedFromMeta({
     type: ChangeType.FieldArgumentRemoved,
-    get message() {
-      return buildFieldArgumentRemovedMessage(this);
-    },
-    path: [type.name, field.name, arg.name].join('.'),
     meta: {
       typeName: type.name,
       fieldName: field.name,
       removedFieldArgumentName: arg.name,
       removedFieldType: arg.type.toString(),
     },
-  };
+  });
 }

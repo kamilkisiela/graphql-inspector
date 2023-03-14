@@ -115,6 +115,7 @@ export type FieldArgumentTypeChanged = {
     argumentName: string;
     oldArgumentType: string;
     newArgumentType: string;
+    isSafeArgumentTypeChange: boolean;
   };
 };
 
@@ -150,7 +151,7 @@ export type DirectiveLocationAdded = {
 };
 
 export type DirectiveLocationRemoved = {
-  type: ChangeType.DirectiveLocationAdded;
+  type: ChangeType.DirectiveLocationRemoved;
   meta: {
     directiveName: string;
     removedDirectiveLocation: string;
@@ -162,7 +163,7 @@ export type DirectiveArgumentAdded = {
   meta: {
     directiveName: string;
     addedDirectiveArgumentName: string;
-    addedDirectiveArgumentType: string;
+    addedDirectiveArgumentTypeIsNonNull: boolean;
   };
 };
 
@@ -171,7 +172,6 @@ export type DirectiveArgumentRemoved = {
   meta: {
     directiveName: string;
     removedDirectiveArgumentName: string;
-    removedDirectiveArgumentType: string;
   };
 };
 
@@ -190,8 +190,8 @@ export type DirectiveArgumentDefaultValueChanged = {
   meta: {
     directiveName: string;
     directiveArgumentName: string;
-    oldDirectiveArgumentDefaultValue: string;
-    newDirectiveArgumentDefaultValue: string;
+    oldDirectiveArgumentDefaultValue: string /* | null */ | undefined;
+    newDirectiveArgumentDefaultValue: string /* | null */ | undefined;
   };
 };
 
@@ -202,6 +202,8 @@ export type DirectiveArgumentTypeChanged = {
     directiveArgumentName: string;
     oldDirectiveArgumentType: string;
     newDirectiveArgumentType: string;
+    /** Note: this could also be computed from oldDirectiveArgumentType and newDirectiveArgumentType */
+    isSafeDirectiveArgumentTypeChange: boolean;
   };
 };
 
@@ -360,6 +362,7 @@ export type FieldTypeChanged = {
     fieldName: string;
     oldFieldType: string;
     newFieldType: string;
+    isSafeFieldTypeChange: boolean;
   };
 };
 
@@ -371,6 +374,7 @@ export type FieldArgumentAdded = {
     addedArgumentName: string;
     addedArgumentType: string;
     hasDefaultValue: boolean;
+    isAddedFieldArgumentBreaking: boolean;
   };
 };
 
@@ -400,6 +404,7 @@ export type InputFieldAdded = {
   meta: {
     inputName: string;
     addedInputFieldName: string;
+    isAddedInputFieldTypeNullable: boolean;
   };
 };
 
@@ -447,6 +452,7 @@ export type InputFieldTypeChanged = {
     inputFieldName: string;
     oldInputFieldType: string;
     newInputFieldType: string;
+    isInputFieldTypeChangeSafe: boolean;
   };
 };
 

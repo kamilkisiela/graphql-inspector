@@ -6,149 +6,250 @@ import {
   ChangeType,
   CriticalityLevel,
   DirectiveAdded,
+  DirectiveArgumentAdded,
+  DirectiveArgumentDefaultValueChanged,
+  DirectiveArgumentDescriptionChanged,
+  DirectiveArgumentRemoved,
+  DirectiveArgumentTypeChanged,
   DirectiveDescriptionChanged,
+  DirectiveLocationAdded,
+  DirectiveLocationRemoved,
   DirectiveRemoved,
 } from './change';
 
-function buildDirectiveRemovedMessage(directive: DirectiveRemoved): string {
-  return `Directive '${directive.meta.removedDirectiveName}' was removed`;
+function buildDirectiveRemovedMessage(args: DirectiveRemoved['meta']): string {
+  return `Directive '${args.removedDirectiveName}' was removed`;
 }
 
-export function directiveRemoved(directive: GraphQLDirective): Change<ChangeType.DirectiveRemoved> {
+const directiveRemovedCriticalityBreakingReason = `A directive could be in use of a client application. Removing it could break the client application.`;
+
+export function directiveRemovedFromMeta(args: DirectiveRemoved) {
   return {
     criticality: {
       level: CriticalityLevel.Breaking,
+      reason: directiveRemovedCriticalityBreakingReason,
     },
     type: ChangeType.DirectiveRemoved,
-    get message() {
-      return buildDirectiveRemovedMessage(this);
-    },
-    path: `@${directive.name}`,
+    message: buildDirectiveRemovedMessage(args.meta),
+    path: `@${args.meta.removedDirectiveName}`,
+    meta: args.meta,
+  } as const;
+}
+
+export function directiveRemoved(directive: GraphQLDirective): Change<ChangeType.DirectiveRemoved> {
+  return directiveRemovedFromMeta({
+    type: ChangeType.DirectiveRemoved,
     meta: {
       removedDirectiveName: directive.name,
     },
-  };
+  });
 }
 
-function buildDirectiveAddedMessage(directive: DirectiveAdded): string {
-  return `Directive '${directive.meta.addedDirectiveName}' was added`;
+function buildDirectiveAddedMessage(args: DirectiveAdded['meta']): string {
+  return `Directive '${args.addedDirectiveName}' was added`;
 }
 
-export function directiveAdded(directive: GraphQLDirective): Change<ChangeType.DirectiveAdded> {
+export function directiveAddedFromMeta(args: DirectiveAdded) {
   return {
     criticality: {
       level: CriticalityLevel.NonBreaking,
     },
     type: ChangeType.DirectiveAdded,
-    get message() {
-      return buildDirectiveAddedMessage(this);
-    },
-    path: `@${directive.name}`,
+    message: buildDirectiveAddedMessage(args.meta),
+    path: `@${args.meta.addedDirectiveName}`,
+    meta: args.meta,
+  } as const;
+}
+
+export function directiveAdded(directive: GraphQLDirective): Change<ChangeType.DirectiveAdded> {
+  return directiveAddedFromMeta({
+    type: ChangeType.DirectiveAdded,
     meta: {
       addedDirectiveName: directive.name,
     },
-  };
+  });
 }
 
-function buildDirectiveDescriptionChangedMessage(directive: DirectiveDescriptionChanged): string {
-  return `Directive '${directive.meta.directiveName}' description changed from '${
-    directive.meta.oldDirectiveDescription ?? 'undefined'
-  }' to '${directive.meta.newDirectiveDescription ?? 'undefined'}'`;
+function buildDirectiveDescriptionChangedMessage(
+  args: DirectiveDescriptionChanged['meta'],
+): string {
+  return `Directive '${args.directiveName}' description changed from '${
+    args.oldDirectiveDescription ?? 'undefined'
+  }' to '${args.newDirectiveDescription ?? 'undefined'}'`;
+}
+
+export function directiveDescriptionChangedFromMeta(args: DirectiveDescriptionChanged) {
+  return {
+    criticality: {
+      level: CriticalityLevel.NonBreaking,
+    },
+    type: ChangeType.DirectiveDescriptionChanged,
+    message: buildDirectiveDescriptionChangedMessage(args.meta),
+    path: `@${args.meta.directiveName}`,
+    meta: args.meta,
+  } as const;
 }
 
 export function directiveDescriptionChanged(
   oldDirective: GraphQLDirective,
   newDirective: GraphQLDirective,
 ): Change<ChangeType.DirectiveDescriptionChanged> {
-  return {
-    criticality: {
-      level: CriticalityLevel.NonBreaking,
-    },
+  return directiveDescriptionChangedFromMeta({
     type: ChangeType.DirectiveDescriptionChanged,
-    get message() {
-      return buildDirectiveDescriptionChangedMessage(this);
-    },
-    path: `@${oldDirective.name}`,
     meta: {
       directiveName: oldDirective.name,
       oldDirectiveDescription: oldDirective.description ?? null,
       newDirectiveDescription: newDirective.description ?? null,
     },
-  };
+  });
+}
+
+function buildDirectiveLocationAddedMessage(args: DirectiveLocationAdded['meta']): string {
+  return `Location '${args.addedDirectiveLocation}' was added to directive '${args.directiveName}'`;
+}
+
+export function directiveLocationAddedFromMeta(args: DirectiveLocationAdded) {
+  return {
+    criticality: {
+      level: CriticalityLevel.NonBreaking,
+    },
+    type: ChangeType.DirectiveLocationAdded,
+    message: buildDirectiveLocationAddedMessage(args.meta),
+    path: `@${args.meta.directiveName}`,
+    meta: args.meta,
+  } as const;
 }
 
 export function directiveLocationAdded(
   directive: GraphQLDirective,
   location: DirectiveLocationEnum,
 ): Change<ChangeType.DirectiveLocationAdded> {
-  return {
-    criticality: {
-      level: CriticalityLevel.NonBreaking,
-    },
+  return directiveLocationAddedFromMeta({
     type: ChangeType.DirectiveLocationAdded,
-    message: `Location '${location}' was added to directive '${directive.name}'`,
-    path: `@${directive.name}`,
     meta: {
       directiveName: directive.name,
       addedDirectiveLocation: location.toString(),
     },
-  };
+  });
+}
+
+function buildDirectiveLocationRemovedMessage(args: DirectiveLocationRemoved['meta']): string {
+  return `Location '${args.removedDirectiveLocation}' was removed from directive '${args.directiveName}'`;
+}
+
+const directiveLocationRemovedBreakingReason = `A directive could be in use of a client application. Removing it could break the client application.`;
+
+export function directiveLocationRemovedFromMeta(args: DirectiveLocationRemoved) {
+  return {
+    criticality: {
+      level: CriticalityLevel.Breaking,
+      reason: directiveLocationRemovedBreakingReason,
+    },
+    type: ChangeType.DirectiveLocationRemoved,
+    message: buildDirectiveLocationRemovedMessage(args.meta),
+    path: `@${args.meta.directiveName}`,
+    meta: args.meta,
+  } as const;
 }
 
 export function directiveLocationRemoved(
   directive: GraphQLDirective,
   location: DirectiveLocationEnum,
 ): Change<ChangeType.DirectiveLocationRemoved> {
-  return {
-    criticality: {
-      level: CriticalityLevel.Breaking,
-    },
+  return directiveLocationRemovedFromMeta({
     type: ChangeType.DirectiveLocationRemoved,
-    message: `Location '${location}' was removed from directive '${directive.name}'`,
-    path: `@${directive.name}`,
     meta: {
       directiveName: directive.name,
       removedDirectiveLocation: location.toString(),
     },
-  };
+  });
+}
+
+const directiveArgumentAddedBreakingReason = `A directive could be in use of a client application. Adding a non-nullable argument will break those clients.`;
+const directiveArgumentNonBreakingReason = `A directive could be in use of a client application. Adding a non-nullable argument will break those clients.`;
+
+export function directiveArgumentAddedFromMeta(args: DirectiveArgumentAdded) {
+  return {
+    criticality: args.meta.addedDirectiveArgumentTypeIsNonNull
+      ? {
+          level: CriticalityLevel.Breaking,
+          reason: directiveArgumentAddedBreakingReason,
+        }
+      : {
+          level: CriticalityLevel.NonBreaking,
+          reason: directiveArgumentNonBreakingReason,
+        },
+    type: ChangeType.DirectiveArgumentAdded,
+    message: `Argument '${args.meta.addedDirectiveArgumentName}' was added to directive '${args.meta.directiveName}'`,
+    path: `@${args.meta.directiveName}`,
+    meta: args.meta,
+  } as const;
 }
 
 export function directiveArgumentAdded(
   directive: GraphQLDirective,
   arg: GraphQLArgument,
 ): Change<ChangeType.DirectiveArgumentAdded> {
-  return {
-    criticality: {
-      level: isNonNullType(arg.type) ? CriticalityLevel.Breaking : CriticalityLevel.NonBreaking,
-    },
+  return directiveArgumentAddedFromMeta({
     type: ChangeType.DirectiveArgumentAdded,
-    message: `Argument '${arg.name}' was added to directive '${directive.name}'`,
-    path: `@${directive.name}`,
     meta: {
       directiveName: directive.name,
       addedDirectiveArgumentName: arg.name,
-      addedDirectiveArgumentType: arg.type.toString(),
+      addedDirectiveArgumentTypeIsNonNull: isNonNullType(arg.type),
     },
-  };
+  });
+}
+
+function buildDirectiveArgumentRemovedMessage(args: DirectiveArgumentRemoved['meta']): string {
+  return `Argument '${args.removedDirectiveArgumentName}' was removed from directive '${args.directiveName}'`;
+}
+
+const directiveArgumentRemovedBreakingReason = `A directive argument could be in use of a client application. Removing the argument can break client applications.`;
+
+export function directiveArgumentRemovedFromMeta(args: DirectiveArgumentRemoved) {
+  return {
+    criticality: {
+      level: CriticalityLevel.Breaking,
+      reason: directiveArgumentRemovedBreakingReason,
+    },
+    type: ChangeType.DirectiveArgumentRemoved,
+    message: buildDirectiveArgumentRemovedMessage(args.meta),
+    path: `@${args.meta.directiveName}.${args.meta.removedDirectiveArgumentName}`,
+    meta: args.meta,
+  } as const;
 }
 
 export function directiveArgumentRemoved(
   directive: GraphQLDirective,
   arg: GraphQLArgument,
 ): Change<ChangeType.DirectiveArgumentRemoved> {
-  return {
-    criticality: {
-      level: CriticalityLevel.Breaking,
-    },
+  return directiveArgumentRemovedFromMeta({
     type: ChangeType.DirectiveArgumentRemoved,
-    message: `Argument '${arg.name}' was removed from directive '${directive.name}'`,
-    path: `@${directive.name}.${arg.name}`,
     meta: {
       directiveName: directive.name,
       removedDirectiveArgumentName: arg.name,
-      removedDirectiveArgumentType: arg.type.toString(),
     },
-  };
+  });
+}
+
+function buildDirectiveArgumentDescriptionChangedMessage(
+  args: DirectiveArgumentDescriptionChanged['meta'],
+): string {
+  return `Description for argument '${args.directiveArgumentName}' on directive '${args.directiveName}' changed from '${args.oldDirectiveArgumentDescription}' to '${args.newDirectiveArgumentDescription}'`;
+}
+
+export function directiveArgumentDescriptionChangedFromMeta(
+  args: DirectiveArgumentDescriptionChanged,
+) {
+  return {
+    criticality: {
+      level: CriticalityLevel.NonBreaking,
+    },
+    type: ChangeType.DirectiveArgumentDescriptionChanged,
+    message: buildDirectiveArgumentDescriptionChangedMessage(args.meta),
+    path: `@${args.meta.directiveName}.${args.meta.directiveArgumentName}`,
+    meta: args.meta,
+  } as const;
 }
 
 export function directiveArgumentDescriptionChanged(
@@ -156,20 +257,41 @@ export function directiveArgumentDescriptionChanged(
   oldArg: GraphQLArgument,
   newArg: GraphQLArgument,
 ): Change<ChangeType.DirectiveArgumentDescriptionChanged> {
-  return {
-    criticality: {
-      level: CriticalityLevel.NonBreaking,
-    },
+  return directiveArgumentDescriptionChangedFromMeta({
     type: ChangeType.DirectiveArgumentDescriptionChanged,
-    message: `Description for argument '${oldArg.name}' on directive '${directive.name}' changed from '${oldArg.description}' to '${newArg.description}'`,
-    path: `@${directive.name}.${oldArg.name}`,
     meta: {
       directiveName: directive.name,
       directiveArgumentName: oldArg.name,
       oldDirectiveArgumentDescription: oldArg.description ?? null,
       newDirectiveArgumentDescription: newArg.description ?? null,
     },
-  };
+  });
+}
+
+function buildDirectiveArgumentDefaultValueChanged(
+  args: DirectiveArgumentDefaultValueChanged['meta'],
+): string {
+  return args.oldDirectiveArgumentDefaultValue === undefined
+    ? `Default value '${args.newDirectiveArgumentDefaultValue}' was added to argument '${args.directiveArgumentName}' on directive '${args.directiveName}'`
+    : `Default value for argument '${args.directiveArgumentName}' on directive '${args.directiveName}' changed from '${args.oldDirectiveArgumentDefaultValue}' to '${args.newDirectiveArgumentDefaultValue}'`;
+}
+
+const directiveArgumentDefaultValueChangedDangerousReason =
+  'Changing the default value for an argument may change the runtime behaviour of a field if it was never provided.';
+
+export function directiveArgumentDefaultValueChangedFromMeta(
+  args: DirectiveArgumentDefaultValueChanged,
+) {
+  return {
+    criticality: {
+      level: CriticalityLevel.Dangerous,
+      reason: directiveArgumentDefaultValueChangedDangerousReason,
+    },
+    type: ChangeType.DirectiveArgumentDefaultValueChanged,
+    message: buildDirectiveArgumentDefaultValueChanged(args.meta),
+    path: `@${args.meta.directiveName}.${args.meta.directiveArgumentName}`,
+    meta: args.meta,
+  } as const;
 }
 
 export function directiveArgumentDefaultValueChanged(
@@ -177,25 +299,41 @@ export function directiveArgumentDefaultValueChanged(
   oldArg: GraphQLArgument,
   newArg: GraphQLArgument,
 ): Change<ChangeType.DirectiveArgumentDefaultValueChanged> {
-  return {
-    criticality: {
-      level: CriticalityLevel.Dangerous,
-      reason:
-        'Changing the default value for an argument may change the runtime behaviour of a field if it was never provided.',
-    },
+  return directiveArgumentDefaultValueChangedFromMeta({
     type: ChangeType.DirectiveArgumentDefaultValueChanged,
-    message:
-      typeof oldArg.defaultValue === 'undefined'
-        ? `Default value '${newArg.defaultValue}' was added to argument '${newArg.name}' on directive '${directive.name}'`
-        : `Default value for argument '${oldArg.name}' on directive '${directive.name}' changed from '${oldArg.defaultValue}' to '${newArg.defaultValue}'`,
-    path: `@${directive.name}.${oldArg.name}`,
     meta: {
       directiveName: directive.name,
       directiveArgumentName: oldArg.name,
-      oldDirectiveArgumentDefaultValue: safeString(oldArg.defaultValue) ?? null,
-      newDirectiveArgumentDefaultValue: safeString(newArg.defaultValue) ?? null,
+      oldDirectiveArgumentDefaultValue:
+        oldArg.defaultValue === undefined ? undefined : safeString(oldArg.defaultValue),
+      newDirectiveArgumentDefaultValue:
+        newArg.defaultValue === undefined ? undefined : safeString(newArg.defaultValue),
     },
-  };
+  });
+}
+
+function buildDirectiveArgumentTypeChangedMessage(args: DirectiveArgumentTypeChanged): string {
+  return `Type for argument '${args.meta.directiveArgumentName}' on directive '${args.meta.directiveName}' changed from '${args.meta.oldDirectiveArgumentType}' to '${args.meta.newDirectiveArgumentType}'`;
+}
+
+const directiveArgumentTypeChangedNonBreakingReason =
+  'Changing an input field from non-null to null is considered non-breaking.';
+
+export function directiveArgumentTypeChangedFromMeta(args: DirectiveArgumentTypeChanged) {
+  return {
+    criticality: args.meta.isSafeDirectiveArgumentTypeChange
+      ? {
+          level: CriticalityLevel.NonBreaking,
+          reason: directiveArgumentTypeChangedNonBreakingReason,
+        }
+      : {
+          level: CriticalityLevel.Breaking,
+        },
+    type: ChangeType.DirectiveArgumentTypeChanged,
+    message: buildDirectiveArgumentTypeChangedMessage(args),
+    path: `@${args.meta.directiveName}.${args.meta.directiveArgumentName}`,
+    meta: args.meta,
+  } as const;
 }
 
 export function directiveArgumentTypeChanged(
@@ -203,23 +341,14 @@ export function directiveArgumentTypeChanged(
   oldArg: GraphQLArgument,
   newArg: GraphQLArgument,
 ): Change<ChangeType.DirectiveArgumentTypeChanged> {
-  return {
-    criticality: safeChangeForInputValue(oldArg.type, newArg.type)
-      ? {
-          level: CriticalityLevel.NonBreaking,
-          reason: 'Changing an input field from non-null to null is considered non-breaking.',
-        }
-      : {
-          level: CriticalityLevel.Breaking,
-        },
+  return directiveArgumentTypeChangedFromMeta({
     type: ChangeType.DirectiveArgumentTypeChanged,
-    message: `Type for argument '${oldArg.name}' on directive '${directive.name}' changed from '${oldArg.type}' to '${newArg.type}'`,
-    path: `@${directive.name}.${oldArg.name}`,
     meta: {
       directiveName: directive.name,
       directiveArgumentName: oldArg.name,
       oldDirectiveArgumentType: oldArg.type.toString(),
       newDirectiveArgumentType: newArg.type.toString(),
+      isSafeDirectiveArgumentTypeChange: safeChangeForInputValue(oldArg.type, newArg.type),
     },
-  };
+  });
 }
