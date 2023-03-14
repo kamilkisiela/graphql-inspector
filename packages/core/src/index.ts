@@ -20,3 +20,73 @@ export {
 export { countDirectives } from './validate/directive-count.js';
 export { countDepth } from './validate/query-depth.js';
 export { calculateTokenCount } from './validate/token-count.js';
+export {
+  fieldArgumentDescriptionFromMeta,
+  fieldArgumentDefaultChangedFromMeta,
+  fieldArgumentTypeChangedFromMeta,
+} from './diff/changes/argument.js';
+export {
+  directiveRemovedFromMeta,
+  directiveAddedFromMeta,
+  directiveDescriptionChangedFromMeta,
+  directiveLocationAddedFromMeta,
+  directiveLocationRemovedFromMeta,
+  directiveArgumentAddedFromMeta,
+  directiveArgumentRemovedFromMeta,
+  directiveArgumentDescriptionChangedFromMeta,
+  directiveArgumentDefaultValueChangedFromMeta,
+  directiveArgumentTypeChangedFromMeta,
+} from './diff/changes/directive.js';
+export {
+  enumValueRemovedFromMeta,
+  enumValueAddedFromMeta,
+  enumValueDescriptionChangedFromMeta,
+  enumValueDeprecationReasonChangedFromMeta,
+  enumValueDeprecationReasonAddedFromMeta,
+  enumValueDeprecationReasonRemovedFromMeta,
+} from './diff/changes/enum.js';
+export {
+  fieldRemovedFromMeta,
+  fieldAddedFromMeta,
+  fieldDescriptionChangedFromMeta,
+  fieldDescriptionAddedFromMeta,
+  fieldDescriptionRemovedFromMeta,
+  fieldDeprecationAddedFromMeta,
+  fieldDeprecationRemovedFromMeta,
+  fieldDeprecationReasonChangedFromMeta,
+  fieldDeprecationReasonAddedFromMeta,
+  fieldDeprecationReasonRemovedFromMeta,
+  fieldTypeChangedFromMeta,
+  fieldArgumentAddedFromMeta,
+  fieldArgumentRemovedFromMeta,
+} from './diff/changes/field.js';
+export {
+  inputFieldRemovedFromMeta,
+  inputFieldAddedFromMeta,
+  inputFieldDescriptionAddedFromMeta,
+  inputFieldDescriptionRemovedFromMeta,
+  inputFieldDescriptionChangedFromMeta,
+  inputFieldDefaultValueChangedFromMeta,
+  inputFieldTypeChangedFromMeta,
+} from './diff/changes/input.js';
+export {
+  objectTypeInterfaceAddedFromMeta,
+  objectTypeInterfaceRemovedFromMeta,
+} from './diff/changes/object.js';
+export {
+  schemaQueryTypeChangedFromMeta,
+  schemaMutationTypeChangedFromMeta,
+  schemaSubscriptionTypeChangedFromMeta,
+} from './diff/changes/schema.js';
+export {
+  typeRemovedFromMeta,
+  typeAddedFromMeta,
+  typeKindChangedFromMeta,
+  typeDescriptionChangedFromMeta,
+  typeDescriptionRemovedFromMeta,
+  typeDescriptionAddedFromMeta,
+} from './diff/changes/type.js';
+export {
+  unionMemberRemovedFromMeta,
+  buildUnionMemberAddedMessageFromMeta,
+} from './diff/changes/union.js';
