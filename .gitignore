@@ -2,12 +2,12 @@ dist/
 .bob/
 .cache
 node_modules/
-yarn-error.log
+pnpm-error.log
 build/
 .env
 private-key.pem
 .DS_Store
-website/**/yarn.lock
+website/**/pnpm-lock
 website/**/package-lock.json
 .now
 .vercel

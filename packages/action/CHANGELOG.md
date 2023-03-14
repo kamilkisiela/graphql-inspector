@@ -1,5 +1,23 @@
 # @graphql-inspector/action
 
+## 3.4.6
+
+### Patch Changes
+
+- [#2349](https://github.com/kamilkisiela/graphql-inspector/pull/2349)
+  [`0d6ff6db`](https://github.com/kamilkisiela/graphql-inspector/commit/0d6ff6dbdfd51caffae30715bd66c77e7156a641)
+  Thanks [@TuvalSimha](https://github.com/TuvalSimha)! - dependencies updates:
+  - Updated dependency
+    [`@graphql-inspector/commands@3.4.1` ↗︎](https://www.npmjs.com/package/@graphql-inspector/commands/v/3.4.1)
+    (from `3.4.0`, in `dependencies`)
+  - Updated dependency [`tslib@2.5.0` ↗︎](https://www.npmjs.com/package/tslib/v/2.5.0) (from
+    `^2.0.0`, in `dependencies`)
+- Updated dependencies
+  [[`0d6ff6db`](https://github.com/kamilkisiela/graphql-inspector/commit/0d6ff6dbdfd51caffae30715bd66c77e7156a641),
+  [`c55aa0c4`](https://github.com/kamilkisiela/graphql-inspector/commit/c55aa0c41f37c6cfc88eb9dae36505f4f335b6f0)]:
+  - @graphql-inspector/commands@3.4.2
+  - @graphql-inspector/github@3.4.6
+
 ## 3.4.5
 
 ### Patch Changes

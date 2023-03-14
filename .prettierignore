@@ -12,3 +12,5 @@ website/src/pages/docs/api/schema.mdx
 website/algolia-lockfile.json
 .bob/
 .changeset/*.md
+pnpm-lock.yaml
+website/algolia-lockfile.json

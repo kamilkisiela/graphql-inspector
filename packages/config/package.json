@@ -1,6 +1,6 @@
 {
   "name": "@graphql-inspector/config",
-  "version": "3.4.0",
+  "version": "3.4.1",
   "repository": {
     "type": "git",
     "url": "kamilkisiela/graphql-inspector",
@@ -29,7 +29,10 @@
     "prepack": "bob prepack"
   },
   "peerDependencies": {
-    "graphql": "^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0"
+    "graphql": "^13.0.0 || ^14.0.0 || ^15.0.0 || ^16.0.0"
+  },
+  "dependencies": {
+    "tslib": "^2.0.0"
   },
   "publishConfig": {
     "directory": "dist",

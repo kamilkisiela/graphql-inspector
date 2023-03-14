@@ -24,7 +24,7 @@ to and even build tools on top of it.
 ## Installation
 
 ```bash
-yarn add @graphql-inspector/core
+pnpm add @graphql-inspector/core
 ```
 
 ## Examples
