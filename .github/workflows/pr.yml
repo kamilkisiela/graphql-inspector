@@ -11,6 +11,8 @@ jobs:
     with:
       domain: https://www.the-guild.dev/graphql/inspector/
       source: "Inspector"
+      packageManager: "pnpm"
+      nodeVersion: 18
     secrets:
       githubToken: ${{ secrets.GITHUB_TOKEN }}
 
