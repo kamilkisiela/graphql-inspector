@@ -127,7 +127,7 @@ importers:
       '@graphql-inspector/code-loader': workspace:*
       '@graphql-inspector/commands': workspace:*
       '@graphql-inspector/config': workspace:*
-      '@graphql-inspector/coverage-command': workspace:*
+      '@graphql-inspector/coverage-command': 4.0.0
       '@graphql-inspector/diff-command': workspace:*
       '@graphql-inspector/docs-command': workspace:*
       '@graphql-inspector/git-loader': workspace:*
@@ -147,7 +147,7 @@ importers:
       '@graphql-inspector/code-loader': link:../loaders/code
       '@graphql-inspector/commands': link:../commands/commands
       '@graphql-inspector/config': link:../config
-      '@graphql-inspector/coverage-command': link:../commands/coverage
+      '@graphql-inspector/coverage-command': 4.0.0_rjgknsa2mymftsdptee5og224q
       '@graphql-inspector/diff-command': link:../commands/diff
       '@graphql-inspector/docs-command': link:../commands/docs
       '@graphql-inspector/git-loader': link:../loaders/git
@@ -184,7 +184,7 @@ importers:
   packages/commands/commands:
     specifiers:
       '@graphql-inspector/audit-command': workspace:*
-      '@graphql-inspector/coverage-command': workspace:*
+      '@graphql-inspector/coverage-command': 4.0.0
       '@graphql-inspector/diff-command': workspace:*
       '@graphql-inspector/docs-command': workspace:*
       '@graphql-inspector/introspect-command': workspace:*
@@ -194,7 +194,7 @@ importers:
       tslib: ^2.0.0
     dependencies:
       '@graphql-inspector/audit-command': link:../audit
-      '@graphql-inspector/coverage-command': link:../coverage
+      '@graphql-inspector/coverage-command': 4.0.0
       '@graphql-inspector/diff-command': link:../diff
       '@graphql-inspector/docs-command': link:../docs
       '@graphql-inspector/introspect-command': link:../introspect
@@ -1362,6 +1362,81 @@ packages:
       giscus: 1.2.8
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
+    dev: false
+
+  /@graphql-inspector/commands/3.4.1:
+    resolution: {integrity: sha512-DPyRRoy8JOSWbrknLNWwaqf8DZqPBmEdegBzVsyBFKTx32NzWkCLuZXa0PguWYYp0/a0Q8XUIgPp7ixJ/Q0lCA==}
+    peerDependencies:
+      '@graphql-inspector/config': 3.4.0
+      '@graphql-inspector/loaders': 3.4.1
+      graphql: ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
+      yargs: 17.2.1
+    dependencies:
+      tslib: 2.5.0
+    dev: false
+
+  /@graphql-inspector/commands/3.4.1_rjgknsa2mymftsdptee5og224q:
+    resolution: {integrity: sha512-DPyRRoy8JOSWbrknLNWwaqf8DZqPBmEdegBzVsyBFKTx32NzWkCLuZXa0PguWYYp0/a0Q8XUIgPp7ixJ/Q0lCA==}
+    peerDependencies:
+      '@graphql-inspector/config': 3.4.0
+      '@graphql-inspector/loaders': 3.4.1
+      graphql: ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
+      yargs: 17.2.1
+    dependencies:
+      '@graphql-inspector/config': link:packages/config
+      '@graphql-inspector/loaders': link:packages/loaders/loaders
+      tslib: 2.5.0
+      yargs: 17.2.1
+    dev: false
+
+  /@graphql-inspector/core/4.0.0:
+    resolution: {integrity: sha512-lgyc6ozmU5WbdlFx7Uftb96cS9ahYmu6hL41ZswK3KQcS6s7AM7zGu8gNDSdXtAGw8eARm8+Ql4+8J1+/72/+A==}
+    peerDependencies:
+      graphql: ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
+    dependencies:
+      dependency-graph: 0.11.0
+      object-inspect: 1.12.3
+      tslib: 2.5.0
+    dev: false
+
+  /@graphql-inspector/coverage-command/4.0.0:
+    resolution: {integrity: sha512-JdkoKKyZM9cWQMugc3MN7oy+veecxPyqgxcAwvR/8zwkudywtI8oiAQPcXIXtUAulOS9CWVHMQp7WAL9o8X7KA==}
+    peerDependencies:
+      graphql: ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
+    dependencies:
+      '@graphql-inspector/commands': 3.4.1
+      '@graphql-inspector/core': 4.0.0
+      '@graphql-inspector/logger': 3.4.2
+      tslib: 2.5.0
+    transitivePeerDependencies:
+      - '@graphql-inspector/config'
+      - '@graphql-inspector/loaders'
+      - yargs
+    dev: false
+
+  /@graphql-inspector/coverage-command/4.0.0_rjgknsa2mymftsdptee5og224q:
+    resolution: {integrity: sha512-JdkoKKyZM9cWQMugc3MN7oy+veecxPyqgxcAwvR/8zwkudywtI8oiAQPcXIXtUAulOS9CWVHMQp7WAL9o8X7KA==}
+    peerDependencies:
+      graphql: ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
+    dependencies:
+      '@graphql-inspector/commands': 3.4.1_rjgknsa2mymftsdptee5og224q
+      '@graphql-inspector/core': 4.0.0
+      '@graphql-inspector/logger': 3.4.2
+      tslib: 2.5.0
+    transitivePeerDependencies:
+      - '@graphql-inspector/config'
+      - '@graphql-inspector/loaders'
+      - yargs
+    dev: false
+
+  /@graphql-inspector/logger/3.4.2:
+    resolution: {integrity: sha512-CuA4Xmfd1i4I8OPnKwnT1pWwWX5XG69H8Kk0uaoTvwsBfjuNJh4HHsYy5JjVoCCjHHqFvcyY8ATJT7zZn+s9aw==}
+    dependencies:
+      chalk: 4.1.2
+      figures: 3.2.0
+      log-symbols: 4.1.0
+      std-env: 3.3.2
+      tslib: 2.5.0
     dev: false
 
   /@graphql-tools/batch-execute/8.5.18:
