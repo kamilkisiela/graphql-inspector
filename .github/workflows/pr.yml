@@ -6,6 +6,15 @@ on:
       - master
 
 jobs:
+  dependencies:
+    uses: the-guild-org/shared-config/.github/workflows/changesets-dependencies.yaml@main
+    secrets:
+      githubToken: ${{ secrets.GITHUB_TOKEN }}
+    with:
+      installDependencies: true
+      packageManager: pnpm
+      nodeVersion: 18
+
   release:
     uses: the-guild-org/shared-config/.github/workflows/release-snapshot.yml@main
     with:
@@ -16,11 +25,3 @@ jobs:
     secrets:
       githubToken: ${{ secrets.GITHUB_TOKEN }}
       npmToken: ${{ secrets.NPM_TOKEN }}
-  dependencies:
-    uses: the-guild-org/shared-config/.github/workflows/changesets-dependencies.yaml@main
-    secrets:
-      githubToken: ${{ secrets.GITHUB_TOKEN }}
-    with:
-      installDependencies: true
-      packageManager: pnpm
-      nodeVersion: 18
