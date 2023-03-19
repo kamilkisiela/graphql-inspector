@@ -1,6 +1,6 @@
 {
   "name": "@graphql-inspector/commands",
-  "version": "3.4.2",
+  "version": "3.4.0",
   "description": "Plugin system for commands in GraphQL Inspector",
   "repository": {
     "type": "git",
