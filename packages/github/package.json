@@ -50,7 +50,7 @@
     "probot": "^9.0.1"
   },
   "dependencies": {
-    "@graphql-inspector/core": "workspace:*",
+    "@graphql-inspector/core": "workspace:^",
     "@whatwg-node/fetch": "0.8.1",
     "dataloader": "2.2.2",
     "js-yaml": "4.1.0",

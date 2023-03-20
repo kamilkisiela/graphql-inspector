@@ -40,15 +40,15 @@
     "graphql": "^13.0.0"
   },
   "dependencies": {
-    "@graphql-inspector/code-loader": "workspace:*",
-    "@graphql-inspector/git-loader": "workspace:*",
-    "@graphql-inspector/github-loader": "workspace:*",
-    "@graphql-inspector/graphql-loader": "workspace:*",
-    "@graphql-inspector/json-loader": "workspace:*",
-    "@graphql-inspector/url-loader": "workspace:*",
+    "@graphql-inspector/code-loader": "workspace:^",
+    "@graphql-inspector/git-loader": "workspace:^",
+    "@graphql-inspector/github-loader": "workspace:^",
+    "@graphql-inspector/graphql-loader": "workspace:^",
+    "@graphql-inspector/json-loader": "workspace:^",
+    "@graphql-inspector/url-loader": "workspace:^",
     "@graphql-tools/code-file-loader": "^7.2.2",
     "@graphql-tools/load": "^7.4.1",
-    "@graphql-tools/utils": "^6.0.0 || ^7.0.0 || ^8.0.0 || ^9.0.0",
+    "@graphql-tools/utils": "^6.0.0",
     "tslib": "^2.0.0"
   },
   "publishConfig": {
