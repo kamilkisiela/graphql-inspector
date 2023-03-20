@@ -48,7 +48,7 @@
     "graphql": "^14.0.0"
   },
   "dependencies": {
-    "@graphql-inspector/commands": "workspace:^",
+    "@graphql-inspector/commands": "workspace:3.4.2",
     "@graphql-inspector/config": "workspace:^",
     "@graphql-inspector/loaders": "workspace:^",
     "@graphql-inspector/logger": "workspace:^",

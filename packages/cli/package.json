@@ -49,7 +49,7 @@
   "dependencies": {
     "@graphql-inspector/audit-command": "workspace:^",
     "@graphql-inspector/code-loader": "workspace:^",
-    "@graphql-inspector/commands": "workspace:^",
+    "@graphql-inspector/commands": "workspace:3.4.2",
     "@graphql-inspector/config": "workspace:^",
     "@graphql-inspector/coverage-command": "workspace:^",
     "@graphql-inspector/diff-command": "workspace:^",
@@ -60,7 +60,7 @@
     "@graphql-inspector/introspect-command": "workspace:^",
     "@graphql-inspector/json-loader": "workspace:^",
     "@graphql-inspector/loaders": "workspace:^",
-    "@graphql-inspector/serve-command": "workspace:^",
+    "@graphql-inspector/serve-command": "workspace:3.4.3",
     "@graphql-inspector/similar-command": "workspace:^",
     "@graphql-inspector/url-loader": "workspace:^",
     "@graphql-inspector/validate-command": "workspace:^",

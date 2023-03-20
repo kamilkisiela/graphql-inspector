@@ -39,7 +39,7 @@
     "graphql": "^13.0.0"
   },
   "dependencies": {
-    "@graphql-inspector/commands": "workspace:^",
+    "@graphql-inspector/commands": "workspace:3.4.2",
     "open": "8.4.2",
     "tslib": "^2.0.0"
   },
