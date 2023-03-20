@@ -1,6 +1,6 @@
 {
   "name": "@graphql-inspector/serve-command",
-  "version": "3.4.2",
+  "version": "3.4.3",
   "description": "Serves GraphQL Schemma",
   "repository": {
     "type": "git",
@@ -36,11 +36,11 @@
     "prepack": "bob prepack"
   },
   "peerDependencies": {
-    "graphql": "^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0"
+    "graphql": "^13.0.0 || ^14.0.0 || ^15.0.0 || ^16.0.0"
   },
   "dependencies": {
-    "@graphql-inspector/commands": "3.4.1",
-    "@graphql-inspector/logger": "3.4.2",
+    "@graphql-inspector/commands": "workspace:*",
+    "@graphql-inspector/logger": "workspace:*",
     "@graphql-yoga/node": "2.0.0",
     "open": "8.4.2",
     "tslib": "^2.0.0"

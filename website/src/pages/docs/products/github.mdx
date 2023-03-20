@@ -1,3 +1,8 @@
+---
+description:
+  GraphQL Inspector App is a GitHub Application that you can install in any of your repositories.
+---
+
 import { Callout } from '@theguild/components'
 
 # GitHub Application
@@ -177,7 +182,7 @@ We recommend to automate the generation of `schema.graphql` and use `husky` to r
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn graphql:save && git add schema.graphql"
+      "pre-commit": "pnpm graphql:save && git add schema.graphql"
     }
   }
 }

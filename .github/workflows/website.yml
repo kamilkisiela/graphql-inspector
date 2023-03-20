@@ -24,7 +24,7 @@ jobs:
         name: setup env
         with:
           nodeVersion: 18
-          packageManager: yarn
+          packageManager: pnpm
 
       - uses: the-guild-org/shared-config/website-cf@main
         name: build and deploy website
@@ -33,9 +33,6 @@ jobs:
           SITE_URL:
             ${{ github.ref == 'refs/heads/master' && 'https://the-guild.dev/graphql/inspector' || ''
             }}
-          NEXT_PUBLIC_ALGOLIA_INDEX_NAME: ${{ secrets.NEXT_PUBLIC_ALGOLIA_INDEX_NAME }}
-          NEXT_PUBLIC_ALGOLIA_SEARCH_API_KEY: ${{ secrets.NEXT_PUBLIC_ALGOLIA_SEARCH_API_KEY }}
-          NEXT_PUBLIC_ALGOLIA_APP_ID: ${{ secrets.NEXT_PUBLIC_ALGOLIA_APP_ID }}
         with:
           cloudflareApiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           cloudflareAccountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
@@ -43,5 +40,5 @@ jobs:
           projectName: graphql-inspector
           prId: ${{ github.event.pull_request.number }}
           websiteDirectory: ./
-          buildScript: yarn build && cd website && yarn build && yarn export
+          buildScript: pnpm build && cd website && pnpm build && pnpm export
           artifactDir: website/out

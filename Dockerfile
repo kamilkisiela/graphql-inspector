@@ -6,8 +6,8 @@ WORKDIR /app
 
 COPY . .
 
-RUN yarn install
-RUN yarn build
+RUN pnpm install
+RUN pnpm build
 
 FROM node:16-alpine AS dist
 ENV NODE_ENV=production
@@ -19,7 +19,7 @@ RUN mkdir /app
 WORKDIR /app
 
 RUN cd ${DISTDIR} \
-  && yarn install \
-  && yarn cache clean \
+  && pnpm install \
+  && pnpm cache clean \
   && ln -s "${DISTDIR}"/packages/cli/dist/index.js /usr/local/bin/graphql-inspector \
   && chmod +x /usr/local/bin/graphql-inspector

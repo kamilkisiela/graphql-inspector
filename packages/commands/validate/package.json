@@ -1,6 +1,6 @@
 {
   "name": "@graphql-inspector/validate-command",
-  "version": "3.4.4",
+  "version": "3.4.5",
   "description": "Validate Documents in GraphQL Inspector",
   "repository": {
     "type": "git",
@@ -36,12 +36,13 @@
     "prepack": "bob prepack"
   },
   "peerDependencies": {
-    "graphql": "^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0"
+    "graphql": "^13.0.0 || ^14.0.0 || ^15.0.0 || ^16.0.0"
   },
   "dependencies": {
-    "@graphql-inspector/commands": "3.4.1",
-    "@graphql-inspector/core": "4.0.0",
-    "@graphql-inspector/logger": "3.4.2",
+    "@graphql-inspector/commands": "workspace:*",
+    "@graphql-inspector/core": "workspace:*",
+    "@graphql-inspector/logger": "workspace:*",
+    "@graphql-tools/utils": "^6.0.0 || ^7.0.0 || ^8.0.0 || ^9.0.0",
     "tslib": "^2.0.0"
   },
   "publishConfig": {

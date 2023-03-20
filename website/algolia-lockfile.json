@@ -699,9 +699,9 @@
         "anchor": "conclusion"
       }
     ],
-    "content": "b8d939b48651904107615e0360ef2150",
+    "content": "806db2f5b5ece1f5610bdb7f893305c1",
     "url": "https://www.the-guild.dev/graphql/inspector/docs/migration-guides/from-graphql-cli",
-    "domain": "https://www.the-guild.dev/graphql/inspector",
+    "domain": "https://www.the-guild.dev/graphql/inspector/",
     "hierarchy": [
       "Docs",
       "Migration Guides"
