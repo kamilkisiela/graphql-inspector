@@ -37,7 +37,7 @@
   },
   "peerDependencies": {
     "@graphql-inspector/config": "3.4.0",
-    "graphql": "^13.0.0 || ^14.0.0 || ^15.0.0 || ^16.0.0"
+    "graphql": "^13.0.0"
   },
   "dependencies": {
     "@graphql-inspector/code-loader": "3.4.0",
