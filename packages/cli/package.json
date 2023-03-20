@@ -60,7 +60,7 @@
     "@graphql-inspector/introspect-command": "workspace:^",
     "@graphql-inspector/json-loader": "workspace:^",
     "@graphql-inspector/loaders": "workspace:^",
-    "@graphql-inspector/serve-command": "workspace:3.4.3",
+    "@graphql-inspector/serve-command": "workspace:^3.4.3",
     "@graphql-inspector/similar-command": "workspace:^",
     "@graphql-inspector/url-loader": "workspace:^",
     "@graphql-inspector/validate-command": "workspace:^",
