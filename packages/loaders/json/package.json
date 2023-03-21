@@ -36,11 +36,14 @@
     "prepack": "bob prepack"
   },
   "peerDependencies": {
-    "graphql": "^13.0.0 || ^14.0.0 || ^15.0.0 || ^16.0.0"
+    "graphql": "^14.0.0 || ^15.0.0 || ^16.0.0"
   },
   "dependencies": {
     "@graphql-tools/json-file-loader": "^7.3.2",
     "tslib": "^2.0.0"
+  },
+  "devDependencies": {
+    "graphql": "16.6.0"
   },
   "publishConfig": {
     "directory": "dist",

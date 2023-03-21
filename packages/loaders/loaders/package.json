@@ -36,8 +36,8 @@
     "prepack": "bob prepack"
   },
   "peerDependencies": {
-    "@graphql-inspector/config": "workspace:*",
-    "graphql": "^13.0.0 || ^14.0.0 || ^15.0.0 || ^16.0.0"
+    "@graphql-inspector/config": "3.4.1",
+    "graphql": "^14.0.0 || ^15.0.0 || ^16.0.0"
   },
   "dependencies": {
     "@graphql-inspector/code-loader": "workspace:*",
@@ -48,8 +48,11 @@
     "@graphql-inspector/url-loader": "workspace:*",
     "@graphql-tools/code-file-loader": "^7.2.2",
     "@graphql-tools/load": "^7.4.1",
-    "@graphql-tools/utils": "^6.0.0 || ^7.0.0 || ^8.0.0 || ^9.0.0",
+    "@graphql-tools/utils": "^9.0.0",
     "tslib": "^2.0.0"
+  },
+  "devDependencies": {
+    "graphql": "16.6.0"
   },
   "publishConfig": {
     "directory": "dist",
