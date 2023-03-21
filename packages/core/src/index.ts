@@ -143,4 +143,5 @@ export {
   TypeDescriptionAddedChange,
   UnionMemberRemovedChange,
   UnionMemberAddedChange,
+  SerializableChange,
 } from './diff/changes/change.js';
