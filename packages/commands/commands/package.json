@@ -1,6 +1,6 @@
 {
   "name": "@graphql-inspector/commands",
-  "version": "3.4.2",
+  "version": "3.4.3",
   "description": "Plugin system for commands in GraphQL Inspector",
   "repository": {
     "type": "git",
@@ -36,8 +36,8 @@
     "prepack": "bob prepack"
   },
   "peerDependencies": {
-    "@graphql-inspector/config": "3.4.1",
-    "@graphql-inspector/loaders": "3.4.2",
+    "@graphql-inspector/config": "3.4.2",
+    "@graphql-inspector/loaders": "3.4.3",
     "graphql": "^14.0.0 || ^15.0.0 || ^16.0.0",
     "yargs": "17.2.1"
   },

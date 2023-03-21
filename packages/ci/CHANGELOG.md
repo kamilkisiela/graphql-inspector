@@ -1,5 +1,20 @@
 # @graphql-inspector/ci
 
+## 3.4.4
+
+### Patch Changes
+
+- Updated dependencies
+  [[`c00cb09b`](https://github.com/kamilkisiela/graphql-inspector/commit/c00cb09b8576efe13745300456679bda0b2675aa),
+  [`948981ef`](https://github.com/kamilkisiela/graphql-inspector/commit/948981ef61f2c72e31db982f2547f7ef6b9b48f8),
+  [`c00cb09b`](https://github.com/kamilkisiela/graphql-inspector/commit/c00cb09b8576efe13745300456679bda0b2675aa),
+  [`948981ef`](https://github.com/kamilkisiela/graphql-inspector/commit/948981ef61f2c72e31db982f2547f7ef6b9b48f8),
+  [`c00cb09b`](https://github.com/kamilkisiela/graphql-inspector/commit/c00cb09b8576efe13745300456679bda0b2675aa),
+  [`948981ef`](https://github.com/kamilkisiela/graphql-inspector/commit/948981ef61f2c72e31db982f2547f7ef6b9b48f8)]:
+  - @graphql-inspector/commands@3.4.3
+  - @graphql-inspector/config@3.4.2
+  - @graphql-inspector/loaders@3.4.3
+
 ## 3.4.3
 
 ### Patch Changes
