@@ -11,28 +11,28 @@ import {
   Change,
   ChangeType,
   CriticalityLevel,
-  FieldAdded,
-  FieldArgumentAdded,
-  FieldArgumentRemoved,
-  FieldDeprecationAdded,
-  FieldDeprecationReasonAdded,
-  FieldDeprecationReasonChanged,
-  FieldDeprecationReasonRemoved,
-  FieldDeprecationRemoved,
-  FieldDescriptionAdded,
-  FieldDescriptionChanged,
-  FieldDescriptionRemoved,
-  FieldRemoved,
-  FieldTypeChanged,
+  FieldAddedChange,
+  FieldArgumentAddedChange,
+  FieldArgumentRemovedChange,
+  FieldDeprecationAddedChange,
+  FieldDeprecationReasonAddedChange,
+  FieldDeprecationReasonChangedChange,
+  FieldDeprecationReasonRemovedChange,
+  FieldDeprecationRemovedChange,
+  FieldDescriptionAddedChange,
+  FieldDescriptionChangedChange,
+  FieldDescriptionRemovedChange,
+  FieldRemovedChange,
+  FieldTypeChangedChange,
 } from './change.js';
 
-function buildFieldRemovedMessage(args: FieldRemoved['meta']) {
+function buildFieldRemovedMessage(args: FieldRemovedChange['meta']) {
   return `Field '${args.removedFieldName}' ${
     args.isRemovedFieldDeprecated ? '(deprecated) ' : ''
   }was removed from ${args.typeType} '${args.typeName}'`;
 }
 
-export function fieldRemovedFromMeta(args: FieldRemoved) {
+export function fieldRemovedFromMeta(args: FieldRemovedChange) {
   return {
     type: ChangeType.FieldRemoved,
     criticality: {
@@ -63,11 +63,11 @@ export function fieldRemoved(
   });
 }
 
-function buildFieldAddedMessage(args: FieldAdded['meta']) {
+function buildFieldAddedMessage(args: FieldAddedChange['meta']) {
   return `Field '${args.addedFieldName}' was added to ${args.typeType} '${args.typeName}'`;
 }
 
-export function fieldAddedFromMeta(args: FieldAdded) {
+export function fieldAddedFromMeta(args: FieldAddedChange) {
   return {
     type: ChangeType.FieldAdded,
     criticality: {
@@ -94,11 +94,11 @@ export function fieldAdded(
   });
 }
 
-function buildFieldDescriptionChangedMessage(args: FieldDescriptionChanged['meta']) {
+function buildFieldDescriptionChangedMessage(args: FieldDescriptionChangedChange['meta']) {
   return `Field '${args.typeName}.${args.fieldName}' description changed from '${args.oldDescription}' to '${args.newDescription}'`;
 }
 
-export function fieldDescriptionChangedFromMeta(args: FieldDescriptionChanged) {
+export function fieldDescriptionChangedFromMeta(args: FieldDescriptionChangedChange) {
   return {
     type: ChangeType.FieldDescriptionChanged,
     criticality: {
@@ -126,11 +126,11 @@ export function fieldDescriptionChanged(
   });
 }
 
-function buildFieldDescriptionAddedMessage(args: FieldDescriptionAdded['meta']) {
+function buildFieldDescriptionAddedMessage(args: FieldDescriptionAddedChange['meta']) {
   return `Field '${args.typeName}.${args.fieldName}' has description '${args.addedDescription}'`;
 }
 
-export function fieldDescriptionAddedFromMeta(args: FieldDescriptionAdded) {
+export function fieldDescriptionAddedFromMeta(args: FieldDescriptionAddedChange) {
   return {
     type: ChangeType.FieldDescriptionAdded,
     criticality: {
@@ -156,11 +156,11 @@ export function fieldDescriptionAdded(
   });
 }
 
-function buildFieldDescriptionRemovedMessage(args: FieldDescriptionRemoved['meta']) {
+function buildFieldDescriptionRemovedMessage(args: FieldDescriptionRemovedChange['meta']) {
   return `Description was removed from field '${args.typeName}.${args.fieldName}'`;
 }
 
-export function fieldDescriptionRemovedFromMeta(args: FieldDescriptionRemoved) {
+export function fieldDescriptionRemovedFromMeta(args: FieldDescriptionRemovedChange) {
   return {
     type: ChangeType.FieldDescriptionRemoved,
     criticality: {
@@ -185,11 +185,11 @@ export function fieldDescriptionRemoved(
   });
 }
 
-function buildFieldDeprecatedAddedMessage(args: FieldDeprecationAdded['meta']) {
+function buildFieldDeprecatedAddedMessage(args: FieldDeprecationAddedChange['meta']) {
   return `Field '${args.typeName}.${args.fieldName}' is deprecated`;
 }
 
-export function fieldDeprecationAddedFromMeta(args: FieldDeprecationAdded) {
+export function fieldDeprecationAddedFromMeta(args: FieldDeprecationAddedChange) {
   return {
     type: ChangeType.FieldDeprecationAdded,
     criticality: {
@@ -214,7 +214,7 @@ export function fieldDeprecationAdded(
   });
 }
 
-export function fieldDeprecationRemovedFromMeta(args: FieldDeprecationRemoved) {
+export function fieldDeprecationRemovedFromMeta(args: FieldDeprecationRemovedChange) {
   return {
     type: ChangeType.FieldDeprecationRemoved,
     criticality: {
@@ -239,11 +239,13 @@ export function fieldDeprecationRemoved(
   });
 }
 
-function buildFieldDeprecationReasonChangedMessage(args: FieldDeprecationReasonChanged['meta']) {
+function buildFieldDeprecationReasonChangedMessage(
+  args: FieldDeprecationReasonChangedChange['meta'],
+) {
   return `Deprecation reason on field '${args.typeName}.${args.fieldName}' has changed from '${args.oldDeprecationReason}' to '${args.newDeprecationReason}'`;
 }
 
-export function fieldDeprecationReasonChangedFromMeta(args: FieldDeprecationReasonChanged) {
+export function fieldDeprecationReasonChangedFromMeta(args: FieldDeprecationReasonChangedChange) {
   return {
     type: ChangeType.FieldDeprecationReasonChanged,
     criticality: {
@@ -271,11 +273,11 @@ export function fieldDeprecationReasonChanged(
   });
 }
 
-function buildFieldDeprecationReasonAddedMessage(args: FieldDeprecationReasonAdded['meta']) {
+function buildFieldDeprecationReasonAddedMessage(args: FieldDeprecationReasonAddedChange['meta']) {
   return `Field '${args.typeName}.${args.fieldName}' has deprecation reason '${args.addedDeprecationReason}'`;
 }
 
-export function fieldDeprecationReasonAddedFromMeta(args: FieldDeprecationReasonAdded) {
+export function fieldDeprecationReasonAddedFromMeta(args: FieldDeprecationReasonAddedChange) {
   return {
     type: ChangeType.FieldDeprecationReasonAdded,
     criticality: {
@@ -301,7 +303,7 @@ export function fieldDeprecationReasonAdded(
   });
 }
 
-export function fieldDeprecationReasonRemovedFromMeta(args: FieldDeprecationReasonRemoved) {
+export function fieldDeprecationReasonRemovedFromMeta(args: FieldDeprecationReasonRemovedChange) {
   return {
     type: ChangeType.FieldDeprecationReasonRemoved,
     criticality: {
@@ -326,11 +328,11 @@ export function fieldDeprecationReasonRemoved(
   });
 }
 
-function buildFieldTypeChangedMessage(args: FieldTypeChanged) {
+function buildFieldTypeChangedMessage(args: FieldTypeChangedChange) {
   return `Field '${args.meta.typeName}.${args.meta.fieldName}' changed type from '${args.meta.oldFieldType}' to '${args.meta.newFieldType}'`;
 }
 
-export function fieldTypeChangedFromMeta(args: FieldTypeChanged) {
+export function fieldTypeChangedFromMeta(args: FieldTypeChangedChange) {
   return {
     type: ChangeType.FieldTypeChanged,
     criticality: {
@@ -361,13 +363,13 @@ export function fieldTypeChanged(
   });
 }
 
-function buildFieldArgumentAddedMessage(args: FieldArgumentAdded['meta']) {
+function buildFieldArgumentAddedMessage(args: FieldArgumentAddedChange['meta']) {
   return `Argument '${args.addedArgumentName}: ${args.addedArgumentType}'${
     args.hasDefaultValue ? ' (with default value) ' : ' '
   }added to field '${args.typeName}.${args.fieldName}'`;
 }
 
-export function fieldArgumentAddedFromMeta(args: FieldArgumentAdded) {
+export function fieldArgumentAddedFromMeta(args: FieldArgumentAddedChange) {
   return {
     type: ChangeType.FieldArgumentAdded,
     criticality: {
@@ -401,11 +403,11 @@ export function fieldArgumentAdded(
   });
 }
 
-function buildFieldArgumentRemovedMessage(args: FieldArgumentRemoved) {
+function buildFieldArgumentRemovedMessage(args: FieldArgumentRemovedChange) {
   return `Argument '${args.meta.removedFieldArgumentName}: ${args.meta.removedFieldType}' was removed from field '${args.meta.typeName}.${args.meta.fieldName}'`;
 }
 
-export function fieldArgumentRemovedFromMeta(args: FieldArgumentRemoved) {
+export function fieldArgumentRemovedFromMeta(args: FieldArgumentRemovedChange) {
   return {
     type: ChangeType.FieldArgumentRemoved,
     criticality: {

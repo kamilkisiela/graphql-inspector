@@ -3,15 +3,15 @@ import {
   Change,
   ChangeType,
   CriticalityLevel,
-  ObjectTypeInterfaceAdded,
-  ObjectTypeInterfaceRemoved,
+  ObjectTypeInterfaceAddedChange,
+  ObjectTypeInterfaceRemovedChange,
 } from './change.js';
 
-function buildObjectTypeInterfaceAddedMessage(args: ObjectTypeInterfaceAdded['meta']) {
+function buildObjectTypeInterfaceAddedMessage(args: ObjectTypeInterfaceAddedChange['meta']) {
   return `'${args.objectTypeName}' object implements '${args.addedInterfaceName}' interface`;
 }
 
-export function objectTypeInterfaceAddedFromMeta(args: ObjectTypeInterfaceAdded) {
+export function objectTypeInterfaceAddedFromMeta(args: ObjectTypeInterfaceAddedChange) {
   return {
     type: ChangeType.ObjectTypeInterfaceAdded,
     criticality: {
@@ -38,11 +38,11 @@ export function objectTypeInterfaceAdded(
   });
 }
 
-function buildObjectTypeInterfaceRemovedMessage(args: ObjectTypeInterfaceRemoved['meta']) {
+function buildObjectTypeInterfaceRemovedMessage(args: ObjectTypeInterfaceRemovedChange['meta']) {
   return `'${args.objectTypeName}' object type no longer implements '${args.removedInterfaceName}' interface`;
 }
 
-export function objectTypeInterfaceRemovedFromMeta(args: ObjectTypeInterfaceRemoved) {
+export function objectTypeInterfaceRemovedFromMeta(args: ObjectTypeInterfaceRemovedChange) {
   return {
     type: ChangeType.ObjectTypeInterfaceRemoved,
     criticality: {

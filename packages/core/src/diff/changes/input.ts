@@ -6,22 +6,22 @@ import {
   Change,
   ChangeType,
   CriticalityLevel,
-  InputFieldAdded,
-  InputFieldDefaultValueChanged,
-  InputFieldDescriptionAdded,
-  InputFieldDescriptionChanged,
-  InputFieldDescriptionRemoved,
-  InputFieldRemoved,
-  InputFieldTypeChanged,
+  InputFieldAddedChange,
+  InputFieldDefaultValueChangedChange,
+  InputFieldDescriptionAddedChange,
+  InputFieldDescriptionChangedChange,
+  InputFieldDescriptionRemovedChange,
+  InputFieldRemovedChange,
+  InputFieldTypeChangedChange,
 } from './change.js';
 
-function buildInputFieldRemovedMessage(args: InputFieldRemoved['meta']) {
+function buildInputFieldRemovedMessage(args: InputFieldRemovedChange['meta']) {
   return `Input field '${args.removedFieldName}' ${
     args.isInputFieldDeprecated ? '(deprecated) ' : ''
   }was removed from input object type '${args.inputName}'`;
 }
 
-export function inputFieldRemovedFromMeta(args: InputFieldRemoved) {
+export function inputFieldRemovedFromMeta(args: InputFieldRemovedChange) {
   return {
     type: ChangeType.InputFieldRemoved,
     criticality: {
@@ -49,11 +49,11 @@ export function inputFieldRemoved(
   });
 }
 
-export function buildInputFieldAddedMessage(args: InputFieldAdded['meta']) {
+export function buildInputFieldAddedMessage(args: InputFieldAddedChange['meta']) {
   return `Input field '${args.addedInputFieldName}' was added to input object type '${args.inputName}'`;
 }
 
-export function inputFieldAddedFromMeta(args: InputFieldAdded) {
+export function inputFieldAddedFromMeta(args: InputFieldAddedChange) {
   return {
     type: ChangeType.InputFieldAdded,
     criticality: args.meta.isAddedInputFieldTypeNullable
@@ -85,11 +85,11 @@ export function inputFieldAdded(
   });
 }
 
-function buildInputFieldDescriptionAddedMessage(args: InputFieldDescriptionAdded['meta']) {
+function buildInputFieldDescriptionAddedMessage(args: InputFieldDescriptionAddedChange['meta']) {
   return `Input field '${args.inputName}.${args.inputFieldName}' has description '${args.addedInputFieldDescription}'`;
 }
 
-export function inputFieldDescriptionAddedFromMeta(args: InputFieldDescriptionAdded) {
+export function inputFieldDescriptionAddedFromMeta(args: InputFieldDescriptionAddedChange) {
   return {
     type: ChangeType.InputFieldDescriptionAdded,
     criticality: {
@@ -115,11 +115,13 @@ export function inputFieldDescriptionAdded(
   });
 }
 
-function buildInputFieldDescriptionRemovedMessage(args: InputFieldDescriptionRemoved['meta']) {
+function buildInputFieldDescriptionRemovedMessage(
+  args: InputFieldDescriptionRemovedChange['meta'],
+) {
   return `Description was removed from input field '${args.inputName}.${args.inputFieldName}'`;
 }
 
-export function inputFieldDescriptionRemovedFromMeta(args: InputFieldDescriptionRemoved) {
+export function inputFieldDescriptionRemovedFromMeta(args: InputFieldDescriptionRemovedChange) {
   return {
     type: ChangeType.InputFieldDescriptionRemoved,
     criticality: {
@@ -144,11 +146,13 @@ export function inputFieldDescriptionRemoved(
   });
 }
 
-function buildInputFieldDescriptionChangedMessage(args: InputFieldDescriptionChanged['meta']) {
+function buildInputFieldDescriptionChangedMessage(
+  args: InputFieldDescriptionChangedChange['meta'],
+) {
   return `Input field '${args.inputName}.${args.inputFieldName}' description changed from '${args.oldInputFieldDescription}' to '${args.newInputFieldDescription}'`;
 }
 
-export function inputFieldDescriptionChangedFromMeta(args: InputFieldDescriptionChanged) {
+export function inputFieldDescriptionChangedFromMeta(args: InputFieldDescriptionChangedChange) {
   return {
     type: ChangeType.InputFieldDescriptionChanged,
     criticality: {
@@ -176,11 +180,13 @@ export function inputFieldDescriptionChanged(
   });
 }
 
-function buildInputFieldDefaultValueChangedMessage(args: InputFieldDefaultValueChanged['meta']) {
+function buildInputFieldDefaultValueChangedMessage(
+  args: InputFieldDefaultValueChangedChange['meta'],
+) {
   return `Input field '${args.inputName}.${args.inputFieldName}' default value changed from '${args.oldDefaultValue}' to '${args.newDefaultValue}'`;
 }
 
-export function inputFieldDefaultValueChangedFromMeta(args: InputFieldDefaultValueChanged) {
+export function inputFieldDefaultValueChangedFromMeta(args: InputFieldDefaultValueChangedChange) {
   return {
     type: ChangeType.InputFieldDefaultValueChanged,
     criticality: {
@@ -199,7 +205,7 @@ export function inputFieldDefaultValueChanged(
   oldField: GraphQLInputField,
   newField: GraphQLInputField,
 ): Change<ChangeType.InputFieldDefaultValueChanged> {
-  const meta: InputFieldDefaultValueChanged['meta'] = {
+  const meta: InputFieldDefaultValueChangedChange['meta'] = {
     inputName: input.name,
     inputFieldName: oldField.name,
   };
@@ -216,11 +222,11 @@ export function inputFieldDefaultValueChanged(
   });
 }
 
-function buildInputFieldTypeChangedMessage(args: InputFieldTypeChanged['meta']) {
+function buildInputFieldTypeChangedMessage(args: InputFieldTypeChangedChange['meta']) {
   return `Input field '${args.inputName}.${args.inputFieldName}' changed type from '${args.oldInputFieldType}' to '${args.newInputFieldType}'`;
 }
 
-export function inputFieldTypeChangedFromMeta(args: InputFieldTypeChanged) {
+export function inputFieldTypeChangedFromMeta(args: InputFieldTypeChangedChange) {
   return {
     type: ChangeType.InputFieldTypeChanged,
     criticality: args.meta.isInputFieldTypeChangeSafe

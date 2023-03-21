@@ -3,15 +3,15 @@ import {
   Change,
   ChangeType,
   CriticalityLevel,
-  UnionMemberAdded,
-  UnionMemberRemoved,
+  UnionMemberAddedChange,
+  UnionMemberRemovedChange,
 } from './change.js';
 
-function buildUnionMemberRemovedMessage(args: UnionMemberRemoved['meta']) {
+function buildUnionMemberRemovedMessage(args: UnionMemberRemovedChange['meta']) {
   return `Member '${args.removedUnionMemberTypeName}' was removed from Union type '${args.unionName}'`;
 }
 
-export function unionMemberRemovedFromMeta(args: UnionMemberRemoved) {
+export function unionMemberRemovedFromMeta(args: UnionMemberRemovedChange) {
   return {
     criticality: {
       level: CriticalityLevel.Breaking,
@@ -38,11 +38,11 @@ export function unionMemberRemoved(
   });
 }
 
-function buildUnionMemberAddedMessage(args: UnionMemberAdded['meta']) {
+function buildUnionMemberAddedMessage(args: UnionMemberAddedChange['meta']) {
   return `Member '${args.addedUnionMemberTypeName}' was added to Union type '${args.unionName}'`;
 }
 
-export function buildUnionMemberAddedMessageFromMeta(args: UnionMemberAdded) {
+export function buildUnionMemberAddedMessageFromMeta(args: UnionMemberAddedChange) {
   return {
     criticality: {
       level: CriticalityLevel.Dangerous,

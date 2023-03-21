@@ -5,18 +5,18 @@ import {
   Change,
   ChangeType,
   CriticalityLevel,
-  FieldArgumentDefaultChanged,
-  FieldArgumentDescriptionChanged,
-  FieldArgumentTypeChanged,
+  FieldArgumentDefaultChangedChange,
+  FieldArgumentDescriptionChangedChange,
+  FieldArgumentTypeChangedChange,
 } from './change.js';
 
 function buildFieldArgumentDescriptionChangedMessage(
-  args: FieldArgumentDescriptionChanged['meta'],
+  args: FieldArgumentDescriptionChangedChange['meta'],
 ): string {
   return `Description for argument '${args.argumentName}' on field '${args.typeName}.${args.fieldName}' changed from '${args.oldDescription}' to '${args.newDescription}'`;
 }
 
-export function fieldArgumentDescriptionFromMeta(args: FieldArgumentDescriptionChanged) {
+export function fieldArgumentDescriptionFromMeta(args: FieldArgumentDescriptionChangedChange) {
   return {
     type: ChangeType.FieldArgumentDescriptionChanged,
     criticality: {
@@ -47,7 +47,7 @@ export function fieldArgumentDescriptionChanged(
 }
 
 function buildFieldArgumentDefaultChangedMessage(
-  args: FieldArgumentDefaultChanged['meta'],
+  args: FieldArgumentDefaultChangedChange['meta'],
 ): string {
   return args.oldDefaultValue === undefined
     ? `Default value '${args.newDefaultValue}' was added to argument '${args.argumentName}' on field '${args.typeName}.${args.fieldName}'`
@@ -57,7 +57,7 @@ function buildFieldArgumentDefaultChangedMessage(
 const fieldArgumentDefaultChangedCriticalityDangerousReason =
   'Changing the default value for an argument may change the runtime behaviour of a field if it was never provided.';
 
-export function fieldArgumentDefaultChangedFromMeta(args: FieldArgumentDefaultChanged) {
+export function fieldArgumentDefaultChangedFromMeta(args: FieldArgumentDefaultChangedChange) {
   return {
     type: ChangeType.FieldArgumentDefaultChanged,
     criticality: {
@@ -76,7 +76,7 @@ export function fieldArgumentDefaultChanged(
   oldArg: GraphQLArgument,
   newArg: GraphQLArgument,
 ): Change<ChangeType.FieldArgumentDefaultChanged> {
-  const meta: FieldArgumentDefaultChanged['meta'] = {
+  const meta: FieldArgumentDefaultChangedChange['meta'] = {
     typeName: type.name,
     fieldName: field.name,
     argumentName: newArg.name,
@@ -95,14 +95,16 @@ export function fieldArgumentDefaultChanged(
   });
 }
 
-function buildFieldArgumentTypeChangedMessage(args: FieldArgumentTypeChanged['meta']): string {
+function buildFieldArgumentTypeChangedMessage(
+  args: FieldArgumentTypeChangedChange['meta'],
+): string {
   return `Type for argument '${args.argumentName}' on field '${args.typeName}.${args.fieldName}' changed from '${args.oldArgumentType}' to '${args.newArgumentType}'`;
 }
 
 const fieldArgumentTypeChangedCriticalityNonBreakingReason = `Changing an input field from non-null to null is considered non-breaking.`;
 const fieldArgumentTypeChangedCriticalityBreakingReason = `Changing the type of a field's argument can cause existing queries that use this argument to error.`;
 
-export function fieldArgumentTypeChangedFromMeta(args: FieldArgumentTypeChanged) {
+export function fieldArgumentTypeChangedFromMeta(args: FieldArgumentTypeChangedChange) {
   return {
     type: ChangeType.FieldArgumentTypeChanged,
     criticality: args.meta.isSafeArgumentTypeChange

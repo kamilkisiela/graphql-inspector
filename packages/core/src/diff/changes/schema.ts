@@ -3,16 +3,16 @@ import {
   Change,
   ChangeType,
   CriticalityLevel,
-  SchemaMutationTypeChanged,
-  SchemaQueryTypeChanged,
-  SchemaSubscriptionTypeChanged,
+  SchemaMutationTypeChangedChange,
+  SchemaQueryTypeChangedChange,
+  SchemaSubscriptionTypeChangedChange,
 } from './change.js';
 
-function buildSchemaQueryTypeChangedMessage(args: SchemaQueryTypeChanged['meta']): string {
+function buildSchemaQueryTypeChangedMessage(args: SchemaQueryTypeChangedChange['meta']): string {
   return `Schema query root has changed from '${args.oldQueryTypeName}' to '${args.newQueryTypeName}'`;
 }
 
-export function schemaQueryTypeChangedFromMeta(args: SchemaQueryTypeChanged) {
+export function schemaQueryTypeChangedFromMeta(args: SchemaQueryTypeChangedChange) {
   return {
     type: ChangeType.SchemaQueryTypeChanged,
     criticality: {
@@ -39,11 +39,13 @@ export function schemaQueryTypeChanged(
   });
 }
 
-function buildSchemaMutationTypeChangedMessage(args: SchemaMutationTypeChanged['meta']): string {
+function buildSchemaMutationTypeChangedMessage(
+  args: SchemaMutationTypeChangedChange['meta'],
+): string {
   return `Schema mutation root has changed from '${args.oldMutationTypeName}' to '${args.newMutationTypeName}'`;
 }
 
-export function schemaMutationTypeChangedFromMeta(args: SchemaMutationTypeChanged) {
+export function schemaMutationTypeChangedFromMeta(args: SchemaMutationTypeChangedChange) {
   return {
     type: ChangeType.SchemaMutationTypeChanged,
     criticality: {
@@ -71,12 +73,12 @@ export function schemaMutationTypeChanged(
 }
 
 function buildSchemaSubscriptionTypeChangedMessage(
-  args: SchemaSubscriptionTypeChanged['meta'],
+  args: SchemaSubscriptionTypeChangedChange['meta'],
 ): string {
   return `Schema subscription root has changed from '${args.oldSubscriptionTypeName}' to '${args.newSubscriptionTypeName}'`;
 }
 
-export function schemaSubscriptionTypeChangedFromMeta(args: SchemaSubscriptionTypeChanged) {
+export function schemaSubscriptionTypeChangedFromMeta(args: SchemaSubscriptionTypeChangedChange) {
   return {
     type: ChangeType.SchemaSubscriptionTypeChanged,
     criticality: {
