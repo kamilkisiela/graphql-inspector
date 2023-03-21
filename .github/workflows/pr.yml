@@ -11,11 +11,12 @@ jobs:
     with:
       npmTag: alpha
       buildScript: build
-      nodeVersion: 18
+      nodeVersion: 16
       packageManager: pnpm
     secrets:
       githubToken: ${{ secrets.GITHUB_TOKEN }}
       npmToken: ${{ secrets.NPM_TOKEN }}
+
   dependencies:
     uses: the-guild-org/shared-config/.github/workflows/changesets-dependencies.yaml@main
     secrets:
@@ -23,4 +24,4 @@ jobs:
     with:
       installDependencies: true
       packageManager: pnpm
-      nodeVersion: 18
+      nodeVersion: 16
