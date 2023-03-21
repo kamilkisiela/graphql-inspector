@@ -39,7 +39,7 @@ importers:
       shelljs: 0.8.5
       smee-client: 1.2.3
       strip-ansi: 6.0.1
-      ts-jest: 27.0.5
+      ts-jest: 27.1.5
       typescript: 4.2.4
       yargs: 17.2.1
     dependencies:
@@ -77,7 +77,7 @@ importers:
       rimraf: 4.3.1
       smee-client: 1.2.3
       strip-ansi: 6.0.1
-      ts-jest: 27.0.5_2ygj5r3jtt2xuvyz7hp6xewvie
+      ts-jest: 27.1.5_2ygj5r3jtt2xuvyz7hp6xewvie
       typescript: 4.2.4
 
   packages/action:
@@ -12621,14 +12621,15 @@ packages:
     resolution: {integrity: sha512-Y/arvbn+rrz3JCKl9C4kVNfTfSm2/mEp5FSz5EsZSANGPSlQrpRI5M4PKF+mJnE52jOO90PnPSc3Ur3bTQw0gA==}
     dev: true
 
-  /ts-jest/27.0.5_2ygj5r3jtt2xuvyz7hp6xewvie:
-    resolution: {integrity: sha512-lIJApzfTaSSbtlksfFNHkWOzLJuuSm4faFAfo5kvzOiRAuoN4/eKxVJ2zEAho8aecE04qX6K1pAzfH5QHL1/8w==}
+  /ts-jest/27.1.5_2ygj5r3jtt2xuvyz7hp6xewvie:
+    resolution: {integrity: sha512-Xv6jBQPoBEvBq/5i2TeSG9tt/nqkbpcurrEG1b+2yfBrcJelOZF9Ml6dmyMh7bcW9JyFbRYpR5rxROSlBLTZHA==}
     engines: {node: ^10.13.0 || ^12.13.0 || ^14.15.0 || >=15.0.0}
     hasBin: true
     peerDependencies:
       '@babel/core': '>=7.0.0-beta.0 <8'
       '@types/jest': ^27.0.0
       babel-jest: '>=27.0.0 <28'
+      esbuild: '*'
       jest: ^27.0.0
       typescript: '>=3.8 <5.0'
     peerDependenciesMeta:
@@ -12638,6 +12639,8 @@ packages:
         optional: true
       babel-jest:
         optional: true
+      esbuild:
+        optional: true
     dependencies:
       '@types/jest': 27.5.2
       bs-logger: 0.2.6
@@ -12645,7 +12648,7 @@ packages:
       jest: 27.5.1
       jest-util: 27.5.1
       json5: 2.2.3
-      lodash: 4.17.21
+      lodash.memoize: 4.1.2
       make-error: 1.3.6
       semver: 7.3.8
       typescript: 4.2.4
