@@ -186,24 +186,8 @@ importers:
 
   packages/commands/commands:
     specifiers:
-      '@graphql-inspector/audit-command': workspace:*
-      '@graphql-inspector/coverage-command': workspace:*
-      '@graphql-inspector/diff-command': workspace:*
-      '@graphql-inspector/docs-command': workspace:*
-      '@graphql-inspector/introspect-command': workspace:*
-      '@graphql-inspector/serve-command': workspace:*
-      '@graphql-inspector/similar-command': workspace:*
-      '@graphql-inspector/validate-command': workspace:*
       tslib: ^2.0.0
     dependencies:
-      '@graphql-inspector/audit-command': link:../audit
-      '@graphql-inspector/coverage-command': link:../coverage
-      '@graphql-inspector/diff-command': link:../diff
-      '@graphql-inspector/docs-command': link:../docs
-      '@graphql-inspector/introspect-command': link:../introspect
-      '@graphql-inspector/serve-command': link:../serve
-      '@graphql-inspector/similar-command': link:../similar
-      '@graphql-inspector/validate-command': link:../validate
       tslib: 2.5.0
     publishDirectory: dist
 
@@ -422,24 +406,12 @@ importers:
 
   packages/loaders/loaders:
     specifiers:
-      '@graphql-inspector/code-loader': workspace:*
-      '@graphql-inspector/git-loader': workspace:*
-      '@graphql-inspector/github-loader': workspace:*
-      '@graphql-inspector/graphql-loader': workspace:*
-      '@graphql-inspector/json-loader': workspace:*
-      '@graphql-inspector/url-loader': workspace:*
       '@graphql-tools/code-file-loader': ^7.2.2
       '@graphql-tools/load': ^7.4.1
       '@graphql-tools/utils': ^9.0.0
       graphql: 16.6.0
       tslib: ^2.0.0
     dependencies:
-      '@graphql-inspector/code-loader': link:../code
-      '@graphql-inspector/git-loader': link:../git
-      '@graphql-inspector/github-loader': link:../github
-      '@graphql-inspector/graphql-loader': link:../graphql
-      '@graphql-inspector/json-loader': link:../json
-      '@graphql-inspector/url-loader': link:../url
       '@graphql-tools/code-file-loader': 7.3.21_graphql@16.6.0
       '@graphql-tools/load': 7.8.13_graphql@16.6.0
       '@graphql-tools/utils': 9.2.1_graphql@16.6.0
