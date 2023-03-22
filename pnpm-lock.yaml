@@ -418,12 +418,14 @@ importers:
   packages/loaders/loaders:
     specifiers:
       '@babel/core': 7.21.3
+      '@graphql-inspector/config': 3.4.3
       '@graphql-tools/code-file-loader': ^7.2.2
       '@graphql-tools/load': ^7.4.1
       '@graphql-tools/utils': ^9.0.0
       graphql: 16.6.0
       tslib: ^2.0.0
     dependencies:
+      '@graphql-inspector/config': link:../../config
       '@graphql-tools/code-file-loader': 7.3.21_cd4r55mkxm7wczyrejmztiwhaa
       '@graphql-tools/load': 7.8.13_graphql@16.6.0
       '@graphql-tools/utils': 9.2.1_graphql@16.6.0
