@@ -82,6 +82,9 @@
   "pnpm": {
     "overrides": {
       "@octokit/types": "5.4.1"
+    },
+    "patchedDependencies": {
+      "@changesets/cli@2.26.0": "patches/@changesets__cli@2.26.0.patch"
     }
   }
 }

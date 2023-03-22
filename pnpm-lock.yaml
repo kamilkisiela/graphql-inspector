@@ -3,6 +3,11 @@ lockfileVersion: 5.4
 overrides:
   '@octokit/types': 5.4.1
 
+patchedDependencies:
+  '@changesets/cli@2.26.0':
+    hash: af4enb24fxohd3xfhwd26lozxm
+    path: patches/@changesets__cli@2.26.0.patch
+
 importers:
 
   .:
@@ -54,7 +59,7 @@ importers:
       yargs: 17.2.1
     devDependencies:
       '@changesets/changelog-github': 0.4.8
-      '@changesets/cli': 2.26.0
+      '@changesets/cli': 2.26.0_af4enb24fxohd3xfhwd26lozxm
       '@theguild/eslint-config': 0.8.0_i5t5dtcfcqsxgkliptnux2v6oq
       '@theguild/prettier-config': 1.1.2_prettier@2.8.4
       '@types/body-parser': 1.19.2
@@ -1100,7 +1105,7 @@ packages:
       - encoding
     dev: true
 
-  /@changesets/cli/2.26.0:
+  /@changesets/cli/2.26.0_af4enb24fxohd3xfhwd26lozxm:
     resolution: {integrity: sha512-0cbTiDms+ICTVtEwAFLNW0jBNex9f5+fFv3I771nBvdnV/mOjd1QJ4+f8KtVSOrwD9SJkk9xbDkWFb0oXd8d1Q==}
     hasBin: true
     dependencies:
@@ -1138,6 +1143,7 @@ packages:
       term-size: 2.2.1
       tty-table: 4.1.6
     dev: true
+    patched: true
 
   /@changesets/config/2.3.0:
     resolution: {integrity: sha512-EgP/px6mhCx8QeaMAvWtRrgyxW08k/Bx2tpGT+M84jEdX37v3VKfh4Cz1BkwrYKuMV2HZKeHOh8sHvja/HcXfQ==}
