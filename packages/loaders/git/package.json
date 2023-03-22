@@ -1,6 +1,6 @@
 {
   "name": "@graphql-inspector/git-loader",
-  "version": "3.4.1",
+  "version": "3.4.2",
   "description": "Load GraphQL Schema and Documents from Git repository",
   "repository": {
     "type": "git",
