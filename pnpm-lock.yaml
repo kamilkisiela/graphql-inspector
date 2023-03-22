@@ -145,7 +145,7 @@ importers:
       '@graphql-inspector/similar-command': workspace:*
       '@graphql-inspector/url-loader': workspace:*
       '@graphql-inspector/validate-command': workspace:*
-      tslib: ^2.0.0
+      tslib: 2.5.0
       yargs: 17.2.1
     dependencies:
       '@graphql-inspector/audit-command': link:../commands/audit
