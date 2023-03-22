@@ -47,6 +47,7 @@
     "graphql": "^14.0.0 || ^15.0.0 || ^16.0.0"
   },
   "dependencies": {
+    "@graphql-inspector/code-loader": "workspace:*",
     "@graphql-inspector/commands": "workspace:*",
     "@graphql-inspector/loaders": "workspace:*",
     "tslib": "^2.0.0",

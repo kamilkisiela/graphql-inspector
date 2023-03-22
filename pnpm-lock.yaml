@@ -128,11 +128,13 @@ importers:
 
   packages/cli:
     specifiers:
+      '@graphql-inspector/code-loader': workspace:*
       '@graphql-inspector/commands': workspace:*
       '@graphql-inspector/loaders': workspace:*
       tslib: ^2.0.0
       yargs: 17.2.1
     dependencies:
+      '@graphql-inspector/code-loader': link:../loaders/code
       '@graphql-inspector/commands': link:../commands/commands
       '@graphql-inspector/loaders': link:../loaders/loaders
       tslib: 2.5.0
