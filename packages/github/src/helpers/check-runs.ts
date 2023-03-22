@@ -1,7 +1,7 @@
 import { Context } from 'probot';
-import { Logger } from './logger';
-import { Annotation, CheckConclusion, CheckStatus } from './types';
-import { batch } from './utils';
+import { Logger } from './logger.js';
+import { Annotation, CheckConclusion, CheckStatus } from './types.js';
+import { batch } from './utils.js';
 
 export async function start({
   context,
@@ -27,7 +27,7 @@ export async function start({
     logger.info(`check started`);
 
     return result.data.id;
-  } catch (error) {
+  } catch (error: any) {
     logger.error(`failed to start a check`, error);
     throw error;
   }
@@ -73,7 +73,7 @@ export async function annotate({
         logger.info(`annotations sent (${chunk.length})`);
       }),
     );
-  } catch (error) {
+  } catch (error: any) {
     logger.error(`failed to send annotations`, error);
     throw error;
   }
@@ -103,7 +103,7 @@ export async function complete({
       status: CheckStatus.Completed,
     });
     logger.info(`check completed`);
-  } catch (error) {
+  } catch (error: any) {
     logger.error(`failed to complete a check`, error);
     throw error;
   }

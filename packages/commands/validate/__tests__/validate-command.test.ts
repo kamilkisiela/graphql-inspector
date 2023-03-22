@@ -3,7 +3,8 @@ import { buildSchema, parse } from 'graphql';
 import yargs from 'yargs';
 import { mockCommand } from '@graphql-inspector/commands';
 import { mockLogger, unmockLogger } from '@graphql-inspector/logger';
-import createCommand from '../src';
+import '@graphql-inspector/testing';
+import createCommand from '../src/index.js';
 
 const schema = buildSchema(/* GraphQL */ `
   type Post {

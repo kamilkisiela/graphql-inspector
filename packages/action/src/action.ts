@@ -1,5 +1,5 @@
 import * as core from '@actions/core';
-import { run } from './run';
+import { run } from './run.js';
 
 (global as any).navigator = {
   userAgent: 'node.js',

@@ -172,7 +172,7 @@ export default createCommand<
           onUsage: args.onUsage,
         });
       } catch (error) {
-        Logger.error(error);
+        Logger.error(error as string);
         throw error;
       }
     },

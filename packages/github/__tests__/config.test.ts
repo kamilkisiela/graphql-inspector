@@ -1,4 +1,4 @@
-import { createConfig } from '../src/helpers/config';
+import { createConfig } from '../src/helpers/config.js';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 const dummySetConfig = () => {};

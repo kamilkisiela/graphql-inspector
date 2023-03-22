@@ -1,5 +1,5 @@
 import { Source } from 'graphql';
-import { getLocationByPath } from '../src/helpers/location';
+import { getLocationByPath } from '../src/helpers/location.js';
 
 const source = new Source(/* GraphQL */ `
   type Query {

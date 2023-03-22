@@ -1,25 +1,24 @@
 {
   "compilerOptions": {
-    "incremental": true,
     "baseUrl": ".",
-    "rootDir": "packages",
     "outDir": "dist",
-    "target": "es2015",
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
     "esModuleInterop": true,
-    "lib": ["ESNext"],
+    "allowSyntheticDefaultImports": true,
     "importHelpers": true,
-    "preserveConstEnums": true,
-    "downlevelIteration": true,
-    "sourceMap": true,
+    "experimentalDecorators": true,
+    "module": "node16",
+    "target": "ES2020",
+    "lib": ["esnext"],
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "sourceMap": false,
     "declaration": true,
-    "tsBuildInfoFile": "dist/tsconfig.tsbuildinfo",
-
+    "noImplicitThis": true,
     "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
+    "alwaysStrict": true,
+    "noImplicitReturns": true,
+    "noUnusedLocals": false,
+    "resolveJsonModule": true,
     "skipLibCheck": true,
     "types": ["vitest/globals"],
     "paths": {
@@ -46,7 +45,8 @@
       "@graphql-inspector/introspect-command": ["packages/commands/introspect/src/index.ts"],
       "@graphql-inspector/similar-command": ["packages/commands/similar/src/index.ts"],
       "@graphql-inspector/testing": ["packages/testing/src/index.ts"]
-    }
+    },
+    "jsx": "preserve"
   },
   "include": ["packages"],
   "exclude": ["**/dist", "**/node_modules/**", "**/__tests__", "**/tests"]

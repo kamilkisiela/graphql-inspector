@@ -1,8 +1,8 @@
 import { buildSchema, Source } from 'graphql';
 import nock from 'nock';
 import { CriticalityLevel, DiffRule } from '@graphql-inspector/core';
-import { diff, DiffInterceptorPayload, DiffInterceptorResponse } from '../src/helpers/diff';
-import { CheckConclusion } from '../src/helpers/types';
+import { diff, DiffInterceptorPayload, DiffInterceptorResponse } from '../src/helpers/diff.js';
+import { CheckConclusion } from '../src/helpers/types.js';
 
 function getPrintedLine(source: Source, line: number): string {
   return source.body.split(/\r\n|[\n\r]/g)[line - 1].trim();

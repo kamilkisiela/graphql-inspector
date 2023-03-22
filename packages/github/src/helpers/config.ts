@@ -1,5 +1,5 @@
-import { DiffInterceptor } from './diff';
-import { isNil } from './utils';
+import { DiffInterceptor } from './diff.js';
+import { isNil } from './utils.js';
 
 export type Endpoint =
   | string

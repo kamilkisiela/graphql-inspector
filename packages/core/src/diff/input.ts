@@ -1,5 +1,5 @@
 import { GraphQLInputField, GraphQLInputObjectType } from 'graphql';
-import { compareLists, diffArrays, isNotEqual, isVoid } from '../utils/compare';
+import { compareLists, diffArrays, isNotEqual, isVoid } from '../utils/compare.js';
 import {
   inputFieldAdded,
   inputFieldDefaultValueChanged,
@@ -8,8 +8,8 @@ import {
   inputFieldDescriptionRemoved,
   inputFieldRemoved,
   inputFieldTypeChanged,
-} from './changes/input';
-import { AddChange } from './schema';
+} from './changes/input.js';
+import { AddChange } from './schema.js';
 
 export function changesInInputObject(
   oldInput: GraphQLInputObjectType,

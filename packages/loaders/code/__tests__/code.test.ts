@@ -1,5 +1,5 @@
 import { buildSchema, GraphQLObjectType } from 'graphql';
-import loader from '../src';
+import loader from '../src/index.js';
 
 test('should contain descriptions (#1604)', async () => {
   const results = await loader.load('./assets/bar.ts', {

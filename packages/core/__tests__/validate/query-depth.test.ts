@@ -1,5 +1,5 @@
 import { parse } from 'graphql';
-import { calculateDepth } from '../../src/validate/query-depth';
+import { calculateDepth } from '../../src/validate/query-depth.js';
 
 describe('calculateDepth', () => {
   test('spread fragments', async () => {

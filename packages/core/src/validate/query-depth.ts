@@ -37,7 +37,7 @@ export function validateQueryDepth({
       throw errorOrNode;
     }
 
-    const node: ASTNode = errorOrNode;
+    const node: ASTNode | any = errorOrNode;
 
     return new GraphQLError(
       `Query exceeds maximum depth of ${maxDepth}`,

@@ -11,8 +11,8 @@ import {
   visit,
   visitWithTypeInfo,
 } from 'graphql';
-import { readDocument } from '../ast/document';
-import { isForIntrospection, isPrimitive } from '../utils/graphql';
+import { readDocument } from '../ast/document.js';
+import { isForIntrospection, isPrimitive } from '../utils/graphql.js';
 
 export interface Location {
   start: number;

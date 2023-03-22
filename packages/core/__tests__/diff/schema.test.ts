@@ -1,6 +1,7 @@
 import { buildClientSchema, buildSchema, introspectionFromSchema } from 'graphql';
-import { Change, CriticalityLevel, diff } from '../../src';
-import { findBestMatch } from '../../src/utils/string';
+import { Change, CriticalityLevel } from '../../src/diff/changes/change.js';
+import { diff } from '../../src/index.js';
+import { findBestMatch } from '../../src/utils/string.js';
 
 test('same schema', async () => {
   const schemaA = buildSchema(/* GraphQL */ `

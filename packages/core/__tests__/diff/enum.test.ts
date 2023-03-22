@@ -1,6 +1,7 @@
 import { buildSchema } from 'graphql';
-import { CriticalityLevel, diff, DiffRule } from '../../src';
-import { findFirstChangeByPath } from '../../utils/testing';
+import { CriticalityLevel } from '../../src/diff/changes/change.js';
+import { diff, DiffRule } from '../../src/index.js';
+import { findFirstChangeByPath } from '../../utils/testing.js';
 
 describe('enum', () => {
   test('value added', async () => {

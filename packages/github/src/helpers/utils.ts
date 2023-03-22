@@ -1,5 +1,5 @@
 import { Change, CriticalityLevel } from '@graphql-inspector/core';
-import { Endpoint } from './config';
+import { Endpoint } from './config.js';
 
 export function bolderize(msg: string): string {
   return quotesTransformer(msg, '**');
