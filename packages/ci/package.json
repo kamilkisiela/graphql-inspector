@@ -1,6 +1,6 @@
 {
   "name": "@graphql-inspector/ci",
-  "version": "3.4.4",
+  "version": "3.4.5",
   "description": "Tooling for GraphQL. Compare GraphQL Schemas, check documents, find breaking changes, find similar types.",
   "repository": {
     "type": "git",

@@ -1,5 +1,34 @@
 # @graphql-inspector/cli
 
+## 3.4.9
+
+### Patch Changes
+
+- [#2412](https://github.com/kamilkisiela/graphql-inspector/pull/2412)
+  [`5b275450`](https://github.com/kamilkisiela/graphql-inspector/commit/5b2754500d44771582310822fce629bb44d56528)
+  Thanks [@dotansimha](https://github.com/dotansimha)! - Bump all packages to fix issues with
+  previous release
+
+- Updated dependencies
+  [[`5b275450`](https://github.com/kamilkisiela/graphql-inspector/commit/5b2754500d44771582310822fce629bb44d56528)]:
+  - @graphql-inspector/audit-command@3.4.7
+  - @graphql-inspector/commands@3.4.4
+  - @graphql-inspector/coverage-command@4.0.3
+  - @graphql-inspector/diff-command@3.4.7
+  - @graphql-inspector/docs-command@3.4.5
+  - @graphql-inspector/introspect-command@3.4.7
+  - @graphql-inspector/serve-command@3.4.5
+  - @graphql-inspector/similar-command@3.4.7
+  - @graphql-inspector/validate-command@3.4.7
+  - @graphql-inspector/config@3.4.3
+  - @graphql-inspector/code-loader@3.4.2
+  - @graphql-inspector/git-loader@3.4.2
+  - @graphql-inspector/github-loader@3.4.2
+  - @graphql-inspector/graphql-loader@3.4.2
+  - @graphql-inspector/json-loader@3.4.2
+  - @graphql-inspector/loaders@3.4.4
+  - @graphql-inspector/url-loader@3.4.2
+
 ## 3.4.8
 
 ### Patch Changes

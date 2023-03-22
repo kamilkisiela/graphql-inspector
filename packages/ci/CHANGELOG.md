@@ -1,5 +1,21 @@
 # @graphql-inspector/ci
 
+## 3.4.5
+
+### Patch Changes
+
+- [#2412](https://github.com/kamilkisiela/graphql-inspector/pull/2412)
+  [`5b275450`](https://github.com/kamilkisiela/graphql-inspector/commit/5b2754500d44771582310822fce629bb44d56528)
+  Thanks [@dotansimha](https://github.com/dotansimha)! - Bump all packages to fix issues with
+  previous release
+
+- Updated dependencies
+  [[`5b275450`](https://github.com/kamilkisiela/graphql-inspector/commit/5b2754500d44771582310822fce629bb44d56528)]:
+  - @graphql-inspector/commands@3.4.4
+  - @graphql-inspector/config@3.4.3
+  - @graphql-inspector/loaders@3.4.4
+  - @graphql-inspector/logger@3.4.3
+
 ## 3.4.4
 
 ### Patch Changes
