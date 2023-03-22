@@ -48,7 +48,7 @@
   },
   "dependencies": {
     "@graphql-inspector/audit-command": "workspace:*",
-    "@graphql-inspector/code-loader": "workspace:*",
+    "@graphql-inspector/code-loader": "3.4.2",
     "@graphql-inspector/commands": "workspace:*",
     "@graphql-inspector/config": "workspace:*",
     "@graphql-inspector/coverage-command": "workspace:*",
