@@ -115,7 +115,7 @@ importers:
       '@graphql-inspector/config': workspace:*
       '@graphql-inspector/loaders': workspace:*
       '@graphql-inspector/logger': workspace:*
-      tslib: ^2.0.0
+      tslib: 2.5.0
       yargs: 17.2.1
     dependencies:
       '@graphql-inspector/commands': link:../commands/commands
@@ -177,7 +177,7 @@ importers:
       '@graphql-tools/utils': ^9.0.0
       cli-table3: 0.6.3
       graphql: 16.6.0
-      tslib: ^2.0.0
+      tslib: 2.5.0
     dependencies:
       '@graphql-inspector/commands': link:../commands
       '@graphql-inspector/core': link:../../core
@@ -191,7 +191,7 @@ importers:
 
   packages/commands/commands:
     specifiers:
-      tslib: ^2.0.0
+      tslib: 2.5.0
     dependencies:
       tslib: 2.5.0
     publishDirectory: dist
@@ -203,7 +203,7 @@ importers:
       '@graphql-inspector/logger': workspace:*
       '@graphql-tools/utils': ^9.0.0
       graphql: 16.6.0
-      tslib: ^2.0.0
+      tslib: 2.5.0
     dependencies:
       '@graphql-inspector/commands': link:../commands
       '@graphql-inspector/core': link:../../core
@@ -219,7 +219,7 @@ importers:
       '@graphql-inspector/commands': workspace:*
       '@graphql-inspector/core': workspace:*
       '@graphql-inspector/logger': workspace:*
-      tslib: ^2.0.0
+      tslib: 2.5.0
     dependencies:
       '@graphql-inspector/commands': link:../commands
       '@graphql-inspector/core': link:../../core
@@ -231,7 +231,7 @@ importers:
     specifiers:
       '@graphql-inspector/commands': workspace:*
       open: 8.4.2
-      tslib: ^2.0.0
+      tslib: 2.5.0
     dependencies:
       '@graphql-inspector/commands': link:../commands
       open: 8.4.2
@@ -243,7 +243,7 @@ importers:
       '@graphql-inspector/commands': workspace:*
       '@graphql-inspector/core': workspace:*
       '@graphql-inspector/logger': workspace:*
-      tslib: ^2.0.0
+      tslib: 2.5.0
     dependencies:
       '@graphql-inspector/commands': link:../commands
       '@graphql-inspector/core': link:../../core
@@ -258,7 +258,7 @@ importers:
       '@graphql-yoga/node': 2.0.0
       graphql: 16.6.0
       open: 8.4.2
-      tslib: ^2.0.0
+      tslib: 2.5.0
     dependencies:
       '@graphql-inspector/commands': link:../commands
       '@graphql-inspector/logger': link:../../logger
@@ -274,7 +274,7 @@ importers:
       '@graphql-inspector/commands': workspace:*
       '@graphql-inspector/core': workspace:*
       '@graphql-inspector/logger': workspace:*
-      tslib: ^2.0.0
+      tslib: 2.5.0
     dependencies:
       '@graphql-inspector/commands': link:../commands
       '@graphql-inspector/core': link:../../core
@@ -289,7 +289,7 @@ importers:
       '@graphql-inspector/logger': workspace:*
       '@graphql-tools/utils': ^9.0.0
       graphql: 16.6.0
-      tslib: ^2.0.0
+      tslib: 2.5.0
     dependencies:
       '@graphql-inspector/commands': link:../commands
       '@graphql-inspector/core': link:../../core
@@ -302,7 +302,7 @@ importers:
 
   packages/config:
     specifiers:
-      tslib: ^2.0.0
+      tslib: 2.5.0
     dependencies:
       tslib: 2.5.0
     publishDirectory: dist
@@ -312,7 +312,7 @@ importers:
       '@types/object-inspect': 1.8.1
       dependency-graph: 0.11.0
       object-inspect: 1.12.3
-      tslib: ^2.0.0
+      tslib: 2.5.0
     dependencies:
       dependency-graph: 0.11.0
       object-inspect: 1.12.3
@@ -332,7 +332,7 @@ importers:
       js-yaml: 4.1.0
       probot: 11.4.1
       smee-client: 1.2.3
-      tslib: ^2.0.0
+      tslib: 2.5.0
     dependencies:
       '@graphql-inspector/core': link:../core
       '@whatwg-node/fetch': 0.8.1_@types+node@18.15.5
@@ -351,7 +351,7 @@ importers:
     specifiers:
       '@graphql-tools/code-file-loader': ^7.2.2
       graphql: 16.6.0
-      tslib: ^2.0.0
+      tslib: 2.5.0
     dependencies:
       '@graphql-tools/code-file-loader': 7.3.21_graphql@16.6.0
       tslib: 2.5.0
@@ -363,7 +363,7 @@ importers:
     specifiers:
       '@graphql-tools/git-loader': ^7.1.2
       graphql: 16.6.0
-      tslib: ^2.0.0
+      tslib: 2.5.0
     dependencies:
       '@graphql-tools/git-loader': 7.2.20_graphql@16.6.0
       tslib: 2.5.0
@@ -376,7 +376,7 @@ importers:
       '@graphql-tools/github-loader': ^7.1.1
       '@types/node': 18.15.5
       graphql: 16.6.0
-      tslib: ^2.0.0
+      tslib: 2.5.0
     dependencies:
       '@graphql-tools/github-loader': 7.3.27_cqyb4buyc4habqgvcucexr22xm
       tslib: 2.5.0
@@ -389,7 +389,7 @@ importers:
     specifiers:
       '@graphql-tools/graphql-file-loader': ^7.3.2
       graphql: 16.6.0
-      tslib: ^2.0.0
+      tslib: 2.5.0
     dependencies:
       '@graphql-tools/graphql-file-loader': 7.5.16_graphql@16.6.0
       tslib: 2.5.0
@@ -401,7 +401,7 @@ importers:
     specifiers:
       '@graphql-tools/json-file-loader': ^7.3.2
       graphql: 16.6.0
-      tslib: ^2.0.0
+      tslib: 2.5.0
     dependencies:
       '@graphql-tools/json-file-loader': 7.4.17_graphql@16.6.0
       tslib: 2.5.0
@@ -415,7 +415,7 @@ importers:
       '@graphql-tools/load': ^7.4.1
       '@graphql-tools/utils': ^9.0.0
       graphql: 16.6.0
-      tslib: ^2.0.0
+      tslib: 2.5.0
     dependencies:
       '@graphql-tools/code-file-loader': 7.3.21_graphql@16.6.0
       '@graphql-tools/load': 7.8.13_graphql@16.6.0
@@ -430,7 +430,7 @@ importers:
       '@graphql-tools/url-loader': ^7.4.2
       '@types/node': 18.15.5
       graphql: 16.6.0
-      tslib: ^2.0.0
+      tslib: 2.5.0
     dependencies:
       '@graphql-tools/url-loader': 7.17.14_cqyb4buyc4habqgvcucexr22xm
       tslib: 2.5.0
@@ -445,7 +445,7 @@ importers:
       figures: 3.2.0
       log-symbols: ^4.1.0
       std-env: 3.3.2
-      tslib: ^2.0.0
+      tslib: 2.5.0
     dependencies:
       chalk: 4.1.2
       figures: 3.2.0

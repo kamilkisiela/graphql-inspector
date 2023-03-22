@@ -40,7 +40,7 @@
   },
   "dependencies": {
     "@graphql-tools/json-file-loader": "^7.3.2",
-    "tslib": "^2.0.0"
+    "tslib": "2.5.0"
   },
   "devDependencies": {
     "graphql": "16.6.0"
