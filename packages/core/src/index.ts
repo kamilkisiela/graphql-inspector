@@ -21,7 +21,7 @@ export { countDirectives } from './validate/directive-count.js';
 export { countDepth } from './validate/query-depth.js';
 export { calculateTokenCount } from './validate/token-count.js';
 export {
-  fieldArgumentDescriptionFromMeta,
+  fieldArgumentDescriptionChangedFromMeta,
   fieldArgumentDefaultChangedFromMeta,
   fieldArgumentTypeChangedFromMeta,
 } from './diff/changes/argument.js';

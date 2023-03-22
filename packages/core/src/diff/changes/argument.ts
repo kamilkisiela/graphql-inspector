@@ -16,7 +16,7 @@ function buildFieldArgumentDescriptionChangedMessage(
   return `Description for argument '${args.argumentName}' on field '${args.typeName}.${args.fieldName}' changed from '${args.oldDescription}' to '${args.newDescription}'`;
 }
 
-export function fieldArgumentDescriptionFromMeta(args: FieldArgumentDescriptionChangedChange) {
+export function fieldArgumentDescriptionChangedFromMeta(args: FieldArgumentDescriptionChangedChange) {
   return {
     type: ChangeType.FieldArgumentDescriptionChanged,
     criticality: {
@@ -34,7 +34,7 @@ export function fieldArgumentDescriptionChanged(
   oldArg: GraphQLArgument,
   newArg: GraphQLArgument,
 ): Change<ChangeType.FieldArgumentDescriptionChanged> {
-  return fieldArgumentDescriptionFromMeta({
+  return fieldArgumentDescriptionChangedFromMeta({
     type: ChangeType.FieldArgumentDescriptionChanged,
     meta: {
       typeName: type.name,
