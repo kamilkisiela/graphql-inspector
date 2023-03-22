@@ -101,16 +101,7 @@ export function isPrimitive(type: GraphQLNamedType | string): boolean {
 }
 
 export function isForIntrospection(type: GraphQLNamedType | string): boolean {
-  return [
-    '__Schema',
-    '__Type',
-    '__TypeKind',
-    '__Field',
-    '__InputValue',
-    '__EnumValue',
-    '__Directive',
-    '__DirectiveLocation',
-  ].includes(typeof type === 'string' ? type : type.name);
+  return !type || !type.astNode || type.astNode.kind != 'ObjectTypeDefinition';
 }
 
 export function findDeprecatedUsages(
