@@ -61,7 +61,7 @@ describe('introspect', () => {
     }
   });
 
-  test.skip('graphql api with port and ws in name using url-loader', async () => {
+  test('graphql api with port and ws in name using url-loader', async () => {
     const done = mockGraphQLServer({
       schema,
       host: 'http://foo.ws:8020',
@@ -74,7 +74,7 @@ describe('introspect', () => {
     expect(existsSync('graphql.schema.json')).toBe(true);
   });
 
-  test.skip('saved to graphql files using url-loader', async () => {
+  test('saved to graphql files using url-loader', async () => {
     const done = mockGraphQLServer({
       schema,
       host: 'https://example.com',
@@ -93,7 +93,7 @@ describe('introspect', () => {
     expect(builtSchema.getQueryType().getFields()).toHaveProperty('post');
   });
 
-  test.skip('saved to graphql files using url-loader by GET method', async () => {
+  test('saved to graphql files using url-loader by GET method', async () => {
     const done = mockGraphQLServer({
       schema,
       host: 'https://example.com',
