@@ -5,6 +5,28 @@ import { mockCommand } from '@graphql-inspector/commands';
 import { mockLogger, unmockLogger } from '@graphql-inspector/logger';
 import createCommand from '../src';
 
+/*
+ * yargs copies value of `process.exit` in `lib/platform-shims/esm.mjs` file,
+ * but after our vitest mocking of `process.exit` doesn't work and exits Node.js process with
+ * Error: process.exit called with "1"
+ */
+vi.mock('yargs', async () => {
+  const yargsPath = require.resolve('yargs').replace('index.cjs', '');
+  const { YargsFactory } = await vi.importActual(yargsPath + 'build/lib/yargs-factory.js');
+  const { default: esmPlatformShim } = await vi.importActual(
+    yargsPath + 'lib/platform-shims/esm.mjs',
+  );
+  return {
+    default: YargsFactory({
+      ...esmPlatformShim,
+      process: {
+        ...esmPlatformShim.process,
+        exit: () => null,
+      },
+    }),
+  };
+});
+
 const oldSchema = buildSchema(/* GraphQL */ `
   type Post {
     id: ID
@@ -35,10 +57,7 @@ const diff = createCommand({
     loaders: [],
   },
   loaders: {
-    loadSchema: async pointer => (pointer.includes('old') ? oldSchema : newSchema),
-    async loadDocuments() {
-      throw new Error('Not implemented');
-    },
+    loadSchema: pointer => (pointer.includes('old') ? oldSchema : newSchema),
   },
 });
 
@@ -102,7 +121,7 @@ describe('diff', () => {
     expect(spyReporter).not.toHaveBeenCalledNormalized('does not exist');
   });
 
-  test.skip('should render error if file does not exist (--rule)', async () => {
+  test('should render error if file does not exist (--rule)', async () => {
     await expect(mockCommand(diff, `diff old.graphql new.graphql --rule noop.js`)).rejects.toThrow(
       /does not exist/,
     );
@@ -118,7 +137,7 @@ describe('diff', () => {
     expect(spyProcessExit).toHaveBeenCalledWith(2);
   });
 
-  test.skip('should render error if file does not exist (--onComplete)', async () => {
+  test('should render error if file does not exist (--onComplete)', async () => {
     await expect(
       mockCommand(diff, `diff old.graphql new.graphql --onComplete noop.js`),
     ).rejects.toThrow(/does not exist/);
