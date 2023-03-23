@@ -1,5 +1,5 @@
 import chalk from 'chalk';
-import env from 'std-env';
+import * as env from 'std-env';
 
 export { default as figures } from 'figures';
 export { default as symbols } from 'log-symbols';
