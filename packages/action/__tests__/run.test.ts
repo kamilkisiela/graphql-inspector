@@ -6,29 +6,29 @@ import { fileLoader } from '../src/files';
 import { getAssociatedPullRequest } from '../src/git';
 import { run } from '../src/run';
 
-jest.mock('../src/checks');
-jest.mock('../src/git');
-jest.mock('../src/files');
+vi.mock('../src/checks');
+vi.mock('../src/git');
+vi.mock('../src/files');
 
-const mockUpdateCheckRun = updateCheckRun as jest.MockedFunction<typeof updateCheckRun>;
-const mockFileLoader = fileLoader as jest.MockedFunction<typeof fileLoader>;
-const mockGetAssociatedPullRequest = getAssociatedPullRequest as jest.MockedFunction<
+const mockUpdateCheckRun = updateCheckRun as vi.MockedFunction<typeof updateCheckRun>;
+const mockFileLoader = fileLoader as vi.MockedFunction<typeof fileLoader>;
+const mockGetAssociatedPullRequest = getAssociatedPullRequest as vi.MockedFunction<
   typeof getAssociatedPullRequest
 >;
 
 describe('Inspector Action', () => {
-  const mockLoadFile = jest.fn();
+  const mockLoadFile = vi.fn();
 
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
 
     // Mock error/warning/info/debug
-    jest.spyOn(core, 'error').mockImplementation(jest.fn());
-    jest.spyOn(core, 'warning').mockImplementation(jest.fn());
-    jest.spyOn(core, 'info').mockImplementation(jest.fn());
-    jest.spyOn(core, 'debug').mockImplementation(jest.fn());
+    vi.spyOn(core, 'error').mockImplementation(vi.fn());
+    vi.spyOn(core, 'warning').mockImplementation(vi.fn());
+    vi.spyOn(core, 'info').mockImplementation(vi.fn());
+    vi.spyOn(core, 'debug').mockImplementation(vi.fn());
 
-    jest.spyOn(core, 'getInput').mockImplementation((name: string, _options) => {
+    vi.spyOn(core, 'getInput').mockImplementation((name: string, _options) => {
       switch (name) {
         case 'github-token':
           return 'MOCK_GITHUB_TOKEN';
@@ -39,16 +39,16 @@ describe('Inspector Action', () => {
       }
     });
 
-    jest.spyOn(github, 'getOctokit').mockReturnValue({
+    vi.spyOn(github, 'getOctokit').mockReturnValue({
       checks: {
-        create: jest.fn().mockResolvedValue({
+        create: vi.fn().mockResolvedValue({
           data: {
             id: '2',
           },
         }),
       },
     });
-    jest.spyOn(github.context, 'repo', 'get').mockImplementation(() => {
+    vi.spyOn(github.context, 'repo', 'get').mockImplementation(() => {
       return {
         owner: 'some-owner',
         repo: 'graphql-inspector',
@@ -69,7 +69,7 @@ describe('Inspector Action', () => {
 
   describe('rules', () => {
     it('should accept a rules list with 1 built in rule', async () => {
-      jest.spyOn(core, 'getInput').mockImplementation((name: string, _options) => {
+      vi.spyOn(core, 'getInput').mockImplementation((name: string, _options) => {
         switch (name) {
           case 'github-token':
             return 'MOCK_GITHUB_TOKEN';
@@ -129,7 +129,7 @@ describe('Inspector Action', () => {
     });
 
     it('should accept a rules list with 1 custom rule', async () => {
-      jest.spyOn(core, 'getInput').mockImplementation((name: string, _options) => {
+      vi.spyOn(core, 'getInput').mockImplementation((name: string, _options) => {
         switch (name) {
           case 'github-token':
             return 'MOCK_GITHUB_TOKEN';
@@ -190,7 +190,7 @@ describe('Inspector Action', () => {
     });
 
     it('should accept a rules list with a built-in and a custom rule', async () => {
-      jest.spyOn(core, 'getInput').mockImplementation((name: string, _options) => {
+      vi.spyOn(core, 'getInput').mockImplementation((name: string, _options) => {
         switch (name) {
           case 'github-token':
             return 'MOCK_GITHUB_TOKEN';
