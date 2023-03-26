@@ -1,6 +1,7 @@
 {
   "name": "@graphql-inspector/action",
   "version": "3.4.8",
+  "type": "module",
   "description": "GraphQL Inspector functionality for GitHub Actions",
   "repository": {
     "type": "git",
@@ -13,9 +14,6 @@
     "url": "https://github.com/kamilkisiela"
   },
   "license": "MIT",
-  "bin": {
-    "graphql-inspector-github": "./dist/index.js"
-  },
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "exports": {
@@ -72,6 +70,5 @@
   "sideEffects": false,
   "typescript": {
     "definition": "dist/typings/index.d.ts"
-  },
-  "type": "module"
+  }
 }
