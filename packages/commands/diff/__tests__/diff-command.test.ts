@@ -3,7 +3,7 @@ import { buildSchema } from 'graphql';
 import yargs from 'yargs';
 import { mockCommand } from '@graphql-inspector/commands';
 import { mockLogger, unmockLogger } from '@graphql-inspector/logger';
-import createCommand from '../src/index.js';
+import createCommand from '../src/index';
 
 /*
  * yargs copies value of `process.exit` in `lib/platform-shims/esm.mjs` file,
