@@ -1,5 +1,5 @@
 import { GraphQLArgument, GraphQLDirective } from 'graphql';
-import { compareLists, diffArrays, isNotEqual } from '../utils/compare';
+import { compareLists, diffArrays, isNotEqual } from '../utils/compare.js';
 import {
   directiveArgumentAdded,
   directiveArgumentDefaultValueChanged,
@@ -9,8 +9,8 @@ import {
   directiveDescriptionChanged,
   directiveLocationAdded,
   directiveLocationRemoved,
-} from './changes/directive';
-import { AddChange } from './schema';
+} from './changes/directive.js';
+import { AddChange } from './schema.js';
 
 export function changesInDirective(
   oldDirective: GraphQLDirective,

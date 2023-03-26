@@ -1,8 +1,8 @@
-export { default, default as app } from './app';
-export { createConfig, NormalizedConfig, SchemaPointer } from './helpers/config';
-export { setDiagnostics } from './helpers/diagnostics';
-export { diff } from './helpers/diff';
-export { createFileLoader, printSchemaFromEndpoint } from './helpers/loaders';
-export { produceSchema } from './helpers/schema';
-export { ActionResult, Annotation, CheckConclusion } from './helpers/types';
-export { createSummary, quotesTransformer } from './helpers/utils';
+export { default, default as app } from './app.js';
+export { createConfig, NormalizedConfig, SchemaPointer } from './helpers/config.js';
+export { setDiagnostics } from './helpers/diagnostics.js';
+export { diff } from './helpers/diff.js';
+export { createFileLoader, printSchemaFromEndpoint } from './helpers/loaders.js';
+export { produceSchema } from './helpers/schema.js';
+export { ActionResult, Annotation, CheckConclusion } from './helpers/types.js';
+export { createSummary, quotesTransformer } from './helpers/utils.js';

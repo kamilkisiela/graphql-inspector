@@ -1,8 +1,8 @@
 import * as core from '@actions/core';
 import * as github from '@actions/github';
 import { CheckConclusion } from '@graphql-inspector/github';
-import { OctokitInstance } from './types';
-import { batch } from './utils';
+import { OctokitInstance } from './types.js';
+import { batch } from './utils.js';
 
 type UpdateCheckRunOptions = Required<
   Pick<NonNullable<Parameters<OctokitInstance['checks']['update']>[0]>, 'conclusion' | 'output'>

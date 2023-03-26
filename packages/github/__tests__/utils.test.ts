@@ -1,5 +1,5 @@
 import { ChangeType, CriticalityLevel } from '@graphql-inspector/core';
-import { createSummary } from '../src/helpers/utils';
+import { createSummary } from '../src/helpers/utils.js';
 
 describe('Limit summary', () => {
   test('all changes when total amount is below limit', () => {

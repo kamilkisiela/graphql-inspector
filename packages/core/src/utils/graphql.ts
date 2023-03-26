@@ -27,7 +27,7 @@ import {
   visit,
   visitWithTypeInfo,
 } from 'graphql';
-import { isDeprecated } from './is-deprecated';
+import { isDeprecated } from './is-deprecated.js';
 
 export function safeChangeForField(
   oldType: GraphQLOutputType,

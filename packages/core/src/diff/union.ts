@@ -1,7 +1,7 @@
 import { GraphQLUnionType } from 'graphql';
-import { compareLists } from '../utils/compare';
-import { unionMemberAdded, unionMemberRemoved } from './changes/union';
-import { AddChange } from './schema';
+import { compareLists } from '../utils/compare.js';
+import { unionMemberAdded, unionMemberRemoved } from './changes/union.js';
+import { AddChange } from './schema.js';
 
 export function changesInUnion(
   oldUnion: GraphQLUnionType,

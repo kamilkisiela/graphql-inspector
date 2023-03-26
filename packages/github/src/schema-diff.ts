@@ -1,13 +1,13 @@
 import * as probot from 'probot';
-import { annotate, complete, start } from './helpers/check-runs';
-import { createConfig, defaultFallbackBranch, SchemaPointer } from './helpers/config';
-import { diff } from './helpers/diff';
-import { MissingConfigError } from './helpers/errors';
-import { ConfigLoader, FileLoader, loadSources } from './helpers/loaders';
-import { createLogger } from './helpers/logger';
-import { produceSchema } from './helpers/schema';
-import { CheckConclusion, PullRequest } from './helpers/types';
-import { createSummary } from './helpers/utils';
+import { annotate, complete, start } from './helpers/check-runs.js';
+import { createConfig, defaultFallbackBranch, SchemaPointer } from './helpers/config.js';
+import { diff } from './helpers/diff.js';
+import { MissingConfigError } from './helpers/errors.js';
+import { ConfigLoader, FileLoader, loadSources } from './helpers/loaders.js';
+import { createLogger } from './helpers/logger.js';
+import { produceSchema } from './helpers/schema.js';
+import { CheckConclusion, PullRequest } from './helpers/types.js';
+import { createSummary } from './helpers/utils.js';
 
 export async function handleSchemaDiff({
   release,

@@ -1,10 +1,10 @@
 import * as core from '@actions/core';
 import * as github from '@actions/github';
 import { CheckConclusion } from '@graphql-inspector/github';
-import { updateCheckRun } from '../src/checks';
-import { fileLoader } from '../src/files';
-import { getAssociatedPullRequest } from '../src/git';
-import { run } from '../src/run';
+import { updateCheckRun } from '../src/checks.js';
+import { fileLoader } from '../src/files.js';
+import { getAssociatedPullRequest } from '../src/git.js';
+import { run } from '../src/run.js';
 
 vi.mock('../src/checks');
 vi.mock('../src/git');

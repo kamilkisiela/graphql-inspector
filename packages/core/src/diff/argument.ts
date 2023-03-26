@@ -1,11 +1,11 @@
 import { GraphQLArgument, GraphQLField, GraphQLInterfaceType, GraphQLObjectType } from 'graphql';
-import { diffArrays, isNotEqual } from '../utils/compare';
+import { diffArrays, isNotEqual } from '../utils/compare.js';
 import {
   fieldArgumentDefaultChanged,
   fieldArgumentDescriptionChanged,
   fieldArgumentTypeChanged,
-} from './changes/argument';
-import { AddChange } from './schema';
+} from './changes/argument.js';
+import { AddChange } from './schema.js';
 
 export function changesInArgument(
   type: GraphQLObjectType | GraphQLInterfaceType,

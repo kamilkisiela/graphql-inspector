@@ -1,4 +1,4 @@
-import { diffArrays, isEqual, isNotEqual } from '../../src/utils/compare';
+import { diffArrays, isEqual, isNotEqual } from '../../src/utils/compare.js';
 
 test('isEqual', () => {
   expect(isEqual('a', 'a')).toBe(true);

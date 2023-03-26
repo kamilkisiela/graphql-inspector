@@ -1,7 +1,7 @@
-import { getReachableTypes } from '../../utils/graphql';
-import { parsePath } from '../../utils/path';
-import { CriticalityLevel } from './../changes/change';
-import { Rule } from './types';
+import { getReachableTypes } from '../../utils/graphql.js';
+import { parsePath } from '../../utils/path.js';
+import { CriticalityLevel } from './../changes/change.js';
+import { Rule } from './types.js';
 
 export const safeUnreachable: Rule = ({ changes, oldSchema }) => {
   const reachable = getReachableTypes(oldSchema);

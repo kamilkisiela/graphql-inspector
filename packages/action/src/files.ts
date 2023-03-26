@@ -1,7 +1,7 @@
 import { readFileSync } from 'fs';
 import { resolve } from 'path';
 import * as core from '@actions/core';
-import { OctokitInstance } from './types';
+import { OctokitInstance } from './types.js';
 
 export function fileLoader({
   octokit,

@@ -1,4 +1,4 @@
-import { calculateTokenCount } from '../../src';
+import { calculateTokenCount } from '../../src/index.js';
 
 describe('calculateDepth', () => {
   it('calculate easy operation', () => {

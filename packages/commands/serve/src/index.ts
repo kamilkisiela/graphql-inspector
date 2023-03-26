@@ -7,7 +7,7 @@ import {
 } from '@graphql-inspector/commands';
 import { Logger } from '@graphql-inspector/logger';
 import { createServer } from '@graphql-yoga/node';
-import { fake } from './fake';
+import { fake } from './fake.js';
 
 export { CommandFactory };
 

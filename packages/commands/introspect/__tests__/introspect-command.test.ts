@@ -6,7 +6,7 @@ import { LoadersRegistry } from '@graphql-inspector/loaders';
 import { mockLogger, unmockLogger } from '@graphql-inspector/logger';
 import { mockGraphQLServer } from '@graphql-inspector/testing';
 import loader from '@graphql-inspector/url-loader';
-import createCommand from '../src';
+import createCommand from '../src/index.js';
 
 function sleepFor(ms: number) {
   return new Promise(resolve => {

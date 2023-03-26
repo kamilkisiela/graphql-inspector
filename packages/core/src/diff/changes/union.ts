@@ -1,5 +1,5 @@
 import { GraphQLObjectType, GraphQLUnionType } from 'graphql';
-import { Change, ChangeType, CriticalityLevel } from './change';
+import { Change, ChangeType, CriticalityLevel } from './change.js';
 
 export function unionMemberRemoved(union: GraphQLUnionType, type: GraphQLObjectType): Change {
   return {
