@@ -23,5 +23,6 @@ RUN npm install -g pnpm
 
 RUN cd ${DISTDIR} \
   && pnpm install \
-&& ln -s "${DISTDIR}"/packages/cli/dist/cjs/index.js /usr/local/bin/graphql-inspector \
+  && pnpm cache clean \
+  && ln -s "${DISTDIR}"/packages/cli/dist/cjs/index.js /usr/local/bin/graphql-inspector \
   && chmod +x /usr/local/bin/graphql-inspector
