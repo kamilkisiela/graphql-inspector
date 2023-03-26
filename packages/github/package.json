@@ -35,7 +35,7 @@
     "github"
   ],
   "scripts": {
-    "build": "tsc",
+    "build": "bob build",
     "clean": "rm -rf dist/",
     "deploy": "now --docker",
     "dev": "pnpm build && pnpm start",

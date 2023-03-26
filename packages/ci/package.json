@@ -37,7 +37,7 @@
     "ci"
   ],
   "scripts": {
-    "build": "tsc",
+    "build": "bob build",
     "clean": "rm -rf dist/",
     "prebuild": "pnpm clean",
     "prepack": "bob prepack",
