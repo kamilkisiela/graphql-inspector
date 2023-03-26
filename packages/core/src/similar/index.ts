@@ -1,4 +1,4 @@
-import { GraphQLNamedType, GraphQLSchema, printType } from 'graphql';
+import { GraphQLNamedType, GraphQLSchema } from 'graphql';
 import { isForIntrospection, isPrimitive } from '../utils/graphql';
 import { BestMatch, findBestMatch, Rating, Target } from '../utils/string';
 
@@ -13,7 +13,7 @@ export function similar(
 ): SimilarMap {
   const typeMap = schema.getTypeMap();
   const targets: Target[] = Object.keys(schema.getTypeMap())
-    .filter(name => !isPrimitive(name) && !isForIntrospection(name))
+    .filter(name => !isPrimitive(name) && !isForIntrospection(typeMap[name]))
     .map(name => ({
       typeId: name,
       value: stripType(typeMap[name]),
@@ -66,13 +66,7 @@ function similarTo(
 }
 
 function stripType(type: GraphQLNamedType): string {
-  return printType(type)
-    .trim()
-    .replace(/^[a-z]+ [^{]+\{/g, '')
-    .replace(/\}$/g, '')
-    .trim()
-    .split('\n')
-    .map(s => s.trim())
-    .sort((a, b) => a.localeCompare(b))
-    .join(' ');
+  return Object.keys(type.getFields())
+      .sort((a, b) => a.localeCompare(b))
+      .join(' ');
 }
