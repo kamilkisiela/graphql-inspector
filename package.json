@@ -55,7 +55,7 @@
     "@types/node": "18.15.5",
     "@types/yargs": "17.0.3",
     "@zeit/ncc": "0.22.3",
-    "bob-the-bundler": "1.7.3",
+    "bob-the-bundler": "6.0.0",
     "eslint": "8.35.0",
     "graphql": "16.6.0",
     "graphql-config": "4.5.0",
