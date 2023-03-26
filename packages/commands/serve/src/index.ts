@@ -80,7 +80,7 @@ export default createCommand<
 
         process.on('SIGINT', shutdown);
         process.on('SIGTERM', shutdown);
-      } catch (e) {
+      } catch (e: any) {
         Logger.error(e.message || e);
       }
     },

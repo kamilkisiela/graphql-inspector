@@ -159,7 +159,7 @@ export function createConfigLoader(
               if (pkg[id]) {
                 return pkg[id];
               }
-            } catch (error) {
+            } catch (error: any) {
               errors.push(error);
             }
           }

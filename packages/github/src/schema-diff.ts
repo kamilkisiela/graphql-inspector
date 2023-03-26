@@ -221,7 +221,7 @@ export async function handleSchemaDiff({
     });
 
     logger.info(`done`);
-  } catch (error) {
+  } catch (error: any) {
     logger.error(error);
 
     if (!(error instanceof MissingConfigError)) {

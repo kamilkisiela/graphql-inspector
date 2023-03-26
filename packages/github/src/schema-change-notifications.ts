@@ -112,7 +112,7 @@ export async function handleSchemaChangeNotifications({
   async function actionRunner(target: string, fn: () => Promise<void>) {
     try {
       await fn();
-    } catch (error) {
+    } catch (error: any) {
       onError(error);
       logger.error(`Failed to send a notification via ${target}`, error);
     }

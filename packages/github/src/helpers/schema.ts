@@ -10,7 +10,7 @@ export function produceSchema(source: Source) {
       assumeValid: true,
       assumeValidSDL: true,
     });
-  } catch (e) {
+  } catch (e: any) {
     throw new Error(`Failed to parse "${source.name}": ${e.message}`);
   }
 }
