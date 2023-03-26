@@ -1,6 +1,5 @@
 __tests__/
 src/
-jest.config.js
 tsconfig.json
 tsconfig.test.json
 *.zip

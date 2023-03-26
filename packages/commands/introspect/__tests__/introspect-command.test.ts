@@ -39,16 +39,14 @@ const introspect = createCommand({
 });
 
 describe('introspect', () => {
-  let spyReporter: jest.SpyInstance;
-  let spyProcessCwd: jest.SpyInstance;
+  let spyReporter: vi.SpyInstance;
+  let spyProcessCwd: vi.SpyInstance;
 
   beforeEach(() => {
     yargs();
-
-    spyProcessCwd = jest.spyOn(process, 'cwd').mockImplementation(() => __dirname);
-
-    spyReporter = jest.fn();
-    mockLogger(spyReporter as any);
+    spyProcessCwd = vi.spyOn(process, 'cwd').mockImplementation(() => __dirname);
+    spyReporter = vi.fn();
+    mockLogger(spyReporter);
   });
 
   afterEach(() => {

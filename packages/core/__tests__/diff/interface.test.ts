@@ -1,5 +1,5 @@
 import { buildSchema } from 'graphql';
-import { CriticalityLevel, diff } from '../../src/index';
+import { CriticalityLevel, diff } from '../../src';
 import { findChangesByPath, findFirstChangeByPath } from '../../utils/testing';
 
 describe('interface', () => {

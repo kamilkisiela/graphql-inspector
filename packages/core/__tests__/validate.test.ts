@@ -1,5 +1,5 @@
 import { buildSchema, parse, print, Source } from 'graphql';
-import { validate } from '../src/index';
+import { validate } from '../src';
 
 describe('validate', () => {
   test('basic', () => {

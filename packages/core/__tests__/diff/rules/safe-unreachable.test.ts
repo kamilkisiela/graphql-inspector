@@ -1,6 +1,6 @@
 import { buildSchema } from 'graphql';
-import { safeUnreachable } from '../../../src/diff/rules/safe-unreachable';
-import { CriticalityLevel, diff } from '../../../src/index';
+import { CriticalityLevel, diff } from '../../../src';
+import { safeUnreachable } from '../../../src/diff/rules';
 import { findFirstChangeByPath } from '../../../utils/testing';
 
 describe('safeUnreachable rule', () => {

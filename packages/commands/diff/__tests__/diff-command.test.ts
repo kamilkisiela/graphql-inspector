@@ -3,8 +3,29 @@ import { buildSchema } from 'graphql';
 import yargs from 'yargs';
 import { mockCommand } from '@graphql-inspector/commands';
 import { mockLogger, unmockLogger } from '@graphql-inspector/logger';
-import '@graphql-inspector/testing';
 import createCommand from '../src';
+
+/*
+ * yargs copies value of `process.exit` in `lib/platform-shims/esm.mjs` file,
+ * but after our vitest mocking of `process.exit` doesn't work and exits Node.js process with
+ * Error: process.exit called with "1"
+ */
+vi.mock('yargs', async () => {
+  const yargsPath = require.resolve('yargs').replace('index.cjs', '');
+  const { YargsFactory } = await vi.importActual(yargsPath + 'build/lib/yargs-factory.js');
+  const { default: esmPlatformShim } = await vi.importActual(
+    yargsPath + 'lib/platform-shims/esm.mjs',
+  );
+  return {
+    default: YargsFactory({
+      ...esmPlatformShim,
+      process: {
+        ...esmPlatformShim.process,
+        exit: () => null,
+      },
+    }),
+  };
+});
 
 const oldSchema = buildSchema(/* GraphQL */ `
   type Post {
@@ -36,33 +57,21 @@ const diff = createCommand({
     loaders: [],
   },
   loaders: {
-    async loadSchema(pointer) {
-      if (pointer.includes('old')) {
-        return oldSchema;
-      }
-
-      return newSchema;
-    },
-    async loadDocuments() {
-      throw new Error('Not implemented');
-    },
+    loadSchema: pointer => (pointer.includes('old') ? oldSchema : newSchema),
   },
 });
 
 describe('diff', () => {
-  let spyReporter: jest.SpyInstance;
-  let spyProcessExit: jest.SpyInstance;
-  let spyProcessCwd: jest.SpyInstance;
+  let spyReporter: vi.SpyInstance;
+  let spyProcessExit: vi.SpyInstance;
+  let spyProcessCwd: vi.SpyInstance;
 
   beforeEach(() => {
     yargs();
-    spyProcessExit = jest.spyOn(process, 'exit');
-    spyProcessExit.mockImplementation();
-
-    spyProcessCwd = jest.spyOn(process, 'cwd').mockImplementation(() => __dirname);
-
-    spyReporter = jest.fn();
-    mockLogger(spyReporter as any);
+    spyProcessExit = vi.spyOn(process, 'exit').mockImplementation(() => null);
+    spyProcessCwd = vi.spyOn(process, 'cwd').mockImplementation(() => __dirname);
+    spyReporter = vi.fn();
+    mockLogger(spyReporter);
   });
 
   afterEach(() => {

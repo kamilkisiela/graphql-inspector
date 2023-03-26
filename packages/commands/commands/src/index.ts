@@ -1,5 +1,6 @@
 import { isAbsolute, resolve } from 'path';
 import yargs, { CommandModule as Command } from 'yargs';
+import { hideBin } from 'yargs/helpers';
 import { InspectorConfig } from '@graphql-inspector/config';
 import { Loaders } from '@graphql-inspector/loaders';
 
@@ -78,5 +79,5 @@ export function parseGlobalArgs(args: GlobalArgs) {
 }
 
 export async function mockCommand(mod: Command, cmd: string) {
-  return yargs.command(mod).parseAsync(cmd);
+  return yargs(hideBin(process.argv)).command(mod).parseAsync(cmd);
 }
