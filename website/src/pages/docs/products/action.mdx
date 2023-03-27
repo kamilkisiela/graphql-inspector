@@ -117,6 +117,32 @@ If you want to use GraphQL API endpoint as source of "after" schema:
     endpoint: 'https://my-app.com/graphql'
 ```
 
+### `headers`
+
+Pass headers when fetching the "before" schema.
+This only applies when `endpoint` is defined and only applies to the "before" schema.
+
+```yaml
+- uses: kamilkisiela/graphql-inspector@master
+  with:
+    schema: schema.graphql # important to define a path to schema file, without a branch
+    endpoint: 'https://my-app.com/graphql'
+    headers: 'Authorization: Bearer ${{ secrets.token }},X-My-Header:${{ secrets.secret_header_value }}'
+```
+
+### `method`
+
+Set a custom method to fetch the "before" schema with.
+This only applies when `endpoint` is defined and only applies to the "before" schema.
+
+```yaml
+- uses: kamilkisiela/graphql-inspector@master
+  with:
+    schema: schema.graphql # important to define a path to schema file, without a branch
+    endpoint: 'https://my-app.com/graphql'
+    method: 'GET' # Can be any of [GET, get, POST, post]
+```
+
 ### `rules`
 
 Apply [rules](../essentials/diff#rules) included with the Inspector as well as your own
