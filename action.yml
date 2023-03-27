@@ -30,6 +30,14 @@ inputs:
       An url to the GraphQL API. It should represent the "before" schema.
 
       When using an endpoint, 'schema' should point to a file (without a reference - branch name for example)
+  headers:
+    description: |
+      Pass headers when fetching the "before" schema.
+      This only applies when `endpoint` is defined and only applies to the "before" schema.
+  method:
+    description: |
+      Pass headers when fetching the "before" schema.
+      This only applies when `endpoint` is defined and only applies to the "before" schema.
   github-token:
     default: '${{ github.token }}'
     required: false

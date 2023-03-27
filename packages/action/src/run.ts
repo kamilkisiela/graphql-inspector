@@ -7,6 +7,7 @@ import {
   CheckConclusion,
   createSummary,
   diff,
+  EndpointMethod,
   printSchemaFromEndpoint,
   produceSchema,
 } from '@graphql-inspector/github';
@@ -40,6 +41,8 @@ export async function run() {
   const useAnnotations = castToBoolean(core.getInput('annotations'));
   const failOnBreaking = castToBoolean(core.getInput('fail-on-breaking'));
   const endpoint: string = core.getInput('endpoint');
+  const headers: string = core.getInput('headers');
+  const method = core.getInput('method') as EndpointMethod;
   const approveLabel: string = core.getInput('approve-label') || 'approved-breaking-change';
   const rulesList = getInputAsArray('rules') || [];
   const onUsage = core.getInput('getUsage');
@@ -131,7 +134,14 @@ export async function run() {
 
   const [oldFile, newFile] = await Promise.all([
     endpoint
-      ? printSchemaFromEndpoint(endpoint)
+      ? printSchemaFromEndpoint({
+          url: endpoint,
+          method,
+          headers: headers
+            ? // Go from "name:value,name:value" to { name: value, name: value}
+              Object.fromEntries(headers.split(',').map(header => header.split(':')))
+            : undefined,
+        })
       : loadFile({
           ref: schemaRef,
           path: schemaPath,

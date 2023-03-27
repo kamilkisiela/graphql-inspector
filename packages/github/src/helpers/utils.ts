@@ -1,5 +1,5 @@
 import { Change, CriticalityLevel } from '@graphql-inspector/core';
-import { Endpoint } from './config';
+import { Endpoint, EndpointMethod } from './config';
 
 export function bolderize(msg: string): string {
   return quotesTransformer(msg, '**');
@@ -103,7 +103,7 @@ export function isNil(val: any): val is undefined | null {
 
 export function parseEndpoint(endpoint: Endpoint): {
   url: string;
-  method: 'GET' | 'get' | 'post' | 'POST';
+  method: EndpointMethod;
   headers?: {
     [name: string]: string;
   };

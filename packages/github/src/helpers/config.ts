@@ -5,11 +5,13 @@ export type Endpoint =
   | string
   | {
       url: string;
-      method?: 'get' | 'GET' | 'post' | 'POST';
+      method?: EndpointMethod;
       headers?: {
         [name: string]: string;
       };
     };
+
+export type EndpointMethod = 'get' | 'GET' | 'post' | 'POST';
 
 export interface SchemaPointer {
   ref: string;

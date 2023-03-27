@@ -1,5 +1,5 @@
 export { default, default as app } from './app';
-export { createConfig, NormalizedConfig, SchemaPointer } from './helpers/config';
+export { createConfig, NormalizedConfig, SchemaPointer, EndpointMethod } from './helpers/config';
 export { setDiagnostics } from './helpers/diagnostics';
 export { diff } from './helpers/diff';
 export { createFileLoader, printSchemaFromEndpoint } from './helpers/loaders';
