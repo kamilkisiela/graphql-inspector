@@ -405,6 +405,7 @@ export type InputFieldAddedChange = {
     inputName: string;
     addedInputFieldName: string;
     isAddedInputFieldTypeNullable: boolean;
+    addedInputFieldType: string;
   };
 };
 

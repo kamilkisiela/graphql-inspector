@@ -50,7 +50,7 @@ export function inputFieldRemoved(
 }
 
 export function buildInputFieldAddedMessage(args: InputFieldAddedChange['meta']) {
-  return `Input field '${args.addedInputFieldName}' was added to input object type '${args.inputName}'`;
+  return `Input field '${args.addedInputFieldName}' of type '${args.addedInputFieldType}' was added to input object type '${args.inputName}'`;
 }
 
 export function inputFieldAddedFromMeta(args: InputFieldAddedChange) {
@@ -81,6 +81,7 @@ export function inputFieldAdded(
       inputName: input.name,
       addedInputFieldName: field.name,
       isAddedInputFieldTypeNullable: !isNonNullType(field.type),
+      addedInputFieldType: field.type.toString()
     },
   });
 }
