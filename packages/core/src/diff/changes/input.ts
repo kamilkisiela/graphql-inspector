@@ -81,7 +81,7 @@ export function inputFieldAdded(
       inputName: input.name,
       addedInputFieldName: field.name,
       isAddedInputFieldTypeNullable: !isNonNullType(field.type),
-      addedInputFieldType: field.type.toString()
+      addedInputFieldType: field.type.toString(),
     },
   });
 }
@@ -111,7 +111,7 @@ export function inputFieldDescriptionAdded(
     meta: {
       inputName: type.name,
       inputFieldName: field.name,
-      addedInputFieldDescription: field.description ?? "",
+      addedInputFieldDescription: field.description ?? '',
     },
   });
 }
@@ -119,7 +119,7 @@ export function inputFieldDescriptionAdded(
 function buildInputFieldDescriptionRemovedMessage(
   args: InputFieldDescriptionRemovedChange['meta'],
 ) {
-  return `Description was removed from input field '${args.inputName}.${args.inputFieldName}'`;
+  return `Description '${args.removedDescription}' was removed from input field '${args.inputName}.${args.inputFieldName}'`;
 }
 
 export function inputFieldDescriptionRemovedFromMeta(args: InputFieldDescriptionRemovedChange) {
@@ -143,6 +143,7 @@ export function inputFieldDescriptionRemoved(
     meta: {
       inputName: type.name,
       inputFieldName: field.name,
+      removedDescription: field.description ?? '',
     },
   });
 }

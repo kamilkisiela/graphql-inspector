@@ -16,7 +16,9 @@ function buildFieldArgumentDescriptionChangedMessage(
   return `Description for argument '${args.argumentName}' on field '${args.typeName}.${args.fieldName}' changed from '${args.oldDescription}' to '${args.newDescription}'`;
 }
 
-export function fieldArgumentDescriptionChangedFromMeta(args: FieldArgumentDescriptionChangedChange) {
+export function fieldArgumentDescriptionChangedFromMeta(
+  args: FieldArgumentDescriptionChangedChange,
+) {
   return {
     type: ChangeType.FieldArgumentDescriptionChanged,
     criticality: {

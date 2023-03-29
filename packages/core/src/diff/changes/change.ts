@@ -423,6 +423,7 @@ export type InputFieldDescriptionRemovedChange = {
   meta: {
     inputName: string;
     inputFieldName: string;
+    removedDescription: string;
   };
 };
 
