@@ -1,3 +1,4 @@
+/* eslint-disable logical-assignment-operators */
 import { DiffInterceptor } from './diff.js';
 import { isNil } from './utils.js';
 
