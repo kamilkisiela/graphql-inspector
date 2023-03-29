@@ -110,7 +110,7 @@ export function inputFieldDescriptionAdded(
     meta: {
       inputName: type.name,
       inputFieldName: field.name,
-      addedInputFieldDescription: safeString(field.description),
+      addedInputFieldDescription: field.description ?? "",
     },
   });
 }

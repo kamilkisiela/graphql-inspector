@@ -301,31 +301,31 @@ describe('directive', () => {
     expect(change.a.criticality.level).toEqual(CriticalityLevel.Dangerous);
     expect(change.a.type).toEqual('DIRECTIVE_ARGUMENT_DEFAULT_VALUE_CHANGED');
     expect(change.a.message).toEqual(
-      `Default value for argument 'name' on directive 'a' changed from 'aaa' to 'AAA'`,
+      `Default value for argument 'name' on directive 'a' changed from '"aaa"' to '"AAA"'`,
     );
     // added on nullable
     expect(change.b.criticality.level).toEqual(CriticalityLevel.Dangerous);
     expect(change.b.type).toEqual('DIRECTIVE_ARGUMENT_DEFAULT_VALUE_CHANGED');
     expect(change.b.message).toEqual(
-      `Default value 'Bbb' was added to argument 'name' on directive 'b'`,
+      `Default value '"Bbb"' was added to argument 'name' on directive 'b'`,
     );
     // added on non-nullable
     expect(change.c.criticality.level).toEqual(CriticalityLevel.Dangerous);
     expect(change.c.type).toEqual('DIRECTIVE_ARGUMENT_DEFAULT_VALUE_CHANGED');
     expect(change.c.message).toEqual(
-      `Default value 'Ccc' was added to argument 'name' on directive 'c'`,
+      `Default value '"Ccc"' was added to argument 'name' on directive 'c'`,
     );
     // removed from non-nullable
     expect(change.d.criticality.level).toEqual(CriticalityLevel.Dangerous);
     expect(change.d.type).toEqual('DIRECTIVE_ARGUMENT_DEFAULT_VALUE_CHANGED');
     expect(change.d.message).toEqual(
-      `Default value for argument 'name' on directive 'd' changed from 'Ddd' to 'undefined'`,
+      `Default value for argument 'name' on directive 'd' changed from '"Ddd"' to 'undefined'`,
     );
     // removed from nullable
     expect(change.e.criticality.level).toEqual(CriticalityLevel.Dangerous);
     expect(change.e.type).toEqual('DIRECTIVE_ARGUMENT_DEFAULT_VALUE_CHANGED');
     expect(change.e.message).toEqual(
-      `Default value for argument 'name' on directive 'e' changed from 'Eee' to 'undefined'`,
+      `Default value for argument 'name' on directive 'e' changed from '"Eee"' to 'undefined'`,
     );
   });
 });

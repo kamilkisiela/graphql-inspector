@@ -162,7 +162,7 @@ describe('input', () => {
       // Added
       expect(change.c.criticality.level).toEqual(CriticalityLevel.NonBreaking);
       expect(change.c.type).toEqual('INPUT_FIELD_DESCRIPTION_ADDED');
-      expect(change.c.message).toEqual("Input field 'Foo.c' has description 'CCC'");
+      expect(change.c.message).toEqual(`Input field 'Foo.c' has description 'CCC'`);
     });
 
     test('default value added', async () => {
@@ -188,13 +188,13 @@ describe('input', () => {
       expect(change.a.criticality.level).toEqual(CriticalityLevel.Dangerous);
       expect(change.a.type).toEqual('INPUT_FIELD_DEFAULT_VALUE_CHANGED');
       expect(change.a.message).toEqual(
-        "Input field 'Foo.a' default value changed from 'undefined' to 'Aaa'",
+        `Input field 'Foo.a' default value changed from 'undefined' to '"Aaa"'`,
       );
       // Nullable
       expect(change.b.criticality.level).toEqual(CriticalityLevel.Dangerous);
       expect(change.b.type).toEqual('INPUT_FIELD_DEFAULT_VALUE_CHANGED');
       expect(change.b.message).toEqual(
-        "Input field 'Foo.b' default value changed from 'undefined' to 'Bbb'",
+        `Input field 'Foo.b' default value changed from 'undefined' to '"Bbb"'`,
       );
     });
 
@@ -221,13 +221,13 @@ describe('input', () => {
       expect(change.a.criticality.level).toEqual(CriticalityLevel.Dangerous);
       expect(change.a.type).toEqual('INPUT_FIELD_DEFAULT_VALUE_CHANGED');
       expect(change.a.message).toEqual(
-        "Input field 'Foo.a' default value changed from 'Aaa' to 'undefined'",
+        `Input field 'Foo.a' default value changed from '"Aaa"' to 'undefined'`,
       );
       // Nullable
       expect(change.b.criticality.level).toEqual(CriticalityLevel.Dangerous);
       expect(change.b.type).toEqual('INPUT_FIELD_DEFAULT_VALUE_CHANGED');
       expect(change.b.message).toEqual(
-        "Input field 'Foo.b' default value changed from 'Bbb' to 'undefined'",
+        `Input field 'Foo.b' default value changed from '"Bbb"' to 'undefined'`,
       );
     });
     test('field removed', async () => {
