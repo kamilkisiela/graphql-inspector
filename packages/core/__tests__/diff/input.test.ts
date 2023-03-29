@@ -28,11 +28,15 @@ describe('input', () => {
       // Non-nullable
       expect(change.c.criticality.level).toEqual(CriticalityLevel.Breaking);
       expect(change.c.type).toEqual('INPUT_FIELD_ADDED');
-      expect(change.c.message).toEqual("Input field 'c' of type 'String!' was added to input object type 'Foo'");
+      expect(change.c.message).toEqual(
+        "Input field 'c' of type 'String!' was added to input object type 'Foo'",
+      );
       // Nullable
       expect(change.d.criticality.level).toEqual(CriticalityLevel.Dangerous);
       expect(change.d.type).toEqual('INPUT_FIELD_ADDED');
-      expect(change.d.message).toEqual("Input field 'd' of type 'String' was added to input object type 'Foo'");
+      expect(change.d.message).toEqual(
+        "Input field 'd' of type 'String' was added to input object type 'Foo'",
+      );
     });
     test('removed', async () => {
       const a = buildSchema(/* GraphQL */ `
