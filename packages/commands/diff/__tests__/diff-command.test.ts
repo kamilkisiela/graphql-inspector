@@ -107,7 +107,7 @@ describe('diff', () => {
   });
 
   test('should load rules with local path from fs', async () => {
-    await mockCommand(diff, 'diff old.graphql new.graphql --rule ./assets/rule.js');
+    await mockCommand(diff, 'diff old.graphql new.graphql --rule ./assets/rule.cjs');
 
     expect(spyReporter).not.toHaveBeenCalledNormalized('does not exist');
   });
@@ -115,7 +115,7 @@ describe('diff', () => {
   test('should load rules with absolute path from fs', async () => {
     await mockCommand(
       diff,
-      `diff old.graphql new.graphql --rule ${resolve(__dirname, 'assets/rule.js')}`,
+      `diff old.graphql new.graphql --rule ${resolve(__dirname, 'assets/rule.cjs')}`,
     );
 
     expect(spyReporter).not.toHaveBeenCalledNormalized('does not exist');
@@ -131,7 +131,7 @@ describe('diff', () => {
   test('should render error if file does not exist', async () => {
     await mockCommand(
       diff,
-      `diff old.graphql new.graphql --onComplete ${resolve(__dirname, 'assets/on-complete.js')}`,
+      `diff old.graphql new.graphql --onComplete ${resolve(__dirname, 'assets/on-complete.cjs')}`,
     );
 
     expect(spyProcessExit).toHaveBeenCalledWith(2);
