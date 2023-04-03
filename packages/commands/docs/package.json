@@ -1,6 +1,7 @@
 {
   "name": "@graphql-inspector/docs-command",
   "version": "3.4.5",
+  "type": "module",
   "description": "Open GraphQL Inspector Documentation",
   "repository": {
     "type": "git",
@@ -57,6 +58,5 @@
   "sideEffects": false,
   "typescript": {
     "definition": "dist/typings/index.d.ts"
-  },
-  "type": "module"
+  }
 }

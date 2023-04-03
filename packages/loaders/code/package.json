@@ -1,6 +1,7 @@
 {
   "name": "@graphql-inspector/code-loader",
   "version": "3.4.2",
+  "type": "module",
   "description": "Load GraphQL Schema and Documents from TypeScript and JavaScript code",
   "repository": {
     "type": "git",
@@ -59,6 +60,5 @@
   "sideEffects": false,
   "typescript": {
     "definition": "dist/typings/index.d.ts"
-  },
-  "type": "module"
+  }
 }

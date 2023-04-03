@@ -1,6 +1,7 @@
 {
   "name": "@graphql-inspector/serve-command",
   "version": "3.4.5",
+  "type": "module",
   "description": "Serves GraphQL Schemma",
   "repository": {
     "type": "git",
@@ -62,6 +63,5 @@
   "sideEffects": false,
   "typescript": {
     "definition": "dist/typings/index.d.ts"
-  },
-  "type": "module"
+  }
 }

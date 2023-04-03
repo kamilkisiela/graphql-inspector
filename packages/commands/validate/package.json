@@ -1,6 +1,7 @@
 {
   "name": "@graphql-inspector/validate-command",
   "version": "3.4.7",
+  "type": "module",
   "description": "Validate Documents in GraphQL Inspector",
   "repository": {
     "type": "git",
@@ -62,6 +63,5 @@
   "sideEffects": false,
   "typescript": {
     "definition": "dist/typings/index.d.ts"
-  },
-  "type": "module"
+  }
 }

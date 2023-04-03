@@ -1,6 +1,7 @@
 {
   "name": "@graphql-inspector/github",
   "version": "3.4.8",
+  "type": "module",
   "description": "GraphQL Inspector's Probot. Compare GraphQL Schemas, check documents, find breaking changes, find similar types.",
   "repository": {
     "type": "git",
@@ -77,6 +78,5 @@
   "sideEffects": false,
   "typescript": {
     "definition": "dist/typings/index.d.ts"
-  },
-  "type": "module"
+  }
 }

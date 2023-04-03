@@ -1,6 +1,7 @@
 {
   "name": "@graphql-inspector/url-loader",
   "version": "3.4.2",
+  "type": "module",
   "description": "Load GraphQL Schema from GraphQL endpoint (introspection)",
   "repository": {
     "type": "git",
@@ -60,6 +61,5 @@
   "sideEffects": false,
   "typescript": {
     "definition": "dist/typings/index.d.ts"
-  },
-  "type": "module"
+  }
 }

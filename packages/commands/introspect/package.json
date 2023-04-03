@@ -1,6 +1,7 @@
 {
   "name": "@graphql-inspector/introspect-command",
   "version": "3.4.7",
+  "type": "module",
   "description": "Introspects GraphQL Schema",
   "repository": {
     "type": "git",
@@ -58,6 +59,5 @@
   "sideEffects": false,
   "typescript": {
     "definition": "dist/typings/index.d.ts"
-  },
-  "type": "module"
+  }
 }

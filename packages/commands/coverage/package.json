@@ -1,6 +1,7 @@
 {
   "name": "@graphql-inspector/coverage-command",
   "version": "4.0.3",
+  "type": "module",
   "description": "Schema Coverage in GraphQL Inspector",
   "repository": {
     "type": "git",
@@ -62,6 +63,5 @@
   "sideEffects": false,
   "typescript": {
     "definition": "dist/typings/index.d.ts"
-  },
-  "type": "module"
+  }
 }
