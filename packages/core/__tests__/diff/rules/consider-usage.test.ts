@@ -27,6 +27,7 @@ describe('considerUsage rule', () => {
     const removed = findFirstChangeByPath(changes, 'Foo.b');
 
     expect(removed.criticality.level).toBe(CriticalityLevel.Dangerous);
+    expect(removed.criticality.isSafeBasedOnUsage).toBe(true);
     expect(removed.message).toContain(`non-breaking based on usage`);
   });
 
@@ -55,6 +56,7 @@ describe('considerUsage rule', () => {
 
     changes.forEach(change => {
       expect(change.criticality.level).toBe(CriticalityLevel.Dangerous);
+      expect(change.criticality.isSafeBasedOnUsage).toBe(true);
       expect(change.message).toContain(`non-breaking based on usage`);
     });
   });

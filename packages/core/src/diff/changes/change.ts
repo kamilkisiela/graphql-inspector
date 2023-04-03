@@ -73,6 +73,8 @@ export enum CriticalityLevel {
 export interface Criticality {
   level: CriticalityLevel;
   reason?: string;
+  /** Is `true` if the criticality is safe, because of the usage determined via the `checkUsage` config option. */
+  isSafeBasedOnUsage?: boolean;
 }
 
 export interface Change<TChange extends keyof Changes = any> {
