@@ -59,7 +59,7 @@ jobs:
 
       - name: Integration tests
         run: |
-          chmod +x ./packages/cli/dist/esm/index.js
+          chmod +x ./packages/cli/dist/esm/index
 
           echo 2001
           chmod +x ./packages/cli/dist/esm/index.js validate './integration_tests/2001/operations/**/*.graphql' './integration_tests/2001/schema.graphql'
