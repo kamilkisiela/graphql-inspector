@@ -10,6 +10,7 @@ module.exports = {
     {
       files: ['**'],
       rules: {
+        'logical-assignment-operators': 'off',
         'prefer-object-has-own': 'off', // enable in next major
         // TODO: enable following rules
         '@typescript-eslint/no-explicit-any': 'off',
