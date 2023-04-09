@@ -82,9 +82,6 @@
     "access": "public"
   },
   "sideEffects": false,
-  "bob": {
-    "check": false
-  },
   "typescript": {
     "definition": "dist/typings/index.d.ts"
   }
