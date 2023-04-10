@@ -94,6 +94,16 @@
     "access": "public"
   },
   "sideEffects": false,
+  "buildOptions": {
+    "copy": [
+      "demo.gif"
+    ],
+    "bin": {
+      "graphql-inspector": {
+        "input": "src/index.ts"
+      }
+    }
+  },
   "typescript": {
     "definition": "dist/typings/index.d.ts"
   }

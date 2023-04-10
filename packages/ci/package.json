@@ -82,6 +82,13 @@
     "access": "public"
   },
   "sideEffects": false,
+  "buildOptions": {
+    "bin": {
+      "graphql-inspector": {
+        "input": "src/index.ts"
+      }
+    }
+  },
   "typescript": {
     "definition": "dist/typings/index.d.ts"
   }
