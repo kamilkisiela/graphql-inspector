@@ -45,6 +45,8 @@
     "yargs": "17.2.1"
   },
   "devDependencies": {
+    "@changesets/changelog-github": "0.4.8",
+    "@changesets/cli": "2.26.1",
     "@graphql-inspector/audit-command": "workspace:*",
     "@graphql-inspector/code-loader": "workspace:*",
     "@graphql-inspector/commands": "workspace:*",
@@ -62,8 +64,6 @@
     "@graphql-inspector/similar-command": "workspace:*",
     "@graphql-inspector/url-loader": "workspace:*",
     "@graphql-inspector/validate-command": "workspace:*",
-    "@changesets/changelog-github": "0.4.8",
-    "@changesets/cli": "2.26.1",
     "@theguild/eslint-config": "0.8.0",
     "@theguild/prettier-config": "1.1.2",
     "@types/body-parser": "1.19.2",
