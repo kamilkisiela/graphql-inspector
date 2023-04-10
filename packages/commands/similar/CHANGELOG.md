@@ -1,5 +1,19 @@
 # @graphql-inspector/similar-command
 
+## 3.4.8
+
+### Patch Changes
+
+- [#2419](https://github.com/kamilkisiela/graphql-inspector/pull/2419)
+  [`34f84e8f`](https://github.com/kamilkisiela/graphql-inspector/commit/34f84e8f58a083f56d2d049a3b865d4fdfa468bc)
+  Thanks [@TuvalSimha](https://github.com/TuvalSimha)! - Update `bob` version -> change the way we
+  build the packages (Dist folder build now esm and cjs versions)
+- Updated dependencies
+  [[`34f84e8f`](https://github.com/kamilkisiela/graphql-inspector/commit/34f84e8f58a083f56d2d049a3b865d4fdfa468bc)]:
+  - @graphql-inspector/commands@3.4.5
+  - @graphql-inspector/logger@3.4.4
+  - @graphql-inspector/core@4.0.3
+
 ## 3.4.7
 
 ### Patch Changes
