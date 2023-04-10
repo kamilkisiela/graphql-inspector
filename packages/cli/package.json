@@ -14,6 +14,9 @@
     "url": "https://github.com/kamilkisiela"
   },
   "license": "MIT",
+  "bin": {
+    "graphql-inspector": "dist/cjs/index.js"
+  },
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "exports": {
@@ -91,6 +94,16 @@
     "access": "public"
   },
   "sideEffects": false,
+  "buildOptions": {
+    "copy": [
+      "demo.gif"
+    ],
+    "bin": {
+      "graphql-inspector": {
+        "input": "src/index.ts"
+      }
+    }
+  },
   "typescript": {
     "definition": "dist/typings/index.d.ts"
   }
