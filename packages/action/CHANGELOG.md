@@ -1,5 +1,13 @@
 # @graphql-inspector/action
 
+## 3.4.10
+
+### Patch Changes
+
+- [#2429](https://github.com/kamilkisiela/graphql-inspector/pull/2429)
+  [`5dceaf22`](https://github.com/kamilkisiela/graphql-inspector/commit/5dceaf220cba479fe88263fa499139b58941a4e0)
+  Thanks [@TuvalSimha](https://github.com/TuvalSimha)! - Fix "bin" in the package.json
+
 ## 3.4.9
 
 ### Patch Changes
