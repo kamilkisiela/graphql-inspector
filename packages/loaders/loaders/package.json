@@ -1,6 +1,6 @@
 {
   "name": "@graphql-inspector/loaders",
-  "version": "3.4.4",
+  "version": "3.4.5",
   "type": "module",
   "description": "Loaders in GraphQL Inspector",
   "repository": {
@@ -58,7 +58,7 @@
     "prepack": "bob prepack"
   },
   "peerDependencies": {
-    "@graphql-inspector/config": "3.4.3",
+    "@graphql-inspector/config": "3.4.4",
     "graphql": "^14.0.0 || ^15.0.0 || ^16.0.0"
   },
   "dependencies": {

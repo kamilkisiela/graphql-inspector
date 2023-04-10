@@ -1,5 +1,33 @@
 # @graphql-inspector/cli
 
+## 3.4.10
+
+### Patch Changes
+
+- [#2419](https://github.com/kamilkisiela/graphql-inspector/pull/2419)
+  [`34f84e8f`](https://github.com/kamilkisiela/graphql-inspector/commit/34f84e8f58a083f56d2d049a3b865d4fdfa468bc)
+  Thanks [@TuvalSimha](https://github.com/TuvalSimha)! - Update `bob` version -> change the way we
+  build the packages (Dist folder build now esm and cjs versions)
+- Updated dependencies
+  [[`34f84e8f`](https://github.com/kamilkisiela/graphql-inspector/commit/34f84e8f58a083f56d2d049a3b865d4fdfa468bc)]:
+  - @graphql-inspector/introspect-command@3.4.8
+  - @graphql-inspector/commands@3.4.5
+  - @graphql-inspector/coverage-command@4.0.4
+  - @graphql-inspector/validate-command@3.4.8
+  - @graphql-inspector/similar-command@3.4.8
+  - @graphql-inspector/graphql-loader@3.4.3
+  - @graphql-inspector/loaders@3.4.5
+  - @graphql-inspector/audit-command@3.4.8
+  - @graphql-inspector/serve-command@3.4.6
+  - @graphql-inspector/github-loader@3.4.3
+  - @graphql-inspector/diff-command@3.4.8
+  - @graphql-inspector/docs-command@3.4.6
+  - @graphql-inspector/code-loader@3.4.3
+  - @graphql-inspector/json-loader@3.4.3
+  - @graphql-inspector/git-loader@3.4.3
+  - @graphql-inspector/url-loader@3.4.3
+  - @graphql-inspector/config@3.4.4
+
 ## 3.4.9
 
 ### Patch Changes
