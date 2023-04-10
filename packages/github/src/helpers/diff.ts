@@ -1,9 +1,15 @@
 import { GraphQLSchema, Source } from 'graphql';
 import { Change, CriticalityLevel, diff as diffSchemas, Rule } from '@graphql-inspector/core';
 import { fetch } from '@whatwg-node/fetch';
-import { getLocationByPath } from './location';
-import { ActionResult, Annotation, AnnotationLevel, CheckConclusion, PullRequest } from './types';
-import { isNil, parseEndpoint } from './utils';
+import { getLocationByPath } from './location.js';
+import {
+  ActionResult,
+  Annotation,
+  AnnotationLevel,
+  CheckConclusion,
+  PullRequest,
+} from './types.js';
+import { isNil, parseEndpoint } from './utils.js';
 
 export type DiffInterceptor =
   | string

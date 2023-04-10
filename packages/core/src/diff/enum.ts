@@ -1,5 +1,5 @@
 import { GraphQLEnumType } from 'graphql';
-import { compareLists, isNotEqual, isVoid } from '../utils/compare';
+import { compareLists, isNotEqual, isVoid } from '../utils/compare.js';
 import {
   enumValueAdded,
   enumValueDeprecationReasonAdded,
@@ -7,8 +7,8 @@ import {
   enumValueDeprecationReasonRemoved,
   enumValueDescriptionChanged,
   enumValueRemoved,
-} from './changes/enum';
-import { AddChange } from './schema';
+} from './changes/enum.js';
+import { AddChange } from './schema.js';
 
 export function changesInEnum(
   oldEnum: GraphQLEnumType,

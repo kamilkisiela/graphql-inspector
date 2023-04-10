@@ -32,7 +32,7 @@ export function validateQueryDepth({
         return fragmentGraph.getNodeData(name);
       },
     });
-  } catch (errorOrNode) {
+  } catch (errorOrNode: any) {
     if (errorOrNode instanceof Error) {
       throw errorOrNode;
     }

@@ -1,5 +1,5 @@
 import { Probot } from 'probot';
-import { ErrorHandler } from './types';
+import { ErrorHandler } from './types.js';
 
 const key = Symbol.for('inspector-diagnostics');
 

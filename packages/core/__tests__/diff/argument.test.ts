@@ -1,6 +1,6 @@
 import { buildSchema } from 'graphql';
-import { CriticalityLevel, diff } from '../../src';
-import { findFirstChangeByPath } from '../../utils/testing';
+import { CriticalityLevel, diff } from '../../src/index.js';
+import { findFirstChangeByPath } from '../../utils/testing.js';
 
 describe('argument', () => {
   test('added non-nullable with default value', async () => {

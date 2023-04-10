@@ -9,13 +9,13 @@ import {
   Source,
   validate as validateDocument,
 } from 'graphql';
-import { readDocument } from '../ast/document';
-import { transformDocumentWithApollo, transformSchemaWithApollo } from '../utils/apollo';
-import { findDeprecatedUsages } from '../utils/graphql';
-import { validateAliasCount } from './alias-count';
-import { validateDirectiveCount } from './directive-count';
-import { validateQueryDepth } from './query-depth';
-import { validateTokenCount } from './token-count';
+import { readDocument } from '../ast/document.js';
+import { transformDocumentWithApollo, transformSchemaWithApollo } from '../utils/apollo.js';
+import { findDeprecatedUsages } from '../utils/graphql.js';
+import { validateAliasCount } from './alias-count.js';
+import { validateDirectiveCount } from './directive-count.js';
+import { validateQueryDepth } from './query-depth.js';
+import { validateTokenCount } from './token-count.js';
 
 export interface InvalidDocument {
   source: Source;

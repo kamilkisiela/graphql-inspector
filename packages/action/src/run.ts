@@ -10,10 +10,10 @@ import {
   printSchemaFromEndpoint,
   produceSchema,
 } from '@graphql-inspector/github';
-import { updateCheckRun } from './checks';
-import { fileLoader } from './files';
-import { getAssociatedPullRequest, getCurrentCommitSha } from './git';
-import { castToBoolean, getInputAsArray, resolveRule } from './utils';
+import { updateCheckRun } from './checks.js';
+import { fileLoader } from './files.js';
+import { getAssociatedPullRequest, getCurrentCommitSha } from './git.js';
+import { castToBoolean, getInputAsArray, resolveRule } from './utils.js';
 
 const CHECK_NAME = 'GraphQL Inspector';
 

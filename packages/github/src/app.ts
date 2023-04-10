@@ -1,8 +1,8 @@
 import * as probot from 'probot';
-import { getDiagnostics } from './helpers/diagnostics';
-import { createConfigLoader, createFileLoader } from './helpers/loaders';
-import { handleSchemaChangeNotifications } from './schema-change-notifications';
-import { handleSchemaDiff } from './schema-diff';
+import { getDiagnostics } from './helpers/diagnostics.js';
+import { createConfigLoader, createFileLoader } from './helpers/loaders.js';
+import { handleSchemaChangeNotifications } from './schema-change-notifications.js';
+import { handleSchemaDiff } from './schema-diff.js';
 
 const allowedCheckActions = ['rerequested'];
 

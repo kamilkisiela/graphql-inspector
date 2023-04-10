@@ -1,5 +1,5 @@
-import { CriticalityLevel } from './../changes/change';
-import { Rule } from './types';
+import { CriticalityLevel } from './../changes/change.js';
+import { Rule } from './types.js';
 
 export const dangerousBreaking: Rule = ({ changes }) => {
   return changes.map(change => {

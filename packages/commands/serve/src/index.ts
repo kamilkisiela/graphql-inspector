@@ -7,7 +7,7 @@ import {
 } from '@graphql-inspector/commands';
 import { Logger } from '@graphql-inspector/logger';
 import { createServer } from '@graphql-yoga/node';
-import { fake } from './fake';
+import { fake } from './fake.js';
 
 export { CommandFactory };
 
@@ -80,7 +80,7 @@ export default createCommand<
 
         process.on('SIGINT', shutdown);
         process.on('SIGTERM', shutdown);
-      } catch (e) {
+      } catch (e: any) {
         Logger.error(e.message || e);
       }
     },

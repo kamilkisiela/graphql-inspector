@@ -9,15 +9,15 @@ import {
   isScalarType,
   isUnionType,
 } from 'graphql';
-import { compareLists, isNotEqual, isVoid } from '../utils/compare';
-import { isPrimitive } from '../utils/graphql';
-import { Change } from './changes/change';
-import { directiveAdded, directiveRemoved } from './changes/directive';
+import { compareLists, isNotEqual, isVoid } from '../utils/compare.js';
+import { isPrimitive } from '../utils/graphql.js';
+import { Change } from './changes/change.js';
+import { directiveAdded, directiveRemoved } from './changes/directive.js';
 import {
   schemaMutationTypeChanged,
   schemaQueryTypeChanged,
   schemaSubscriptionTypeChanged,
-} from './changes/schema';
+} from './changes/schema.js';
 import {
   typeAdded,
   typeDescriptionAdded,
@@ -25,13 +25,13 @@ import {
   typeDescriptionRemoved,
   typeKindChanged,
   typeRemoved,
-} from './changes/type';
-import { changesInDirective } from './directive';
-import { changesInEnum } from './enum';
-import { changesInInputObject } from './input';
-import { changesInInterface } from './interface';
-import { changesInObject } from './object';
-import { changesInUnion } from './union';
+} from './changes/type.js';
+import { changesInDirective } from './directive.js';
+import { changesInEnum } from './enum.js';
+import { changesInInputObject } from './input.js';
+import { changesInInterface } from './interface.js';
+import { changesInObject } from './object.js';
+import { changesInUnion } from './union.js';
 
 export type AddChange = (change: Change) => void;
 

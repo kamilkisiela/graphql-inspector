@@ -6,11 +6,11 @@ import {
   NormalizedEnvironment,
   Notifications,
   SchemaPointer,
-} from './helpers/config';
-import { ConfigLoader, FileLoader, loadSources } from './helpers/loaders';
-import { createLogger } from './helpers/logger';
-import { notifyWithDiscord, notifyWithSlack, notifyWithWebhook } from './helpers/notifications';
-import { ErrorHandler } from './helpers/types';
+} from './helpers/config.js';
+import { ConfigLoader, FileLoader, loadSources } from './helpers/loaders.js';
+import { createLogger } from './helpers/logger.js';
+import { notifyWithDiscord, notifyWithSlack, notifyWithWebhook } from './helpers/notifications.js';
+import { ErrorHandler } from './helpers/types.js';
 
 export async function handleSchemaChangeNotifications({
   context,
@@ -112,7 +112,7 @@ export async function handleSchemaChangeNotifications({
   async function actionRunner(target: string, fn: () => Promise<void>) {
     try {
       await fn();
-    } catch (error) {
+    } catch (error: any) {
       onError(error);
       logger.error(`Failed to send a notification via ${target}`, error);
     }

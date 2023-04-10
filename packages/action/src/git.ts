@@ -1,6 +1,6 @@
 import { execSync } from 'child_process';
 import * as github from '@actions/github';
-import { OctokitInstance } from './types';
+import { OctokitInstance } from './types.js';
 
 export function getCurrentCommitSha() {
   const sha = execSync(`git rev-parse HEAD`).toString().trim();

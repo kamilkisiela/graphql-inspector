@@ -1,5 +1,5 @@
-import { ChangeType } from '../changes/change';
-import { Rule } from './types';
+import { ChangeType } from '../changes/change.js';
+import { Rule } from './types.js';
 
 const descriptionChangeTypes: ChangeType[] = [
   ChangeType.FieldArgumentDescriptionChanged,

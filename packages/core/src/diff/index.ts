@@ -1,14 +1,14 @@
 import { GraphQLSchema } from 'graphql';
-import { Change } from './changes/change';
-import * as rules from './rules';
-import { Rule } from './rules/types';
-import { diffSchema } from './schema';
+import { Change } from './changes/change.js';
+import * as rules from './rules/index.js';
+import { Rule } from './rules/types.js';
+import { diffSchema } from './schema.js';
 
-export * from './rules/types';
+export * from './rules/types.js';
 export const DiffRule = rules;
 
-export * from './onComplete/types';
-export type { UsageHandler } from './rules/consider-usage';
+export * from './onComplete/types.js';
+export type { UsageHandler } from './rules/consider-usage.js';
 
 export function diff(
   oldSchema: GraphQLSchema,

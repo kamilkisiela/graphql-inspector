@@ -1,7 +1,7 @@
 import { Change, CriticalityLevel } from '@graphql-inspector/core';
 import { fetch } from '@whatwg-node/fetch';
-import { defaultConfigName } from './config';
-import { discordCoderize, filterChangesByLevel, slackCoderize } from './utils';
+import { defaultConfigName } from './config.js';
+import { discordCoderize, filterChangesByLevel, slackCoderize } from './utils.js';
 
 export interface WebhookNotification {
   environment: string;

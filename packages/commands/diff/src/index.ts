@@ -171,7 +171,7 @@ export default createCommand<
           onComplete: args.onComplete,
           onUsage: args.onUsage,
         });
-      } catch (error) {
+      } catch (error: any) {
         Logger.error(error);
         throw error;
       }
