@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import yargs, { Argv } from 'yargs';
 import { useCommands } from '@graphql-inspector/commands';
 import { useLoaders } from '@graphql-inspector/loaders';
