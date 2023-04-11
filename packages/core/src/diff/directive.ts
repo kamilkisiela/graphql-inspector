@@ -27,14 +27,12 @@ export function changesInDirective(
   };
 
   // locations added
-  locations.added.forEach(location =>
-    addChange(directiveLocationAdded(newDirective, location as any)),
-  );
+  for (const location of locations.added)
+    addChange(directiveLocationAdded(newDirective, location as any));
 
   // locations removed
-  locations.removed.forEach(location =>
-    addChange(directiveLocationRemoved(oldDirective, location as any)),
-  );
+  for (const location of locations.removed)
+    addChange(directiveLocationRemoved(oldDirective, location as any));
 
   compareLists(oldDirective.args, newDirective.args, {
     onAdded(arg) {

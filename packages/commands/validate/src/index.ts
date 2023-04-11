@@ -326,13 +326,13 @@ function printInvalidDocuments(
     return;
   }
 
-  invalidDocuments.forEach(doc => {
+  for (const doc of invalidDocuments) {
     if (doc.errors.length) {
-      renderErrors(doc.source.name, doc[listKey], isError).forEach(line => {
+      for (const line of renderErrors(doc.source.name, doc[listKey], isError)) {
         Logger.log(line);
-      });
+      }
     }
-  });
+  }
 }
 
 function renderErrors(sourceName: string, errors: GraphQLError[], isError = false): string[] {

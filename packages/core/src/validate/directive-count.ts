@@ -58,7 +58,7 @@ export function countDirectives(
       directives += countDirectives(child, getFragmentByName);
     }
   }
-  if (node.kind == Kind.FRAGMENT_SPREAD) {
+  if (node.kind === Kind.FRAGMENT_SPREAD) {
     const fragment = getFragmentByName(node.name.value);
     if (fragment) {
       directives += countDirectives(fragment, getFragmentByName);

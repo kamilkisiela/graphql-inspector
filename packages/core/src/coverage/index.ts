@@ -167,15 +167,15 @@ export function coverage(schema: GraphQLSchema, sources: Source[]): SchemaCovera
 
   const documents = coverage.sources.map(readDocument);
 
-  documents.forEach((doc, i) => {
+  for (const [i, doc] of documents.entries()) {
     const source = coverage.sources[i];
-    doc.operations.forEach(op => {
+    for (const op of doc.operations) {
       visit(op.node, visitWithTypeInfo(typeInfo, visitor(source)));
-    });
-    doc.fragments.forEach(fr => {
+    }
+    for (const fr of doc.fragments) {
       visit(fr.node, visitWithTypeInfo(typeInfo, visitor(source)));
-    });
-  });
+    }
+  }
 
   for (const key in coverage.types) {
     const me = coverage.types[key];
@@ -183,7 +183,7 @@ export function coverage(schema: GraphQLSchema, sources: Source[]): SchemaCovera
 
     coverage.stats.numTypes++;
     if (me.fieldsCountCovered > 0) coverage.stats.numTypesCovered++;
-    if (me.fieldsCount == me.fieldsCountCovered) coverage.stats.numTypesCoveredFully++;
+    if (me.fieldsCount === me.fieldsCountCovered) coverage.stats.numTypesCoveredFully++;
     coverage.stats.numFields += me.fieldsCount;
     coverage.stats.numFiledsCovered += me.fieldsCountCovered;
   }

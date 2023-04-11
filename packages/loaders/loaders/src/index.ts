@@ -106,7 +106,7 @@ export type Loaders = Pick<LoadersRegistry, 'loadSchema' | 'loadDocuments'>;
 export function useLoaders(config: InspectorConfig): Loaders {
   const loaders = new LoadersRegistry();
 
-  config.loaders.forEach(loaderName => loaders.registerModule(loaderName));
+  for (const loaderName of config.loaders) loaders.registerModule(loaderName);
 
   return loaders;
 }

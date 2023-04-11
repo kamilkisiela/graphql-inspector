@@ -151,7 +151,7 @@ export function countDepth(
       depth = Math.max(depth, countDepth(child, parentDepth + 1, getFragmentReference));
     }
   }
-  if (node.kind == Kind.FRAGMENT_SPREAD) {
+  if (node.kind === Kind.FRAGMENT_SPREAD) {
     const fragment = getFragmentReference(node.name.value);
     if (fragment) {
       depth = Math.max(depth, countDepth(fragment, parentDepth + 1, getFragmentReference));

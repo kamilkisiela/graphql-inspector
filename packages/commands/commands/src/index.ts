@@ -48,31 +48,31 @@ export function parseGlobalArgs(args: GlobalArgs) {
   const rightHeaders: Record<string, string> = {};
 
   if (args.header) {
-    args.header.forEach(header => {
+    for (const header of args.header) {
       const [name, ...values] = header.split(':');
 
       headers[name] = values.join('');
-    });
+    }
   }
 
   if (args.leftHeader) {
-    args.leftHeader.forEach(leftHeader => {
+    for (const leftHeader of args.leftHeader) {
       const [lname, ...lvalues] = leftHeader.split(':');
 
       leftHeaders[lname] = lvalues.join('');
-    });
+    }
   }
 
   if (args.rightHeader) {
-    args.rightHeader.forEach(rightHeader => {
+    for (const rightHeader of args.rightHeader) {
       const [rname, ...rvalues] = rightHeader.split(':');
 
       rightHeaders[rname] = rvalues.join('');
-    });
+    }
   }
 
   if (args.require) {
-    args.require.forEach(mod => require(mod));
+    for (const mod of args.require) require(mod);
   }
 
   return { headers, leftHeaders, rightHeaders, token: args.token };
