@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import * as core from '@actions/core';
 import { run } from './run.js';
 

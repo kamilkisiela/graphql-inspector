@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import yargs, { Argv } from 'yargs';
 import { useCommands } from '@graphql-inspector/commands';
 import { availableCommands, useConfig } from '@graphql-inspector/config';
