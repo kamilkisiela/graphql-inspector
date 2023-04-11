@@ -1,5 +1,13 @@
 # @graphql-inspector/action
 
+## 3.4.11
+
+### Patch Changes
+
+- [#2433](https://github.com/kamilkisiela/graphql-inspector/pull/2433)
+  [`296b75bf`](https://github.com/kamilkisiela/graphql-inspector/commit/296b75bfcc3666e248c535205f32a752b8170720)
+  Thanks [@TuvalSimha](https://github.com/TuvalSimha)! - Fix `bin` for entry file
+
 ## 3.4.10
 
 ### Patch Changes
