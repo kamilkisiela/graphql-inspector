@@ -162,7 +162,7 @@ test('should work with comments and descriptions', async () => {
 test('use interceptor to modify changes', async () => {
   const scope = nock('https://api.com')
     .post('/intercept')
-    .reply((async (_: any, body: DiffInterceptorPayload) => {
+    .reply(async (_, body: DiffInterceptorPayload) => {
       const response: DiffInterceptorResponse = {
         changes: body.changes.map(c => {
           c.criticality.level = 'NON_BREAKING' as any;
@@ -170,7 +170,7 @@ test('use interceptor to modify changes', async () => {
         }),
       };
       return [200, response];
-    }) as any);
+    });
   const action = await diff({
     path: 'schema.graphql',
     ...build(oldSchema, newSchema),
