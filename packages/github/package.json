@@ -73,10 +73,10 @@
   },
   "dependencies": {
     "@graphql-inspector/core": "workspace:*",
-    "@whatwg-node/fetch": "0.8.1",
+    "@whatwg-node/fetch": "0.8.4",
     "dataloader": "2.2.2",
     "js-yaml": "4.1.0",
-    "tslib": "^2.0.0"
+    "tslib": "2.5.0"
   },
   "devDependencies": {
     "@types/express": "4.17.17",

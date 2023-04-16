@@ -62,7 +62,7 @@
   "dependencies": {
     "dependency-graph": "0.11.0",
     "object-inspect": "1.12.3",
-    "tslib": "^2.0.0"
+    "tslib": "2.5.0"
   },
   "devDependencies": {
     "@types/object-inspect": "1.8.1"
