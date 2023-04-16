@@ -606,8 +606,8 @@ importers:
   packages/logger:
     dependencies:
       chalk:
-        specifier: 5.2.0
-        version: 5.2.0
+        specifier: 4.1.2
+        version: 4.1.2
       figures:
         specifier: 5.0.0
         version: 5.0.0
