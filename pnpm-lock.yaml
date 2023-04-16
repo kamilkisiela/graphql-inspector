@@ -174,7 +174,7 @@ importers:
         version: link:../core/dist
       "@graphql-inspector/github":
         specifier: workspace:*
-        version: link:../github/dist
+        version: link:../github
       js-yaml:
         specifier: 4.1.0
         version: 4.1.0
@@ -203,10 +203,7 @@ importers:
         version: link:../loaders/loaders/dist
       "@graphql-inspector/logger":
         specifier: workspace:*
-        version: link:../logger/dist
-      graphql:
-        specifier: ^14.0.0 || ^15.0.0 || ^16.0.0
-        version: 16.6.0
+        version: link:../logger
       tslib:
         specifier: 2.5.0
         version: 2.5.0
@@ -267,10 +264,7 @@ importers:
         version: link:../loaders/url/dist
       "@graphql-inspector/validate-command":
         specifier: workspace:*
-        version: link:../commands/validate/dist
-      graphql:
-        specifier: ^14.0.0 || ^15.0.0 || ^16.0.0
-        version: 16.6.0
+        version: link:../commands/validate
       tslib:
         specifier: 2.5.0
         version: 2.5.0
@@ -319,9 +313,6 @@ importers:
       tslib:
         specifier: 2.5.0
         version: 2.5.0
-      yargs:
-        specifier: 17.2.1
-        version: 17.2.1
     publishDirectory: dist
 
   packages/commands/coverage:
@@ -357,10 +348,7 @@ importers:
         version: link:../../core/dist
       "@graphql-inspector/logger":
         specifier: workspace:*
-        version: link:../../logger/dist
-      graphql:
-        specifier: ^14.0.0 || ^15.0.0 || ^16.0.0
-        version: 16.6.0
+        version: link:../../logger
       tslib:
         specifier: 2.5.0
         version: 2.5.0
@@ -370,10 +358,7 @@ importers:
     dependencies:
       "@graphql-inspector/commands":
         specifier: workspace:*
-        version: link:../commands/dist
-      graphql:
-        specifier: ^14.0.0 || ^15.0.0 || ^16.0.0
-        version: 16.6.0
+        version: link:../commands
       open:
         specifier: 8.4.2
         version: 8.4.2
@@ -392,10 +377,7 @@ importers:
         version: link:../../core/dist
       "@graphql-inspector/logger":
         specifier: workspace:*
-        version: link:../../logger/dist
-      graphql:
-        specifier: ^14.0.0 || ^15.0.0 || ^16.0.0
-        version: 16.6.0
+        version: link:../../logger
       tslib:
         specifier: 2.5.0
         version: 2.5.0
@@ -431,10 +413,7 @@ importers:
         version: link:../../core/dist
       "@graphql-inspector/logger":
         specifier: workspace:*
-        version: link:../../logger/dist
-      graphql:
-        specifier: ^14.0.0 || ^15.0.0 || ^16.0.0
-        version: 16.6.0
+        version: link:../../logger
       tslib:
         specifier: 2.5.0
         version: 2.5.0
@@ -465,9 +444,6 @@ importers:
 
   packages/config:
     dependencies:
-      graphql:
-        specifier: ^14.0.0 || ^15.0.0 || ^16.0.0
-        version: 16.6.0
       tslib:
         specifier: 2.5.0
         version: 2.5.0
@@ -478,9 +454,6 @@ importers:
       dependency-graph:
         specifier: 0.11.0
         version: 0.11.0
-      graphql:
-        specifier: ^14.0.0 || ^15.0.0 || ^16.0.0
-        version: 16.6.0
       object-inspect:
         specifier: 1.12.3
         version: 1.12.3
@@ -504,9 +477,6 @@ importers:
       dataloader:
         specifier: 2.2.2
         version: 2.2.2
-      graphql:
-        specifier: ^14.0.0 || ^15.0.0 || ^16.0.0
-        version: 16.6.0
       js-yaml:
         specifier: 4.1.0
         version: 4.1.0
@@ -535,7 +505,7 @@ importers:
     dependencies:
       "@graphql-tools/code-file-loader":
         specifier: 7.3.22
-        version: 7.3.22(@babel/core@7.21.4)(graphql@16.6.0)
+        version: 7.3.22(graphql@16.6.0)
       tslib:
         specifier: 2.5.0
         version: 2.5.0
@@ -549,7 +519,7 @@ importers:
     dependencies:
       "@graphql-tools/git-loader":
         specifier: 7.2.21
-        version: 7.2.21(@babel/core@7.21.4)(graphql@16.6.0)
+        version: 7.2.21(graphql@16.6.0)
       tslib:
         specifier: 2.5.0
         version: 2.5.0
@@ -563,7 +533,7 @@ importers:
     dependencies:
       "@graphql-tools/github-loader":
         specifier: 7.3.28
-        version: 7.3.28(@babel/core@7.21.4)(@types/node@18.15.11)(graphql@16.6.0)
+        version: 7.3.28(@types/node@18.15.11)(graphql@16.6.0)
       tslib:
         specifier: 2.5.0
         version: 2.5.0
@@ -710,7 +680,7 @@ importers:
         version: 7.0.3
       next-sitemap:
         specifier: 4.0.7
-        version: 4.0.7(@next/env@13.3.0)(next@13.3.0)
+        version: 4.0.7(next@13.3.0)
       typescript:
         specifier: 5.0.4
         version: 5.0.4
@@ -2745,7 +2715,6 @@ packages:
     peerDependencies:
       monaco-editor: ">= 0.21.0 < 1"
     dependencies:
-      monaco-editor: 0.37.1
       state-local: 1.0.7
     dev: false
 
@@ -3949,11 +3918,11 @@ packages:
       "@radix-ui/react-navigation-menu": 1.1.2(react-dom@18.2.0)(react@18.2.0)
       algoliasearch: 4.16.0
       clsx: 1.2.1
-      focus-trap-react: 10.1.1(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)
+      focus-trap-react: 10.1.1(react-dom@18.2.0)(react@18.2.0)
       fuzzy: 0.1.3
       mermaid: 10.0.2
       next: 13.3.0(react-dom@18.2.0)(react@18.2.0)
-      next-videos: 1.5.0(webpack@4.46.0)
+      next-videos: 1.5.0
       nextra: 2.3.0(next@13.3.0)(react-dom@18.2.0)(react@18.2.0)
       nextra-theme-docs: 2.3.0(next@13.3.0)(nextra@2.3.0)(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
@@ -4033,7 +4002,7 @@ packages:
       cssnano: 5.1.15(postcss@8.4.21)
       postcss: 8.4.21
       postcss-import: 15.1.0(postcss@8.4.21)
-      tailwindcss: 3.2.7(postcss@8.4.21)
+      tailwindcss: 3.2.7
     transitivePeerDependencies:
       - ts-node
     dev: true
@@ -5978,6 +5947,7 @@ packages:
       electron-to-chromium: 1.4.328
       node-releases: 2.0.10
       update-browserslist-db: 1.0.10(browserslist@4.21.5)
+    dev: true
 
   /btoa-lite@1.0.0:
     resolution:
@@ -8957,6 +8927,7 @@ packages:
     engines: { node: ">=4.0" }
     dependencies:
       estraverse: 5.3.0
+    dev: true
 
   /estraverse@4.3.0:
     resolution:
@@ -9586,7 +9557,6 @@ packages:
       react-dom: ">=16.3.0"
     dependencies:
       focus-trap: 7.4.0
-      prop-types: 15.8.1
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       tabbable: 6.1.1
@@ -9774,6 +9744,7 @@ packages:
     engines: { node: ^8.16.0 || ^10.6.0 || >=11.0.0 }
     os: [darwin]
     requiresBuild: true
+    dev: true
     optional: true
 
   /function-bind@1.1.1:
@@ -10966,6 +10937,7 @@ packages:
     engines: { node: ">=8" }
     dependencies:
       binary-extensions: 2.2.0
+    dev: true
 
   /is-boolean-object@1.1.2:
     resolution:
@@ -13715,7 +13687,7 @@ packages:
         integrity: sha512-U6HY68UDxsDMMRgjABYq1S2EIStqZNp8FFtL8LKXJrhGFIO1nM2a3Afy0jw3JI2nK1HSXq4s4anQ96Yn4ukceA==,
       }
     dependencies:
-      file-loader: 4.3.0(webpack@4.46.0)
+      file-loader: 4.3.0
     transitivePeerDependencies:
       - webpack
     dev: false
@@ -14982,6 +14954,22 @@ packages:
       postcss: 8.4.21
     dev: true
 
+  /postcss-load-config@3.1.4:
+    resolution: {integrity: sha512-6DiM4E7v4coTE4uzA8U//WhtPwyhiim3eyjEMFCnUpzbrkK9wJHgKDT2mR+HbtSrd/NubVaYTOpSpjUl8NQeRg==}
+    engines: {node: '>= 10'}
+    peerDependencies:
+      postcss: '>=8.0.9'
+      ts-node: '>=9.0.0'
+    peerDependenciesMeta:
+      postcss:
+        optional: true
+      ts-node:
+        optional: true
+    dependencies:
+      lilconfig: 2.1.0
+      yaml: 1.10.2
+    dev: true
+
   /postcss-load-config@3.1.4(postcss@8.4.21):
     resolution:
       {
@@ -16027,6 +16015,7 @@ packages:
     engines: { node: ">=8.10.0" }
     dependencies:
       picomatch: 2.3.1
+    dev: true
 
   /reading-time@1.5.0:
     resolution:
@@ -16665,6 +16654,7 @@ packages:
         integrity: sha512-sauaDf/PZdVgrLTNYHRtpXa1iRiKcaebiKQ1BJdpQlWH2lCvexQdX55snPFyK7QzpudqbCI0qXFfOasHdyNDGQ==,
       }
     hasBin: true
+    dev: true
 
   /semver@6.3.0:
     resolution:
@@ -16672,6 +16662,7 @@ packages:
         integrity: sha512-b39TBaTSfV6yBrapU89p5fKekE2m/NwnDocOVruQFS1/veMgdzuPcnOM34M6CwxW8jH/lxEa5rBoDeUwu5HHTw==,
       }
     hasBin: true
+    dev: true
 
   /semver@7.3.8:
     resolution:
@@ -17688,8 +17679,6 @@ packages:
       }
     engines: { node: ">=12.13.0" }
     hasBin: true
-    peerDependencies:
-      postcss: ^8.0.9
     dependencies:
       arg: 5.0.2
       chokidar: 3.5.3
@@ -18092,7 +18081,7 @@ packages:
       execa: 5.1.1
       globby: 11.1.0
       joycon: 3.1.1
-      postcss-load-config: 3.1.4(postcss@8.4.21)
+      postcss-load-config: 3.1.4
       resolve-from: 5.0.0
       rollup: 3.20.1
       source-map: 0.8.0-beta.0
@@ -18550,6 +18539,7 @@ packages:
       browserslist: 4.21.5
       escalade: 3.1.1
       picocolors: 1.0.0
+    dev: true
 
   /update-dotenv@1.1.1(dotenv@8.6.0):
     resolution:
