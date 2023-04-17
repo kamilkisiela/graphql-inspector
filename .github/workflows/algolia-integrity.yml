@@ -24,14 +24,8 @@ jobs:
       - name: Build Packages
         run: pnpm build
 
-      - name: Typecheck
+      - name: Build Website
         run: pnpm --filter website build
-
-      - name: Algolia generate
-        run: pnpm --filter website algolia-sync
-        env:
-          ALGOLIA_DRY_RUN: true
-          SITE_URL: https://www.the-guild.dev/graphql/inspector/
 
       - name: Format
         run: pnpm prettier
