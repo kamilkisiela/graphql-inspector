@@ -40,7 +40,7 @@ export const considerUsage: Rule<ConsiderUsageConfig> = async ({ changes, config
     argument?: string;
   }> = [];
 
-  changes.forEach(change => {
+  for (const change of changes) {
     if (change.criticality.level === CriticalityLevel.Breaking && change.path) {
       const [typeName, fieldName, argumentName] = parsePath(change.path);
 
@@ -50,7 +50,7 @@ export const considerUsage: Rule<ConsiderUsageConfig> = async ({ changes, config
         argument: argumentName,
       });
     }
-  });
+  }
 
   // True if safe to break, false otherwise
   const usageList = await config.checkUsage!(collectedBreakingField);

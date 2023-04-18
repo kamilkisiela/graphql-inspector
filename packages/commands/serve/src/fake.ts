@@ -225,18 +225,18 @@ function assignResolveType(type: GraphQLType) {
 
 function forEachField(schema: GraphQLSchema, fn: any): void {
   const typeMap = schema.getTypeMap();
-  Object.keys(typeMap).forEach(typeName => {
+  for (const typeName of Object.keys(typeMap)) {
     const type = typeMap[typeName];
 
     // TODO: maybe have an option to include these?
     if (!getNamedType(type).name.startsWith('__') && type instanceof GraphQLObjectType) {
       const fields = type.getFields();
-      Object.keys(fields).forEach(fieldName => {
+      for (const fieldName of Object.keys(fields)) {
         const field = fields[fieldName];
         fn(field, typeName, fieldName);
-      });
+      }
     }
-  });
+  }
 }
 
 class MockList {

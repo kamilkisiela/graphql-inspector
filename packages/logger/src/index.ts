@@ -16,8 +16,7 @@ export function bolderize(msg: string): string {
 
 let mockedFn: ((msg: string) => void) | null = null;
 
-const canBeFancy = env.tty === true;
-
+const canBeFancy = env.hasTTY === true;
 export interface Logger {
   success(msg: string): void;
   log(msg: string): void;

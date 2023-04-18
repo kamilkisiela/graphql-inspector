@@ -54,10 +54,10 @@ describe('considerUsage rule', () => {
       },
     });
 
-    changes.forEach(change => {
+    for (const change of changes) {
       expect(change.criticality.level).toBe(CriticalityLevel.Dangerous);
       expect(change.criticality.isSafeBasedOnUsage).toBe(true);
       expect(change.message).toContain(`non-breaking based on usage`);
-    });
+    }
   });
 });

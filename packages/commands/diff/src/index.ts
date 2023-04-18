@@ -200,27 +200,27 @@ function reportBreakingChanges(changes: Change[]) {
   const label = symbols.error;
   const sorted = sortChanges(changes);
 
-  sorted.forEach(change => {
+  for (const change of sorted) {
     Logger.log(`${label}  ${bolderize(change.message)}`);
-  });
+  }
 }
 
 function reportDangerousChanges(changes: Change[]) {
   const label = symbols.warning;
   const sorted = sortChanges(changes);
 
-  sorted.forEach(change => {
+  for (const change of sorted) {
     Logger.log(`${label}  ${bolderize(change.message)}`);
-  });
+  }
 }
 
 function reportNonBreakingChanges(changes: Change[]) {
   const label = symbols.success;
   const sorted = sortChanges(changes);
 
-  sorted.forEach(change => {
+  for (const change of sorted) {
     Logger.log(`${label}  ${bolderize(change.message)}`);
-  });
+  }
 }
 
 function resolveRule(name: string): Rule | undefined {

@@ -42,9 +42,9 @@ export function handler({
       Logger.log(`${prefix} ${sourceType}`);
       Logger.log(printResult(name, matches.bestMatch.rating));
 
-      matches.ratings.forEach(match => {
+      for (const match of matches.ratings) {
         Logger.log(printResult(match.target.typeId, match.rating));
-      });
+      }
     }
   }
 

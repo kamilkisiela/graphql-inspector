@@ -24,7 +24,7 @@ export function similar(
     throw new Error(`Type '${typeName}' doesn't exist`);
   }
 
-  (typeName ? [{ typeId: typeName, value: '' }] : targets).forEach(source => {
+  for (const source of typeName ? [{ typeId: typeName, value: '' }] : targets) {
     const sourceType = schema.getType(source.typeId) as GraphQLNamedType;
     const matchWith = targets.filter(
       target =>
@@ -39,7 +39,7 @@ export function similar(
         results[source.typeId] = found;
       }
     }
-  });
+  }
 
   return results;
 }

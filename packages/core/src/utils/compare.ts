@@ -87,13 +87,19 @@ export function compareLists<T extends { name: string }>(
 
   if (callbacks) {
     if (callbacks.onAdded) {
-      added.forEach(callbacks.onAdded);
+      for (const item of added) {
+        callbacks.onAdded(item);
+      }
     }
     if (callbacks.onRemoved) {
-      removed.forEach(callbacks.onRemoved);
+      for (const item of removed) {
+        callbacks.onRemoved(item);
+      }
     }
     if (callbacks.onMutual) {
-      mutual.forEach(callbacks.onMutual);
+      for (const item of mutual) {
+        callbacks.onMutual(item);
+      }
     }
   }
 

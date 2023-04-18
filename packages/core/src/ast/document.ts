@@ -34,7 +34,7 @@ export function readDocument(source: Source): Document {
   const filepath = source.name;
   const definitions = documentNode.definitions || [];
 
-  definitions.forEach((node: DefinitionNode) => {
+  for (const node of definitions) {
     if (isOperation(node)) {
       result.operations.push({
         node,
@@ -46,7 +46,7 @@ export function readDocument(source: Source): Document {
         source: filepath,
       });
     }
-  });
+  }
 
   result.hasFragments = result.fragments.length > 0;
   result.hasOperations = result.operations.length > 0;

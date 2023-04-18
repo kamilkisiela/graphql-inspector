@@ -86,121 +86,120 @@ export function validate(
   const fragmentNames: string[] = [];
   const graph = new DepGraph<FragmentDefinitionNode>({ circular: true });
 
-  documents.forEach(doc => {
-    doc.fragments.forEach(fragment => {
+  for (const doc of documents) {
+    for (const fragment of doc.fragments) {
       fragmentNames.push(fragment.node.name.value);
       fragments.push(fragment);
       graph.addNode(fragment.node.name.value, fragment.node);
-    });
-  });
+    }
+  }
 
-  fragments.forEach(fragment => {
+  for (const fragment of fragments) {
     const depends = extractFragments(print(fragment.node));
 
     if (depends) {
-      depends.forEach(name => {
+      for (const name of depends) {
         graph.addDependency(fragment.node.name.value, name);
+      }
+    }
+  }
+
+  for (const doc of documents
+    // since we include fragments, validate only operations
+    .filter(doc => doc.hasOperations)) {
+    const docWithOperations: DocumentNode = {
+      kind: Kind.DOCUMENT,
+      definitions: doc.operations.map(d => d.node),
+    };
+    const extractedFragments = (extractFragments(print(docWithOperations)) || [])
+      // resolve all nested fragments
+      .map(fragmentName => resolveFragment(graph.getNodeData(fragmentName), graph))
+      // flatten arrays
+      .reduce((list, current) => list.concat(current), [])
+      // remove duplicates
+      .filter((def, i, all) => all.findIndex(item => item.name.value === def.name.value) === i);
+    const merged: DocumentNode = {
+      kind: Kind.DOCUMENT,
+      definitions: [...docWithOperations.definitions, ...extractedFragments],
+    };
+
+    const transformedSchema = config.apollo ? transformSchemaWithApollo(schema) : schema;
+
+    const transformedDoc = config.apollo
+      ? transformDocumentWithApollo(merged, {
+          keepClientFields: config.keepClientFields!,
+        })
+      : merged;
+
+    const errors = (validateDocument(transformedSchema, transformedDoc) as GraphQLError[]) || [];
+
+    if (config.maxDepth) {
+      const depthError = validateQueryDepth({
+        source: doc.source,
+        doc: transformedDoc,
+        maxDepth: config.maxDepth,
+        fragmentGraph: graph,
+      });
+
+      if (depthError) {
+        errors.push(depthError);
+      }
+    }
+
+    if (config.maxAliasCount) {
+      const aliasError = validateAliasCount({
+        source: doc.source,
+        doc: transformedDoc,
+        maxAliasCount: config.maxAliasCount,
+        fragmentGraph: graph,
+      });
+
+      if (aliasError) {
+        errors.push(aliasError);
+      }
+    }
+
+    if (config.maxDirectiveCount) {
+      const directiveError = validateDirectiveCount({
+        source: doc.source,
+        doc: transformedDoc,
+        maxDirectiveCount: config.maxDirectiveCount,
+        fragmentGraph: graph,
+      });
+
+      if (directiveError) {
+        errors.push(directiveError);
+      }
+    }
+
+    if (config.maxTokenCount) {
+      const tokenCountError = validateTokenCount({
+        source: doc.source,
+        document: transformedDoc,
+        maxTokenCount: config.maxTokenCount,
+        getReferencedFragmentSource: fragmentName => print(graph.getNodeData(fragmentName)),
+      });
+
+      if (tokenCountError) {
+        errors.push(tokenCountError);
+      }
+    }
+
+    const deprecated = config.strictDeprecated
+      ? findDeprecatedUsages(transformedSchema, transformedDoc)
+      : [];
+    const duplicatedFragments = config.strictFragments
+      ? findDuplicatedFragments(fragmentNames)
+      : [];
+
+    if (sumLengths(errors, duplicatedFragments, deprecated) > 0) {
+      invalidDocuments.push({
+        source: doc.source,
+        errors: [...errors, ...duplicatedFragments],
+        deprecated,
       });
     }
-  });
-
-  documents
-    // since we include fragments, validate only operations
-    .filter(doc => doc.hasOperations)
-    .forEach(doc => {
-      const docWithOperations: DocumentNode = {
-        kind: Kind.DOCUMENT,
-        definitions: doc.operations.map(d => d.node),
-      };
-      const extractedFragments = (extractFragments(print(docWithOperations)) || [])
-        // resolve all nested fragments
-        .map(fragmentName => resolveFragment(graph.getNodeData(fragmentName), graph))
-        // flatten arrays
-        .reduce((list, current) => list.concat(current), [])
-        // remove duplicates
-        .filter((def, i, all) => all.findIndex(item => item.name.value === def.name.value) === i);
-      const merged: DocumentNode = {
-        kind: Kind.DOCUMENT,
-        definitions: [...docWithOperations.definitions, ...extractedFragments],
-      };
-
-      const transformedSchema = config.apollo ? transformSchemaWithApollo(schema) : schema;
-
-      const transformedDoc = config.apollo
-        ? transformDocumentWithApollo(merged, {
-            keepClientFields: config.keepClientFields!,
-          })
-        : merged;
-
-      const errors = (validateDocument(transformedSchema, transformedDoc) as GraphQLError[]) || [];
-
-      if (config.maxDepth) {
-        const depthError = validateQueryDepth({
-          source: doc.source,
-          doc: transformedDoc,
-          maxDepth: config.maxDepth,
-          fragmentGraph: graph,
-        });
-
-        if (depthError) {
-          errors.push(depthError);
-        }
-      }
-
-      if (config.maxAliasCount) {
-        const aliasError = validateAliasCount({
-          source: doc.source,
-          doc: transformedDoc,
-          maxAliasCount: config.maxAliasCount,
-          fragmentGraph: graph,
-        });
-
-        if (aliasError) {
-          errors.push(aliasError);
-        }
-      }
-
-      if (config.maxDirectiveCount) {
-        const directiveError = validateDirectiveCount({
-          source: doc.source,
-          doc: transformedDoc,
-          maxDirectiveCount: config.maxDirectiveCount,
-          fragmentGraph: graph,
-        });
-
-        if (directiveError) {
-          errors.push(directiveError);
-        }
-      }
-
-      if (config.maxTokenCount) {
-        const tokenCountError = validateTokenCount({
-          source: doc.source,
-          document: transformedDoc,
-          maxTokenCount: config.maxTokenCount,
-          getReferencedFragmentSource: fragmentName => print(graph.getNodeData(fragmentName)),
-        });
-
-        if (tokenCountError) {
-          errors.push(tokenCountError);
-        }
-      }
-
-      const deprecated = config.strictDeprecated
-        ? findDeprecatedUsages(transformedSchema, transformedDoc)
-        : [];
-      const duplicatedFragments = config.strictFragments
-        ? findDuplicatedFragments(fragmentNames)
-        : [];
-
-      if (sumLengths(errors, duplicatedFragments, deprecated) > 0) {
-        invalidDocuments.push({
-          source: doc.source,
-          errors: [...errors, ...duplicatedFragments],
-          deprecated,
-        });
-      }
-    });
+  }
 
   return invalidDocuments;
 }

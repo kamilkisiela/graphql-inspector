@@ -110,7 +110,7 @@ export async function run() {
 
   let [schemaRef, schemaPath] = schemaPointer.split(':');
 
-  if (useMerge && pullRequest?.state == 'open') {
+  if (useMerge && pullRequest?.state === 'open') {
     ref = `refs/pull/${pullRequest.number}/merge`;
     workspace = undefined;
     core.info(`EXPERIMENTAL - Using Pull Request ${ref}`);

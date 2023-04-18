@@ -73,7 +73,7 @@ export function calculateOperationComplexity(
     }
   }
 
-  if (node.kind == Kind.FRAGMENT_SPREAD) {
+  if (node.kind === Kind.FRAGMENT_SPREAD) {
     const fragment = getFragmentByName(node.name.value);
     if (fragment) {
       cost +=

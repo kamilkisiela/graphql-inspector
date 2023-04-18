@@ -276,7 +276,7 @@ test('huge test', async () => {
 
   const changes = await diff(schemaA, schemaB);
 
-  [
+  for (const msg of [
     `Type 'WillBeRemoved' was removed`,
     `Type 'DType' was added`,
     `Field 'Query.a' description changed from 'Just a simple string' to 'This description has been changed'`,
@@ -319,7 +319,7 @@ test('huge test', async () => {
     `Description for argument 'someArg' on directive 'yolo' changed from 'Included when true.' to 'someArg does stuff'`,
     `Type for argument 'someArg' on directive 'yolo' changed from 'Boolean!' to 'String!'`,
     `Default value '"Test"' was added to argument 'anotherArg' on directive 'yolo'`,
-  ].forEach(msg => {
+  ]) {
     try {
       expect(changes.some(c => c.message === msg)).toEqual(true);
     } catch (e) {
@@ -338,9 +338,9 @@ test('huge test', async () => {
 
       throw e;
     }
-  });
+  }
 
-  [
+  for (const path of [
     'WillBeRemoved',
     'DType',
     'Query.a',
@@ -382,14 +382,14 @@ test('huge test', async () => {
     '@yolo.someArg',
     '@yolo.someArg',
     '@yolo.anotherArg',
-  ].forEach(path => {
+  ]) {
     try {
       expect(changes.some(c => c.path === path)).toEqual(true);
     } catch (e) {
       console.log(`Couldn't find: ${path}`);
       throw e;
     }
-  });
+  }
 });
 
 test('array as default value in argument (same)', async () => {
