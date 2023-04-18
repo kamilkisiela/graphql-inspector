@@ -1,5 +1,78 @@
 # @graphql-inspector/core
 
+## 4.1.0
+
+### Minor Changes
+
+- [#2392](https://github.com/kamilkisiela/graphql-inspector/pull/2392)
+  [`3184249b`](https://github.com/kamilkisiela/graphql-inspector/commit/3184249bc3a912ca04e934efd0fb5b978eb95ce7)
+  Thanks [@n1ru4l](https://github.com/n1ru4l)! - Wrap string values in quotes, so they can be
+  differentiated from types.
+
+  ```diff
+  - Input field 'Foo.b' default value changed from 'undefined' to 'Bbb'
+  + Input field 'Foo.b' default value changed from 'undefined' to '"Bbb"'
+  ```
+
+- [#2392](https://github.com/kamilkisiela/graphql-inspector/pull/2392)
+  [`3184249b`](https://github.com/kamilkisiela/graphql-inspector/commit/3184249bc3a912ca04e934efd0fb5b978eb95ce7)
+  Thanks [@n1ru4l](https://github.com/n1ru4l)! - Add `isSafeBasedOnUsage` to `Criticality` type.
+  This value is set to `true` in case the criticality is set to `CriticalityLevel.Dangerous` based
+  on usage. This is helpful for statistics.
+
+- [#2392](https://github.com/kamilkisiela/graphql-inspector/pull/2392)
+  [`3184249b`](https://github.com/kamilkisiela/graphql-inspector/commit/3184249bc3a912ca04e934efd0fb5b978eb95ce7)
+  Thanks [@n1ru4l](https://github.com/n1ru4l)! - include meta data in the changes that are machine
+  processable. This is useful if you want to efficiently store the changes in some database and
+  later-on reconstruct the full change objects.
+
+  ```ts
+  export type FieldDescriptionChangedChange = {
+    type: ChangeType.FieldDescriptionChanged;
+    meta: {
+      typeName: string;
+      fieldName: string;
+      oldDescription: string;
+      newDescription: string;
+    };
+  };
+  ```
+
+  You can construct the full `Change` object from the `type` and `meta` properties.
+
+  ```ts
+  import { ChangeType, fieldDescriptionChangedFromMeta } from '@graphql-inspector/core';
+
+  console.log(
+    fieldDescriptionChangedFromMeta({
+      type: ChangeType.FieldDescriptionChanged,
+      meta: {
+        typeName: 'Foo',
+        fieldName: 'bar',
+        oldDescription: 'This is the old description',
+        newDescription: 'This is the new description',
+      },
+    }),
+  );
+  ```
+
+  console.log output:
+
+  ```ts
+  {
+    type: 'FIELD_DESCRIPTION_CHANGED',
+    criticality: { level: 'NON_BREAKING' },
+    message: "Field 'Foo.bar' description changed from 'This is the old description' to 'This is the new description'",
+    meta: {
+      typeName: 'Foo',
+      fieldName: 'bar',
+      oldDescription: 'This is the old description',
+      newDescription: 'This is the new description'
+    },
+    path: 'Foo.bar'
+  }
+  ```
+
 ## 4.0.3
 
 ### Patch Changes
