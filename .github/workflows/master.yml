@@ -14,3 +14,5 @@ jobs:
     with:
       domain: https://www.the-guild.dev/graphql/inspector/
       source: 'Inspector'
+      nodeVersion: 16
+      packageManager: pnpm
