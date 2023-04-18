@@ -73,6 +73,7 @@ export const considerUsage: Rule<ConsiderUsageConfig> = async ({ changes, config
         criticality: {
           ...change.criticality,
           level: CriticalityLevel.Dangerous,
+          isSafeBasedOnUsage: true,
         },
         message: `${change.message} (non-breaking based on usage)`,
       };

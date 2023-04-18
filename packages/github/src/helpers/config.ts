@@ -1,3 +1,4 @@
+/* eslint-disable logical-assignment-operators */
 import { DiffInterceptor } from './diff.js';
 import { isNil } from './utils.js';
 
@@ -206,12 +207,19 @@ export function createConfig(
   }
 
   for (const branch of branches) {
-    config = config || findConfigByBranch(branch, normalizedConfig, false);
+    if (config == null) {
+      config = findConfigByBranch(branch, normalizedConfig, false);
+    }
+
     if (config) {
       break;
     }
   }
-  config = config || getGlobalConfig(rawConfig as any, fallbackBranch);
+
+  if (config == null) {
+    config = getGlobalConfig(rawConfig as any, fallbackBranch);
+  }
+
   return config;
 }
 

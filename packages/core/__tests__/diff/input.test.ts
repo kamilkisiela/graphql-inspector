@@ -28,11 +28,15 @@ describe('input', () => {
       // Non-nullable
       expect(change.c.criticality.level).toEqual(CriticalityLevel.Breaking);
       expect(change.c.type).toEqual('INPUT_FIELD_ADDED');
-      expect(change.c.message).toEqual("Input field 'c' was added to input object type 'Foo'");
+      expect(change.c.message).toEqual(
+        "Input field 'c' of type 'String!' was added to input object type 'Foo'",
+      );
       // Nullable
       expect(change.d.criticality.level).toEqual(CriticalityLevel.Dangerous);
       expect(change.d.type).toEqual('INPUT_FIELD_ADDED');
-      expect(change.d.message).toEqual("Input field 'd' was added to input object type 'Foo'");
+      expect(change.d.message).toEqual(
+        "Input field 'd' of type 'String' was added to input object type 'Foo'",
+      );
     });
     test('removed', async () => {
       const a = buildSchema(/* GraphQL */ `
@@ -158,11 +162,11 @@ describe('input', () => {
       // Removed
       expect(change.b.criticality.level).toEqual(CriticalityLevel.NonBreaking);
       expect(change.b.type).toEqual('INPUT_FIELD_DESCRIPTION_REMOVED');
-      expect(change.b.message).toEqual("Description was removed from input field 'Foo.b'");
+      expect(change.b.message).toEqual("Description 'BBB' was removed from input field 'Foo.b'");
       // Added
       expect(change.c.criticality.level).toEqual(CriticalityLevel.NonBreaking);
       expect(change.c.type).toEqual('INPUT_FIELD_DESCRIPTION_ADDED');
-      expect(change.c.message).toEqual("Input field 'Foo.c' has description 'CCC'");
+      expect(change.c.message).toEqual(`Input field 'Foo.c' has description 'CCC'`);
     });
 
     test('default value added', async () => {
@@ -188,13 +192,13 @@ describe('input', () => {
       expect(change.a.criticality.level).toEqual(CriticalityLevel.Dangerous);
       expect(change.a.type).toEqual('INPUT_FIELD_DEFAULT_VALUE_CHANGED');
       expect(change.a.message).toEqual(
-        "Input field 'Foo.a' default value changed from 'undefined' to 'Aaa'",
+        `Input field 'Foo.a' default value changed from 'undefined' to '"Aaa"'`,
       );
       // Nullable
       expect(change.b.criticality.level).toEqual(CriticalityLevel.Dangerous);
       expect(change.b.type).toEqual('INPUT_FIELD_DEFAULT_VALUE_CHANGED');
       expect(change.b.message).toEqual(
-        "Input field 'Foo.b' default value changed from 'undefined' to 'Bbb'",
+        `Input field 'Foo.b' default value changed from 'undefined' to '"Bbb"'`,
       );
     });
 
@@ -221,13 +225,13 @@ describe('input', () => {
       expect(change.a.criticality.level).toEqual(CriticalityLevel.Dangerous);
       expect(change.a.type).toEqual('INPUT_FIELD_DEFAULT_VALUE_CHANGED');
       expect(change.a.message).toEqual(
-        "Input field 'Foo.a' default value changed from 'Aaa' to 'undefined'",
+        `Input field 'Foo.a' default value changed from '"Aaa"' to 'undefined'`,
       );
       // Nullable
       expect(change.b.criticality.level).toEqual(CriticalityLevel.Dangerous);
       expect(change.b.type).toEqual('INPUT_FIELD_DEFAULT_VALUE_CHANGED');
       expect(change.b.message).toEqual(
-        "Input field 'Foo.b' default value changed from 'Bbb' to 'undefined'",
+        `Input field 'Foo.b' default value changed from '"Bbb"' to 'undefined'`,
       );
     });
     test('field removed', async () => {

@@ -72,7 +72,10 @@ function wordLetterPairs(str: string) {
   return flattenDeep(pairs);
 }
 
-export function safeString(obj: any) {
+export function safeString(obj: unknown) {
+  if (typeof obj === 'string') {
+    return JSON.stringify(obj);
+  }
   return inspect(obj)
     .replace(/\[Object: null prototype\] /g, '')
     .replace(/(^')|('$)/g, '');

@@ -285,9 +285,9 @@ test('huge test', async () => {
     `Description 'The Query Root of this schema' on type 'Query' has changed to 'Query Root description changed'`,
     `'BType' kind changed from 'ObjectTypeDefinition' to 'InputObjectTypeDefinition'`,
     `Input field 'b' was removed from input object type 'AInput'`,
-    `Input field 'c' was added to input object type 'AInput'`,
+    `Input field 'c' of type 'String!' was added to input object type 'AInput'`,
     `Input field 'AInput.a' description changed from 'a' to 'changed'`,
-    `Input field 'AInput.a' default value changed from '1' to '1'`,
+    `Input field 'AInput.a' default value changed from '"1"' to '1'`,
     `Input field 'ListInput.a' default value changed from '[ 'foo' ]' to '[ 'bar' ]'`,
     `Input field 'AInput.a' changed type from 'String' to 'Int'`,
     `'CType' object implements 'AnInterface' interface`,
@@ -318,7 +318,7 @@ test('huge test', async () => {
     `Argument 'willBeRemoved' was removed from directive 'yolo'`,
     `Description for argument 'someArg' on directive 'yolo' changed from 'Included when true.' to 'someArg does stuff'`,
     `Type for argument 'someArg' on directive 'yolo' changed from 'Boolean!' to 'String!'`,
-    `Default value 'Test' was added to argument 'anotherArg' on directive 'yolo'`,
+    `Default value '"Test"' was added to argument 'anotherArg' on directive 'yolo'`,
   ].forEach(msg => {
     try {
       expect(changes.some(c => c.message === msg)).toEqual(true);
