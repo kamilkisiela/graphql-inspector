@@ -66,7 +66,6 @@
     "test": "vitest ."
   },
   "peerDependencies": {
-    "@babel/core": "7.21.4",
     "graphql": "^14.0.0 || ^15.0.0 || ^16.0.0"
   },
   "dependencies": {
@@ -89,6 +88,9 @@
     "@graphql-inspector/validate-command": "workspace:*",
     "tslib": "2.5.0",
     "yargs": "17.7.1"
+  },
+  "devDependencies": {
+    "@babel/core": "7.21.4"
   },
   "publishConfig": {
     "directory": "dist",

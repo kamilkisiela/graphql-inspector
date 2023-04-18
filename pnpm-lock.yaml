@@ -272,6 +272,10 @@ importers:
       yargs:
         specifier: 17.7.1
         version: 17.7.1
+    devDependencies:
+      '@babel/core':
+        specifier: 7.21.4
+        version: 7.21.4
     publishDirectory: dist
 
   packages/commands/audit:
