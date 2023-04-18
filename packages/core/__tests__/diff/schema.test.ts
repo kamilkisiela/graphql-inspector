@@ -319,7 +319,7 @@ test('huge test', async () => {
     `Description for argument 'someArg' on directive 'yolo' changed from 'Included when true.' to 'someArg does stuff'`,
     `Type for argument 'someArg' on directive 'yolo' changed from 'Boolean!' to 'String!'`,
     `Default value '"Test"' was added to argument 'anotherArg' on directive 'yolo'`,
-  ].forEach(msg => {
+  ]) {
     try {
       expect(changes.some(c => c.message === msg)).toEqual(true);
     } catch (e) {
