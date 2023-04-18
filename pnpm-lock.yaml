@@ -215,6 +215,9 @@ importers:
 
   packages/cli:
     dependencies:
+      '@babel/core':
+        specifier: 7.21.4
+        version: 7.21.4
       '@graphql-inspector/audit-command':
         specifier: workspace:*
         version: link:../commands/audit
@@ -272,10 +275,6 @@ importers:
       yargs:
         specifier: 17.7.1
         version: 17.7.1
-    devDependencies:
-      '@babel/core':
-        specifier: 7.21.4
-        version: 7.21.4
     publishDirectory: dist
 
   packages/commands/audit:
