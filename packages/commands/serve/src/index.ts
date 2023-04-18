@@ -1,3 +1,5 @@
+import { createServer } from 'http';
+import { createYoga } from 'graphql-yoga';
 import open from 'open';
 import {
   CommandFactory,
@@ -6,7 +8,6 @@ import {
   parseGlobalArgs,
 } from '@graphql-inspector/commands';
 import { Logger } from '@graphql-inspector/logger';
-import { createServer } from '@graphql-yoga/node';
 import { fake } from './fake.js';
 
 export { CommandFactory };
@@ -61,21 +62,23 @@ export default createCommand<
       try {
         fake(schema);
 
-        const server = createServer({
+        const yoga = createYoga({
           schema,
-          port,
-          cors: true,
           logging: false,
         });
 
-        await server.start();
-        const url = `http://localhost:${port}`;
+        const server = createServer(yoga);
+
+        await new Promise<void>(resolve => server.listen(port, () => resolve()));
+
+        const url = `http://localhost:${port}/graphql`;
         Logger.success(`GraphQL API:    ${url}`);
         await open(url);
 
         const shutdown = () => {
-          server.stop();
-          process.exit(0);
+          server.close(() => {
+            process.exit(0);
+          });
         };
 
         process.on('SIGINT', shutdown);
