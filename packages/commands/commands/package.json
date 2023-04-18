@@ -61,7 +61,7 @@
     "@graphql-inspector/config": "3.4.4",
     "@graphql-inspector/loaders": "3.4.5",
     "graphql": "^14.0.0 || ^15.0.0 || ^16.0.0",
-    "yargs": "17.2.1"
+    "yargs": "17.7.1"
   },
   "dependencies": {
     "tslib": "2.5.0"
