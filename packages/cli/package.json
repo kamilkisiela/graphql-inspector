@@ -66,8 +66,8 @@
     "test": "vitest ."
   },
   "peerDependencies": {
-    "graphql": "^14.0.0 || ^15.0.0 || ^16.0.0",
-    "@babel/core": "7.21.4"
+    "@babel/core": "7.21.4",
+    "graphql": "^14.0.0 || ^15.0.0 || ^16.0.0"
   },
   "dependencies": {
     "@graphql-inspector/audit-command": "workspace:*",
