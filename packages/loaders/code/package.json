@@ -65,6 +65,7 @@
     "tslib": "2.5.0"
   },
   "devDependencies": {
+    "@babel/core": "7.21.4",
     "graphql": "16.6.0"
   },
   "publishConfig": {
