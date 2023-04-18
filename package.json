@@ -34,11 +34,11 @@
     "test": "vitest ."
   },
   "dependencies": {
-    "@sentry/node": "7.47.0",
-    "@sentry/tracing": "7.47.0",
-    "@whatwg-node/fetch": "0.8.4",
+    "@sentry/node": "7.48.0",
+    "@sentry/tracing": "7.48.0",
+    "@whatwg-node/fetch": "0.8.5",
     "husky": "8.0.3",
-    "immer": "9.0.21",
+    "immer": "10.0.1",
     "js-yaml": "4.1.0",
     "probot": "12.3.0",
     "shelljs": "0.8.5",
