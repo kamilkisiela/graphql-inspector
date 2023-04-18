@@ -1,7 +1,7 @@
 {
   "name": "example",
   "scripts": {
-    "ci": "node ../packages/ci/dist/index.cjs.js",
+    "ci": "node ../packages/ci/dist/cjs/index.js",
     "coverage": "pnpm graphql-inspector coverage './documents/*.graphql' ./schemas/schema.graphql",
     "coverage:write": "pnpm graphql-inspector coverage './documents/*.graphql' ./schemas/schema.graphql --silent --write ./coverage.json",
     "diff": "pnpm graphql-inspector diff ./schemas/schema.graphql ./schemas/new.graphql",
