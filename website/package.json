@@ -14,7 +14,7 @@
   "dependencies": {
     "@graphql-inspector/core": "workspace:*",
     "@graphql-inspector/github": "workspace:*",
-    "@monaco-editor/react": "4.4.6",
+    "@monaco-editor/react": "4.5.0",
     "@theguild/algolia": "1.1.4",
     "@theguild/components": "4.5.6",
     "@whatwg-node/fetch": "0.8.1",
