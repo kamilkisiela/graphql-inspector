@@ -61,6 +61,8 @@ export interface SchemaCoverage {
     numTypesCovered: number;
     numFields: number;
     numFiledsCovered: number;
+    numArgs: number;
+    numArgsCovered: number;
   };
 }
 
@@ -79,6 +81,8 @@ export function coverage(schema: GraphQLSchema, sources: Source[]): SchemaCovera
       numTypesCovered: 0,
       numFields: 0,
       numFiledsCovered: 0,
+      numArgs: 0,
+      numArgsCovered: 0,
     },
   };
   const typeMap = schema.getTypeMap();
@@ -118,6 +122,25 @@ export function coverage(schema: GraphQLSchema, sources: Source[]): SchemaCovera
                 argNode.loc!,
                 ...(argCoverage.locations[sourceName] || []),
               ];
+            }
+          }
+        }
+
+        if (node.arguments) {
+          for (const argNode of node.arguments) {
+            const argCoverage = fieldCoverage.children[argNode.name.value];
+
+            argCoverage.hits++;
+
+            if (argNode.loc) {
+              argCoverage.locations[sourceName] = [
+                argNode.loc!,
+                ...(argCoverage.locations[sourceName] || []),
+              ];
+            }
+
+            if (argCoverage.hits > 0) {
+              coverage.stats.numArgsCovered++;
             }
           }
         }
@@ -188,6 +211,8 @@ export function coverage(schema: GraphQLSchema, sources: Source[]): SchemaCovera
     coverage.stats.numFiledsCovered += me.fieldsCountCovered;
   }
 
+  coverage.stats.numArgs = coverage.stats.numArgs;
+  coverage.stats.numArgsCovered = coverage.stats.numArgsCovered;
   return coverage;
 }
 

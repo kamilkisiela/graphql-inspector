@@ -184,6 +184,13 @@ function renderCoverage(coverage: SchemaCoverage) {
         : 'N/A'
     }%`,
   );
+  Logger.log(
+    `Number of arguments per field: ${
+      coverage.stats.numArgs > 0
+        ? ((coverage.stats.numArgsCovered / coverage.stats.numArgs) * 100).toFixed(1)
+        : 'N/A'
+    }%`,
+  );
   Logger.log(``);
 }
 
