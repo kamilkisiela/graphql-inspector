@@ -30,11 +30,10 @@
     "@types/node": "18.15.11",
     "@types/react": "18.0.37",
     "cross-env": "7.0.3",
-    "monaco-editor": "0.37.1",
     "next-sitemap": "4.0.7",
     "prop-types": "15.8.1",
     "typescript": "5.0.4",
-    "webpack": "^4.0.0"
+    "webpack": "5.79.0"
   },
   "browserslist": {
     "production": [
