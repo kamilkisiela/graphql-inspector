@@ -16,6 +16,13 @@ export type CalculateOperationComplexityConfig = {
   depthCostFactor: number;
 };
 
+export type ValidateOperationComplexityConfig = {
+  maxComplexityScore: number;
+  complexityScalarCost: number;
+  complexityObjectCost: number;
+  complexityDepthCostFactor: number;
+};
+
 export function validateComplexity({
   source,
   doc,
