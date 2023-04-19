@@ -185,11 +185,25 @@ function renderCoverage(coverage: SchemaCoverage) {
     }%`,
   );
   Logger.log(
-    `Number of arguments per field: ${
-      coverage.stats.numArgs > 0
-        ? ((coverage.stats.numArgsCovered / coverage.stats.numArgs) * 100).toFixed(1)
-        : 'N/A'
-    }%`,
+    `Total Queries: ${
+      coverage.stats.numQueries > 0
+        ? (coverage.stats.numQueries)
+        : '0'
+    }`
+  );
+  Logger.log(
+    `Total Mutations: ${
+      coverage.stats.numMutations > 0
+        ? (coverage.stats.numMutations)
+        : '0'
+    }`
+  );
+  Logger.log(
+    `Total Subscriptions: ${
+      coverage.stats.numSubscriptions > 0
+        ? (coverage.stats.numSubscriptions)
+        : '0'
+    }`
   );
   Logger.log(``);
 }

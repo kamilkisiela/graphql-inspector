@@ -61,8 +61,9 @@ export interface SchemaCoverage {
     numTypesCovered: number;
     numFields: number;
     numFiledsCovered: number;
-    numArgs: number;
-    numArgsCovered: number;
+    numQueries: number;
+    numMutations: number;
+    numSubscriptions: number;
   };
 }
 
@@ -81,8 +82,9 @@ export function coverage(schema: GraphQLSchema, sources: Source[]): SchemaCovera
       numTypesCovered: 0,
       numFields: 0,
       numFiledsCovered: 0,
-      numArgs: 0,
-      numArgsCovered: 0,
+      numQueries: 0,
+      numMutations: 0,
+      numSubscriptions: 0
     },
   };
   const typeMap = schema.getTypeMap();
@@ -125,25 +127,6 @@ export function coverage(schema: GraphQLSchema, sources: Source[]): SchemaCovera
             }
           }
         }
-
-        if (node.arguments) {
-          for (const argNode of node.arguments) {
-            const argCoverage = fieldCoverage.children[argNode.name.value];
-
-            argCoverage.hits++;
-
-            if (argNode.loc) {
-              argCoverage.locations[sourceName] = [
-                argNode.loc!,
-                ...(argCoverage.locations[sourceName] || []),
-              ];
-            }
-
-            if (argCoverage.hits > 0) {
-              coverage.stats.numArgsCovered++;
-            }
-          }
-        }
       }
     },
   });
@@ -160,6 +143,21 @@ export function coverage(schema: GraphQLSchema, sources: Source[]): SchemaCovera
           type,
           children: {},
         };
+
+        if (isObjectType(type) || isInterfaceType(type)) {
+          switch (type.name) {
+            case 'Query':
+              coverage.stats.numQueries++;
+              break;
+            case 'Mutation':
+              coverage.stats.numMutations++;
+              break;
+            case 'Subscription':
+              coverage.stats.numSubscriptions++;
+              break;
+          }
+        }
+        
         const fieldMap = type.getFields();
 
         for (const fieldname in fieldMap) {
@@ -210,9 +208,6 @@ export function coverage(schema: GraphQLSchema, sources: Source[]): SchemaCovera
     coverage.stats.numFields += me.fieldsCount;
     coverage.stats.numFiledsCovered += me.fieldsCountCovered;
   }
-
-  coverage.stats.numArgs = coverage.stats.numArgs;
-  coverage.stats.numArgsCovered = coverage.stats.numArgsCovered;
   return coverage;
 }
 
