@@ -519,7 +519,7 @@ describe('validate', () => {
           complexityObjectCost: 2,
           complexityDepthCostFactor: 1.5,
         },
-      }
+      },
     );
 
     expect(results.length).toEqual(0);
@@ -579,7 +579,7 @@ describe('validate', () => {
           complexityObjectCost: 2,
           complexityDepthCostFactor: 1.5,
         },
-      }
+      },
     );
 
     expect(results.length).toEqual(1);
@@ -644,7 +644,7 @@ describe('validate', () => {
           complexityObjectCost: 2,
           complexityDepthCostFactor: 1.5,
         },
-      }
+      },
     );
 
     expect(results.length).toEqual(1);

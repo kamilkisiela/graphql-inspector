@@ -45,10 +45,12 @@ graphql-inspector validate './documents/*.graphql' http://localhost:3000/graphql
   fragments) exceeds maximum directive count (default: `false`)
 - `--maxTokenCount <n>` - Fail when token count (including the referenced fragments) exceeds maximum
   token count (default: `false`)
-- `--maxComplexityScore <n>` - Fails when complexity score exceeds maximum complexity score (default: `false`)
+- `--maxComplexityScore <n>` - Fails when complexity score exceeds maximum complexity score
+  (default: `false`)
 - `--complexityScalarCost <n>` - Scarlar cost config to use with maxComplexityScore (default: `1`)
 - `--complexityObjectCost <n>` - Object cost config to use with maxComplexityScore (default: `2`)
-- `--complexityDepthCostFactor <n>` - Depth cost factor config to use with maxComplexityScore (default: `1.5`)
+- `--complexityDepthCostFactor <n>` - Depth cost factor config to use with maxComplexityScore
+  (default: `1.5`)
 - `--filter <s>` - show warnings and errors only for a file (or a list of files)
 - `--silent` - silent mode
 - `--output <s>` - writes errors to a file
