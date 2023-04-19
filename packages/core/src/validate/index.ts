@@ -146,36 +146,23 @@ export function validate(schema: GraphQLSchema, sources: Source[], options?: Val
       if (depthError) {
         errors.push(depthError);
       }
+    }
 
-      if (config.validateComplexityConfig) {
-        const complexityScoreError = validateComplexity({
-          source: doc.source,
-          doc: transformedDoc,
-          maxComplexityScore: config.validateComplexityConfig.maxComplexityScore,
-          config: {
-            scalarCost: config.validateComplexityConfig.complexityScalarCost,
-            objectCost: config.validateComplexityConfig.complexityObjectCost,
-            depthCostFactor: config.validateComplexityConfig.complexityDepthCostFactor,
-          },
-          fragmentGraph: graph,
-        });
+    if (config.validateComplexityConfig) {
+      const complexityScoreError = validateComplexity({
+        source: doc.source,
+        doc: transformedDoc,
+        maxComplexityScore: config.validateComplexityConfig.maxComplexityScore,
+        config: {
+          scalarCost: config.validateComplexityConfig.complexityScalarCost,
+          objectCost: config.validateComplexityConfig.complexityObjectCost,
+          depthCostFactor: config.validateComplexityConfig.complexityDepthCostFactor,
+        },
+        fragmentGraph: graph,
+      });
 
-        if (complexityScoreError) {
-          errors.push(complexityScoreError);
-        }
-      }
-
-      if (config.maxAliasCount) {
-        const aliasError = validateAliasCount({
-          source: doc.source,
-          doc: transformedDoc,
-          maxAliasCount: config.maxAliasCount,
-          fragmentGraph: graph,
-        });
-
-        if (aliasError) {
-          errors.push(aliasError);
-        }
+      if (complexityScoreError) {
+        errors.push(complexityScoreError);
       }
     }
 
