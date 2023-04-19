@@ -1,5 +1,13 @@
 # @graphql-inspector/core
 
+## 4.2.0
+
+### Minor Changes
+
+- [#2210](https://github.com/kamilkisiela/graphql-inspector/pull/2210)
+  [`1180f761`](https://github.com/kamilkisiela/graphql-inspector/commit/1180f7614f2cf8c68410be07e1a7615c8bb83625)
+  Thanks [@taitruong007](https://github.com/taitruong007)! - Support validate by complexity score
+
 ## 4.1.1
 
 ### Patch Changes
@@ -43,20 +51,20 @@
 
   ```ts
   export type FieldDescriptionChangedChange = {
-    type: ChangeType.FieldDescriptionChanged
+    type: ChangeType.FieldDescriptionChanged;
     meta: {
-      typeName: string
-      fieldName: string
-      oldDescription: string
-      newDescription: string
-    }
-  }
+      typeName: string;
+      fieldName: string;
+      oldDescription: string;
+      newDescription: string;
+    };
+  };
   ```
 
   You can construct the full `Change` object from the `type` and `meta` properties.
 
   ```ts
-  import { ChangeType, fieldDescriptionChangedFromMeta } from '@graphql-inspector/core'
+  import { ChangeType, fieldDescriptionChangedFromMeta } from '@graphql-inspector/core';
 
   console.log(
     fieldDescriptionChangedFromMeta({
@@ -65,10 +73,10 @@
         typeName: 'Foo',
         fieldName: 'bar',
         oldDescription: 'This is the old description',
-        newDescription: 'This is the new description'
-      }
-    })
-  )
+        newDescription: 'This is the new description',
+      },
+    }),
+  );
   ```
 
   console.log output:
