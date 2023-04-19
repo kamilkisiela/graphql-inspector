@@ -165,24 +165,6 @@ export function validate(schema: GraphQLSchema, sources: Source[], options?: Val
         }
       }
 
-      if (config.validateComplexityConfig) {
-        const complexityScoreError = validateComplexity({
-          source: doc.source,
-          doc: transformedDoc,
-          maxComplexityScore: config.validateComplexityConfig.maxComplexityScore,
-          config: {
-            scalarCost: config.validateComplexityConfig.complexityScalarCost,
-            objectCost: config.validateComplexityConfig.complexityObjectCost,
-            depthCostFactor: config.validateComplexityConfig.complexityDepthCostFactor,
-          },
-          fragmentGraph: graph,
-        });
-
-        if (complexityScoreError) {
-          errors.push(complexityScoreError);
-        }
-      }
-
       if (config.maxAliasCount) {
         const aliasError = validateAliasCount({
           source: doc.source,
