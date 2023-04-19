@@ -9,7 +9,8 @@
     "dev": "next dev",
     "export": "next export",
     "next": "next",
-    "start": "next start"
+    "start": "next start",
+    "theguild-nextra-algolia": "theguild-nextra-algolia"
   },
   "dependencies": {
     "@graphql-inspector/core": "workspace:*",
