@@ -1,6 +1,6 @@
 {
   "name": "@graphql-inspector/url-loader",
-  "version": "3.4.3",
+  "version": "3.4.4",
   "type": "module",
   "description": "Load GraphQL Schema from GraphQL endpoint (introspection)",
   "repository": {

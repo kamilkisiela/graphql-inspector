@@ -1,5 +1,34 @@
 # @graphql-inspector/commands
 
+## 3.4.6
+
+### Patch Changes
+
+- [#2435](https://github.com/kamilkisiela/graphql-inspector/pull/2435)
+  [`09214509`](https://github.com/kamilkisiela/graphql-inspector/commit/09214509bf938cfc9472288d08cea92cad116857)
+  Thanks [@TuvalSimha](https://github.com/TuvalSimha)! - dependencies updates:
+
+  - Updated dependency [`tslib@2.5.0` ↗︎](https://www.npmjs.com/package/tslib/v/2.5.0) (from
+    `^2.0.0`, in `dependencies`)
+
+- [#2453](https://github.com/kamilkisiela/graphql-inspector/pull/2453)
+  [`2b348909`](https://github.com/kamilkisiela/graphql-inspector/commit/2b348909abfe41a2fc45555d37c7e6f3d94e94b7)
+  Thanks [@TuvalSimha](https://github.com/TuvalSimha)! - dependencies updates:
+
+  - Updated dependency [`yargs@17.7.1` ↗︎](https://www.npmjs.com/package/yargs/v/17.7.1) (from
+    `17.2.1`, in `peerDependencies`)
+
+- [#2435](https://github.com/kamilkisiela/graphql-inspector/pull/2435)
+  [`09214509`](https://github.com/kamilkisiela/graphql-inspector/commit/09214509bf938cfc9472288d08cea92cad116857)
+  Thanks [@TuvalSimha](https://github.com/TuvalSimha)! - Update dependencies
+
+- Updated dependencies
+  [[`09214509`](https://github.com/kamilkisiela/graphql-inspector/commit/09214509bf938cfc9472288d08cea92cad116857),
+  [`09214509`](https://github.com/kamilkisiela/graphql-inspector/commit/09214509bf938cfc9472288d08cea92cad116857),
+  [`09214509`](https://github.com/kamilkisiela/graphql-inspector/commit/09214509bf938cfc9472288d08cea92cad116857)]:
+  - @graphql-inspector/config@3.4.5
+  - @graphql-inspector/loaders@3.4.6
+
 ## 3.4.5
 
 ### Patch Changes

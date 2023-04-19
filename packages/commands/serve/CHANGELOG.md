@@ -1,5 +1,51 @@
 # @graphql-inspector/serve-command
 
+## 3.4.7
+
+### Patch Changes
+
+- [#2435](https://github.com/kamilkisiela/graphql-inspector/pull/2435)
+  [`09214509`](https://github.com/kamilkisiela/graphql-inspector/commit/09214509bf938cfc9472288d08cea92cad116857)
+  Thanks [@TuvalSimha](https://github.com/TuvalSimha)! - dependencies updates:
+
+  - Updated dependency [`graphql-yoga@3.9.0` ↗︎](https://www.npmjs.com/package/graphql-yoga/v/3.9.0)
+    (from `^3.9.0`, in `dependencies`)
+  - Updated dependency [`tslib@2.5.0` ↗︎](https://www.npmjs.com/package/tslib/v/2.5.0) (from
+    `^2.0.0`, in `dependencies`)
+
+- [#2448](https://github.com/kamilkisiela/graphql-inspector/pull/2448)
+  [`89db2b41`](https://github.com/kamilkisiela/graphql-inspector/commit/89db2b413cbe6f7e268342cef281a86b52dff506)
+  Thanks [@ardatan](https://github.com/ardatan)! - dependencies updates:
+
+  - Added dependency [`graphql-yoga@^3.9.0` ↗︎](https://www.npmjs.com/package/graphql-yoga/v/3.9.0)
+    (to `dependencies`)
+  - Removed dependency
+    [`@graphql-yoga/node@2.0.0` ↗︎](https://www.npmjs.com/package/@graphql-yoga/node/v/2.0.0) (from
+    `dependencies`)
+
+- [#2453](https://github.com/kamilkisiela/graphql-inspector/pull/2453)
+  [`2b348909`](https://github.com/kamilkisiela/graphql-inspector/commit/2b348909abfe41a2fc45555d37c7e6f3d94e94b7)
+  Thanks [@TuvalSimha](https://github.com/TuvalSimha)! - dependencies updates:
+
+  - Updated dependency [`graphql-yoga@3.9.1` ↗︎](https://www.npmjs.com/package/graphql-yoga/v/3.9.1)
+    (from `3.9.0`, in `dependencies`)
+
+- [#2448](https://github.com/kamilkisiela/graphql-inspector/pull/2448)
+  [`89db2b41`](https://github.com/kamilkisiela/graphql-inspector/commit/89db2b413cbe6f7e268342cef281a86b52dff506)
+  Thanks [@ardatan](https://github.com/ardatan)! - Update GraphQL Yoga to v3
+
+- [#2435](https://github.com/kamilkisiela/graphql-inspector/pull/2435)
+  [`09214509`](https://github.com/kamilkisiela/graphql-inspector/commit/09214509bf938cfc9472288d08cea92cad116857)
+  Thanks [@TuvalSimha](https://github.com/TuvalSimha)! - Update dependencies
+
+- Updated dependencies
+  [[`09214509`](https://github.com/kamilkisiela/graphql-inspector/commit/09214509bf938cfc9472288d08cea92cad116857),
+  [`2b348909`](https://github.com/kamilkisiela/graphql-inspector/commit/2b348909abfe41a2fc45555d37c7e6f3d94e94b7),
+  [`09214509`](https://github.com/kamilkisiela/graphql-inspector/commit/09214509bf938cfc9472288d08cea92cad116857),
+  [`09214509`](https://github.com/kamilkisiela/graphql-inspector/commit/09214509bf938cfc9472288d08cea92cad116857)]:
+  - @graphql-inspector/commands@3.4.6
+  - @graphql-inspector/logger@3.4.5
+
 ## 3.4.6
 
 ### Patch Changes

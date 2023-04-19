@@ -1,5 +1,31 @@
 # @graphql-inspector/action
 
+## 3.4.13
+
+### Patch Changes
+
+- [#2435](https://github.com/kamilkisiela/graphql-inspector/pull/2435)
+  [`09214509`](https://github.com/kamilkisiela/graphql-inspector/commit/09214509bf938cfc9472288d08cea92cad116857)
+  Thanks [@TuvalSimha](https://github.com/TuvalSimha)! - dependencies updates:
+
+  - Updated dependency [`probot@12.3.0` ↗︎](https://www.npmjs.com/package/probot/v/12.3.0) (from
+    `11.4.1`, in `dependencies`)
+
+- [#2435](https://github.com/kamilkisiela/graphql-inspector/pull/2435)
+  [`09214509`](https://github.com/kamilkisiela/graphql-inspector/commit/09214509bf938cfc9472288d08cea92cad116857)
+  Thanks [@TuvalSimha](https://github.com/TuvalSimha)! - Update dependencies
+
+- Updated dependencies
+  [[`09214509`](https://github.com/kamilkisiela/graphql-inspector/commit/09214509bf938cfc9472288d08cea92cad116857),
+  [`2b348909`](https://github.com/kamilkisiela/graphql-inspector/commit/2b348909abfe41a2fc45555d37c7e6f3d94e94b7),
+  [`09214509`](https://github.com/kamilkisiela/graphql-inspector/commit/09214509bf938cfc9472288d08cea92cad116857),
+  [`09214509`](https://github.com/kamilkisiela/graphql-inspector/commit/09214509bf938cfc9472288d08cea92cad116857),
+  [`2b348909`](https://github.com/kamilkisiela/graphql-inspector/commit/2b348909abfe41a2fc45555d37c7e6f3d94e94b7),
+  [`09214509`](https://github.com/kamilkisiela/graphql-inspector/commit/09214509bf938cfc9472288d08cea92cad116857)]:
+  - @graphql-inspector/commands@3.4.6
+  - @graphql-inspector/core@4.1.1
+  - @graphql-inspector/github@3.4.11
+
 ## 3.4.12
 
 ### Patch Changes

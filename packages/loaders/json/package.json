@@ -1,6 +1,6 @@
 {
   "name": "@graphql-inspector/json-loader",
-  "version": "3.4.3",
+  "version": "3.4.4",
   "type": "module",
   "description": "Load GraphQL Schema from JSON files (introspection result)",
   "repository": {
