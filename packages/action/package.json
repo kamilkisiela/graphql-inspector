@@ -1,6 +1,6 @@
 {
   "name": "@graphql-inspector/action",
-  "version": "3.4.12",
+  "version": "3.4.13",
   "type": "module",
   "description": "GraphQL Inspector functionality for GitHub Actions",
   "repository": {

@@ -1,9 +1,0 @@
----
-'@graphql-inspector/github-loader': patch
----
-dependencies updates:
-  - Updated dependency [`@graphql-tools/github-loader@7.3.28`
-    ↗︎](https://www.npmjs.com/package/@graphql-tools/github-loader/v/7.3.28) (from `^7.1.1`, in
-    `dependencies`)
-  - Updated dependency [`tslib@2.5.0` ↗︎](https://www.npmjs.com/package/tslib/v/2.5.0) (from
-    `^2.0.0`, in `dependencies`)

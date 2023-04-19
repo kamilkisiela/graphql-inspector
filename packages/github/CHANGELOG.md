@@ -1,5 +1,36 @@
 # @graphql-inspector/github
 
+## 3.4.11
+
+### Patch Changes
+
+- [#2435](https://github.com/kamilkisiela/graphql-inspector/pull/2435)
+  [`09214509`](https://github.com/kamilkisiela/graphql-inspector/commit/09214509bf938cfc9472288d08cea92cad116857)
+  Thanks [@TuvalSimha](https://github.com/TuvalSimha)! - dependencies updates:
+
+  - Updated dependency
+    [`@whatwg-node/fetch@0.8.4` ↗︎](https://www.npmjs.com/package/@whatwg-node/fetch/v/0.8.4) (from
+    `0.8.1`, in `dependencies`)
+  - Updated dependency [`tslib@2.5.0` ↗︎](https://www.npmjs.com/package/tslib/v/2.5.0) (from
+    `^2.0.0`, in `dependencies`)
+
+- [#2453](https://github.com/kamilkisiela/graphql-inspector/pull/2453)
+  [`2b348909`](https://github.com/kamilkisiela/graphql-inspector/commit/2b348909abfe41a2fc45555d37c7e6f3d94e94b7)
+  Thanks [@TuvalSimha](https://github.com/TuvalSimha)! - dependencies updates:
+
+  - Updated dependency
+    [`@whatwg-node/fetch@0.8.5` ↗︎](https://www.npmjs.com/package/@whatwg-node/fetch/v/0.8.5) (from
+    `0.8.4`, in `dependencies`)
+
+- [#2435](https://github.com/kamilkisiela/graphql-inspector/pull/2435)
+  [`09214509`](https://github.com/kamilkisiela/graphql-inspector/commit/09214509bf938cfc9472288d08cea92cad116857)
+  Thanks [@TuvalSimha](https://github.com/TuvalSimha)! - Update dependencies
+
+- Updated dependencies
+  [[`09214509`](https://github.com/kamilkisiela/graphql-inspector/commit/09214509bf938cfc9472288d08cea92cad116857),
+  [`09214509`](https://github.com/kamilkisiela/graphql-inspector/commit/09214509bf938cfc9472288d08cea92cad116857)]:
+  - @graphql-inspector/core@4.1.1
+
 ## 3.4.10
 
 ### Patch Changes

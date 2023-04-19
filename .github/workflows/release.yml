@@ -15,13 +15,12 @@ jobs:
       githubToken: ${{ secrets.GITHUB_TOKEN }}
       npmToken: ${{ secrets.NPM_TOKEN }}
 
-  algolia:
+  algolia-publish:
     uses: the-guild-org/shared-config/.github/workflows/algolia-publish.yml@main
     secrets:
       githubToken: ${{ secrets.GUILD_BOT_TOKEN }}
       algoliaAdminApiKey: ${{ secrets.ALGOLIA_ADMIN_API_KEY }}
     with:
+      packageManager: pnpm
       domain: https://www.the-guild.dev/graphql/inspector/
       source: 'Inspector'
-      nodeVersion: 16
-      packageManager: pnpm
