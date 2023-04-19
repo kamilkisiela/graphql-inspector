@@ -1,4 +1,5 @@
 {
+  "name": "graphql-inspector-mono-repository",
   "description": "Tooling for GraphQL. Compare GraphQL Schemas, check documents, find breaking changes, find similar types.",
   "repository": {
     "type": "git",
