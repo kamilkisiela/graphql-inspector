@@ -1,5 +1,14 @@
 # @graphql-inspector/action
 
+## 3.4.14
+
+### Patch Changes
+
+- Updated dependencies
+  [[`1180f761`](https://github.com/kamilkisiela/graphql-inspector/commit/1180f7614f2cf8c68410be07e1a7615c8bb83625)]:
+  - @graphql-inspector/core@4.2.0
+  - @graphql-inspector/github@3.4.12
+
 ## 3.4.13
 
 ### Patch Changes
