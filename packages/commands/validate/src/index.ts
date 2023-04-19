@@ -257,7 +257,7 @@ export default createCommand<
             type: 'number',
           },
           complexityScalarCost: {
-            describe: 'Scarlar cost config to use with maxComplexityScore',
+            describe: 'Scalar cost config to use with maxComplexityScore',
             type: 'number',
             default: 1,
           },
