@@ -117,12 +117,16 @@ describe('coverage', () => {
     expect(results.types.Mutation.children.submitPost.children.title.hits).toEqual(0);
     expect(results.types.Mutation.children.submitPost.children.author.hits).toEqual(0);
 
-    // stats
+    // Stats
     expect(results.stats.numTypes).toEqual(4);
     expect(results.stats.numTypesCovered).toEqual(0);
     expect(results.stats.numTypesCoveredFully).toEqual(0);
     expect(results.stats.numFields).toEqual(14);
     expect(results.stats.numFiledsCovered).toEqual(0);
+    expect(results.stats.numQueries).toEqual(1);
+    expect(results.stats.numSubscriptions).toEqual(0);
+    expect(results.stats.numUnions).toEqual(0);
+    expect(results.stats.numMutations).toEqual(1);
   });
 
   test('introspection', () => {

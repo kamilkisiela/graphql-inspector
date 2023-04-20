@@ -163,51 +163,46 @@ function renderCoverage(coverage: SchemaCoverage) {
     }
   }
 
-  Logger.log(
-    `Types covered: ${
+  const logStatsResult = [
+    { method: "Types covered", result: `${
       coverage.stats.numTypes > 0
         ? ((coverage.stats.numTypesCovered / coverage.stats.numTypes) * 100).toFixed(1)
         : 'N/A'
-    }%`,
-  );
-  Logger.log(
-    `Types covered fully: ${
+    }%`},
+    { method: "Types covered fully", result: `${
       coverage.stats.numTypes > 0
         ? ((coverage.stats.numTypesCoveredFully / coverage.stats.numTypes) * 100).toFixed(1)
         : 'N/A'
-    }%`,
-  );
-  Logger.log(
-    `Fields covered: ${
+    }%`},
+    { method: "Fields covered", result: `${
       coverage.stats.numFields > 0
         ? ((coverage.stats.numFiledsCovered / coverage.stats.numFields) * 100).toFixed(1)
         : 'N/A'
-    }%`,
-  );
-  Logger.log(
-    `Total Queries: ${
+    }%`},
+    { method: "Total Queries", result: `${
       coverage.stats.numQueries > 0
         ? (coverage.stats.numQueries)
         : '0'
-    }`
-  );
-  Logger.log(
-    `Total Mutations: ${
+    }`},
+    { method: "Total Mutations", result: `${
       coverage.stats.numMutations > 0
         ? (coverage.stats.numMutations)
         : '0'
-    }`
-  );
-  Logger.log(
-    `Total Subscriptions: ${
+    }`},
+    { method: "Total Subscriptions", result: `${
       coverage.stats.numSubscriptions > 0
         ? (coverage.stats.numSubscriptions)
         : '0'
-    }`
-  );
+    }`},
+    { method: "Total Unions", result: `${
+      coverage.stats.numUnions > 0
+        ? (coverage.stats.numUnions)
+        : '0'
+    }`},
+  ];
+  Logger.table(logStatsResult)
   Logger.log(``);
 }
-
 function indent(line: string, space: number): string {
   return line.padStart(line.length + space, ' ');
 }

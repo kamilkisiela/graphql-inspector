@@ -64,6 +64,7 @@ export interface SchemaCoverage {
     numQueries: number;
     numMutations: number;
     numSubscriptions: number;
+    numUnions: number;
   };
 }
 
@@ -84,7 +85,8 @@ export function coverage(schema: GraphQLSchema, sources: Source[]): SchemaCovera
       numFiledsCovered: 0,
       numQueries: 0,
       numMutations: 0,
-      numSubscriptions: 0
+      numSubscriptions: 0,
+      numUnions: 0,
     },
   };
   const typeMap = schema.getTypeMap();
@@ -154,6 +156,9 @@ export function coverage(schema: GraphQLSchema, sources: Source[]): SchemaCovera
               break;
             case 'Subscription':
               coverage.stats.numSubscriptions++;
+              break;
+            case 'Union':
+              coverage.stats.numUnions++;
               break;
           }
         }
