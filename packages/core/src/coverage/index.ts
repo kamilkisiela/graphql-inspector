@@ -82,6 +82,7 @@ export function coverage(schema: GraphQLSchema, sources: Source[]): SchemaCovera
       numTypesCoveredFully: 0,
       numTypesCovered: 0,
       numFields: 0,
+      numFieldsCovered: 0,
       numFiledsCovered: 0,
       numQueries: 0,
       numMutations: 0,
