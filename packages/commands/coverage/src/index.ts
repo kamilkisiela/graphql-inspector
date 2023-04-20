@@ -164,35 +164,48 @@ function renderCoverage(coverage: SchemaCoverage) {
   }
 
   const logStatsResult = [
-    { method: "Types covered", result: `${
-      coverage.stats.numTypes > 0
-        ? ((coverage.stats.numTypesCovered / coverage.stats.numTypes) * 100).toFixed(1)
-        : 'N/A'
-    }%`},
-    { method: "Types covered fully", result: `${
-      coverage.stats.numTypes > 0
-        ? ((coverage.stats.numTypesCoveredFully / coverage.stats.numTypes) * 100).toFixed(1)
-        : 'N/A'
-    }%`},
-    { method: "Fields covered", result: `${
-      coverage.stats.numFields > 0
-        ? ((coverage.stats.numFiledsCovered / coverage.stats.numFields) * 100).toFixed(1)
-        : 'N/A'
-    }%`},
-    { method: "Total Queries", result: String(coverage.stats.numQueries > 0
-        ? (coverage.stats.numQueries)
-        : '0')},
-    { method: "Total Mutations", result: String(coverage.stats.numMutations > 0
-        ? (coverage.stats.numMutations)
-        : '0')},
-    { method: "Total Subscriptions", result: String(coverage.stats.numSubscriptions > 0
-        ? (coverage.stats.numSubscriptions)
-        : '0')},
-    { method: "Total Unions", result: String(coverage.stats.numUnions > 0
-        ? (coverage.stats.numUnions)
-        : '0')},
+    {
+      method: 'Types covered',
+      result: `${
+        coverage.stats.numTypes > 0
+          ? ((coverage.stats.numTypesCovered / coverage.stats.numTypes) * 100).toFixed(1)
+          : 'N/A'
+      }%`,
+    },
+    {
+      method: 'Types covered fully',
+      result: `${
+        coverage.stats.numTypes > 0
+          ? ((coverage.stats.numTypesCoveredFully / coverage.stats.numTypes) * 100).toFixed(1)
+          : 'N/A'
+      }%`,
+    },
+    {
+      method: 'Fields covered',
+      result: `${
+        coverage.stats.numFields > 0
+          ? ((coverage.stats.numFiledsCovered / coverage.stats.numFields) * 100).toFixed(1)
+          : 'N/A'
+      }%`,
+    },
+    {
+      method: 'Total Queries',
+      result: String(coverage.stats.numQueries > 0 ? coverage.stats.numQueries : '0'),
+    },
+    {
+      method: 'Total Mutations',
+      result: String(coverage.stats.numMutations > 0 ? coverage.stats.numMutations : '0'),
+    },
+    {
+      method: 'Total Subscriptions',
+      result: String(coverage.stats.numSubscriptions > 0 ? coverage.stats.numSubscriptions : '0'),
+    },
+    {
+      method: 'Total Unions',
+      result: String(coverage.stats.numUnions > 0 ? coverage.stats.numUnions : '0'),
+    },
   ];
-  Logger.table(logStatsResult)
+  Logger.table(logStatsResult);
   Logger.log(``);
 }
 function indent(line: string, space: number): string {

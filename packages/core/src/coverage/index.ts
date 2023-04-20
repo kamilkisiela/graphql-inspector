@@ -162,7 +162,7 @@ export function coverage(schema: GraphQLSchema, sources: Source[]): SchemaCovera
               break;
           }
         }
-        
+
         const fieldMap = type.getFields();
 
         for (const fieldname in fieldMap) {

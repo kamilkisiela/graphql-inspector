@@ -1,6 +1,6 @@
-import chalk from 'chalk';
 import { Console } from 'node:console';
 import { Transform } from 'node:stream';
+import chalk from 'chalk';
 import * as env from 'std-env';
 
 export { default as figures } from 'figures';
@@ -27,8 +27,6 @@ export interface Logger {
   warn(msg: string): void;
 }
 
-
-
 export const Logger = {
   success(msg: string) {
     emit('success', msg);
@@ -36,10 +34,12 @@ export const Logger = {
   log(msg: string) {
     emit('log', msg);
   },
-  table(input: {
-    method: string;
-    result: string;
-}[]) {
+  table(
+    input: {
+      method: string;
+      result: string;
+    }[],
+  ) {
     table(input);
   },
   info(msg: string) {
@@ -83,14 +83,20 @@ function emit(type: 'success' | 'info' | 'log' | 'error' | 'warn', msg: string) 
   }
 }
 
-function table(input: {
-  method: string;
-  result: string;
-}[]) {
-  const ts = new Transform({ transform(chunk, _enc, cb) { cb(null, chunk) } })
-  const logger = new Console({ stdout: ts })
-  logger.table(input)
-  const table = (ts.read() || '').toString()
+function table(
+  input: {
+    method: string;
+    result: string;
+  }[],
+) {
+  const ts = new Transform({
+    transform(chunk, _enc, cb) {
+      cb(null, chunk);
+    },
+  });
+  const logger = new Console({ stdout: ts });
+  logger.table(input);
+  const table = (ts.read() || '').toString();
   let result = '';
   for (const row of table.split(/[\r\n]+/)) {
     let r = row.replace(/[^┬]*┬/, '┌');
