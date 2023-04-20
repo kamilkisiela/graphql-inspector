@@ -64,7 +64,7 @@ export interface SchemaCoverage {
     numMutations: number;
     numSubscriptions: number;
     numFieldsCovered: number;
-    numFiledsCovered: number; // deprecate and remove in next major version
+    numFiledsCovered: number; // @deprecated will be removed in next major version
   };
 }
 
