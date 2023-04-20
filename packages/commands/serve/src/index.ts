@@ -42,17 +42,17 @@ export default createCommand<
     },
     async handler(args) {
       const { headers, token } = parseGlobalArgs(args);
-      console.log("args", args);
-      console.log("headers", headers);
-      console.log("token", token);
+      console.log('args', args);
+      console.log('headers', headers);
+      console.log('token', token);
 
       const apolloFederation = args.federation || false;
-      console.log("apolloFederation", apolloFederation);
+      console.log('apolloFederation', apolloFederation);
 
       const aws = args.aws || false;
-      console.log("aws", aws);
+      console.log('aws', aws);
       const method = args.method?.toUpperCase() || 'POST';
-      console.log("method", method);
+      console.log('method', method);
 
       const schema = await loaders.loadSchema(
         args.schema,
@@ -65,10 +65,8 @@ export default createCommand<
         aws,
       );
 
-
       const port = args.port;
-      console.log("port", port);
-
+      console.log('port', port);
 
       try {
         fake(schema);
@@ -77,20 +75,18 @@ export default createCommand<
           schema,
           logging: false,
         });
-        console.log("yoga", yoga);
-
+        console.log('yoga', yoga);
 
         const server = createServer(yoga);
-        console.log("server", server);
-
+        console.log('server', server);
 
         await new Promise<void>(resolve => server.listen(port, () => resolve()));
-        console.log("port", port);
+        console.log('port', port);
 
         const url = `http://localhost:${port}/graphql`;
-        console.log("url", url);
+        console.log('url', url);
         Logger.success(`GraphQL API:    ${url}`);
-        
+
         await open(url);
 
         const shutdown = () => {
