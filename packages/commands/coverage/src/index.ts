@@ -179,26 +179,18 @@ function renderCoverage(coverage: SchemaCoverage) {
         ? ((coverage.stats.numFiledsCovered / coverage.stats.numFields) * 100).toFixed(1)
         : 'N/A'
     }%`},
-    { method: "Total Queries", result: `${
-      coverage.stats.numQueries > 0
+    { method: "Total Queries", result: String(coverage.stats.numQueries > 0
         ? (coverage.stats.numQueries)
-        : '0'
-    }`},
-    { method: "Total Mutations", result: `${
-      coverage.stats.numMutations > 0
+        : '0')},
+    { method: "Total Mutations", result: String(coverage.stats.numMutations > 0
         ? (coverage.stats.numMutations)
-        : '0'
-    }`},
-    { method: "Total Subscriptions", result: `${
-      coverage.stats.numSubscriptions > 0
+        : '0')},
+    { method: "Total Subscriptions", result: String(coverage.stats.numSubscriptions > 0
         ? (coverage.stats.numSubscriptions)
-        : '0'
-    }`},
-    { method: "Total Unions", result: `${
-      coverage.stats.numUnions > 0
+        : '0')},
+    { method: "Total Unions", result: String(coverage.stats.numUnions > 0
         ? (coverage.stats.numUnions)
-        : '0'
-    }`},
+        : '0')},
   ];
   Logger.table(logStatsResult)
   Logger.log(``);
