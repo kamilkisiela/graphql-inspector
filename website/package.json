@@ -28,7 +28,7 @@
     "@algolia/client-search": "4.17.0",
     "@next/env": "13.3.0",
     "@theguild/tailwind-config": "0.2.1",
-    "@types/node": "18.15.11",
+    "@types/node": "18.15.13",
     "@types/react": "18.0.37",
     "cross-env": "7.0.3",
     "next-sitemap": "4.0.7",

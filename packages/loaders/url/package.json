@@ -65,7 +65,7 @@
     "tslib": "2.5.0"
   },
   "devDependencies": {
-    "@types/node": "18.15.11",
+    "@types/node": "18.15.13",
     "graphql": "16.6.0"
   },
   "publishConfig": {
