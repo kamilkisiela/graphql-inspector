@@ -29,7 +29,7 @@
     "@next/env": "13.3.0",
     "@theguild/tailwind-config": "0.2.1",
     "@types/node": "18.15.11",
-    "@types/react": "18.0.37",
+    "@types/react": "18.0.38",
     "cross-env": "7.0.3",
     "next-sitemap": "4.0.7",
     "prop-types": "15.8.1",
