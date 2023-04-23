@@ -1,5 +1,13 @@
 # @graphql-inspector/coverage-command
 
+## 4.0.8
+
+### Patch Changes
+
+- Updated dependencies
+  [[`53dae663`](https://github.com/kamilkisiela/graphql-inspector/commit/53dae6636ef99d35ba2d4606b5000580983c9230)]:
+  - @graphql-inspector/core@4.2.1
+
 ## 4.0.7
 
 ### Patch Changes
