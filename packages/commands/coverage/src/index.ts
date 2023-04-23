@@ -163,7 +163,7 @@ function renderCoverage(coverage: SchemaCoverage) {
     }
   }
 
-  const logStatsResult: {method: string, result: string}[] = [
+  const logStatsResult: { method: string; result: string }[] = [
     {
       method: 'Types covered',
       result: `${
