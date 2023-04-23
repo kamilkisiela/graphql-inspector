@@ -13,7 +13,7 @@ import { readDocument } from '../ast/document.js';
 import { transformDocumentWithApollo, transformSchemaWithApollo } from '../utils/apollo.js';
 import { findDeprecatedUsages } from '../utils/graphql.js';
 import { validateAliasCount } from './alias-count.js';
-import { validateComplexity, ValidateOperationComplexityConfig } from './complexity';
+import { validateComplexity, ValidateOperationComplexityConfig } from './complexity.js';
 import { validateDirectiveCount } from './directive-count.js';
 import { validateQueryDepth } from './query-depth.js';
 import { validateTokenCount } from './token-count.js';
