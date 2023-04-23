@@ -97,7 +97,7 @@ importers:
         version: 0.9.0(eslint@8.38.0)(typescript@5.0.4)
       '@theguild/prettier-config':
         specifier: 1.1.3
-        version: 1.1.3(prettier@2.8.7)
+        version: 1.1.3
       '@types/body-parser':
         specifier: 1.19.2
         version: 1.19.2
@@ -140,9 +140,6 @@ importers:
       nock:
         specifier: 13.3.0
         version: 13.3.0
-      prettier:
-        specifier: 2.8.7
-        version: 2.8.7
       rimraf:
         specifier: 5.0.0
         version: 5.0.0
@@ -3190,15 +3187,14 @@ packages:
       - typescript
     dev: true
 
-  /@theguild/prettier-config@1.1.3(prettier@2.8.7):
+  /@theguild/prettier-config@1.1.3:
     resolution: {integrity: sha512-7DVlTDzzmvdPOblqY03b6UkZ0igw71H0274ZCljvFf8Vi5Ibfnwzl2+73nIWTaGkO7tm2si8HusfN9JV3+v96w==}
     peerDependencies:
       prettier: ^2
     dependencies:
-      '@trivago/prettier-plugin-sort-imports': 4.1.1(prettier@2.8.7)
-      prettier: 2.8.7
-      prettier-plugin-pkg: 0.17.1(prettier@2.8.7)
-      prettier-plugin-sh: 0.12.8(prettier@2.8.7)
+      '@trivago/prettier-plugin-sort-imports': 4.1.1
+      prettier-plugin-pkg: 0.17.1
+      prettier-plugin-sh: 0.12.8
     transitivePeerDependencies:
       - '@vue/compiler-sfc'
       - supports-color
@@ -3216,7 +3212,7 @@ packages:
       - ts-node
     dev: true
 
-  /@trivago/prettier-plugin-sort-imports@4.1.1(prettier@2.8.7):
+  /@trivago/prettier-plugin-sort-imports@4.1.1:
     resolution: {integrity: sha512-dQ2r2uzNr1x6pJsuh/8x0IRA3CBUB+pWEW3J/7N98axqt7SQSm+2fy0FLNXvXGg77xEDC7KHxJlHfLYyi7PDcw==}
     peerDependencies:
       '@vue/compiler-sfc': 3.x
@@ -3231,7 +3227,6 @@ packages:
       '@babel/types': 7.17.0
       javascript-natural-sort: 0.7.1
       lodash: 4.17.21
-      prettier: 2.8.7
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -10151,23 +10146,20 @@ packages:
     engines: {node: '>=4'}
     dev: true
 
-  /prettier-plugin-pkg@0.17.1(prettier@2.8.7):
+  /prettier-plugin-pkg@0.17.1:
     resolution: {integrity: sha512-XPRRMQR5oseJXdfK8kQDj2LCV1UjmTuDlPbbJ8C2WLaATNhdvZLhQO0+NtWnRrQTP+erLR5cVxfcwyqF+3R8SA==}
     engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
     peerDependencies:
       prettier: ^2.0.0
-    dependencies:
-      prettier: 2.8.7
     dev: true
 
-  /prettier-plugin-sh@0.12.8(prettier@2.8.7):
+  /prettier-plugin-sh@0.12.8:
     resolution: {integrity: sha512-VOq8h2Gn5UzrCIKm4p/nAScXJbN09HdyFDknAcxt6Qu/tv/juu9bahxSrcnM9XWYA+Spz1F1ANJ4LhfwB7+Q1Q==}
     engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
     peerDependencies:
       prettier: ^2.0.0
     dependencies:
       mvdan-sh: 0.10.1
-      prettier: 2.8.7
       sh-syntax: 0.3.7
       synckit: 0.8.5
     dev: true

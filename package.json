@@ -81,7 +81,6 @@
     "lint-staged": "13.2.1",
     "lodash": "4.17.21",
     "nock": "13.3.0",
-    "prettier": "2.8.7",
     "rimraf": "5.0.0",
     "smee-client": "1.2.3",
     "strip-ansi": "7.0.1",
