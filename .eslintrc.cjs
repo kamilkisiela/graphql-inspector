@@ -24,6 +24,7 @@ module.exports = {
         'import/extensions': 'off',
         'no-console': 'off',
         'import/no-default-export': 'off',
+        'import/extensions': ['error', 'ignorePackages'],
       },
     },
     {
