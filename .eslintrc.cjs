@@ -21,9 +21,20 @@ module.exports = {
         'yml/no-empty-mapping-value': 'off',
         'no-undef': 'off',
         'unicorn/prefer-node-protocol': 'off',
-        'import/extensions': 'off',
         'no-console': 'off',
         'import/no-default-export': 'off',
+      },
+    },
+    {
+      files: [
+        '**/__tests__/**',
+        '**/*.spec.ts',
+        '**/*.test.ts',
+        'e2e/**',
+        '**/__integration-tests__/**',
+      ],
+      rules: {
+        'import/extensions': 'off',
       },
     },
     {
