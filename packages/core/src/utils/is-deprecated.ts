@@ -1,16 +1,21 @@
-import { GraphQLEnumValue, GraphQLField, GraphQLInputField } from 'graphql';
+import { GraphQLEnumValue, GraphQLField, GraphQLInputField } from "graphql";
 
 export function isDeprecated(
-  fieldOrEnumValue: GraphQLField<any, any> | GraphQLEnumValue | GraphQLInputField,
+  fieldOrEnumValue:
+    | GraphQLField<any, any>
+    | GraphQLEnumValue
+    | GraphQLInputField
 ): boolean {
-  if ('isDeprecated' in fieldOrEnumValue) {
-    return !!fieldOrEnumValue['isDeprecated'];
+  if ("isDeprecated" in fieldOrEnumValue) {
+    return !!fieldOrEnumValue["isDeprecated"];
   }
   if (fieldOrEnumValue.deprecationReason != null) {
     return true;
   }
   if (
-    fieldOrEnumValue.astNode?.directives?.some(directive => directive.name.value === 'deprecated')
+    fieldOrEnumValue.astNode?.directives?.some(
+      (directive) => directive.name.value === "deprecated"
+    )
   ) {
     return true;
   }

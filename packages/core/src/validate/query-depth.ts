@@ -1,4 +1,4 @@
-import { DepGraph } from 'dependency-graph';
+import { DepGraph } from "dependency-graph";
 import {
   ASTNode,
   DocumentNode,
@@ -10,7 +10,7 @@ import {
   Kind,
   OperationDefinitionNode,
   Source,
-} from 'graphql';
+} from "graphql";
 
 export function validateQueryDepth({
   source,
@@ -43,7 +43,7 @@ export function validateQueryDepth({
       `Query exceeds maximum depth of ${maxDepth}`,
       node,
       source,
-      node.loc?.start ? [node.loc.start] : undefined,
+      node.loc?.start ? [node.loc.start] : undefined
     );
   }
 }
@@ -65,7 +65,7 @@ export function calculateDepth({
 
   switch (node.kind) {
     case Kind.FIELD: {
-      if (node.name.value.startsWith('__') || !node.selectionSet) {
+      if (node.name.value.startsWith("__") || !node.selectionSet) {
         return 0;
       }
 
@@ -81,27 +81,27 @@ export function calculateDepth({
 
     case Kind.SELECTION_SET: {
       return Math.max(
-        ...node.selections.map(selection => {
+        ...node.selections.map((selection) => {
           return calculateDepth({
             node: selection,
             currentDepth,
             maxDepth,
             getFragment,
           });
-        }),
+        })
       );
     }
 
     case Kind.DOCUMENT: {
       return Math.max(
-        ...node.definitions.map(def => {
+        ...node.definitions.map((def) => {
           return calculateDepth({
             node: def,
             currentDepth,
             maxDepth,
             getFragment,
           });
-        }),
+        })
       );
     }
 
@@ -109,14 +109,14 @@ export function calculateDepth({
     case Kind.INLINE_FRAGMENT:
     case Kind.FRAGMENT_DEFINITION: {
       return Math.max(
-        ...node.selectionSet.selections.map(selection => {
+        ...node.selectionSet.selections.map((selection) => {
           return calculateDepth({
             node: selection,
             currentDepth,
             maxDepth,
             getFragment,
           });
-        }),
+        })
       );
     }
 
@@ -142,19 +142,25 @@ export function countDepth(
     | OperationDefinitionNode
     | FragmentSpreadNode,
   parentDepth: number,
-  getFragmentReference: (name: string) => FragmentDefinitionNode | undefined,
+  getFragmentReference: (name: string) => FragmentDefinitionNode | undefined
 ) {
   let depth = parentDepth;
 
-  if ('selectionSet' in node && node.selectionSet) {
+  if ("selectionSet" in node && node.selectionSet) {
     for (const child of node.selectionSet.selections) {
-      depth = Math.max(depth, countDepth(child, parentDepth + 1, getFragmentReference));
+      depth = Math.max(
+        depth,
+        countDepth(child, parentDepth + 1, getFragmentReference)
+      );
     }
   }
   if (node.kind === Kind.FRAGMENT_SPREAD) {
     const fragment = getFragmentReference(node.name.value);
     if (fragment) {
-      depth = Math.max(depth, countDepth(fragment, parentDepth + 1, getFragmentReference));
+      depth = Math.max(
+        depth,
+        countDepth(fragment, parentDepth + 1, getFragmentReference)
+      );
     }
   }
   return depth;

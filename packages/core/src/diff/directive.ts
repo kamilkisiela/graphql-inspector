@@ -1,5 +1,5 @@
-import { GraphQLArgument, GraphQLDirective } from 'graphql';
-import { compareLists, diffArrays, isNotEqual } from '../utils/compare.js';
+import { GraphQLArgument, GraphQLDirective } from "graphql";
+import { compareLists, diffArrays, isNotEqual } from "../utils/compare.js";
 import {
   directiveArgumentAdded,
   directiveArgumentDefaultValueChanged,
@@ -9,13 +9,13 @@ import {
   directiveDescriptionChanged,
   directiveLocationAdded,
   directiveLocationRemoved,
-} from './changes/directive.js';
-import { AddChange } from './schema.js';
+} from "./changes/directive.js";
+import { AddChange } from "./schema.js";
 
 export function changesInDirective(
   oldDirective: GraphQLDirective,
   newDirective: GraphQLDirective,
-  addChange: AddChange,
+  addChange: AddChange
 ) {
   if (isNotEqual(oldDirective.description, newDirective.description)) {
     addChange(directiveDescriptionChanged(oldDirective, newDirective));
@@ -42,7 +42,12 @@ export function changesInDirective(
       addChange(directiveArgumentRemoved(oldDirective, arg));
     },
     onMutual(arg) {
-      changesInDirectiveArgument(oldDirective, arg.oldVersion, arg.newVersion, addChange);
+      changesInDirectiveArgument(
+        oldDirective,
+        arg.oldVersion,
+        arg.newVersion,
+        addChange
+      );
     },
   });
 }
@@ -51,7 +56,7 @@ function changesInDirectiveArgument(
   directive: GraphQLDirective,
   oldArg: GraphQLArgument,
   newArg: GraphQLArgument,
-  addChange: AddChange,
+  addChange: AddChange
 ) {
   if (isNotEqual(oldArg.description, newArg.description)) {
     addChange(directiveArgumentDescriptionChanged(directive, oldArg, newArg));

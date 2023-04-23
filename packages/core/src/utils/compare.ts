@@ -1,4 +1,7 @@
-export function keyMap<T>(list: readonly T[], keyFn: (item: T) => string): Record<string, T> {
+export function keyMap<T>(
+  list: readonly T[],
+  keyFn: (item: T) => string
+): Record<string, T> {
   return list.reduce((map, item) => {
     map[keyFn(item)] = item;
     return map;
@@ -18,7 +21,7 @@ export function isEqual<T>(a: T, b: T): boolean {
     return true;
   }
 
-  if (a && b && typeof a === 'object' && typeof b === 'object') {
+  if (a && b && typeof a === "object" && typeof b === "object") {
     const aRecord = a as Record<string, unknown>;
     const bRecord = b as Record<string, unknown>;
 
@@ -44,11 +47,14 @@ export function isNotEqual<T>(a: T, b: T): boolean {
 }
 
 export function isVoid<T>(a: T): boolean {
-  return typeof a === 'undefined' || a === null;
+  return typeof a === "undefined" || a === null;
 }
 
-export function diffArrays<T>(a: T[] | readonly T[], b: T[] | readonly T[]): T[] {
-  return a.filter(c => !b.some(d => isEqual(d, c)));
+export function diffArrays<T>(
+  a: T[] | readonly T[],
+  b: T[] | readonly T[]
+): T[] {
+  return a.filter((c) => !b.some((d) => isEqual(d, c)));
 }
 
 export function compareLists<T extends { name: string }>(
@@ -58,7 +64,7 @@ export function compareLists<T extends { name: string }>(
     onAdded?(t: T): void;
     onRemoved?(t: T): void;
     onMutual?(t: { newVersion: T; oldVersion: T }): void;
-  },
+  }
 ) {
   const oldMap = keyMap(oldList, ({ name }) => name);
   const newMap = keyMap(newList, ({ name }) => name);

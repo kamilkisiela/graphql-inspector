@@ -7,21 +7,28 @@ export interface InspectorConfig {
 }
 
 export const availableCommands = [
-  'coverage',
-  'diff',
-  'docs',
-  'introspect',
-  'serve',
-  'similar',
-  'validate',
+  "coverage",
+  "diff",
+  "docs",
+  "introspect",
+  "serve",
+  "similar",
+  "validate",
 ];
 
-export const availableLoaders = ['code', 'git', 'github', 'graphql', 'json', 'url'];
+export const availableLoaders = [
+  "code",
+  "git",
+  "github",
+  "graphql",
+  "json",
+  "url",
+];
 
 export async function useConfig(): Promise<InspectorConfig | never> {
   return {
-    loaders: ensureList(discoverLoaders(availableLoaders), 'loaders'),
-    commands: ensureList(discoverCommands(availableCommands), 'commands'),
+    loaders: ensureList(discoverLoaders(availableLoaders), "loaders"),
+    commands: ensureList(discoverCommands(availableCommands), "commands"),
   };
 }
 
@@ -35,11 +42,15 @@ function moduleExists(name: string) {
 }
 
 function discoverLoaders(loaders: string[]) {
-  return loaders.filter(name => moduleExists(`@graphql-inspector/${name}-loader`));
+  return loaders.filter((name) =>
+    moduleExists(`@graphql-inspector/${name}-loader`)
+  );
 }
 
 function discoverCommands(commands: string[]) {
-  return commands.filter(name => moduleExists(`@graphql-inspector/${name}-command`));
+  return commands.filter((name) =>
+    moduleExists(`@graphql-inspector/${name}-command`)
+  );
 }
 
 function ensureList<T>(list: any, path: string): T[] {

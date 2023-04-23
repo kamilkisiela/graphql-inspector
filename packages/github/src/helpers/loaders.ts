@@ -1,18 +1,23 @@
-import Dataloader from 'dataloader';
-import { buildClientSchema, getIntrospectionQuery, printSchema, Source } from 'graphql';
-import yaml from 'js-yaml';
-import * as probot from 'probot';
-import { fetch } from '@whatwg-node/fetch';
-import { Endpoint, NormalizedEnvironment, SchemaPointer } from './config.js';
-import { isNil, objectFromEntries, parseEndpoint } from './utils.js';
+import Dataloader from "dataloader";
+import {
+  buildClientSchema,
+  getIntrospectionQuery,
+  printSchema,
+  Source,
+} from "graphql";
+import yaml from "js-yaml";
+import * as probot from "probot";
+import { fetch } from "@whatwg-node/fetch";
+import { Endpoint, NormalizedEnvironment, SchemaPointer } from "./config.js";
+import { isNil, objectFromEntries, parseEndpoint } from "./utils.js";
 
 function createGetFilesQuery(variableMap: Record<string, string>): string {
   const variables = Object.keys(variableMap)
-    .map(name => `$${name}: String!`)
-    .join(', ');
+    .map((name) => `$${name}: String!`)
+    .join(", ");
 
   const files = Object.keys(variableMap)
-    .map(name => {
+    .map((name) => {
       return `
       ${name}: object(expression: $${name}) {
         ... on Blob {
@@ -21,7 +26,7 @@ function createGetFilesQuery(variableMap: Record<string, string>): string {
       }
     `;
     })
-    .join('\n');
+    .join("\n");
 
   return /* GraphQL */ `
     query GetFile($repo: String!, $owner: String!, ${variables}) {
@@ -29,7 +34,7 @@ function createGetFilesQuery(variableMap: Record<string, string>): string {
         ${files}
       }
     }
-  `.replace(/\s+/g, ' ');
+  `.replace(/\s+/g, " ");
 }
 
 type FileLoaderConfig = {
@@ -53,20 +58,23 @@ export type ConfigLoader = () => Promise<object | null | undefined>; // id is th
 
 export function createFileLoader(config: FileLoaderConfig): FileLoader {
   const loader = new Dataloader<FileLoaderInput, string | null, string>(
-    async inputs => {
+    async (inputs) => {
       const variablesMap = objectFromEntries(
-        inputs.map(input => [input.alias, `${input.ref}:${input.path}`]),
+        inputs.map((input) => [input.alias, `${input.ref}:${input.path}`])
       );
       const { context, repo, owner } = config;
 
-      const result: any = await context.octokit.graphql(createGetFilesQuery(variablesMap), {
-        repo,
-        owner,
-        ...variablesMap,
-      });
+      const result: any = await context.octokit.graphql(
+        createGetFilesQuery(variablesMap),
+        {
+          repo,
+          owner,
+          ...variablesMap,
+        }
+      );
 
       return Promise.all(
-        inputs.map(async input => {
+        inputs.map(async (input) => {
           const alias = input.alias;
 
           try {
@@ -80,7 +88,9 @@ export function createFileLoader(config: FileLoaderConfig): FileLoader {
 
             return (result as any).repository[alias].text as string;
           } catch (error) {
-            const failure = new Error(`Failed to load '${input.path}' (ref: ${input.ref})`);
+            const failure = new Error(
+              `Failed to load '${input.path}' (ref: ${input.ref})`
+            );
 
             if (input.throwNotFound === false) {
               if (input.onError) {
@@ -94,7 +104,7 @@ export function createFileLoader(config: FileLoaderConfig): FileLoader {
 
             throw failure;
           }
-        }),
+        })
       );
     },
     {
@@ -103,46 +113,46 @@ export function createFileLoader(config: FileLoaderConfig): FileLoader {
       cacheKeyFn(obj) {
         return `${obj.ref} - ${obj.path}`;
       },
-    },
+    }
   );
 
-  return input => loader.load(input);
+  return (input) => loader.load(input);
 }
 
 export function createConfigLoader(
   config: FileLoaderConfig & {
     ref: string;
   },
-  loadFile: FileLoader,
+  loadFile: FileLoader
 ): ConfigLoader {
   const loader = new Dataloader<string, object | null, string>(
-    ids => {
+    (ids) => {
       const errors: Error[] = [];
       const onError = (error: any) => {
         errors.push(error);
       };
 
       return Promise.all(
-        ids.map(async id => {
+        ids.map(async (id) => {
           const [yamlConfig, ymlConfig, pkgFile] = await Promise.all([
             loadFile({
               ...config,
-              alias: 'yaml',
+              alias: "yaml",
               path: `.github/${id}.yaml`,
               throwNotFound: false,
               onError,
             }),
             loadFile({
               ...config,
-              alias: 'yml',
+              alias: "yml",
               path: `.github/${id}.yml`,
               throwNotFound: false,
               onError,
             }),
             loadFile({
               ...config,
-              alias: 'pkg',
-              path: 'package.json',
+              alias: "pkg",
+              path: "package.json",
               throwNotFound: false,
               onError,
             }),
@@ -164,18 +174,18 @@ export function createConfigLoader(
             }
           }
 
-          console.error([`Failed to load config:`, ...errors].join('\n'));
+          console.error([`Failed to load config:`, ...errors].join("\n"));
 
           return null;
-        }),
+        })
       );
     },
     {
       batch: false,
-    },
+    }
   );
 
-  return () => loader.load('graphql-inspector');
+  return () => loader.load("graphql-inspector");
 }
 
 export async function printSchemaFromEndpoint(endpoint: Endpoint) {
@@ -185,7 +195,7 @@ export async function printSchemaFromEndpoint(endpoint: Endpoint) {
     method: config.method,
     headers: config.headers,
     body: JSON.stringify({
-      query: getIntrospectionQuery().replace(/\s+/g, ' ').trim(),
+      query: getIntrospectionQuery().replace(/\s+/g, " ").trim(),
     }),
   });
 
@@ -196,7 +206,7 @@ export async function printSchemaFromEndpoint(endpoint: Endpoint) {
   return printSchema(
     buildClientSchema(introspection, {
       assumeValid: true,
-    }),
+    })
   );
 }
 
@@ -223,11 +233,11 @@ export async function loadSources({
       ? printSchemaFromEndpoint(config.endpoint!)
       : loadFile({
           ...oldPointer,
-          alias: 'oldSource',
+          alias: "oldSource",
         }),
     loadFile({
       ...newPointer,
-      alias: 'newSource',
+      alias: "newSource",
     }),
   ]);
 
@@ -235,10 +245,10 @@ export async function loadSources({
     old: new Source(
       oldFile!,
       useEndpoint
-        ? typeof config.endpoint! === 'string'
+        ? typeof config.endpoint! === "string"
           ? config.endpoint
           : config.endpoint?.url
-        : `${oldPointer.ref}:${oldPointer.path}`,
+        : `${oldPointer.ref}:${oldPointer.path}`
     ),
     new: new Source(newFile!, `${newPointer.ref}:${newPointer.path}`),
   };

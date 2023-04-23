@@ -1,4 +1,4 @@
-import inspect from 'object-inspect';
+import inspect from "object-inspect";
 
 export interface Target {
   typeId: string;
@@ -36,12 +36,15 @@ function compareTwoStrings(str1: string, str2: string) {
   return (intersection * 2) / union;
 }
 
-export function findBestMatch(mainString: string, targetStrings: Target[]): BestMatch {
+export function findBestMatch(
+  mainString: string,
+  targetStrings: Target[]
+): BestMatch {
   if (!areArgsValid(mainString, targetStrings))
     throw new Error(
-      'Bad arguments: First argument should be a string, second should be an array of strings',
+      "Bad arguments: First argument should be a string, second should be an array of strings"
     );
-  const ratings = targetStrings.map(target => ({
+  const ratings = targetStrings.map((target) => ({
     target,
     rating: compareTwoStrings(mainString, target.value),
   }));
@@ -50,33 +53,36 @@ export function findBestMatch(mainString: string, targetStrings: Target[]): Best
 }
 
 function flattenDeep(arr: any): string[] {
-  return Array.isArray(arr) ? arr.reduce((a, b) => a.concat(flattenDeep(b)), []) : [arr];
+  return Array.isArray(arr)
+    ? arr.reduce((a, b) => a.concat(flattenDeep(b)), [])
+    : [arr];
 }
 
 function areArgsValid(mainString: string, targetStrings: Target[]) {
-  if (typeof mainString !== 'string') return false;
+  if (typeof mainString !== "string") return false;
   if (!Array.isArray(targetStrings)) return false;
   if (!targetStrings.length) return false;
-  if (targetStrings.find(s => typeof s.value !== 'string')) return false;
+  if (targetStrings.find((s) => typeof s.value !== "string")) return false;
   return true;
 }
 
 function letterPairs(str: string) {
   const pairs = [];
-  for (let i = 0, max = str.length - 1; i < max; i++) pairs[i] = str.substring(i, i + 2);
+  for (let i = 0, max = str.length - 1; i < max; i++)
+    pairs[i] = str.substring(i, i + 2);
   return pairs;
 }
 
 function wordLetterPairs(str: string) {
-  const pairs = str.toUpperCase().split(' ').map(letterPairs);
+  const pairs = str.toUpperCase().split(" ").map(letterPairs);
   return flattenDeep(pairs);
 }
 
 export function safeString(obj: unknown) {
-  if (typeof obj === 'string') {
+  if (typeof obj === "string") {
     return JSON.stringify(obj);
   }
   return inspect(obj)
-    .replace(/\[Object: null prototype\] /g, '')
-    .replace(/(^')|('$)/g, '');
+    .replace(/\[Object: null prototype\] /g, "")
+    .replace(/(^')|('$)/g, "");
 }

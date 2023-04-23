@@ -1,10 +1,13 @@
-import { buildSchema } from 'graphql';
-import { CriticalityLevel, diff } from '../../src/index.js';
-import { findChangesByPath, findFirstChangeByPath } from '../../utils/testing.js';
+import { buildSchema } from "graphql";
+import { CriticalityLevel, diff } from "../../src/index.js";
+import {
+  findChangesByPath,
+  findFirstChangeByPath,
+} from "../../utils/testing.js";
 
-describe('interface', () => {
-  describe('fields', () => {
-    test('added', async () => {
+describe("interface", () => {
+  describe("fields", () => {
+    test("added", async () => {
       const a = buildSchema(/* GraphQL */ `
         interface Foo {
           a: String!
@@ -19,13 +22,13 @@ describe('interface', () => {
         }
       `);
 
-      const change = findFirstChangeByPath(await diff(a, b), 'Foo.c');
+      const change = findFirstChangeByPath(await diff(a, b), "Foo.c");
 
       expect(change.criticality.level).toEqual(CriticalityLevel.NonBreaking);
-      expect(change.type).toEqual('FIELD_ADDED');
+      expect(change.type).toEqual("FIELD_ADDED");
       expect(change.message).toEqual("Field 'c' was added to interface 'Foo'");
     });
-    test('removed', async () => {
+    test("removed", async () => {
       const a = buildSchema(/* GraphQL */ `
         interface Foo {
           a: String!
@@ -40,14 +43,16 @@ describe('interface', () => {
         }
       `);
 
-      const change = findFirstChangeByPath(await diff(a, b), 'Foo.c');
+      const change = findFirstChangeByPath(await diff(a, b), "Foo.c");
 
       expect(change.criticality.level).toEqual(CriticalityLevel.Breaking);
-      expect(change.type).toEqual('FIELD_REMOVED');
-      expect(change.message).toEqual("Field 'c' was removed from interface 'Foo'");
+      expect(change.type).toEqual("FIELD_REMOVED");
+      expect(change.message).toEqual(
+        "Field 'c' was removed from interface 'Foo'"
+      );
     });
 
-    test('order changed', async () => {
+    test("order changed", async () => {
       const a = buildSchema(/* GraphQL */ `
         interface Foo {
           a: String!
@@ -64,7 +69,7 @@ describe('interface', () => {
       expect(await diff(a, b)).toHaveLength(0);
     });
 
-    test('type changed', async () => {
+    test("type changed", async () => {
       const a = buildSchema(/* GraphQL */ `
         interface Foo {
           a: String!
@@ -82,26 +87,32 @@ describe('interface', () => {
 
       const changes = await diff(a, b);
       const change = {
-        a: findFirstChangeByPath(changes, 'Foo.a'),
-        b: findFirstChangeByPath(changes, 'Foo.b'),
-        c: findFirstChangeByPath(changes, 'Foo.c'),
+        a: findFirstChangeByPath(changes, "Foo.a"),
+        b: findFirstChangeByPath(changes, "Foo.b"),
+        c: findFirstChangeByPath(changes, "Foo.c"),
       };
 
       // Whole new type
       expect(change.a.criticality.level).toEqual(CriticalityLevel.Breaking);
-      expect(change.a.type).toEqual('FIELD_TYPE_CHANGED');
-      expect(change.a.message).toEqual("Field 'Foo.a' changed type from 'String!' to 'Int!'");
+      expect(change.a.type).toEqual("FIELD_TYPE_CHANGED");
+      expect(change.a.message).toEqual(
+        "Field 'Foo.a' changed type from 'String!' to 'Int!'"
+      );
       // Nullable to non-nullable
       expect(change.b.criticality.level).toEqual(CriticalityLevel.NonBreaking);
-      expect(change.b.type).toEqual('FIELD_TYPE_CHANGED');
-      expect(change.b.message).toEqual("Field 'Foo.b' changed type from 'String' to 'String!'");
+      expect(change.b.type).toEqual("FIELD_TYPE_CHANGED");
+      expect(change.b.message).toEqual(
+        "Field 'Foo.b' changed type from 'String' to 'String!'"
+      );
       // Non-nullable to nullable
       expect(change.c.criticality.level).toEqual(CriticalityLevel.Breaking);
-      expect(change.c.type).toEqual('FIELD_TYPE_CHANGED');
-      expect(change.c.message).toEqual("Field 'Foo.c' changed type from 'String!' to 'String'");
+      expect(change.c.type).toEqual("FIELD_TYPE_CHANGED");
+      expect(change.c.message).toEqual(
+        "Field 'Foo.c' changed type from 'String!' to 'String'"
+      );
     });
 
-    test('description changed / added / removed', async () => {
+    test("description changed / added / removed", async () => {
       const a = buildSchema(/* GraphQL */ `
         interface Foo {
           """
@@ -131,26 +142,30 @@ describe('interface', () => {
 
       const changes = await diff(a, b);
       const change = {
-        a: findFirstChangeByPath(changes, 'Foo.a'),
-        b: findFirstChangeByPath(changes, 'Foo.b'),
-        c: findFirstChangeByPath(changes, 'Foo.c'),
+        a: findFirstChangeByPath(changes, "Foo.a"),
+        b: findFirstChangeByPath(changes, "Foo.b"),
+        c: findFirstChangeByPath(changes, "Foo.c"),
       };
 
       // Changed
       expect(change.a.criticality.level).toEqual(CriticalityLevel.NonBreaking);
-      expect(change.a.type).toEqual('FIELD_DESCRIPTION_CHANGED');
-      expect(change.a.message).toEqual("Field 'Foo.a' description changed from 'OLD' to 'NEW'");
+      expect(change.a.type).toEqual("FIELD_DESCRIPTION_CHANGED");
+      expect(change.a.message).toEqual(
+        "Field 'Foo.a' description changed from 'OLD' to 'NEW'"
+      );
       // Removed
       expect(change.b.criticality.level).toEqual(CriticalityLevel.NonBreaking);
-      expect(change.b.type).toEqual('FIELD_DESCRIPTION_REMOVED');
-      expect(change.b.message).toEqual("Description was removed from field 'Foo.b'");
+      expect(change.b.type).toEqual("FIELD_DESCRIPTION_REMOVED");
+      expect(change.b.message).toEqual(
+        "Description was removed from field 'Foo.b'"
+      );
       // Added
       expect(change.c.criticality.level).toEqual(CriticalityLevel.NonBreaking);
-      expect(change.c.type).toEqual('FIELD_DESCRIPTION_ADDED');
+      expect(change.c.type).toEqual("FIELD_DESCRIPTION_ADDED");
       expect(change.c.message).toEqual("Field 'Foo.c' has description 'CCC'");
     });
 
-    test('deprecation reason changed / added / removed', async () => {
+    test("deprecation reason changed / added / removed", async () => {
       const a = buildSchema(/* GraphQL */ `
         interface Foo {
           a: String! @deprecated(reason: "OLD")
@@ -168,28 +183,32 @@ describe('interface', () => {
 
       const changes = await diff(a, b);
       const change = {
-        a: findFirstChangeByPath(changes, 'Foo.a'),
-        b: findChangesByPath(changes, 'Foo.b')[1],
-        c: findChangesByPath(changes, 'Foo.c')[1],
+        a: findFirstChangeByPath(changes, "Foo.a"),
+        b: findChangesByPath(changes, "Foo.b")[1],
+        c: findChangesByPath(changes, "Foo.c")[1],
       };
 
       // Changed
       expect(change.a.criticality.level).toEqual(CriticalityLevel.NonBreaking);
-      expect(change.a.type).toEqual('FIELD_DEPRECATION_REASON_CHANGED');
+      expect(change.a.type).toEqual("FIELD_DEPRECATION_REASON_CHANGED");
       expect(change.a.message).toEqual(
-        "Deprecation reason on field 'Foo.a' has changed from 'OLD' to 'NEW'",
+        "Deprecation reason on field 'Foo.a' has changed from 'OLD' to 'NEW'"
       );
       // Removed
       expect(change.b.criticality.level).toEqual(CriticalityLevel.NonBreaking);
-      expect(change.b.type).toEqual('FIELD_DEPRECATION_REASON_REMOVED');
-      expect(change.b.message).toEqual("Deprecation reason was removed from field 'Foo.b'");
+      expect(change.b.type).toEqual("FIELD_DEPRECATION_REASON_REMOVED");
+      expect(change.b.message).toEqual(
+        "Deprecation reason was removed from field 'Foo.b'"
+      );
       // Added
       expect(change.c.criticality.level).toEqual(CriticalityLevel.NonBreaking);
-      expect(change.c.type).toEqual('FIELD_DEPRECATION_REASON_ADDED');
-      expect(change.c.message).toEqual("Field 'Foo.c' has deprecation reason 'CCC'");
+      expect(change.c.type).toEqual("FIELD_DEPRECATION_REASON_ADDED");
+      expect(change.c.message).toEqual(
+        "Field 'Foo.c' has deprecation reason 'CCC'"
+      );
     });
 
-    test('deprecation added / removed', async () => {
+    test("deprecation added / removed", async () => {
       const a = buildSchema(/* GraphQL */ `
         interface Foo {
           a: String! @deprecated
@@ -205,17 +224,17 @@ describe('interface', () => {
 
       const changes = await diff(a, b);
       const change = {
-        a: findFirstChangeByPath(changes, 'Foo.a'),
-        b: findFirstChangeByPath(changes, 'Foo.b'),
+        a: findFirstChangeByPath(changes, "Foo.a"),
+        b: findFirstChangeByPath(changes, "Foo.b"),
       };
 
       // Changed
       expect(change.a.criticality.level).toEqual(CriticalityLevel.Dangerous);
-      expect(change.a.type).toEqual('FIELD_DEPRECATION_REMOVED');
+      expect(change.a.type).toEqual("FIELD_DEPRECATION_REMOVED");
       expect(change.a.message).toEqual("Field 'Foo.a' is no longer deprecated");
       // Removed
       expect(change.b.criticality.level).toEqual(CriticalityLevel.NonBreaking);
-      expect(change.b.type).toEqual('FIELD_DEPRECATION_ADDED');
+      expect(change.b.type).toEqual("FIELD_DEPRECATION_ADDED");
       expect(change.b.message).toEqual("Field 'Foo.b' is deprecated");
     });
   });

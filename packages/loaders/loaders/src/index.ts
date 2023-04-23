@@ -1,12 +1,12 @@
-import { buildSchema, GraphQLSchema } from 'graphql';
-import { InspectorConfig } from '@graphql-inspector/config';
+import { buildSchema, GraphQLSchema } from "graphql";
+import { InspectorConfig } from "@graphql-inspector/config";
 import {
   loadDocuments,
   loadSchema,
   LoadSchemaOptions,
   LoadTypedefsOptions,
-} from '@graphql-tools/load';
-import { Loader, Source } from '@graphql-tools/utils';
+} from "@graphql-tools/load";
+import { Loader, Source } from "@graphql-tools/utils";
 
 export class LoadersRegistry {
   private loaders: Loader[] = [];
@@ -17,7 +17,9 @@ export class LoadersRegistry {
 
   registerModule(loaderName: string) {
     try {
-      const loader: Loader = loadModule(`@graphql-inspector/${loaderName}-loader`);
+      const loader: Loader = loadModule(
+        `@graphql-inspector/${loaderName}-loader`
+      );
 
       this.register(loader);
     } catch (error) {
@@ -28,9 +30,9 @@ export class LoadersRegistry {
 
   loadSchema(
     pointer: string,
-    options: Omit<LoadSchemaOptions, 'loaders'> = {},
+    options: Omit<LoadSchemaOptions, "loaders"> = {},
     enableApolloFederation: boolean,
-    enableAWS: boolean,
+    enableAWS: boolean
   ): Promise<GraphQLSchema> {
     return enrichError(
       loadSchema(pointer, {
@@ -66,13 +68,17 @@ export class LoadersRegistry {
                   scalar BigInt
                   scalar Double
 
-                  directive @aws_subscribe(mutations: [String!]!) on FIELD_DEFINITION
+                  directive @aws_subscribe(
+                    mutations: [String!]!
+                  ) on FIELD_DEFINITION
 
                   directive @deprecated(
                     reason: String
                   ) on FIELD_DEFINITION | INPUT_FIELD_DEFINITION | ENUM | ENUM_VALUE
 
-                  directive @aws_auth(cognito_groups: [String!]!) on FIELD_DEFINITION
+                  directive @aws_auth(
+                    cognito_groups: [String!]!
+                  ) on FIELD_DEFINITION
                   directive @aws_api_key on FIELD_DEFINITION | OBJECT
                   directive @aws_iam on FIELD_DEFINITION | OBJECT
                   directive @aws_oidc on FIELD_DEFINITION | OBJECT
@@ -84,24 +90,24 @@ export class LoadersRegistry {
               ],
             }
           : {}),
-      }),
+      })
     );
   }
 
   loadDocuments(
     pointer: string,
-    options: Omit<LoadTypedefsOptions, 'loaders'> = {},
+    options: Omit<LoadTypedefsOptions, "loaders"> = {}
   ): Promise<Source[]> {
     return enrichError(
       loadDocuments(pointer, {
         loaders: this.loaders,
         ...options,
-      }),
+      })
     );
   }
 }
 
-export type Loaders = Pick<LoadersRegistry, 'loadSchema' | 'loadDocuments'>;
+export type Loaders = Pick<LoadersRegistry, "loadSchema" | "loadDocuments">;
 
 export function useLoaders(config: InspectorConfig): Loaders {
   const loaders = new LoadersRegistry();
@@ -121,7 +127,7 @@ function loadModule<T>(name: string): T {
  * Adds `(source: <file-path>)` suffix to error message if source is available
  */
 function enrichError<T>(looksPromising: Promise<T>): Promise<T> {
-  return looksPromising.catch(error => {
+  return looksPromising.catch((error) => {
     if (error.source?.name) {
       error.message = `${error.message} (source: ${error.source?.name})`;
     }

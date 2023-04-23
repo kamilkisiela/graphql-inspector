@@ -1,13 +1,17 @@
-import * as probot from 'probot';
-import { annotate, complete, start } from './helpers/check-runs.js';
-import { createConfig, defaultFallbackBranch, SchemaPointer } from './helpers/config.js';
-import { diff } from './helpers/diff.js';
-import { MissingConfigError } from './helpers/errors.js';
-import { ConfigLoader, FileLoader, loadSources } from './helpers/loaders.js';
-import { createLogger } from './helpers/logger.js';
-import { produceSchema } from './helpers/schema.js';
-import { CheckConclusion, PullRequest } from './helpers/types.js';
-import { createSummary } from './helpers/utils.js';
+import * as probot from "probot";
+import { annotate, complete, start } from "./helpers/check-runs.js";
+import {
+  createConfig,
+  defaultFallbackBranch,
+  SchemaPointer,
+} from "./helpers/config.js";
+import { diff } from "./helpers/diff.js";
+import { MissingConfigError } from "./helpers/errors.js";
+import { ConfigLoader, FileLoader, loadSources } from "./helpers/loaders.js";
+import { createLogger } from "./helpers/logger.js";
+import { produceSchema } from "./helpers/schema.js";
+import { CheckConclusion, PullRequest } from "./helpers/types.js";
+import { createSummary } from "./helpers/utils.js";
 
 export async function handleSchemaDiff({
   release,
@@ -40,7 +44,7 @@ export async function handleSchemaDiff({
   onError(error: Error): void;
 }): Promise<void> {
   const id = `${owner}/${repo}#${ref}`;
-  const logger = createLogger('DIFF', context, release);
+  const logger = createLogger("DIFF", context, release);
 
   logger.info(`Started - ${id}`);
   logger.info(`Action: "${action}"`);
@@ -63,7 +67,7 @@ export async function handleSchemaDiff({
       throw new MissingConfigError();
     }
 
-    const branches = pullRequests.map(pr => pr.base.ref);
+    const branches = pullRequests.map((pr) => pr.base.ref);
     const firstBranch = branches[0];
     const fallbackBranch = firstBranch || before;
     let isLegacyConfig = false;
@@ -74,11 +78,11 @@ export async function handleSchemaDiff({
     // on non-environment related PRs, use a branch from first associated pull request
     const config = createConfig(
       rawConfig as any,
-      configKind => {
-        isLegacyConfig = configKind === 'legacy';
+      (configKind) => {
+        isLegacyConfig = configKind === "legacy";
       },
       branches,
-      fallbackBranch, // we will probably throw an error when both are not defined
+      fallbackBranch // we will probably throw an error when both are not defined
     );
 
     if (!config.diff) {
@@ -130,11 +134,11 @@ export async function handleSchemaDiff({
     };
 
     if (oldPointer.ref === defaultFallbackBranch) {
-      logger.error('used default ref to get old schema');
+      logger.error("used default ref to get old schema");
     }
 
     if (newPointer.ref === defaultFallbackBranch) {
-      logger.error('used default ref to get new schema');
+      logger.error("used default ref to get new schema");
     }
 
     const sources = await loadSources({
@@ -170,28 +174,32 @@ export async function handleSchemaDiff({
 
     const summary = createSummary(changes, summaryLimit, isLegacyConfig);
 
-    const approveLabelName = config.diff.approveLabel || 'approved-breaking-change';
+    const approveLabelName =
+      config.diff.approveLabel || "approved-breaking-change";
     const hasApprovedBreakingChangeLabel = pullRequestNumber
-      ? pullRequests[0].labels?.find(label => label.name === approveLabelName)
+      ? pullRequests[0].labels?.find((label) => label.name === approveLabelName)
       : false;
 
     // Force Success when failOnBreaking is disabled
-    if (config.diff.failOnBreaking === false || hasApprovedBreakingChangeLabel) {
-      logger.info('FailOnBreaking disabled. Forcing SUCCESS');
+    if (
+      config.diff.failOnBreaking === false ||
+      hasApprovedBreakingChangeLabel
+    ) {
+      logger.info("FailOnBreaking disabled. Forcing SUCCESS");
       conclusion = CheckConclusion.Success;
     }
 
     const title =
       conclusion === CheckConclusion.Failure
-        ? 'Something is wrong with your schema'
-        : 'Everything looks good';
+        ? "Something is wrong with your schema"
+        : "Everything looks good";
 
     if (config.diff.annotations === false) {
       logger.info(`Anotations are disabled. Skipping annotations...`);
       annotations = [];
     } else if (annotations.length > summaryLimit) {
       logger.info(
-        `Total amount of annotations is over the limit (${annotations.length} > ${summaryLimit}). Skipping annotations...`,
+        `Total amount of annotations is over the limit (${annotations.length} > ${summaryLimit}). Skipping annotations...`
       );
       annotations = [];
     } else {

@@ -4,7 +4,7 @@ description:
   source of truth of your schema.
 ---
 
-import { Callout } from '@theguild/components'
+import { Callout } from "@theguild/components";
 
 # Using GraphQL Endpoints
 
@@ -41,11 +41,11 @@ schema: schema.graphql
 env:
   production:
     branch: master
-    endpoint: '<prod-api-url>'
+    endpoint: "<prod-api-url>"
   development:
     branch: develop
     endpoint:
-      url: '<graphql-api-url>'
+      url: "<graphql-api-url>"
       method: GET
       headers:
         auth: Basic <public-key>
@@ -65,5 +65,6 @@ Two scenarios to consider here:
    of truth.
 
 <Callout>
-  When using GraphQL Inspector as GitHub Action, the endpoint is always the source of truth.
+  When using GraphQL Inspector as GitHub Action, the endpoint is always the
+  source of truth.
 </Callout>

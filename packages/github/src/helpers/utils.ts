@@ -1,11 +1,11 @@
-import { Change, CriticalityLevel } from '@graphql-inspector/core';
-import { Endpoint } from './config.js';
+import { Change, CriticalityLevel } from "@graphql-inspector/core";
+import { Endpoint } from "./config.js";
 
 export function bolderize(msg: string): string {
-  return quotesTransformer(msg, '**');
+  return quotesTransformer(msg, "**");
 }
 
-export function quotesTransformer(msg: string, symbols = '**') {
+export function quotesTransformer(msg: string, symbols = "**") {
   const findSingleQuotes = /'([^']+)'/gim;
   const findDoubleQuotes = /"([^"]+)"/gim;
 
@@ -13,29 +13,41 @@ export function quotesTransformer(msg: string, symbols = '**') {
     return `${symbols}${value}${symbols}`;
   }
 
-  return msg.replace(findSingleQuotes, transformm).replace(findDoubleQuotes, transformm);
+  return msg
+    .replace(findSingleQuotes, transformm)
+    .replace(findDoubleQuotes, transformm);
 }
 
 export function slackCoderize(msg: string): string {
-  return quotesTransformer(msg, '`');
+  return quotesTransformer(msg, "`");
 }
 
 export function discordCoderize(msg: string): string {
-  return quotesTransformer(msg, '`');
+  return quotesTransformer(msg, "`");
 }
 
 export function filterChangesByLevel(level: CriticalityLevel) {
   return (change: Change) => change.criticality.level === level;
 }
 
-export function createSummary(changes: Change[], summaryLimit: number, isLegacyConfig = false) {
-  const breakingChanges = changes.filter(filterChangesByLevel(CriticalityLevel.Breaking));
-  const dangerousChanges = changes.filter(filterChangesByLevel(CriticalityLevel.Dangerous));
-  const safeChanges = changes.filter(filterChangesByLevel(CriticalityLevel.NonBreaking));
+export function createSummary(
+  changes: Change[],
+  summaryLimit: number,
+  isLegacyConfig = false
+) {
+  const breakingChanges = changes.filter(
+    filterChangesByLevel(CriticalityLevel.Breaking)
+  );
+  const dangerousChanges = changes.filter(
+    filterChangesByLevel(CriticalityLevel.Dangerous)
+  );
+  const safeChanges = changes.filter(
+    filterChangesByLevel(CriticalityLevel.NonBreaking)
+  );
 
   const summary: string[] = [
-    `# Found ${changes.length} change${changes.length > 1 ? 's' : ''}`,
-    '',
+    `# Found ${changes.length} change${changes.length > 1 ? "s" : ""}`,
+    "",
     `Breaking: ${breakingChanges.length}`,
     `Dangerous: ${dangerousChanges.length}`,
     `Safe: ${safeChanges.length}`,
@@ -44,30 +56,30 @@ export function createSummary(changes: Change[], summaryLimit: number, isLegacyC
   if (isLegacyConfig) {
     summary.push(
       [
-        '',
-        '> Legacy config detected, [please migrate to a new syntax](https://graphql-inspector.com/docs/products/github#full-configuration)',
-        '',
-      ].join('\n'),
+        "",
+        "> Legacy config detected, [please migrate to a new syntax](https://graphql-inspector.com/docs/products/github#full-configuration)",
+        "",
+      ].join("\n")
     );
   }
 
   if (changes.length > summaryLimit) {
     summary.push(
       [
-        '',
+        "",
         `Total amount of changes (${changes.length}) is over the limit (${summaryLimit})`,
         'Adjust it using "summaryLimit" option',
-        '',
-      ].join('\n'),
+        "",
+      ].join("\n")
     );
   }
 
   function addChangesToSummary(type: string, changes: Change[]): void {
     if (changes.length <= summaryLimit) {
       summary.push(
-        ...['', `## ${type} changes`].concat(
-          changes.map(change => ` - ${bolderize(change.message)}`),
-        ),
+        ...["", `## ${type} changes`].concat(
+          changes.map((change) => ` - ${bolderize(change.message)}`)
+        )
       );
     }
 
@@ -75,49 +87,49 @@ export function createSummary(changes: Change[], summaryLimit: number, isLegacyC
   }
 
   if (breakingChanges.length) {
-    addChangesToSummary('Breaking', breakingChanges);
+    addChangesToSummary("Breaking", breakingChanges);
   }
 
   if (dangerousChanges.length) {
-    addChangesToSummary('Dangerous', dangerousChanges);
+    addChangesToSummary("Dangerous", dangerousChanges);
   }
 
   if (safeChanges.length) {
-    addChangesToSummary('Safe', safeChanges);
+    addChangesToSummary("Safe", safeChanges);
   }
 
   summary.push(
     [
-      '',
-      '___',
+      "",
+      "___",
       `Looking for more advanced tool? Try [GraphQL Hive](https://graphql-hive.com)!`,
-    ].join('\n'),
+    ].join("\n")
   );
 
-  return summary.join('\n');
+  return summary.join("\n");
 }
 
 export function isNil(val: any): val is undefined | null {
-  return !val && typeof val !== 'boolean';
+  return !val && typeof val !== "boolean";
 }
 
 export function parseEndpoint(endpoint: Endpoint): {
   url: string;
-  method: 'GET' | 'get' | 'post' | 'POST';
+  method: "GET" | "get" | "post" | "POST";
   headers?: {
     [name: string]: string;
   };
 } {
-  if (typeof endpoint === 'string') {
+  if (typeof endpoint === "string") {
     return {
       url: endpoint,
-      method: 'POST',
+      method: "POST",
     };
   }
 
   return {
     url: endpoint.url,
-    method: endpoint.method || 'POST',
+    method: endpoint.method || "POST",
     headers: endpoint.headers,
   };
 }

@@ -1,8 +1,8 @@
-import { parse } from 'graphql';
-import { calculateDepth } from '../../src/validate/query-depth.js';
+import { parse } from "graphql";
+import { calculateDepth } from "../../src/validate/query-depth.js";
 
-describe('calculateDepth', () => {
-  test('spread fragments', async () => {
+describe("calculateDepth", () => {
+  test("spread fragments", async () => {
     const doc = parse(/* GraphQL */ `
       query getPost {
         post {
@@ -33,12 +33,12 @@ describe('calculateDepth', () => {
       calculateDepth({
         node: doc,
         currentDepth: 0,
-        getFragment: name => fragments[name],
-      }),
+        getFragment: (name) => fragments[name],
+      })
     ).toEqual(2);
   });
 
-  test('inline fragments', async () => {
+  test("inline fragments", async () => {
     const doc = parse(/* GraphQL */ `
       query getPost {
         post {
@@ -66,12 +66,12 @@ describe('calculateDepth', () => {
       calculateDepth({
         node: doc,
         currentDepth: 0,
-        getFragment: name => fragments[name],
-      }),
+        getFragment: (name) => fragments[name],
+      })
     ).toEqual(2);
   });
 
-  test('no fragments', async () => {
+  test("no fragments", async () => {
     const doc = parse(/* GraphQL */ `
       query getPost {
         post {
@@ -90,11 +90,11 @@ describe('calculateDepth', () => {
         node: doc,
         currentDepth: 0,
         getFragment: () => ({} as any),
-      }),
+      })
     ).toEqual(2);
   });
 
-  test('throw ASTNode on maxDepth', async () => {
+  test("throw ASTNode on maxDepth", async () => {
     const doc = parse(/* GraphQL */ `
       query getPost {
         post {

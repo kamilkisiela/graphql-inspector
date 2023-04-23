@@ -1,8 +1,8 @@
-import chalk from 'chalk';
-import * as env from 'std-env';
+import chalk from "chalk";
+import * as env from "std-env";
 
-export { default as figures } from 'figures';
-export { default as symbols } from 'log-symbols';
+export { default as figures } from "figures";
+export { default as symbols } from "log-symbols";
 export { chalk };
 
 export function bolderize(msg: string): string {
@@ -27,19 +27,19 @@ export interface Logger {
 
 export const Logger = {
   success(msg: string) {
-    emit('success', msg);
+    emit("success", msg);
   },
   log(msg: string) {
-    emit('log', msg);
+    emit("log", msg);
   },
   info(msg: string) {
-    emit('info', msg);
+    emit("info", msg);
   },
   error(msg: string) {
-    emit('error', msg);
+    emit("error", msg);
   },
   warn(msg: string) {
-    emit('warn', msg);
+    emit("warn", msg);
   },
 };
 
@@ -51,7 +51,10 @@ export function unmockLogger() {
   mockedFn = null;
 }
 
-function emit(type: 'success' | 'info' | 'log' | 'error' | 'warn', msg: string) {
+function emit(
+  type: "success" | "info" | "log" | "error" | "warn",
+  msg: string
+) {
   if (mockedFn) {
     return mockedFn(msg);
   }
@@ -60,13 +63,13 @@ function emit(type: 'success' | 'info' | 'log' | 'error' | 'warn', msg: string) 
     return console.log(`[${type}]`, msg);
   }
 
-  if (type === 'success') {
+  if (type === "success") {
     emitSuccess(msg);
-  } else if (type === 'error') {
+  } else if (type === "error") {
     emitError(msg);
-  } else if (type === 'info') {
+  } else if (type === "info") {
     emitInfo(msg);
-  } else if (type === 'warn') {
+  } else if (type === "warn") {
     emitWarn(msg);
   } else {
     console.log(msg);
@@ -74,17 +77,17 @@ function emit(type: 'success' | 'info' | 'log' | 'error' | 'warn', msg: string) 
 }
 
 function emitSuccess(msg: string) {
-  console.log(chalk.green('success'), msg);
+  console.log(chalk.green("success"), msg);
 }
 
 function emitError(msg: string) {
-  console.log(chalk.red('error'), msg);
+  console.log(chalk.red("error"), msg);
 }
 
 function emitInfo(msg: string) {
-  console.log(chalk.blue('info'), msg);
+  console.log(chalk.blue("info"), msg);
 }
 
 function emitWarn(msg: string) {
-  console.log(chalk.yellow('warning'), msg);
+  console.log(chalk.yellow("warning"), msg);
 }

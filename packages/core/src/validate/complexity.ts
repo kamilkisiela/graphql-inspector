@@ -1,4 +1,4 @@
-import { DepGraph } from 'dependency-graph';
+import { DepGraph } from "dependency-graph";
 import type {
   DocumentNode,
   FieldNode,
@@ -7,8 +7,8 @@ import type {
   InlineFragmentNode,
   OperationDefinitionNode,
   Source,
-} from 'graphql';
-import { GraphQLError, Kind } from 'graphql';
+} from "graphql";
+import { GraphQLError, Kind } from "graphql";
 
 export type CalculateOperationComplexityConfig = {
   scalarCost: number;
@@ -46,14 +46,14 @@ export function validateComplexity({
     const complexityScore = calculateOperationComplexity(
       definition,
       config,
-      getFragmentByFragmentName,
+      getFragmentByFragmentName
     );
     if (complexityScore > maxComplexityScore) {
       return new GraphQLError(
         `Too high complexity score (${complexityScore}). Maximum allowed is ${maxComplexityScore}`,
         [definition],
         source,
-        definition.loc?.start ? [definition.loc.start] : undefined,
+        definition.loc?.start ? [definition.loc.start] : undefined
       );
     }
   }
@@ -67,16 +67,23 @@ export function calculateOperationComplexity(
     | OperationDefinitionNode
     | FragmentSpreadNode,
   config: CalculateOperationComplexityConfig,
-  getFragmentByName: (fragmentName: string) => FragmentDefinitionNode | undefined,
-  depth = 0,
+  getFragmentByName: (
+    fragmentName: string
+  ) => FragmentDefinitionNode | undefined,
+  depth = 0
 ) {
   let cost = config.scalarCost;
-  if ('selectionSet' in node && node.selectionSet) {
+  if ("selectionSet" in node && node.selectionSet) {
     cost = config.objectCost;
     for (const child of node.selectionSet.selections) {
       cost +=
         config.depthCostFactor *
-        calculateOperationComplexity(child, config, getFragmentByName, depth + 1);
+        calculateOperationComplexity(
+          child,
+          config,
+          getFragmentByName,
+          depth + 1
+        );
     }
   }
 
@@ -85,7 +92,12 @@ export function calculateOperationComplexity(
     if (fragment) {
       cost +=
         config.depthCostFactor *
-        calculateOperationComplexity(fragment, config, getFragmentByName, depth + 1);
+        calculateOperationComplexity(
+          fragment,
+          config,
+          getFragmentByName,
+          depth + 1
+        );
     }
   }
 

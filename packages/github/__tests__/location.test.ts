@@ -1,5 +1,5 @@
-import { Source } from 'graphql';
-import { getLocationByPath } from '../src/helpers/location.js';
+import { Source } from "graphql";
+import { getLocationByPath } from "../src/helpers/location.js";
 
 const source = new Source(/* GraphQL */ `
   type Query {
@@ -14,82 +14,82 @@ const source = new Source(/* GraphQL */ `
 `);
 
 function printedLine(source: Source, line: number): string {
-  return source.body.split('\n')[line - 1];
+  return source.body.split("\n")[line - 1];
 }
 
-test('location of a Type', () => {
+test("location of a Type", () => {
   const { line } = getLocationByPath({
     source,
-    path: 'User',
+    path: "User",
   });
 
-  expect(printedLine(source, line)).toMatch('type User {');
+  expect(printedLine(source, line)).toMatch("type User {");
 });
 
-test('location of a Type.Field', () => {
+test("location of a Type.Field", () => {
   const { line } = getLocationByPath({
     source,
-    path: 'User.id',
+    path: "User.id",
   });
 
-  expect(printedLine(source, line)).toMatch('id: ID!');
+  expect(printedLine(source, line)).toMatch("id: ID!");
 });
 
-test('location of a Type.Field.Arg', () => {
+test("location of a Type.Field.Arg", () => {
   const { line } = getLocationByPath({
     source,
-    path: 'Query.user.id',
+    path: "Query.user.id",
   });
 
-  expect(printedLine(source, line)).toMatch('user(id: ID!): User');
+  expect(printedLine(source, line)).toMatch("user(id: ID!): User");
 });
 
-test('location of a RootType.Field', () => {
+test("location of a RootType.Field", () => {
   const { line } = getLocationByPath({
     source,
-    path: 'Query.user',
+    path: "Query.user",
   });
 
-  expect(printedLine(source, line)).toMatch('user(id: ID!): User');
+  expect(printedLine(source, line)).toMatch("user(id: ID!): User");
 });
 
-test('Type.Field.Arg: non-existing Arg should point to Type.Field ', () => {
+test("Type.Field.Arg: non-existing Arg should point to Type.Field ", () => {
   const { line } = getLocationByPath({
     source,
-    path: 'Query.user.nonExisting',
+    path: "Query.user.nonExisting",
   });
 
-  expect(printedLine(source, line)).toMatch('user(id: ID!): User');
+  expect(printedLine(source, line)).toMatch("user(id: ID!): User");
 });
 
-test('Type.Field.Arg: non-existing Field should point to Type ', () => {
+test("Type.Field.Arg: non-existing Field should point to Type ", () => {
   const { line } = getLocationByPath({
     source,
-    path: 'Query.nonExisting.id',
+    path: "Query.nonExisting.id",
   });
 
-  expect(printedLine(source, line)).toMatch('type Query {');
+  expect(printedLine(source, line)).toMatch("type Query {");
 });
 
-test('Type.Field.Arg: non-existing Type should point to first line ', () => {
+test("Type.Field.Arg: non-existing Type should point to first line ", () => {
   const { line } = getLocationByPath({
     source,
-    path: 'NonExisting.user.id',
-  });
-
-  expect(printedLine(source, line)).toMatch(/^\s*$/);
-});
-
-test('Directive.Field.Arg: non-existing Type should point to first line ', () => {
-  const { line } = getLocationByPath({
-    source,
-    path: 'NonExisting.user.id',
+    path: "NonExisting.user.id",
   });
 
   expect(printedLine(source, line)).toMatch(/^\s*$/);
 });
 
-test('Enum.Value: non-existing Value should point to Enum', () => {
+test("Directive.Field.Arg: non-existing Type should point to first line ", () => {
+  const { line } = getLocationByPath({
+    source,
+    path: "NonExisting.user.id",
+  });
+
+  expect(printedLine(source, line)).toMatch(/^\s*$/);
+});
+
+test("Enum.Value: non-existing Value should point to Enum", () => {
   const testSource = new Source(/* GraphQL */ `
     enum MyEnum {
       Foo
@@ -98,13 +98,13 @@ test('Enum.Value: non-existing Value should point to Enum', () => {
   `);
   const { line } = getLocationByPath({
     source: testSource,
-    path: 'MyEnum.Nonexisting',
+    path: "MyEnum.Nonexisting",
   });
 
-  expect(printedLine(testSource, line)).toMatch('enum MyEnum {');
+  expect(printedLine(testSource, line)).toMatch("enum MyEnum {");
 });
 
-test('Enum.Value: Value should point to Value', () => {
+test("Enum.Value: Value should point to Value", () => {
   const testSource = new Source(/* GraphQL */ `
     enum MyEnum {
       Foo
@@ -113,8 +113,8 @@ test('Enum.Value: Value should point to Value', () => {
   `);
   const { line } = getLocationByPath({
     source: testSource,
-    path: 'MyEnum.Bar',
+    path: "MyEnum.Bar",
   });
 
-  expect(printedLine(testSource, line)).toMatch('Bar');
+  expect(printedLine(testSource, line)).toMatch("Bar");
 });

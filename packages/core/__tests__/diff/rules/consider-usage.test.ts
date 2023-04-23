@@ -1,10 +1,10 @@
-import { buildSchema } from 'graphql';
-import { considerUsage } from '../../../src/diff/rules/index.js';
-import { CriticalityLevel, diff } from '../../../src/index.js';
-import { findFirstChangeByPath } from '../../../utils/testing.js';
+import { buildSchema } from "graphql";
+import { considerUsage } from "../../../src/diff/rules/index.js";
+import { CriticalityLevel, diff } from "../../../src/index.js";
+import { findFirstChangeByPath } from "../../../utils/testing.js";
 
-describe('considerUsage rule', () => {
-  test('removed field', async () => {
+describe("considerUsage rule", () => {
+  test("removed field", async () => {
     const a = buildSchema(/* GraphQL */ `
       type Foo {
         a: String!
@@ -24,14 +24,14 @@ describe('considerUsage rule', () => {
       },
     });
 
-    const removed = findFirstChangeByPath(changes, 'Foo.b');
+    const removed = findFirstChangeByPath(changes, "Foo.b");
 
     expect(removed.criticality.level).toBe(CriticalityLevel.Dangerous);
     expect(removed.criticality.isSafeBasedOnUsage).toBe(true);
     expect(removed.message).toContain(`non-breaking based on usage`);
   });
 
-  test('removed type', async () => {
+  test("removed type", async () => {
     const a = buildSchema(/* GraphQL */ `
       type Query {
         bar: String!

@@ -1,12 +1,12 @@
-import { getReachableTypes } from '../../utils/graphql.js';
-import { parsePath } from '../../utils/path.js';
-import { CriticalityLevel } from './../changes/change.js';
-import { Rule } from './types.js';
+import { getReachableTypes } from "../../utils/graphql.js";
+import { parsePath } from "../../utils/path.js";
+import { CriticalityLevel } from "./../changes/change.js";
+import { Rule } from "./types.js";
 
 export const safeUnreachable: Rule = ({ changes, oldSchema }) => {
   const reachable = getReachableTypes(oldSchema);
 
-  return changes.map(change => {
+  return changes.map((change) => {
     if (change.criticality.level === CriticalityLevel.Breaking && change.path) {
       const [typeName] = parsePath(change.path);
 
@@ -17,7 +17,7 @@ export const safeUnreachable: Rule = ({ changes, oldSchema }) => {
             ...change.criticality,
             level: CriticalityLevel.NonBreaking,
           },
-          message: 'Unreachable from root',
+          message: "Unreachable from root",
         };
       }
     }

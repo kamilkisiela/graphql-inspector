@@ -4,7 +4,7 @@ description:
   even via WebHooks every time new changes are introduced.
 ---
 
-import { Callout } from '@theguild/components'
+import { Callout } from "@theguild/components";
 
 # Schema Change Notifications
 
@@ -29,9 +29,9 @@ targets: Slack, Discord or generic webhook.
 
 ```yaml
 notifications:
-  slack: 'your-slack-webhook'
-  discord: 'your-discord-webhook'
-  webhook: 'your-own-webhook'
+  slack: "your-slack-webhook"
+  discord: "your-discord-webhook"
+  webhook: "your-own-webhook"
 ```
 
 ### Using with Environments
@@ -42,14 +42,14 @@ only for production environment.
 
 ```yaml
 notifications:
-  webhook: 'your-own-webhook'
+  webhook: "your-own-webhook"
 env:
   production:
-    branch: 'master'
+    branch: "master"
     notifications:
-      slack: '<slack-webhook>'
+      slack: "<slack-webhook>"
   dev:
-    branch: 'develop'
+    branch: "develop"
 ```
 
 Whenever a new change is pushed to the `develop` branch, you get a notification via Webhook but not
@@ -63,7 +63,7 @@ Webhook.
 
 ```yaml
 notifications:
-  slack: 'https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX'
+  slack: "https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX"
 ```
 
 ![Notifications on Slack](/assets/img/notifications/slack.png)
@@ -76,7 +76,7 @@ and pass it to
 
 ```yaml
 notifications:
-  discord: 'https://discordapp.com/api/webhooks/XXXXXX/XXXXXX'
+  discord: "https://discordapp.com/api/webhooks/XXXXXX/XXXXXX"
 ```
 
 ![Notifications on Discord](/assets/img/notifications/discord.png)
@@ -87,7 +87,7 @@ For more advanced cases, you may want to use the Webhook option.
 
 ```yaml
 notifications:
-  webhook: 'https://your-app.com/webhooks/schema-changes'
+  webhook: "https://your-app.com/webhooks/schema-changes"
 ```
 
 From now on, every change in your schema will pass through the webhook. You can integrate it with

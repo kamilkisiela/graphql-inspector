@@ -1,23 +1,23 @@
-import { createConfig } from '../src/helpers/config.js';
+import { createConfig } from "../src/helpers/config.js";
 
 // eslint-disable-next-line @typescript-eslint/no-empty-function
 const dummySetConfig = () => {};
-describe('multiple environments', () => {
-  describe('when branch matches environment', () => {
-    const branches = ['master'];
+describe("multiple environments", () => {
+  describe("when branch matches environment", () => {
+    const branches = ["master"];
 
-    test('diff should be enabled by default', () => {
+    test("diff should be enabled by default", () => {
       const config = createConfig(
         {
           env: {
             production: {
-              branch: 'master',
+              branch: "master",
             },
           },
-          schema: 'schema.graphql',
+          schema: "schema.graphql",
         },
         dummySetConfig,
-        branches,
+        branches
       );
       expect(config.diff).toEqual({
         annotations: true,
@@ -25,36 +25,36 @@ describe('multiple environments', () => {
       });
     });
 
-    test('diff should be disabled on demand', () => {
+    test("diff should be disabled on demand", () => {
       const config = createConfig(
         {
           env: {
             production: {
-              branch: 'master',
+              branch: "master",
               diff: false,
             },
           },
-          schema: 'schema.graphql',
+          schema: "schema.graphql",
         },
         dummySetConfig,
-        branches,
+        branches
       );
       expect(config.diff).toBe(false);
     });
 
-    test('setting diff as true should enable annotations and failOnBreaking', () => {
+    test("setting diff as true should enable annotations and failOnBreaking", () => {
       const config = createConfig(
         {
           env: {
             production: {
-              branch: 'master',
+              branch: "master",
               diff: true,
             },
           },
-          schema: 'schema.graphql',
+          schema: "schema.graphql",
         },
         dummySetConfig,
-        branches,
+        branches
       );
       expect(config.diff).toEqual({
         annotations: true,
@@ -62,88 +62,88 @@ describe('multiple environments', () => {
       });
     });
 
-    test('branch should match', () => {
+    test("branch should match", () => {
       const config = createConfig(
         {
           env: {
             production: {
-              branch: 'master',
+              branch: "master",
             },
           },
-          schema: 'schema.graphql',
+          schema: "schema.graphql",
         },
         dummySetConfig,
-        branches,
+        branches
       );
-      expect(config.branch).toBe('master');
+      expect(config.branch).toBe("master");
     });
 
-    test('schema should match', () => {
+    test("schema should match", () => {
       const config = createConfig(
         {
           env: {
             production: {
-              branch: 'master',
+              branch: "master",
             },
           },
-          schema: 'schema.graphql',
+          schema: "schema.graphql",
         },
         dummySetConfig,
-        branches,
+        branches
       );
-      expect(config.schema).toBe('schema.graphql');
+      expect(config.schema).toBe("schema.graphql");
     });
 
-    test('endpoint should match', () => {
+    test("endpoint should match", () => {
       const config = createConfig(
         {
           env: {
             production: {
-              branch: 'master',
-              endpoint: 'api',
+              branch: "master",
+              endpoint: "api",
             },
           },
-          schema: 'schema.graphql',
+          schema: "schema.graphql",
         },
         dummySetConfig,
-        branches,
+        branches
       );
-      expect(config.endpoint).toBe('api');
+      expect(config.endpoint).toBe("api");
     });
 
-    test('notifications should be disabled by default', () => {
+    test("notifications should be disabled by default", () => {
       const config = createConfig(
         {
           env: {
             production: {
-              branch: 'master',
+              branch: "master",
             },
           },
-          schema: 'schema.graphql',
+          schema: "schema.graphql",
         },
         dummySetConfig,
-        branches,
+        branches
       );
       expect(config.notifications).toBe(false);
     });
 
-    test('env diff should overwrite global diff', () => {
+    test("env diff should overwrite global diff", () => {
       const config = createConfig(
         {
           diff: false,
           env: {
             production: {
-              branch: 'master',
+              branch: "master",
               diff: {
                 annotations: true,
                 failOnBreaking: false,
               },
             },
           },
-          schema: 'schema.graphql',
+          schema: "schema.graphql",
         },
         dummySetConfig,
-        branches,
+        branches
       );
       expect(config.diff).toEqual({
         annotations: true,
@@ -151,7 +151,7 @@ describe('multiple environments', () => {
       });
     });
 
-    test('env diff.annotations should overwrite global diff.annotations', () => {
+    test("env diff.annotations should overwrite global diff.annotations", () => {
       const config = createConfig(
         {
           diff: {
@@ -159,17 +159,17 @@ describe('multiple environments', () => {
           },
           env: {
             production: {
-              branch: 'master',
+              branch: "master",
               diff: {
                 annotations: false,
                 failOnBreaking: true,
               },
             },
           },
-          schema: 'schema.graphql',
+          schema: "schema.graphql",
         },
         dummySetConfig,
-        branches,
+        branches
       );
       expect(config.diff).toEqual({
         annotations: false,
@@ -177,86 +177,86 @@ describe('multiple environments', () => {
       });
     });
 
-    test('env notifications should overwrite global notifications', () => {
+    test("env notifications should overwrite global notifications", () => {
       const config = createConfig(
         {
           notifications: false,
           env: {
             production: {
-              branch: 'master',
+              branch: "master",
               notifications: {
-                slack: 'slack',
+                slack: "slack",
               },
             },
           },
-          schema: 'schema.graphql',
+          schema: "schema.graphql",
         },
         dummySetConfig,
-        branches,
+        branches
       );
       expect(config.notifications).toEqual({
-        slack: 'slack',
+        slack: "slack",
       });
     });
 
-    test('env notifications.slack should overwrite global notifications.slack', () => {
+    test("env notifications.slack should overwrite global notifications.slack", () => {
       const config = createConfig(
         {
           notifications: {
-            slack: 'global',
+            slack: "global",
           },
           env: {
             production: {
-              branch: 'master',
+              branch: "master",
               notifications: {
-                slack: 'local',
+                slack: "local",
               },
             },
           },
-          schema: 'schema.graphql',
+          schema: "schema.graphql",
         },
         dummySetConfig,
-        branches,
+        branches
       );
       expect(config.notifications).toEqual({
-        slack: 'local',
+        slack: "local",
       });
     });
 
-    test('global notifications should apply in all environments', () => {
+    test("global notifications should apply in all environments", () => {
       const config = createConfig(
         {
           notifications: {
-            slack: 'global',
+            slack: "global",
           },
           env: {
             production: {
-              branch: 'master',
+              branch: "master",
             },
           },
-          schema: 'schema.graphql',
+          schema: "schema.graphql",
         },
         dummySetConfig,
-        branches,
+        branches
       );
       expect(config.notifications).toEqual({
-        slack: 'global',
+        slack: "global",
       });
     });
   });
 
-  describe('when branch DOES NOT match any environment (random PR)', () => {
-    test('diff should be enabled by default', () => {
+  describe("when branch DOES NOT match any environment (random PR)", () => {
+    test("diff should be enabled by default", () => {
       const config = createConfig(
         {
           env: {
             production: {
-              branch: 'master',
+              branch: "master",
             },
           },
-          schema: 'schema.graphql',
+          schema: "schema.graphql",
         },
-        dummySetConfig,
+        dummySetConfig
       );
       expect(config.diff).toEqual({
         annotations: true,
@@ -264,23 +264,23 @@ describe('multiple environments', () => {
       });
     });
 
-    test('diff should be disabled on demand', () => {
+    test("diff should be disabled on demand", () => {
       const config = createConfig(
         {
           diff: false,
           env: {
             production: {
-              branch: 'master',
+              branch: "master",
             },
           },
-          schema: 'schema.graphql',
+          schema: "schema.graphql",
         },
-        dummySetConfig,
+        dummySetConfig
       );
       expect(config.diff).toBe(false);
     });
 
-    test('should put others over globals', () => {
+    test("should put others over globals", () => {
       const config = createConfig(
         {
           diff: {
@@ -288,17 +288,17 @@ describe('multiple environments', () => {
           },
           env: {
             production: {
-              branch: 'master',
+              branch: "master",
             },
           },
-          schema: 'schema.graphql',
+          schema: "schema.graphql",
           others: {
             diff: {
               annotations: false,
             },
           },
         },
-        dummySetConfig,
+        dummySetConfig
       );
       expect(config.diff).toEqual({
         annotations: false,
@@ -306,18 +306,18 @@ describe('multiple environments', () => {
       });
     });
 
-    test('setting diff as true should enable annotations and failOnBreaking', () => {
+    test("setting diff as true should enable annotations and failOnBreaking", () => {
       const config = createConfig(
         {
           diff: true,
           env: {
             production: {
-              branch: 'master',
+              branch: "master",
             },
           },
-          schema: 'schema.graphql',
+          schema: "schema.graphql",
         },
-        dummySetConfig,
+        dummySetConfig
       );
       expect(config.diff).toEqual({
         annotations: true,
@@ -325,88 +325,88 @@ describe('multiple environments', () => {
       });
     });
 
-    test('branch should be * (any)', () => {
+    test("branch should be * (any)", () => {
       const config = createConfig(
         {
           env: {
             production: {
-              branch: 'master',
+              branch: "master",
             },
           },
-          schema: 'schema.graphql',
+          schema: "schema.graphql",
         },
-        dummySetConfig,
+        dummySetConfig
       );
-      expect(config.branch).toBe('*');
+      expect(config.branch).toBe("*");
     });
 
-    test('endpoint should be not defined', () => {
+    test("endpoint should be not defined", () => {
       const config = createConfig(
         {
           env: {
             production: {
-              branch: 'master',
-              endpoint: 'api',
+              branch: "master",
+              endpoint: "api",
             },
           },
-          schema: 'schema.graphql',
+          schema: "schema.graphql",
         },
-        dummySetConfig,
+        dummySetConfig
       );
       expect(config.endpoint).not.toBeDefined();
     });
 
-    test('schema should match', () => {
+    test("schema should match", () => {
       const config = createConfig(
         {
           env: {
             production: {
-              branch: 'master',
+              branch: "master",
             },
           },
-          schema: 'schema.graphql',
+          schema: "schema.graphql",
         },
-        dummySetConfig,
+        dummySetConfig
       );
-      expect(config.schema).toBe('schema.graphql');
+      expect(config.schema).toBe("schema.graphql");
     });
 
-    test('notifications should be disabled by default', () => {
+    test("notifications should be disabled by default", () => {
       const config = createConfig(
         {
           env: {
             production: {
-              branch: 'master',
+              branch: "master",
             },
           },
-          schema: 'schema.graphql',
+          schema: "schema.graphql",
         },
-        dummySetConfig,
+        dummySetConfig
       );
       expect(config.notifications).toBe(false);
     });
 
-    test('should use global diff even if some environemnt has local settings', () => {
+    test("should use global diff even if some environemnt has local settings", () => {
       const config = createConfig(
         {
           diff: false,
           env: {
             production: {
-              branch: 'master',
+              branch: "master",
               diff: {
                 annotations: true,
                 failOnBreaking: false,
               },
             },
           },
-          schema: 'schema.graphql',
+          schema: "schema.graphql",
         },
-        dummySetConfig,
+        dummySetConfig
       );
       expect(config.diff).toBe(false);
     });
 
-    test('should use global diff.annotations', () => {
+    test("should use global diff.annotations", () => {
       const config = createConfig(
         {
           diff: {
@@ -414,16 +414,16 @@ describe('multiple environments', () => {
           },
           env: {
             production: {
-              branch: 'master',
+              branch: "master",
               diff: {
                 annotations: false,
                 failOnBreaking: true,
               },
             },
           },
-          schema: 'schema.graphql',
+          schema: "schema.graphql",
         },
-        dummySetConfig,
+        dummySetConfig
       );
       expect(config.diff).toEqual({
         annotations: true,
@@ -431,57 +431,57 @@ describe('multiple environments', () => {
       });
     });
 
-    test('notifications should be disabled when disabled globally', () => {
+    test("notifications should be disabled when disabled globally", () => {
       const config = createConfig(
         {
           notifications: false,
           env: {
             production: {
-              branch: 'master',
+              branch: "master",
               notifications: {
-                slack: 'slack',
+                slack: "slack",
               },
             },
           },
-          schema: 'schema.graphql',
+          schema: "schema.graphql",
         },
-        dummySetConfig,
+        dummySetConfig
       );
       expect(config.notifications).toBe(false);
     });
 
-    test('notifications should be disabled', () => {
+    test("notifications should be disabled", () => {
       const config = createConfig(
         {
           notifications: {
-            slack: 'global',
+            slack: "global",
           },
           env: {
             production: {
-              branch: 'master',
+              branch: "master",
             },
           },
-          schema: 'schema.graphql',
+          schema: "schema.graphql",
         },
-        dummySetConfig,
+        dummySetConfig
       );
       expect(config.notifications).toBe(false);
     });
   });
 });
 
-describe('single environment', () => {
-  describe('when branches match', () => {
-    const branches = ['master'];
+describe("single environment", () => {
+  describe("when branches match", () => {
+    const branches = ["master"];
 
-    test('diff should be enabled by default', () => {
+    test("diff should be enabled by default", () => {
       const config = createConfig(
         {
-          branch: 'master',
-          schema: 'schema.graphql',
+          branch: "master",
+          schema: "schema.graphql",
         },
         dummySetConfig,
-        branches,
+        branches
       );
       expect(config.diff).toEqual({
         annotations: true,
@@ -489,28 +489,28 @@ describe('single environment', () => {
       });
     });
 
-    test('diff should be disabled on demand', () => {
+    test("diff should be disabled on demand", () => {
       const config = createConfig(
         {
-          branch: 'master',
-          schema: 'schema.graphql',
+          branch: "master",
+          schema: "schema.graphql",
           diff: false,
         },
         dummySetConfig,
-        branches,
+        branches
       );
       expect(config.diff).toBe(false);
     });
 
-    test('setting diff as true should enable annotations and failOnBreaking', () => {
+    test("setting diff as true should enable annotations and failOnBreaking", () => {
       const config = createConfig(
         {
-          branch: 'master',
-          schema: 'schema.graphql',
+          branch: "master",
+          schema: "schema.graphql",
           diff: true,
         },
         dummySetConfig,
-        branches,
+        branches
       );
       expect(config.diff).toEqual({
         annotations: true,
@@ -518,64 +518,64 @@ describe('single environment', () => {
       });
     });
 
-    test('branch should match', () => {
+    test("branch should match", () => {
       const config = createConfig(
         {
-          branch: 'master',
-          schema: 'schema.graphql',
+          branch: "master",
+          schema: "schema.graphql",
         },
         dummySetConfig,
-        branches,
+        branches
       );
-      expect(config.branch).toBe('master');
+      expect(config.branch).toBe("master");
     });
 
-    test('endpoint should match', () => {
+    test("endpoint should match", () => {
       const config = createConfig(
         {
-          branch: 'master',
-          endpoint: 'api',
-          schema: 'schema.graphql',
+          branch: "master",
+          endpoint: "api",
+          schema: "schema.graphql",
         },
         dummySetConfig,
-        branches,
+        branches
       );
-      expect(config.endpoint).toBe('api');
+      expect(config.endpoint).toBe("api");
     });
 
-    test('schema should match', () => {
+    test("schema should match", () => {
       const config = createConfig(
         {
-          branch: 'master',
-          schema: 'schema.graphql',
+          branch: "master",
+          schema: "schema.graphql",
         },
         dummySetConfig,
-        branches,
+        branches
       );
-      expect(config.schema).toBe('schema.graphql');
+      expect(config.schema).toBe("schema.graphql");
     });
 
-    test('notifications should be disabled by default', () => {
+    test("notifications should be disabled by default", () => {
       const config = createConfig(
         {
-          branch: 'master',
-          schema: 'schema.graphql',
+          branch: "master",
+          schema: "schema.graphql",
         },
         dummySetConfig,
-        branches,
+        branches
       );
       expect(config.notifications).toBe(false);
     });
   });
 
-  describe('when branch DOES NOT match env branch', () => {
-    test('diff should be enabled by default', () => {
+  describe("when branch DOES NOT match env branch", () => {
+    test("diff should be enabled by default", () => {
       const config = createConfig(
         {
-          branch: 'master',
-          schema: 'schema.graphql',
+          branch: "master",
+          schema: "schema.graphql",
         },
-        dummySetConfig,
+        dummySetConfig
       );
       expect(config.diff).toEqual({
         annotations: true,
@@ -583,23 +583,23 @@ describe('single environment', () => {
       });
     });
 
-    test('diff should be disabled on demand', () => {
+    test("diff should be disabled on demand", () => {
       const config = createConfig(
         {
-          branch: 'master',
-          schema: 'schema.graphql',
+          branch: "master",
+          schema: "schema.graphql",
           diff: false,
         },
-        dummySetConfig,
+        dummySetConfig
       );
       expect(config.diff).toBe(false);
     });
 
-    test('diff should use others first', () => {
+    test("diff should use others first", () => {
       const config = createConfig(
         {
-          branch: 'master',
-          schema: 'schema.graphql',
+          branch: "master",
+          schema: "schema.graphql",
           diff: {
             failOnBreaking: true,
           },
@@ -609,7 +609,7 @@ describe('single environment', () => {
             },
           },
         },
-        dummySetConfig,
+        dummySetConfig
       );
       expect(config.diff).toEqual({
         failOnBreaking: true,
@@ -617,14 +617,14 @@ describe('single environment', () => {
       });
     });
 
-    test('setting diff as true should enable annotations and failOnBreaking', () => {
+    test("setting diff as true should enable annotations and failOnBreaking", () => {
       const config = createConfig(
         {
-          branch: 'master',
-          schema: 'schema.graphql',
+          branch: "master",
+          schema: "schema.graphql",
           diff: true,
         },
-        dummySetConfig,
+        dummySetConfig
       );
       expect(config.diff).toEqual({
         annotations: true,
@@ -632,67 +632,67 @@ describe('single environment', () => {
       });
     });
 
-    test('branch should not match', () => {
+    test("branch should not match", () => {
       const config = createConfig(
         {
-          branch: 'master',
-          schema: 'schema.graphql',
+          branch: "master",
+          schema: "schema.graphql",
         },
-        dummySetConfig,
+        dummySetConfig
       );
-      expect(config.branch).toBe('*');
+      expect(config.branch).toBe("*");
     });
 
-    test('endpoint should not be defined', () => {
+    test("endpoint should not be defined", () => {
       const config = createConfig(
         {
-          branch: 'master',
-          endpoint: 'api',
-          schema: 'schema.graphql',
+          branch: "master",
+          endpoint: "api",
+          schema: "schema.graphql",
         },
-        dummySetConfig,
+        dummySetConfig
       );
       expect(config.endpoint).not.toBeDefined();
     });
 
-    test('schema should match', () => {
+    test("schema should match", () => {
       const config = createConfig(
         {
-          branch: 'master',
-          schema: 'schema.graphql',
+          branch: "master",
+          schema: "schema.graphql",
         },
-        dummySetConfig,
+        dummySetConfig
       );
-      expect(config.schema).toBe('schema.graphql');
+      expect(config.schema).toBe("schema.graphql");
     });
 
-    test('notifications should be disabled by default', () => {
+    test("notifications should be disabled by default", () => {
       const config = createConfig(
         {
-          branch: 'master',
-          schema: 'schema.graphql',
+          branch: "master",
+          schema: "schema.graphql",
         },
-        dummySetConfig,
+        dummySetConfig
       );
       expect(config.notifications).toBe(false);
     });
   });
 });
 
-describe('legacy config', () => {
-  describe('when branch mathes ref', () => {
-    const branches = ['master'];
+describe("legacy config", () => {
+  describe("when branch mathes ref", () => {
+    const branches = ["master"];
 
-    test('diff should be enabled by default', () => {
+    test("diff should be enabled by default", () => {
       const config = createConfig(
         {
           schema: {
-            ref: 'master',
-            path: 'schema.graphql',
+            ref: "master",
+            path: "schema.graphql",
           },
         },
         dummySetConfig,
-        branches,
+        branches
       );
       expect(config.diff).toEqual({
         annotations: true,
@@ -700,32 +700,32 @@ describe('legacy config', () => {
       });
     });
 
-    test('diff should be disabled on demand', () => {
+    test("diff should be disabled on demand", () => {
       const config = createConfig(
         {
           schema: {
-            ref: 'master',
-            path: 'schema.graphql',
+            ref: "master",
+            path: "schema.graphql",
           },
           diff: false,
         },
         dummySetConfig,
-        branches,
+        branches
       );
       expect(config.diff).toBe(false);
     });
 
-    test('setting diff as true should enable annotations and failOnBreaking', () => {
+    test("setting diff as true should enable annotations and failOnBreaking", () => {
       const config = createConfig(
         {
           schema: {
-            ref: 'master',
-            path: 'schema.graphql',
+            ref: "master",
+            path: "schema.graphql",
           },
           diff: true,
         },
         dummySetConfig,
-        branches,
+        branches
       );
       expect(config.diff).toEqual({
         annotations: true,
@@ -733,19 +733,19 @@ describe('legacy config', () => {
       });
     });
 
-    test('setting diff.annotations as true should enable annotations and failOnBreaking', () => {
+    test("setting diff.annotations as true should enable annotations and failOnBreaking", () => {
       const config = createConfig(
         {
           schema: {
-            ref: 'master',
-            path: 'schema.graphql',
+            ref: "master",
+            path: "schema.graphql",
           },
           diff: {
             annotations: true,
           },
         },
         dummySetConfig,
-        branches,
+        branches
       );
       expect(config.diff).toEqual({
         annotations: true,
@@ -753,19 +753,19 @@ describe('legacy config', () => {
       });
     });
 
-    test('setting diff.failOnBreaking as true should enable failOnBreaking and annotations', () => {
+    test("setting diff.failOnBreaking as true should enable failOnBreaking and annotations", () => {
       const config = createConfig(
         {
           schema: {
-            ref: 'master',
-            path: 'schema.graphql',
+            ref: "master",
+            path: "schema.graphql",
           },
           diff: {
             failOnBreaking: true,
           },
         },
         dummySetConfig,
-        branches,
+        branches
       );
       expect(config.diff).toEqual({
         annotations: true,
@@ -773,12 +773,12 @@ describe('legacy config', () => {
       });
     });
 
-    test('setting diff.failOnBreaking as true and annotations as false should enable and disable each', () => {
+    test("setting diff.failOnBreaking as true and annotations as false should enable and disable each", () => {
       const config = createConfig(
         {
           schema: {
-            ref: 'master',
-            path: 'schema.graphql',
+            ref: "master",
+            path: "schema.graphql",
           },
           diff: {
             failOnBreaking: true,
@@ -786,7 +786,7 @@ describe('legacy config', () => {
           },
         },
         dummySetConfig,
-        branches,
+        branches
       );
       expect(config.diff).toEqual({
         failOnBreaking: true,
@@ -794,12 +794,12 @@ describe('legacy config', () => {
       });
     });
 
-    test('setting diff.failOnBreaking as false and annotations as true should disable and enable each', () => {
+    test("setting diff.failOnBreaking as false and annotations as true should disable and enable each", () => {
       const config = createConfig(
         {
           schema: {
-            ref: 'master',
-            path: 'schema.graphql',
+            ref: "master",
+            path: "schema.graphql",
           },
           diff: {
             failOnBreaking: false,
@@ -807,7 +807,7 @@ describe('legacy config', () => {
           },
         },
         dummySetConfig,
-        branches,
+        branches
       );
       expect(config.diff).toEqual({
         failOnBreaking: false,
@@ -815,108 +815,108 @@ describe('legacy config', () => {
       });
     });
 
-    test('setting notifications as true should disable them', () => {
+    test("setting notifications as true should disable them", () => {
       const config = createConfig(
         {
           schema: {
-            ref: 'master',
-            path: 'schema.graphql',
+            ref: "master",
+            path: "schema.graphql",
           },
           notifications: true,
         } as any,
         dummySetConfig,
-        branches,
+        branches
       );
       expect(config.notifications).toBe(false);
     });
 
-    test('setting notifications.slack should set notification.slack', () => {
+    test("setting notifications.slack should set notification.slack", () => {
       const config = createConfig(
         {
           schema: {
-            ref: 'master',
-            path: 'schema.graphql',
+            ref: "master",
+            path: "schema.graphql",
           },
           notifications: {
-            slack: 'slack',
+            slack: "slack",
           },
         } as any,
         dummySetConfig,
-        branches,
+        branches
       );
       expect(config.notifications).toEqual({
-        slack: 'slack',
+        slack: "slack",
       });
     });
 
-    test('branch should equal ref', () => {
+    test("branch should equal ref", () => {
       const config = createConfig(
         {
           schema: {
-            ref: 'master',
-            path: 'schema.graphql',
+            ref: "master",
+            path: "schema.graphql",
           },
         },
         dummySetConfig,
-        branches,
+        branches
       );
-      expect(config.branch).toBe('master');
+      expect(config.branch).toBe("master");
     });
 
-    test('schema should equal path', () => {
+    test("schema should equal path", () => {
       const config = createConfig(
         {
           schema: {
-            ref: 'master',
-            path: 'schema.graphql',
+            ref: "master",
+            path: "schema.graphql",
           },
         },
         dummySetConfig,
-        branches,
+        branches
       );
-      expect(config.schema).toBe('schema.graphql');
+      expect(config.schema).toBe("schema.graphql");
     });
 
-    test('endpoint should match', () => {
+    test("endpoint should match", () => {
       const config = createConfig(
         {
           schema: {
-            ref: 'master',
-            path: 'schema.graphql',
+            ref: "master",
+            path: "schema.graphql",
           },
-          endpoint: 'api',
+          endpoint: "api",
         },
         dummySetConfig,
-        branches,
+        branches
       );
-      expect(config.endpoint).toBe('api');
+      expect(config.endpoint).toBe("api");
     });
 
-    test('notifications should be disabled by default', () => {
+    test("notifications should be disabled by default", () => {
       const config = createConfig(
         {
           schema: {
-            ref: 'master',
-            path: 'schema.graphql',
+            ref: "master",
+            path: "schema.graphql",
           },
         },
         dummySetConfig,
-        branches,
+        branches
       );
       expect(config.notifications).toBe(false);
     });
   });
 
-  describe('when branch DOES NOT match ref', () => {
-    test('diff should be enabled by default', () => {
+  describe("when branch DOES NOT match ref", () => {
+    test("diff should be enabled by default", () => {
       const config = createConfig(
         {
           schema: {
-            ref: 'master',
-            path: 'schema.graphql',
+            ref: "master",
+            path: "schema.graphql",
           },
         },
-        dummySetConfig,
+        dummySetConfig
       );
       expect(config.diff).toEqual({
         annotations: true,
@@ -924,30 +924,30 @@ describe('legacy config', () => {
       });
     });
 
-    test('diff should be disabled on demand', () => {
+    test("diff should be disabled on demand", () => {
       const config = createConfig(
         {
           schema: {
-            ref: 'master',
-            path: 'schema.graphql',
+            ref: "master",
+            path: "schema.graphql",
           },
           diff: false,
         },
-        dummySetConfig,
+        dummySetConfig
       );
       expect(config.diff).toBe(false);
     });
 
-    test('setting diff as true should enable annotations and failOnBreaking', () => {
+    test("setting diff as true should enable annotations and failOnBreaking", () => {
       const config = createConfig(
         {
           schema: {
-            ref: 'master',
-            path: 'schema.graphql',
+            ref: "master",
+            path: "schema.graphql",
           },
           diff: true,
         },
-        dummySetConfig,
+        dummySetConfig
       );
       expect(config.diff).toEqual({
         annotations: true,
@@ -955,18 +955,18 @@ describe('legacy config', () => {
       });
     });
 
-    test('setting diff.annotations as true should enable annotations and failOnBreaking', () => {
+    test("setting diff.annotations as true should enable annotations and failOnBreaking", () => {
       const config = createConfig(
         {
           schema: {
-            ref: 'master',
-            path: 'schema.graphql',
+            ref: "master",
+            path: "schema.graphql",
           },
           diff: {
             annotations: true,
           },
         },
-        dummySetConfig,
+        dummySetConfig
       );
       expect(config.diff).toEqual({
         annotations: true,
@@ -974,18 +974,18 @@ describe('legacy config', () => {
       });
     });
 
-    test('setting diff.failOnBreaking as true should enable failOnBreaking and annotations', () => {
+    test("setting diff.failOnBreaking as true should enable failOnBreaking and annotations", () => {
       const config = createConfig(
         {
           schema: {
-            ref: 'master',
-            path: 'schema.graphql',
+            ref: "master",
+            path: "schema.graphql",
           },
           diff: {
             failOnBreaking: true,
           },
         },
-        dummySetConfig,
+        dummySetConfig
       );
       expect(config.diff).toEqual({
         annotations: true,
@@ -993,19 +993,19 @@ describe('legacy config', () => {
       });
     });
 
-    test('setting diff.failOnBreaking as true and annotations as false should enable and disable each', () => {
+    test("setting diff.failOnBreaking as true and annotations as false should enable and disable each", () => {
       const config = createConfig(
         {
           schema: {
-            ref: 'master',
-            path: 'schema.graphql',
+            ref: "master",
+            path: "schema.graphql",
           },
           diff: {
             failOnBreaking: true,
             annotations: false,
           },
         },
-        dummySetConfig,
+        dummySetConfig
       );
       expect(config.diff).toEqual({
         failOnBreaking: true,
@@ -1013,19 +1013,19 @@ describe('legacy config', () => {
       });
     });
 
-    test('setting diff.failOnBreaking as false and annotations as true should disable and enable each', () => {
+    test("setting diff.failOnBreaking as false and annotations as true should disable and enable each", () => {
       const config = createConfig(
         {
           schema: {
-            ref: 'master',
-            path: 'schema.graphql',
+            ref: "master",
+            path: "schema.graphql",
           },
           diff: {
             failOnBreaking: false,
             annotations: true,
           },
         },
-        dummySetConfig,
+        dummySetConfig
       );
       expect(config.diff).toEqual({
         failOnBreaking: false,
@@ -1033,87 +1033,87 @@ describe('legacy config', () => {
       });
     });
 
-    test('setting notifications as true should disable them', () => {
+    test("setting notifications as true should disable them", () => {
       const config = createConfig(
         {
           schema: {
-            ref: 'master',
-            path: 'schema.graphql',
+            ref: "master",
+            path: "schema.graphql",
           },
           notifications: true,
         } as any,
-        dummySetConfig,
+        dummySetConfig
       );
       expect(config.notifications).toBe(false);
     });
 
-    test('setting notifications.slack should set notification.slack', () => {
+    test("setting notifications.slack should set notification.slack", () => {
       const config = createConfig(
         {
           schema: {
-            ref: 'master',
-            path: 'schema.graphql',
+            ref: "master",
+            path: "schema.graphql",
           },
           notifications: {
-            slack: 'slack',
+            slack: "slack",
           },
         } as any,
-        dummySetConfig,
+        dummySetConfig
       );
       expect(config.notifications).toEqual({
-        slack: 'slack',
+        slack: "slack",
       });
     });
 
-    test('branch should equal ref', () => {
+    test("branch should equal ref", () => {
       const config = createConfig(
         {
           schema: {
-            ref: 'master',
-            path: 'schema.graphql',
+            ref: "master",
+            path: "schema.graphql",
           },
         },
-        dummySetConfig,
+        dummySetConfig
       );
-      expect(config.branch).toBe('master');
+      expect(config.branch).toBe("master");
     });
 
-    test('schema should equal path', () => {
+    test("schema should equal path", () => {
       const config = createConfig(
         {
           schema: {
-            ref: 'master',
-            path: 'schema.graphql',
+            ref: "master",
+            path: "schema.graphql",
           },
         },
-        dummySetConfig,
+        dummySetConfig
       );
-      expect(config.schema).toBe('schema.graphql');
+      expect(config.schema).toBe("schema.graphql");
     });
 
-    test('endpoint should match', () => {
+    test("endpoint should match", () => {
       const config = createConfig(
         {
           schema: {
-            ref: 'master',
-            path: 'schema.graphql',
+            ref: "master",
+            path: "schema.graphql",
           },
-          endpoint: 'api',
+          endpoint: "api",
         },
-        dummySetConfig,
+        dummySetConfig
       );
       expect(config.endpoint).not.toBeDefined();
     });
 
-    test('notifications should be disabled by default', () => {
+    test("notifications should be disabled by default", () => {
       const config = createConfig(
         {
           schema: {
-            ref: 'master',
-            path: 'schema.graphql',
+            ref: "master",
+            path: "schema.graphql",
           },
         },
-        dummySetConfig,
+        dummySetConfig
       );
       expect(config.notifications).toBe(false);
     });

@@ -1,9 +1,9 @@
-import { relative } from 'path';
-import { buildSchema, parse } from 'graphql';
-import yargs from 'yargs';
-import { mockCommand } from '@graphql-inspector/commands';
-import { mockLogger, unmockLogger } from '@graphql-inspector/logger';
-import createCommand from '../src/index.js';
+import { relative } from "path";
+import { buildSchema, parse } from "graphql";
+import yargs from "yargs";
+import { mockCommand } from "@graphql-inspector/commands";
+import { mockLogger, unmockLogger } from "@graphql-inspector/logger";
+import createCommand from "../src/index.js";
 
 const schema = buildSchema(/* GraphQL */ `
   type Post {
@@ -43,11 +43,11 @@ const validate = createCommand({
       return [
         {
           document: operation,
-          location: 'document.graphql',
+          location: "document.graphql",
         },
         {
           document: operation,
-          location: 'document2.graphql',
+          location: "document2.graphql",
         },
         {
           document: parse(/* GraphQL */ `
@@ -58,21 +58,23 @@ const validate = createCommand({
               }
             }
           `),
-          location: 'valid-document.graphql',
+          location: "valid-document.graphql",
         },
       ];
     },
   },
 });
 
-describe('validate', () => {
+describe("validate", () => {
   let spyReporter: vi.SpyInstance;
   let spyProcessExit: vi.SpyInstance;
   let spyProcessCwd: vi.SpyInstance;
 
   beforeEach(() => {
-    spyProcessExit = vi.spyOn(process, 'exit').mockImplementation(() => null);
-    spyProcessCwd = vi.spyOn(process, 'cwd').mockImplementation(() => __dirname);
+    spyProcessExit = vi.spyOn(process, "exit").mockImplementation(() => null);
+    spyProcessCwd = vi
+      .spyOn(process, "cwd")
+      .mockImplementation(() => __dirname);
     spyReporter = vi.fn();
     mockLogger(spyReporter);
   });
@@ -85,35 +87,45 @@ describe('validate', () => {
     yargs();
   });
 
-  test('should load graphql files', async () => {
+  test("should load graphql files", async () => {
     await mockCommand(validate, 'validate "*.graphql" schema.graphql');
 
-    expect(spyReporter).toHaveBeenCalledNormalized('Detected 2 invalid documents:');
-    expect(spyReporter).toHaveBeenCalledNormalized('document.graphql:');
     expect(spyReporter).toHaveBeenCalledNormalized(
-      'Cannot query field createdAtSomePoint on type Post',
+      "Detected 2 invalid documents:"
     );
-    expect(spyReporter).not.toHaveBeenCalledNormalized('All documents are valid');
-  });
-
-  test('should allow to filter results by file paths', async () => {
-    await mockCommand(validate, 'validate "*.graphql" schema.graphql --filter document2.graphql');
-
-    expect(spyReporter).not.toHaveBeenCalledNormalized('document.graphql:');
-    expect(spyReporter).toHaveBeenCalledNormalized('document2.graphql:');
-  });
-
-  test('should allow to show relative paths', async () => {
-    await mockCommand(validate, 'validate "*.graphql" schema.graphql --relativePaths');
-
+    expect(spyReporter).toHaveBeenCalledNormalized("document.graphql:");
     expect(spyReporter).toHaveBeenCalledNormalized(
-      `in ${relative(process.cwd(), 'document.graphql')}:`,
+      "Cannot query field createdAtSomePoint on type Post"
+    );
+    expect(spyReporter).not.toHaveBeenCalledNormalized(
+      "All documents are valid"
     );
   });
 
-  test('should allow for silent mode', async () => {
+  test("should allow to filter results by file paths", async () => {
+    await mockCommand(
+      validate,
+      'validate "*.graphql" schema.graphql --filter document2.graphql'
+    );
+
+    expect(spyReporter).not.toHaveBeenCalledNormalized("document.graphql:");
+    expect(spyReporter).toHaveBeenCalledNormalized("document2.graphql:");
+  });
+
+  test("should allow to show relative paths", async () => {
+    await mockCommand(
+      validate,
+      'validate "*.graphql" schema.graphql --relativePaths'
+    );
+
+    expect(spyReporter).toHaveBeenCalledNormalized(
+      `in ${relative(process.cwd(), "document.graphql")}:`
+    );
+  });
+
+  test("should allow for silent mode", async () => {
     await mockCommand(validate, 'validate "*.graphql" schema.graphql --silent');
 
-    expect(spyReporter).not.toHaveBeenCalledNormalized('document.graphql:');
+    expect(spyReporter).not.toHaveBeenCalledNormalized("document.graphql:");
   });
 });

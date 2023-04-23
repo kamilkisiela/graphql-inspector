@@ -1,7 +1,11 @@
-import { Change, CriticalityLevel } from '@graphql-inspector/core';
-import { fetch } from '@whatwg-node/fetch';
-import { defaultConfigName } from './config.js';
-import { discordCoderize, filterChangesByLevel, slackCoderize } from './utils.js';
+import { Change, CriticalityLevel } from "@graphql-inspector/core";
+import { fetch } from "@whatwg-node/fetch";
+import { defaultConfigName } from "./config.js";
+import {
+  discordCoderize,
+  filterChangesByLevel,
+  slackCoderize,
+} from "./utils.js";
 
 export interface WebhookNotification {
   environment: string;
@@ -34,17 +38,20 @@ export async function notifyWithWebhook({
     repo,
     owner,
     commit,
-    environment: environment && environment !== defaultConfigName ? environment : 'default',
-    changes: changes.map(change => ({
+    environment:
+      environment && environment !== defaultConfigName
+        ? environment
+        : "default",
+    changes: changes.map((change) => ({
       message: change.message,
       level: change.criticality.level,
     })),
   };
 
   await fetch(url, {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'content-type': 'application/json',
+      "content-type": "application/json",
     },
     body: JSON.stringify(event),
   });
@@ -68,23 +75,26 @@ export async function notifyWithSlack({
   const totalChanges = changes.length;
   const schemaName = environment ? `${environment} schema` : `schema`;
   const sourceLink = commit
-    ? ` (<https://github.com/${owner}/${repo}/commit/${commit}|\`${commit.substr(0, 7)}\`>)`
-    : '';
+    ? ` (<https://github.com/${owner}/${repo}/commit/${commit}|\`${commit.substr(
+        0,
+        7
+      )}\`>)`
+    : "";
 
   const event = {
-    username: 'GraphQL Inspector',
-    icon_url: 'https://graphql-inspector/img/logo-slack.png',
+    username: "GraphQL Inspector",
+    icon_url: "https://graphql-inspector/img/logo-slack.png",
     text: `:male-detective: Hi, I found *${totalChanges} ${pluralize(
-      'change',
-      totalChanges,
+      "change",
+      totalChanges
     )}* in ${schemaName}${sourceLink}:`,
     attachments: createAttachments(changes),
   };
 
   await fetch(url, {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'content-type': 'application/json',
+      "content-type": "application/json",
     },
     body: JSON.stringify(event),
   });
@@ -108,23 +118,26 @@ export async function notifyWithDiscord({
   const totalChanges = changes.length;
   const schemaName = environment ? `${environment} schema` : `schema`;
   const sourceLink = commit
-    ? ` ([\`${commit.substr(0, 7)}\`](https://github.com/${owner}/${repo}/commit/${commit}))`
-    : '';
+    ? ` ([\`${commit.substr(
+        0,
+        7
+      )}\`](https://github.com/${owner}/${repo}/commit/${commit}))`
+    : "";
 
   const event = {
-    username: 'GraphQL Inspector',
-    avatar_url: 'https://graphql-inspector/img/logo-slack.png',
+    username: "GraphQL Inspector",
+    avatar_url: "https://graphql-inspector/img/logo-slack.png",
     content: `:detective: Hi, I found **${totalChanges} ${pluralize(
-      'change',
-      totalChanges,
+      "change",
+      totalChanges
     )}** in ${schemaName}${sourceLink}:`,
     embeds: createDiscordEmbeds(changes),
   };
 
   await fetch(url, {
-    method: 'POST',
+    method: "POST",
     headers: {
-      'content-type': 'application/json',
+      "content-type": "application/json",
     },
     body: JSON.stringify(event),
   });
@@ -139,39 +152,45 @@ interface Attachment {
 }
 
 function createAttachments(changes: Change[]) {
-  const breakingChanges = changes.filter(filterChangesByLevel(CriticalityLevel.Breaking));
-  const dangerousChanges = changes.filter(filterChangesByLevel(CriticalityLevel.Dangerous));
-  const safeChanges = changes.filter(filterChangesByLevel(CriticalityLevel.NonBreaking));
+  const breakingChanges = changes.filter(
+    filterChangesByLevel(CriticalityLevel.Breaking)
+  );
+  const dangerousChanges = changes.filter(
+    filterChangesByLevel(CriticalityLevel.Dangerous)
+  );
+  const safeChanges = changes.filter(
+    filterChangesByLevel(CriticalityLevel.NonBreaking)
+  );
 
   const attachments: Attachment[] = [];
 
   if (breakingChanges.length) {
     attachments.push(
       renderAttachments({
-        color: '#E74C3B',
-        title: 'Breaking changes',
+        color: "#E74C3B",
+        title: "Breaking changes",
         changes: breakingChanges,
-      }),
+      })
     );
   }
 
   if (dangerousChanges.length) {
     attachments.push(
       renderAttachments({
-        color: '#F0C418',
-        title: 'Dangerous changes',
+        color: "#F0C418",
+        title: "Dangerous changes",
         changes: dangerousChanges,
-      }),
+      })
     );
   }
 
   if (safeChanges.length) {
     attachments.push(
       renderAttachments({
-        color: '#23B99A',
-        title: 'Safe changes',
+        color: "#23B99A",
+        title: "Safe changes",
         changes: safeChanges,
-      }),
+      })
     );
   }
 
@@ -187,10 +206,12 @@ function renderAttachments({
   title: string;
   changes: Change[];
 }): Attachment {
-  const text = changes.map(change => slackCoderize(change.message)).join('\n');
+  const text = changes
+    .map((change) => slackCoderize(change.message))
+    .join("\n");
 
   return {
-    mrkdwn_in: ['text', 'fallback'],
+    mrkdwn_in: ["text", "fallback"],
     color,
     author_name: title,
     text,
@@ -199,9 +220,15 @@ function renderAttachments({
 }
 
 function createDiscordEmbeds(changes: Change[]): DiscordEmbed[] {
-  const breakingChanges = changes.filter(filterChangesByLevel(CriticalityLevel.Breaking));
-  const dangerousChanges = changes.filter(filterChangesByLevel(CriticalityLevel.Dangerous));
-  const safeChanges = changes.filter(filterChangesByLevel(CriticalityLevel.NonBreaking));
+  const breakingChanges = changes.filter(
+    filterChangesByLevel(CriticalityLevel.Breaking)
+  );
+  const dangerousChanges = changes.filter(
+    filterChangesByLevel(CriticalityLevel.Dangerous)
+  );
+  const safeChanges = changes.filter(
+    filterChangesByLevel(CriticalityLevel.NonBreaking)
+  );
 
   const embeds: DiscordEmbed[] = [];
 
@@ -209,9 +236,9 @@ function createDiscordEmbeds(changes: Change[]): DiscordEmbed[] {
     embeds.push(
       renderDiscordEmbed({
         color: 15_158_331, // '#E74C3B',
-        title: 'Breaking changes',
+        title: "Breaking changes",
         changes: breakingChanges,
-      }),
+      })
     );
   }
 
@@ -219,9 +246,9 @@ function createDiscordEmbeds(changes: Change[]): DiscordEmbed[] {
     embeds.push(
       renderDiscordEmbed({
         color: 15_778_840, // '#F0C418',
-        title: 'Dangerous changes',
+        title: "Dangerous changes",
         changes: dangerousChanges,
-      }),
+      })
     );
   }
 
@@ -229,9 +256,9 @@ function createDiscordEmbeds(changes: Change[]): DiscordEmbed[] {
     embeds.push(
       renderDiscordEmbed({
         color: 2_341_274, // '#23B99A',
-        title: 'Safe changes',
+        title: "Safe changes",
         changes: safeChanges,
-      }),
+      })
     );
   }
 
@@ -253,7 +280,9 @@ function renderDiscordEmbed({
   title: string;
   changes: Change[];
 }): DiscordEmbed {
-  const description = changes.map(change => discordCoderize(change.message)).join('\n');
+  const description = changes
+    .map((change) => discordCoderize(change.message))
+    .join("\n");
 
   return {
     color,
@@ -263,5 +292,5 @@ function renderDiscordEmbed({
 }
 
 function pluralize(word: string, num: number): string {
-  return word + (num > 1 ? 's' : '');
+  return word + (num > 1 ? "s" : "");
 }

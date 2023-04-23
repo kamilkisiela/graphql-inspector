@@ -1,5 +1,5 @@
-declare module 'jsesc';
-declare module 'strip-ansi';
+declare module "jsesc";
+declare module "strip-ansi";
 
 interface CustomMatchers<R = unknown> {
   toHaveBeenCalledNormalized(expected: string): R;

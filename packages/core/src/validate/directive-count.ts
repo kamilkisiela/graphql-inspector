@@ -1,4 +1,4 @@
-import { DepGraph } from 'dependency-graph';
+import { DepGraph } from "dependency-graph";
 import type {
   DocumentNode,
   FieldNode,
@@ -7,8 +7,8 @@ import type {
   InlineFragmentNode,
   OperationDefinitionNode,
   Source,
-} from 'graphql';
-import { GraphQLError, Kind } from 'graphql';
+} from "graphql";
+import { GraphQLError, Kind } from "graphql";
 
 export function validateDirectiveCount({
   source,
@@ -28,13 +28,16 @@ export function validateDirectiveCount({
     if (definition.kind !== Kind.OPERATION_DEFINITION) {
       continue;
     }
-    const directiveCount = countDirectives(definition, getFragmentByFragmentName);
+    const directiveCount = countDirectives(
+      definition,
+      getFragmentByFragmentName
+    );
     if (directiveCount > maxDirectiveCount) {
       return new GraphQLError(
         `Too many directives (${directiveCount}). Maximum allowed is ${maxDirectiveCount}`,
         [definition],
         source,
-        definition.loc?.start ? [definition.loc.start] : undefined,
+        definition.loc?.start ? [definition.loc.start] : undefined
       );
     }
   }
@@ -47,13 +50,15 @@ export function countDirectives(
     | InlineFragmentNode
     | OperationDefinitionNode
     | FragmentSpreadNode,
-  getFragmentByName: (fragmentName: string) => FragmentDefinitionNode | undefined,
+  getFragmentByName: (
+    fragmentName: string
+  ) => FragmentDefinitionNode | undefined
 ) {
   let directives = 0;
   if (node.directives) {
     directives += node.directives.length;
   }
-  if ('selectionSet' in node && node.selectionSet) {
+  if ("selectionSet" in node && node.selectionSet) {
     for (const child of node.selectionSet.selections) {
       directives += countDirectives(child, getFragmentByName);
     }

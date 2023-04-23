@@ -1,11 +1,20 @@
-import { isEnumType, isInputObjectType, isInterfaceType, isObjectType } from 'graphql';
-import { isDeprecated } from '../../utils/is-deprecated.js';
-import { parsePath } from '../../utils/path.js';
-import { ChangeType, CriticalityLevel } from './../changes/change.js';
-import { Rule } from './types.js';
+import {
+  isEnumType,
+  isInputObjectType,
+  isInterfaceType,
+  isObjectType,
+} from "graphql";
+import { isDeprecated } from "../../utils/is-deprecated.js";
+import { parsePath } from "../../utils/path.js";
+import { ChangeType, CriticalityLevel } from "./../changes/change.js";
+import { Rule } from "./types.js";
 
-export const suppressRemovalOfDeprecatedField: Rule = ({ changes, oldSchema, newSchema }) => {
-  return changes.map(change => {
+export const suppressRemovalOfDeprecatedField: Rule = ({
+  changes,
+  oldSchema,
+  newSchema,
+}) => {
+  return changes.map((change) => {
     if (
       change.type === ChangeType.FieldRemoved &&
       change.criticality.level === CriticalityLevel.Breaking &&

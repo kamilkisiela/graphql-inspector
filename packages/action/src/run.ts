@@ -1,21 +1,27 @@
-import { extname } from 'path';
-import { buildClientSchema, buildSchema, GraphQLSchema, printSchema, Source } from 'graphql';
-import * as core from '@actions/core';
-import * as github from '@actions/github';
-import { Rule } from '@graphql-inspector/core';
+import { extname } from "path";
+import {
+  buildClientSchema,
+  buildSchema,
+  GraphQLSchema,
+  printSchema,
+  Source,
+} from "graphql";
+import * as core from "@actions/core";
+import * as github from "@actions/github";
+import { Rule } from "@graphql-inspector/core";
 import {
   CheckConclusion,
   createSummary,
   diff,
   printSchemaFromEndpoint,
   produceSchema,
-} from '@graphql-inspector/github';
-import { updateCheckRun } from './checks.js';
-import { fileLoader } from './files.js';
-import { getAssociatedPullRequest, getCurrentCommitSha } from './git.js';
-import { castToBoolean, getInputAsArray, resolveRule } from './utils.js';
+} from "@graphql-inspector/github";
+import { updateCheckRun } from "./checks.js";
+import { fileLoader } from "./files.js";
+import { getAssociatedPullRequest, getCurrentCommitSha } from "./git.js";
+import { castToBoolean, getInputAsArray, resolveRule } from "./utils.js";
 
-const CHECK_NAME = 'GraphQL Inspector';
+const CHECK_NAME = "GraphQL Inspector";
 
 export async function run() {
   core.info(`GraphQL Inspector started`);
@@ -27,22 +33,25 @@ export async function run() {
   core.info(`Ref: ${ref}`);
   core.info(`Commit SHA: ${commitSha}`);
 
-  const token = core.getInput('github-token', { required: true });
-  const checkName = core.getInput('name') || CHECK_NAME;
+  const token = core.getInput("github-token", { required: true });
+  const checkName = core.getInput("name") || CHECK_NAME;
 
   let workspace = process.env.GITHUB_WORKSPACE;
 
   if (!workspace) {
-    return core.setFailed('Failed to resolve workspace directory. GITHUB_WORKSPACE is missing');
+    return core.setFailed(
+      "Failed to resolve workspace directory. GITHUB_WORKSPACE is missing"
+    );
   }
 
-  const useMerge = castToBoolean(core.getInput('experimental_merge'), true);
-  const useAnnotations = castToBoolean(core.getInput('annotations'));
-  const failOnBreaking = castToBoolean(core.getInput('fail-on-breaking'));
-  const endpoint: string = core.getInput('endpoint');
-  const approveLabel: string = core.getInput('approve-label') || 'approved-breaking-change';
-  const rulesList = getInputAsArray('rules') || [];
-  const onUsage = core.getInput('getUsage');
+  const useMerge = castToBoolean(core.getInput("experimental_merge"), true);
+  const useAnnotations = castToBoolean(core.getInput("annotations"));
+  const failOnBreaking = castToBoolean(core.getInput("fail-on-breaking"));
+  const endpoint: string = core.getInput("endpoint");
+  const approveLabel: string =
+    core.getInput("approve-label") || "approved-breaking-change";
+  const rulesList = getInputAsArray("rules") || [];
+  const onUsage = core.getInput("getUsage");
 
   const octokit = github.getOctokit(token);
 
@@ -59,14 +68,14 @@ export async function run() {
     repo,
     name: checkName,
     head_sha: commitSha,
-    status: 'in_progress',
+    status: "in_progress",
   });
 
   const checkId = check.data.id;
 
   core.info(`Check ID: ${checkId}`);
 
-  const schemaPointer = core.getInput('schema', { required: true });
+  const schemaPointer = core.getInput("schema", { required: true });
 
   const loadFile = fileLoader({
     octokit,
@@ -75,12 +84,12 @@ export async function run() {
   });
 
   if (!schemaPointer) {
-    core.error('No `schema` variable');
-    return core.setFailed('Failed to find `schema` variable');
+    core.error("No `schema` variable");
+    return core.setFailed("Failed to find `schema` variable");
   }
 
   const rules = rulesList
-    .map(r => {
+    .map((r) => {
       const rule = resolveRule(r);
 
       if (!rule) {
@@ -108,9 +117,9 @@ export async function run() {
     }
   }
 
-  let [schemaRef, schemaPath] = schemaPointer.split(':');
+  let [schemaRef, schemaPath] = schemaPointer.split(":");
 
-  if (useMerge && pullRequest?.state === 'open') {
+  if (useMerge && pullRequest?.state === "open") {
     ref = `refs/pull/${pullRequest.number}/merge`;
     workspace = undefined;
     core.info(`EXPERIMENTAL - Using Pull Request ${ref}`);
@@ -127,7 +136,7 @@ export async function run() {
     schemaPath = schemaPointer;
   }
 
-  const isNewSchemaUrl = endpoint && schemaPath.startsWith('http');
+  const isNewSchemaUrl = endpoint && schemaPath.startsWith("http");
 
   const [oldFile, newFile] = await Promise.all([
     endpoint
@@ -145,18 +154,23 @@ export async function run() {
         }),
   ]);
 
-  core.info('Got both sources');
+  core.info("Got both sources");
 
   let oldSchema: GraphQLSchema;
   let newSchema: GraphQLSchema;
   let sources: { new: Source; old: Source };
 
-  if (extname(schemaPath.toLowerCase()) === '.json') {
-    oldSchema = endpoint ? buildSchema(oldFile) : buildClientSchema(JSON.parse(oldFile));
+  if (extname(schemaPath.toLowerCase()) === ".json") {
+    oldSchema = endpoint
+      ? buildSchema(oldFile)
+      : buildClientSchema(JSON.parse(oldFile));
     newSchema = buildClientSchema(JSON.parse(newFile));
 
     sources = {
-      old: new Source(printSchema(oldSchema), endpoint || `${schemaRef}:${schemaPath}`),
+      old: new Source(
+        printSchema(oldSchema),
+        endpoint || `${schemaRef}:${schemaPath}`
+      ),
       new: new Source(printSchema(newSchema), schemaPath),
     };
   } else {
@@ -190,11 +204,11 @@ export async function run() {
   let annotations = action.annotations || [];
   const changes = action.changes || [];
 
-  core.setOutput('changes', String(changes.length || 0));
+  core.setOutput("changes", String(changes.length || 0));
   core.info(`Changes: ${changes.length || 0}`);
 
   const hasApprovedBreakingChangeLabel = pullRequest?.labels?.some(
-    (label: any) => label.name === approveLabel,
+    (label: any) => label.name === approveLabel
   );
 
   // Force Success when failOnBreaking is disabled
@@ -202,7 +216,7 @@ export async function run() {
     (failOnBreaking === false || hasApprovedBreakingChangeLabel) &&
     conclusion === CheckConclusion.Failure
   ) {
-    core.info('FailOnBreaking disabled. Forcing SUCCESS');
+    core.info("FailOnBreaking disabled. Forcing SUCCESS");
     conclusion = CheckConclusion.Success;
   }
 
@@ -215,8 +229,8 @@ export async function run() {
 
   const title =
     conclusion === CheckConclusion.Failure
-      ? 'Something is wrong with your schema'
-      : 'Everything looks good';
+      ? "Something is wrong with your schema"
+      : "Everything looks good";
 
   core.info(`Conclusion: ${conclusion}`);
 
@@ -229,7 +243,7 @@ export async function run() {
     // Error
     core.error(e.message || e);
 
-    const title = 'Invalid config. Failed to add annotation';
+    const title = "Invalid config. Failed to add annotation";
 
     await updateCheckRun(octokit, checkId, {
       conclusion: CheckConclusion.Failure,

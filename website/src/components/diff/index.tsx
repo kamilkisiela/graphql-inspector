@@ -1,9 +1,9 @@
-import { FC, KeyboardEvent, useEffect, useRef, useState } from 'react';
-import { buildSchema } from 'graphql';
-import FlipMove from 'react-flip-move';
-import { Change, diff } from '@graphql-inspector/core';
-import { DiffEditor, OnMount } from '@monaco-editor/react';
-import ChangeComponent from './change';
+import { FC, KeyboardEvent, useEffect, useRef, useState } from "react";
+import { buildSchema } from "graphql";
+import FlipMove from "react-flip-move";
+import { Change, diff } from "@graphql-inspector/core";
+import { DiffEditor, OnMount } from "@monaco-editor/react";
+import ChangeComponent from "./change";
 
 const FlipMoveAny = FlipMove as any;
 
@@ -52,14 +52,14 @@ const Diff: FC = () => {
     run();
   }, [code]);
 
-  const handleEditorChange: OnMount = value => {
-    console.log('here is the current model value:', value);
+  const handleEditorChange: OnMount = (value) => {
+    console.log("here is the current model value:", value);
     diffRef.current = value.getModifiedEditor();
     value.getModifiedEditor().onKeyUp(handleChange);
   };
 
   function handleChange(e: KeyboardEvent<HTMLInputElement>) {
-    console.error('here is the current model value:', e);
+    console.error("here is the current model value:", e);
     setCode(diffRef.current.getValue());
   }
 
@@ -75,12 +75,16 @@ const Diff: FC = () => {
           onMount={handleEditorChange}
           options={{
             codeLens: false,
-            lineNumbers: 'off',
+            lineNumbers: "off",
             minimap: false,
             originalEditable: false,
           }}
         />
-        <FlipMoveAny className="shrink-0" enterAnimation="fade" leaveAnimation="fade">
+        <FlipMoveAny
+          className="shrink-0"
+          enterAnimation="fade"
+          leaveAnimation="fade"
+        >
           {changes.map((change, i) => (
             <ChangeComponent key={i} value={change} />
           ))}

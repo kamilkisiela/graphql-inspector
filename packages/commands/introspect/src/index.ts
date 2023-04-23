@@ -1,18 +1,18 @@
-import { writeFileSync } from 'fs';
-import { extname, resolve } from 'path';
+import { writeFileSync } from "fs";
+import { extname, resolve } from "path";
 import {
   GraphQLSchema,
   introspectionFromSchema,
   lexicographicSortSchema,
   printSchema,
-} from 'graphql';
+} from "graphql";
 import {
   CommandFactory,
   createCommand,
   GlobalArgs,
   parseGlobalArgs,
-} from '@graphql-inspector/commands';
-import { Logger } from '@graphql-inspector/logger';
+} from "@graphql-inspector/commands";
+import { Logger } from "@graphql-inspector/logger";
 
 export { CommandFactory };
 
@@ -31,22 +31,22 @@ export function handler({
   let content: string;
 
   switch (extname(output.toLowerCase())) {
-    case '.graphql':
-    case '.gql':
-    case '.gqls':
-    case '.graphqls':
+    case ".graphql":
+    case ".gql":
+    case ".gqls":
+    case ".graphqls":
       content = (printSchema as any)(schema, {
         commentDescriptions: comments,
       });
       break;
-    case '.json':
+    case ".json":
       content = JSON.stringify(introspection, null, 2);
       break;
     default:
-      throw new Error('Only .graphql, .gql and .json files are supported');
+      throw new Error("Only .graphql, .gql and .json files are supported");
   }
 
-  writeFileSync(output, content!, 'utf8');
+  writeFileSync(output, content!, "utf8");
 
   Logger.success(`Saved to ${filepath}`);
 }
@@ -58,31 +58,31 @@ export default createCommand<
     write?: string;
     comments?: boolean;
   } & GlobalArgs
->(api => {
+>((api) => {
   const { loaders } = api;
 
   return {
-    command: 'introspect <schema>',
-    describe: 'Introspect a schema',
+    command: "introspect <schema>",
+    describe: "Introspect a schema",
     builder(yargs) {
       return yargs
-        .positional('schema', {
-          describe: 'Point to a schema',
-          type: 'string',
+        .positional("schema", {
+          describe: "Point to a schema",
+          type: "string",
           demandOption: true,
         })
         .options({
           w: {
-            alias: 'write',
-            describe: 'Write to a file',
-            type: 'string',
+            alias: "write",
+            describe: "Write to a file",
+            type: "string",
           },
           comments: {
-            describe: 'Use preceding comments as the description',
-            type: 'boolean',
+            describe: "Use preceding comments as the description",
+            type: "boolean",
           },
         })
-        .default('w', 'graphql.schema.json');
+        .default("w", "graphql.schema.json");
     },
     async handler(args) {
       const { headers, token } = parseGlobalArgs(args);
@@ -90,7 +90,7 @@ export default createCommand<
       const comments = args.comments || false;
       const apolloFederation = args.federation || false;
       const aws = args.aws || false;
-      const method = args.method?.toUpperCase() || 'POST';
+      const method = args.method?.toUpperCase() || "POST";
 
       const schema = await loaders.loadSchema(
         args.schema,
@@ -100,7 +100,7 @@ export default createCommand<
           method,
         },
         apolloFederation,
-        aws,
+        aws
       );
 
       return handler({ schema, output, comments });

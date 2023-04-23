@@ -32,7 +32,7 @@ jobs:
 
       - uses: kamilkisiela/graphql-inspector@master
         with:
-          schema: 'master:schema.graphql'
+          schema: "master:schema.graphql"
 ```
 
 Now on every commit or every Pull Request, the GraphQL Inspector App will annotate every change,
@@ -51,12 +51,12 @@ results. For example, "Check Public API" and "Check Internal API".
 - uses: kamilkisiela/graphql-inspector@master
   with:
     name: Validate Public API
-    schema: 'master:public.graphql'
+    schema: "master:public.graphql"
 
 - uses: kamilkisiela/graphql-inspector@master
   with:
     name: Check Internal API
-    schema: 'master:internal.graphql'
+    schema: "master:internal.graphql"
 ```
 
 ### `annotations`
@@ -66,7 +66,7 @@ Use annotation (`true` by default).
 ```yaml
 - uses: kamilkisiela/graphql-inspector@master
   with:
-    schema: 'master:schema.graphql'
+    schema: "master:schema.graphql"
     annotations: false
 ```
 
@@ -77,7 +77,7 @@ Fail on breaking changes (`true` by default).
 ```yaml
 - uses: kamilkisiela/graphql-inspector@master
   with:
-    schema: 'master:schema.graphql'
+    schema: "master:schema.graphql"
     fail-on-breaking: false
 ```
 
@@ -90,7 +90,7 @@ default).
 ```yaml
 - uses: kamilkisiela/graphql-inspector@master
   with:
-    schema: 'master:schema.graphql'
+    schema: "master:schema.graphql"
     approve-label: expected-breaking-change
 ```
 
@@ -105,7 +105,7 @@ Use GraphQL API endpoint as a source of schema. It should represent the "before"
 - uses: kamilkisiela/graphql-inspector@master
   with:
     schema: schema.graphql # important to define a path to schema file, without a branch
-    endpoint: 'https://my-app.com/graphql'
+    endpoint: "https://my-app.com/graphql"
 ```
 
 If you want to use GraphQL API endpoint as source of "after" schema:
@@ -113,8 +113,8 @@ If you want to use GraphQL API endpoint as source of "after" schema:
 ```yaml
 - uses: kamilkisiela/graphql-inspector@master
   with:
-    schema: 'https://pr-1234.my-app.dev/graphql'
-    endpoint: 'https://my-app.com/graphql'
+    schema: "https://pr-1234.my-app.dev/graphql"
+    endpoint: "https://my-app.com/graphql"
 ```
 
 ### `rules`
@@ -125,7 +125,7 @@ Apply [rules](../essentials/diff#rules) included with the Inspector as well as y
 ```yaml
 - uses: kamilkisiela/graphql-inspector@master
   with:
-    schema: 'master:schema.graphql'
+    schema: "master:schema.graphql"
     rules: |
       suppressRemovalOfDeprecatedField
       custom-rule.js
@@ -139,7 +139,7 @@ Must be used with the `rules` input. Required to apply the custom logic for the
 ```yaml
 - uses: kamilkisiela/graphql-inspector@master
   with:
-    schema: 'master:schema.graphql'
+    schema: "master:schema.graphql"
     rules: |
       considerusage
     onUsage: check-usage.js

@@ -1,4 +1,4 @@
-import { Change } from '@graphql-inspector/core';
+import { Change } from "@graphql-inspector/core";
 
 export type ErrorHandler = (error: Error) => void;
 
@@ -21,20 +21,20 @@ export interface Annotation {
 }
 
 export enum AnnotationLevel {
-  Failure = 'failure',
-  Warning = 'warning',
-  Notice = 'notice',
+  Failure = "failure",
+  Warning = "warning",
+  Notice = "notice",
 }
 
 export enum CheckStatus {
-  InProgress = 'in_progress',
-  Completed = 'completed',
+  InProgress = "in_progress",
+  Completed = "completed",
 }
 
 export enum CheckConclusion {
-  Success = 'success',
-  Neutral = 'neutral',
-  Failure = 'failure',
+  Success = "success",
+  Neutral = "neutral",
+  Failure = "failure",
 }
 
 export interface PullRequest {

@@ -1,4 +1,4 @@
-import { DepGraph } from 'dependency-graph';
+import { DepGraph } from "dependency-graph";
 import type {
   DocumentNode,
   FieldNode,
@@ -7,8 +7,8 @@ import type {
   InlineFragmentNode,
   OperationDefinitionNode,
   Source,
-} from 'graphql';
-import { GraphQLError, Kind } from 'graphql';
+} from "graphql";
+import { GraphQLError, Kind } from "graphql";
 
 export function validateAliasCount({
   source,
@@ -34,7 +34,7 @@ export function validateAliasCount({
         `Too many aliases (${aliasCount}). Maximum allowed is ${maxAliasCount}`,
         [definition],
         source,
-        definition.loc?.start ? [definition.loc.start] : undefined,
+        definition.loc?.start ? [definition.loc.start] : undefined
       );
     }
   }
@@ -47,13 +47,15 @@ export function countAliases(
     | InlineFragmentNode
     | OperationDefinitionNode
     | FragmentSpreadNode,
-  getFragmentByName: (fragmentName: string) => FragmentDefinitionNode | undefined,
+  getFragmentByName: (
+    fragmentName: string
+  ) => FragmentDefinitionNode | undefined
 ) {
   let aliases = 0;
-  if ('alias' in node && node.alias) {
+  if ("alias" in node && node.alias) {
     ++aliases;
   }
-  if ('selectionSet' in node && node.selectionSet) {
+  if ("selectionSet" in node && node.selectionSet) {
     for (const child of node.selectionSet.selections) {
       aliases += countAliases(child, getFragmentByName);
     }

@@ -10,9 +10,9 @@ import {
   TypeInfo,
   visit,
   visitWithTypeInfo,
-} from 'graphql';
-import { readDocument } from '../ast/document.js';
-import { isForIntrospection, isPrimitive } from '../utils/graphql.js';
+} from "graphql";
+import { readDocument } from "../ast/document.js";
+import { isForIntrospection, isPrimitive } from "../utils/graphql.js";
 
 export interface Location {
   start: number;
@@ -69,7 +69,10 @@ export interface InvalidDocument {
   errors: ReadonlyArray<GraphQLError>;
 }
 
-export function coverage(schema: GraphQLSchema, sources: Source[]): SchemaCoverage {
+export function coverage(
+  schema: GraphQLSchema,
+  sources: Source[]
+): SchemaCoverage {
   const coverage: SchemaCoverage = {
     sources,
     types: {},
@@ -83,7 +86,7 @@ export function coverage(schema: GraphQLSchema, sources: Source[]): SchemaCovera
   };
   const typeMap = schema.getTypeMap();
   const typeInfo = new TypeInfo(schema);
-  const visitor: (source: Source) => ASTVisitor = source => ({
+  const visitor: (source: Source) => ASTVisitor = (source) => ({
     Field(node: FieldNode) {
       const fieldDef = typeInfo.getFieldDef();
       const parent = typeInfo.getParentType();
@@ -92,8 +95,8 @@ export function coverage(schema: GraphQLSchema, sources: Source[]): SchemaCovera
         parent?.name &&
         !isForIntrospection(parent.name) &&
         fieldDef?.name &&
-        fieldDef.name !== '__typename' &&
-        fieldDef.name !== '__schema'
+        fieldDef.name !== "__typename" &&
+        fieldDef.name !== "__schema"
       ) {
         const sourceName = source.name;
         const typeCoverage = coverage.types[parent.name];
@@ -104,7 +107,10 @@ export function coverage(schema: GraphQLSchema, sources: Source[]): SchemaCovera
         fieldCoverage.hits++;
 
         if (node.loc) {
-          fieldCoverage.locations[sourceName] = [node.loc, ...(locations || [])];
+          fieldCoverage.locations[sourceName] = [
+            node.loc,
+            ...(locations || []),
+          ];
         }
 
         if (node.arguments) {
@@ -183,7 +189,8 @@ export function coverage(schema: GraphQLSchema, sources: Source[]): SchemaCovera
 
     coverage.stats.numTypes++;
     if (me.fieldsCountCovered > 0) coverage.stats.numTypesCovered++;
-    if (me.fieldsCount === me.fieldsCountCovered) coverage.stats.numTypesCoveredFully++;
+    if (me.fieldsCount === me.fieldsCountCovered)
+      coverage.stats.numTypesCoveredFully++;
     coverage.stats.numFields += me.fieldsCount;
     coverage.stats.numFiledsCovered += me.fieldsCountCovered;
   }

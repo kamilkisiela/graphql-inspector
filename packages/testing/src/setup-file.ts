@@ -1,6 +1,6 @@
-import jsesc from 'jsesc';
-import stripAnsi from 'strip-ansi';
-import { SpyInstance } from 'vitest';
+import jsesc from "jsesc";
+import stripAnsi from "strip-ansi";
+import { SpyInstance } from "vitest";
 
 function nonTTY(msg: string) {
   return stripAnsi(jsesc(stripAnsi(msg)));
@@ -10,7 +10,9 @@ expect.extend({
   toHaveBeenCalledNormalized(spy: SpyInstance, expected: string) {
     const normalizedExpected = nonTTY(expected);
     const calls = spy.mock.calls;
-    const contain = calls.some(args => nonTTY(args.join(' ')).includes(normalizedExpected));
+    const contain = calls.some((args) =>
+      nonTTY(args.join(" ")).includes(normalizedExpected)
+    );
 
     if (contain) {
       return {

@@ -1,27 +1,29 @@
-import { execute, GraphQLSchema, parse } from 'graphql';
-import nock from 'nock';
+import { execute, GraphQLSchema, parse } from "graphql";
+import nock from "nock";
 
 export function mockGraphQLServer({
   schema,
   host,
   path,
-  method = 'POST',
+  method = "POST",
 }: {
   schema: GraphQLSchema;
   host: string;
   path: string;
-  method?: 'GET' | 'POST';
+  method?: "GET" | "POST";
 }) {
   const scope = nock(host);
-  if (method === 'GET') {
+  if (method === "GET") {
     scope
-      .get(path => path.startsWith(path))
+      .get((path) => path.startsWith(path))
       .reply(async (unformattedQuery, _: any) => {
-        const query = new URL(host + unformattedQuery).searchParams.get('query');
+        const query = new URL(host + unformattedQuery).searchParams.get(
+          "query"
+        );
         try {
           const result = await execute({
             schema,
-            document: parse(query || ''),
+            document: parse(query || ""),
           });
           return [200, result];
         } catch (error) {

@@ -72,18 +72,21 @@
   You can construct the full `Change` object from the `type` and `meta` properties.
 
   ```ts
-  import { ChangeType, fieldDescriptionChangedFromMeta } from '@graphql-inspector/core';
+  import {
+    ChangeType,
+    fieldDescriptionChangedFromMeta,
+  } from "@graphql-inspector/core";
 
   console.log(
     fieldDescriptionChangedFromMeta({
       type: ChangeType.FieldDescriptionChanged,
       meta: {
-        typeName: 'Foo',
-        fieldName: 'bar',
-        oldDescription: 'This is the old description',
-        newDescription: 'This is the new description',
+        typeName: "Foo",
+        fieldName: "bar",
+        oldDescription: "This is the old description",
+        newDescription: "This is the new description",
       },
-    }),
+    })
   );
   ```
 

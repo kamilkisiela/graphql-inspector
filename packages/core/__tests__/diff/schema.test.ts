@@ -1,8 +1,12 @@
-import { buildClientSchema, buildSchema, introspectionFromSchema } from 'graphql';
-import { Change, CriticalityLevel, diff } from '../../src/index.js';
-import { findBestMatch } from '../../src/utils/string.js';
+import {
+  buildClientSchema,
+  buildSchema,
+  introspectionFromSchema,
+} from "graphql";
+import { Change, CriticalityLevel, diff } from "../../src/index.js";
+import { findBestMatch } from "../../src/utils/string.js";
 
-test('same schema', async () => {
+test("same schema", async () => {
   const schemaA = buildSchema(/* GraphQL */ `
     type Post {
       id: ID
@@ -28,7 +32,7 @@ test('same schema', async () => {
   expect(changes.length).toEqual(0);
 });
 
-test('renamed query', async () => {
+test("renamed query", async () => {
   const schemaA = buildSchema(/* GraphQL */ `
     type Query {
       fieldA: String!
@@ -48,7 +52,7 @@ test('renamed query', async () => {
   const changes = await diff(schemaA, schemaB);
 
   // Type Added
-  const added = changes.find(c => c.message.includes('added')) as Change;
+  const added = changes.find((c) => c.message.includes("added")) as Change;
 
   expect(added).toBeDefined();
   expect(added.criticality.level).toEqual(CriticalityLevel.NonBreaking);
@@ -56,7 +60,7 @@ test('renamed query', async () => {
   expect(added.path).toEqual(`RootQuery`);
 
   // Type Removed
-  const removed = changes.find(c => c.message.includes('removed')) as Change;
+  const removed = changes.find((c) => c.message.includes("removed")) as Change;
 
   expect(removed).toBeDefined();
   expect(removed.criticality.level).toEqual(CriticalityLevel.Breaking);
@@ -64,14 +68,16 @@ test('renamed query', async () => {
   expect(removed.path).toEqual(`Query`);
 
   // Root Type Changed
-  const changed = changes.find(c => c.message.includes('changed')) as Change;
+  const changed = changes.find((c) => c.message.includes("changed")) as Change;
 
   expect(changed).toBeDefined();
   expect(changed.criticality.level).toEqual(CriticalityLevel.Breaking);
-  expect(changed.message).toEqual(`Schema query root has changed from 'Query' to 'RootQuery'`);
+  expect(changed.message).toEqual(
+    `Schema query root has changed from 'Query' to 'RootQuery'`
+  );
 });
 
-test('new field and field changed', async () => {
+test("new field and field changed", async () => {
   const schemaA = buildSchema(/* GraphQL */ `
     type Query {
       fieldA: String!
@@ -86,18 +92,22 @@ test('new field and field changed', async () => {
   `);
 
   const changes = await diff(schemaA, schemaB);
-  const changed = changes.find(c => c.message.includes('changed')) as Change;
-  const added = changes.find(c => c.message.includes('added')) as Change;
+  const changed = changes.find((c) => c.message.includes("changed")) as Change;
+  const added = changes.find((c) => c.message.includes("added")) as Change;
 
   expect(changed).toBeDefined();
   expect(changed.criticality.level).toEqual(CriticalityLevel.Breaking);
-  expect(changed.message).toEqual(`Field 'Query.fieldA' changed type from 'String!' to 'Int'`);
+  expect(changed.message).toEqual(
+    `Field 'Query.fieldA' changed type from 'String!' to 'Int'`
+  );
   expect(added).toBeDefined();
   expect(added.criticality.level).toEqual(CriticalityLevel.NonBreaking);
-  expect(added.message).toEqual(`Field 'fieldB' was added to object type 'Query'`);
+  expect(added.message).toEqual(
+    `Field 'fieldB' was added to object type 'Query'`
+  );
 });
 
-test('schema from an introspection result should be the same', async () => {
+test("schema from an introspection result should be the same", async () => {
   const typeDefsA = /* GraphQL */ `
     type Query {
       fieldA: String!
@@ -112,7 +122,7 @@ test('schema from an introspection result should be the same', async () => {
   expect(changes.length).toEqual(0);
 });
 
-test('huge test', async () => {
+test("huge test", async () => {
   const schemaA = buildSchema(/* GraphQL */ `
     schema {
       query: Query
@@ -321,19 +331,21 @@ test('huge test', async () => {
     `Default value '"Test"' was added to argument 'anotherArg' on directive 'yolo'`,
   ]) {
     try {
-      expect(changes.some(c => c.message === msg)).toEqual(true);
+      expect(changes.some((c) => c.message === msg)).toEqual(true);
     } catch (e) {
       console.log(`Couldn't find: ${msg}`);
       const match = findBestMatch(
         msg,
-        changes.map(c => ({
-          typeId: c.path || '',
+        changes.map((c) => ({
+          typeId: c.path || "",
           value: c.message,
-        })),
+        }))
       );
 
       if (match.bestMatch) {
-        console.log(`We found a similar change: ${match.bestMatch.target.value}`);
+        console.log(
+          `We found a similar change: ${match.bestMatch.target.value}`
+        );
       }
 
       throw e;
@@ -341,50 +353,50 @@ test('huge test', async () => {
   }
 
   for (const path of [
-    'WillBeRemoved',
-    'DType',
-    'Query.a',
-    'Query.a.anArg',
-    'Query.b',
-    'Query',
-    'BType',
-    'AInput.b',
-    'AInput.c',
-    'AInput.a',
-    'AInput.a',
-    'AInput.a',
-    'CType',
-    'CType.c',
-    'CType.b',
-    'CType.a',
-    'CType.a.arg',
-    'CType.d.arg',
-    'MyUnion',
-    'MyUnion',
-    'AnotherInterface.anotherInterfaceField',
-    'AnotherInterface.b',
-    'WithInterfaces',
-    'WithArguments.a.a',
-    'WithArguments.a.b',
-    'WithArguments.b.arg',
-    'Options.C',
-    'Options.D',
-    'Options.A',
-    'Options.E',
-    'Options.F',
-    '@willBeRemoved',
-    '@yolo2',
-    '@yolo',
-    '@yolo',
-    '@yolo',
-    '@yolo',
-    '@yolo.willBeRemoved',
-    '@yolo.someArg',
-    '@yolo.someArg',
-    '@yolo.anotherArg',
+    "WillBeRemoved",
+    "DType",
+    "Query.a",
+    "Query.a.anArg",
+    "Query.b",
+    "Query",
+    "BType",
+    "AInput.b",
+    "AInput.c",
+    "AInput.a",
+    "AInput.a",
+    "AInput.a",
+    "CType",
+    "CType.c",
+    "CType.b",
+    "CType.a",
+    "CType.a.arg",
+    "CType.d.arg",
+    "MyUnion",
+    "MyUnion",
+    "AnotherInterface.anotherInterfaceField",
+    "AnotherInterface.b",
+    "WithInterfaces",
+    "WithArguments.a.a",
+    "WithArguments.a.b",
+    "WithArguments.b.arg",
+    "Options.C",
+    "Options.D",
+    "Options.A",
+    "Options.E",
+    "Options.F",
+    "@willBeRemoved",
+    "@yolo2",
+    "@yolo",
+    "@yolo",
+    "@yolo",
+    "@yolo",
+    "@yolo.willBeRemoved",
+    "@yolo.someArg",
+    "@yolo.someArg",
+    "@yolo.anotherArg",
   ]) {
     try {
-      expect(changes.some(c => c.path === path)).toEqual(true);
+      expect(changes.some((c) => c.path === path)).toEqual(true);
     } catch (e) {
       console.log(`Couldn't find: ${path}`);
       throw e;
@@ -392,7 +404,7 @@ test('huge test', async () => {
   }
 });
 
-test('array as default value in argument (same)', async () => {
+test("array as default value in argument (same)", async () => {
   const schemaA = buildSchema(/* GraphQL */ `
     interface MyInterface {
       a(b: [String] = ["Hello"]): String!
@@ -410,7 +422,7 @@ test('array as default value in argument (same)', async () => {
   expect(changes.length).toEqual(0);
 });
 
-test('array as default value in argument (different)', async () => {
+test("array as default value in argument (different)", async () => {
   const schemaA = buildSchema(/* GraphQL */ `
     interface MyInterface {
       a(b: [String] = ["Hello"]): String!
@@ -429,12 +441,12 @@ test('array as default value in argument (different)', async () => {
   expect(changes[0]).toBeDefined();
   expect(changes[0].criticality.level).toEqual(CriticalityLevel.Dangerous);
   expect(changes[0].message).toEqual(
-    `Default value for argument 'b' on field 'MyInterface.a' changed from '[ 'Hello' ]' to '[ 'Goodbye' ]'`,
+    `Default value for argument 'b' on field 'MyInterface.a' changed from '[ 'Hello' ]' to '[ 'Goodbye' ]'`
   );
   expect(changes[0].path).toEqual(`MyInterface.a.b`);
 });
 
-test('input as default value (same)', async () => {
+test("input as default value (same)", async () => {
   const schemaA = buildSchema(/* GraphQL */ `
     enum SortOrder {
       ASC
@@ -470,7 +482,7 @@ test('input as default value (same)', async () => {
   expect(changes.length).toEqual(0);
 });
 
-test('array as default value in input (same)', async () => {
+test("array as default value in input (same)", async () => {
   const schemaA = buildSchema(/* GraphQL */ `
     enum SortOrder {
       ASC
@@ -498,7 +510,7 @@ test('array as default value in input (same)', async () => {
   expect(changes.length).toEqual(0);
 });
 
-test('array as default value in input (different)', async () => {
+test("array as default value in input (different)", async () => {
   const schemaA = buildSchema(/* GraphQL */ `
     enum SortOrder {
       ASC
@@ -529,12 +541,12 @@ test('array as default value in input (different)', async () => {
   expect(changes[0]).toBeDefined();
   expect(changes[0].criticality.level).toEqual(CriticalityLevel.Dangerous);
   expect(changes[0].message).toEqual(
-    `Input field 'CommentQuery.sortOrder' default value changed from '[ 'ASC' ]' to '[ 'DEC' ]'`,
+    `Input field 'CommentQuery.sortOrder' default value changed from '[ 'ASC' ]' to '[ 'DEC' ]'`
   );
   expect(changes[0].path).toEqual(`CommentQuery.sortOrder`);
 });
 
-test('Input fields becoming nullable is a non-breaking change', async () => {
+test("Input fields becoming nullable is a non-breaking change", async () => {
   const schemaA = buildSchema(/* GraphQL */ `
     scalar CustomScalar
 
@@ -572,29 +584,29 @@ test('Input fields becoming nullable is a non-breaking change', async () => {
   expect(changes[0]).toBeDefined();
   expect(changes[0].criticality.level).toEqual(CriticalityLevel.NonBreaking);
   expect(changes[0].message).toEqual(
-    `Input field 'CommentQuery.limit' changed type from 'Int!' to 'Int'`,
+    `Input field 'CommentQuery.limit' changed type from 'Int!' to 'Int'`
   );
 
   expect(changes[1]).toBeDefined();
   expect(changes[1].criticality.level).toEqual(CriticalityLevel.NonBreaking);
   expect(changes[1].message).toEqual(
-    `Input field 'CommentQuery.query' changed type from 'String!' to 'String'`,
+    `Input field 'CommentQuery.query' changed type from 'String!' to 'String'`
   );
 
   expect(changes[2]).toBeDefined();
   expect(changes[2].criticality.level).toEqual(CriticalityLevel.NonBreaking);
   expect(changes[2].message).toEqual(
-    `Input field 'CommentQuery.detail' changed type from 'Detail!' to 'Detail'`,
+    `Input field 'CommentQuery.detail' changed type from 'Detail!' to 'Detail'`
   );
 
   expect(changes[3]).toBeDefined();
   expect(changes[3].criticality.level).toEqual(CriticalityLevel.NonBreaking);
   expect(changes[3].message).toEqual(
-    `Input field 'CommentQuery.customScalar' changed type from 'CustomScalar!' to 'CustomScalar'`,
+    `Input field 'CommentQuery.customScalar' changed type from 'CustomScalar!' to 'CustomScalar'`
   );
 });
 
-test('Input fields becoming non-nullable is a breaking change', async () => {
+test("Input fields becoming non-nullable is a breaking change", async () => {
   const schemaA = buildSchema(/* GraphQL */ `
     scalar CustomScalar
 
@@ -632,29 +644,29 @@ test('Input fields becoming non-nullable is a breaking change', async () => {
   expect(changes[0]).toBeDefined();
   expect(changes[0].criticality.level).toEqual(CriticalityLevel.Breaking);
   expect(changes[0].message).toEqual(
-    `Input field 'CommentQuery.limit' changed type from 'Int' to 'Int!'`,
+    `Input field 'CommentQuery.limit' changed type from 'Int' to 'Int!'`
   );
 
   expect(changes[1]).toBeDefined();
   expect(changes[1].criticality.level).toEqual(CriticalityLevel.Breaking);
   expect(changes[1].message).toEqual(
-    `Input field 'CommentQuery.query' changed type from 'String' to 'String!'`,
+    `Input field 'CommentQuery.query' changed type from 'String' to 'String!'`
   );
 
   expect(changes[2]).toBeDefined();
   expect(changes[2].criticality.level).toEqual(CriticalityLevel.Breaking);
   expect(changes[2].message).toEqual(
-    `Input field 'CommentQuery.detail' changed type from 'Detail' to 'Detail!'`,
+    `Input field 'CommentQuery.detail' changed type from 'Detail' to 'Detail!'`
   );
 
   expect(changes[3]).toBeDefined();
   expect(changes[3].criticality.level).toEqual(CriticalityLevel.Breaking);
   expect(changes[3].message).toEqual(
-    `Input field 'CommentQuery.customScalar' changed type from 'CustomScalar' to 'CustomScalar!'`,
+    `Input field 'CommentQuery.customScalar' changed type from 'CustomScalar' to 'CustomScalar!'`
   );
 });
 
-test('Query fields becoming non-nullable is a non-breaking change', async () => {
+test("Query fields becoming non-nullable is a non-breaking change", async () => {
   const schemaA = buildSchema(/* GraphQL */ `
     scalar CustomScalar
 
@@ -691,28 +703,30 @@ test('Query fields becoming non-nullable is a non-breaking change', async () => 
 
   expect(changes[0]).toBeDefined();
   expect(changes[0].criticality.level).toEqual(CriticalityLevel.NonBreaking);
-  expect(changes[0].message).toEqual(`Field 'Comment.limit' changed type from 'Int' to 'Int!'`);
+  expect(changes[0].message).toEqual(
+    `Field 'Comment.limit' changed type from 'Int' to 'Int!'`
+  );
 
   expect(changes[1]).toBeDefined();
   expect(changes[1].criticality.level).toEqual(CriticalityLevel.NonBreaking);
   expect(changes[1].message).toEqual(
-    `Field 'Comment.query' changed type from 'String' to 'String!'`,
+    `Field 'Comment.query' changed type from 'String' to 'String!'`
   );
 
   expect(changes[2]).toBeDefined();
   expect(changes[2].criticality.level).toEqual(CriticalityLevel.NonBreaking);
   expect(changes[2].message).toEqual(
-    `Field 'Comment.detail' changed type from 'Detail' to 'Detail!'`,
+    `Field 'Comment.detail' changed type from 'Detail' to 'Detail!'`
   );
 
   expect(changes[3]).toBeDefined();
   expect(changes[3].criticality.level).toEqual(CriticalityLevel.NonBreaking);
   expect(changes[3].message).toEqual(
-    `Field 'Comment.customScalar' changed type from 'CustomScalar' to 'CustomScalar!'`,
+    `Field 'Comment.customScalar' changed type from 'CustomScalar' to 'CustomScalar!'`
   );
 });
 
-test('Query fields becoming nullable is a breaking change', async () => {
+test("Query fields becoming nullable is a breaking change", async () => {
   const schemaA = buildSchema(/* GraphQL */ `
     scalar CustomScalar
 
@@ -749,28 +763,30 @@ test('Query fields becoming nullable is a breaking change', async () => {
 
   expect(changes[0]).toBeDefined();
   expect(changes[0].criticality.level).toEqual(CriticalityLevel.Breaking);
-  expect(changes[0].message).toEqual(`Field 'Comment.limit' changed type from 'Int!' to 'Int'`);
+  expect(changes[0].message).toEqual(
+    `Field 'Comment.limit' changed type from 'Int!' to 'Int'`
+  );
 
   expect(changes[1]).toBeDefined();
   expect(changes[1].criticality.level).toEqual(CriticalityLevel.Breaking);
   expect(changes[1].message).toEqual(
-    `Field 'Comment.query' changed type from 'String!' to 'String'`,
+    `Field 'Comment.query' changed type from 'String!' to 'String'`
   );
 
   expect(changes[2]).toBeDefined();
   expect(changes[2].criticality.level).toEqual(CriticalityLevel.Breaking);
   expect(changes[2].message).toEqual(
-    `Field 'Comment.detail' changed type from 'Detail!' to 'Detail'`,
+    `Field 'Comment.detail' changed type from 'Detail!' to 'Detail'`
   );
 
   expect(changes[3]).toBeDefined();
   expect(changes[3].criticality.level).toEqual(CriticalityLevel.Breaking);
   expect(changes[3].message).toEqual(
-    `Field 'Comment.customScalar' changed type from 'CustomScalar!' to 'CustomScalar'`,
+    `Field 'Comment.customScalar' changed type from 'CustomScalar!' to 'CustomScalar'`
   );
 });
 
-test('should work with with missing directive definitions', async () => {
+test("should work with with missing directive definitions", async () => {
   const schemaA = buildSchema(
     /* GraphQL */ `
       type Query {
@@ -781,7 +797,7 @@ test('should work with with missing directive definitions', async () => {
     {
       assumeValid: true,
       assumeValidSDL: true,
-    },
+    }
   );
 
   const schemaB = buildSchema(
@@ -794,7 +810,7 @@ test('should work with with missing directive definitions', async () => {
     {
       assumeValid: true,
       assumeValidSDL: true,
-    },
+    }
   );
 
   const changes = await diff(schemaA, schemaB);
@@ -802,7 +818,7 @@ test('should work with with missing directive definitions', async () => {
   expect(changes).toHaveLength(1);
 });
 
-test('adding root type should not be breaking', async () => {
+test("adding root type should not be breaking", async () => {
   const schemaA = buildSchema(/* GraphQL */ `
     type Query {
       foo: String

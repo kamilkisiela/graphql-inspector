@@ -1,15 +1,20 @@
-import { GraphQLSchema, Source } from 'graphql';
-import { Change, CriticalityLevel, diff as diffSchemas, Rule } from '@graphql-inspector/core';
-import { fetch } from '@whatwg-node/fetch';
-import { getLocationByPath } from './location.js';
+import { GraphQLSchema, Source } from "graphql";
+import {
+  Change,
+  CriticalityLevel,
+  diff as diffSchemas,
+  Rule,
+} from "@graphql-inspector/core";
+import { fetch } from "@whatwg-node/fetch";
+import { getLocationByPath } from "./location.js";
 import {
   ActionResult,
   Annotation,
   AnnotationLevel,
   CheckConclusion,
   PullRequest,
-} from './types.js';
-import { isNil, parseEndpoint } from './utils.js';
+} from "./types.js";
+import { isNil, parseEndpoint } from "./utils.js";
 
 export type DiffInterceptor =
   | string
@@ -77,11 +82,15 @@ export async function diff({
   }
 
   const annotations = await Promise.all(
-    changes.map(change => annotate({ path, change, source: sources.new })),
+    changes.map((change) => annotate({ path, change, source: sources.new }))
   );
   let conclusion: CheckConclusion = CheckConclusion.Success;
 
-  if (changes.some(change => change.criticality.level === CriticalityLevel.Breaking)) {
+  if (
+    changes.some(
+      (change) => change.criticality.level === CriticalityLevel.Breaking
+    )
+  ) {
     conclusion = CheckConclusion.Failure;
   }
 
@@ -128,14 +137,14 @@ function annotate({
 
 async function interceptChanges(
   interceptor: DiffInterceptor,
-  payload: DiffInterceptorPayload,
+  payload: DiffInterceptorPayload
 ): Promise<DiffInterceptorResponse> {
   const endpoint = parseEndpoint(interceptor);
 
   const response = await fetch(endpoint.url, {
     method: endpoint.method,
     body: JSON.stringify(payload),
-    headers: { 'Content-Type': 'application/json' },
+    headers: { "Content-Type": "application/json" },
   });
 
   const data = await response.json();

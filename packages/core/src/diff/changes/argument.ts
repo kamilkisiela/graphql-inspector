@@ -1,6 +1,11 @@
-import { GraphQLArgument, GraphQLField, GraphQLInterfaceType, GraphQLObjectType } from 'graphql';
-import { safeChangeForInputValue } from '../../utils/graphql.js';
-import { safeString } from '../../utils/string.js';
+import {
+  GraphQLArgument,
+  GraphQLField,
+  GraphQLInterfaceType,
+  GraphQLObjectType,
+} from "graphql";
+import { safeChangeForInputValue } from "../../utils/graphql.js";
+import { safeString } from "../../utils/string.js";
 import {
   Change,
   ChangeType,
@@ -8,16 +13,16 @@ import {
   FieldArgumentDefaultChangedChange,
   FieldArgumentDescriptionChangedChange,
   FieldArgumentTypeChangedChange,
-} from './change.js';
+} from "./change.js";
 
 function buildFieldArgumentDescriptionChangedMessage(
-  args: FieldArgumentDescriptionChangedChange['meta'],
+  args: FieldArgumentDescriptionChangedChange["meta"]
 ): string {
   return `Description for argument '${args.argumentName}' on field '${args.typeName}.${args.fieldName}' changed from '${args.oldDescription}' to '${args.newDescription}'`;
 }
 
 export function fieldArgumentDescriptionChangedFromMeta(
-  args: FieldArgumentDescriptionChangedChange,
+  args: FieldArgumentDescriptionChangedChange
 ) {
   return {
     type: ChangeType.FieldArgumentDescriptionChanged,
@@ -26,7 +31,11 @@ export function fieldArgumentDescriptionChangedFromMeta(
     },
     message: buildFieldArgumentDescriptionChangedMessage(args.meta),
     meta: args.meta,
-    path: [args.meta.typeName, args.meta.fieldName, args.meta.argumentName].join('.'),
+    path: [
+      args.meta.typeName,
+      args.meta.fieldName,
+      args.meta.argumentName,
+    ].join("."),
   } as const;
 }
 
@@ -34,7 +43,7 @@ export function fieldArgumentDescriptionChanged(
   type: GraphQLObjectType | GraphQLInterfaceType,
   field: GraphQLField<any, any, any>,
   oldArg: GraphQLArgument,
-  newArg: GraphQLArgument,
+  newArg: GraphQLArgument
 ): Change<ChangeType.FieldArgumentDescriptionChanged> {
   return fieldArgumentDescriptionChangedFromMeta({
     type: ChangeType.FieldArgumentDescriptionChanged,
@@ -49,7 +58,7 @@ export function fieldArgumentDescriptionChanged(
 }
 
 function buildFieldArgumentDefaultChangedMessage(
-  args: FieldArgumentDefaultChangedChange['meta'],
+  args: FieldArgumentDefaultChangedChange["meta"]
 ): string {
   return args.oldDefaultValue === undefined
     ? `Default value '${args.newDefaultValue}' was added to argument '${args.argumentName}' on field '${args.typeName}.${args.fieldName}'`
@@ -57,9 +66,11 @@ function buildFieldArgumentDefaultChangedMessage(
 }
 
 const fieldArgumentDefaultChangedCriticalityDangerousReason =
-  'Changing the default value for an argument may change the runtime behaviour of a field if it was never provided.';
+  "Changing the default value for an argument may change the runtime behaviour of a field if it was never provided.";
 
-export function fieldArgumentDefaultChangedFromMeta(args: FieldArgumentDefaultChangedChange) {
+export function fieldArgumentDefaultChangedFromMeta(
+  args: FieldArgumentDefaultChangedChange
+) {
   return {
     type: ChangeType.FieldArgumentDefaultChanged,
     criticality: {
@@ -68,7 +79,11 @@ export function fieldArgumentDefaultChangedFromMeta(args: FieldArgumentDefaultCh
     },
     message: buildFieldArgumentDefaultChangedMessage(args.meta),
     meta: args.meta,
-    path: [args.meta.typeName, args.meta.fieldName, args.meta.argumentName].join('.'),
+    path: [
+      args.meta.typeName,
+      args.meta.fieldName,
+      args.meta.argumentName,
+    ].join("."),
   } as const;
 }
 
@@ -76,9 +91,9 @@ export function fieldArgumentDefaultChanged(
   type: GraphQLObjectType | GraphQLInterfaceType,
   field: GraphQLField<any, any, any>,
   oldArg: GraphQLArgument,
-  newArg: GraphQLArgument,
+  newArg: GraphQLArgument
 ): Change<ChangeType.FieldArgumentDefaultChanged> {
-  const meta: FieldArgumentDefaultChangedChange['meta'] = {
+  const meta: FieldArgumentDefaultChangedChange["meta"] = {
     typeName: type.name,
     fieldName: field.name,
     argumentName: newArg.name,
@@ -98,7 +113,7 @@ export function fieldArgumentDefaultChanged(
 }
 
 function buildFieldArgumentTypeChangedMessage(
-  args: FieldArgumentTypeChangedChange['meta'],
+  args: FieldArgumentTypeChangedChange["meta"]
 ): string {
   return `Type for argument '${args.argumentName}' on field '${args.typeName}.${args.fieldName}' changed from '${args.oldArgumentType}' to '${args.newArgumentType}'`;
 }
@@ -106,7 +121,9 @@ function buildFieldArgumentTypeChangedMessage(
 const fieldArgumentTypeChangedCriticalityNonBreakingReason = `Changing an input field from non-null to null is considered non-breaking.`;
 const fieldArgumentTypeChangedCriticalityBreakingReason = `Changing the type of a field's argument can cause existing queries that use this argument to error.`;
 
-export function fieldArgumentTypeChangedFromMeta(args: FieldArgumentTypeChangedChange) {
+export function fieldArgumentTypeChangedFromMeta(
+  args: FieldArgumentTypeChangedChange
+) {
   return {
     type: ChangeType.FieldArgumentTypeChanged,
     criticality: args.meta.isSafeArgumentTypeChange
@@ -120,7 +137,11 @@ export function fieldArgumentTypeChangedFromMeta(args: FieldArgumentTypeChangedC
         },
     message: buildFieldArgumentTypeChangedMessage(args.meta),
     meta: args.meta,
-    path: [args.meta.typeName, args.meta.fieldName, args.meta.argumentName].join('.'),
+    path: [
+      args.meta.typeName,
+      args.meta.fieldName,
+      args.meta.argumentName,
+    ].join("."),
   } as const;
 }
 
@@ -128,7 +149,7 @@ export function fieldArgumentTypeChanged(
   type: GraphQLObjectType | GraphQLInterfaceType,
   field: GraphQLField<any, any, any>,
   oldArg: GraphQLArgument,
-  newArg: GraphQLArgument,
+  newArg: GraphQLArgument
 ): Change<ChangeType.FieldArgumentTypeChanged> {
   return fieldArgumentTypeChangedFromMeta({
     type: ChangeType.FieldArgumentTypeChanged,
@@ -138,7 +159,10 @@ export function fieldArgumentTypeChanged(
       argumentName: newArg.name,
       oldArgumentType: oldArg.type.toString(),
       newArgumentType: newArg.type.toString(),
-      isSafeArgumentTypeChange: safeChangeForInputValue(oldArg.type, newArg.type),
+      isSafeArgumentTypeChange: safeChangeForInputValue(
+        oldArg.type,
+        newArg.type
+      ),
     },
   });
 }

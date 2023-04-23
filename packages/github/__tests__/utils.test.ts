@@ -1,182 +1,182 @@
-import { ChangeType, CriticalityLevel } from '@graphql-inspector/core';
-import { createSummary } from '../src/helpers/utils.js';
+import { ChangeType, CriticalityLevel } from "@graphql-inspector/core";
+import { createSummary } from "../src/helpers/utils.js";
 
-describe('Limit summary', () => {
-  test('all changes when total amount is below limit', () => {
+describe("Limit summary", () => {
+  test("all changes when total amount is below limit", () => {
     const summary = createSummary(
       [
         {
           type: ChangeType.FieldRemoved,
-          message: 'breaking-1',
+          message: "breaking-1",
           criticality: {
             level: CriticalityLevel.Breaking,
           },
           meta: {
-            typeName: 'foo',
-            removedFieldName: 'bar',
+            typeName: "foo",
+            removedFieldName: "bar",
             isRemovedFieldDeprecated: false,
-            typeType: 'INPUT_OBJECT',
+            typeType: "INPUT_OBJECT",
           },
         },
         {
           type: ChangeType.FieldRemoved,
-          message: 'breaking-2',
+          message: "breaking-2",
           criticality: {
             level: CriticalityLevel.Breaking,
           },
           meta: {
-            typeName: 'foo',
-            removedFieldName: 'bar',
+            typeName: "foo",
+            removedFieldName: "bar",
             isRemovedFieldDeprecated: false,
-            typeType: 'INPUT_OBJECT',
+            typeType: "INPUT_OBJECT",
           },
         },
         {
           type: ChangeType.FieldAdded,
-          message: 'safe-3',
+          message: "safe-3",
           criticality: {
             level: CriticalityLevel.NonBreaking,
           },
           meta: {
-            typeName: 'foo',
-            addedFieldName: 'bar',
+            typeName: "foo",
+            addedFieldName: "bar",
           },
         },
       ],
-      3,
+      3
     );
 
-    expect(summary).toContain('- breaking-1');
-    expect(summary).toContain('- breaking-2');
-    expect(summary).toContain('- safe-3');
-    expect(summary).not.toContain('summaryLimit');
+    expect(summary).toContain("- breaking-1");
+    expect(summary).toContain("- breaking-2");
+    expect(summary).toContain("- safe-3");
+    expect(summary).not.toContain("summaryLimit");
   });
 
-  test('only breaking changes when total is above limit and breaking is below or equal', () => {
+  test("only breaking changes when total is above limit and breaking is below or equal", () => {
     const summary = createSummary(
       [
         {
           type: ChangeType.FieldRemoved,
-          message: 'breaking-1',
+          message: "breaking-1",
           criticality: {
             level: CriticalityLevel.Breaking,
           },
           meta: {
-            typeName: 'foo',
-            removedFieldName: 'bar',
+            typeName: "foo",
+            removedFieldName: "bar",
             isRemovedFieldDeprecated: false,
-            typeType: 'INPUT_OBJECT',
+            typeType: "INPUT_OBJECT",
           },
         },
         {
           type: ChangeType.FieldRemoved,
-          message: 'breaking-2',
+          message: "breaking-2",
           criticality: {
             level: CriticalityLevel.Breaking,
           },
           meta: {
-            typeName: 'foo',
-            removedFieldName: 'bar',
+            typeName: "foo",
+            removedFieldName: "bar",
             isRemovedFieldDeprecated: false,
-            typeType: 'INPUT_OBJECT',
+            typeType: "INPUT_OBJECT",
           },
         },
         {
           type: ChangeType.FieldRemoved,
-          message: 'breaking-3',
+          message: "breaking-3",
           criticality: {
             level: CriticalityLevel.Breaking,
           },
           meta: {
-            typeName: 'foo',
-            removedFieldName: 'bar',
+            typeName: "foo",
+            removedFieldName: "bar",
             isRemovedFieldDeprecated: false,
-            typeType: 'INPUT_OBJECT',
+            typeType: "INPUT_OBJECT",
           },
         },
         {
           type: ChangeType.FieldAdded,
-          message: 'safe-4',
+          message: "safe-4",
           criticality: {
             level: CriticalityLevel.NonBreaking,
           },
           meta: {
-            typeName: 'foo',
-            addedFieldName: 'bar',
+            typeName: "foo",
+            addedFieldName: "bar",
           },
         },
       ],
-      3,
+      3
     );
 
-    expect(summary).toContain('- breaking-1');
-    expect(summary).toContain('- breaking-2');
-    expect(summary).toContain('- breaking-3');
-    expect(summary).not.toContain('- safe-4');
-    expect(summary).toContain('summaryLimit');
+    expect(summary).toContain("- breaking-1");
+    expect(summary).toContain("- breaking-2");
+    expect(summary).toContain("- breaking-3");
+    expect(summary).not.toContain("- safe-4");
+    expect(summary).toContain("summaryLimit");
   });
 
-  test('empty when total and breaking are above limit', () => {
+  test("empty when total and breaking are above limit", () => {
     const summary = createSummary(
       [
         {
           type: ChangeType.FieldRemoved,
-          message: 'breaking-1',
+          message: "breaking-1",
           criticality: {
             level: CriticalityLevel.Breaking,
           },
           meta: {
-            typeName: 'foo',
-            removedFieldName: 'bar',
+            typeName: "foo",
+            removedFieldName: "bar",
             isRemovedFieldDeprecated: false,
-            typeType: 'INPUT_OBJECT',
+            typeType: "INPUT_OBJECT",
           },
         },
         {
           type: ChangeType.FieldRemoved,
-          message: 'breaking-2',
+          message: "breaking-2",
           criticality: {
             level: CriticalityLevel.Breaking,
           },
           meta: {
-            typeName: 'foo',
-            removedFieldName: 'bar',
+            typeName: "foo",
+            removedFieldName: "bar",
             isRemovedFieldDeprecated: false,
-            typeType: 'INPUT_OBJECT',
+            typeType: "INPUT_OBJECT",
           },
         },
         {
           type: ChangeType.FieldRemoved,
-          message: 'breaking-3',
+          message: "breaking-3",
           criticality: {
             level: CriticalityLevel.Breaking,
           },
           meta: {
-            typeName: 'foo',
-            removedFieldName: 'bar',
+            typeName: "foo",
+            removedFieldName: "bar",
             isRemovedFieldDeprecated: false,
-            typeType: 'INPUT_OBJECT',
+            typeType: "INPUT_OBJECT",
           },
         },
         {
           type: ChangeType.FieldAdded,
-          message: 'safe-4',
+          message: "safe-4",
           criticality: {
             level: CriticalityLevel.NonBreaking,
           },
           meta: {
-            typeName: 'foo',
-            addedFieldName: 'bar',
+            typeName: "foo",
+            addedFieldName: "bar",
           },
         },
       ],
-      2,
+      2
     );
 
-    expect(summary).not.toContain('- breaking-1');
-    expect(summary).not.toContain('- breaking-2');
-    expect(summary).not.toContain('- breaking-3');
-    expect(summary).not.toContain('- safe-4');
-    expect(summary).toContain('summaryLimit');
+    expect(summary).not.toContain("- breaking-1");
+    expect(summary).not.toContain("- breaking-2");
+    expect(summary).not.toContain("- breaking-3");
+    expect(summary).not.toContain("- safe-4");
+    expect(summary).toContain("summaryLimit");
   });
 });

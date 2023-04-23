@@ -1,16 +1,20 @@
-import { buildSchema } from 'graphql';
-import * as probot from 'probot';
-import { diff } from '@graphql-inspector/core';
+import { buildSchema } from "graphql";
+import * as probot from "probot";
+import { diff } from "@graphql-inspector/core";
 import {
   createConfig,
   NormalizedEnvironment,
   Notifications,
   SchemaPointer,
-} from './helpers/config.js';
-import { ConfigLoader, FileLoader, loadSources } from './helpers/loaders.js';
-import { createLogger } from './helpers/logger.js';
-import { notifyWithDiscord, notifyWithSlack, notifyWithWebhook } from './helpers/notifications.js';
-import { ErrorHandler } from './helpers/types.js';
+} from "./helpers/config.js";
+import { ConfigLoader, FileLoader, loadSources } from "./helpers/loaders.js";
+import { createLogger } from "./helpers/logger.js";
+import {
+  notifyWithDiscord,
+  notifyWithSlack,
+  notifyWithWebhook,
+} from "./helpers/notifications.js";
+import { ErrorHandler } from "./helpers/types.js";
 
 export async function handleSchemaChangeNotifications({
   context,
@@ -36,15 +40,17 @@ export async function handleSchemaChangeNotifications({
   action: string;
 }): Promise<void> {
   const id = `${owner}/${repo}#${ref}`;
-  const logger = createLogger('NOTIFICATIONS', context, release);
+  const logger = createLogger("NOTIFICATIONS", context, release);
 
   logger.info(`started - ${id}`);
   logger.info(`action - ${action}`);
 
-  const isBranchPush = ref.startsWith('refs/heads/');
+  const isBranchPush = ref.startsWith("refs/heads/");
 
   if (!isBranchPush) {
-    logger.warn(`Received Push event is not a branch push event (ref "${ref}")`);
+    logger.warn(
+      `Received Push event is not a branch push event (ref "${ref}")`
+    );
     return;
   }
 
@@ -55,7 +61,7 @@ export async function handleSchemaChangeNotifications({
     return;
   }
 
-  const branch = ref.replace('refs/heads/', '');
+  const branch = ref.replace("refs/heads/", "");
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   const config = createConfig(rawConfig as any, () => {}, [branch]);
 
@@ -67,7 +73,7 @@ export async function handleSchemaChangeNotifications({
 
   if (config.branch !== branch) {
     logger.info(
-      `Received branch "${branch}" doesn't match expected branch "${config.branch}". Skipping...`,
+      `Received branch "${branch}" doesn't match expected branch "${config.branch}". Skipping...`
     );
     return;
   }
@@ -124,7 +130,7 @@ export async function handleSchemaChangeNotifications({
 
     if (notifications.slack) {
       actions.push(
-        actionRunner('slack', () =>
+        actionRunner("slack", () =>
           notifyWithSlack({
             url: notifications.slack!,
             changes,
@@ -132,14 +138,14 @@ export async function handleSchemaChangeNotifications({
             repo,
             owner,
             commit,
-          }),
-        ),
+          })
+        )
       );
     }
 
     if (notifications.discord) {
       actions.push(
-        actionRunner('discord', () =>
+        actionRunner("discord", () =>
           notifyWithDiscord({
             url: notifications.discord!,
             changes,
@@ -147,14 +153,14 @@ export async function handleSchemaChangeNotifications({
             repo,
             owner,
             commit,
-          }),
-        ),
+          })
+        )
       );
     }
 
     if (notifications.webhook) {
       actions.push(
-        actionRunner('webhook', () =>
+        actionRunner("webhook", () =>
           notifyWithWebhook({
             url: notifications.webhook!,
             changes,
@@ -162,8 +168,8 @@ export async function handleSchemaChangeNotifications({
             repo,
             owner,
             commit,
-          }),
-        ),
+          })
+        )
       );
     }
 
@@ -174,7 +180,7 @@ export async function handleSchemaChangeNotifications({
 }
 
 function hasNotificationsEnabled(
-  notifications: NormalizedEnvironment['notifications'],
+  notifications: NormalizedEnvironment["notifications"]
 ): notifications is Notifications {
-  return notifications && typeof notifications === 'object';
+  return notifications && typeof notifications === "object";
 }

@@ -1,3 +1,3 @@
-import { ConsiderUsageConfig } from './consider-usage.js';
+import { ConsiderUsageConfig } from "./consider-usage.js";
 
 export type Config = ConsiderUsageConfig;

@@ -1,7 +1,7 @@
-import { Context } from 'probot';
-import { Logger } from './logger.js';
-import { Annotation, CheckConclusion, CheckStatus } from './types.js';
-import { batch } from './utils.js';
+import { Context } from "probot";
+import { Logger } from "./logger.js";
+import { Annotation, CheckConclusion, CheckStatus } from "./types.js";
+import { batch } from "./utils.js";
 
 export async function start({
   context,
@@ -20,7 +20,7 @@ export async function start({
     const result = await context.octokit.checks.create({
       owner,
       repo,
-      name: 'graphql-inspector',
+      name: "graphql-inspector",
       head_sha: sha,
       status: CheckStatus.InProgress,
     });
@@ -59,7 +59,7 @@ export async function annotate({
 
   try {
     await Promise.all(
-      batches.map(async chunk => {
+      batches.map(async (chunk) => {
         await context.octokit.checks.update({
           owner,
           repo,
@@ -71,7 +71,7 @@ export async function annotate({
           },
         });
         logger.info(`annotations sent (${chunk.length})`);
-      }),
+      })
     );
   } catch (error: any) {
     logger.error(`failed to send annotations`, error);

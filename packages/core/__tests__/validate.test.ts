@@ -1,8 +1,8 @@
-import { buildSchema, parse, print, Source } from 'graphql';
-import { validate } from '../src/index.js';
+import { buildSchema, parse, print, Source } from "graphql";
+import { validate } from "../src/index.js";
 
-describe('validate', () => {
-  test('basic', () => {
+describe("validate", () => {
+  test("basic", () => {
     const schema = buildSchema(/* GraphQL */ `
       type Post {
         id: ID
@@ -36,10 +36,12 @@ describe('validate', () => {
     expect(results[0].deprecated.length).toEqual(1);
 
     const deprecated = results[0].deprecated[0];
-    expect(deprecated.message).toMatch(`The field 'Post.title' is deprecated. BECAUSE`);
+    expect(deprecated.message).toMatch(
+      `The field 'Post.title' is deprecated. BECAUSE`
+    );
   });
 
-  test('multiple fragments across multiple files with nested fragments (#36)', async () => {
+  test("multiple fragments across multiple files with nested fragments (#36)", async () => {
     const schema = buildSchema(/* GraphQL */ `
       type Post {
         id: ID
@@ -88,13 +90,13 @@ describe('validate', () => {
 
     const results = validate(
       schema,
-      docs.map(doc => new Source(print(doc))),
+      docs.map((doc) => new Source(print(doc)))
     );
 
     expect(results.length).toEqual(0);
   });
 
-  test('fail on non unique fragment names', async () => {
+  test("fail on non unique fragment names", async () => {
     const schema = buildSchema(/* GraphQL */ `
       type Post {
         id: ID
@@ -135,7 +137,7 @@ describe('validate', () => {
 
     const results = validate(
       schema,
-      docs.map(doc => new Source(print(doc))),
+      docs.map((doc) => new Source(print(doc)))
     );
 
     expect(results.length).toEqual(1);
@@ -147,7 +149,7 @@ describe('validate', () => {
     expect(error.message).toMatch(`Name of 'PostInfo' fragment is not unique`);
   });
 
-  test('omit unused fragment from a document', async () => {
+  test("omit unused fragment from a document", async () => {
     const schema = buildSchema(/* GraphQL */ `
       type Post {
         id: ID
@@ -187,13 +189,13 @@ describe('validate', () => {
 
     const results = validate(
       schema,
-      docs.map(doc => new Source(print(doc))),
+      docs.map((doc) => new Source(print(doc)))
     );
 
     expect(results.length).toEqual(0);
   });
 
-  test('fail when exceeded max query depth (inline fragment)', async () => {
+  test("fail when exceeded max query depth (inline fragment)", async () => {
     const schema = buildSchema(/* GraphQL */ `
       type Post {
         id: ID
@@ -239,16 +241,16 @@ describe('validate', () => {
 
     const results = validate(
       schema,
-      docs.map(doc => new Source(print(doc))),
+      docs.map((doc) => new Source(print(doc))),
       {
         maxDepth: 1,
-      },
+      }
     );
 
     expect(results.length).toEqual(1);
   });
 
-  test('fail when exceeded max query depth (spread fragments)', async () => {
+  test("fail when exceeded max query depth (spread fragments)", async () => {
     const schema = buildSchema(/* GraphQL */ `
       type Post {
         id: ID
@@ -299,16 +301,16 @@ describe('validate', () => {
 
     const results = validate(
       schema,
-      docs.map(doc => new Source(print(doc))),
+      docs.map((doc) => new Source(print(doc))),
       {
         maxDepth: 1,
-      },
+      }
     );
 
     expect(results.length).toEqual(1);
   });
 
-  test('pass when not exceeded max query depth', async () => {
+  test("pass when not exceeded max query depth", async () => {
     const schema = buildSchema(/* GraphQL */ `
       type Post {
         id: ID
@@ -357,16 +359,16 @@ describe('validate', () => {
 
     const results = validate(
       schema,
-      docs.map(doc => new Source(print(doc))),
+      docs.map((doc) => new Source(print(doc))),
       {
         maxDepth: 2,
-      },
+      }
     );
 
     expect(results.length).toEqual(0);
   });
 
-  test('deprecated notice for query arguments', () => {
+  test("deprecated notice for query arguments", () => {
     const schema = buildSchema(/* GraphQL */ `
       type Post {
         id: ID
@@ -386,7 +388,8 @@ describe('validate', () => {
       type Query {
         findPost(
           searchQuery: PostQuery
-          query: LegacyPostQuery @deprecated(reason: "Please use 'searchQuery' instead.")
+          query: LegacyPostQuery
+            @deprecated(reason: "Please use 'searchQuery' instead.")
         ): Post
       }
 
@@ -411,11 +414,11 @@ describe('validate', () => {
 
     const deprecated = results[0].deprecated[0];
     expect(deprecated.message).toMatch(
-      `The argument 'query' of 'findPost' is deprecated. Please use 'searchQuery' instead.`,
+      `The argument 'query' of 'findPost' is deprecated. Please use 'searchQuery' instead.`
     );
   });
 
-  test('deprecated notice for field on fragment in different file', () => {
+  test("deprecated notice for field on fragment in different file", () => {
     const schema = buildSchema(/* GraphQL */ `
       type Post {
         id: ID
@@ -451,7 +454,7 @@ describe('validate', () => {
 
     const results = validate(
       schema,
-      docs.map(doc => new Source(print(doc))),
+      docs.map((doc) => new Source(print(doc)))
     );
 
     expect(results.length).toEqual(1);
@@ -459,10 +462,12 @@ describe('validate', () => {
     expect(results[0].deprecated.length).toEqual(1);
 
     const deprecated = results[0].deprecated[0];
-    expect(deprecated.message).toMatch(`The field 'Post.title' is deprecated. BECAUSE`);
+    expect(deprecated.message).toMatch(
+      `The field 'Post.title' is deprecated. BECAUSE`
+    );
   });
 
-  test('pass when not exceeded max complexity score', async () => {
+  test("pass when not exceeded max complexity score", async () => {
     const schema = buildSchema(/* GraphQL */ `
       type Post {
         id: ID
@@ -511,7 +516,7 @@ describe('validate', () => {
 
     const results = validate(
       schema,
-      docs.map(doc => new Source(print(doc))),
+      docs.map((doc) => new Source(print(doc))),
       {
         validateComplexityConfig: {
           maxComplexityScore: 100,
@@ -519,13 +524,13 @@ describe('validate', () => {
           complexityObjectCost: 2,
           complexityDepthCostFactor: 1.5,
         },
-      },
+      }
     );
 
     expect(results.length).toEqual(0);
   });
 
-  test('fail when exceeded max complexity score (inline fragment)', async () => {
+  test("fail when exceeded max complexity score (inline fragment)", async () => {
     const schema = buildSchema(/* GraphQL */ `
       type Post {
         id: ID
@@ -571,7 +576,7 @@ describe('validate', () => {
 
     const results = validate(
       schema,
-      docs.map(doc => new Source(print(doc))),
+      docs.map((doc) => new Source(print(doc))),
       {
         validateComplexityConfig: {
           maxComplexityScore: 50,
@@ -579,13 +584,13 @@ describe('validate', () => {
           complexityObjectCost: 2,
           complexityDepthCostFactor: 1.5,
         },
-      },
+      }
     );
 
     expect(results.length).toEqual(1);
   });
 
-  test('fail when exceeded max complexity score (spread fragments)', async () => {
+  test("fail when exceeded max complexity score (spread fragments)", async () => {
     const schema = buildSchema(/* GraphQL */ `
       type Post {
         id: ID
@@ -636,7 +641,7 @@ describe('validate', () => {
 
     const results = validate(
       schema,
-      docs.map(doc => new Source(print(doc))),
+      docs.map((doc) => new Source(print(doc))),
       {
         validateComplexityConfig: {
           maxComplexityScore: 50,
@@ -644,7 +649,7 @@ describe('validate', () => {
           complexityObjectCost: 2,
           complexityDepthCostFactor: 1.5,
         },
-      },
+      }
     );
 
     expect(results.length).toEqual(1);

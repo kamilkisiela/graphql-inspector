@@ -1,12 +1,12 @@
-import { existsSync } from 'fs';
-import { GraphQLSchema } from 'graphql';
+import { existsSync } from "fs";
+import { GraphQLSchema } from "graphql";
 import {
   CommandFactory,
   createCommand,
   ensureAbsolute,
   GlobalArgs,
   parseGlobalArgs,
-} from '@graphql-inspector/commands';
+} from "@graphql-inspector/commands";
 import {
   Change,
   CompletionArgs,
@@ -16,8 +16,8 @@ import {
   diff as diffSchema,
   Rule,
   UsageHandler,
-} from '@graphql-inspector/core';
-import { bolderize, Logger, symbols } from '@graphql-inspector/logger';
+} from "@graphql-inspector/core";
+import { bolderize, Logger, symbols } from "@graphql-inspector/logger";
 
 export { CommandFactory };
 
@@ -44,7 +44,7 @@ export async function handler(input: {
 
           return rule;
         })
-        .filter(f => f)
+        .filter((f) => f)
     : [];
 
   const changes = await diffSchema(input.oldSchema, input.newSchema, rules, {
@@ -52,20 +52,22 @@ export async function handler(input: {
   });
 
   if (changes.length === 0) {
-    Logger.success('No changes detected');
+    Logger.success("No changes detected");
     return;
   }
 
-  Logger.log(`\nDetected the following changes (${changes.length}) between schemas:\n`);
+  Logger.log(
+    `\nDetected the following changes (${changes.length}) between schemas:\n`
+  );
 
   const breakingChanges = changes.filter(
-    change => change.criticality.level === CriticalityLevel.Breaking,
+    (change) => change.criticality.level === CriticalityLevel.Breaking
   );
   const dangerousChanges = changes.filter(
-    change => change.criticality.level === CriticalityLevel.Dangerous,
+    (change) => change.criticality.level === CriticalityLevel.Dangerous
   );
   const nonBreakingChanges = changes.filter(
-    change => change.criticality.level === CriticalityLevel.NonBreaking,
+    (change) => change.criticality.level === CriticalityLevel.NonBreaking
   );
 
   if (breakingChanges.length) {
@@ -92,36 +94,36 @@ export default createCommand<
     onComplete?: string;
     onUsage?: string;
   } & GlobalArgs
->(api => {
+>((api) => {
   const { loaders } = api;
 
   return {
-    command: 'diff <oldSchema> <newSchema>',
-    describe: 'Compare two GraphQL Schemas',
+    command: "diff <oldSchema> <newSchema>",
+    describe: "Compare two GraphQL Schemas",
     builder(yargs) {
       return yargs
-        .positional('oldSchema', {
-          describe: 'Point to an old schema',
-          type: 'string',
+        .positional("oldSchema", {
+          describe: "Point to an old schema",
+          type: "string",
           demandOption: true,
         })
-        .positional('newSchema', {
-          describe: 'Point to a new schema',
-          type: 'string',
+        .positional("newSchema", {
+          describe: "Point to a new schema",
+          type: "string",
           demandOption: true,
         })
         .options({
           rule: {
-            describe: 'Add rules',
+            describe: "Add rules",
             array: true,
           },
           onComplete: {
-            describe: 'Handle Completion',
-            type: 'string',
+            describe: "Handle Completion",
+            type: "string",
           },
           onUsage: {
-            describe: 'Checks usage of schema',
-            type: 'string',
+            describe: "Checks usage of schema",
+            type: "string",
           },
         });
     },
@@ -131,8 +133,9 @@ export default createCommand<
         const newSchemaPointer = args.newSchema;
         const apolloFederation = args.federation || false;
         const aws = args.aws || false;
-        const method = args.method?.toUpperCase() || 'POST';
-        const { headers, leftHeaders, rightHeaders, token } = parseGlobalArgs(args);
+        const method = args.method?.toUpperCase() || "POST";
+        const { headers, leftHeaders, rightHeaders, token } =
+          parseGlobalArgs(args);
 
         const oldSchemaHeaders = {
           ...headers,
@@ -151,7 +154,7 @@ export default createCommand<
             method,
           },
           apolloFederation,
-          aws,
+          aws
         );
         const newSchema = await loaders.loadSchema(
           newSchemaPointer,
@@ -161,7 +164,7 @@ export default createCommand<
             method,
           },
           apolloFederation,
-          aws,
+          aws
         );
 
         await handler({
@@ -181,8 +184,8 @@ export default createCommand<
 
 function sortChanges(changes: Change[]) {
   return changes.slice().sort((a, b) => {
-    const aPath = a.path || '';
-    const bPath = b.path || '';
+    const aPath = a.path || "";
+    const bPath = b.path || "";
 
     if (aPath > bPath) {
       return 1;
@@ -263,13 +266,15 @@ function failOnBreakingChanges({ breakingChanges }: CompletionArgs) {
   const breakingCount = breakingChanges.length;
 
   if (breakingCount) {
-    Logger.error(`Detected ${breakingCount} breaking change${breakingCount > 1 ? 's' : ''}`);
+    Logger.error(
+      `Detected ${breakingCount} breaking change${breakingCount > 1 ? "s" : ""}`
+    );
     process.exit(1);
   } else {
-    Logger.success('No breaking changes detected');
+    Logger.success("No breaking changes detected");
   }
 }
 
 function isString(val: any): val is string {
-  return typeof val === 'string';
+  return typeof val === "string";
 }

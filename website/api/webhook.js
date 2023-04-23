@@ -1,42 +1,43 @@
 /// @ts-check
 const release = process.env.COMMIT_SHA;
-const { createProbot } = require('probot');
-const inspector = require('@graphql-inspector/github');
+const { createProbot } = require("probot");
+const inspector = require("@graphql-inspector/github");
 
 module.exports = serverless(inspector.app);
 
 function serverless(appFn) {
-  console.log('Created');
+  console.log("Created");
   return async (req, res) => {
-    console.log('Invoked');
+    console.log("Invoked");
 
     // A friendly homepage if there isn't a payload
-    if (req.method === 'GET') {
-      res.setHeader('Content-Type', 'text/plain');
+    if (req.method === "GET") {
+      res.setHeader("Content-Type", "text/plain");
       res.status(200);
-      res.send('Visit graphql-inspector.com');
+      res.send("Visit graphql-inspector.com");
       return;
     }
 
     function lowerCaseKeys(obj) {
       return Object.keys(obj).reduce(
-        (accumulator, key) => Object.assign(accumulator, { [key.toLocaleLowerCase()]: obj[key] }),
-        {},
+        (accumulator, key) =>
+          Object.assign(accumulator, { [key.toLocaleLowerCase()]: obj[key] }),
+        {}
       );
     }
 
     // Determine incoming webhook event type
     const headers = lowerCaseKeys(req.headers);
-    const ev = headers['x-github-event'];
-    const id = headers['x-github-delivery'];
-    const event = `${ev}${req.body.action ? '.' + req.body.action : ''}`;
+    const ev = headers["x-github-event"];
+    const id = headers["x-github-delivery"];
+    const event = `${ev}${req.body.action ? "." + req.body.action : ""}`;
 
     function onError(error) {
       console.error(error);
     }
 
     try {
-      req.body = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
+      req.body = typeof req.body === "string" ? JSON.parse(req.body) : req.body;
 
       const probot = createProbot({
         defaults: {
@@ -62,7 +63,8 @@ function serverless(appFn) {
           id,
           name: ev,
           payload: req.body,
-          signature: headers['x-hub-signature-256'] || headers['x-hub-signature'],
+          signature:
+            headers["x-hub-signature-256"] || headers["x-hub-signature"],
         });
 
         res.status(200);
@@ -73,13 +75,13 @@ function serverless(appFn) {
         return;
       }
       res.status(500);
-      res.send('unknown error');
+      res.send("unknown error");
 
       return;
     } catch (error) {
       console.error(error);
       res.status(500);
-      res.send('unknown error');
+      res.send("unknown error");
     }
   };
 }

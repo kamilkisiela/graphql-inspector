@@ -1,5 +1,5 @@
-import { GraphQLEnumType, GraphQLEnumValue } from 'graphql';
-import { isDeprecated } from '../../utils/is-deprecated.js';
+import { GraphQLEnumType, GraphQLEnumValue } from "graphql";
+import { isDeprecated } from "../../utils/is-deprecated.js";
 import {
   Change,
   ChangeType,
@@ -10,11 +10,11 @@ import {
   EnumValueDeprecationReasonRemovedChange,
   EnumValueDescriptionChangedChange,
   EnumValueRemovedChange,
-} from './change.js';
+} from "./change.js";
 
-function buildEnumValueRemovedMessage(args: EnumValueRemovedChange['meta']) {
+function buildEnumValueRemovedMessage(args: EnumValueRemovedChange["meta"]) {
   return `Enum value '${args.removedEnumValueName}' ${
-    args.isEnumValueDeprecated ? '(deprecated) ' : ''
+    args.isEnumValueDeprecated ? "(deprecated) " : ""
   }was removed from enum '${args.enumName}'`;
 }
 
@@ -29,13 +29,13 @@ export function enumValueRemovedFromMeta(args: EnumValueRemovedChange) {
     },
     message: buildEnumValueRemovedMessage(args.meta),
     meta: args.meta,
-    path: [args.meta.enumName, args.meta.removedEnumValueName].join('.'),
+    path: [args.meta.enumName, args.meta.removedEnumValueName].join("."),
   } as const;
 }
 
 export function enumValueRemoved(
   oldEnum: GraphQLEnumType,
-  value: GraphQLEnumValue,
+  value: GraphQLEnumValue
 ): Change<ChangeType.EnumValueRemoved> {
   return enumValueRemovedFromMeta({
     type: ChangeType.EnumValueRemoved,
@@ -62,13 +62,13 @@ export function enumValueAddedFromMeta(args: EnumValueAddedChange) {
     },
     message: buildEnumValueAddedMessage(args),
     meta: args.meta,
-    path: [args.meta.enumName, args.meta.addedEnumValueName].join('.'),
+    path: [args.meta.enumName, args.meta.addedEnumValueName].join("."),
   } as const;
 }
 
 export function enumValueAdded(
   newEnum: GraphQLEnumType,
-  value: GraphQLEnumValue,
+  value: GraphQLEnumValue
 ): Change<ChangeType.EnumValueAdded> {
   return enumValueAddedFromMeta({
     type: ChangeType.EnumValueAdded,
@@ -79,18 +79,22 @@ export function enumValueAdded(
   });
 }
 
-function buildEnumValueDescriptionChangedMessage(args: EnumValueDescriptionChangedChange['meta']) {
+function buildEnumValueDescriptionChangedMessage(
+  args: EnumValueDescriptionChangedChange["meta"]
+) {
   return args.oldEnumValueDescription === null
-    ? `Description '${args.newEnumValueDescription ?? 'undefined'}' was added to enum value '${
-        args.enumName
-      }.${args.enumValueName}'`
-    : `Description for enum value '${args.enumName}.${args.enumValueName}' changed from '${
-        args.oldEnumValueDescription ?? 'undefined'
-      }' to '${args.newEnumValueDescription ?? 'undefined'}'`;
+    ? `Description '${
+        args.newEnumValueDescription ?? "undefined"
+      }' was added to enum value '${args.enumName}.${args.enumValueName}'`
+    : `Description for enum value '${args.enumName}.${
+        args.enumValueName
+      }' changed from '${args.oldEnumValueDescription ?? "undefined"}' to '${
+        args.newEnumValueDescription ?? "undefined"
+      }'`;
 }
 
 export function enumValueDescriptionChangedFromMeta(
-  args: EnumValueDescriptionChangedChange,
+  args: EnumValueDescriptionChangedChange
 ): Change<ChangeType.EnumValueDescriptionChanged> {
   return {
     criticality: {
@@ -98,7 +102,7 @@ export function enumValueDescriptionChangedFromMeta(
     },
     type: ChangeType.EnumValueDescriptionChanged,
     message: buildEnumValueDescriptionChangedMessage(args.meta),
-    path: [args.meta.enumName, args.meta.enumValueName].join('.'),
+    path: [args.meta.enumName, args.meta.enumValueName].join("."),
     meta: args.meta,
   } as const;
 }
@@ -106,7 +110,7 @@ export function enumValueDescriptionChangedFromMeta(
 export function enumValueDescriptionChanged(
   newEnum: GraphQLEnumType,
   oldValue: GraphQLEnumValue,
-  newValue: GraphQLEnumValue,
+  newValue: GraphQLEnumValue
 ): Change<ChangeType.EnumValueDescriptionChanged> {
   return enumValueDescriptionChangedFromMeta({
     type: ChangeType.EnumValueDescriptionChanged,
@@ -120,13 +124,13 @@ export function enumValueDescriptionChanged(
 }
 
 function buildEnumValueDeprecationChangedMessage(
-  args: EnumValueDeprecationReasonChangedChange['meta'],
+  args: EnumValueDeprecationReasonChangedChange["meta"]
 ) {
   return `Enum value '${args.enumName}.${args.enumValueName}' deprecation reason changed from '${args.oldEnumValueDeprecationReason}' to '${args.newEnumValueDeprecationReason}'`;
 }
 
 export function enumValueDeprecationReasonChangedFromMeta(
-  args: EnumValueDeprecationReasonChangedChange,
+  args: EnumValueDeprecationReasonChangedChange
 ) {
   return {
     criticality: {
@@ -134,7 +138,7 @@ export function enumValueDeprecationReasonChangedFromMeta(
     },
     type: ChangeType.EnumValueDeprecationReasonChanged,
     message: buildEnumValueDeprecationChangedMessage(args.meta),
-    path: [args.meta.enumName, args.meta.enumValueName].join('.'),
+    path: [args.meta.enumName, args.meta.enumValueName].join("."),
     meta: args.meta,
   } as const;
 }
@@ -142,27 +146,27 @@ export function enumValueDeprecationReasonChangedFromMeta(
 export function enumValueDeprecationReasonChanged(
   newEnum: GraphQLEnumType,
   oldValue: GraphQLEnumValue,
-  newValue: GraphQLEnumValue,
+  newValue: GraphQLEnumValue
 ): Change<ChangeType.EnumValueDeprecationReasonChanged> {
   return enumValueDeprecationReasonChangedFromMeta({
     type: ChangeType.EnumValueDeprecationReasonChanged,
     meta: {
       enumName: newEnum.name,
       enumValueName: oldValue.name,
-      oldEnumValueDeprecationReason: oldValue.deprecationReason ?? '',
-      newEnumValueDeprecationReason: newValue.deprecationReason ?? '',
+      oldEnumValueDeprecationReason: oldValue.deprecationReason ?? "",
+      newEnumValueDeprecationReason: newValue.deprecationReason ?? "",
     },
   });
 }
 
 function buildEnumValueDeprecationReasonAddedMessage(
-  args: EnumValueDeprecationReasonAddedChange['meta'],
+  args: EnumValueDeprecationReasonAddedChange["meta"]
 ) {
   return `Enum value '${args.enumName}.${args.enumValueName}' was deprecated with reason '${args.addedValueDeprecationReason}'`;
 }
 
 export function enumValueDeprecationReasonAddedFromMeta(
-  args: EnumValueDeprecationReasonAddedChange,
+  args: EnumValueDeprecationReasonAddedChange
 ) {
   return {
     criticality: {
@@ -170,7 +174,7 @@ export function enumValueDeprecationReasonAddedFromMeta(
     },
     type: ChangeType.EnumValueDeprecationReasonAdded,
     message: buildEnumValueDeprecationReasonAddedMessage(args.meta),
-    path: [args.meta.enumName, args.meta.enumValueName].join('.'),
+    path: [args.meta.enumName, args.meta.enumValueName].join("."),
     meta: args.meta,
   } as const;
 }
@@ -178,26 +182,26 @@ export function enumValueDeprecationReasonAddedFromMeta(
 export function enumValueDeprecationReasonAdded(
   newEnum: GraphQLEnumType,
   oldValue: GraphQLEnumValue,
-  newValue: GraphQLEnumValue,
+  newValue: GraphQLEnumValue
 ): Change<ChangeType.EnumValueDeprecationReasonAdded> {
   return enumValueDeprecationReasonAddedFromMeta({
     type: ChangeType.EnumValueDeprecationReasonAdded,
     meta: {
       enumName: newEnum.name,
       enumValueName: oldValue.name,
-      addedValueDeprecationReason: newValue.deprecationReason ?? '',
+      addedValueDeprecationReason: newValue.deprecationReason ?? "",
     },
   });
 }
 
 function buildEnumValueDeprecationReasonRemovedMessage(
-  args: EnumValueDeprecationReasonRemovedChange['meta'],
+  args: EnumValueDeprecationReasonRemovedChange["meta"]
 ) {
   return `Deprecation reason was removed from enum value '${args.enumName}.${args.enumValueName}'`;
 }
 
 export function enumValueDeprecationReasonRemovedFromMeta(
-  args: EnumValueDeprecationReasonRemovedChange,
+  args: EnumValueDeprecationReasonRemovedChange
 ) {
   return {
     criticality: {
@@ -205,7 +209,7 @@ export function enumValueDeprecationReasonRemovedFromMeta(
     },
     type: ChangeType.EnumValueDeprecationReasonRemoved,
     message: buildEnumValueDeprecationReasonRemovedMessage(args.meta),
-    path: [args.meta.enumName, args.meta.enumValueName].join('.'),
+    path: [args.meta.enumName, args.meta.enumValueName].join("."),
     meta: args.meta,
   } as const;
 }
@@ -213,14 +217,14 @@ export function enumValueDeprecationReasonRemovedFromMeta(
 export function enumValueDeprecationReasonRemoved(
   newEnum: GraphQLEnumType,
   oldValue: GraphQLEnumValue,
-  _newValue: GraphQLEnumValue,
+  _newValue: GraphQLEnumValue
 ): Change<ChangeType.EnumValueDeprecationReasonRemoved> {
   return enumValueDeprecationReasonRemovedFromMeta({
     type: ChangeType.EnumValueDeprecationReasonRemoved,
     meta: {
       enumName: newEnum.name,
       enumValueName: oldValue.name,
-      removedEnumValueDeprecationReason: oldValue.deprecationReason ?? '',
+      removedEnumValueDeprecationReason: oldValue.deprecationReason ?? "",
     },
   });
 }

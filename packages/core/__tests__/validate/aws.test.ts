@@ -1,9 +1,9 @@
-import { parse, print, Source } from 'graphql';
-import { LoadersRegistry } from '@graphql-inspector/loaders';
-import { validate } from '../../src/index.js';
+import { parse, print, Source } from "graphql";
+import { LoadersRegistry } from "@graphql-inspector/loaders";
+import { validate } from "../../src/index.js";
 
-describe('aws', () => {
-  test('should accept AWS Appsync types', async () => {
+describe("aws", () => {
+  test("should accept AWS Appsync types", async () => {
     const doc = parse(/* GraphQL */ `
       query getPost {
         data {
@@ -42,7 +42,7 @@ describe('aws', () => {
       `,
       {},
       false,
-      true,
+      true
     );
 
     const results = validate(schema, [new Source(print(doc))]);

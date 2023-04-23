@@ -45,9 +45,9 @@ Compares schemas and finds breaking or dangerous changes.
 **API:**
 
 ```typescript
-import { Change, diff } from '@graphql-inspector/core'
+import { Change, diff } from "@graphql-inspector/core";
 
-const changes: Change[] = diff(schemaA, schemaB)
+const changes: Change[] = diff(schemaA, schemaB);
 ```
 
 ![Diff](https://raw.githubusercontent.com/kamilkisiela/graphql-inspector/master/assets/diff.jpg)
@@ -63,9 +63,9 @@ Finds similar / duplicated types.
 **API:**
 
 ```typescript
-import { similar, SimilarMap } from '@graphql-inspector/core'
+import { similar, SimilarMap } from "@graphql-inspector/core";
 
-const similar: SimilarMap = similar(schema, typename, threshold)
+const similar: SimilarMap = similar(schema, typename, threshold);
 ```
 
 ![Similar](https://raw.githubusercontent.com/kamilkisiela/graphql-inspector/master/assets/similar.jpg)
@@ -82,9 +82,9 @@ application.
 **API:**
 
 ```typescript
-import { coverage, SchemaCoverage } from '@graphql-inspector/core'
+import { coverage, SchemaCoverage } from "@graphql-inspector/core";
 
-const schemaCoverage: SchemaCoverage = coverage(schema, documents)
+const schemaCoverage: SchemaCoverage = coverage(schema, documents);
 ```
 
 ![Coverage](https://raw.githubusercontent.com/kamilkisiela/graphql-inspector/master/assets/coverage.jpg)
@@ -100,9 +100,9 @@ Validates documents against a schema and looks for deprecated usage.
 **API:**
 
 ```typescript
-import { InvalidDocument, validate } from '@graphql-inspector/core'
+import { InvalidDocument, validate } from "@graphql-inspector/core";
 
-const invalid: InvalidDocument[] = validate(documentsGlob, schema)
+const invalid: InvalidDocument[] = validate(documentsGlob, schema);
 ```
 
 ![Validate](https://raw.githubusercontent.com/kamilkisiela/graphql-inspector/master/assets/validate.jpg)

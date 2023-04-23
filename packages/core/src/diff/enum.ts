@@ -1,5 +1,5 @@
-import { GraphQLEnumType } from 'graphql';
-import { compareLists, isNotEqual, isVoid } from '../utils/compare.js';
+import { GraphQLEnumType } from "graphql";
+import { compareLists, isNotEqual, isVoid } from "../utils/compare.js";
 import {
   enumValueAdded,
   enumValueDeprecationReasonAdded,
@@ -7,13 +7,13 @@ import {
   enumValueDeprecationReasonRemoved,
   enumValueDescriptionChanged,
   enumValueRemoved,
-} from './changes/enum.js';
-import { AddChange } from './schema.js';
+} from "./changes/enum.js";
+import { AddChange } from "./schema.js";
 
 export function changesInEnum(
   oldEnum: GraphQLEnumType,
   newEnum: GraphQLEnumType,
-  addChange: AddChange,
+  addChange: AddChange
 ) {
   compareLists(oldEnum.getValues(), newEnum.getValues(), {
     onAdded(value) {
@@ -32,11 +32,17 @@ export function changesInEnum(
 
       if (isNotEqual(oldValue.deprecationReason, newValue.deprecationReason)) {
         if (isVoid(oldValue.deprecationReason)) {
-          addChange(enumValueDeprecationReasonAdded(newEnum, oldValue, newValue));
+          addChange(
+            enumValueDeprecationReasonAdded(newEnum, oldValue, newValue)
+          );
         } else if (isVoid(newValue.deprecationReason)) {
-          addChange(enumValueDeprecationReasonRemoved(newEnum, oldValue, newValue));
+          addChange(
+            enumValueDeprecationReasonRemoved(newEnum, oldValue, newValue)
+          );
         } else {
-          addChange(enumValueDeprecationReasonChanged(newEnum, oldValue, newValue));
+          addChange(
+            enumValueDeprecationReasonChanged(newEnum, oldValue, newValue)
+          );
         }
       }
     },

@@ -5,7 +5,7 @@ import {
   OperationDefinitionNode,
   parse,
   Source,
-} from 'graphql';
+} from "graphql";
 
 export interface Document {
   source: Source;

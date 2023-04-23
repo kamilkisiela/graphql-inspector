@@ -1,10 +1,10 @@
-import { buildSchema } from 'graphql';
-import { CriticalityLevel, diff, DiffRule } from '../../src/index.js';
-import { findFirstChangeByPath } from '../../utils/testing.js';
+import { buildSchema } from "graphql";
+import { CriticalityLevel, diff, DiffRule } from "../../src/index.js";
+import { findFirstChangeByPath } from "../../utils/testing.js";
 
-describe('input', () => {
-  describe('fields', () => {
-    test('added', async () => {
+describe("input", () => {
+  describe("fields", () => {
+    test("added", async () => {
       const a = buildSchema(/* GraphQL */ `
         input Foo {
           a: String!
@@ -21,24 +21,24 @@ describe('input', () => {
       `);
 
       const change = {
-        c: findFirstChangeByPath(await diff(a, b), 'Foo.c'),
-        d: findFirstChangeByPath(await diff(a, b), 'Foo.d'),
+        c: findFirstChangeByPath(await diff(a, b), "Foo.c"),
+        d: findFirstChangeByPath(await diff(a, b), "Foo.d"),
       };
 
       // Non-nullable
       expect(change.c.criticality.level).toEqual(CriticalityLevel.Breaking);
-      expect(change.c.type).toEqual('INPUT_FIELD_ADDED');
+      expect(change.c.type).toEqual("INPUT_FIELD_ADDED");
       expect(change.c.message).toEqual(
-        "Input field 'c' of type 'String!' was added to input object type 'Foo'",
+        "Input field 'c' of type 'String!' was added to input object type 'Foo'"
       );
       // Nullable
       expect(change.d.criticality.level).toEqual(CriticalityLevel.Dangerous);
-      expect(change.d.type).toEqual('INPUT_FIELD_ADDED');
+      expect(change.d.type).toEqual("INPUT_FIELD_ADDED");
       expect(change.d.message).toEqual(
-        "Input field 'd' of type 'String' was added to input object type 'Foo'",
+        "Input field 'd' of type 'String' was added to input object type 'Foo'"
       );
     });
-    test('removed', async () => {
+    test("removed", async () => {
       const a = buildSchema(/* GraphQL */ `
         input Foo {
           a: String!
@@ -53,14 +53,16 @@ describe('input', () => {
         }
       `);
 
-      const change = findFirstChangeByPath(await diff(a, b), 'Foo.c');
+      const change = findFirstChangeByPath(await diff(a, b), "Foo.c");
 
       expect(change.criticality.level).toEqual(CriticalityLevel.Breaking);
-      expect(change.type).toEqual('INPUT_FIELD_REMOVED');
-      expect(change.message).toEqual("Input field 'c' was removed from input object type 'Foo'");
+      expect(change.type).toEqual("INPUT_FIELD_REMOVED");
+      expect(change.message).toEqual(
+        "Input field 'c' was removed from input object type 'Foo'"
+      );
     });
 
-    test('order changed', async () => {
+    test("order changed", async () => {
       const a = buildSchema(/* GraphQL */ `
         input Foo {
           a: String!
@@ -77,7 +79,7 @@ describe('input', () => {
       expect(await diff(a, b)).toHaveLength(0);
     });
 
-    test('type changed', async () => {
+    test("type changed", async () => {
       const a = buildSchema(/* GraphQL */ `
         input Foo {
           a: String!
@@ -95,30 +97,32 @@ describe('input', () => {
 
       const changes = await diff(a, b);
       const change = {
-        a: findFirstChangeByPath(changes, 'Foo.a'),
-        b: findFirstChangeByPath(changes, 'Foo.b'),
-        c: findFirstChangeByPath(changes, 'Foo.c'),
+        a: findFirstChangeByPath(changes, "Foo.a"),
+        b: findFirstChangeByPath(changes, "Foo.b"),
+        c: findFirstChangeByPath(changes, "Foo.c"),
       };
 
       // Whole new type
       expect(change.a.criticality.level).toEqual(CriticalityLevel.Breaking);
-      expect(change.a.type).toEqual('INPUT_FIELD_TYPE_CHANGED');
-      expect(change.a.message).toEqual("Input field 'Foo.a' changed type from 'String!' to 'Int!'");
+      expect(change.a.type).toEqual("INPUT_FIELD_TYPE_CHANGED");
+      expect(change.a.message).toEqual(
+        "Input field 'Foo.a' changed type from 'String!' to 'Int!'"
+      );
       // Nullable to non-nullable
       expect(change.b.criticality.level).toEqual(CriticalityLevel.Breaking);
-      expect(change.b.type).toEqual('INPUT_FIELD_TYPE_CHANGED');
+      expect(change.b.type).toEqual("INPUT_FIELD_TYPE_CHANGED");
       expect(change.b.message).toEqual(
-        "Input field 'Foo.b' changed type from 'String' to 'String!'",
+        "Input field 'Foo.b' changed type from 'String' to 'String!'"
       );
       // Non-nullable to nullable
       expect(change.c.criticality.level).toEqual(CriticalityLevel.NonBreaking);
-      expect(change.c.type).toEqual('INPUT_FIELD_TYPE_CHANGED');
+      expect(change.c.type).toEqual("INPUT_FIELD_TYPE_CHANGED");
       expect(change.c.message).toEqual(
-        "Input field 'Foo.c' changed type from 'String!' to 'String'",
+        "Input field 'Foo.c' changed type from 'String!' to 'String'"
       );
     });
 
-    test('description changed / added / removed', async () => {
+    test("description changed / added / removed", async () => {
       const a = buildSchema(/* GraphQL */ `
         input Foo {
           """
@@ -148,28 +152,32 @@ describe('input', () => {
 
       const changes = await diff(a, b);
       const change = {
-        a: findFirstChangeByPath(changes, 'Foo.a'),
-        b: findFirstChangeByPath(changes, 'Foo.b'),
-        c: findFirstChangeByPath(changes, 'Foo.c'),
+        a: findFirstChangeByPath(changes, "Foo.a"),
+        b: findFirstChangeByPath(changes, "Foo.b"),
+        c: findFirstChangeByPath(changes, "Foo.c"),
       };
 
       // Changed
       expect(change.a.criticality.level).toEqual(CriticalityLevel.NonBreaking);
-      expect(change.a.type).toEqual('INPUT_FIELD_DESCRIPTION_CHANGED');
+      expect(change.a.type).toEqual("INPUT_FIELD_DESCRIPTION_CHANGED");
       expect(change.a.message).toEqual(
-        "Input field 'Foo.a' description changed from 'OLD' to 'NEW'",
+        "Input field 'Foo.a' description changed from 'OLD' to 'NEW'"
       );
       // Removed
       expect(change.b.criticality.level).toEqual(CriticalityLevel.NonBreaking);
-      expect(change.b.type).toEqual('INPUT_FIELD_DESCRIPTION_REMOVED');
-      expect(change.b.message).toEqual("Description 'BBB' was removed from input field 'Foo.b'");
+      expect(change.b.type).toEqual("INPUT_FIELD_DESCRIPTION_REMOVED");
+      expect(change.b.message).toEqual(
+        "Description 'BBB' was removed from input field 'Foo.b'"
+      );
       // Added
       expect(change.c.criticality.level).toEqual(CriticalityLevel.NonBreaking);
-      expect(change.c.type).toEqual('INPUT_FIELD_DESCRIPTION_ADDED');
-      expect(change.c.message).toEqual(`Input field 'Foo.c' has description 'CCC'`);
+      expect(change.c.type).toEqual("INPUT_FIELD_DESCRIPTION_ADDED");
+      expect(change.c.message).toEqual(
+        `Input field 'Foo.c' has description 'CCC'`
+      );
     });
 
-    test('default value added', async () => {
+    test("default value added", async () => {
       const a = buildSchema(/* GraphQL */ `
         input Foo {
           a: String!
@@ -184,25 +192,25 @@ describe('input', () => {
       `);
 
       const change = {
-        a: findFirstChangeByPath(await diff(a, b), 'Foo.a'),
-        b: findFirstChangeByPath(await diff(a, b), 'Foo.b'),
+        a: findFirstChangeByPath(await diff(a, b), "Foo.a"),
+        b: findFirstChangeByPath(await diff(a, b), "Foo.b"),
       };
 
       // Non-nullable
       expect(change.a.criticality.level).toEqual(CriticalityLevel.Dangerous);
-      expect(change.a.type).toEqual('INPUT_FIELD_DEFAULT_VALUE_CHANGED');
+      expect(change.a.type).toEqual("INPUT_FIELD_DEFAULT_VALUE_CHANGED");
       expect(change.a.message).toEqual(
-        `Input field 'Foo.a' default value changed from 'undefined' to '"Aaa"'`,
+        `Input field 'Foo.a' default value changed from 'undefined' to '"Aaa"'`
       );
       // Nullable
       expect(change.b.criticality.level).toEqual(CriticalityLevel.Dangerous);
-      expect(change.b.type).toEqual('INPUT_FIELD_DEFAULT_VALUE_CHANGED');
+      expect(change.b.type).toEqual("INPUT_FIELD_DEFAULT_VALUE_CHANGED");
       expect(change.b.message).toEqual(
-        `Input field 'Foo.b' default value changed from 'undefined' to '"Bbb"'`,
+        `Input field 'Foo.b' default value changed from 'undefined' to '"Bbb"'`
       );
     });
 
-    test('default value removed', async () => {
+    test("default value removed", async () => {
       const a = buildSchema(/* GraphQL */ `
         input Foo {
           a: String! = "Aaa"
@@ -217,24 +225,24 @@ describe('input', () => {
       `);
 
       const change = {
-        a: findFirstChangeByPath(await diff(a, b), 'Foo.a'),
-        b: findFirstChangeByPath(await diff(a, b), 'Foo.b'),
+        a: findFirstChangeByPath(await diff(a, b), "Foo.a"),
+        b: findFirstChangeByPath(await diff(a, b), "Foo.b"),
       };
 
       // Non-nullable
       expect(change.a.criticality.level).toEqual(CriticalityLevel.Dangerous);
-      expect(change.a.type).toEqual('INPUT_FIELD_DEFAULT_VALUE_CHANGED');
+      expect(change.a.type).toEqual("INPUT_FIELD_DEFAULT_VALUE_CHANGED");
       expect(change.a.message).toEqual(
-        `Input field 'Foo.a' default value changed from '"Aaa"' to 'undefined'`,
+        `Input field 'Foo.a' default value changed from '"Aaa"' to 'undefined'`
       );
       // Nullable
       expect(change.b.criticality.level).toEqual(CriticalityLevel.Dangerous);
-      expect(change.b.type).toEqual('INPUT_FIELD_DEFAULT_VALUE_CHANGED');
+      expect(change.b.type).toEqual("INPUT_FIELD_DEFAULT_VALUE_CHANGED");
       expect(change.b.message).toEqual(
-        `Input field 'Foo.b' default value changed from '"Bbb"' to 'undefined'`,
+        `Input field 'Foo.b' default value changed from '"Bbb"' to 'undefined'`
       );
     });
-    test('field removed', async () => {
+    test("field removed", async () => {
       const a = buildSchema(/* GraphQL */ `
         input Foo {
           a: String!
@@ -249,14 +257,16 @@ describe('input', () => {
         }
       `);
 
-      const change = findFirstChangeByPath(await diff(a, b), 'Foo.c');
+      const change = findFirstChangeByPath(await diff(a, b), "Foo.c");
 
       expect(change.criticality.level).toEqual(CriticalityLevel.Breaking);
-      expect(change.type).toEqual('INPUT_FIELD_REMOVED');
-      expect(change.message).toEqual("Input field 'c' was removed from input object type 'Foo'");
+      expect(change.type).toEqual("INPUT_FIELD_REMOVED");
+      expect(change.message).toEqual(
+        "Input field 'c' was removed from input object type 'Foo'"
+      );
     });
 
-    test('field made optional', async () => {
+    test("field made optional", async () => {
       const a = buildSchema(/* GraphQL */ `
         input Foo {
           a: String!
@@ -273,32 +283,32 @@ describe('input', () => {
       `);
 
       const change = {
-        a: findFirstChangeByPath(await diff(a, b), 'Foo.a'),
-        b: findFirstChangeByPath(await diff(a, b), 'Foo.b'),
-        c: findFirstChangeByPath(await diff(a, b), 'Foo.c'),
+        a: findFirstChangeByPath(await diff(a, b), "Foo.a"),
+        b: findFirstChangeByPath(await diff(a, b), "Foo.b"),
+        c: findFirstChangeByPath(await diff(a, b), "Foo.c"),
       };
 
       // Scalar
       expect(change.a.criticality.level).toEqual(CriticalityLevel.NonBreaking);
-      expect(change.a.type).toEqual('INPUT_FIELD_TYPE_CHANGED');
+      expect(change.a.type).toEqual("INPUT_FIELD_TYPE_CHANGED");
       expect(change.a.message).toEqual(
-        "Input field 'Foo.a' changed type from 'String!' to 'String'",
+        "Input field 'Foo.a' changed type from 'String!' to 'String'"
       );
       // List
       expect(change.b.criticality.level).toEqual(CriticalityLevel.NonBreaking);
-      expect(change.b.type).toEqual('INPUT_FIELD_TYPE_CHANGED');
+      expect(change.b.type).toEqual("INPUT_FIELD_TYPE_CHANGED");
       expect(change.b.message).toEqual(
-        "Input field 'Foo.b' changed type from '[String!]!' to '[String!]'",
+        "Input field 'Foo.b' changed type from '[String!]!' to '[String!]'"
       );
       // List value
       expect(change.c.criticality.level).toEqual(CriticalityLevel.NonBreaking);
-      expect(change.c.type).toEqual('INPUT_FIELD_TYPE_CHANGED');
+      expect(change.c.type).toEqual("INPUT_FIELD_TYPE_CHANGED");
       expect(change.c.message).toEqual(
-        "Input field 'Foo.c' changed type from '[String!]!' to '[String]!'",
+        "Input field 'Foo.c' changed type from '[String!]!' to '[String]!'"
       );
     });
 
-    test('field made non-optional', async () => {
+    test("field made non-optional", async () => {
       const a = buildSchema(/* GraphQL */ `
         input Foo {
           a: String
@@ -315,38 +325,39 @@ describe('input', () => {
       `);
 
       const change = {
-        a: findFirstChangeByPath(await diff(a, b), 'Foo.a'),
-        b: findFirstChangeByPath(await diff(a, b), 'Foo.b'),
-        c: findFirstChangeByPath(await diff(a, b), 'Foo.c'),
+        a: findFirstChangeByPath(await diff(a, b), "Foo.a"),
+        b: findFirstChangeByPath(await diff(a, b), "Foo.b"),
+        c: findFirstChangeByPath(await diff(a, b), "Foo.c"),
       };
 
       // Scalar
       expect(change.a.criticality.level).toEqual(CriticalityLevel.Breaking);
-      expect(change.a.type).toEqual('INPUT_FIELD_TYPE_CHANGED');
+      expect(change.a.type).toEqual("INPUT_FIELD_TYPE_CHANGED");
       expect(change.a.message).toEqual(
-        "Input field 'Foo.a' changed type from 'String' to 'String!'",
+        "Input field 'Foo.a' changed type from 'String' to 'String!'"
       );
       // List
       expect(change.b.criticality.level).toEqual(CriticalityLevel.Breaking);
-      expect(change.b.type).toEqual('INPUT_FIELD_TYPE_CHANGED');
+      expect(change.b.type).toEqual("INPUT_FIELD_TYPE_CHANGED");
       expect(change.b.message).toEqual(
-        "Input field 'Foo.b' changed type from '[String!]' to '[String!]!'",
+        "Input field 'Foo.b' changed type from '[String!]' to '[String!]!'"
       );
       // List value
       expect(change.c.criticality.level).toEqual(CriticalityLevel.Breaking);
-      expect(change.c.type).toEqual('INPUT_FIELD_TYPE_CHANGED');
+      expect(change.c.type).toEqual("INPUT_FIELD_TYPE_CHANGED");
       expect(change.c.message).toEqual(
-        "Input field 'Foo.c' changed type from '[String]!' to '[String!]!'",
+        "Input field 'Foo.c' changed type from '[String]!' to '[String!]!'"
       );
     });
   });
 
-  test('removal of a deprecated field', async () => {
+  test("removal of a deprecated field", async () => {
     const a = buildSchema(/* GraphQL */ `
       input Foo {
         a: String
         b: String
-        c: String @deprecated(reason: "Can be removed, but clients must be updated too")
+        c: String
+          @deprecated(reason: "Can be removed, but clients must be updated too")
       }
     `);
 
@@ -358,23 +369,27 @@ describe('input', () => {
     `);
 
     const changes = await diff(a, b);
-    const change = findFirstChangeByPath(changes, 'Foo.c');
+    const change = findFirstChangeByPath(changes, "Foo.c");
 
     expect(changes.length).toEqual(1);
     expect(change.criticality.level).toEqual(CriticalityLevel.Breaking);
     expect(change.message).toEqual(
-      `Input field 'c' (deprecated) was removed from input object type 'Foo'`,
+      `Input field 'c' (deprecated) was removed from input object type 'Foo'`
     );
 
     // suppressRemovalOfDeprecatedField rule should make it only Dangerous
 
-    const changesWithRule = await diff(a, b, [DiffRule.suppressRemovalOfDeprecatedField]);
-    const changeWithRule = findFirstChangeByPath(changesWithRule, 'Foo.c');
+    const changesWithRule = await diff(a, b, [
+      DiffRule.suppressRemovalOfDeprecatedField,
+    ]);
+    const changeWithRule = findFirstChangeByPath(changesWithRule, "Foo.c");
 
     expect(changesWithRule.length).toEqual(1);
-    expect(changeWithRule.criticality.level).toEqual(CriticalityLevel.Dangerous);
+    expect(changeWithRule.criticality.level).toEqual(
+      CriticalityLevel.Dangerous
+    );
     expect(changeWithRule.message).toEqual(
-      "Input field 'c' (deprecated) was removed from input object type 'Foo'",
+      "Input field 'c' (deprecated) was removed from input object type 'Foo'"
     );
   });
 });

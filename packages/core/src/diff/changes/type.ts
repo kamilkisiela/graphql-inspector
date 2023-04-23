@@ -1,5 +1,5 @@
-import { GraphQLNamedType } from 'graphql';
-import { getKind } from '../../utils/graphql.js';
+import { GraphQLNamedType } from "graphql";
+import { getKind } from "../../utils/graphql.js";
 import {
   Change,
   ChangeType,
@@ -10,9 +10,9 @@ import {
   TypeDescriptionRemovedChange,
   TypeKindChangedChange,
   TypeRemovedChange,
-} from './change.js';
+} from "./change.js";
 
-function buildTypeRemovedMessage(type: TypeRemovedChange['meta']): string {
+function buildTypeRemovedMessage(type: TypeRemovedChange["meta"]): string {
   return `Type '${type.removedTypeName}' was removed`;
 }
 
@@ -28,7 +28,9 @@ export function typeRemovedFromMeta(args: TypeRemovedChange) {
   } as const;
 }
 
-export function typeRemoved(type: GraphQLNamedType): Change<ChangeType.TypeRemoved> {
+export function typeRemoved(
+  type: GraphQLNamedType
+): Change<ChangeType.TypeRemoved> {
   return typeRemovedFromMeta({
     type: ChangeType.TypeRemoved,
     meta: {
@@ -37,7 +39,7 @@ export function typeRemoved(type: GraphQLNamedType): Change<ChangeType.TypeRemov
   });
 }
 
-function buildTypeAddedMessage(type: TypeAddedChange['meta']): string {
+function buildTypeAddedMessage(type: TypeAddedChange["meta"]): string {
   return `Type '${type.addedTypeName}' was added`;
 }
 
@@ -53,7 +55,9 @@ export function typeAddedFromMeta(args: TypeAddedChange) {
   } as const;
 }
 
-export function typeAdded(type: GraphQLNamedType): Change<ChangeType.TypeAdded> {
+export function typeAdded(
+  type: GraphQLNamedType
+): Change<ChangeType.TypeAdded> {
   return typeAddedFromMeta({
     type: ChangeType.TypeAdded,
     meta: {
@@ -81,7 +85,7 @@ export function typeKindChangedFromMeta(args: TypeKindChangedChange) {
 
 export function typeKindChanged(
   oldType: GraphQLNamedType,
-  newType: GraphQLNamedType,
+  newType: GraphQLNamedType
 ): Change<ChangeType.TypeKindChanged> {
   return typeKindChangedFromMeta({
     type: ChangeType.TypeKindChanged,
@@ -93,11 +97,15 @@ export function typeKindChanged(
   });
 }
 
-function buildTypeDescriptionChangedMessage(args: TypeDescriptionChangedChange['meta']): string {
+function buildTypeDescriptionChangedMessage(
+  args: TypeDescriptionChangedChange["meta"]
+): string {
   return `Description '${args.oldTypeDescription}' on type '${args.typeName}' has changed to '${args.newTypeDescription}'`;
 }
 
-export function typeDescriptionChangedFromMeta(args: TypeDescriptionChangedChange) {
+export function typeDescriptionChangedFromMeta(
+  args: TypeDescriptionChangedChange
+) {
   return {
     criticality: {
       level: CriticalityLevel.NonBreaking,
@@ -111,23 +119,27 @@ export function typeDescriptionChangedFromMeta(args: TypeDescriptionChangedChang
 
 export function typeDescriptionChanged(
   oldType: GraphQLNamedType,
-  newType: GraphQLNamedType,
+  newType: GraphQLNamedType
 ): Change<ChangeType.TypeDescriptionChanged> {
   return typeDescriptionChangedFromMeta({
     type: ChangeType.TypeDescriptionChanged,
     meta: {
       typeName: oldType.name,
-      newTypeDescription: newType.description ?? '',
-      oldTypeDescription: oldType.description ?? '',
+      newTypeDescription: newType.description ?? "",
+      oldTypeDescription: oldType.description ?? "",
     },
   });
 }
 
-function buildTypeDescriptionRemoved(args: TypeDescriptionRemovedChange['meta']): string {
+function buildTypeDescriptionRemoved(
+  args: TypeDescriptionRemovedChange["meta"]
+): string {
   return `Description '${args.removedTypeDescription}' was removed from object type '${args.typeName}'`;
 }
 
-export function typeDescriptionRemovedFromMeta(args: TypeDescriptionRemovedChange) {
+export function typeDescriptionRemovedFromMeta(
+  args: TypeDescriptionRemovedChange
+) {
   return {
     criticality: {
       level: CriticalityLevel.NonBreaking,
@@ -140,18 +152,20 @@ export function typeDescriptionRemovedFromMeta(args: TypeDescriptionRemovedChang
 }
 
 export function typeDescriptionRemoved(
-  type: GraphQLNamedType,
+  type: GraphQLNamedType
 ): Change<ChangeType.TypeDescriptionRemoved> {
   return typeDescriptionRemovedFromMeta({
     type: ChangeType.TypeDescriptionRemoved,
     meta: {
       typeName: type.name,
-      removedTypeDescription: type.description ?? '',
+      removedTypeDescription: type.description ?? "",
     },
   });
 }
 
-function buildTypeDescriptionAddedMessage(args: TypeDescriptionAddedChange['meta']): string {
+function buildTypeDescriptionAddedMessage(
+  args: TypeDescriptionAddedChange["meta"]
+): string {
   return `Object type '${args.typeName}' has description '${args.addedTypeDescription}'`;
 }
 
@@ -168,13 +182,13 @@ export function typeDescriptionAddedFromMeta(args: TypeDescriptionAddedChange) {
 }
 
 export function typeDescriptionAdded(
-  type: GraphQLNamedType,
+  type: GraphQLNamedType
 ): Change<ChangeType.TypeDescriptionAdded> {
   return typeDescriptionAddedFromMeta({
     type: ChangeType.TypeDescriptionAdded,
     meta: {
       typeName: type.name,
-      addedTypeDescription: type.description ?? '',
+      addedTypeDescription: type.description ?? "",
     },
   });
 }

@@ -1,8 +1,8 @@
-import { buildSchema, parse, print, Source } from 'graphql';
-import { validate } from '../../src/index.js';
+import { buildSchema, parse, print, Source } from "graphql";
+import { validate } from "../../src/index.js";
 
-describe('apollo', () => {
-  test('should remove a filed with @client', () => {
+describe("apollo", () => {
+  test("should remove a filed with @client", () => {
     const schema = buildSchema(/* GraphQL */ `
       type Post {
         id: ID
@@ -31,7 +31,7 @@ describe('apollo', () => {
     expect(results).toHaveLength(0);
   });
 
-  test('should include @connection', () => {
+  test("should include @connection", () => {
     const schema = buildSchema(/* GraphQL */ `
       type Post {
         id: ID
@@ -61,7 +61,7 @@ describe('apollo', () => {
     expect(results).toHaveLength(0);
   });
 
-  test('should not remove fields with @client directive (on demand)', () => {
+  test("should not remove fields with @client directive (on demand)", () => {
     const schema = buildSchema(/* GraphQL */ `
       type Query {
         random(seed: Int): Int!
@@ -82,7 +82,7 @@ describe('apollo', () => {
     expect(results).toHaveLength(0);
   });
 
-  test('should remove fields with @client directive by default', () => {
+  test("should remove fields with @client directive by default", () => {
     const schema = buildSchema(/* GraphQL */ `
       type Query {
         random(seed: Int): Int!

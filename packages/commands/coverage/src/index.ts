@@ -1,20 +1,20 @@
-import { writeFileSync } from 'fs';
-import { extname } from 'path';
-import { GraphQLSchema, print, Source } from 'graphql';
+import { writeFileSync } from "fs";
+import { extname } from "path";
+import { GraphQLSchema, print, Source } from "graphql";
 import {
   CommandFactory,
   createCommand,
   ensureAbsolute,
   GlobalArgs,
   parseGlobalArgs,
-} from '@graphql-inspector/commands';
+} from "@graphql-inspector/commands";
 import {
   coverage as calculateCoverage,
   getTypePrefix,
   SchemaCoverage,
-} from '@graphql-inspector/core';
-import { chalk, Logger } from '@graphql-inspector/logger';
-import { Source as DocumentSource } from '@graphql-tools/utils';
+} from "@graphql-inspector/core";
+import { chalk, Logger } from "@graphql-inspector/logger";
+import { Source as DocumentSource } from "@graphql-tools/utils";
 
 export { CommandFactory };
 
@@ -29,10 +29,10 @@ export function handler({
   silent?: boolean;
   writePath?: string;
 }) {
-  const shouldWrite = typeof writePath !== 'undefined';
+  const shouldWrite = typeof writePath !== "undefined";
   const coverage = calculateCoverage(
     schema,
-    documents.map(doc => new Source(print(doc.document!), doc.location)),
+    documents.map((doc) => new Source(print(doc.document!), doc.location))
   );
 
   if (silent !== true) {
@@ -40,21 +40,21 @@ export function handler({
   }
 
   if (shouldWrite) {
-    if (typeof writePath !== 'string') {
+    if (typeof writePath !== "string") {
       throw new Error(`--write is not valid file path: ${writePath}`);
     }
 
     const absPath = ensureAbsolute(writePath);
-    const ext = extname(absPath).replace('.', '').toLocaleLowerCase();
+    const ext = extname(absPath).replace(".", "").toLocaleLowerCase();
 
     let output: string | undefined = undefined;
 
-    if (ext === 'json') {
+    if (ext === "json") {
       output = outputJSON(coverage);
     }
 
     if (output) {
-      writeFileSync(absPath, output, 'utf8');
+      writeFileSync(absPath, output, "utf8");
       Logger.success(`Available at ${absPath}\n`);
     } else {
       throw new Error(`Extension ${ext} is not supported`);
@@ -70,34 +70,34 @@ export default createCommand<
     write?: string;
     silent?: boolean;
   } & GlobalArgs
->(api => {
+>((api) => {
   const { loaders } = api;
 
   return {
-    command: 'coverage <documents> <schema>',
-    describe: 'Schema coverage based on documents',
+    command: "coverage <documents> <schema>",
+    describe: "Schema coverage based on documents",
     builder(yargs) {
       return yargs
-        .positional('schema', {
-          describe: 'Point to a schema',
-          type: 'string',
+        .positional("schema", {
+          describe: "Point to a schema",
+          type: "string",
           demandOption: true,
         })
-        .positional('documents', {
-          describe: 'Point to documents',
-          type: 'string',
+        .positional("documents", {
+          describe: "Point to documents",
+          type: "string",
           demandOption: true,
         })
         .options({
           w: {
-            alias: 'write',
-            describe: 'Write a file with coverage stats',
-            type: 'string',
+            alias: "write",
+            describe: "Write a file with coverage stats",
+            type: "string",
           },
           s: {
-            alias: 'silent',
-            describe: 'Do not render any stats in the terminal',
-            type: 'boolean',
+            alias: "silent",
+            describe: "Do not render any stats in the terminal",
+            type: "boolean",
           },
         });
     },
@@ -107,7 +107,7 @@ export default createCommand<
       const { headers, token } = parseGlobalArgs(args);
       const apolloFederation = args.federation || false;
       const aws = args.aws || false;
-      const method = args.method?.toUpperCase() || 'POST';
+      const method = args.method?.toUpperCase() || "POST";
 
       const schema = await loaders.loadSchema(
         args.schema,
@@ -117,7 +117,7 @@ export default createCommand<
           method,
         },
         apolloFederation,
-        aws,
+        aws
       );
       const documents = await loaders.loadDocuments(args.documents);
 
@@ -131,7 +131,7 @@ function outputJSON(coverage: SchemaCoverage): string {
 }
 
 function renderCoverage(coverage: SchemaCoverage) {
-  Logger.info('Schema coverage based on documents:\n');
+  Logger.info("Schema coverage based on documents:\n");
 
   for (const typeName in coverage.types) {
     if (Object.prototype.hasOwnProperty.call(coverage.types, typeName)) {
@@ -141,52 +141,71 @@ function renderCoverage(coverage: SchemaCoverage) {
         [
           chalk.grey(getTypePrefix(typeCoverage.type)),
           chalk.bold(String(typeName)),
-          chalk.grey('{'),
-        ].join(' '),
+          chalk.grey("{"),
+        ].join(" ")
       );
 
       for (const childName in typeCoverage.children) {
-        if (Object.prototype.hasOwnProperty.call(typeCoverage.children, childName)) {
+        if (
+          Object.prototype.hasOwnProperty.call(typeCoverage.children, childName)
+        ) {
           const childCoverage = typeCoverage.children[childName];
 
           if (childCoverage.hits) {
             Logger.log(
-              [indent(childName, 2), chalk.italic.grey(`x ${childCoverage.hits}`)].join(' '),
+              [
+                indent(childName, 2),
+                chalk.italic.grey(`x ${childCoverage.hits}`),
+              ].join(" ")
             );
           } else {
-            Logger.log([chalk.redBright(indent(childName, 2)), chalk.italic.grey('x 0')].join(' '));
+            Logger.log(
+              [
+                chalk.redBright(indent(childName, 2)),
+                chalk.italic.grey("x 0"),
+              ].join(" ")
+            );
           }
         }
       }
 
-      Logger.log(chalk.grey('}\n'));
+      Logger.log(chalk.grey("}\n"));
     }
   }
 
   Logger.log(
     `Types covered: ${
       coverage.stats.numTypes > 0
-        ? ((coverage.stats.numTypesCovered / coverage.stats.numTypes) * 100).toFixed(1)
-        : 'N/A'
-    }%`,
+        ? (
+            (coverage.stats.numTypesCovered / coverage.stats.numTypes) *
+            100
+          ).toFixed(1)
+        : "N/A"
+    }%`
   );
   Logger.log(
     `Types covered fully: ${
       coverage.stats.numTypes > 0
-        ? ((coverage.stats.numTypesCoveredFully / coverage.stats.numTypes) * 100).toFixed(1)
-        : 'N/A'
-    }%`,
+        ? (
+            (coverage.stats.numTypesCoveredFully / coverage.stats.numTypes) *
+            100
+          ).toFixed(1)
+        : "N/A"
+    }%`
   );
   Logger.log(
     `Fields covered: ${
       coverage.stats.numFields > 0
-        ? ((coverage.stats.numFiledsCovered / coverage.stats.numFields) * 100).toFixed(1)
-        : 'N/A'
-    }%`,
+        ? (
+            (coverage.stats.numFiledsCovered / coverage.stats.numFields) *
+            100
+          ).toFixed(1)
+        : "N/A"
+    }%`
   );
   Logger.log(``);
 }
 
 function indent(line: string, space: number): string {
-  return line.padStart(line.length + space, ' ');
+  return line.padStart(line.length + space, " ");
 }

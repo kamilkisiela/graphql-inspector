@@ -1,5 +1,5 @@
-import { ChangeType } from '../changes/change.js';
-import { Rule } from './types.js';
+import { ChangeType } from "../changes/change.js";
+import { Rule } from "./types.js";
 
 const descriptionChangeTypes: ChangeType[] = [
   ChangeType.FieldArgumentDescriptionChanged,
@@ -16,5 +16,7 @@ const descriptionChangeTypes: ChangeType[] = [
 ];
 
 export const ignoreDescriptionChanges: Rule = ({ changes }) => {
-  return changes.filter(change => !descriptionChangeTypes.includes(change.type));
+  return changes.filter(
+    (change) => !descriptionChangeTypes.includes(change.type)
+  );
 };

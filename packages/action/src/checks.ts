@@ -1,17 +1,20 @@
-import * as core from '@actions/core';
-import * as github from '@actions/github';
-import { CheckConclusion } from '@graphql-inspector/github';
-import { OctokitInstance } from './types.js';
-import { batch } from './utils.js';
+import * as core from "@actions/core";
+import * as github from "@actions/github";
+import { CheckConclusion } from "@graphql-inspector/github";
+import { OctokitInstance } from "./types.js";
+import { batch } from "./utils.js";
 
 type UpdateCheckRunOptions = Required<
-  Pick<NonNullable<Parameters<OctokitInstance['checks']['update']>[0]>, 'conclusion' | 'output'>
+  Pick<
+    NonNullable<Parameters<OctokitInstance["checks"]["update"]>[0]>,
+    "conclusion" | "output"
+  >
 >;
 
 export async function updateCheckRun(
   octokit: OctokitInstance,
   checkId: number,
-  { conclusion, output }: UpdateCheckRunOptions,
+  { conclusion, output }: UpdateCheckRunOptions
 ) {
   core.info(`Updating check: ${checkId}`);
 
@@ -23,7 +26,7 @@ export async function updateCheckRun(
   await octokit.checks.update({
     check_run_id: checkId,
     completed_at: new Date().toISOString(),
-    status: 'completed',
+    status: "completed",
     ...github.context.repo,
     conclusion,
     output: {
@@ -34,7 +37,7 @@ export async function updateCheckRun(
 
   try {
     await Promise.all(
-      batches.map(async chunk => {
+      batches.map(async (chunk) => {
         await octokit.checks.update({
           check_run_id: checkId,
           ...github.context.repo,
@@ -45,7 +48,7 @@ export async function updateCheckRun(
           },
         } as any);
         core.info(`annotations sent (${chunk.length})`);
-      }),
+      })
     );
   } catch (error) {
     core.error(`failed to send annotations: ${error}`);

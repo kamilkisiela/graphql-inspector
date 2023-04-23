@@ -1,12 +1,12 @@
-import { GraphQLUnionType } from 'graphql';
-import { compareLists } from '../utils/compare.js';
-import { unionMemberAdded, unionMemberRemoved } from './changes/union.js';
-import { AddChange } from './schema.js';
+import { GraphQLUnionType } from "graphql";
+import { compareLists } from "../utils/compare.js";
+import { unionMemberAdded, unionMemberRemoved } from "./changes/union.js";
+import { AddChange } from "./schema.js";
 
 export function changesInUnion(
   oldUnion: GraphQLUnionType,
   newUnion: GraphQLUnionType,
-  addChange: AddChange,
+  addChange: AddChange
 ) {
   const oldTypes = oldUnion.getTypes();
   const newTypes = newUnion.getTypes();

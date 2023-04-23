@@ -1,4 +1,4 @@
-export * from './coverage/index.js';
+export * from "./coverage/index.js";
 export {
   CompletionArgs,
   CompletionHandler,
@@ -6,25 +6,30 @@ export {
   DiffRule,
   Rule,
   UsageHandler,
-} from './diff/index.js';
-export { Change, ChangeType, Criticality, CriticalityLevel } from './diff/changes/change.js';
-export { similar, SimilarMap } from './similar/index.js';
-export { getTypePrefix } from './utils/graphql.js';
-export { BestMatch, Rating, Target } from './utils/string.js';
-export { InvalidDocument, validate } from './validate/index.js';
-export { countAliases } from './validate/alias-count.js';
+} from "./diff/index.js";
+export {
+  Change,
+  ChangeType,
+  Criticality,
+  CriticalityLevel,
+} from "./diff/changes/change.js";
+export { similar, SimilarMap } from "./similar/index.js";
+export { getTypePrefix } from "./utils/graphql.js";
+export { BestMatch, Rating, Target } from "./utils/string.js";
+export { InvalidDocument, validate } from "./validate/index.js";
+export { countAliases } from "./validate/alias-count.js";
 export {
   calculateOperationComplexity,
   CalculateOperationComplexityConfig,
-} from './validate/complexity.js';
-export { countDirectives } from './validate/directive-count.js';
-export { countDepth } from './validate/query-depth.js';
-export { calculateTokenCount } from './validate/token-count.js';
+} from "./validate/complexity.js";
+export { countDirectives } from "./validate/directive-count.js";
+export { countDepth } from "./validate/query-depth.js";
+export { calculateTokenCount } from "./validate/token-count.js";
 export {
   fieldArgumentDescriptionChangedFromMeta,
   fieldArgumentDefaultChangedFromMeta,
   fieldArgumentTypeChangedFromMeta,
-} from './diff/changes/argument.js';
+} from "./diff/changes/argument.js";
 export {
   directiveRemovedFromMeta,
   directiveAddedFromMeta,
@@ -36,7 +41,7 @@ export {
   directiveArgumentDescriptionChangedFromMeta,
   directiveArgumentDefaultValueChangedFromMeta,
   directiveArgumentTypeChangedFromMeta,
-} from './diff/changes/directive.js';
+} from "./diff/changes/directive.js";
 export {
   enumValueRemovedFromMeta,
   enumValueAddedFromMeta,
@@ -44,7 +49,7 @@ export {
   enumValueDeprecationReasonChangedFromMeta,
   enumValueDeprecationReasonAddedFromMeta,
   enumValueDeprecationReasonRemovedFromMeta,
-} from './diff/changes/enum.js';
+} from "./diff/changes/enum.js";
 export {
   fieldRemovedFromMeta,
   fieldAddedFromMeta,
@@ -59,7 +64,7 @@ export {
   fieldTypeChangedFromMeta,
   fieldArgumentAddedFromMeta,
   fieldArgumentRemovedFromMeta,
-} from './diff/changes/field.js';
+} from "./diff/changes/field.js";
 export {
   inputFieldRemovedFromMeta,
   inputFieldAddedFromMeta,
@@ -68,16 +73,16 @@ export {
   inputFieldDescriptionChangedFromMeta,
   inputFieldDefaultValueChangedFromMeta,
   inputFieldTypeChangedFromMeta,
-} from './diff/changes/input.js';
+} from "./diff/changes/input.js";
 export {
   objectTypeInterfaceAddedFromMeta,
   objectTypeInterfaceRemovedFromMeta,
-} from './diff/changes/object.js';
+} from "./diff/changes/object.js";
 export {
   schemaQueryTypeChangedFromMeta,
   schemaMutationTypeChangedFromMeta,
   schemaSubscriptionTypeChangedFromMeta,
-} from './diff/changes/schema.js';
+} from "./diff/changes/schema.js";
 export {
   typeRemovedFromMeta,
   typeAddedFromMeta,
@@ -85,11 +90,11 @@ export {
   typeDescriptionChangedFromMeta,
   typeDescriptionRemovedFromMeta,
   typeDescriptionAddedFromMeta,
-} from './diff/changes/type.js';
+} from "./diff/changes/type.js";
 export {
   unionMemberRemovedFromMeta,
   buildUnionMemberAddedMessageFromMeta,
-} from './diff/changes/union.js';
+} from "./diff/changes/union.js";
 export {
   FieldArgumentDescriptionChangedChange,
   FieldArgumentDefaultChangedChange,
@@ -144,4 +149,4 @@ export {
   UnionMemberRemovedChange,
   UnionMemberAddedChange,
   SerializableChange,
-} from './diff/changes/change.js';
+} from "./diff/changes/change.js";

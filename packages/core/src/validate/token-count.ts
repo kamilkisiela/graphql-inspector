@@ -1,6 +1,6 @@
-import type { ParseOptions, Source } from 'graphql';
-import { DocumentNode, GraphQLError, TokenKind, visit } from 'graphql';
-import { Parser } from 'graphql/language/parser.js';
+import type { ParseOptions, Source } from "graphql";
+import { DocumentNode, GraphQLError, TokenKind, visit } from "graphql";
+import { Parser } from "graphql/language/parser.js";
 
 class ParserWithLexer extends Parser {
   private __tokenCount = 0;
@@ -14,7 +14,7 @@ class ParserWithLexer extends Parser {
     const lexer = this._lexer;
     this._lexer = new Proxy(lexer, {
       get: (target, prop, receiver) => {
-        if (prop === 'advance') {
+        if (prop === "advance") {
           return () => {
             const token = target.advance();
             if (token.kind !== TokenKind.EOF) {
@@ -31,7 +31,9 @@ class ParserWithLexer extends Parser {
 
 export function calculateTokenCount(args: {
   source: Source | string;
-  getReferencedFragmentSource: (fragmentName: string) => Source | string | undefined;
+  getReferencedFragmentSource: (
+    fragmentName: string
+  ) => Source | string | undefined;
 }): number {
   const parser = new ParserWithLexer(args.source);
   const document = parser.parseDocument();
@@ -55,7 +57,9 @@ export function calculateTokenCount(args: {
 export function validateTokenCount(args: {
   source: Source;
   document: DocumentNode;
-  getReferencedFragmentSource: (fragmentName: string) => Source | string | undefined;
+  getReferencedFragmentSource: (
+    fragmentName: string
+  ) => Source | string | undefined;
   maxTokenCount: number;
 }): GraphQLError | void {
   const tokenCount = calculateTokenCount(args);
@@ -64,7 +68,7 @@ export function validateTokenCount(args: {
       `Query exceeds maximum token count of ${args.maxTokenCount} (actual: ${tokenCount})`,
       args.document,
       args.source,
-      args.document.loc?.start ? [args.document.loc.start] : undefined,
+      args.document.loc?.start ? [args.document.loc.start] : undefined
     );
   }
 }

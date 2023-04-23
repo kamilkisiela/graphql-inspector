@@ -1,7 +1,7 @@
-import { existsSync } from 'fs';
-import * as core from '@actions/core';
-import { ensureAbsolute } from '@graphql-inspector/commands';
-import { DiffRule, Rule } from '@graphql-inspector/core';
+import { existsSync } from "fs";
+import * as core from "@actions/core";
+import { ensureAbsolute } from "@graphql-inspector/commands";
+import { DiffRule, Rule } from "@graphql-inspector/core";
 
 export function batch<T>(items: T[], limit: number): T[][] {
   const batches: T[][] = [];
@@ -25,28 +25,34 @@ export function batch<T>(items: T[], limit: number): T[][] {
 /**
  * Treats non-falsy value as true
  */
-export function castToBoolean(value: string | boolean, defaultValue?: boolean): boolean {
-  if (typeof value === 'boolean') {
+export function castToBoolean(
+  value: string | boolean,
+  defaultValue?: boolean
+): boolean {
+  if (typeof value === "boolean") {
     return value;
   }
 
-  if (value === 'true' || value === 'false') {
-    return value === 'true';
+  if (value === "true" || value === "false") {
+    return value === "true";
   }
 
-  if (typeof defaultValue === 'boolean') {
+  if (typeof defaultValue === "boolean") {
     return defaultValue;
   }
 
   return true;
 }
 
-export function getInputAsArray(name: string, options?: core.InputOptions): string[] {
+export function getInputAsArray(
+  name: string,
+  options?: core.InputOptions
+): string[] {
   return core
     .getInput(name, options)
-    .split('\n')
-    .map(s => s.trim())
-    .filter(x => x !== '');
+    .split("\n")
+    .map((s) => s.trim())
+    .filter((x) => x !== "");
 }
 
 export function resolveRule(name: string): Rule | undefined {

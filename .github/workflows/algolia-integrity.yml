@@ -2,7 +2,7 @@ name: Algolia Integrity
 on:
   pull_request:
     paths:
-      - 'website/**'
+      - "website/**"
     branches:
       - master
 jobs:

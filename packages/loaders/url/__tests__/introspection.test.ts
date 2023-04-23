@@ -1,8 +1,8 @@
-import { buildSchema, GraphQLObjectType } from 'graphql';
-import { mockGraphQLServer } from '@graphql-inspector/testing';
-import loader from '../src/index.js';
+import { buildSchema, GraphQLObjectType } from "graphql";
+import { mockGraphQLServer } from "@graphql-inspector/testing";
+import loader from "../src/index.js";
 
-test('should contain descriptions', async () => {
+test("should contain descriptions", async () => {
   const schema = buildSchema(/* GraphQL */ `
     """
     User type it is
@@ -24,25 +24,29 @@ test('should contain descriptions', async () => {
 
   const done = mockGraphQLServer({
     schema,
-    host: 'http://localhost',
-    path: '/graphql',
+    host: "http://localhost",
+    path: "/graphql",
   });
 
-  const introspectedSchema = await loader.load('http://localhost/graphql', {});
+  const introspectedSchema = await loader.load("http://localhost/graphql", {});
 
-  const user = introspectedSchema[0].schema.getType('User') as GraphQLObjectType;
+  const user = introspectedSchema[0].schema.getType(
+    "User"
+  ) as GraphQLObjectType;
 
   // User
-  expect(user.description).toBe('User type it is');
+  expect(user.description).toBe("User type it is");
   // User.id
-  expect(user.getFields().id.description).toBe('User of ID, of course');
+  expect(user.getFields().id.description).toBe("User of ID, of course");
   // Query.user
-  expect(schema.getQueryType().getFields().user.description).toBe('Get User by ID');
+  expect(schema.getQueryType().getFields().user.description).toBe(
+    "Get User by ID"
+  );
 
   done();
 });
 
-test('use GET method', async () => {
+test("use GET method", async () => {
   const schema = buildSchema(/* GraphQL */ `
     """
     User type it is
@@ -64,23 +68,27 @@ test('use GET method', async () => {
 
   const done = mockGraphQLServer({
     schema,
-    host: 'http://localhost',
-    path: '/graphql',
-    method: 'GET',
+    host: "http://localhost",
+    path: "/graphql",
+    method: "GET",
   });
 
-  const introspectedSchema = await loader.load('http://localhost/graphql', {
-    method: 'GET',
+  const introspectedSchema = await loader.load("http://localhost/graphql", {
+    method: "GET",
   });
 
-  const user = introspectedSchema[0].schema.getType('User') as GraphQLObjectType;
+  const user = introspectedSchema[0].schema.getType(
+    "User"
+  ) as GraphQLObjectType;
 
   // User
-  expect(user.description).toBe('User type it is');
+  expect(user.description).toBe("User type it is");
   // User.id
-  expect(user.getFields().id.description).toBe('User of ID, of course');
+  expect(user.getFields().id.description).toBe("User of ID, of course");
   // Query.user
-  expect(schema.getQueryType().getFields().user.description).toBe('Get User by ID');
+  expect(schema.getQueryType().getFields().user.description).toBe(
+    "Get User by ID"
+  );
 
   done();
 });

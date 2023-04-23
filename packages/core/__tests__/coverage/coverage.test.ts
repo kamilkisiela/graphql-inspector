@@ -1,7 +1,13 @@
-import { buildSchema, getIntrospectionQuery, parse, print, Source } from 'graphql';
-import { coverage } from '../../src/index.js';
+import {
+  buildSchema,
+  getIntrospectionQuery,
+  parse,
+  print,
+  Source,
+} from "graphql";
+import { coverage } from "../../src/index.js";
 
-describe('coverage', () => {
+describe("coverage", () => {
   const schema = buildSchema(/* GraphQL */ `
     interface Identifiable {
       id: ID
@@ -31,7 +37,7 @@ describe('coverage', () => {
     }
   `);
 
-  test('basic', () => {
+  test("basic", () => {
     const doc = parse(/* GraphQL */ `
       query getPost {
         post {
@@ -66,7 +72,9 @@ describe('coverage', () => {
     expect(results.types.Query.children.post.hits).toEqual(1);
     expect(results.types.Query.children.objectById.hits).toEqual(1);
     expect(results.types.Query.children.objectById.children.id.hits).toEqual(1);
-    expect(results.types.Query.children.objectById.children.unused.hits).toEqual(0);
+    expect(
+      results.types.Query.children.objectById.children.unused.hits
+    ).toEqual(0);
     // Post
     expect(results.types.Post.hits).toEqual(5);
     expect(results.types.Post.children.id.hits).toEqual(2);
@@ -80,8 +88,12 @@ describe('coverage', () => {
     // Mutation
     expect(results.types.Mutation.hits).toEqual(1);
     expect(results.types.Mutation.children.submitPost.hits).toEqual(1);
-    expect(results.types.Mutation.children.submitPost.children.title.hits).toEqual(1);
-    expect(results.types.Mutation.children.submitPost.children.author.hits).toEqual(1);
+    expect(
+      results.types.Mutation.children.submitPost.children.title.hits
+    ).toEqual(1);
+    expect(
+      results.types.Mutation.children.submitPost.children.author.hits
+    ).toEqual(1);
 
     // stats
     expect(results.stats.numTypes).toEqual(4);
@@ -91,7 +103,7 @@ describe('coverage', () => {
     expect(results.stats.numFiledsCovered).toEqual(10);
   });
 
-  test('no coverage', () => {
+  test("no coverage", () => {
     const results = coverage(schema, []);
 
     // Query
@@ -100,7 +112,9 @@ describe('coverage', () => {
     expect(results.types.Query.children.post.hits).toEqual(0);
     expect(results.types.Query.children.objectById.hits).toEqual(0);
     expect(results.types.Query.children.objectById.children.id.hits).toEqual(0);
-    expect(results.types.Query.children.objectById.children.unused.hits).toEqual(0);
+    expect(
+      results.types.Query.children.objectById.children.unused.hits
+    ).toEqual(0);
     // Post
     expect(results.types.Post.hits).toEqual(0);
     expect(results.types.Post.children.id.hits).toEqual(0);
@@ -114,8 +128,12 @@ describe('coverage', () => {
     // Mutation
     expect(results.types.Mutation.hits).toEqual(0);
     expect(results.types.Mutation.children.submitPost.hits).toEqual(0);
-    expect(results.types.Mutation.children.submitPost.children.title.hits).toEqual(0);
-    expect(results.types.Mutation.children.submitPost.children.author.hits).toEqual(0);
+    expect(
+      results.types.Mutation.children.submitPost.children.title.hits
+    ).toEqual(0);
+    expect(
+      results.types.Mutation.children.submitPost.children.author.hits
+    ).toEqual(0);
 
     // stats
     expect(results.stats.numTypes).toEqual(4);
@@ -125,8 +143,10 @@ describe('coverage', () => {
     expect(results.stats.numFiledsCovered).toEqual(0);
   });
 
-  test('introspection', () => {
+  test("introspection", () => {
     const introspectionQuery = getIntrospectionQuery();
-    expect(() => coverage(schema, [new Source(introspectionQuery)])).not.toThrowError();
+    expect(() =>
+      coverage(schema, [new Source(introspectionQuery)])
+    ).not.toThrowError();
   });
 });

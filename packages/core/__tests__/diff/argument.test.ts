@@ -1,9 +1,9 @@
-import { buildSchema } from 'graphql';
-import { CriticalityLevel, diff } from '../../src/index.js';
-import { findFirstChangeByPath } from '../../utils/testing.js';
+import { buildSchema } from "graphql";
+import { CriticalityLevel, diff } from "../../src/index.js";
+import { findFirstChangeByPath } from "../../utils/testing.js";
 
-describe('argument', () => {
-  test('added non-nullable with default value', async () => {
+describe("argument", () => {
+  test("added non-nullable with default value", async () => {
     const a = buildSchema(/* GraphQL */ `
       type Query {
         a: String
@@ -15,17 +15,17 @@ describe('argument', () => {
       }
     `);
 
-    const change = findFirstChangeByPath(await diff(a, b), 'Query.a.b');
+    const change = findFirstChangeByPath(await diff(a, b), "Query.a.b");
 
     expect(change.criticality.level).toEqual(CriticalityLevel.Dangerous);
-    expect(change.type).toEqual('FIELD_ARGUMENT_ADDED');
+    expect(change.type).toEqual("FIELD_ARGUMENT_ADDED");
     expect(change.message).toEqual(
-      "Argument 'b: Boolean!' (with default value) added to field 'Query.a'",
+      "Argument 'b: Boolean!' (with default value) added to field 'Query.a'"
     );
   });
 
-  describe('default value', () => {
-    test('added', async () => {
+  describe("default value", () => {
+    test("added", async () => {
       const a = buildSchema(/* GraphQL */ `
         input Foo {
           a: String!
@@ -45,16 +45,16 @@ describe('argument', () => {
         }
       `);
 
-      const change = findFirstChangeByPath(await diff(a, b), 'Dummy.field.foo');
+      const change = findFirstChangeByPath(await diff(a, b), "Dummy.field.foo");
 
       expect(change.criticality.level).toEqual(CriticalityLevel.Dangerous);
-      expect(change.type).toEqual('FIELD_ARGUMENT_DEFAULT_CHANGED');
+      expect(change.type).toEqual("FIELD_ARGUMENT_DEFAULT_CHANGED");
       expect(change.message).toEqual(
-        "Default value '{ a: 'a' }' was added to argument 'foo' on field 'Dummy.field'",
+        "Default value '{ a: 'a' }' was added to argument 'foo' on field 'Dummy.field'"
       );
     });
 
-    test('changed', async () => {
+    test("changed", async () => {
       const a = buildSchema(/* GraphQL */ `
         input Foo {
           a: String!
@@ -74,12 +74,12 @@ describe('argument', () => {
         }
       `);
 
-      const change = findFirstChangeByPath(await diff(a, b), 'Dummy.field.foo');
+      const change = findFirstChangeByPath(await diff(a, b), "Dummy.field.foo");
 
       expect(change.criticality.level).toEqual(CriticalityLevel.Dangerous);
-      expect(change.type).toEqual('FIELD_ARGUMENT_DEFAULT_CHANGED');
+      expect(change.type).toEqual("FIELD_ARGUMENT_DEFAULT_CHANGED");
       expect(change.message).toEqual(
-        "Default value for argument 'foo' on field 'Dummy.field' changed from '{ a: 'a' }' to '{ a: 'new-value' }'",
+        "Default value for argument 'foo' on field 'Dummy.field' changed from '{ a: 'a' }' to '{ a: 'new-value' }'"
       );
     });
   });

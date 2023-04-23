@@ -1,16 +1,20 @@
-import Table from 'cli-table3';
-import { FragmentDefinitionNode, OperationDefinitionNode, print } from 'graphql';
-import { createCommand, GlobalArgs } from '@graphql-inspector/commands';
-import type { CalculateOperationComplexityConfig } from '@graphql-inspector/core';
+import Table from "cli-table3";
+import {
+  FragmentDefinitionNode,
+  OperationDefinitionNode,
+  print,
+} from "graphql";
+import { createCommand, GlobalArgs } from "@graphql-inspector/commands";
+import type { CalculateOperationComplexityConfig } from "@graphql-inspector/core";
 import {
   calculateOperationComplexity,
   calculateTokenCount,
   countAliases,
   countDepth,
   countDirectives,
-} from '@graphql-inspector/core';
-import { chalk, Logger } from '@graphql-inspector/logger';
-import { Source as DocumentSource } from '@graphql-tools/utils';
+} from "@graphql-inspector/core";
+import { chalk, Logger } from "@graphql-inspector/logger";
+import { Source as DocumentSource } from "@graphql-tools/utils";
 
 export default createCommand<
   {},
@@ -21,39 +25,42 @@ export default createCommand<
     complexityObjectCost: number;
     complexityDepthCostFactor: number;
   } & GlobalArgs
->(api => {
+>((api) => {
   return {
-    command: 'audit <documents>',
+    command: "audit <documents>",
     describe:
-      'Audit Fragments and Operations for a better understanding of the depth, alias count, and directive count.',
+      "Audit Fragments and Operations for a better understanding of the depth, alias count, and directive count.",
     builder(yargs) {
       return yargs
-        .positional('documents', {
-          describe: 'Point to some documents',
-          type: 'string',
+        .positional("documents", {
+          describe: "Point to some documents",
+          type: "string",
           demandOption: true,
         })
         .options({
           detail: {
-            alias: 'd',
-            describe: 'Print an overview of all operations and their audit breakdown.',
-            type: 'boolean',
+            alias: "d",
+            describe:
+              "Print an overview of all operations and their audit breakdown.",
+            type: "boolean",
             default: false,
           },
           complexityScalarCost: {
-            describe: 'The cost per scalar for calculating the complexity score.',
-            type: 'number',
+            describe:
+              "The cost per scalar for calculating the complexity score.",
+            type: "number",
             default: 1,
           },
           complexityObjectCost: {
-            describe: 'The cost per object for calculating the complexity score.',
-            type: 'number',
+            describe:
+              "The cost per object for calculating the complexity score.",
+            type: "number",
             default: 2,
           },
           complexityDepthCostFactor: {
             describe:
-              'The cost factor per introduced depth level for calculating the complexity score.',
-            type: 'number',
+              "The cost factor per introduced depth level for calculating the complexity score.",
+            type: "number",
             default: 1.5,
           },
         });
@@ -86,16 +93,21 @@ export function handler(args: {
 
   const operations = new Map<string, OperationDefinitionNode>();
 
-  const getFragmentReference = (fragmentName: string) => fragments.get(fragmentName);
-  const getFragmentSource = (fragmentName: string) => fragmentStrings.get(fragmentName);
+  const getFragmentReference = (fragmentName: string) =>
+    fragments.get(fragmentName);
+  const getFragmentSource = (fragmentName: string) =>
+    fragmentStrings.get(fragmentName);
 
   for (const record of args.documents) {
     if (record.document) {
       for (const definition of record.document.definitions) {
-        if (definition.kind === 'FragmentDefinition') {
+        if (definition.kind === "FragmentDefinition") {
           fragments.set(definition.name.value, definition);
           fragmentStrings.set(definition.name.value, print(definition));
-        } else if (definition.kind === 'OperationDefinition' && definition.name) {
+        } else if (
+          definition.kind === "OperationDefinition" &&
+          definition.name
+        ) {
           operations.set(definition.name.value, definition);
         }
       }
@@ -115,7 +127,7 @@ export function handler(args: {
       aliases: number,
       directives: number,
       tokenCount: number,
-      complexity: string,
+      complexity: string
     ]
   > = [];
 
@@ -130,9 +142,16 @@ export function handler(args: {
     const complexity = calculateOperationComplexity(
       operation,
       args.complexityConfig,
-      getFragmentReference,
+      getFragmentReference
     );
-    results.push([name, depth, aliases, directives, tokenCount, complexity.toFixed(2)]);
+    results.push([
+      name,
+      depth,
+      aliases,
+      directives,
+      tokenCount,
+      complexity.toFixed(2),
+    ]);
     maxDepth = Math.max(maxDepth, depth);
     maxAliases = Math.max(maxAliases, aliases);
     maxDirectives = Math.max(maxDirectives, directives);
@@ -142,7 +161,14 @@ export function handler(args: {
 
   if (args.detail) {
     const table = new Table({
-      head: ['Operation Name', 'Depth', 'Aliases', 'Directives', 'Token Count', 'Complexity Score'],
+      head: [
+        "Operation Name",
+        "Depth",
+        "Aliases",
+        "Directives",
+        "Token Count",
+        "Complexity Score",
+      ],
     });
     table.push(...results);
     Logger.log(table.toString());
@@ -152,5 +178,7 @@ export function handler(args: {
   Logger.log(`Maximum alias amount is ${chalk.bold(maxAliases)}`);
   Logger.log(`Maximum directive amount is ${chalk.bold(maxDirectives)}`);
   Logger.log(`Maximum token count is ${chalk.bold(maxTokenCount)}`);
-  Logger.log(`Maximum complexity score is ${chalk.bold(maxComplexity.toFixed(2))}`);
+  Logger.log(
+    `Maximum complexity score is ${chalk.bold(maxComplexity.toFixed(2))}`
+  );
 }

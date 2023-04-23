@@ -4,7 +4,7 @@ description:
   unified experience. You can switch to using GraphQL-Inspector directly.
 ---
 
-import { Callout, PackageCmd, Tab, Tabs } from '@theguild/components'
+import { Callout, PackageCmd, Tab, Tabs } from "@theguild/components";
 
 # Migrating from GraphQL-CLI to Inspector CLI
 
@@ -12,7 +12,9 @@ As such, it's a good idea to start thinking about migrating to using `graphql-in
 it is actively maintained and supported, and provides the same functionality as GraphQL-CLI with
 some additional, new features.
 
-<Callout type="warning">The package @graphql-cli is deprecated, and no longer maintained!</Callout>
+<Callout type="warning">
+  The package @graphql-cli is deprecated, and no longer maintained!
+</Callout>
 
 ## Introduction
 
@@ -26,7 +28,9 @@ you can take:
 
 1. Install Inspector CLI: You can install Inspector CLI using NPM by running the following command:
 
-<PackageCmd packages={[{ name: '@graphql-inspector/cli graphql', isGlobal: true }]} />
+<PackageCmd
+  packages={[{ name: "@graphql-inspector/cli graphql", isGlobal: true }]}
+/>
 
 2. Replace graphql-cli with graphql-inspector in your commands: After installing Inspector CLI,
    you'll need to replace all instances of graphql in your commands with graphql-inspector.

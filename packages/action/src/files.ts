@@ -1,7 +1,7 @@
-import { readFileSync } from 'fs';
-import { resolve } from 'path';
-import * as core from '@actions/core';
-import { OctokitInstance } from './types.js';
+import { readFileSync } from "fs";
+import { resolve } from "path";
+import * as core from "@actions/core";
+import { OctokitInstance } from "./types.js";
 
 export function fileLoader({
   octokit,
@@ -32,7 +32,7 @@ export function fileLoader({
     workspace?: string;
   }): Promise<string> {
     if (file.workspace) {
-      return readFileSync(resolve(file.workspace, file.path), 'utf8');
+      return readFileSync(resolve(file.workspace, file.path), "utf8");
     }
     const result: any = await octokit.graphql(query, {
       repo,
@@ -42,7 +42,10 @@ export function fileLoader({
     core.info(`Query ${file.ref}:${file.path} from ${owner}/${repo}`);
 
     try {
-      if (result?.repository?.object?.oid && result?.repository?.object?.isTruncated) {
+      if (
+        result?.repository?.object?.oid &&
+        result?.repository?.object?.isTruncated
+      ) {
         const oid = result?.repository?.object?.oid;
         const getBlobResponse = await octokit.git.getBlob({
           owner,
@@ -51,10 +54,12 @@ export function fileLoader({
         });
 
         if (getBlobResponse?.data?.content) {
-          return Buffer.from(getBlobResponse?.data?.content, 'base64').toString('utf-8');
+          return Buffer.from(getBlobResponse?.data?.content, "base64").toString(
+            "utf-8"
+          );
         }
 
-        throw new Error('getBlobResponse.data.content is null');
+        throw new Error("getBlobResponse.data.content is null");
       }
 
       if (result?.repository?.object?.text) {
@@ -62,10 +67,12 @@ export function fileLoader({
           return result.repository.object.text;
         }
 
-        throw new Error('result.repository.object.text is truncated and oid is null');
+        throw new Error(
+          "result.repository.object.text is truncated and oid is null"
+        );
       }
 
-      throw new Error('result.repository.object.text is null');
+      throw new Error("result.repository.object.text is null");
     } catch (error) {
       console.log(result);
       console.error(error);
