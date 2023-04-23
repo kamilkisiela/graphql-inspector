@@ -125,7 +125,6 @@ describe('coverage', () => {
     expect(results.stats.numFiledsCovered).toEqual(0);
     expect(results.stats.numQueries).toEqual(1);
     expect(results.stats.numSubscriptions).toEqual(0);
-    expect(results.stats.numUnions).toEqual(0);
     expect(results.stats.numMutations).toEqual(1);
   });
 

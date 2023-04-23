@@ -163,7 +163,7 @@ function renderCoverage(coverage: SchemaCoverage) {
     }
   }
 
-  const logStatsResult = [
+  const logStatsResult: {method: string, result: string}[] = [
     {
       method: 'Types covered',
       result: `${
@@ -199,10 +199,6 @@ function renderCoverage(coverage: SchemaCoverage) {
     {
       method: 'Total Subscriptions',
       result: String(coverage.stats.numSubscriptions > 0 ? coverage.stats.numSubscriptions : '0'),
-    },
-    {
-      method: 'Total Unions',
-      result: String(coverage.stats.numUnions > 0 ? coverage.stats.numUnions : '0'),
     },
   ];
   Logger.table(logStatsResult);
