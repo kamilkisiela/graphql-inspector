@@ -1,5 +1,5 @@
-import { FC } from "react";
-import styles from "./loading.module.css";
+import { FC } from 'react';
+import styles from './loading.module.css';
 
 export const Loading: FC<{ color: string; height: number }> = ({
   color,

@@ -1,17 +1,17 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 
 /* eslint sort-keys: error */
-import { useRouter } from "next/router";
-import { defineConfig, Giscus, useTheme } from "@theguild/components";
+import { useRouter } from 'next/router';
+import { defineConfig, Giscus, useTheme } from '@theguild/components';
 
 export default defineConfig({
   docsRepositoryBase:
-    "https://github.com/kamilkisiela/graphql-inspector/tree/master/website", // base URL for the docs repository
+    'https://github.com/kamilkisiela/graphql-inspector/tree/master/website', // base URL for the docs repository
   main({ children }) {
     const { resolvedTheme } = useTheme();
     const { route } = useRouter();
 
-    const comments = route !== "/" && (
+    const comments = route !== '/' && (
       <Giscus
         // ensure giscus is reloaded when client side route is changed
         key={route}
@@ -30,5 +30,5 @@ export default defineConfig({
       </>
     );
   },
-  siteName: "INSPECTOR",
+  siteName: 'INSPECTOR',
 });

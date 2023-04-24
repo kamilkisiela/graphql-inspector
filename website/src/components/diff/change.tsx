@@ -1,11 +1,11 @@
-import { forwardRef } from "react";
-import { Change, CriticalityLevel } from "@graphql-inspector/core";
-import styles from "./change.module.css";
+import { forwardRef } from 'react';
+import { Change, CriticalityLevel } from '@graphql-inspector/core';
+import styles from './change.module.css';
 
 const ColorMap = {
-  [CriticalityLevel.Breaking]: "#d6231e",
-  [CriticalityLevel.Dangerous]: "#f8b500",
-  [CriticalityLevel.NonBreaking]: "#02a676",
+  [CriticalityLevel.Breaking]: '#d6231e',
+  [CriticalityLevel.Dangerous]: '#f8b500',
+  [CriticalityLevel.NonBreaking]: '#02a676',
 };
 
 const SINGLE_QUOTES_REGEX = /'([^']+)'/g;
