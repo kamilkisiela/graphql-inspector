@@ -163,30 +163,47 @@ function renderCoverage(coverage: SchemaCoverage) {
     }
   }
 
-  Logger.log(
-    `Types covered: ${
-      coverage.stats.numTypes > 0
-        ? ((coverage.stats.numTypesCovered / coverage.stats.numTypes) * 100).toFixed(1)
-        : 'N/A'
-    }%`,
-  );
-  Logger.log(
-    `Types covered fully: ${
-      coverage.stats.numTypes > 0
-        ? ((coverage.stats.numTypesCoveredFully / coverage.stats.numTypes) * 100).toFixed(1)
-        : 'N/A'
-    }%`,
-  );
-  Logger.log(
-    `Fields covered: ${
-      coverage.stats.numFields > 0
-        ? ((coverage.stats.numFiledsCovered / coverage.stats.numFields) * 100).toFixed(1)
-        : 'N/A'
-    }%`,
-  );
+  const logStatsResult: { method: string; result: string }[] = [
+    {
+      method: 'Types covered',
+      result: `${
+        coverage.stats.numTypes > 0
+          ? ((coverage.stats.numTypesCovered / coverage.stats.numTypes) * 100).toFixed(1)
+          : 'N/A'
+      }%`,
+    },
+    {
+      method: 'Types covered fully',
+      result: `${
+        coverage.stats.numTypes > 0
+          ? ((coverage.stats.numTypesCoveredFully / coverage.stats.numTypes) * 100).toFixed(1)
+          : 'N/A'
+      }%`,
+    },
+    {
+      method: 'Fields covered',
+      result: `${
+        coverage.stats.numFields > 0
+          ? ((coverage.stats.numFiledsCovered / coverage.stats.numFields) * 100).toFixed(1)
+          : 'N/A'
+      }%`,
+    },
+    {
+      method: 'Total Queries',
+      result: String(coverage.stats.numQueries > 0 ? coverage.stats.numQueries : '0'),
+    },
+    {
+      method: 'Total Mutations',
+      result: String(coverage.stats.numMutations > 0 ? coverage.stats.numMutations : '0'),
+    },
+    {
+      method: 'Total Subscriptions',
+      result: String(coverage.stats.numSubscriptions > 0 ? coverage.stats.numSubscriptions : '0'),
+    },
+  ];
+  Logger.table(logStatsResult);
   Logger.log(``);
 }
-
 function indent(line: string, space: number): string {
   return line.padStart(line.length + space, ' ');
 }

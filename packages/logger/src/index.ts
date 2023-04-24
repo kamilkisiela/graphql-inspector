@@ -1,3 +1,5 @@
+import { Console } from 'node:console';
+import { Transform } from 'node:stream';
 import chalk from 'chalk';
 import * as env from 'std-env';
 
@@ -31,6 +33,14 @@ export const Logger = {
   },
   log(msg: string) {
     emit('log', msg);
+  },
+  table(
+    input: {
+      method: string;
+      result: string;
+    }[],
+  ) {
+    table(input);
   },
   info(msg: string) {
     emit('info', msg);
@@ -71,6 +81,32 @@ function emit(type: 'success' | 'info' | 'log' | 'error' | 'warn', msg: string) 
   } else {
     console.log(msg);
   }
+}
+
+function table(
+  input: {
+    method: string;
+    result: string;
+  }[],
+) {
+  const ts = new Transform({
+    transform(chunk, _enc, cb) {
+      cb(null, chunk);
+    },
+  });
+  const logger = new Console({ stdout: ts });
+  logger.table(input);
+  const table = (ts.read() || '').toString();
+  let result = '';
+  for (const row of table.split(/[\r\n]+/)) {
+    let r = row.replace(/[^┬]*┬/, '┌');
+    r = r.replace(/^├─*┼/, '├');
+    r = r.replace(/│[^│]*/, '');
+    r = r.replace(/^└─*┴/, '└');
+    r = r.replace(/'/g, ' ');
+    result += `${r}\n`;
+  }
+  console.log(result);
 }
 
 function emitSuccess(msg: string) {

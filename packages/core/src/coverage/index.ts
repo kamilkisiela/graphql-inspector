@@ -61,6 +61,9 @@ export interface SchemaCoverage {
     numTypesCovered: number;
     numFields: number;
     numFiledsCovered: number;
+    numQueries: number;
+    numMutations: number;
+    numSubscriptions: number;
   };
 }
 
@@ -79,6 +82,9 @@ export function coverage(schema: GraphQLSchema, sources: Source[]): SchemaCovera
       numTypesCovered: 0,
       numFields: 0,
       numFiledsCovered: 0,
+      numQueries: 0,
+      numMutations: 0,
+      numSubscriptions: 0,
     },
   };
   const typeMap = schema.getTypeMap();
@@ -137,6 +143,21 @@ export function coverage(schema: GraphQLSchema, sources: Source[]): SchemaCovera
           type,
           children: {},
         };
+
+        if (isObjectType(type) || isInterfaceType(type)) {
+          switch (type.name) {
+            case 'Query':
+              coverage.stats.numQueries++;
+              break;
+            case 'Mutation':
+              coverage.stats.numMutations++;
+              break;
+            case 'Subscription':
+              coverage.stats.numSubscriptions++;
+              break;
+          }
+        }
+
         const fieldMap = type.getFields();
 
         for (const fieldname in fieldMap) {
@@ -187,7 +208,6 @@ export function coverage(schema: GraphQLSchema, sources: Source[]): SchemaCovera
     coverage.stats.numFields += me.fieldsCount;
     coverage.stats.numFiledsCovered += me.fieldsCountCovered;
   }
-
   return coverage;
 }
 
