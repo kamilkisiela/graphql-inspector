@@ -72,7 +72,9 @@ export default createCommand<
         await new Promise<void>(resolve => server.listen(port, () => resolve()));
 
         const url = `http://localhost:${port}/graphql`;
-        Logger.success(`GraphQL API:    ${url}, headers: ${headers}, token: ${token}, method: ${method}, schema: ${schema}, port: ${port}, apolloFederation: ${apolloFederation}, aws: ${aws}, server: ${server} `);
+        Logger.success(
+          `GraphQL API:    ${url}, headers: ${headers}, token: ${token}, method: ${method}, schema: ${schema}, port: ${port}, apolloFederation: ${apolloFederation}, aws: ${aws}, server: ${server} `,
+        );
         await open(url);
 
         const shutdown = () => {
