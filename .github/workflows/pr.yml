@@ -12,7 +12,7 @@ jobs:
       npmTag: alpha
       buildScript: build
       nodeVersion: 18
-      packageManager: pnpm
+      packageManager: pnpm@8.3.1
     secrets:
       githubToken: ${{ secrets.GITHUB_TOKEN }}
       npmToken: ${{ secrets.NPM_TOKEN }}
@@ -23,5 +23,5 @@ jobs:
       githubToken: ${{ secrets.GITHUB_TOKEN }}
     with:
       installDependencies: true
-      packageManager: pnpm
       nodeVersion: 18
+      packageManager: pnpm@8.3.1

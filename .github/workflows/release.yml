@@ -10,7 +10,7 @@ jobs:
     with:
       releaseScript: release
       nodeVersion: 18
-      packageManager: pnpm
+      packageManager: pnpm@8.3.1
     secrets:
       githubToken: ${{ secrets.GITHUB_TOKEN }}
       npmToken: ${{ secrets.NPM_TOKEN }}
@@ -21,6 +21,6 @@ jobs:
       githubToken: ${{ secrets.GUILD_BOT_TOKEN }}
       algoliaAdminApiKey: ${{ secrets.ALGOLIA_ADMIN_API_KEY }}
     with:
-      packageManager: pnpm
+      packageManager: pnpm@8.3.1
       domain: https://www.the-guild.dev/graphql/inspector/
       source: 'Inspector'
