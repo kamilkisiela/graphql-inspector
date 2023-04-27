@@ -1,4 +1,5 @@
 ---
+title: GraphQL Inspector | Diff and Validate GraphQL Schemas
 description:
   Detect changes to your GraphQL Schema and prevent breaking your existing applications. With
   GraphQL Inspector you get a list of breaking, potentially dangerous and safe changes on every Pull
@@ -7,7 +8,7 @@ description:
 
 import { Callout } from '@theguild/components'
 
-# Schema Validation
+# Diff (Schema Validation)
 
 Detect changes to your GraphQL Schema and prevent breaking your existing applications. With GraphQL
 Inspector you get a list of breaking, potentially dangerous and safe changes on every Pull Request.
@@ -15,34 +16,18 @@ Integrate it with GitHub, BitBucket, GitLab or any Continuous Integration.
 
 ![Application](/assets/img/github/app-action.jpg)
 
-## Using GitHub Application
+## You can choose between:
 
-[Install our GitHub Application](../products/github#detection-of-changes) to check Pull Requests and
-commits.
+| Products                            | Description                            |
+| ----------------------------------- | -------------------------------------- |
+| [GitHub Application](../products/github) | Install our GitHub Application to check Pull Requests and commits. |
+| [GitHub Action](../products/action) | Use our GitHub Action in few steps. |
+| [CI](../products/ci) | GraphQL Inspector offers a version of our CLI that is better suited for Continuous Integrations. Learn more how to use it. |
+| [CLI](../products/cli) | GraphQL Inspector CLI is a simple tool to work with GraphQL schemas. |
 
-## Using GitHub Action
 
-[Use our GitHub Action](../products/action) in few steps.
 
-## Using in CI
-
-GraphQL Inspector offers a version of our CLI that is better suited for Continuous Integrations.
-Learn more [how to use it](../products/ci).
-
-## Using CLI
-
-```sh
-Detected following changes:
-
-❌ Field posts was removed from object type Query
-❌ Field modifiedAt was removed from object type Post
-✅ Field Post.id changed typed from ID to ID!
-✅ Deprecation reason "No more used" on field Post.title was added
-
-ERROR Detected 2 breaking changes!
-```
-
-### Usage
+## Diff - Usage
 
 Run the following command:
 
@@ -50,12 +35,12 @@ Run the following command:
 graphql-inspector diff OLD_SCHEMA NEW_SCHEMA
 ```
 
-#### Arguments
+### Arguments
 
 - [`OLD_SCHEMA`](../api/schema) - point to an old schema
 - [`NEW_SCHEMA`](../api/schema) - point to a new schema
 
-#### Flags
+### Flags
 
 - `-r, --require <s>` - require a module
 - `-t, --token <s>` - an access token
@@ -64,7 +49,7 @@ graphql-inspector diff OLD_SCHEMA NEW_SCHEMA
 - `--federation` - Support Apollo Federation directives (default: `false`)
 - `--aws` - Support AWS Appsync directives and scalar types (default: `false`)
 
-#### Output
+### Output
 
 A list of all differences between two schemas. GraphQL Inspector defines three kinds of changes:
 
@@ -74,7 +59,7 @@ A list of all differences between two schemas. GraphQL Inspector defines three k
 
 When there's at least one breaking change, the process fails, otherwise, it succeeds.
 
-### Examples
+## Examples
 
 Compare your local schema against a remote server:
 
@@ -88,11 +73,11 @@ Compare your local schema against a schema on a master branch (GitHub):
 graphql-inspector diff github:user/repo#master:schema.graphql schema.graphql
 ```
 
-### Rules
+## Rules
 
 To customize the diff's behavior, you're able to use a set of rules:
 
-#### `dangerousBreaking`
+### `dangerousBreaking`
 
 Turns every dangerous change to be a breaking change.
 
@@ -100,7 +85,7 @@ Turns every dangerous change to be a breaking change.
 graphql-inspector diff https://api.com/graphql schema.graphql --rule dangerousBreaking
 ```
 
-#### `suppressRemovalOfDeprecatedField`
+### `suppressRemovalOfDeprecatedField`
 
 Every removal of a deprecated field is considered a breaking change. With that flag, you can turn it
 into a dangerous change, so it won't fail a process or a CI check.
@@ -129,7 +114,7 @@ type User {
 - When "suppressRemovalOfDeprecatedField" rule enabled, it will not consider the removal of the
   `age` field as a breaking change.
 
-#### `ignoreDescriptionChanges`
+### `ignoreDescriptionChanges`
 
 Changes in descriptions are filtered out and are not displayed in the CLI result.
 
@@ -137,7 +122,7 @@ Changes in descriptions are filtered out and are not displayed in the CLI result
 graphql-inspector diff https://api.com/graphql schema.graphql --rule ignoreDescriptionChanges
 ```
 
-#### `safeUnreachable`
+### `safeUnreachable`
 
 Breaking changes are done on unreachable parts of the schema (non-accessible when starting from the
 root types) and won't be marked as breaking.
@@ -161,7 +146,7 @@ type User {
 }
 ```
 
-#### `considerUsage`
+### `considerUsage`
 
 Decides if a breaking change is in fact breaking, based on real usage of schema.
 

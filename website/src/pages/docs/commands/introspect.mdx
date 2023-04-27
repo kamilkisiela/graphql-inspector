@@ -1,14 +1,15 @@
 ---
+title: GraphQL Inspector | Introspection
 description: GraphQL Inspector Introspection - Dumps an introspection file based on a schema.
 ---
 
 import { Callout } from '@theguild/components'
 
-# Introspection
+# Introspection (Schema)
 
 Dumps an introspection file based on a schema.
 
-## Usage
+## Introspection - Usage
 
 Run the following command:
 
@@ -18,11 +19,11 @@ graphql-inspector introspect SCHEMA --write path/to/file
 
 It supports `.graphql`, `.gql` and `.json` extensions.
 
-### Arguments
+## Arguments
 
 - [`SCHEMA`](../api/schema) - point to a schema
 
-### Flags
+## Flags
 
 - `-w, --write <s>` - overwrite the output (default: `graphql.schema.json`)
 - `-r, --require <s>` - require a module
@@ -32,7 +33,7 @@ It supports `.graphql`, `.gql` and `.json` extensions.
 - `--federation` - Support Apollo Federation directives (default: `false`)
 - `--aws` - Support AWS Appsync directives and scalar types (default: `false`)
 
-### Output
+## Output
 
 Writes a file with introspection result.
 
@@ -40,3 +41,25 @@ Writes a file with introspection result.
   We recommend to use `introspect` as part of a git hook. Having an always up-to-date schema file
   might improve your workflow.
 </Callout>
+
+## Examples
+
+```sh
+graphql-inspector introspect example/schemas/new-valid.graphql --write example/schemas
+```
+
+### Example file
+```
+{
+  "__schema": {
+    "description": null,
+    "queryType": {
+      "name": "Query"
+    },
+    "mutationType": null,
+    "subscriptionType": null,
+    "types": [],
+    "directives": []
+  }
+}
+```
