@@ -1,5 +1,14 @@
 # @graphql-inspector/logger
 
+## 3.4.6
+
+### Patch Changes
+
+- [#2452](https://github.com/kamilkisiela/graphql-inspector/pull/2452)
+  [`1b1b954c`](https://github.com/kamilkisiela/graphql-inspector/commit/1b1b954ca7b67a86f4eeef82737559e09fff09c1)
+  Thanks [@TuvalSimha](https://github.com/TuvalSimha)! - Add a new stats display for coverage
+  command + display new Total queries / mutations / Sub
+
 ## 3.4.5
 
 ### Patch Changes
