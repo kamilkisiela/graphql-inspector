@@ -1,5 +1,12 @@
 # @graphql-inspector/validate-command
 
+## 3.5.3
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @graphql-inspector/commands@3.4.7
+
 ## 3.5.2
 
 ### Patch Changes

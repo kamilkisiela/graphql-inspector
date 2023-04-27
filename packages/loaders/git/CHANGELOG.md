@@ -1,5 +1,16 @@
 # @graphql-inspector/git-loader
 
+## 3.4.5
+
+### Patch Changes
+
+- [#2471](https://github.com/kamilkisiela/graphql-inspector/pull/2471)
+  [`792fd73f`](https://github.com/kamilkisiela/graphql-inspector/commit/792fd73f91eea2fa87b60f53ae293287712653b1)
+  Thanks [@TuvalSimha](https://github.com/TuvalSimha)! - dependencies updates:
+  - Updated dependency
+    [`@graphql-tools/git-loader@7.2.22` ↗︎](https://www.npmjs.com/package/@graphql-tools/git-loader/v/7.2.22)
+    (from `7.2.21`, in `dependencies`)
+
 ## 3.4.4
 
 ### Patch Changes
