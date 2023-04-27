@@ -1,5 +1,16 @@
 # @graphql-inspector/loaders
 
+## 3.4.7
+
+### Patch Changes
+
+- [#2471](https://github.com/kamilkisiela/graphql-inspector/pull/2471)
+  [`792fd73f`](https://github.com/kamilkisiela/graphql-inspector/commit/792fd73f91eea2fa87b60f53ae293287712653b1)
+  Thanks [@TuvalSimha](https://github.com/TuvalSimha)! - dependencies updates:
+  - Updated dependency
+    [`@graphql-tools/code-file-loader@7.3.23` ↗︎](https://www.npmjs.com/package/@graphql-tools/code-file-loader/v/7.3.23)
+    (from `7.3.22`, in `dependencies`)
+
 ## 3.4.6
 
 ### Patch Changes
