@@ -7,7 +7,6 @@ description:
 
 import { Callout } from '@theguild/components'
 
-
 # Audit (Documents)
 
 Audit your documents for useful metrics such as query depth, directive count and alias count. This
@@ -49,14 +48,11 @@ documentation.
 
 ## Example
 
-
 ```sh
 graphql-inspector audit './documents/document.graphql'
 ```
 
-<Callout type="warning">
-Make sure to wrap the document in quotes.
-</Callout>
+<Callout type="warning">Make sure to wrap the document in quotes.</Callout>
 
 ### Example - Glob Pattern
 
@@ -65,16 +61,7 @@ graphql-inspector audit './documents/*.graphql'
 ```
 
 <Callout type="info">
-Make sure to wrap the glob pattern in quotes, otherwise the glob pattern will be expanded by your
+  Make sure to wrap the glob pattern in quotes, otherwise the glob pattern will be expanded by your
 </Callout>
 
-<Callout type="warning">
-Glob patterns are not supported on GitHub Action and GitHub App.
-</Callout>
-
-
-
-
-
-
-
+<Callout type="warning">Glob patterns are not supported on GitHub Action and GitHub App.</Callout>
