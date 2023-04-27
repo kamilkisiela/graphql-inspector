@@ -80,7 +80,7 @@
     "jsesc": "3.0.2",
     "lint-staged": "13.2.2",
     "lodash": "4.17.21",
-    "nock": "13.3.0",
+    "nock": "13.3.1",
     "prettier": "2.8.8",
     "rimraf": "5.0.0",
     "smee-client": "1.2.3",
