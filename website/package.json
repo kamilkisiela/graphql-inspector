@@ -18,23 +18,23 @@
     "@monaco-editor/react": "4.5.0",
     "@theguild/algolia": "1.1.6",
     "@theguild/components": "4.5.10",
-    "@whatwg-node/fetch": "0.8.5",
-    "next": "13.3.0",
+    "@whatwg-node/fetch": "0.8.8",
+    "next": "13.3.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-flip-move": "3.0.5"
   },
   "devDependencies": {
     "@algolia/client-search": "4.17.0",
-    "@next/env": "13.3.0",
+    "@next/env": "13.3.1",
     "@theguild/tailwind-config": "0.2.1",
-    "@types/node": "18.15.11",
-    "@types/react": "18.0.37",
+    "@types/node": "18.16.1",
+    "@types/react": "18.2.0",
     "cross-env": "7.0.3",
     "next-sitemap": "4.0.7",
     "prop-types": "15.8.1",
     "typescript": "5.0.4",
-    "webpack": "5.79.0"
+    "webpack": "5.81.0"
   },
   "browserslist": {
     "production": [
