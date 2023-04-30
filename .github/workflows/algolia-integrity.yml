@@ -2,7 +2,7 @@ name: Algolia Integrity
 on:
   pull_request:
     paths:
-      - 'website/**'
+      - "website/**"
     branches:
       - master
 jobs:
@@ -18,7 +18,7 @@ jobs:
       - name: Setup env
         uses: the-guild-org/shared-config/setup@main
         with:
-          nodeVersion: 16
+          nodeVersion: 18
           packageManager: pnpm
 
       - name: Build Packages

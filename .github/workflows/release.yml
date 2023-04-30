@@ -9,7 +9,7 @@ jobs:
     uses: the-guild-org/shared-config/.github/workflows/release-stable.yml@main
     with:
       releaseScript: release
-      nodeVersion: 16
+      nodeVersion: 18
       packageManager: pnpm
     secrets:
       githubToken: ${{ secrets.GITHUB_TOKEN }}
@@ -23,4 +23,4 @@ jobs:
     with:
       packageManager: pnpm
       domain: https://www.the-guild.dev/graphql/inspector/
-      source: 'Inspector'
+      source: "Inspector"

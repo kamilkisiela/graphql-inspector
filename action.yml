@@ -1,6 +1,6 @@
 name: GraphQL Inspector
 author: Kamil Kisiela <kamil.kisiela@gmail.com>
-description: 'Tooling for GraphQL. Compare schemas, find breaking changes, find similar types.'
+description: "Tooling for GraphQL. Compare schemas, find breaking changes, find similar types."
 branding:
   icon: search
   color: orange
@@ -31,9 +31,9 @@ inputs:
 
       When using an endpoint, 'schema' should point to a file (without a reference - branch name for example)
   github-token:
-    default: '${{ github.token }}'
+    default: "${{ github.token }}"
     required: false
-    description: 'Github Token. Use {{ github.token }} by default'
+    description: "Github Token. Use {{ github.token }} by default"
   experimental_merge:
     description: |
       Merge Pull Request's branch with the target branch to get the schema.
@@ -57,5 +57,5 @@ outputs:
   changes:
     description: Total number of changes
 runs:
-  using: node16
+  using: node18
   main: action/index.js
