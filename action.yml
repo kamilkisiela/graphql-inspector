@@ -56,11 +56,6 @@ inputs:
 outputs:
   changes:
     description: Total number of changes
-    value: ${{ steps.inspector.outputs.changes }}
 runs:
-  using: composite
-  steps:
-    - name: Checkout
-      uses: actions/checkout@v2
-      with:
-        node18: true
+  using: node16
+  main: action/index.js
