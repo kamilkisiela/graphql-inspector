@@ -1,5 +1,16 @@
 # @graphql-inspector/github
 
+## 3.4.16
+
+### Patch Changes
+
+- [#2474](https://github.com/kamilkisiela/graphql-inspector/pull/2474)
+  [`a48aaedd`](https://github.com/kamilkisiela/graphql-inspector/commit/a48aaeddfd24794122472ec380d4e7cace100f62)
+  Thanks [@renovate](https://github.com/apps/renovate)! - dependencies updates:
+  - Updated dependency
+    [`probot@^9.0.1 || ^10.0.0 || ^11.0.0 || ^12.3.0` ↗︎](https://www.npmjs.com/package/probot/v/9.0.1)
+    (from `^9.0.1 || ^10.0.0 || ^11.0.0`, in `peerDependencies`)
+
 ## 3.4.15
 
 ### Patch Changes

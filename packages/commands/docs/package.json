@@ -1,6 +1,6 @@
 {
   "name": "@graphql-inspector/docs-command",
-  "version": "3.4.8",
+  "version": "3.4.9",
   "type": "module",
   "description": "Open GraphQL Inspector Documentation",
   "repository": {

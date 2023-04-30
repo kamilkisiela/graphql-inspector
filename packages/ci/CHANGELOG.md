@@ -1,5 +1,18 @@
 # @graphql-inspector/ci
 
+## 3.4.12
+
+### Patch Changes
+
+- [#2476](https://github.com/kamilkisiela/graphql-inspector/pull/2476)
+  [`ccfecba2`](https://github.com/kamilkisiela/graphql-inspector/commit/ccfecba2ca619fb10bfbc5f69e4ad1952b3ea9cc)
+  Thanks [@renovate](https://github.com/apps/renovate)! - dependencies updates:
+  - Updated dependency [`yargs@17.7.2` ↗︎](https://www.npmjs.com/package/yargs/v/17.7.2) (from
+    `17.7.1`, in `dependencies`)
+- Updated dependencies
+  [[`ccfecba2`](https://github.com/kamilkisiela/graphql-inspector/commit/ccfecba2ca619fb10bfbc5f69e4ad1952b3ea9cc)]:
+  - @graphql-inspector/commands@3.4.8
+
 ## 3.4.11
 
 ### Patch Changes
