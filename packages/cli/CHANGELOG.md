@@ -1,5 +1,33 @@
 # @graphql-inspector/cli
 
+## 3.4.19
+
+### Patch Changes
+
+- [#2476](https://github.com/kamilkisiela/graphql-inspector/pull/2476)
+  [`ccfecba2`](https://github.com/kamilkisiela/graphql-inspector/commit/ccfecba2ca619fb10bfbc5f69e4ad1952b3ea9cc)
+  Thanks [@renovate](https://github.com/apps/renovate)! - dependencies updates:
+
+  - Updated dependency [`yargs@17.7.2` ↗︎](https://www.npmjs.com/package/yargs/v/17.7.2) (from
+    `17.7.1`, in `dependencies`)
+
+- [#2477](https://github.com/kamilkisiela/graphql-inspector/pull/2477)
+  [`5aececfd`](https://github.com/kamilkisiela/graphql-inspector/commit/5aececfd2f5fc2c0a1f42666fc5d1764088a2da0)
+  Thanks [@renovate](https://github.com/apps/renovate)! - dependencies updates:
+  - Updated dependency [`@babel/core@7.21.5` ↗︎](https://www.npmjs.com/package/@babel/core/v/7.21.5)
+    (from `7.21.4`, in `dependencies`)
+- Updated dependencies
+  [[`ccfecba2`](https://github.com/kamilkisiela/graphql-inspector/commit/ccfecba2ca619fb10bfbc5f69e4ad1952b3ea9cc)]:
+  - @graphql-inspector/commands@3.4.8
+  - @graphql-inspector/audit-command@3.4.15
+  - @graphql-inspector/coverage-command@4.0.11
+  - @graphql-inspector/diff-command@3.4.15
+  - @graphql-inspector/docs-command@3.4.9
+  - @graphql-inspector/introspect-command@3.4.15
+  - @graphql-inspector/serve-command@3.4.10
+  - @graphql-inspector/similar-command@3.4.15
+  - @graphql-inspector/validate-command@3.5.4
+
 ## 3.4.18
 
 ### Patch Changes

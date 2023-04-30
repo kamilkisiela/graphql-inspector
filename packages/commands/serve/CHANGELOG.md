@@ -1,5 +1,13 @@
 # @graphql-inspector/serve-command
 
+## 3.4.10
+
+### Patch Changes
+
+- Updated dependencies
+  [[`ccfecba2`](https://github.com/kamilkisiela/graphql-inspector/commit/ccfecba2ca619fb10bfbc5f69e4ad1952b3ea9cc)]:
+  - @graphql-inspector/commands@3.4.8
+
 ## 3.4.9
 
 ### Patch Changes
