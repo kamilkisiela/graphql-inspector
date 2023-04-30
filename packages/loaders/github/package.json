@@ -65,7 +65,7 @@
     "tslib": "2.5.0"
   },
   "devDependencies": {
-    "@babel/core": "7.21.4",
+    "@babel/core": "7.21.5",
     "@types/node": "18.15.11",
     "graphql": "16.6.0"
   },
