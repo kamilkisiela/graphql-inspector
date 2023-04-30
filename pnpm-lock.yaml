@@ -32,8 +32,8 @@ importers:
         specifier: 0.8.5
         version: 0.8.5
       yargs:
-        specifier: 17.7.1
-        version: 17.7.1
+        specifier: 17.7.2
+        version: 17.7.2
     devDependencies:
       '@changesets/changelog-github':
         specifier: 0.4.8
@@ -209,8 +209,8 @@ importers:
         specifier: 2.5.0
         version: 2.5.0
       yargs:
-        specifier: 17.7.1
-        version: 17.7.1
+        specifier: 17.7.2
+        version: 17.7.2
     publishDirectory: dist
 
   packages/cli:
@@ -273,8 +273,8 @@ importers:
         specifier: 2.5.0
         version: 2.5.0
       yargs:
-        specifier: 17.7.1
-        version: 17.7.1
+        specifier: 17.7.2
+        version: 17.7.2
     publishDirectory: dist
 
   packages/commands/audit:
@@ -4259,7 +4259,7 @@ packages:
       tslib: 2.5.0
       tsup: 6.7.0(typescript@5.0.4)
       typescript: 5.0.4
-      yargs: 17.7.1
+      yargs: 17.7.2
       zod: 3.21.4
     transitivePeerDependencies:
       - '@swc/core'
@@ -11830,7 +11830,7 @@ packages:
       smartwrap: 2.0.2
       strip-ansi: 6.0.1
       wcwidth: 1.0.1
-      yargs: 17.7.1
+      yargs: 17.7.2
     dev: true
 
   /tunnel@0.0.6:
@@ -12666,8 +12666,8 @@ packages:
       yargs-parser: 18.1.3
     dev: true
 
-  /yargs@17.7.1:
-    resolution: {integrity: sha512-cwiTb08Xuv5fqF4AovYacTFNxk62th7LKJ6BL9IGUpTJrWoU7/7WdQGTP2SjKf1dUNBGzDd28p/Yfs/GI6JrLw==}
+  /yargs@17.7.2:
+    resolution: {integrity: sha512-7dSzzRQ++CKnNI/krKnYRV7JKKPUXMEh61soaHKg9mrWEhzFWhFnxPxGl+69cD1Ou63C13NUPCnmIcrvqCuM6w==}
     engines: {node: '>=12'}
     dependencies:
       cliui: 8.0.1

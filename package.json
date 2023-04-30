@@ -43,7 +43,7 @@
     "js-yaml": "4.1.0",
     "probot": "12.3.0",
     "shelljs": "0.8.5",
-    "yargs": "17.7.1"
+    "yargs": "17.7.2"
   },
   "devDependencies": {
     "@changesets/changelog-github": "0.4.8",
