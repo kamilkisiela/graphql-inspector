@@ -26,11 +26,22 @@ jobs:
         with:
           node-version: ${{ matrix.node_version }}
 
-      - name: Install pnpm
+      - name: check pnpm version
+        shell: bash
+        id: pnpm
+        run: |
+          PNPM_VERSION=$(cat package.json | jq -r '.packageManager' | awk -F@ '{print $2}')
+          PNPM_VERSION=${PNPM_VERSION:-7.30.5}
+          echo "Using PNPM version $PNPM_VERSION"
+          echo "version=$PNPM_VERSION" >> $GITHUB_OUTPUT
+
+      - name: Setup ${{ inputs.packageManager }}
+        id: pnpm_setup
         uses: pnpm/action-setup@v2.2.4
         with:
-          version: 7.30.0
-
+          version: ${{ steps.pnpm.outputs.version }}
+          run_install: false
+          
       - name: Get pnpm cache - Set output
         id: pnpm-cache
         run: echo "{dir}={pnpm cache dir}" >> $GITHUB_OUTPUT
