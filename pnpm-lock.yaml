@@ -692,8 +692,8 @@ importers:
         specifier: 7.0.3
         version: 7.0.3
       next-sitemap:
-        specifier: 4.0.8
-        version: 4.0.8(@next/env@13.3.4)(next@13.3.4)
+        specifier: 4.0.9
+        version: 4.0.9(@next/env@13.3.4)(next@13.3.4)
       prop-types:
         specifier: 15.8.1
         version: 15.8.1
@@ -9046,8 +9046,8 @@ packages:
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
-  /next-sitemap@4.0.8(@next/env@13.3.4)(next@13.3.4):
-    resolution: {integrity: sha512-2wbTQr71zMjWjfVbSvStfR9MunixzMLhYtVinVpf7j5uozcXFoMw3rvGVRMRVbzhStd3Mm43FbuV4o2gbFx66Q==}
+  /next-sitemap@4.0.9(@next/env@13.3.4)(next@13.3.4):
+    resolution: {integrity: sha512-8pbcEe4vrmgGEc3beVbrSqd8mTQ9lCsGxP+AOlArrGmeLkKD4TbSR41R2unQHHSTkBG8cQ/7gjKkdLBlzwtu6g==}
     engines: {node: '>=14.18'}
     hasBin: true
     peerDependencies:
