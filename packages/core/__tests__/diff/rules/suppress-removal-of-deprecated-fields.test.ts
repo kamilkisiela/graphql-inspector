@@ -47,17 +47,12 @@ describe('suppressRemovalOfDeprecatedFields rule', () => {
   test('removed argument of field on object', async () => {
     const a = buildSchema(/* GraphQL */ `
       type Foo {
-        a(
-          b: String! @deprecated(reason: "use c")
-          c: String!
-        ): String!
+        a(b: String! @deprecated(reason: "use c"), c: String!): String!
       }
     `);
     const b = buildSchema(/* GraphQL */ `
       type Foo {
-        a(
-          c: String!
-        ): String!
+        a(c: String!): String!
       }
     `);
 
@@ -71,17 +66,12 @@ describe('suppressRemovalOfDeprecatedFields rule', () => {
   test('removed argument of field on interface', async () => {
     const a = buildSchema(/* GraphQL */ `
       interface Foo {
-        a(
-          b: String! @deprecated(reason: "use c")
-          c: String!
-        ): String!
+        a(b: String! @deprecated(reason: "use c"), c: String!): String!
       }
     `);
     const b = buildSchema(/* GraphQL */ `
       interface Foo {
-        a(
-          c: String!
-        ): String!
+        a(c: String!): String!
       }
     `);
 
