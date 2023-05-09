@@ -686,8 +686,8 @@ importers:
         specifier: 18.16.3
         version: 18.16.3
       '@types/react':
-        specifier: 18.2.0
-        version: 18.2.0
+        specifier: 18.2.1
+        version: 18.2.1
       cross-env:
         specifier: 7.0.3
         version: 7.0.3
@@ -2179,7 +2179,7 @@ packages:
       react: '>=16'
     dependencies:
       '@types/mdx': 2.0.3
-      '@types/react': 18.2.0
+      '@types/react': 18.2.1
       react: 18.2.0
     dev: false
 
@@ -3400,8 +3400,8 @@ packages:
   /@types/range-parser@1.2.4:
     resolution: {integrity: sha512-EEhsLsD6UsDM1yFhAvy0Cjr6VwmpMWqFBCb9w07wVugF7w9nfajxLuVmngTIpgS6svCnm6Vaw+MZhoDCKnOfsw==}
 
-  /@types/react@18.2.0:
-    resolution: {integrity: sha512-0FLj93y5USLHdnhIhABk83rm8XEGA7kH3cr+YUlvxoUGp1xNt/DINUMvqPxLyOQMzLmZe8i4RTHbvb8MC7NmrA==}
+  /@types/react@18.2.1:
+    resolution: {integrity: sha512-KbNvY50AOVy1HBHbQc+iPK44HMaz6CRXuUFsu/L8yCP+nsuE1c1EQSdyaHhsPiI7gJQ3c3VRp+YuCL/5hzvcRw==}
     dependencies:
       '@types/prop-types': 15.7.5
       '@types/scheduler': 0.16.2
