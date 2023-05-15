@@ -519,8 +519,8 @@ importers:
   packages/loaders/git:
     dependencies:
       '@graphql-tools/git-loader':
-        specifier: 7.2.22
-        version: 7.2.22(@babel/core@7.21.8)(graphql@16.6.0)
+        specifier: 7.3.0
+        version: 7.3.0(@babel/core@7.21.8)(graphql@16.6.0)
       tslib:
         specifier: 2.5.0
         version: 2.5.0
@@ -1833,8 +1833,8 @@ packages:
       tslib: 2.5.0
       value-or-promise: 1.0.12
 
-  /@graphql-tools/git-loader@7.2.22(@babel/core@7.21.8)(graphql@16.6.0):
-    resolution: {integrity: sha512-9rpHggHiOeqA7/ZlKD3c5yXk5bPGw0zkIgKMerjCmFAQAZ6CEVfsa7nAzEWQxn6rpdaBft4/0A56rPMrsUwGBA==}
+  /@graphql-tools/git-loader@7.3.0(@babel/core@7.21.8)(graphql@16.6.0):
+    resolution: {integrity: sha512-gcGAK+u16eHkwsMYqqghZbmDquh8QaO24Scsxq+cVR+vx1ekRlsEiXvu+yXVDbZdcJ6PBIbeLcQbEu+xhDLmvQ==}
     peerDependencies:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0
     dependencies:
