@@ -17,7 +17,7 @@
     "@graphql-inspector/github": "workspace:*",
     "@monaco-editor/react": "4.5.0",
     "@theguild/algolia": "1.1.7",
-    "@theguild/components": "4.5.11",
+    "@theguild/components": "4.5.12",
     "@whatwg-node/fetch": "0.8.8",
     "next": "13.3.4",
     "react": "18.2.0",
