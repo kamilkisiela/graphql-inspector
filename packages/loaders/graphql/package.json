@@ -62,7 +62,7 @@
   },
   "dependencies": {
     "@graphql-tools/graphql-file-loader": "7.5.17",
-    "tslib": "2.5.0"
+    "tslib": "2.5.1"
   },
   "devDependencies": {
     "graphql": "16.6.0"

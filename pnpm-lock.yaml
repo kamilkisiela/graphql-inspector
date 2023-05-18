@@ -43,55 +43,55 @@ importers:
         version: 2.26.1
       '@graphql-inspector/audit-command':
         specifier: workspace:*
-        version: link:packages/commands/audit
+        version: link:packages/commands/audit/dist
       '@graphql-inspector/code-loader':
         specifier: workspace:*
-        version: link:packages/loaders/code
+        version: link:packages/loaders/code/dist
       '@graphql-inspector/commands':
         specifier: workspace:*
-        version: link:packages/commands/commands
+        version: link:packages/commands/commands/dist
       '@graphql-inspector/config':
         specifier: workspace:*
-        version: link:packages/config
+        version: link:packages/config/dist
       '@graphql-inspector/coverage-command':
         specifier: workspace:*
-        version: link:packages/commands/coverage
+        version: link:packages/commands/coverage/dist
       '@graphql-inspector/diff-command':
         specifier: workspace:*
-        version: link:packages/commands/diff
+        version: link:packages/commands/diff/dist
       '@graphql-inspector/docs-command':
         specifier: workspace:*
-        version: link:packages/commands/docs
+        version: link:packages/commands/docs/dist
       '@graphql-inspector/git-loader':
         specifier: workspace:*
-        version: link:packages/loaders/git
+        version: link:packages/loaders/git/dist
       '@graphql-inspector/github-loader':
         specifier: workspace:*
-        version: link:packages/loaders/github
+        version: link:packages/loaders/github/dist
       '@graphql-inspector/graphql-loader':
         specifier: workspace:*
-        version: link:packages/loaders/graphql
+        version: link:packages/loaders/graphql/dist
       '@graphql-inspector/introspect-command':
         specifier: workspace:*
-        version: link:packages/commands/introspect
+        version: link:packages/commands/introspect/dist
       '@graphql-inspector/json-loader':
         specifier: workspace:*
-        version: link:packages/loaders/json
+        version: link:packages/loaders/json/dist
       '@graphql-inspector/loaders':
         specifier: workspace:*
-        version: link:packages/loaders/loaders
+        version: link:packages/loaders/loaders/dist
       '@graphql-inspector/serve-command':
         specifier: workspace:*
-        version: link:packages/commands/serve
+        version: link:packages/commands/serve/dist
       '@graphql-inspector/similar-command':
         specifier: workspace:*
-        version: link:packages/commands/similar
+        version: link:packages/commands/similar/dist
       '@graphql-inspector/url-loader':
         specifier: workspace:*
-        version: link:packages/loaders/url
+        version: link:packages/loaders/url/dist
       '@graphql-inspector/validate-command':
         specifier: workspace:*
-        version: link:packages/commands/validate
+        version: link:packages/commands/validate/dist
       '@theguild/eslint-config':
         specifier: 0.9.0
         version: 0.9.0(eslint@8.40.0)(typescript@5.0.4)
@@ -169,13 +169,13 @@ importers:
         version: 4.0.0
       '@graphql-inspector/commands':
         specifier: workspace:*
-        version: link:../commands/commands
+        version: link:../commands/commands/dist
       '@graphql-inspector/core':
         specifier: workspace:*
-        version: link:../core
+        version: link:../core/dist
       '@graphql-inspector/github':
         specifier: workspace:*
-        version: link:../github
+        version: link:../github/dist
       js-yaml:
         specifier: 4.1.0
         version: 4.1.0
@@ -183,8 +183,8 @@ importers:
         specifier: 12.3.0
         version: 12.3.0
       tslib:
-        specifier: 2.5.0
-        version: 2.5.0
+        specifier: 2.5.1
+        version: 2.5.1
     devDependencies:
       '@types/js-yaml':
         specifier: 4.0.5
@@ -195,19 +195,22 @@ importers:
     dependencies:
       '@graphql-inspector/commands':
         specifier: workspace:*
-        version: link:../commands/commands
+        version: link:../commands/commands/dist
       '@graphql-inspector/config':
         specifier: workspace:*
-        version: link:../config
+        version: link:../config/dist
       '@graphql-inspector/loaders':
         specifier: workspace:*
-        version: link:../loaders/loaders
+        version: link:../loaders/loaders/dist
       '@graphql-inspector/logger':
         specifier: workspace:*
-        version: link:../logger
+        version: link:../logger/dist
+      graphql:
+        specifier: ^14.0.0 || ^15.0.0 || ^16.0.0
+        version: 16.6.0
       tslib:
-        specifier: 2.5.0
-        version: 2.5.0
+        specifier: 2.5.1
+        version: 2.5.1
       yargs:
         specifier: 17.7.2
         version: 17.7.2
@@ -220,58 +223,61 @@ importers:
         version: 7.21.8
       '@graphql-inspector/audit-command':
         specifier: workspace:*
-        version: link:../commands/audit
+        version: link:../commands/audit/dist
       '@graphql-inspector/code-loader':
         specifier: workspace:*
-        version: link:../loaders/code
+        version: link:../loaders/code/dist
       '@graphql-inspector/commands':
         specifier: workspace:*
-        version: link:../commands/commands
+        version: link:../commands/commands/dist
       '@graphql-inspector/config':
         specifier: workspace:*
-        version: link:../config
+        version: link:../config/dist
       '@graphql-inspector/coverage-command':
         specifier: workspace:*
-        version: link:../commands/coverage
+        version: link:../commands/coverage/dist
       '@graphql-inspector/diff-command':
         specifier: workspace:*
-        version: link:../commands/diff
+        version: link:../commands/diff/dist
       '@graphql-inspector/docs-command':
         specifier: workspace:*
-        version: link:../commands/docs
+        version: link:../commands/docs/dist
       '@graphql-inspector/git-loader':
         specifier: workspace:*
-        version: link:../loaders/git
+        version: link:../loaders/git/dist
       '@graphql-inspector/github-loader':
         specifier: workspace:*
-        version: link:../loaders/github
+        version: link:../loaders/github/dist
       '@graphql-inspector/graphql-loader':
         specifier: workspace:*
-        version: link:../loaders/graphql
+        version: link:../loaders/graphql/dist
       '@graphql-inspector/introspect-command':
         specifier: workspace:*
-        version: link:../commands/introspect
+        version: link:../commands/introspect/dist
       '@graphql-inspector/json-loader':
         specifier: workspace:*
-        version: link:../loaders/json
+        version: link:../loaders/json/dist
       '@graphql-inspector/loaders':
         specifier: workspace:*
-        version: link:../loaders/loaders
+        version: link:../loaders/loaders/dist
       '@graphql-inspector/serve-command':
         specifier: workspace:*
-        version: link:../commands/serve
+        version: link:../commands/serve/dist
       '@graphql-inspector/similar-command':
         specifier: workspace:*
-        version: link:../commands/similar
+        version: link:../commands/similar/dist
       '@graphql-inspector/url-loader':
         specifier: workspace:*
-        version: link:../loaders/url
+        version: link:../loaders/url/dist
       '@graphql-inspector/validate-command':
         specifier: workspace:*
-        version: link:../commands/validate
+        version: link:../commands/validate/dist
+      graphql:
+        specifier: ^14.0.0 || ^15.0.0 || ^16.0.0
+        version: 16.6.0
       tslib:
-        specifier: 2.5.0
-        version: 2.5.0
+        specifier: 2.5.1
+        version: 2.5.1
       yargs:
         specifier: 17.7.2
         version: 17.7.2
@@ -281,13 +287,13 @@ importers:
     dependencies:
       '@graphql-inspector/commands':
         specifier: workspace:*
-        version: link:../commands
+        version: link:../commands/dist
       '@graphql-inspector/core':
         specifier: workspace:*
-        version: link:../../core
+        version: link:../../core/dist
       '@graphql-inspector/logger':
         specifier: workspace:*
-        version: link:../../logger
+        version: link:../../logger/dist
       '@graphql-tools/utils':
         specifier: 9.2.1
         version: 9.2.1(graphql@16.6.0)
@@ -295,8 +301,8 @@ importers:
         specifier: 0.6.3
         version: 0.6.3
       tslib:
-        specifier: 2.5.0
-        version: 2.5.0
+        specifier: 2.5.1
+        version: 2.5.1
     devDependencies:
       graphql:
         specifier: 16.6.0
@@ -305,28 +311,40 @@ importers:
 
   packages/commands/commands:
     dependencies:
+      '@graphql-inspector/config':
+        specifier: 3.4.5
+        version: link:../../config/dist
+      '@graphql-inspector/loaders':
+        specifier: 3.4.7
+        version: link:../../loaders/loaders/dist
+      graphql:
+        specifier: ^14.0.0 || ^15.0.0 || ^16.0.0
+        version: 16.6.0
       tslib:
-        specifier: 2.5.0
-        version: 2.5.0
+        specifier: 2.5.1
+        version: 2.5.1
+      yargs:
+        specifier: 17.7.2
+        version: 17.7.2
     publishDirectory: dist
 
   packages/commands/coverage:
     dependencies:
       '@graphql-inspector/commands':
         specifier: workspace:*
-        version: link:../commands
+        version: link:../commands/dist
       '@graphql-inspector/core':
         specifier: workspace:*
-        version: link:../../core
+        version: link:../../core/dist
       '@graphql-inspector/logger':
         specifier: workspace:*
-        version: link:../../logger
+        version: link:../../logger/dist
       '@graphql-tools/utils':
         specifier: 9.2.1
         version: 9.2.1(graphql@16.6.0)
       tslib:
-        specifier: 2.5.0
-        version: 2.5.0
+        specifier: 2.5.1
+        version: 2.5.1
     devDependencies:
       graphql:
         specifier: 16.6.0
@@ -337,55 +355,64 @@ importers:
     dependencies:
       '@graphql-inspector/commands':
         specifier: workspace:*
-        version: link:../commands
+        version: link:../commands/dist
       '@graphql-inspector/core':
         specifier: workspace:*
-        version: link:../../core
+        version: link:../../core/dist
       '@graphql-inspector/logger':
         specifier: workspace:*
-        version: link:../../logger
+        version: link:../../logger/dist
+      graphql:
+        specifier: ^14.0.0 || ^15.0.0 || ^16.0.0
+        version: 16.6.0
       tslib:
-        specifier: 2.5.0
-        version: 2.5.0
+        specifier: 2.5.1
+        version: 2.5.1
     publishDirectory: dist
 
   packages/commands/docs:
     dependencies:
       '@graphql-inspector/commands':
         specifier: workspace:*
-        version: link:../commands
+        version: link:../commands/dist
+      graphql:
+        specifier: ^14.0.0 || ^15.0.0 || ^16.0.0
+        version: 16.6.0
       open:
         specifier: 8.4.2
         version: 8.4.2
       tslib:
-        specifier: 2.5.0
-        version: 2.5.0
+        specifier: 2.5.1
+        version: 2.5.1
     publishDirectory: dist
 
   packages/commands/introspect:
     dependencies:
       '@graphql-inspector/commands':
         specifier: workspace:*
-        version: link:../commands
+        version: link:../commands/dist
       '@graphql-inspector/core':
         specifier: workspace:*
-        version: link:../../core
+        version: link:../../core/dist
       '@graphql-inspector/logger':
         specifier: workspace:*
-        version: link:../../logger
+        version: link:../../logger/dist
+      graphql:
+        specifier: ^14.0.0 || ^15.0.0 || ^16.0.0
+        version: 16.6.0
       tslib:
-        specifier: 2.5.0
-        version: 2.5.0
+        specifier: 2.5.1
+        version: 2.5.1
     publishDirectory: dist
 
   packages/commands/serve:
     dependencies:
       '@graphql-inspector/commands':
         specifier: workspace:*
-        version: link:../commands
+        version: link:../commands/dist
       '@graphql-inspector/logger':
         specifier: workspace:*
-        version: link:../../logger
+        version: link:../../logger/dist
       graphql-yoga:
         specifier: 3.9.1
         version: 3.9.1(graphql@16.6.0)
@@ -393,8 +420,8 @@ importers:
         specifier: 8.4.2
         version: 8.4.2
       tslib:
-        specifier: 2.5.0
-        version: 2.5.0
+        specifier: 2.5.1
+        version: 2.5.1
     devDependencies:
       graphql:
         specifier: 16.6.0
@@ -405,35 +432,38 @@ importers:
     dependencies:
       '@graphql-inspector/commands':
         specifier: workspace:*
-        version: link:../commands
+        version: link:../commands/dist
       '@graphql-inspector/core':
         specifier: workspace:*
-        version: link:../../core
+        version: link:../../core/dist
       '@graphql-inspector/logger':
         specifier: workspace:*
-        version: link:../../logger
+        version: link:../../logger/dist
+      graphql:
+        specifier: ^14.0.0 || ^15.0.0 || ^16.0.0
+        version: 16.6.0
       tslib:
-        specifier: 2.5.0
-        version: 2.5.0
+        specifier: 2.5.1
+        version: 2.5.1
     publishDirectory: dist
 
   packages/commands/validate:
     dependencies:
       '@graphql-inspector/commands':
         specifier: workspace:*
-        version: link:../commands
+        version: link:../commands/dist
       '@graphql-inspector/core':
         specifier: workspace:*
-        version: link:../../core
+        version: link:../../core/dist
       '@graphql-inspector/logger':
         specifier: workspace:*
-        version: link:../../logger
+        version: link:../../logger/dist
       '@graphql-tools/utils':
         specifier: 9.2.1
         version: 9.2.1(graphql@16.6.0)
       tslib:
-        specifier: 2.5.0
-        version: 2.5.0
+        specifier: 2.5.1
+        version: 2.5.1
     devDependencies:
       graphql:
         specifier: 16.6.0
@@ -442,9 +472,12 @@ importers:
 
   packages/config:
     dependencies:
+      graphql:
+        specifier: ^14.0.0 || ^15.0.0 || ^16.0.0
+        version: 16.6.0
       tslib:
-        specifier: 2.5.0
-        version: 2.5.0
+        specifier: 2.5.1
+        version: 2.5.1
     publishDirectory: dist
 
   packages/core:
@@ -452,12 +485,15 @@ importers:
       dependency-graph:
         specifier: 0.11.0
         version: 0.11.0
+      graphql:
+        specifier: ^14.0.0 || ^15.0.0 || ^16.0.0
+        version: 16.6.0
       object-inspect:
         specifier: 1.12.3
         version: 1.12.3
       tslib:
-        specifier: 2.5.0
-        version: 2.5.0
+        specifier: 2.5.1
+        version: 2.5.1
     devDependencies:
       '@types/object-inspect':
         specifier: 1.8.1
@@ -468,19 +504,22 @@ importers:
     dependencies:
       '@graphql-inspector/core':
         specifier: workspace:*
-        version: link:../core
+        version: link:../core/dist
       '@whatwg-node/fetch':
         specifier: 0.8.8
         version: 0.8.8
       dataloader:
         specifier: 2.2.2
         version: 2.2.2
+      graphql:
+        specifier: ^14.0.0 || ^15.0.0 || ^16.0.0
+        version: 16.6.0
       js-yaml:
         specifier: 4.1.0
         version: 4.1.0
       tslib:
-        specifier: 2.5.0
-        version: 2.5.0
+        specifier: 2.5.1
+        version: 2.5.1
     devDependencies:
       '@types/express':
         specifier: 4.17.17
@@ -505,8 +544,8 @@ importers:
         specifier: 7.3.23
         version: 7.3.23(@babel/core@7.21.8)(graphql@16.6.0)
       tslib:
-        specifier: 2.5.0
-        version: 2.5.0
+        specifier: 2.5.1
+        version: 2.5.1
     devDependencies:
       '@babel/core':
         specifier: 7.21.8
@@ -522,8 +561,8 @@ importers:
         specifier: 7.3.0
         version: 7.3.0(@babel/core@7.21.8)(graphql@16.6.0)
       tslib:
-        specifier: 2.5.0
-        version: 2.5.0
+        specifier: 2.5.1
+        version: 2.5.1
     devDependencies:
       '@babel/core':
         specifier: 7.21.8
@@ -539,8 +578,8 @@ importers:
         specifier: 7.3.28
         version: 7.3.28(@babel/core@7.21.8)(@types/node@18.16.3)(graphql@16.6.0)
       tslib:
-        specifier: 2.5.0
-        version: 2.5.0
+        specifier: 2.5.1
+        version: 2.5.1
     devDependencies:
       '@babel/core':
         specifier: 7.21.8
@@ -559,8 +598,8 @@ importers:
         specifier: 7.5.17
         version: 7.5.17(graphql@16.6.0)
       tslib:
-        specifier: 2.5.0
-        version: 2.5.0
+        specifier: 2.5.1
+        version: 2.5.1
     devDependencies:
       graphql:
         specifier: 16.6.0
@@ -573,8 +612,8 @@ importers:
         specifier: 7.4.18
         version: 7.4.18(graphql@16.6.0)
       tslib:
-        specifier: 2.5.0
-        version: 2.5.0
+        specifier: 2.5.1
+        version: 2.5.1
     devDependencies:
       graphql:
         specifier: 16.6.0
@@ -583,6 +622,9 @@ importers:
 
   packages/loaders/loaders:
     dependencies:
+      '@graphql-inspector/config':
+        specifier: 3.4.5
+        version: link:../../config/dist
       '@graphql-tools/code-file-loader':
         specifier: 7.3.23
         version: 7.3.23(@babel/core@7.21.8)(graphql@16.6.0)
@@ -593,8 +635,8 @@ importers:
         specifier: 9.2.1
         version: 9.2.1(graphql@16.6.0)
       tslib:
-        specifier: 2.5.0
-        version: 2.5.0
+        specifier: 2.5.1
+        version: 2.5.1
     devDependencies:
       '@babel/core':
         specifier: 7.21.8
@@ -610,8 +652,8 @@ importers:
         specifier: 7.17.18
         version: 7.17.18(@types/node@18.16.3)(graphql@16.6.0)
       tslib:
-        specifier: 2.5.0
-        version: 2.5.0
+        specifier: 2.5.1
+        version: 2.5.1
     devDependencies:
       '@types/node':
         specifier: 18.16.3
@@ -636,21 +678,21 @@ importers:
         specifier: 3.3.2
         version: 3.3.2
       tslib:
-        specifier: 2.5.0
-        version: 2.5.0
+        specifier: 2.5.1
+        version: 2.5.1
     publishDirectory: dist
 
   website:
     dependencies:
       '@graphql-inspector/core':
         specifier: workspace:*
-        version: link:../packages/core
+        version: link:../packages/core/dist
       '@graphql-inspector/github':
         specifier: workspace:*
-        version: link:../packages/github
+        version: link:../packages/github/dist
       '@monaco-editor/react':
         specifier: 4.5.0
-        version: 4.5.0(react-dom@18.2.0)(react@18.2.0)
+        version: 4.5.0(monaco-editor@0.38.0)(react-dom@18.2.0)(react@18.2.0)
       '@theguild/algolia':
         specifier: 1.1.7
         version: 1.1.7
@@ -702,7 +744,7 @@ importers:
         version: 5.0.4
       webpack:
         specifier: 5.81.0
-        version: 5.81.0
+        version: 5.81.0(esbuild@0.17.12)
 
 packages:
 
@@ -1372,13 +1414,13 @@ packages:
     resolution: {integrity: sha512-06t1xCPXq6QFN7W1JUEf68aCwYN0OUDNAIoJe7bAqhaoa2vn7NCcuX1VHkJ/OWpmElUgCsRO6RiBbIru1in0Ig==}
     dependencies:
       '@envelop/types': 3.0.2
-      tslib: 2.5.0
+      tslib: 2.5.1
     dev: false
 
   /@envelop/types@3.0.2:
     resolution: {integrity: sha512-pOFea9ha0EkURWxJ/35axoH9fDGP5S2cUu/5Mmo9pb8zUf+TaEot8vB670XXihFEn/92759BMjLJNWBKmNhyng==}
     dependencies:
-      tslib: 2.5.0
+      tslib: 2.5.1
     dev: false
 
   /@envelop/validation-cache@5.1.2(@envelop/core@3.0.6)(graphql@16.6.0):
@@ -1392,7 +1434,7 @@ packages:
       graphql: 16.6.0
       lru-cache: 6.0.0
       sha1-es: 1.8.2
-      tslib: 2.5.0
+      tslib: 2.5.1
     dev: false
 
   /@esbuild/android-arm64@0.17.12:
@@ -1401,7 +1443,6 @@ packages:
     cpu: [arm64]
     os: [android]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/android-arm@0.17.12:
@@ -1410,7 +1451,6 @@ packages:
     cpu: [arm]
     os: [android]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/android-x64@0.17.12:
@@ -1419,7 +1459,6 @@ packages:
     cpu: [x64]
     os: [android]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/darwin-arm64@0.17.12:
@@ -1428,7 +1467,6 @@ packages:
     cpu: [arm64]
     os: [darwin]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/darwin-x64@0.17.12:
@@ -1437,7 +1475,6 @@ packages:
     cpu: [x64]
     os: [darwin]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/freebsd-arm64@0.17.12:
@@ -1446,7 +1483,6 @@ packages:
     cpu: [arm64]
     os: [freebsd]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/freebsd-x64@0.17.12:
@@ -1455,7 +1491,6 @@ packages:
     cpu: [x64]
     os: [freebsd]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/linux-arm64@0.17.12:
@@ -1464,7 +1499,6 @@ packages:
     cpu: [arm64]
     os: [linux]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/linux-arm@0.17.12:
@@ -1473,7 +1507,6 @@ packages:
     cpu: [arm]
     os: [linux]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/linux-ia32@0.17.12:
@@ -1482,7 +1515,6 @@ packages:
     cpu: [ia32]
     os: [linux]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/linux-loong64@0.17.12:
@@ -1491,7 +1523,6 @@ packages:
     cpu: [loong64]
     os: [linux]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/linux-mips64el@0.17.12:
@@ -1500,7 +1531,6 @@ packages:
     cpu: [mips64el]
     os: [linux]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/linux-ppc64@0.17.12:
@@ -1509,7 +1539,6 @@ packages:
     cpu: [ppc64]
     os: [linux]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/linux-riscv64@0.17.12:
@@ -1518,7 +1547,6 @@ packages:
     cpu: [riscv64]
     os: [linux]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/linux-s390x@0.17.12:
@@ -1527,7 +1555,6 @@ packages:
     cpu: [s390x]
     os: [linux]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/linux-x64@0.17.12:
@@ -1536,7 +1563,6 @@ packages:
     cpu: [x64]
     os: [linux]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/netbsd-x64@0.17.12:
@@ -1545,7 +1571,6 @@ packages:
     cpu: [x64]
     os: [netbsd]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/openbsd-x64@0.17.12:
@@ -1554,7 +1579,6 @@ packages:
     cpu: [x64]
     os: [openbsd]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/sunos-x64@0.17.12:
@@ -1563,7 +1587,6 @@ packages:
     cpu: [x64]
     os: [sunos]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/win32-arm64@0.17.12:
@@ -1572,7 +1595,6 @@ packages:
     cpu: [arm64]
     os: [win32]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/win32-ia32@0.17.12:
@@ -1581,7 +1603,6 @@ packages:
     cpu: [ia32]
     os: [win32]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/win32-x64@0.17.12:
@@ -1590,7 +1611,6 @@ packages:
     cpu: [x64]
     os: [win32]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@eslint-community/eslint-utils@4.2.0(eslint@8.40.0):
@@ -1649,7 +1669,7 @@ packages:
       '@graphql-tools/utils': 9.2.1(graphql@16.6.0)
       dataloader: 2.2.2
       graphql: 16.6.0
-      tslib: 2.5.0
+      tslib: 2.5.1
       value-or-promise: 1.0.12
 
   /@graphql-tools/code-file-loader@7.3.23(@babel/core@7.21.8)(graphql@16.6.0):
@@ -1661,7 +1681,7 @@ packages:
       '@graphql-tools/utils': 9.2.1(graphql@16.6.0)
       globby: 11.1.0
       graphql: 16.6.0
-      tslib: 2.5.0
+      tslib: 2.5.1
       unixify: 1.0.0
     transitivePeerDependencies:
       - '@babel/core'
@@ -1679,7 +1699,7 @@ packages:
       '@graphql-tools/utils': 9.2.1(graphql@16.6.0)
       dataloader: 2.2.2
       graphql: 16.6.0
-      tslib: 2.5.0
+      tslib: 2.5.1
       value-or-promise: 1.0.12
 
   /@graphql-tools/executor-graphql-ws@0.0.14(graphql@16.6.0):
@@ -1693,7 +1713,7 @@ packages:
       graphql: 16.6.0
       graphql-ws: 5.12.1(graphql@16.6.0)
       isomorphic-ws: 5.0.0(ws@8.13.0)
-      tslib: 2.5.0
+      tslib: 2.5.1
       ws: 8.13.0
     transitivePeerDependencies:
       - bufferutil
@@ -1711,7 +1731,7 @@ packages:
       extract-files: 11.0.0
       graphql: 16.6.0
       meros: 1.2.1(@types/node@18.16.3)
-      tslib: 2.5.0
+      tslib: 2.5.1
       value-or-promise: 1.0.12
     transitivePeerDependencies:
       - '@types/node'
@@ -1725,7 +1745,7 @@ packages:
       '@types/ws': 8.5.4
       graphql: 16.6.0
       isomorphic-ws: 5.0.0(ws@8.13.0)
-      tslib: 2.5.0
+      tslib: 2.5.1
       ws: 8.13.0
     transitivePeerDependencies:
       - bufferutil
@@ -1740,7 +1760,7 @@ packages:
       '@graphql-typed-document-node/core': 3.2.0(graphql@16.6.0)
       '@repeaterjs/repeater': 3.0.4
       graphql: 16.6.0
-      tslib: 2.5.0
+      tslib: 2.5.1
       value-or-promise: 1.0.12
 
   /@graphql-tools/git-loader@7.3.0(@babel/core@7.21.8)(graphql@16.6.0):
@@ -1753,7 +1773,7 @@ packages:
       graphql: 16.6.0
       is-glob: 4.0.3
       micromatch: 4.0.5
-      tslib: 2.5.0
+      tslib: 2.5.1
       unixify: 1.0.0
     transitivePeerDependencies:
       - '@babel/core'
@@ -1771,7 +1791,7 @@ packages:
       '@graphql-tools/utils': 9.2.1(graphql@16.6.0)
       '@whatwg-node/fetch': 0.8.8
       graphql: 16.6.0
-      tslib: 2.5.0
+      tslib: 2.5.1
       value-or-promise: 1.0.12
     transitivePeerDependencies:
       - '@babel/core'
@@ -1789,7 +1809,7 @@ packages:
       '@graphql-tools/utils': 9.2.1(graphql@16.6.0)
       globby: 11.1.0
       graphql: 16.6.0
-      tslib: 2.5.0
+      tslib: 2.5.1
       unixify: 1.0.0
 
   /@graphql-tools/graphql-tag-pluck@7.5.1(@babel/core@7.21.8)(graphql@16.6.0):
@@ -1803,7 +1823,7 @@ packages:
       '@babel/types': 7.21.5
       '@graphql-tools/utils': 9.2.1(graphql@16.6.0)
       graphql: 16.6.0
-      tslib: 2.5.0
+      tslib: 2.5.1
     transitivePeerDependencies:
       - '@babel/core'
       - supports-color
@@ -1820,7 +1840,7 @@ packages:
       '@babel/types': 7.21.5
       '@graphql-tools/utils': 9.2.1(graphql@16.6.0)
       graphql: 16.6.0
-      tslib: 2.5.0
+      tslib: 2.5.1
     transitivePeerDependencies:
       - '@babel/core'
       - supports-color
@@ -1834,7 +1854,7 @@ packages:
       '@graphql-tools/utils': 9.2.1(graphql@16.6.0)
       graphql: 16.6.0
       resolve-from: 5.0.0
-      tslib: 2.5.0
+      tslib: 2.5.1
 
   /@graphql-tools/json-file-loader@7.4.18(graphql@16.6.0):
     resolution: {integrity: sha512-AJ1b6Y1wiVgkwsxT5dELXhIVUPs/u3VZ8/0/oOtpcoyO/vAeM5rOvvWegzicOOnQw8G45fgBRMkkRfeuwVt6+w==}
@@ -1844,7 +1864,7 @@ packages:
       '@graphql-tools/utils': 9.2.1(graphql@16.6.0)
       globby: 11.1.0
       graphql: 16.6.0
-      tslib: 2.5.0
+      tslib: 2.5.1
       unixify: 1.0.0
 
   /@graphql-tools/load@7.8.14(graphql@16.6.0):
@@ -1856,7 +1876,7 @@ packages:
       '@graphql-tools/utils': 9.2.1(graphql@16.6.0)
       graphql: 16.6.0
       p-limit: 3.1.0
-      tslib: 2.5.0
+      tslib: 2.5.1
 
   /@graphql-tools/merge@8.4.0(graphql@16.6.0):
     resolution: {integrity: sha512-3XYCWe0d3I4F1azNj1CdShlbHfTIfiDgj00R9uvFH8tHKh7i1IWN3F7QQYovcHKhayaR6zPok3YYMESYQcBoaA==}
@@ -1865,7 +1885,7 @@ packages:
     dependencies:
       '@graphql-tools/utils': 9.2.1(graphql@16.6.0)
       graphql: 16.6.0
-      tslib: 2.5.0
+      tslib: 2.5.1
     dev: true
 
   /@graphql-tools/merge@8.4.1(graphql@16.6.0):
@@ -1875,7 +1895,7 @@ packages:
     dependencies:
       '@graphql-tools/utils': 9.2.1(graphql@16.6.0)
       graphql: 16.6.0
-      tslib: 2.5.0
+      tslib: 2.5.1
 
   /@graphql-tools/schema@9.0.18(graphql@16.6.0):
     resolution: {integrity: sha512-Kckb+qoo36o5RSIVfBNU5XR5fOg4adNa1xuhhUgbQejDaI684tIJbTWwYbrDPVEGL/dqJJX3rrsq7RLufjNFoQ==}
@@ -1885,7 +1905,7 @@ packages:
       '@graphql-tools/merge': 8.4.1(graphql@16.6.0)
       '@graphql-tools/utils': 9.2.1(graphql@16.6.0)
       graphql: 16.6.0
-      tslib: 2.5.0
+      tslib: 2.5.1
       value-or-promise: 1.0.12
 
   /@graphql-tools/url-loader@7.17.18(@types/node@18.16.3)(graphql@16.6.0):
@@ -1904,7 +1924,7 @@ packages:
       '@whatwg-node/fetch': 0.8.8
       graphql: 16.6.0
       isomorphic-ws: 5.0.0(ws@8.13.0)
-      tslib: 2.5.0
+      tslib: 2.5.1
       value-or-promise: 1.0.12
       ws: 8.13.0
     transitivePeerDependencies:
@@ -1920,7 +1940,7 @@ packages:
     dependencies:
       '@graphql-typed-document-node/core': 3.2.0(graphql@16.6.0)
       graphql: 16.6.0
-      tslib: 2.5.0
+      tslib: 2.5.1
 
   /@graphql-tools/wrap@9.4.2(graphql@16.6.0):
     resolution: {integrity: sha512-DFcd9r51lmcEKn0JW43CWkkI2D6T9XI1juW/Yo86i04v43O9w2/k4/nx2XTJv4Yv+iXwUw7Ok81PGltwGJSDSA==}
@@ -1931,7 +1951,7 @@ packages:
       '@graphql-tools/schema': 9.0.18(graphql@16.6.0)
       '@graphql-tools/utils': 9.2.1(graphql@16.6.0)
       graphql: 16.6.0
-      tslib: 2.5.0
+      tslib: 2.5.1
       value-or-promise: 1.0.12
 
   /@graphql-typed-document-node/core@3.2.0(graphql@16.6.0):
@@ -1944,7 +1964,7 @@ packages:
   /@graphql-yoga/logger@0.0.1:
     resolution: {integrity: sha512-6npFz7eZz33mXgSm1waBLMjUNG0D5hTc/p5Hcs1mojkT3KsLpCOFokzTEKboNsBhKevYcaVa/xeA7WBj4UYMLg==}
     dependencies:
-      tslib: 2.5.0
+      tslib: 2.5.1
     dev: false
 
   /@graphql-yoga/subscription@3.1.0:
@@ -1953,14 +1973,14 @@ packages:
       '@graphql-yoga/typed-event-target': 1.0.0
       '@repeaterjs/repeater': 3.0.4
       '@whatwg-node/events': 0.0.2
-      tslib: 2.5.0
+      tslib: 2.5.1
     dev: false
 
   /@graphql-yoga/typed-event-target@1.0.0:
     resolution: {integrity: sha512-Mqni6AEvl3VbpMtKw+TIjc9qS9a8hKhiAjFtqX488yq5oJtj9TkNlFTIacAVS3vnPiswNsmDiQqvwUOcJgi1DA==}
     dependencies:
       '@repeaterjs/repeater': 3.0.4
-      tslib: 2.5.0
+      tslib: 2.5.1
     dev: false
 
   /@hapi/bourne@2.1.0:
@@ -2093,22 +2113,24 @@ packages:
       react: 18.2.0
     dev: false
 
-  /@monaco-editor/loader@1.3.3:
+  /@monaco-editor/loader@1.3.3(monaco-editor@0.38.0):
     resolution: {integrity: sha512-6KKF4CTzcJiS8BJwtxtfyYt9shBiEv32ateQ9T4UVogwn4HM/uPo9iJd2Dmbkpz8CM6Y0PDUpjnZzCwC+eYo2Q==}
     peerDependencies:
       monaco-editor: '>= 0.21.0 < 1'
     dependencies:
+      monaco-editor: 0.38.0
       state-local: 1.0.7
     dev: false
 
-  /@monaco-editor/react@4.5.0(react-dom@18.2.0)(react@18.2.0):
+  /@monaco-editor/react@4.5.0(monaco-editor@0.38.0)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-VJMkp5Fe1+w8pLEq8tZPHZKu8zDXQIA1FtiDTSNccg1D3wg1YIZaH2es2Qpvop1k62g3c/YySRb3bnGXu2XwYQ==}
     peerDependencies:
       monaco-editor: '>= 0.25.0 < 1'
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
     dependencies:
-      '@monaco-editor/loader': 1.3.3
+      '@monaco-editor/loader': 1.3.3(monaco-editor@0.38.0)
+      monaco-editor: 0.38.0
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     dev: false
@@ -2582,13 +2604,13 @@ packages:
     dependencies:
       asn1js: 3.0.5
       pvtsutils: 1.3.2
-      tslib: 2.5.0
+      tslib: 2.5.1
 
   /@peculiar/json-schema@1.1.12:
     resolution: {integrity: sha512-coUfuoMeIB7B8/NMekxaDzLhaYmp0HZNPEjYRm9goRou8UZIC3z21s0sL9AWoCw4EG876QyO3kYrc61WNF9B/w==}
     engines: {node: '>=8.0.0'}
     dependencies:
-      tslib: 2.5.0
+      tslib: 2.5.1
 
   /@peculiar/webcrypto@1.4.1:
     resolution: {integrity: sha512-eK4C6WTNYxoI7JOabMoZICiyqRRtJB220bh0Mbj5RwRycleZf9BPyZoxsTvpP0FpmVS2aS13NKOuh5/tN3sIRw==}
@@ -2597,7 +2619,7 @@ packages:
       '@peculiar/asn1-schema': 2.3.6
       '@peculiar/json-schema': 1.1.12
       pvtsutils: 1.3.2
-      tslib: 2.5.0
+      tslib: 2.5.1
       webcrypto-core: 1.7.6
 
   /@pkgjs/parseargs@0.11.0:
@@ -2616,7 +2638,7 @@ packages:
       open: 8.4.2
       picocolors: 1.0.0
       tiny-glob: 0.2.9
-      tslib: 2.5.0
+      tslib: 2.5.1
     dev: true
 
   /@polka/url@1.0.0-next.21:
@@ -2969,7 +2991,7 @@ packages:
   /@swc/helpers@0.5.1:
     resolution: {integrity: sha512-sJ902EfIzn1Fa+qYmjdQqh8tPsoxyBz+8yBKC2HKUxyezKJFwPGOn7pv4WY6QuQW//ySQi5lJjA/ZT9sNWWNTg==}
     dependencies:
-      tslib: 2.5.0
+      tslib: 2.5.1
 
   /@szmarczak/http-timer@1.1.2:
     resolution: {integrity: sha512-XIB2XbzHTN6ieIjfIMV9hlVcfPU26s2vafYWQcZHWXHOxiaRZYEDKEwdl129Zyg50+foYV2jCgtrqSA6qNuNSA==}
@@ -3082,7 +3104,7 @@ packages:
       cssnano: 5.1.15(postcss@8.4.21)
       postcss: 8.4.21
       postcss-import: 15.1.0(postcss@8.4.21)
-      tailwindcss: 3.2.7
+      tailwindcss: 3.2.7(postcss@8.4.21)
     transitivePeerDependencies:
       - ts-node
     dev: true
@@ -3667,7 +3689,7 @@ packages:
       busboy: 1.6.0
       fast-querystring: 1.1.1
       fast-url-parser: 1.1.3
-      tslib: 2.5.0
+      tslib: 2.5.1
     dev: false
 
   /@whatwg-node/node-fetch@0.3.6:
@@ -3677,13 +3699,13 @@ packages:
       busboy: 1.6.0
       fast-querystring: 1.1.1
       fast-url-parser: 1.1.3
-      tslib: 2.5.0
+      tslib: 2.5.1
 
   /@whatwg-node/server@0.7.5:
     resolution: {integrity: sha512-xTDJdPqr/wULxW3mGXQXD92SRXUm6jwQxqIvyHG17dykRTd21HuCaS2ggBn5lSAM/sYjjrT+OYv3fXbtS4+Mjw==}
     dependencies:
       '@whatwg-node/fetch': 0.8.8
-      tslib: 2.5.0
+      tslib: 2.5.1
     dev: false
 
   /@xtuc/ieee754@1.2.0:
@@ -3981,7 +4003,7 @@ packages:
     dependencies:
       pvtsutils: 1.3.2
       pvutils: 1.1.3
-      tslib: 2.5.0
+      tslib: 2.5.1
 
   /assertion-error@1.1.0:
     resolution: {integrity: sha512-jgsaNduz+ndvGyFt3uSuWqvy4lCnIJiovtouQN5JZHOKCS2QuhEdbcQHFhVksz2N2U9hXJo8odG7ETyWlEeuDw==}
@@ -4097,7 +4119,7 @@ packages:
       mkdirp: 2.1.6
       p-limit: 4.0.0
       resolve.exports: 2.0.2
-      tslib: 2.5.0
+      tslib: 2.5.1
       tsup: 6.7.0(typescript@5.0.4)
       typescript: 5.0.4
       yargs: 17.7.2
@@ -5607,7 +5629,6 @@ packages:
       '@esbuild/win32-arm64': 0.17.12
       '@esbuild/win32-ia32': 0.17.12
       '@esbuild/win32-x64': 0.17.12
-    dev: true
 
   /escalade@3.1.1:
     resolution: {integrity: sha512-k0er2gUkLf8O0zKJiAhmkTnJlTvINGv7ygDNPbeIsX/TJjGJZHuh9B2UxbsaEkmlEo9MfhrSzmhIlhRlI2GXnw==}
@@ -5690,7 +5711,7 @@ packages:
       remark-parse: 10.0.1
       remark-stringify: 10.0.2
       synckit: 0.8.5
-      tslib: 2.5.0
+      tslib: 2.5.1
       unified: 10.1.2
       unist-util-visit: 4.1.2
       uvu: 0.5.6
@@ -5834,7 +5855,7 @@ packages:
       remark-mdx: 2.3.0
       remark-parse: 10.0.1
       remark-stringify: 10.0.2
-      tslib: 2.5.0
+      tslib: 2.5.1
       unified: 10.1.2
       vfile: 5.3.7
     transitivePeerDependencies:
@@ -6357,7 +6378,7 @@ packages:
     dependencies:
       loader-utils: 1.4.2
       schema-utils: 2.7.1
-      webpack: 5.81.0
+      webpack: 5.81.0(esbuild@0.17.12)
     dev: false
 
   /fill-range@7.0.1:
@@ -6806,7 +6827,7 @@ packages:
       jiti: 1.17.1
       minimatch: 4.2.3
       string-env-interpolation: 1.0.1
-      tslib: 2.5.0
+      tslib: 2.5.1
     transitivePeerDependencies:
       - '@types/node'
       - bufferutil
@@ -6839,7 +6860,7 @@ packages:
       dset: 3.1.2
       graphql: 16.6.0
       lru-cache: 7.18.3
-      tslib: 2.5.0
+      tslib: 2.5.1
     dev: false
 
   /graphql@16.6.0:
@@ -8798,6 +8819,10 @@ packages:
       ufo: 1.1.1
     dev: true
 
+  /monaco-editor@0.38.0:
+    resolution: {integrity: sha512-11Fkh6yzEmwx7O0YoLxeae0qEGFwmyPRlVxpg7oF9czOOCB/iCjdJrG5I67da5WiXK3YJCxoz9TJFE8Tfq/v9A==}
+    dev: false
+
   /morgan@1.10.0:
     resolution: {integrity: sha512-AbegBVI4sh6El+1gNwvD5YIck7nSA36weD7xvIxG4in80j/UoK8AEGaWnnz8v1GxonMCltmlNs5ZKbGvl9b1XQ==}
     engines: {node: '>= 0.8.0'}
@@ -9723,22 +9748,6 @@ packages:
       postcss: 8.4.21
     dev: true
 
-  /postcss-load-config@3.1.4:
-    resolution: {integrity: sha512-6DiM4E7v4coTE4uzA8U//WhtPwyhiim3eyjEMFCnUpzbrkK9wJHgKDT2mR+HbtSrd/NubVaYTOpSpjUl8NQeRg==}
-    engines: {node: '>= 10'}
-    peerDependencies:
-      postcss: '>=8.0.9'
-      ts-node: '>=9.0.0'
-    peerDependenciesMeta:
-      postcss:
-        optional: true
-      ts-node:
-        optional: true
-    dependencies:
-      lilconfig: 2.1.0
-      yaml: 1.10.2
-    dev: true
-
   /postcss-load-config@3.1.4(postcss@8.4.21):
     resolution: {integrity: sha512-6DiM4E7v4coTE4uzA8U//WhtPwyhiim3eyjEMFCnUpzbrkK9wJHgKDT2mR+HbtSrd/NubVaYTOpSpjUl8NQeRg==}
     engines: {node: '>= 10'}
@@ -10215,7 +10224,7 @@ packages:
   /pvtsutils@1.3.2:
     resolution: {integrity: sha512-+Ipe2iNUyrZz+8K/2IOo+kKikdtfhRKzNpQbruF2URmqPtoqAs8g3xS7TJvFF2GcPXjh7DkqMnpVveRFq4PgEQ==}
     dependencies:
-      tslib: 2.5.0
+      tslib: 2.5.1
 
   /pvutils@1.1.3:
     resolution: {integrity: sha512-pMpnA0qRdFp32b1sJl1wOJNxZLQ2cbQx+k6tjNtZ8CpvVhNqEPRgivZ2WOUev2YMajecdH7ctUPDvEe87nariQ==}
@@ -10716,7 +10725,7 @@ packages:
   /rxjs@7.8.0:
     resolution: {integrity: sha512-F2+gxDshqmIub1KdvZkaEfGDwLNpPvk9Fs6LD/MyQxNgMds/WH9OdDDXOmxUZpME+iSK3rQCctkL0DYyytUqMg==}
     dependencies:
-      tslib: 2.5.0
+      tslib: 2.5.1
     dev: true
 
   /sade@1.8.1:
@@ -10863,7 +10872,7 @@ packages:
     resolution: {integrity: sha512-xIB/uRniZ9urxAuXp1Ouh/BKSI1VK8RSqfwGj7cV57HvGrFo3vHdJfv8Tdp/cVcxJgXQTkmHr5mG5rqJW8r4wQ==}
     engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
     dependencies:
-      tslib: 2.5.0
+      tslib: 2.5.1
     dev: true
 
   /sha1-es@1.8.2:
@@ -11390,17 +11399,19 @@ packages:
     engines: {node: ^14.18.0 || >=16.0.0}
     dependencies:
       '@pkgr/utils': 2.3.1
-      tslib: 2.5.0
+      tslib: 2.5.1
     dev: true
 
   /tabbable@6.1.1:
     resolution: {integrity: sha512-4kl5w+nCB44EVRdO0g/UGoOp3vlwgycUVtkk/7DPyeLZUCuNFFKCFG6/t/DgHLrUPHjrZg6s5tNm+56Q2B0xyg==}
     dev: false
 
-  /tailwindcss@3.2.7:
+  /tailwindcss@3.2.7(postcss@8.4.21):
     resolution: {integrity: sha512-B6DLqJzc21x7wntlH/GsZwEXTBttVSl1FtCzC8WP4oBc/NKef7kaax5jeihkkCEWc831/5NDJ9gRNDK6NEioQQ==}
     engines: {node: '>=12.13.0'}
     hasBin: true
+    peerDependencies:
+      postcss: ^8.0.9
     dependencies:
       arg: 5.0.2
       chokidar: 3.5.3
@@ -11438,7 +11449,7 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /terser-webpack-plugin@5.3.7(webpack@5.81.0):
+  /terser-webpack-plugin@5.3.7(esbuild@0.17.12)(webpack@5.81.0):
     resolution: {integrity: sha512-AfKwIktyP7Cu50xNjXF/6Qb5lBNzYaWpU6YfoX3uZicTx0zTy0stDDCsvjDapKsSDvOeWo5MEq4TmdBy2cNoHw==}
     engines: {node: '>= 10.13.0'}
     peerDependencies:
@@ -11455,11 +11466,12 @@ packages:
         optional: true
     dependencies:
       '@jridgewell/trace-mapping': 0.3.17
+      esbuild: 0.17.12
       jest-worker: 27.5.1
       schema-utils: 3.1.2
       serialize-javascript: 6.0.1
       terser: 5.17.0
-      webpack: 5.81.0
+      webpack: 5.81.0(esbuild@0.17.12)
 
   /terser@5.17.0:
     resolution: {integrity: sha512-3die3+pYW4mta4xF6K8Wtf7id8+oYyfqtAhjwzqY01+CfDSDMx/VA1Sp8sXWs5AVNIoAKoUfmp/gnPqRjBxuDA==}
@@ -11611,8 +11623,8 @@ packages:
   /tslib@1.14.1:
     resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==}
 
-  /tslib@2.5.0:
-    resolution: {integrity: sha512-336iVw3rtn2BUK7ORdIAHTyxHGRIHVReokCR3XjbckJMK7ms8FysBfhLR8IXnAgy7T0PTPNBWKiH514FOW/WSg==}
+  /tslib@2.5.1:
+    resolution: {integrity: sha512-KaI6gPil5m9vF7DKaoXxx1ia9fxS4qG5YveErRRVknPDXXriu5M8h48YRjB6h5ZUOKuAKlSJYb0GaDe8I39fRw==}
 
   /tsup@6.7.0(typescript@5.0.4):
     resolution: {integrity: sha512-L3o8hGkaHnu5TdJns+mCqFsDBo83bJ44rlK7e6VdanIvpea4ArPcU3swWGsLVbXak1PqQx/V+SSmFPujBK+zEQ==}
@@ -11638,7 +11650,7 @@ packages:
       execa: 5.1.1
       globby: 11.1.0
       joycon: 3.1.1
-      postcss-load-config: 3.1.4
+      postcss-load-config: 3.1.4(postcss@8.4.21)
       resolve-from: 5.0.0
       rollup: 3.20.1
       source-map: 0.8.0-beta.0
@@ -12207,7 +12219,7 @@ packages:
       '@peculiar/json-schema': 1.1.12
       asn1js: 3.0.5
       pvtsutils: 1.3.2
-      tslib: 2.5.0
+      tslib: 2.5.1
 
   /webidl-conversions@3.0.1:
     resolution: {integrity: sha512-2JAn3z8AR6rjK8Sm8orRC0h/bcl/DqL7tRPdGZ4I1CjdF+EaMLmYxBHyXuKL849eucPFhvBoxMsflfOb8kxaeQ==}
@@ -12239,7 +12251,7 @@ packages:
     resolution: {integrity: sha512-/DyMEOrDgLKKIG0fmvtz+4dUX/3Ghozwgm6iPp8KRhvn+eQf9+Q7GWxVNMk3+uCPWfdXYC4ExGBckIXdFEfH1w==}
     engines: {node: '>=10.13.0'}
 
-  /webpack@5.81.0:
+  /webpack@5.81.0(esbuild@0.17.12):
     resolution: {integrity: sha512-AAjaJ9S4hYCVODKLQTgG5p5e11hiMawBwV2v8MYLE0C/6UAGLuAF4n1qa9GOwdxnicaP+5k6M5HrLmD4+gIB8Q==}
     engines: {node: '>=10.13.0'}
     hasBin: true
@@ -12270,7 +12282,7 @@ packages:
       neo-async: 2.6.2
       schema-utils: 3.1.2
       tapable: 2.2.1
-      terser-webpack-plugin: 5.3.7(webpack@5.81.0)
+      terser-webpack-plugin: 5.3.7(esbuild@0.17.12)(webpack@5.81.0)
       watchpack: 2.4.0
       webpack-sources: 3.2.3
     transitivePeerDependencies:

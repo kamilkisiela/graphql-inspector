@@ -64,7 +64,7 @@
     "yargs": "17.7.2"
   },
   "dependencies": {
-    "tslib": "2.5.0"
+    "tslib": "2.5.1"
   },
   "publishConfig": {
     "directory": "dist",
