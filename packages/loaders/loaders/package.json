@@ -62,10 +62,10 @@
     "graphql": "^14.0.0 || ^15.0.0 || ^16.0.0"
   },
   "dependencies": {
-    "@graphql-tools/code-file-loader": "7.3.23",
-    "@graphql-tools/load": "7.8.14",
-    "@graphql-tools/utils": "9.2.1",
-    "tslib": "2.5.0"
+    "@graphql-tools/code-file-loader": "8.0.0",
+    "@graphql-tools/load": "8.0.0",
+    "@graphql-tools/utils": "10.0.0",
+    "tslib": "2.5.2"
   },
   "devDependencies": {
     "@babel/core": "7.21.8",
