@@ -34,7 +34,7 @@
     "next-sitemap": "4.1.3",
     "prop-types": "15.8.1",
     "typescript": "5.0.4",
-    "webpack": "5.81.0"
+    "webpack": "5.83.1"
   },
   "browserslist": {
     "production": [
