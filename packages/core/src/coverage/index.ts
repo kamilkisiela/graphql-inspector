@@ -60,10 +60,11 @@ export interface SchemaCoverage {
     numTypesCoveredFully: number;
     numTypesCovered: number;
     numFields: number;
-    numFiledsCovered: number;
     numQueries: number;
     numMutations: number;
     numSubscriptions: number;
+    numFieldsCovered: number;
+    numFiledsCovered: number; // @deprecated will be removed in next major version
   };
 }
 
@@ -81,6 +82,7 @@ export function coverage(schema: GraphQLSchema, sources: Source[]): SchemaCovera
       numTypesCoveredFully: 0,
       numTypesCovered: 0,
       numFields: 0,
+      numFieldsCovered: 0,
       numFiledsCovered: 0,
       numQueries: 0,
       numMutations: 0,
@@ -206,7 +208,8 @@ export function coverage(schema: GraphQLSchema, sources: Source[]): SchemaCovera
     if (me.fieldsCountCovered > 0) coverage.stats.numTypesCovered++;
     if (me.fieldsCount === me.fieldsCountCovered) coverage.stats.numTypesCoveredFully++;
     coverage.stats.numFields += me.fieldsCount;
-    coverage.stats.numFiledsCovered += me.fieldsCountCovered;
+    coverage.stats.numFieldsCovered += me.fieldsCountCovered;
+    coverage.stats.numFiledsCovered = coverage.stats.numFieldsCovered;
   }
   return coverage;
 }
