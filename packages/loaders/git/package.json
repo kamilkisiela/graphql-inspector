@@ -62,7 +62,7 @@
   },
   "dependencies": {
     "@graphql-tools/git-loader": "8.0.0",
-    "tslib": "2.5.0"
+    "tslib": "2.5.2"
   },
   "devDependencies": {
     "@babel/core": "7.21.8",

@@ -66,7 +66,7 @@
     "@graphql-inspector/logger": "workspace:*",
     "@graphql-tools/utils": "10.0.0",
     "cli-table3": "0.6.3",
-    "tslib": "2.5.0"
+    "tslib": "2.5.2"
   },
   "devDependencies": {
     "graphql": "16.6.0"
