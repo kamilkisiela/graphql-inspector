@@ -21,7 +21,7 @@ WORKDIR /app
 
 RUN npm install -g pnpm
 
-RUN cd ${DISTDIR} \
+RUN echo ${DISTDIR} \ cd ${DISTDIR} \
   && pnpm install \
   && pnpm cache clean \
   && ln -s "${DISTDIR}"/packages/cli/dist/cjs/index.js /usr/local/bin/graphql-inspector \
