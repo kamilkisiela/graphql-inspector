@@ -84,7 +84,7 @@
     "prettier": "2.8.8",
     "rimraf": "5.0.0",
     "smee-client": "1.2.3",
-    "strip-ansi": "7.0.1",
+    "strip-ansi": "7.1.0",
     "typescript": "5.0.4",
     "vitest": "0.30.1"
   },
