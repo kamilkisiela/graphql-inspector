@@ -25,7 +25,7 @@
     "react-flip-move": "3.0.5"
   },
   "devDependencies": {
-    "@algolia/client-search": "4.17.0",
+    "@algolia/client-search": "4.17.1",
     "@next/env": "13.4.3",
     "@theguild/tailwind-config": "0.2.1",
     "@types/node": "20.2.1",
