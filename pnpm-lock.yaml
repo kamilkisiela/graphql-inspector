@@ -1,4 +1,8 @@
-lockfileVersion: '6.0'
+lockfileVersion: '6.1'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
 
 overrides:
   '@octokit/types': 5.4.1
@@ -126,8 +130,8 @@ importers:
         specifier: 16.6.0
         version: 16.6.0
       graphql-config:
-        specifier: 5.0.1
-        version: 5.0.1(@types/node@18.16.3)(graphql@16.6.0)
+        specifier: 5.0.2
+        version: 5.0.2(@types/node@18.16.3)(graphql@16.6.0)
       jsesc:
         specifier: 3.0.2
         version: 3.0.2
@@ -3907,7 +3911,7 @@ packages:
     resolution: {integrity: sha512-pNvoYGPa0hjbVqs+r0blMjaWlrMeb0snwRCTAEdng5Jm00PY9wO4K8m99BmfLn6WED0FKOXTlF53+en/3xybqw==}
     dependencies:
       '@peculiar/webcrypto': 1.4.1
-      '@whatwg-node/node-fetch': 0.3.5
+      '@whatwg-node/node-fetch': 0.3.6
       busboy: 1.6.0
       urlpattern-polyfill: 7.0.0
       web-streams-polyfill: 3.2.1
@@ -3930,16 +3934,6 @@ packages:
       '@whatwg-node/node-fetch': 0.4.0
       urlpattern-polyfill: 8.0.2
     dev: true
-
-  /@whatwg-node/node-fetch@0.3.5:
-    resolution: {integrity: sha512-96crxTZn6L+xFefEKkeAZrGmZ7WUXDYUzAfBf1VtrdS5YozLnFbj9/CNZ8S2LdRS2iL3pMSCvE1xD1wiIAXkAA==}
-    dependencies:
-      '@whatwg-node/events': 0.0.2
-      busboy: 1.6.0
-      fast-querystring: 1.1.1
-      fast-url-parser: 1.1.3
-      tslib: 2.5.0
-    dev: false
 
   /@whatwg-node/node-fetch@0.3.6:
     resolution: {integrity: sha512-w9wKgDO4C95qnXZRwZTfCmLWqyRnooGjcIwG0wADWjw9/HN0p7dtvtgSvItZtUyNteEvgTrd8QojNEqV6DAGTA==}
@@ -7071,9 +7065,9 @@ packages:
     resolution: {integrity: sha512-EtKwoO6kxCL9WO5xipiHTZlSzBm7WLT627TqC/uVRd0HKmq8NXyebnNYxDoBi7wt8eTWrUrKXCOVaFq9x1kgag==}
     dev: true
 
-  /graphql-config@5.0.1(@types/node@18.16.3)(graphql@16.6.0):
-    resolution: {integrity: sha512-cOi5RUK1QOoqwfzCeyVxRn6nsFqzjq7rs93ZvqT+gNxTgmhpROg3ZetgdbhC/yUWnguDM4S9GoHak+Xh9jLZeA==}
-    engines: {node: '>= 16.0.0', pnpm: 7.32.4}
+  /graphql-config@5.0.2(@types/node@18.16.3)(graphql@16.6.0):
+    resolution: {integrity: sha512-7TPxOrlbiG0JplSZYCyxn2XQtqVhXomEjXUmWJVSS5ET1nPhOJSsIb/WTwqWhcYX6G0RlHXSj9PLtGTKmxLNGg==}
+    engines: {node: '>= 16.0.0'}
     peerDependencies:
       cosmiconfig-toml-loader: ^1.0.0
       graphql: ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
