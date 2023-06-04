@@ -3,6 +3,9 @@
   "version": "0.0.0",
   "type": "module",
   "private": true,
+  "engines": {
+    "node": ">=16.0.0"
+  },
   "scripts": {
     "analyze": "cross-env ANALYZE=true pnpm build",
     "build": "next build && next-sitemap --config next-sitemap.config.cjs",
