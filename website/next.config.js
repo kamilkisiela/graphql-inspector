@@ -6,10 +6,17 @@ export default withGuildDocs({
   },
   redirects: () =>
     Object.entries({
-      '/install': '/docs/introduction/installation',
-      '/enterprise': '/docs/introduction',
+      '/install': '/docs/installation',
+      '/enterprise': '/docs',
+      '/docs/installation': '/docs/installation',
+      '/docs/introduction': '/docs',
       '/docs/index': '/docs',
       '/products': '/docs/products/ci',
+      '/docs/recipies/github': '/docs/products/github',
+      '/docs/api': '/docs/api/schema',
+      '/docs/recipes': '/docs/recipes/environments',
+      '/docs/recipes/github': '/docs/recipes/pull-requests',
+      '/docs/essentials': '/docs/commands/diff'
     }).map(([from, to]) => ({
       source: from,
       destination: to,
