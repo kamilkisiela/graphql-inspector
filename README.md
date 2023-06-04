@@ -51,7 +51,7 @@ the project.
 ## Documentation
 
 Documentation is available at
-[**graphql-inspector.com/docs/introduction**](https://www.graphql-inspector.com/docs/introduction).
+[**graphql-inspector.com/docs**](https://www.graphql-inspector.com/docs).
 
 ## Related
 

@@ -82,7 +82,7 @@ export function IndexPage(): ReactElement {
         title="GraphQL Inspector"
         description="Validate schemas and detect changes. Receive schema change notifications. Keep Operations and Fragments consistent."
         link={{
-          href: '/docs/introduction',
+          href: '/docs',
           children: 'Get Started',
           title: 'Get started with GraphQL Inspector Docs',
         }}
