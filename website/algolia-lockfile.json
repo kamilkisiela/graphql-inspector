@@ -12,6 +12,28 @@
     "type": "Documentation"
   },
   {
+    "objectID": "inspector-docs-",
+    "headings": [
+      "Some of the key features of GraphQL Inspector include:"
+    ],
+    "toc": [
+      {
+        "children": [],
+        "title": "Some of the key features of GraphQL Inspector include:",
+        "anchor": "some-of-the-key-features-of-graphql-inspector-include"
+      }
+    ],
+    "content": "af4775ec5cc84922c173e4632a53743a",
+    "url": "https://www.the-guild.dev/graphql/inspector/docs/",
+    "domain": "https://www.the-guild.dev/graphql/inspector",
+    "hierarchy": [
+      "docs"
+    ],
+    "source": "Inspector",
+    "title": "GraphQL Inspector",
+    "type": "Documentation"
+  },
+  {
     "objectID": "inspector-docs-api-documents",
     "headings": [
       "JavaScript And TypeScript Files",
@@ -106,56 +128,125 @@
     "type": "Documentation"
   },
   {
-    "objectID": "inspector-docs-essentials-audit",
+    "objectID": "inspector-docs-commands-audit",
     "headings": [
-      "Usage"
+      "Audit - Usage",
+      "Arguments",
+      "Flags",
+      "Output",
+      "Example"
     ],
     "toc": [
       {
+        "children": [],
+        "title": "Audit - Usage",
+        "anchor": "audit---usage"
+      },
+      {
+        "children": [],
+        "title": "Arguments",
+        "anchor": "arguments"
+      },
+      {
+        "children": [],
+        "title": "Flags",
+        "anchor": "flags"
+      },
+      {
+        "children": [],
+        "title": "Output",
+        "anchor": "output"
+      },
+      {
         "children": [
           {
-            "children": [
-              {
-                "children": [],
-                "title": "Arguments",
-                "anchor": "arguments"
-              },
-              {
-                "children": [],
-                "title": "Flags",
-                "anchor": "flags"
-              },
-              {
-                "children": [],
-                "title": "Output",
-                "anchor": "output"
-              }
-            ],
-            "title": "Example",
-            "anchor": "example"
+            "children": [],
+            "title": "Example - Glob Pattern",
+            "anchor": "example---glob-pattern"
           }
         ],
-        "title": "Usage",
-        "anchor": "usage"
+        "title": "Example",
+        "anchor": "example"
       }
     ],
-    "content": "f658f7ef807d4fc3b25969ead7214ae0",
-    "url": "https://www.the-guild.dev/graphql/inspector/docs/essentials/audit",
+    "content": "0ea6010cc455f73fbe7419c9fa319b48",
+    "url": "https://www.the-guild.dev/graphql/inspector/docs/commands/audit",
     "domain": "https://www.the-guild.dev/graphql/inspector",
     "hierarchy": [
       "docs",
-      "essentials"
+      "commands"
     ],
     "source": "Inspector",
-    "title": "Audit Documents",
+    "title": "Audit",
     "type": "Documentation"
   },
   {
-    "objectID": "inspector-docs-essentials-coverage",
+    "objectID": "inspector-docs-commands-coverage",
     "headings": [
-      "Usage"
+      "Coverage - Usage",
+      "Arguments",
+      "Flags",
+      "Output",
+      "Examples",
+      "Statistics"
     ],
     "toc": [
+      {
+        "children": [],
+        "title": "Coverage - Usage",
+        "anchor": "coverage---usage"
+      },
+      {
+        "children": [],
+        "title": "Arguments",
+        "anchor": "arguments"
+      },
+      {
+        "children": [],
+        "title": "Flags",
+        "anchor": "flags"
+      },
+      {
+        "children": [],
+        "title": "Output",
+        "anchor": "output"
+      },
+      {
+        "children": [],
+        "title": "Examples",
+        "anchor": "examples"
+      },
+      {
+        "children": [],
+        "title": "Statistics",
+        "anchor": "statistics"
+      }
+    ],
+    "content": "6fe1fdcb1d6a14c2f9858035aa480e91",
+    "url": "https://www.the-guild.dev/graphql/inspector/docs/commands/coverage",
+    "domain": "https://www.the-guild.dev/graphql/inspector",
+    "hierarchy": [
+      "docs",
+      "commands"
+    ],
+    "source": "Inspector",
+    "title": "Coverage",
+    "type": "Documentation"
+  },
+  {
+    "objectID": "inspector-docs-commands-diff",
+    "headings": [
+      "You can choose between:",
+      "Diff - Usage",
+      "Examples",
+      "Rules"
+    ],
+    "toc": [
+      {
+        "children": [],
+        "title": "You can choose between:",
+        "anchor": "you-can-choose-between"
+      },
       {
         "children": [
           {
@@ -175,44 +266,13 @@
             "anchor": "arguments"
           }
         ],
-        "title": "Usage",
-        "anchor": "usage"
-      }
-    ],
-    "content": "919c9c51f6885b7b269e990c0dcb44cb",
-    "url": "https://www.the-guild.dev/graphql/inspector/docs/essentials/coverage",
-    "domain": "https://www.the-guild.dev/graphql/inspector",
-    "hierarchy": [
-      "docs",
-      "essentials"
-    ],
-    "source": "Inspector",
-    "title": "Schema Coverage",
-    "type": "Documentation"
-  },
-  {
-    "objectID": "inspector-docs-essentials-diff",
-    "headings": [
-      "Using GitHub Application",
-      "Using GitHub Action",
-      "Using in CI",
-      "Using CLI"
-    ],
-    "toc": [
-      {
-        "children": [],
-        "title": "Using GitHub Application",
-        "anchor": "using-github-application"
+        "title": "Diff - Usage",
+        "anchor": "diff---usage"
       },
       {
         "children": [],
-        "title": "Using GitHub Action",
-        "anchor": "using-github-action"
-      },
-      {
-        "children": [],
-        "title": "Using in CI",
-        "anchor": "using-in-ci"
+        "title": "Examples",
+        "anchor": "examples"
       },
       {
         "children": [
@@ -220,13 +280,23 @@
             "children": [
               {
                 "children": [],
-                "title": "Examples",
-                "anchor": "examples"
+                "title": "`suppressRemovalOfDeprecatedField`",
+                "anchor": "suppressremovalofdeprecatedfield"
               },
               {
                 "children": [],
-                "title": "Rules",
-                "anchor": "rules"
+                "title": "`ignoreDescriptionChanges`",
+                "anchor": "ignoredescriptionchanges"
+              },
+              {
+                "children": [],
+                "title": "`safeUnreachable`",
+                "anchor": "safeunreachable"
+              },
+              {
+                "children": [],
+                "title": "`considerUsage`",
+                "anchor": "considerusage"
               },
               {
                 "children": [],
@@ -239,329 +309,221 @@
                 "anchor": "passing-different-headers-to-multiple-remote-schemas"
               }
             ],
-            "title": "Usage",
-            "anchor": "usage"
+            "title": "`dangerousBreaking`",
+            "anchor": "dangerousbreaking"
           }
         ],
-        "title": "Using CLI",
-        "anchor": "using-cli"
+        "title": "Rules",
+        "anchor": "rules"
       }
     ],
-    "content": "4216d3b41ae3af3580da354b1cc6dd17",
-    "url": "https://www.the-guild.dev/graphql/inspector/docs/essentials/diff",
+    "content": "87074ecd5cc914a3f11d930c891263a7",
+    "url": "https://www.the-guild.dev/graphql/inspector/docs/commands/diff",
     "domain": "https://www.the-guild.dev/graphql/inspector",
     "hierarchy": [
       "docs",
-      "essentials"
+      "commands"
     ],
     "source": "Inspector",
-    "title": "Schema Validation",
+    "title": "Diff",
     "type": "Documentation"
   },
   {
-    "objectID": "inspector-docs-essentials-introspect",
+    "objectID": "inspector-docs-commands-introspect",
     "headings": [
-      "Usage"
-    ],
-    "toc": [
-      {
-        "children": [
-          {
-            "children": [
-              {
-                "children": [],
-                "title": "Flags",
-                "anchor": "flags"
-              },
-              {
-                "children": [],
-                "title": "Output",
-                "anchor": "output"
-              }
-            ],
-            "title": "Arguments",
-            "anchor": "arguments"
-          }
-        ],
-        "title": "Usage",
-        "anchor": "usage"
-      }
-    ],
-    "content": "735d35735800f484fe6a894de561b8c4",
-    "url": "https://www.the-guild.dev/graphql/inspector/docs/essentials/introspect",
-    "domain": "https://www.the-guild.dev/graphql/inspector",
-    "hierarchy": [
-      "docs",
-      "essentials"
-    ],
-    "source": "Inspector",
-    "title": "Introspection",
-    "type": "Documentation"
-  },
-  {
-    "objectID": "inspector-docs-essentials-notifications",
-    "headings": [
-      "How does it Work?",
-      "Configuration",
-      "Notifications on Slack",
-      "Notifications on Discord",
-      "Notifications via Webhook"
+      "Introspection - Usage",
+      "Arguments",
+      "Flags",
+      "Output",
+      "Examples"
     ],
     "toc": [
       {
         "children": [],
-        "title": "How does it Work?",
-        "anchor": "how-does-it-work"
+        "title": "Introspection - Usage",
+        "anchor": "introspection---usage"
+      },
+      {
+        "children": [],
+        "title": "Arguments",
+        "anchor": "arguments"
+      },
+      {
+        "children": [],
+        "title": "Flags",
+        "anchor": "flags"
+      },
+      {
+        "children": [],
+        "title": "Output",
+        "anchor": "output"
       },
       {
         "children": [
           {
             "children": [],
-            "title": "Using with Environments",
-            "anchor": "using-with-environments"
+            "title": "Example file",
+            "anchor": "example-file"
           }
         ],
-        "title": "Configuration",
-        "anchor": "configuration"
-      },
-      {
-        "children": [],
-        "title": "Notifications on Slack",
-        "anchor": "notifications-on-slack"
-      },
-      {
-        "children": [],
-        "title": "Notifications on Discord",
-        "anchor": "notifications-on-discord"
-      },
-      {
-        "children": [
-          {
-            "children": [
-              {
-                "children": [],
-                "title": "Example Payload",
-                "anchor": "example-payload"
-              }
-            ],
-            "title": "Payload Structure",
-            "anchor": "payload-structure"
-          }
-        ],
-        "title": "Notifications via Webhook",
-        "anchor": "notifications-via-webhook"
+        "title": "Examples",
+        "anchor": "examples"
       }
     ],
-    "content": "e3e65231ca517f1a351b4b366463fa37",
-    "url": "https://www.the-guild.dev/graphql/inspector/docs/essentials/notifications",
+    "content": "735d35735800f484fe6a894de561b8c4",
+    "url": "https://www.the-guild.dev/graphql/inspector/docs/commands/introspect",
     "domain": "https://www.the-guild.dev/graphql/inspector",
     "hierarchy": [
       "docs",
-      "essentials"
+      "commands"
     ],
     "source": "Inspector",
-    "title": "Schema Change Notifications",
+    "title": "Introspect",
     "type": "Documentation"
   },
   {
-    "objectID": "inspector-docs-essentials-serve",
+    "objectID": "inspector-docs-commands-serve",
     "headings": [
-      "Usage"
-    ],
-    "toc": [
-      {
-        "children": [
-          {
-            "children": [
-              {
-                "children": [],
-                "title": "Flags",
-                "anchor": "flags"
-              },
-              {
-                "children": [],
-                "title": "Output",
-                "anchor": "output"
-              }
-            ],
-            "title": "Arguments",
-            "anchor": "arguments"
-          }
-        ],
-        "title": "Usage",
-        "anchor": "usage"
-      }
-    ],
-    "content": "54cb60fba29ce62a7e49c7987fb98972",
-    "url": "https://www.the-guild.dev/graphql/inspector/docs/essentials/serve",
-    "domain": "https://www.the-guild.dev/graphql/inspector",
-    "hierarchy": [
-      "docs",
-      "essentials"
-    ],
-    "source": "Inspector",
-    "title": "Serve With Faked Data",
-    "type": "Documentation"
-  },
-  {
-    "objectID": "inspector-docs-essentials-similar",
-    "headings": [
-      "Usage"
-    ],
-    "toc": [
-      {
-        "children": [
-          {
-            "children": [
-              {
-                "children": [],
-                "title": "Flags",
-                "anchor": "flags"
-              },
-              {
-                "children": [],
-                "title": "Output",
-                "anchor": "output"
-              }
-            ],
-            "title": "Arguments",
-            "anchor": "arguments"
-          }
-        ],
-        "title": "Usage",
-        "anchor": "usage"
-      }
-    ],
-    "content": "adeb3f2dd52e60d1bba6cf1adf44903d",
-    "url": "https://www.the-guild.dev/graphql/inspector/docs/essentials/similar",
-    "domain": "https://www.the-guild.dev/graphql/inspector",
-    "hierarchy": [
-      "docs",
-      "essentials"
-    ],
-    "source": "Inspector",
-    "title": "Find Similar Types",
-    "type": "Documentation"
-  },
-  {
-    "objectID": "inspector-docs-essentials-validate",
-    "headings": [
-      "Usage"
-    ],
-    "toc": [
-      {
-        "children": [
-          {
-            "children": [
-              {
-                "children": [],
-                "title": "Arguments",
-                "anchor": "arguments"
-              },
-              {
-                "children": [],
-                "title": "Flags",
-                "anchor": "flags"
-              },
-              {
-                "children": [],
-                "title": "Output",
-                "anchor": "output"
-              }
-            ],
-            "title": "Example",
-            "anchor": "example"
-          }
-        ],
-        "title": "Usage",
-        "anchor": "usage"
-      }
-    ],
-    "content": "69255f105a51abf4bc466b9950634d04",
-    "url": "https://www.the-guild.dev/graphql/inspector/docs/essentials/validate",
-    "domain": "https://www.the-guild.dev/graphql/inspector",
-    "hierarchy": [
-      "docs",
-      "essentials"
-    ],
-    "source": "Inspector",
-    "title": "Validate Documents",
-    "type": "Documentation"
-  },
-  {
-    "objectID": "inspector-docs-introduction-",
-    "headings": [
-      "GitHub Application and Action",
-      "Command Line Tool",
-      "Features"
+      "Serve - Usage",
+      "Arguments",
+      "Flags",
+      "Output",
+      "Examples"
     ],
     "toc": [
       {
         "children": [],
-        "title": "GitHub Application and Action",
-        "anchor": "github-application-and-action"
+        "title": "Serve - Usage",
+        "anchor": "serve---usage"
       },
       {
         "children": [],
-        "title": "Command Line Tool",
-        "anchor": "command-line-tool"
+        "title": "Arguments",
+        "anchor": "arguments"
       },
       {
-        "children": [
-          {
-            "children": [
-              {
-                "children": [],
-                "title": "Keep Operations and Fragments in Line with GraphQL Schema",
-                "anchor": "keep-operations-and-fragments-in-line-with-graphql-schema"
-              },
-              {
-                "children": [],
-                "title": "GitHub Application and GitHub Action",
-                "anchor": "github-application-and-github-action"
-              },
-              {
-                "children": [],
-                "title": "Find Duplicated Types",
-                "anchor": "find-duplicated-types"
-              },
-              {
-                "children": [],
-                "title": "Schema coverage",
-                "anchor": "schema-coverage"
-              },
-              {
-                "children": [],
-                "title": "Serve Faked GraphQL API",
-                "anchor": "serve-faked-graphql-api"
-              },
-              {
-                "children": [],
-                "title": "Introspect GraphQL API",
-                "anchor": "introspect-graphql-api"
-              }
-            ],
-            "title": "Detect Changes Between GraphQL Schemas",
-            "anchor": "detect-changes-between-graphql-schemas"
-          }
-        ],
-        "title": "Features",
-        "anchor": "features"
+        "children": [],
+        "title": "Flags",
+        "anchor": "flags"
+      },
+      {
+        "children": [],
+        "title": "Output",
+        "anchor": "output"
+      },
+      {
+        "children": [],
+        "title": "Examples",
+        "anchor": "examples"
       }
     ],
-    "content": "512445a920fb23fd64ea412b7eea6070",
-    "url": "https://www.the-guild.dev/graphql/inspector/docs/introduction/",
+    "content": "f725f3d4eefb0a0e25c249215fd1bca7",
+    "url": "https://www.the-guild.dev/graphql/inspector/docs/commands/serve",
     "domain": "https://www.the-guild.dev/graphql/inspector",
     "hierarchy": [
       "docs",
-      "introduction"
+      "commands"
     ],
     "source": "Inspector",
-    "title": "What is GraphQL Inspector?",
+    "title": "Serve",
     "type": "Documentation"
   },
   {
-    "objectID": "inspector-docs-introduction-installation",
+    "objectID": "inspector-docs-commands-similar",
+    "headings": [
+      "Similar - Usage",
+      "Arguments",
+      "Flags",
+      "Output",
+      "Examples"
+    ],
+    "toc": [
+      {
+        "children": [],
+        "title": "Similar - Usage",
+        "anchor": "similar---usage"
+      },
+      {
+        "children": [],
+        "title": "Arguments",
+        "anchor": "arguments"
+      },
+      {
+        "children": [],
+        "title": "Flags",
+        "anchor": "flags"
+      },
+      {
+        "children": [],
+        "title": "Output",
+        "anchor": "output"
+      },
+      {
+        "children": [],
+        "title": "Examples",
+        "anchor": "examples"
+      }
+    ],
+    "content": "035241e19253524abfd9263619f7f85f",
+    "url": "https://www.the-guild.dev/graphql/inspector/docs/commands/similar",
+    "domain": "https://www.the-guild.dev/graphql/inspector",
+    "hierarchy": [
+      "docs",
+      "commands"
+    ],
+    "source": "Inspector",
+    "title": "Similar",
+    "type": "Documentation"
+  },
+  {
+    "objectID": "inspector-docs-commands-validate",
+    "headings": [
+      "Validate - Usage",
+      "Arguments",
+      "Flags",
+      "Output",
+      "Example"
+    ],
+    "toc": [
+      {
+        "children": [],
+        "title": "Validate - Usage",
+        "anchor": "validate---usage"
+      },
+      {
+        "children": [],
+        "title": "Arguments",
+        "anchor": "arguments"
+      },
+      {
+        "children": [],
+        "title": "Flags",
+        "anchor": "flags"
+      },
+      {
+        "children": [],
+        "title": "Output",
+        "anchor": "output"
+      },
+      {
+        "children": [],
+        "title": "Example",
+        "anchor": "example"
+      }
+    ],
+    "content": "88d91c3981b7d76900e222e21c42ca0e",
+    "url": "https://www.the-guild.dev/graphql/inspector/docs/commands/validate",
+    "domain": "https://www.the-guild.dev/graphql/inspector",
+    "hierarchy": [
+      "docs",
+      "commands"
+    ],
+    "source": "Inspector",
+    "title": "Validate",
+    "type": "Documentation"
+  },
+  {
+    "objectID": "inspector-docs-installation",
     "headings": [
       "GitHub Application",
       "GitHub Action",
@@ -585,8 +547,8 @@
         "children": [
           {
             "children": [],
-            "title": "Usage",
-            "anchor": "usage"
+            "title": "CLI Usage",
+            "anchor": "cli-usage"
           }
         ],
         "title": "CLI",
@@ -598,8 +560,8 @@
             "children": [
               {
                 "children": [],
-                "title": "Usage",
-                "anchor": "usage-1"
+                "title": "CLI for CI - Usage",
+                "anchor": "cli-for-ci---usage"
               }
             ],
             "title": "Commands",
@@ -613,8 +575,8 @@
         "children": [
           {
             "children": [],
-            "title": "Usage",
-            "anchor": "usage-2"
+            "title": "Programmatic API - Usage",
+            "anchor": "programmatic-api---usage"
           }
         ],
         "title": "Programmatic API",
@@ -626,15 +588,14 @@
         "anchor": "docker"
       }
     ],
-    "content": "a1de75dd936356ad5fdb0c0dd05d9a9e",
-    "url": "https://www.the-guild.dev/graphql/inspector/docs/introduction/installation",
+    "content": "5432c8e9a9cffe8108eb5076031516af",
+    "url": "https://www.the-guild.dev/graphql/inspector/docs/installation",
     "domain": "https://www.the-guild.dev/graphql/inspector",
     "hierarchy": [
-      "docs",
-      "introduction"
+      "docs"
     ],
     "source": "Inspector",
-    "title": "Getting Started",
+    "title": "Getting Started and Installation",
     "type": "Documentation"
   },
   {
@@ -708,6 +669,70 @@
     ],
     "source": "Inspector",
     "title": "From GraphQL-CLI",
+    "type": "Documentation"
+  },
+  {
+    "objectID": "inspector-docs-notifications",
+    "headings": [
+      "How does it Work?",
+      "Configuration",
+      "Notifications on Slack",
+      "Notifications on Discord",
+      "Notifications via Webhook"
+    ],
+    "toc": [
+      {
+        "children": [],
+        "title": "How does it Work?",
+        "anchor": "how-does-it-work"
+      },
+      {
+        "children": [
+          {
+            "children": [],
+            "title": "Using with Environments",
+            "anchor": "using-with-environments"
+          }
+        ],
+        "title": "Configuration",
+        "anchor": "configuration"
+      },
+      {
+        "children": [],
+        "title": "Notifications on Slack",
+        "anchor": "notifications-on-slack"
+      },
+      {
+        "children": [],
+        "title": "Notifications on Discord",
+        "anchor": "notifications-on-discord"
+      },
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "children": [],
+                "title": "Example Payload",
+                "anchor": "example-payload"
+              }
+            ],
+            "title": "Payload Structure",
+            "anchor": "payload-structure"
+          }
+        ],
+        "title": "Notifications via Webhook",
+        "anchor": "notifications-via-webhook"
+      }
+    ],
+    "content": "e3e65231ca517f1a351b4b366463fa37",
+    "url": "https://www.the-guild.dev/graphql/inspector/docs/notifications",
+    "domain": "https://www.the-guild.dev/graphql/inspector",
+    "hierarchy": [
+      "docs"
+    ],
+    "source": "Inspector",
+    "title": "Schema Change Notifications",
     "type": "Documentation"
   },
   {
