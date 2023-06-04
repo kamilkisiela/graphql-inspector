@@ -14,6 +14,9 @@
     "url": "https://github.com/kamilkisiela"
   },
   "license": "MIT",
+  "engines": {
+    "node": ">=16.0.0"
+  },
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "exports": {
@@ -73,15 +76,15 @@
   },
   "dependencies": {
     "@graphql-inspector/core": "workspace:*",
-    "@whatwg-node/fetch": "0.8.8",
+    "@whatwg-node/fetch": "0.9.2",
     "dataloader": "2.2.2",
     "js-yaml": "4.1.0",
-    "tslib": "2.5.0"
+    "tslib": "2.5.3"
   },
   "devDependencies": {
     "@types/express": "4.17.17",
     "@types/js-yaml": "4.0.5",
-    "@types/node": "18.16.3",
+    "@types/node": "20.2.5",
     "probot": "11.4.1",
     "smee-client": "1.2.3"
   },

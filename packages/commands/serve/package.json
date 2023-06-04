@@ -14,6 +14,9 @@
     "url": "https://github.com/kamilkisiela"
   },
   "license": "MIT",
+  "engines": {
+    "node": ">=16.0.0"
+  },
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "exports": {
@@ -65,7 +68,7 @@
     "@graphql-inspector/logger": "workspace:*",
     "graphql-yoga": "3.9.1",
     "open": "8.4.2",
-    "tslib": "2.5.0"
+    "tslib": "2.5.3"
   },
   "devDependencies": {
     "graphql": "16.6.0"
