@@ -57,7 +57,7 @@
     "log-symbols": "4.1.0",
     "std-env": "3.3.3",
     "tslib": "2.5.3"
-    },
+  },
   "publishConfig": {
     "directory": "dist",
     "access": "public"
