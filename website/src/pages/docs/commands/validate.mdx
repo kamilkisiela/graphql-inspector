@@ -3,13 +3,15 @@ description:
   Validate Documents - Validate documents against a schema and looks for deprecated usage.
 ---
 
-# Validate Documents
+import { Callout } from '@theguild/components'
+
+# Validate (Documents)
 
 Validate documents against a schema and looks for deprecated usage.
 
 ![Validate](/assets/img/cli/validate.jpg)
 
-## Usage
+## Validate - Usage
 
 Run the following command:
 
@@ -17,18 +19,12 @@ Run the following command:
 graphql-inspector validate DOCUMENTS SCHEMA
 ```
 
-### Example
-
-```sh
-graphql-inspector validate './documents/*.graphql' http://localhost:3000/graphql
-```
-
-### Arguments
+## Arguments
 
 - [`DOCUMENTS`](../api/documents) - a glob pattern that points to GraphQL Documents / Operations
 - [`SCHEMA`](../api/schema) - point to a schema
 
-### Flags
+## Flags
 
 - `-d, --deprecated` - Fail on deprecated usage (default: `false`)
 - `--noStrictFragments` - Do not fail on duplicated fragment names (default: `false`)
@@ -60,9 +56,17 @@ graphql-inspector validate './documents/*.graphql' http://localhost:3000/graphql
 - `-t, --token <s>` - an access token
 - `-h, --header <s>` - set http header (`--header 'Auth: Basic 123'`)
 
-### Output
+## Output
 
 A list of errors found in documents. A second list with every deprecated usage.
 
 When there's at least one error or a deprecated usage (when `--deprecated` flag is enabled), the
 process fails.
+
+## Example
+
+```sh
+graphql-inspector validate './documents/*.graphql' http://localhost:3000/graphql
+```
+
+<Callout type="warning">Make sure to wrap the document in quotes.</Callout>

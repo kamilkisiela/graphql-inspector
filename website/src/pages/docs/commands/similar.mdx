@@ -2,13 +2,13 @@
 description: Find Similar Types - Get a list of similar types to find duplicates.
 ---
 
-# Find Similar Types
+# Similar (Schema)
 
 Get a list of similar types to find duplicates.
 
 ![Similar](/assets/img/cli/similar.jpg)
 
-## Usage
+## Similar - Usage
 
 Run the following command:
 
@@ -16,11 +16,11 @@ Run the following command:
 graphql-inspector similar SCHEMA
 ```
 
-### Arguments
+## Arguments
 
 - [`SCHEMA`](../api/schema) - point to a schema
 
-### Flags
+## Flags
 
 - `-n, --type <s>` - Check only a single type (_checks all types by default_)
 - `-t, --threshold <n>` - Threshold of similarity ratio (default: `0.4`)
@@ -32,8 +32,22 @@ graphql-inspector similar SCHEMA
 - `--federation` - Support Apollo Federation directives (default: `false`)
 - `--aws` - Support AWS Appsync directives and scalar types (default: `false`)
 
-### Output
+## Output
 
 A list of similar types with the rating, grouped by a name.
 
-The process always succeeds.
+The process always succeeds:
+
+- When no similar types are found, the output is:
+
+```
+info No similar types found
+```
+
+- When similar types are found, the output is: ![similar-output](/assets/img/similar-output.png)
+
+## Examples
+
+```sh
+graphql-inspector similar example/schemas/deep.graphql
+```

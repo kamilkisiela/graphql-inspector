@@ -4,14 +4,14 @@ description:
   application.
 ---
 
-# Schema Coverage
+# Coverage (Documents & Schema)
 
 Schema coverage is based on documents. Find out how many times types and fields are used in your
 application.
 
 ![Coverage](/assets/img/cli/coverage.png)
 
-## Usage
+## Coverage - Usage
 
 Run the following command:
 
@@ -19,12 +19,12 @@ Run the following command:
 graphql-inspector coverage DOCUMENTS SCHEMA
 ```
 
-### Arguments
+## Arguments
 
 - [`DOCUMENTS`](../api/documents) - a glob pattern that points to GraphQL Documents / Operations
 - [`SCHEMA`](../api/schema) - point to a schema
 
-### Flags
+## Flags
 
 - `-s, --silent`- Do not render any stats in the terminal (default: `false`)
 - `-w, --write <s>` - Write a file with coverage stats (_disabled by default_)
@@ -36,12 +36,20 @@ graphql-inspector coverage DOCUMENTS SCHEMA
 - `--federation` - Support Apollo Federation directives (default: `false`)
 - `--aws` - Support AWS Appsync directives and scalar types (default: `false`)
 
-### Output
+## Output
 
 Depending on enabled flags, a printed GraphQL Schema with stats per each field and overall stats, a
 JSON file with data.
 
-#### Statistics
+## Examples
+
+Compare your local schema against a remote server:
+
+```sh
+graphql-inspector coverage example/documents/post.graphql example/schemas/new-valid.graphql
+```
+
+## Statistics
 
 - Types covered: This shows the percentage of types in your schema that have been covered by your
   tests. In your case, you have achieved 100% coverage for types, which means that all types in your
