@@ -16,7 +16,7 @@ export default withGuildDocs({
       '/docs/api': '/docs/api/schema',
       '/docs/recipes': '/docs/recipes/environments',
       '/docs/recipes/github': '/docs/recipes/pull-requests',
-      '/docs/essentials': '/docs/commands/diff',
+      '/docs/essentials': '/docs/commands/diff'
     }).map(([from, to]) => ({
       source: from,
       destination: to,
