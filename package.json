@@ -26,8 +26,8 @@
   "scripts": {
     "action": "ncc build packages/action/src/action.ts --out action --minify --transpile-only",
     "build": "bob build",
-    "check": "bob check",
     "bundle": "webpack",
+    "check": "bob check",
     "lint": "eslint --cache --ignore-path .gitignore .",
     "lint:prettier": "prettier --cache --check .",
     "prebuild": "rimraf \"packages/**/dist/\"",
