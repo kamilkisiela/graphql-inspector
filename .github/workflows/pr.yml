@@ -23,5 +23,5 @@ jobs:
       githubToken: ${{ secrets.GITHUB_TOKEN }}
     with:
       installDependencies: true
-      packageManager: pnpm
       nodeVersion: 18
+      packageManager: pnpm
