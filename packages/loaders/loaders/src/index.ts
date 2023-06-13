@@ -38,8 +38,8 @@ export class LoadersRegistry {
         ...options,
         ...(enableApolloFederation
           ? {
-            schemas: [
-              buildSchema(/* GraphQL */ `
+              schemas: [
+                buildSchema(/* GraphQL */ `
                   scalar _FieldSet
                   directive @external on FIELD_DEFINITION
                   directive @requires(fields: _FieldSet!) on FIELD_DEFINITION
@@ -47,13 +47,13 @@ export class LoadersRegistry {
                   directive @key(fields: _FieldSet!) on OBJECT | INTERFACE
                   directive @extends on OBJECT | INTERFACE
                 `),
-            ],
-          }
+              ],
+            }
           : {}),
         ...(enableAWS
           ? {
-            schemas: [
-              buildSchema(/* GraphQL */ `
+              schemas: [
+                buildSchema(/* GraphQL */ `
                   scalar AWSDate
                   scalar AWSTime
                   scalar AWSDateTime
@@ -91,8 +91,8 @@ export class LoadersRegistry {
                   ) on FIELD_DEFINITION | OBJECT
                   directive @defer on FIELD
                 `),
-            ],
-          }
+              ],
+            }
           : {}),
       }),
     );
