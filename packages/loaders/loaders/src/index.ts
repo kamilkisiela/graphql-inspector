@@ -128,12 +128,12 @@ function loadModule<T>(name: string): T {
 }
 
 /**
- * Adds `(source: <file-path >)` suffix to error message if source is available
+ * Adds `(source: <file-path>)` suffix to error message if source is available
  */
 function enrichError<T>(looksPromising: Promise<T>): Promise<T> {
   return looksPromising.catch(error => {
     if (error.source?.name) {
-      error.message = `${error.message}(source: ${error.source?.name})`;
+      error.message = `${error.message} (source: ${error.source?.name})`;
     }
     return Promise.reject(error);
   });
