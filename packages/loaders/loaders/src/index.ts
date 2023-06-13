@@ -66,23 +66,25 @@ export class LoadersRegistry {
                   scalar BigInt
                   scalar Double
 
-                  directive @aws_subscribe(mutations: [String!]!) on FIELD_DEFINITION
+                  directive @aws_subscribe(mutations: [String]) on FIELD_DEFINITION
 
                   directive @deprecated(
                     reason: String
                   ) on FIELD_DEFINITION | INPUT_FIELD_DEFINITION | ENUM | ENUM_VALUE
 
-                  directive @aws_auth(cognito_groups: [String!]!) on FIELD_DEFINITION
-                  directive @aws_api_key on FIELD_DEFINITION | OBJECT
-                  directive @aws_iam on FIELD_DEFINITION | OBJECT
-                  directive @aws_oidc on FIELD_DEFINITION | OBJECT
-                  directive @aws_cognito_user_pools(
-                    cognito_groups: [String!]
-                  ) on FIELD_DEFINITION | OBJECT
-                  directive @aws_lambda on FIELD_DEFINITION | OBJECT
-                `),
-              ],
-            }
+                  directive @aws_auth(cognito_groups: [String]) on FIELD_DEFINITION
+                  directive @aws_api_key on OBJECT | FIELD_DEFINITION
+                  directive @aws_iam on OBJECT | FIELD_DEFINITION | INPUT_OBJECT
+                  directive @aws_oidc on OBJECT | FIELD_DEFINITION
+                  directive @aws_cognito_user_pools(cognito_groups: [String]) on OBJECT | FIELD_DEFINITION | INPUT_OBJECT
+                  directive @aws_publish(
+                    subscriptions: [String]
+                  ) on FIELD_DEFINITION
+                  directive @aws_lambda(name: String, lambda_function_arn: String) on FIELD_DEFINITION | OBJECT
+                  directive @defer on FIELD
+                `)
+            ],
+          }
           : {}),
       }),
     );
