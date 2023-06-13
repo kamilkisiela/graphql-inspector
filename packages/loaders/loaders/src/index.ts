@@ -75,6 +75,10 @@ export class LoadersRegistry {
                   directive @aws_auth(cognito_groups: [String]) on FIELD_DEFINITION
                   directive @aws_api_key on OBJECT | FIELD_DEFINITION
                   directive @aws_iam on OBJECT | FIELD_DEFINITION | INPUT_OBJECT
+                  """
+                  Tells the service this field/object has access authorized by a Lambda Authorizer.
+                  """
+                  directive @aws_lambda on FIELD_DEFINITION | OBJECT
                   directive @aws_oidc on OBJECT | FIELD_DEFINITION
                   directive @aws_cognito_user_pools(
                     cognito_groups: [String]
@@ -85,14 +89,10 @@ export class LoadersRegistry {
                     """
                     subscriptions: [String]
                   ) on FIELD_DEFINITION
-                  directive @aws_lambda(
-                    lambda_function_arn: String
-                    name: String
-                  ) on FIELD_DEFINITION | OBJECT
                   directive @defer on FIELD
                 `),
-              ],
-            }
+            ],
+          
           : {}),
       }),
     );
