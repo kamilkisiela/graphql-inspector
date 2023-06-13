@@ -38,8 +38,8 @@ export class LoadersRegistry {
         ...options,
         ...(enableApolloFederation
           ? {
-              schemas: [
-                buildSchema(/* GraphQL */ `
+            schemas: [
+              buildSchema(/* GraphQL */ `
                   scalar _FieldSet
                   directive @external on FIELD_DEFINITION
                   directive @requires(fields: _FieldSet!) on FIELD_DEFINITION
@@ -47,13 +47,13 @@ export class LoadersRegistry {
                   directive @key(fields: _FieldSet!) on OBJECT | INTERFACE
                   directive @extends on OBJECT | INTERFACE
                 `),
-              ],
-            }
+            ],
+          }
           : {}),
         ...(enableAWS
           ? {
-              schemas: [
-                buildSchema(/* GraphQL */ `
+            schemas: [
+              buildSchema(/* GraphQL */ `
                   scalar AWSDate
                   scalar AWSTime
                   scalar AWSDateTime
@@ -76,13 +76,21 @@ export class LoadersRegistry {
                   directive @aws_api_key on OBJECT | FIELD_DEFINITION
                   directive @aws_iam on OBJECT | FIELD_DEFINITION | INPUT_OBJECT
                   directive @aws_oidc on OBJECT | FIELD_DEFINITION
-                  directive @aws_cognito_user_pools(cognito_groups: [String]) on OBJECT | FIELD_DEFINITION | INPUT_OBJECT
+                  directive @aws_cognito_user_pools(
+                    cognito_groups: [String]
+                  ) on OBJECT | FIELD_DEFINITION | INPUT_OBJECT
                   directive @aws_publish(
+                    """
+                    List of subscriptions which will be published to when this mutation is called.
+                    """
                     subscriptions: [String]
                   ) on FIELD_DEFINITION
-                  directive @aws_lambda(name: String, lambda_function_arn: String) on FIELD_DEFINITION | OBJECT
+                  directive @aws_lambda(
+                    lambda_function_arn: String
+                    name: String
+                  ) on FIELD_DEFINITION | OBJECT
                   directive @defer on FIELD
-                `)
+                `),
             ],
           }
           : {}),
@@ -120,12 +128,12 @@ function loadModule<T>(name: string): T {
 }
 
 /**
- * Adds `(source: <file-path>)` suffix to error message if source is available
+ * Adds `(source: <file-path >)` suffix to error message if source is available
  */
 function enrichError<T>(looksPromising: Promise<T>): Promise<T> {
   return looksPromising.catch(error => {
     if (error.source?.name) {
-      error.message = `${error.message} (source: ${error.source?.name})`;
+      error.message = `${error.message}(source: ${error.source?.name})`;
     }
     return Promise.reject(error);
   });
