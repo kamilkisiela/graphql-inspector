@@ -91,8 +91,8 @@ export class LoadersRegistry {
                   ) on FIELD_DEFINITION
                   directive @defer on FIELD
                 `),
-            ],
-          
+              ],
+            }
           : {}),
       }),
     );
