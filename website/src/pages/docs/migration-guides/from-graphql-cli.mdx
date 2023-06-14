@@ -111,24 +111,17 @@ graphql-inspector common schema.graphql schema2.graphql
 </Tab>
 </Tabs>
 
-
-
-
 ### Coverage
 
 <Tabs items={['Before (GraphQL - CLI)', 'After (GraphQL-Inspector)']}>
 <Tab>
-```
-
-graphql coverage schema.graphql --queries="queries/\*_/_.graphql"
-
+```sh
+graphql coverage schema.graphql --queries="queries/**/*.graphql"
 ```
 </Tab>
 <Tab>
-```
-
-graphql-inspector coverage schema.graphql --queries "queries/\*_/_.graphql"
-
+```sh
+graphql-inspector coverage schema.graphql --queries "queries/**/*.graphql"
 ```
 </Tab>
 </Tabs>
@@ -139,17 +132,13 @@ graphql-inspector coverage schema.graphql --queries "queries/\*_/_.graphql"
 
 <Tabs items={['Before (GraphQL - CLI)', 'After (GraphQL-Inspector)']}>
 <Tab>
-```
-
+```sh
 graphql similar schema.graphql schema2.graphql
-
 ```
 </Tab>
 <Tab>
-```
-
+```sh
 graphql-inspector similar schema.graphql schema2.graphql
-
 ```
 </Tab>
 </Tabs>
