@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 overrides:
   '@octokit/types': 5.4.1
 
@@ -43,55 +47,55 @@ importers:
         version: 2.26.1
       '@graphql-inspector/audit-command':
         specifier: workspace:*
-        version: link:packages/commands/audit
+        version: link:packages/commands/audit/dist
       '@graphql-inspector/code-loader':
         specifier: workspace:*
-        version: link:packages/loaders/code
+        version: link:packages/loaders/code/dist
       '@graphql-inspector/commands':
         specifier: workspace:*
-        version: link:packages/commands/commands
+        version: link:packages/commands/commands/dist
       '@graphql-inspector/config':
         specifier: workspace:*
-        version: link:packages/config
+        version: link:packages/config/dist
       '@graphql-inspector/coverage-command':
         specifier: workspace:*
-        version: link:packages/commands/coverage
+        version: link:packages/commands/coverage/dist
       '@graphql-inspector/diff-command':
         specifier: workspace:*
-        version: link:packages/commands/diff
+        version: link:packages/commands/diff/dist
       '@graphql-inspector/docs-command':
         specifier: workspace:*
-        version: link:packages/commands/docs
+        version: link:packages/commands/docs/dist
       '@graphql-inspector/git-loader':
         specifier: workspace:*
-        version: link:packages/loaders/git
+        version: link:packages/loaders/git/dist
       '@graphql-inspector/github-loader':
         specifier: workspace:*
-        version: link:packages/loaders/github
+        version: link:packages/loaders/github/dist
       '@graphql-inspector/graphql-loader':
         specifier: workspace:*
-        version: link:packages/loaders/graphql
+        version: link:packages/loaders/graphql/dist
       '@graphql-inspector/introspect-command':
         specifier: workspace:*
-        version: link:packages/commands/introspect
+        version: link:packages/commands/introspect/dist
       '@graphql-inspector/json-loader':
         specifier: workspace:*
-        version: link:packages/loaders/json
+        version: link:packages/loaders/json/dist
       '@graphql-inspector/loaders':
         specifier: workspace:*
-        version: link:packages/loaders/loaders
+        version: link:packages/loaders/loaders/dist
       '@graphql-inspector/serve-command':
         specifier: workspace:*
-        version: link:packages/commands/serve
+        version: link:packages/commands/serve/dist
       '@graphql-inspector/similar-command':
         specifier: workspace:*
-        version: link:packages/commands/similar
+        version: link:packages/commands/similar/dist
       '@graphql-inspector/url-loader':
         specifier: workspace:*
-        version: link:packages/loaders/url
+        version: link:packages/loaders/url/dist
       '@graphql-inspector/validate-command':
         specifier: workspace:*
-        version: link:packages/commands/validate
+        version: link:packages/commands/validate/dist
       '@theguild/eslint-config':
         specifier: 0.9.0
         version: 0.9.0(eslint@8.42.0)(typescript@5.1.3)
@@ -169,13 +173,13 @@ importers:
         version: 4.0.0
       '@graphql-inspector/commands':
         specifier: workspace:*
-        version: link:../commands/commands
+        version: link:../commands/commands/dist
       '@graphql-inspector/core':
         specifier: workspace:*
-        version: link:../core
+        version: link:../core/dist
       '@graphql-inspector/github':
         specifier: workspace:*
-        version: link:../github
+        version: link:../github/dist
       js-yaml:
         specifier: 4.1.0
         version: 4.1.0
@@ -195,16 +199,19 @@ importers:
     dependencies:
       '@graphql-inspector/commands':
         specifier: workspace:*
-        version: link:../commands/commands
+        version: link:../commands/commands/dist
       '@graphql-inspector/config':
         specifier: workspace:*
-        version: link:../config
+        version: link:../config/dist
       '@graphql-inspector/loaders':
         specifier: workspace:*
-        version: link:../loaders/loaders
+        version: link:../loaders/loaders/dist
       '@graphql-inspector/logger':
         specifier: workspace:*
-        version: link:../logger
+        version: link:../logger/dist
+      graphql:
+        specifier: ^14.0.0 || ^15.0.0 || ^16.0.0
+        version: 16.6.0
       tslib:
         specifier: 2.5.3
         version: 2.5.3
@@ -220,55 +227,58 @@ importers:
         version: 7.22.1
       '@graphql-inspector/audit-command':
         specifier: workspace:*
-        version: link:../commands/audit
+        version: link:../commands/audit/dist
       '@graphql-inspector/code-loader':
         specifier: workspace:*
-        version: link:../loaders/code
+        version: link:../loaders/code/dist
       '@graphql-inspector/commands':
         specifier: workspace:*
-        version: link:../commands/commands
+        version: link:../commands/commands/dist
       '@graphql-inspector/config':
         specifier: workspace:*
-        version: link:../config
+        version: link:../config/dist
       '@graphql-inspector/coverage-command':
         specifier: workspace:*
-        version: link:../commands/coverage
+        version: link:../commands/coverage/dist
       '@graphql-inspector/diff-command':
         specifier: workspace:*
-        version: link:../commands/diff
+        version: link:../commands/diff/dist
       '@graphql-inspector/docs-command':
         specifier: workspace:*
-        version: link:../commands/docs
+        version: link:../commands/docs/dist
       '@graphql-inspector/git-loader':
         specifier: workspace:*
-        version: link:../loaders/git
+        version: link:../loaders/git/dist
       '@graphql-inspector/github-loader':
         specifier: workspace:*
-        version: link:../loaders/github
+        version: link:../loaders/github/dist
       '@graphql-inspector/graphql-loader':
         specifier: workspace:*
-        version: link:../loaders/graphql
+        version: link:../loaders/graphql/dist
       '@graphql-inspector/introspect-command':
         specifier: workspace:*
-        version: link:../commands/introspect
+        version: link:../commands/introspect/dist
       '@graphql-inspector/json-loader':
         specifier: workspace:*
-        version: link:../loaders/json
+        version: link:../loaders/json/dist
       '@graphql-inspector/loaders':
         specifier: workspace:*
-        version: link:../loaders/loaders
+        version: link:../loaders/loaders/dist
       '@graphql-inspector/serve-command':
         specifier: workspace:*
-        version: link:../commands/serve
+        version: link:../commands/serve/dist
       '@graphql-inspector/similar-command':
         specifier: workspace:*
-        version: link:../commands/similar
+        version: link:../commands/similar/dist
       '@graphql-inspector/url-loader':
         specifier: workspace:*
-        version: link:../loaders/url
+        version: link:../loaders/url/dist
       '@graphql-inspector/validate-command':
         specifier: workspace:*
-        version: link:../commands/validate
+        version: link:../commands/validate/dist
+      graphql:
+        specifier: ^14.0.0 || ^15.0.0 || ^16.0.0
+        version: 16.6.0
       tslib:
         specifier: 2.5.3
         version: 2.5.3
@@ -281,13 +291,13 @@ importers:
     dependencies:
       '@graphql-inspector/commands':
         specifier: workspace:*
-        version: link:../commands
+        version: link:../commands/dist
       '@graphql-inspector/core':
         specifier: workspace:*
-        version: link:../../core
+        version: link:../../core/dist
       '@graphql-inspector/logger':
         specifier: workspace:*
-        version: link:../../logger
+        version: link:../../logger/dist
       '@graphql-tools/utils':
         specifier: 10.0.0
         version: 10.0.0(graphql@16.6.0)
@@ -305,22 +315,34 @@ importers:
 
   packages/commands/commands:
     dependencies:
+      '@graphql-inspector/config':
+        specifier: 3.4.5
+        version: link:../../config/dist
+      '@graphql-inspector/loaders':
+        specifier: 3.4.7
+        version: link:../../loaders/loaders/dist
+      graphql:
+        specifier: ^14.0.0 || ^15.0.0 || ^16.0.0
+        version: 16.6.0
       tslib:
         specifier: 2.5.3
         version: 2.5.3
+      yargs:
+        specifier: 17.7.2
+        version: 17.7.2
     publishDirectory: dist
 
   packages/commands/coverage:
     dependencies:
       '@graphql-inspector/commands':
         specifier: workspace:*
-        version: link:../commands
+        version: link:../commands/dist
       '@graphql-inspector/core':
         specifier: workspace:*
-        version: link:../../core
+        version: link:../../core/dist
       '@graphql-inspector/logger':
         specifier: workspace:*
-        version: link:../../logger
+        version: link:../../logger/dist
       '@graphql-tools/utils':
         specifier: 10.0.0
         version: 10.0.0(graphql@16.6.0)
@@ -337,13 +359,16 @@ importers:
     dependencies:
       '@graphql-inspector/commands':
         specifier: workspace:*
-        version: link:../commands
+        version: link:../commands/dist
       '@graphql-inspector/core':
         specifier: workspace:*
-        version: link:../../core
+        version: link:../../core/dist
       '@graphql-inspector/logger':
         specifier: workspace:*
-        version: link:../../logger
+        version: link:../../logger/dist
+      graphql:
+        specifier: ^14.0.0 || ^15.0.0 || ^16.0.0
+        version: 16.6.0
       tslib:
         specifier: 2.5.3
         version: 2.5.3
@@ -353,7 +378,10 @@ importers:
     dependencies:
       '@graphql-inspector/commands':
         specifier: workspace:*
-        version: link:../commands
+        version: link:../commands/dist
+      graphql:
+        specifier: ^14.0.0 || ^15.0.0 || ^16.0.0
+        version: 16.6.0
       open:
         specifier: 8.4.2
         version: 8.4.2
@@ -366,13 +394,16 @@ importers:
     dependencies:
       '@graphql-inspector/commands':
         specifier: workspace:*
-        version: link:../commands
+        version: link:../commands/dist
       '@graphql-inspector/core':
         specifier: workspace:*
-        version: link:../../core
+        version: link:../../core/dist
       '@graphql-inspector/logger':
         specifier: workspace:*
-        version: link:../../logger
+        version: link:../../logger/dist
+      graphql:
+        specifier: ^14.0.0 || ^15.0.0 || ^16.0.0
+        version: 16.6.0
       tslib:
         specifier: 2.5.3
         version: 2.5.3
@@ -382,10 +413,10 @@ importers:
     dependencies:
       '@graphql-inspector/commands':
         specifier: workspace:*
-        version: link:../commands
+        version: link:../commands/dist
       '@graphql-inspector/logger':
         specifier: workspace:*
-        version: link:../../logger
+        version: link:../../logger/dist
       graphql-yoga:
         specifier: 3.9.1
         version: 3.9.1(graphql@16.6.0)
@@ -405,13 +436,16 @@ importers:
     dependencies:
       '@graphql-inspector/commands':
         specifier: workspace:*
-        version: link:../commands
+        version: link:../commands/dist
       '@graphql-inspector/core':
         specifier: workspace:*
-        version: link:../../core
+        version: link:../../core/dist
       '@graphql-inspector/logger':
         specifier: workspace:*
-        version: link:../../logger
+        version: link:../../logger/dist
+      graphql:
+        specifier: ^14.0.0 || ^15.0.0 || ^16.0.0
+        version: 16.6.0
       tslib:
         specifier: 2.5.3
         version: 2.5.3
@@ -421,13 +455,13 @@ importers:
     dependencies:
       '@graphql-inspector/commands':
         specifier: workspace:*
-        version: link:../commands
+        version: link:../commands/dist
       '@graphql-inspector/core':
         specifier: workspace:*
-        version: link:../../core
+        version: link:../../core/dist
       '@graphql-inspector/logger':
         specifier: workspace:*
-        version: link:../../logger
+        version: link:../../logger/dist
       '@graphql-tools/utils':
         specifier: 10.0.0
         version: 10.0.0(graphql@16.6.0)
@@ -442,6 +476,9 @@ importers:
 
   packages/config:
     dependencies:
+      graphql:
+        specifier: ^14.0.0 || ^15.0.0 || ^16.0.0
+        version: 16.6.0
       tslib:
         specifier: 2.5.3
         version: 2.5.3
@@ -452,6 +489,9 @@ importers:
       dependency-graph:
         specifier: 0.11.0
         version: 0.11.0
+      graphql:
+        specifier: ^14.0.0 || ^15.0.0 || ^16.0.0
+        version: 16.6.0
       object-inspect:
         specifier: 1.12.3
         version: 1.12.3
@@ -468,13 +508,16 @@ importers:
     dependencies:
       '@graphql-inspector/core':
         specifier: workspace:*
-        version: link:../core
+        version: link:../core/dist
       '@whatwg-node/fetch':
         specifier: 0.9.2
         version: 0.9.2
       dataloader:
         specifier: 2.2.2
         version: 2.2.2
+      graphql:
+        specifier: ^14.0.0 || ^15.0.0 || ^16.0.0
+        version: 16.6.0
       js-yaml:
         specifier: 4.1.0
         version: 4.1.0
@@ -583,6 +626,9 @@ importers:
 
   packages/loaders/loaders:
     dependencies:
+      '@graphql-inspector/config':
+        specifier: 3.4.5
+        version: link:../../config/dist
       '@graphql-tools/code-file-loader':
         specifier: 8.0.1
         version: 8.0.1(@babel/core@7.22.1)(graphql@16.6.0)
@@ -644,19 +690,19 @@ importers:
     dependencies:
       '@graphql-inspector/core':
         specifier: workspace:*
-        version: link:../packages/core
+        version: link:../packages/core/dist
       '@graphql-inspector/github':
         specifier: workspace:*
-        version: link:../packages/github
+        version: link:../packages/github/dist
       '@monaco-editor/react':
         specifier: 4.5.1
-        version: 4.5.1(react-dom@18.2.0)(react@18.2.0)
+        version: 4.5.1(monaco-editor@0.39.0)(react-dom@18.2.0)(react@18.2.0)
       '@theguild/algolia':
         specifier: 1.1.7
         version: 1.1.7
       '@theguild/components':
         specifier: 4.6.4
-        version: 4.6.4(@algolia/client-search@4.17.1)(@types/react@18.2.8)(next@13.4.4)(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)(webpack@5.85.0)
+        version: 4.6.4(@algolia/client-search@4.17.1)(@types/react@18.2.12)(next@13.4.4)(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)(webpack@5.85.0)
       '@whatwg-node/fetch':
         specifier: 0.9.2
         version: 0.9.2
@@ -686,8 +732,8 @@ importers:
         specifier: 20.2.5
         version: 20.2.5
       '@types/react':
-        specifier: 18.2.8
-        version: 18.2.8
+        specifier: 18.2.12
+        version: 18.2.12
       cross-env:
         specifier: 7.0.3
         version: 7.0.3
@@ -2234,26 +2280,28 @@ packages:
       react: '>=16'
     dependencies:
       '@types/mdx': 2.0.3
-      '@types/react': 18.2.8
+      '@types/react': 18.2.12
       react: 18.2.0
     dev: false
 
-  /@monaco-editor/loader@1.3.3:
+  /@monaco-editor/loader@1.3.3(monaco-editor@0.39.0):
     resolution: {integrity: sha512-6KKF4CTzcJiS8BJwtxtfyYt9shBiEv32ateQ9T4UVogwn4HM/uPo9iJd2Dmbkpz8CM6Y0PDUpjnZzCwC+eYo2Q==}
     peerDependencies:
       monaco-editor: '>= 0.21.0 < 1'
     dependencies:
+      monaco-editor: 0.39.0
       state-local: 1.0.7
     dev: false
 
-  /@monaco-editor/react@4.5.1(react-dom@18.2.0)(react@18.2.0):
+  /@monaco-editor/react@4.5.1(monaco-editor@0.39.0)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-NNDFdP+2HojtNhCkRfE6/D6ro6pBNihaOzMbGK84lNWzRu+CfBjwzGt4jmnqimLuqp5yE5viHS2vi+QOAnD5FQ==}
     peerDependencies:
       monaco-editor: '>= 0.25.0 < 1'
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
     dependencies:
-      '@monaco-editor/loader': 1.3.3
+      '@monaco-editor/loader': 1.3.3(monaco-editor@0.39.0)
+      monaco-editor: 0.39.0
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     dev: false
@@ -2808,7 +2856,7 @@ packages:
       '@babel/runtime': 7.21.0
     dev: false
 
-  /@radix-ui/react-collection@1.0.3(@types/react@18.2.8)(react-dom@18.2.0)(react@18.2.0):
+  /@radix-ui/react-collection@1.0.3(@types/react@18.2.12)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-3SzW+0PW7yBBoQlT8wNcGtaxaD0XSu0uLUFgrtHY08Acx05TaHaOmVLR73c0j/cqpDy53KBMO7s0dx2wmOIDIA==}
     peerDependencies:
       '@types/react': '*'
@@ -2822,16 +2870,16 @@ packages:
         optional: true
     dependencies:
       '@babel/runtime': 7.21.0
-      '@radix-ui/react-compose-refs': 1.0.1(@types/react@18.2.8)(react@18.2.0)
-      '@radix-ui/react-context': 1.0.1(@types/react@18.2.8)(react@18.2.0)
-      '@radix-ui/react-primitive': 1.0.3(@types/react@18.2.8)(react-dom@18.2.0)(react@18.2.0)
-      '@radix-ui/react-slot': 1.0.2(@types/react@18.2.8)(react@18.2.0)
-      '@types/react': 18.2.8
+      '@radix-ui/react-compose-refs': 1.0.1(@types/react@18.2.12)(react@18.2.0)
+      '@radix-ui/react-context': 1.0.1(@types/react@18.2.12)(react@18.2.0)
+      '@radix-ui/react-primitive': 1.0.3(@types/react@18.2.12)(react-dom@18.2.0)(react@18.2.0)
+      '@radix-ui/react-slot': 1.0.2(@types/react@18.2.12)(react@18.2.0)
+      '@types/react': 18.2.12
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
-  /@radix-ui/react-compose-refs@1.0.1(@types/react@18.2.8)(react@18.2.0):
+  /@radix-ui/react-compose-refs@1.0.1(@types/react@18.2.12)(react@18.2.0):
     resolution: {integrity: sha512-fDSBgd44FKHa1FRMU59qBMPFcl2PZE+2nmqunj+BWFyYYjnhIDWL2ItDs3rrbJDQOtzt5nIebLCQc4QRfz6LJw==}
     peerDependencies:
       '@types/react': '*'
@@ -2841,11 +2889,11 @@ packages:
         optional: true
     dependencies:
       '@babel/runtime': 7.21.0
-      '@types/react': 18.2.8
+      '@types/react': 18.2.12
       react: 18.2.0
     dev: false
 
-  /@radix-ui/react-context@1.0.1(@types/react@18.2.8)(react@18.2.0):
+  /@radix-ui/react-context@1.0.1(@types/react@18.2.12)(react@18.2.0):
     resolution: {integrity: sha512-ebbrdFoYTcuZ0v4wG5tedGnp9tzcV8awzsxYph7gXUyvnNLuTIcCk1q17JEbnVhXAKG9oX3KtchwiMIAYp9NLg==}
     peerDependencies:
       '@types/react': '*'
@@ -2855,11 +2903,11 @@ packages:
         optional: true
     dependencies:
       '@babel/runtime': 7.21.0
-      '@types/react': 18.2.8
+      '@types/react': 18.2.12
       react: 18.2.0
     dev: false
 
-  /@radix-ui/react-direction@1.0.1(@types/react@18.2.8)(react@18.2.0):
+  /@radix-ui/react-direction@1.0.1(@types/react@18.2.12)(react@18.2.0):
     resolution: {integrity: sha512-RXcvnXgyvYvBEOhCBuddKecVkoMiI10Jcm5cTI7abJRAHYfFxeu+FBQs/DvdxSYucxR5mna0dNsL6QFlds5TMA==}
     peerDependencies:
       '@types/react': '*'
@@ -2869,11 +2917,11 @@ packages:
         optional: true
     dependencies:
       '@babel/runtime': 7.21.0
-      '@types/react': 18.2.8
+      '@types/react': 18.2.12
       react: 18.2.0
     dev: false
 
-  /@radix-ui/react-dismissable-layer@1.0.4(@types/react@18.2.8)(react-dom@18.2.0)(react@18.2.0):
+  /@radix-ui/react-dismissable-layer@1.0.4(@types/react@18.2.12)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-7UpBa/RKMoHJYjie1gkF1DlK8l1fdU/VKDpoS3rCCo8YBJR294GwcEHyxHw72yvphJ7ld0AXEcSLAzY2F/WyCg==}
     peerDependencies:
       '@types/react': '*'
@@ -2888,16 +2936,16 @@ packages:
     dependencies:
       '@babel/runtime': 7.21.0
       '@radix-ui/primitive': 1.0.1
-      '@radix-ui/react-compose-refs': 1.0.1(@types/react@18.2.8)(react@18.2.0)
-      '@radix-ui/react-primitive': 1.0.3(@types/react@18.2.8)(react-dom@18.2.0)(react@18.2.0)
-      '@radix-ui/react-use-callback-ref': 1.0.1(@types/react@18.2.8)(react@18.2.0)
-      '@radix-ui/react-use-escape-keydown': 1.0.3(@types/react@18.2.8)(react@18.2.0)
-      '@types/react': 18.2.8
+      '@radix-ui/react-compose-refs': 1.0.1(@types/react@18.2.12)(react@18.2.0)
+      '@radix-ui/react-primitive': 1.0.3(@types/react@18.2.12)(react-dom@18.2.0)(react@18.2.0)
+      '@radix-ui/react-use-callback-ref': 1.0.1(@types/react@18.2.12)(react@18.2.0)
+      '@radix-ui/react-use-escape-keydown': 1.0.3(@types/react@18.2.12)(react@18.2.0)
+      '@types/react': 18.2.12
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
-  /@radix-ui/react-id@1.0.1(@types/react@18.2.8)(react@18.2.0):
+  /@radix-ui/react-id@1.0.1(@types/react@18.2.12)(react@18.2.0):
     resolution: {integrity: sha512-tI7sT/kqYp8p96yGWY1OAnLHrqDgzHefRBKQ2YAkBS5ja7QLcZ9Z/uY7bEjPUatf8RomoXM8/1sMj1IJaE5UzQ==}
     peerDependencies:
       '@types/react': '*'
@@ -2907,12 +2955,12 @@ packages:
         optional: true
     dependencies:
       '@babel/runtime': 7.21.0
-      '@radix-ui/react-use-layout-effect': 1.0.1(@types/react@18.2.8)(react@18.2.0)
-      '@types/react': 18.2.8
+      '@radix-ui/react-use-layout-effect': 1.0.1(@types/react@18.2.12)(react@18.2.0)
+      '@types/react': 18.2.12
       react: 18.2.0
     dev: false
 
-  /@radix-ui/react-navigation-menu@1.1.3(@types/react@18.2.8)(react-dom@18.2.0)(react@18.2.0):
+  /@radix-ui/react-navigation-menu@1.1.3(@types/react@18.2.12)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-x4Uv0N47ABx3/frJazYXxvMpZeKJe0qmRIgQ2o3lhTqnTVg+CaZfVVO4nQLn3QJcDkTz8icElKffhFng47XIBA==}
     peerDependencies:
       '@types/react': '*'
@@ -2927,25 +2975,25 @@ packages:
     dependencies:
       '@babel/runtime': 7.21.0
       '@radix-ui/primitive': 1.0.1
-      '@radix-ui/react-collection': 1.0.3(@types/react@18.2.8)(react-dom@18.2.0)(react@18.2.0)
-      '@radix-ui/react-compose-refs': 1.0.1(@types/react@18.2.8)(react@18.2.0)
-      '@radix-ui/react-context': 1.0.1(@types/react@18.2.8)(react@18.2.0)
-      '@radix-ui/react-direction': 1.0.1(@types/react@18.2.8)(react@18.2.0)
-      '@radix-ui/react-dismissable-layer': 1.0.4(@types/react@18.2.8)(react-dom@18.2.0)(react@18.2.0)
-      '@radix-ui/react-id': 1.0.1(@types/react@18.2.8)(react@18.2.0)
-      '@radix-ui/react-presence': 1.0.1(@types/react@18.2.8)(react-dom@18.2.0)(react@18.2.0)
-      '@radix-ui/react-primitive': 1.0.3(@types/react@18.2.8)(react-dom@18.2.0)(react@18.2.0)
-      '@radix-ui/react-use-callback-ref': 1.0.1(@types/react@18.2.8)(react@18.2.0)
-      '@radix-ui/react-use-controllable-state': 1.0.1(@types/react@18.2.8)(react@18.2.0)
-      '@radix-ui/react-use-layout-effect': 1.0.1(@types/react@18.2.8)(react@18.2.0)
-      '@radix-ui/react-use-previous': 1.0.1(@types/react@18.2.8)(react@18.2.0)
-      '@radix-ui/react-visually-hidden': 1.0.3(@types/react@18.2.8)(react-dom@18.2.0)(react@18.2.0)
-      '@types/react': 18.2.8
+      '@radix-ui/react-collection': 1.0.3(@types/react@18.2.12)(react-dom@18.2.0)(react@18.2.0)
+      '@radix-ui/react-compose-refs': 1.0.1(@types/react@18.2.12)(react@18.2.0)
+      '@radix-ui/react-context': 1.0.1(@types/react@18.2.12)(react@18.2.0)
+      '@radix-ui/react-direction': 1.0.1(@types/react@18.2.12)(react@18.2.0)
+      '@radix-ui/react-dismissable-layer': 1.0.4(@types/react@18.2.12)(react-dom@18.2.0)(react@18.2.0)
+      '@radix-ui/react-id': 1.0.1(@types/react@18.2.12)(react@18.2.0)
+      '@radix-ui/react-presence': 1.0.1(@types/react@18.2.12)(react-dom@18.2.0)(react@18.2.0)
+      '@radix-ui/react-primitive': 1.0.3(@types/react@18.2.12)(react-dom@18.2.0)(react@18.2.0)
+      '@radix-ui/react-use-callback-ref': 1.0.1(@types/react@18.2.12)(react@18.2.0)
+      '@radix-ui/react-use-controllable-state': 1.0.1(@types/react@18.2.12)(react@18.2.0)
+      '@radix-ui/react-use-layout-effect': 1.0.1(@types/react@18.2.12)(react@18.2.0)
+      '@radix-ui/react-use-previous': 1.0.1(@types/react@18.2.12)(react@18.2.0)
+      '@radix-ui/react-visually-hidden': 1.0.3(@types/react@18.2.12)(react-dom@18.2.0)(react@18.2.0)
+      '@types/react': 18.2.12
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
-  /@radix-ui/react-presence@1.0.1(@types/react@18.2.8)(react-dom@18.2.0)(react@18.2.0):
+  /@radix-ui/react-presence@1.0.1(@types/react@18.2.12)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-UXLW4UAbIY5ZjcvzjfRFo5gxva8QirC9hF7wRE4U5gz+TP0DbRk+//qyuAQ1McDxBt1xNMBTaciFGvEmJvAZCg==}
     peerDependencies:
       '@types/react': '*'
@@ -2959,14 +3007,14 @@ packages:
         optional: true
     dependencies:
       '@babel/runtime': 7.21.0
-      '@radix-ui/react-compose-refs': 1.0.1(@types/react@18.2.8)(react@18.2.0)
-      '@radix-ui/react-use-layout-effect': 1.0.1(@types/react@18.2.8)(react@18.2.0)
-      '@types/react': 18.2.8
+      '@radix-ui/react-compose-refs': 1.0.1(@types/react@18.2.12)(react@18.2.0)
+      '@radix-ui/react-use-layout-effect': 1.0.1(@types/react@18.2.12)(react@18.2.0)
+      '@types/react': 18.2.12
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
-  /@radix-ui/react-primitive@1.0.3(@types/react@18.2.8)(react-dom@18.2.0)(react@18.2.0):
+  /@radix-ui/react-primitive@1.0.3(@types/react@18.2.12)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-yi58uVyoAcK/Nq1inRY56ZSjKypBNKTa/1mcL8qdl6oJeEaDbOldlzrGn7P6Q3Id5d+SYNGc5AJgc4vGhjs5+g==}
     peerDependencies:
       '@types/react': '*'
@@ -2980,13 +3028,13 @@ packages:
         optional: true
     dependencies:
       '@babel/runtime': 7.21.0
-      '@radix-ui/react-slot': 1.0.2(@types/react@18.2.8)(react@18.2.0)
-      '@types/react': 18.2.8
+      '@radix-ui/react-slot': 1.0.2(@types/react@18.2.12)(react@18.2.0)
+      '@types/react': 18.2.12
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
-  /@radix-ui/react-slot@1.0.2(@types/react@18.2.8)(react@18.2.0):
+  /@radix-ui/react-slot@1.0.2(@types/react@18.2.12)(react@18.2.0):
     resolution: {integrity: sha512-YeTpuq4deV+6DusvVUW4ivBgnkHwECUu0BiN43L5UCDFgdhsRUWAghhTF5MbvNTPzmiFOx90asDSUjWuCNapwg==}
     peerDependencies:
       '@types/react': '*'
@@ -2996,12 +3044,12 @@ packages:
         optional: true
     dependencies:
       '@babel/runtime': 7.21.0
-      '@radix-ui/react-compose-refs': 1.0.1(@types/react@18.2.8)(react@18.2.0)
-      '@types/react': 18.2.8
+      '@radix-ui/react-compose-refs': 1.0.1(@types/react@18.2.12)(react@18.2.0)
+      '@types/react': 18.2.12
       react: 18.2.0
     dev: false
 
-  /@radix-ui/react-use-callback-ref@1.0.1(@types/react@18.2.8)(react@18.2.0):
+  /@radix-ui/react-use-callback-ref@1.0.1(@types/react@18.2.12)(react@18.2.0):
     resolution: {integrity: sha512-D94LjX4Sp0xJFVaoQOd3OO9k7tpBYNOXdVhkltUbGv2Qb9OXdrg/CpsjlZv7ia14Sylv398LswWBVVu5nqKzAQ==}
     peerDependencies:
       '@types/react': '*'
@@ -3011,11 +3059,11 @@ packages:
         optional: true
     dependencies:
       '@babel/runtime': 7.21.0
-      '@types/react': 18.2.8
+      '@types/react': 18.2.12
       react: 18.2.0
     dev: false
 
-  /@radix-ui/react-use-controllable-state@1.0.1(@types/react@18.2.8)(react@18.2.0):
+  /@radix-ui/react-use-controllable-state@1.0.1(@types/react@18.2.12)(react@18.2.0):
     resolution: {integrity: sha512-Svl5GY5FQeN758fWKrjM6Qb7asvXeiZltlT4U2gVfl8Gx5UAv2sMR0LWo8yhsIZh2oQ0eFdZ59aoOOMV7b47VA==}
     peerDependencies:
       '@types/react': '*'
@@ -3025,12 +3073,12 @@ packages:
         optional: true
     dependencies:
       '@babel/runtime': 7.21.0
-      '@radix-ui/react-use-callback-ref': 1.0.1(@types/react@18.2.8)(react@18.2.0)
-      '@types/react': 18.2.8
+      '@radix-ui/react-use-callback-ref': 1.0.1(@types/react@18.2.12)(react@18.2.0)
+      '@types/react': 18.2.12
       react: 18.2.0
     dev: false
 
-  /@radix-ui/react-use-escape-keydown@1.0.3(@types/react@18.2.8)(react@18.2.0):
+  /@radix-ui/react-use-escape-keydown@1.0.3(@types/react@18.2.12)(react@18.2.0):
     resolution: {integrity: sha512-vyL82j40hcFicA+M4Ex7hVkB9vHgSse1ZWomAqV2Je3RleKGO5iM8KMOEtfoSB0PnIelMd2lATjTGMYqN5ylTg==}
     peerDependencies:
       '@types/react': '*'
@@ -3040,12 +3088,12 @@ packages:
         optional: true
     dependencies:
       '@babel/runtime': 7.21.0
-      '@radix-ui/react-use-callback-ref': 1.0.1(@types/react@18.2.8)(react@18.2.0)
-      '@types/react': 18.2.8
+      '@radix-ui/react-use-callback-ref': 1.0.1(@types/react@18.2.12)(react@18.2.0)
+      '@types/react': 18.2.12
       react: 18.2.0
     dev: false
 
-  /@radix-ui/react-use-layout-effect@1.0.1(@types/react@18.2.8)(react@18.2.0):
+  /@radix-ui/react-use-layout-effect@1.0.1(@types/react@18.2.12)(react@18.2.0):
     resolution: {integrity: sha512-v/5RegiJWYdoCvMnITBkNNx6bCj20fiaJnWtRkU18yITptraXjffz5Qbn05uOiQnOvi+dbkznkoaMltz1GnszQ==}
     peerDependencies:
       '@types/react': '*'
@@ -3055,11 +3103,11 @@ packages:
         optional: true
     dependencies:
       '@babel/runtime': 7.21.0
-      '@types/react': 18.2.8
+      '@types/react': 18.2.12
       react: 18.2.0
     dev: false
 
-  /@radix-ui/react-use-previous@1.0.1(@types/react@18.2.8)(react@18.2.0):
+  /@radix-ui/react-use-previous@1.0.1(@types/react@18.2.12)(react@18.2.0):
     resolution: {integrity: sha512-cV5La9DPwiQ7S0gf/0qiD6YgNqM5Fk97Kdrlc5yBcrF3jyEZQwm7vYFqMo4IfeHgJXsRaMvLABFtd0OVEmZhDw==}
     peerDependencies:
       '@types/react': '*'
@@ -3069,11 +3117,11 @@ packages:
         optional: true
     dependencies:
       '@babel/runtime': 7.21.0
-      '@types/react': 18.2.8
+      '@types/react': 18.2.12
       react: 18.2.0
     dev: false
 
-  /@radix-ui/react-visually-hidden@1.0.3(@types/react@18.2.8)(react-dom@18.2.0)(react@18.2.0):
+  /@radix-ui/react-visually-hidden@1.0.3(@types/react@18.2.12)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-D4w41yN5YRKtu464TLnByKzMDG/JlMPHtfZgQAu9v6mNakUqGUI9vUrfQKz8NK41VMm/xbZbh76NUTVtIYqOMA==}
     peerDependencies:
       '@types/react': '*'
@@ -3087,8 +3135,8 @@ packages:
         optional: true
     dependencies:
       '@babel/runtime': 7.21.0
-      '@radix-ui/react-primitive': 1.0.3(@types/react@18.2.8)(react-dom@18.2.0)(react@18.2.0)
-      '@types/react': 18.2.8
+      '@radix-ui/react-primitive': 1.0.3(@types/react@18.2.12)(react-dom@18.2.0)(react@18.2.0)
+      '@types/react': 18.2.12
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     dev: false
@@ -3237,7 +3285,7 @@ packages:
       remove-markdown: 0.5.0
     dev: false
 
-  /@theguild/components@4.6.4(@algolia/client-search@4.17.1)(@types/react@18.2.8)(next@13.4.4)(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)(webpack@5.85.0):
+  /@theguild/components@4.6.4(@algolia/client-search@4.17.1)(@types/react@18.2.12)(next@13.4.4)(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)(webpack@5.85.0):
     resolution: {integrity: sha512-/4k1pEATHCEFROXxejXMQGl4S02u7f1ZNrLCuXqvwXzK7lFR/cDhXCfZIRh4IITESOaU6W02BoAd8i3V7ld2/Q==}
     peerDependencies:
       next: ^12.3.1 || ^13.0.0
@@ -3250,7 +3298,7 @@ packages:
       '@algolia/autocomplete-theme-classic': 1.9.2
       '@giscus/react': 2.2.8(react-dom@18.2.0)(react@18.2.0)
       '@next/bundle-analyzer': 13.4.2
-      '@radix-ui/react-navigation-menu': 1.1.3(@types/react@18.2.8)(react-dom@18.2.0)(react@18.2.0)
+      '@radix-ui/react-navigation-menu': 1.1.3(@types/react@18.2.12)(react-dom@18.2.0)(react@18.2.0)
       '@theguild/remark-mermaid': 0.0.1(react@18.2.0)
       algoliasearch: 4.17.1
       clsx: 1.2.1
@@ -3341,7 +3389,7 @@ packages:
       cssnano: 5.1.15(postcss@8.4.21)
       postcss: 8.4.21
       postcss-import: 15.1.0(postcss@8.4.21)
-      tailwindcss: 3.2.7
+      tailwindcss: 3.2.7(postcss@8.4.21)
     transitivePeerDependencies:
       - ts-node
     dev: true
@@ -3573,8 +3621,8 @@ packages:
   /@types/range-parser@1.2.4:
     resolution: {integrity: sha512-EEhsLsD6UsDM1yFhAvy0Cjr6VwmpMWqFBCb9w07wVugF7w9nfajxLuVmngTIpgS6svCnm6Vaw+MZhoDCKnOfsw==}
 
-  /@types/react@18.2.8:
-    resolution: {integrity: sha512-lTyWUNrd8ntVkqycEEplasWy2OxNlShj3zqS0LuB1ENUGis5HodmhM7DtCoUGbxj3VW/WsGA0DUhpG6XrM7gPA==}
+  /@types/react@18.2.12:
+    resolution: {integrity: sha512-ndmBMLCgn38v3SntMeoJaIrO6tGHYKMEBohCUmw8HoLLQdRMOIGXfeYaBTLe2lsFaSB3MOK1VXscYFnmLtTSmw==}
     dependencies:
       '@types/prop-types': 15.7.5
       '@types/scheduler': 0.16.2
@@ -9018,6 +9066,10 @@ packages:
       ufo: 1.1.1
     dev: true
 
+  /monaco-editor@0.39.0:
+    resolution: {integrity: sha512-zhbZ2Nx93tLR8aJmL2zI1mhJpsl87HMebNBM6R8z4pLfs8pj604pIVIVwyF1TivcfNtIPpMXL+nb3DsBmE/x6Q==}
+    dev: false
+
   /morgan@1.10.0:
     resolution: {integrity: sha512-AbegBVI4sh6El+1gNwvD5YIck7nSA36weD7xvIxG4in80j/UoK8AEGaWnnz8v1GxonMCltmlNs5ZKbGvl9b1XQ==}
     engines: {node: '>= 0.8.0'}
@@ -11549,10 +11601,12 @@ packages:
     resolution: {integrity: sha512-qCN98uP7i9z0fIS4amQ5zbGBOq+OSigYeGvPy7NDk8Y9yncqDZ9pRPgfsc2PJIVM9RrJj7GIfuRgmjoUU9zTHQ==}
     dev: false
 
-  /tailwindcss@3.2.7:
+  /tailwindcss@3.2.7(postcss@8.4.21):
     resolution: {integrity: sha512-B6DLqJzc21x7wntlH/GsZwEXTBttVSl1FtCzC8WP4oBc/NKef7kaax5jeihkkCEWc831/5NDJ9gRNDK6NEioQQ==}
     engines: {node: '>=12.13.0'}
     hasBin: true
+    peerDependencies:
+      postcss: ^8.0.9
     dependencies:
       arg: 5.0.2
       chokidar: 3.5.3
