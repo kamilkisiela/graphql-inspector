@@ -4,7 +4,7 @@ description:
   unified experience. You can switch to using GraphQL-Inspector directly.
 ---
 
-import { Callout, PackageCmd, Tab, Tabs } from '@theguild/components'
+import { Callout, Tab, Tabs } from '@theguild/components'
 
 # Migrating from GraphQL-CLI to Inspector CLI
 
@@ -26,7 +26,9 @@ you can take:
 
 1. Install Inspector CLI: You can install Inspector CLI using NPM by running the following command:
 
-<PackageCmd packages={[{ name: '@graphql-inspector/cli graphql', isGlobal: true }]} />
+```sh npm2yarn
+npm i --global @graphql-inspector/cli graphql
+```
 
 2. Replace graphql-cli with graphql-inspector in your commands: After installing Inspector CLI,
    you'll need to replace all instances of graphql in your commands with graphql-inspector.
@@ -34,13 +36,13 @@ you can take:
 For example, if you were previously using the following command to validate your schema with
 GraphQL-CLI:
 
-```
+```sh
 graphql validate './documents/*.graphql' http://localhost:3000/graphql
 ```
 
 You would now use the following command with Inspector CLI:
 
-```
+```sh
 graphql-inspector validate './documents/*.graphql' http://localhost:3000/graphql
 ```
 
@@ -52,12 +54,12 @@ Here are examples of how to perform some common actions with both GraphQL-CLI an
 
 <Tabs items={['Before (GraphQL - CLI)', 'After (GraphQL-Inspector)']}>
 <Tab>
-```
+```sh
 graphql get-schema --endpoint=https://api.example.com/graphql --header="Authorization: Bearer YOUR_TOKEN" > schema.graphql
 ```
 </Tab>
 <Tab>
-```
+```sh
 graphql-inspector introspect https://api.example.com/graphql --headers '{"Authorization": "Bearer YOUR_TOKEN"}' > schema.graphql
 ```
 </Tab>
@@ -67,38 +69,28 @@ graphql-inspector introspect https://api.example.com/graphql --headers '{"Author
 
 <Tabs items={['Before (GraphQL - CLI)', 'After (GraphQL-Inspector)']}>
 <Tab>
-```
+```sh
 graphql validate './documents/*.graphql' http://localhost:3000/graphql
-
 ```
 </Tab>
 <Tab>
-```
-
+```sh
 graphql-inspector validate './documents/\*.graphql' http://localhost:3000/graphql
-
 ```
 </Tab>
 </Tabs>
-
-
-
 
 ### Diff
 
 <Tabs items={['Before (GraphQL - CLI)', 'After (GraphQL-Inspector)']}>
 <Tab>
-```
-
+```sh
 graphql diff schema.graphql schema2.graphql
-
 ```
 </Tab>
 <Tab>
-```
-
+```sh
 graphql-inspector diff schema.graphql schema2.graphql
-
 ```
 </Tab>
 </Tabs>
@@ -108,17 +100,13 @@ graphql-inspector diff schema.graphql schema2.graphql
 
 <Tabs items={['Before (GraphQL - CLI)', 'After (GraphQL-Inspector)']}>
 <Tab>
-```
-
+```sh
 graphql common schema.graphql schema2.graphql
-
 ```
 </Tab>
 <Tab>
-```
-
+```sh
 graphql-inspector common schema.graphql schema2.graphql
-
 ```
 </Tab>
 </Tabs>

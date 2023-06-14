@@ -2,7 +2,7 @@
 description: GraphQL Inspector can be used with any Continuous Integration. It's easy!
 ---
 
-import { Callout, PackageCmd } from '@theguild/components'
+import { Callout } from '@theguild/components'
 
 # Continuous Integration
 
@@ -15,11 +15,15 @@ CI/CD. It's called CLI for CI.
 
 Install it using:
 
-<PackageCmd packages={[{ name: '@graphql-inspector/ci', isGlobal: true }]} />
+```sh npm2yarn
+npm i --global @graphql-inspector/ci
+```
 
 You need to install `graphql` globally too:
 
-<PackageCmd packages={[{ name: 'graphql', isGlobal: true }]} />
+```sh npm2yarn
+npm i --global graphql
+```
 
 The most common use case is schema diffing and all the other features are never touched. That's why
 we decide to **make each feature pluggable**.
@@ -65,15 +69,15 @@ branch.
 
 You want to compare two GraphQL Schemas:
 
-<PackageCmd packages={[{ name: '@graphql-inspector/diff-command', isGlobal: true }]} />
+```sh npm2yarn
+npm i --global @graphql-inspector/diff-command
+```
 
 You need to be able to load `schema.graphql` from disk and from `origin/master` on Git:
 
-<PackageCmd
-  packages={[
-    { name: '@graphql-inspector/graphql-loader @graphql-inspector/git-loader', isGlobal: true }
-  ]}
-/>
+```sh npm2yarn
+npm i --global @graphql-inspector/graphql-loader @graphql-inspector/git-loader
+```
 
 With everything installed, you can use the command below in your CI setup:
 
