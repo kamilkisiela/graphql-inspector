@@ -655,8 +655,8 @@ importers:
         specifier: 1.1.7
         version: 1.1.7
       '@theguild/components':
-        specifier: 4.6.4
-        version: 4.6.4(@algolia/client-search@4.17.1)(@types/react@18.2.8)(next@13.4.4)(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)(webpack@5.85.0)
+        specifier: 5.0.0
+        version: 5.0.0(@algolia/client-search@4.17.1)(@types/react@18.2.8)(next@13.4.4)(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)(webpack@5.85.0)
       '@whatwg-node/fetch':
         specifier: 0.9.6
         version: 0.9.6
@@ -3237,8 +3237,8 @@ packages:
       remove-markdown: 0.5.0
     dev: false
 
-  /@theguild/components@4.6.4(@algolia/client-search@4.17.1)(@types/react@18.2.8)(next@13.4.4)(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)(webpack@5.85.0):
-    resolution: {integrity: sha512-/4k1pEATHCEFROXxejXMQGl4S02u7f1ZNrLCuXqvwXzK7lFR/cDhXCfZIRh4IITESOaU6W02BoAd8i3V7ld2/Q==}
+  /@theguild/components@5.0.0(@algolia/client-search@4.17.1)(@types/react@18.2.8)(next@13.4.4)(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)(webpack@5.85.0):
+    resolution: {integrity: sha512-DyFuxkuFSCHkfof48WbYe8Ak3OAxVBDAlZ9OBLlshmyEaBCg5ymfroTlyP0yCl6sXzaNnAspIG8Ql+ZeYnpLQg==}
     peerDependencies:
       next: ^12.3.1 || ^13.0.0
       react: ^18.2.0
@@ -3251,15 +3251,15 @@ packages:
       '@giscus/react': 2.2.8(react-dom@18.2.0)(react@18.2.0)
       '@next/bundle-analyzer': 13.4.2
       '@radix-ui/react-navigation-menu': 1.1.3(@types/react@18.2.8)(react-dom@18.2.0)(react@18.2.0)
-      '@theguild/remark-mermaid': 0.0.1(react@18.2.0)
+      '@theguild/remark-npm2yarn': 0.0.1(react@18.2.0)
       algoliasearch: 4.17.1
       clsx: 1.2.1
       focus-trap-react: 10.1.4(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)
       fuzzy: 0.1.3
       next: 13.4.4(react-dom@18.2.0)(react@18.2.0)
       next-videos: 1.5.0(webpack@5.85.0)
-      nextra: 2.6.2(next@13.4.4)(react-dom@18.2.0)(react@18.2.0)
-      nextra-theme-docs: 2.6.2(next@13.4.4)(nextra@2.6.2)(react-dom@18.2.0)(react@18.2.0)
+      nextra: 2.7.1(next@13.4.4)(react-dom@18.2.0)(react@18.2.0)
+      nextra-theme-docs: 2.7.1(next@13.4.4)(nextra@2.7.1)(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       react-instantsearch-dom: 6.40.0(algoliasearch@4.17.1)(react-dom@18.2.0)(react@18.2.0)
@@ -3332,6 +3332,16 @@ packages:
       unist-util-visit: 4.1.2
     transitivePeerDependencies:
       - supports-color
+    dev: false
+
+  /@theguild/remark-npm2yarn@0.0.1(react@18.2.0):
+    resolution: {integrity: sha512-pm++IBZoVU4yWgtXsMEsBXsGEtsJVNfP2eBCO6pp3T27dYy0dS/gevLkSnvkGKFKo2PHTfYvoEsk9vgxmZXs8Q==}
+    peerDependencies:
+      react: ^18.2.0
+    dependencies:
+      npm-to-yarn: 2.0.0
+      react: 18.2.0
+      unist-util-visit: 4.1.2
     dev: false
 
   /@theguild/tailwind-config@0.2.1:
@@ -5737,7 +5747,7 @@ packages:
     resolution: {integrity: sha512-Vklwq2vDKtl0y/vtwjSesgJ5MYS7Etuk5txS8VdKL4AOS1aUlD96zqIfsOSLQsdv3xgMRbtkWM8eG9XDfKUPow==}
     engines: {node: '>=10.13.0'}
     dependencies:
-      graceful-fs: 4.2.10
+      graceful-fs: 4.2.11
       tapable: 2.2.1
 
   /enquirer@2.3.6:
@@ -6745,7 +6755,7 @@ packages:
     resolution: {integrity: sha512-YJDaCJZEnBmcbw13fvdAM9AwNOJwOzrE4pqMqBq5nFiEqXUqHwlK4B+3pUw6JNvfSPtX05xFHtYy/1ni01eGCw==}
     engines: {node: '>=6 <7 || >=8'}
     dependencies:
-      graceful-fs: 4.2.10
+      graceful-fs: 4.2.11
       jsonfile: 4.0.0
       universalify: 0.1.2
     dev: true
@@ -9182,11 +9192,11 @@ packages:
       - '@babel/core'
       - babel-plugin-macros
 
-  /nextra-theme-docs@2.6.2(next@13.4.4)(nextra@2.6.2)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-yvoLSf6rzeD3f6GA/vQabgEkwX3db7DOy87XhtwmqVip2O2XsW3DoMDuU7rzlCtCUmrsC583vymhd3YS6KKehg==}
+  /nextra-theme-docs@2.7.1(next@13.4.4)(nextra@2.7.1)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-C2DtoGH15q22t4r2JC89lvvajmnyiqsv3PaqHJpoHRlF2eR5giuLhZC5Oahb9AENRDcnUIUvqVi/8NlfiIM0yQ==}
     peerDependencies:
       next: '>=9.5.3'
-      nextra: 2.6.2
+      nextra: 2.7.1
       react: '>=16.13.1'
       react-dom: '>=16.13.1'
     dependencies:
@@ -9201,15 +9211,15 @@ packages:
       next: 13.4.4(react-dom@18.2.0)(react@18.2.0)
       next-seo: 6.0.0(next@13.4.4)(react-dom@18.2.0)(react@18.2.0)
       next-themes: 0.2.1(next@13.4.4)(react-dom@18.2.0)(react@18.2.0)
-      nextra: 2.6.2(next@13.4.4)(react-dom@18.2.0)(react@18.2.0)
+      nextra: 2.7.1(next@13.4.4)(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       scroll-into-view-if-needed: 3.0.6
       zod: 3.21.4
     dev: false
 
-  /nextra@2.6.2(next@13.4.4)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-1Rxb04AB9eIieJZq7LQTlcTUdXZcJ4g5rjPBnQ2EGUA8d7jCBhGyQoqDuZtblr8lDTRjIeMnJXCZo2HxIAtWhA==}
+  /nextra@2.7.1(next@13.4.4)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-qchTb7XSm357XAHf9MV9UlUSGolPEPE8iFnC/9KMwvhIoE4seyPYWMrnH84XraZCcGERvy9TrkFD30VE7Qv1MA==}
     engines: {node: '>=16'}
     peerDependencies:
       next: '>=9.5.3'
@@ -9219,6 +9229,7 @@ packages:
       '@mdx-js/mdx': 2.3.0
       '@mdx-js/react': 2.3.0(react@18.2.0)
       '@napi-rs/simple-git': 0.1.8
+      '@theguild/remark-mermaid': 0.0.1(react@18.2.0)
       clsx: 1.2.1
       github-slugger: 2.0.0
       graceful-fs: 4.2.11
@@ -9323,6 +9334,11 @@ packages:
     dependencies:
       path-key: 4.0.0
     dev: true
+
+  /npm-to-yarn@2.0.0:
+    resolution: {integrity: sha512-/IbjiJ7vqbxfxJxAZ+QI9CCRjnIbvGxn5KQcSY9xHh0lMKc/Sgqmm7yp7KPmd6TiTZX5/KiSBKlkGHo59ucZbg==}
+    engines: {node: '>=6.0.0'}
+    dev: false
 
   /nth-check@2.1.1:
     resolution: {integrity: sha512-lqjrjmaOoAnWfMmBPL+XNnynZh2+swxiX3WUE0s4yEHI6m+AwrK2UZOimIRl3X/4QctVqS8AiZjFqyOGrMXb/w==}
@@ -12271,7 +12287,7 @@ packages:
     engines: {node: '>=10.13.0'}
     dependencies:
       glob-to-regexp: 0.4.1
-      graceful-fs: 4.2.10
+      graceful-fs: 4.2.11
 
   /wcwidth@1.0.1:
     resolution: {integrity: sha512-XHPEwS0q6TaxcvG85+8EYkbiCux2XtWG2mkc47Ng2A77BQu9+DqIOJldST4HgPkuea7dvKSj5VgX3P1d4rW8Tg==}

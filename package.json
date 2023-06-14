@@ -33,7 +33,7 @@
     "prebuild": "rimraf \"packages/**/dist/\"",
     "precommit": "lint-staged",
     "prerelease": "pnpm action",
-    "prettier": "prettier --cache --write --list-different .",
+    "prettier": "pnpm lint:prettier --write",
     "release": "pnpm build && pnpm changeset publish",
     "release:canary": "npm run release -- canary",
     "test": "vitest ."
