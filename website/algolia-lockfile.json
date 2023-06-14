@@ -588,7 +588,7 @@
         "anchor": "docker"
       }
     ],
-    "content": "5432c8e9a9cffe8108eb5076031516af",
+    "content": "7984ba1e6778546e0740a66cd1c887bd",
     "url": "https://www.the-guild.dev/graphql/inspector/docs/installation",
     "domain": "https://www.the-guild.dev/graphql/inspector",
     "hierarchy": [
@@ -660,7 +660,7 @@
         "anchor": "conclusion"
       }
     ],
-    "content": "b8d939b48651904107615e0360ef2150",
+    "content": "5b51a167789eb47b1f75d5ac64f50982",
     "url": "https://www.the-guild.dev/graphql/inspector/docs/migration-guides/from-graphql-cli",
     "domain": "https://www.the-guild.dev/graphql/inspector",
     "hierarchy": [
@@ -861,7 +861,7 @@
         "anchor": "using-docker-image"
       }
     ],
-    "content": "007eeef6460bb5994d4406b131e26713",
+    "content": "77fe8b1e308241c2b9ca0979ffddc87a",
     "url": "https://www.the-guild.dev/graphql/inspector/docs/products/ci",
     "domain": "https://www.the-guild.dev/graphql/inspector",
     "hierarchy": [
