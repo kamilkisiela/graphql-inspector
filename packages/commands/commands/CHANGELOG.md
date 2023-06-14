@@ -1,5 +1,28 @@
 # @graphql-inspector/commands
 
+## 4.0.0
+
+### Major Changes
+
+- [#2510](https://github.com/kamilkisiela/graphql-inspector/pull/2510)
+  [`7944118e`](https://github.com/kamilkisiela/graphql-inspector/commit/7944118e8497bf8d6aabc9c31e3ea329bdcf3236)
+  Thanks [@TuvalSimha](https://github.com/TuvalSimha)! - Update major dependcies & drop node 14
+
+### Patch Changes
+
+- [#2510](https://github.com/kamilkisiela/graphql-inspector/pull/2510)
+  [`7944118e`](https://github.com/kamilkisiela/graphql-inspector/commit/7944118e8497bf8d6aabc9c31e3ea329bdcf3236)
+  Thanks [@TuvalSimha](https://github.com/TuvalSimha)! - dependencies updates:
+  - Updated dependency [`tslib@2.5.3` ↗︎](https://www.npmjs.com/package/tslib/v/2.5.3) (from
+    `2.5.0`, in `dependencies`)
+- Updated dependencies
+  [[`7944118e`](https://github.com/kamilkisiela/graphql-inspector/commit/7944118e8497bf8d6aabc9c31e3ea329bdcf3236),
+  [`7944118e`](https://github.com/kamilkisiela/graphql-inspector/commit/7944118e8497bf8d6aabc9c31e3ea329bdcf3236),
+  [`f4b2b1dd`](https://github.com/kamilkisiela/graphql-inspector/commit/f4b2b1dd680b1520b75704f9c384fd0b248a88be),
+  [`7944118e`](https://github.com/kamilkisiela/graphql-inspector/commit/7944118e8497bf8d6aabc9c31e3ea329bdcf3236)]:
+  - @graphql-inspector/config@4.0.0
+  - @graphql-inspector/loaders@4.0.0
+
 ## 3.4.8
 
 ### Patch Changes

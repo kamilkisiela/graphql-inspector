@@ -1,5 +1,27 @@
 # @graphql-inspector/core
 
+## 5.0.0
+
+### Major Changes
+
+- [#2510](https://github.com/kamilkisiela/graphql-inspector/pull/2510)
+  [`7944118e`](https://github.com/kamilkisiela/graphql-inspector/commit/7944118e8497bf8d6aabc9c31e3ea329bdcf3236)
+  Thanks [@TuvalSimha](https://github.com/TuvalSimha)! - Update major dependcies & drop node 14
+
+### Patch Changes
+
+- [#2510](https://github.com/kamilkisiela/graphql-inspector/pull/2510)
+  [`7944118e`](https://github.com/kamilkisiela/graphql-inspector/commit/7944118e8497bf8d6aabc9c31e3ea329bdcf3236)
+  Thanks [@TuvalSimha](https://github.com/TuvalSimha)! - dependencies updates:
+
+  - Updated dependency [`tslib@2.5.3` ↗︎](https://www.npmjs.com/package/tslib/v/2.5.3) (from
+    `2.5.0`, in `dependencies`)
+
+- [#2425](https://github.com/kamilkisiela/graphql-inspector/pull/2425)
+  [`cc303a99`](https://github.com/kamilkisiela/graphql-inspector/commit/cc303a99829c6fbe7800a7259a69ef8e04e88c8b)
+  Thanks [@jirikuncar](https://github.com/jirikuncar)! - Fix typo for numFiledsCovered to
+  numFieldsCovered
+
 ## 4.2.2
 
 ### Patch Changes
@@ -68,20 +90,20 @@
 
   ```ts
   export type FieldDescriptionChangedChange = {
-    type: ChangeType.FieldDescriptionChanged
+    type: ChangeType.FieldDescriptionChanged;
     meta: {
-      typeName: string
-      fieldName: string
-      oldDescription: string
-      newDescription: string
-    }
-  }
+      typeName: string;
+      fieldName: string;
+      oldDescription: string;
+      newDescription: string;
+    };
+  };
   ```
 
   You can construct the full `Change` object from the `type` and `meta` properties.
 
   ```ts
-  import { ChangeType, fieldDescriptionChangedFromMeta } from '@graphql-inspector/core'
+  import { ChangeType, fieldDescriptionChangedFromMeta } from '@graphql-inspector/core';
 
   console.log(
     fieldDescriptionChangedFromMeta({
@@ -90,10 +112,10 @@
         typeName: 'Foo',
         fieldName: 'bar',
         oldDescription: 'This is the old description',
-        newDescription: 'This is the new description'
-      }
-    })
-  )
+        newDescription: 'This is the new description',
+      },
+    }),
+  );
   ```
 
   console.log output:
