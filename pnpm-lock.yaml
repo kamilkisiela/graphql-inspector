@@ -1,5 +1,9 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
 overrides:
   '@octokit/types': 5.4.1
 
@@ -43,55 +47,55 @@ importers:
         version: 2.26.1
       '@graphql-inspector/audit-command':
         specifier: workspace:*
-        version: link:packages/commands/audit
+        version: link:packages/commands/audit/dist
       '@graphql-inspector/code-loader':
         specifier: workspace:*
-        version: link:packages/loaders/code
+        version: link:packages/loaders/code/dist
       '@graphql-inspector/commands':
         specifier: workspace:*
-        version: link:packages/commands/commands
+        version: link:packages/commands/commands/dist
       '@graphql-inspector/config':
         specifier: workspace:*
-        version: link:packages/config
+        version: link:packages/config/dist
       '@graphql-inspector/coverage-command':
         specifier: workspace:*
-        version: link:packages/commands/coverage
+        version: link:packages/commands/coverage/dist
       '@graphql-inspector/diff-command':
         specifier: workspace:*
-        version: link:packages/commands/diff
+        version: link:packages/commands/diff/dist
       '@graphql-inspector/docs-command':
         specifier: workspace:*
-        version: link:packages/commands/docs
+        version: link:packages/commands/docs/dist
       '@graphql-inspector/git-loader':
         specifier: workspace:*
-        version: link:packages/loaders/git
+        version: link:packages/loaders/git/dist
       '@graphql-inspector/github-loader':
         specifier: workspace:*
-        version: link:packages/loaders/github
+        version: link:packages/loaders/github/dist
       '@graphql-inspector/graphql-loader':
         specifier: workspace:*
-        version: link:packages/loaders/graphql
+        version: link:packages/loaders/graphql/dist
       '@graphql-inspector/introspect-command':
         specifier: workspace:*
-        version: link:packages/commands/introspect
+        version: link:packages/commands/introspect/dist
       '@graphql-inspector/json-loader':
         specifier: workspace:*
-        version: link:packages/loaders/json
+        version: link:packages/loaders/json/dist
       '@graphql-inspector/loaders':
         specifier: workspace:*
-        version: link:packages/loaders/loaders
+        version: link:packages/loaders/loaders/dist
       '@graphql-inspector/serve-command':
         specifier: workspace:*
-        version: link:packages/commands/serve
+        version: link:packages/commands/serve/dist
       '@graphql-inspector/similar-command':
         specifier: workspace:*
-        version: link:packages/commands/similar
+        version: link:packages/commands/similar/dist
       '@graphql-inspector/url-loader':
         specifier: workspace:*
-        version: link:packages/loaders/url
+        version: link:packages/loaders/url/dist
       '@graphql-inspector/validate-command':
         specifier: workspace:*
-        version: link:packages/commands/validate
+        version: link:packages/commands/validate/dist
       '@theguild/eslint-config':
         specifier: 0.9.0
         version: 0.9.0(eslint@8.42.0)(typescript@5.1.3)
@@ -156,8 +160,8 @@ importers:
         specifier: 5.1.3
         version: 5.1.3
       vitest:
-        specifier: 0.31.4
-        version: 0.31.4
+        specifier: 0.32.1
+        version: 0.32.1
 
   packages/action:
     dependencies:
@@ -169,13 +173,13 @@ importers:
         version: 4.0.0
       '@graphql-inspector/commands':
         specifier: workspace:*
-        version: link:../commands/commands
+        version: link:../commands/commands/dist
       '@graphql-inspector/core':
         specifier: workspace:*
-        version: link:../core
+        version: link:../core/dist
       '@graphql-inspector/github':
         specifier: workspace:*
-        version: link:../github
+        version: link:../github/dist
       js-yaml:
         specifier: 4.1.0
         version: 4.1.0
@@ -195,16 +199,19 @@ importers:
     dependencies:
       '@graphql-inspector/commands':
         specifier: workspace:*
-        version: link:../commands/commands
+        version: link:../commands/commands/dist
       '@graphql-inspector/config':
         specifier: workspace:*
-        version: link:../config
+        version: link:../config/dist
       '@graphql-inspector/loaders':
         specifier: workspace:*
-        version: link:../loaders/loaders
+        version: link:../loaders/loaders/dist
       '@graphql-inspector/logger':
         specifier: workspace:*
-        version: link:../logger
+        version: link:../logger/dist
+      graphql:
+        specifier: ^14.0.0 || ^15.0.0 || ^16.0.0
+        version: 16.6.0
       tslib:
         specifier: 2.5.3
         version: 2.5.3
@@ -220,55 +227,58 @@ importers:
         version: 7.22.1
       '@graphql-inspector/audit-command':
         specifier: workspace:*
-        version: link:../commands/audit
+        version: link:../commands/audit/dist
       '@graphql-inspector/code-loader':
         specifier: workspace:*
-        version: link:../loaders/code
+        version: link:../loaders/code/dist
       '@graphql-inspector/commands':
         specifier: workspace:*
-        version: link:../commands/commands
+        version: link:../commands/commands/dist
       '@graphql-inspector/config':
         specifier: workspace:*
-        version: link:../config
+        version: link:../config/dist
       '@graphql-inspector/coverage-command':
         specifier: workspace:*
-        version: link:../commands/coverage
+        version: link:../commands/coverage/dist
       '@graphql-inspector/diff-command':
         specifier: workspace:*
-        version: link:../commands/diff
+        version: link:../commands/diff/dist
       '@graphql-inspector/docs-command':
         specifier: workspace:*
-        version: link:../commands/docs
+        version: link:../commands/docs/dist
       '@graphql-inspector/git-loader':
         specifier: workspace:*
-        version: link:../loaders/git
+        version: link:../loaders/git/dist
       '@graphql-inspector/github-loader':
         specifier: workspace:*
-        version: link:../loaders/github
+        version: link:../loaders/github/dist
       '@graphql-inspector/graphql-loader':
         specifier: workspace:*
-        version: link:../loaders/graphql
+        version: link:../loaders/graphql/dist
       '@graphql-inspector/introspect-command':
         specifier: workspace:*
-        version: link:../commands/introspect
+        version: link:../commands/introspect/dist
       '@graphql-inspector/json-loader':
         specifier: workspace:*
-        version: link:../loaders/json
+        version: link:../loaders/json/dist
       '@graphql-inspector/loaders':
         specifier: workspace:*
-        version: link:../loaders/loaders
+        version: link:../loaders/loaders/dist
       '@graphql-inspector/serve-command':
         specifier: workspace:*
-        version: link:../commands/serve
+        version: link:../commands/serve/dist
       '@graphql-inspector/similar-command':
         specifier: workspace:*
-        version: link:../commands/similar
+        version: link:../commands/similar/dist
       '@graphql-inspector/url-loader':
         specifier: workspace:*
-        version: link:../loaders/url
+        version: link:../loaders/url/dist
       '@graphql-inspector/validate-command':
         specifier: workspace:*
-        version: link:../commands/validate
+        version: link:../commands/validate/dist
+      graphql:
+        specifier: ^14.0.0 || ^15.0.0 || ^16.0.0
+        version: 16.6.0
       tslib:
         specifier: 2.5.3
         version: 2.5.3
@@ -281,13 +291,13 @@ importers:
     dependencies:
       '@graphql-inspector/commands':
         specifier: workspace:*
-        version: link:../commands
+        version: link:../commands/dist
       '@graphql-inspector/core':
         specifier: workspace:*
-        version: link:../../core
+        version: link:../../core/dist
       '@graphql-inspector/logger':
         specifier: workspace:*
-        version: link:../../logger
+        version: link:../../logger/dist
       '@graphql-tools/utils':
         specifier: 10.0.1
         version: 10.0.1(graphql@16.6.0)
@@ -305,22 +315,34 @@ importers:
 
   packages/commands/commands:
     dependencies:
+      '@graphql-inspector/config':
+        specifier: 3.4.5
+        version: link:../../config/dist
+      '@graphql-inspector/loaders':
+        specifier: 3.4.7
+        version: link:../../loaders/loaders/dist
+      graphql:
+        specifier: ^14.0.0 || ^15.0.0 || ^16.0.0
+        version: 16.6.0
       tslib:
         specifier: 2.5.3
         version: 2.5.3
+      yargs:
+        specifier: 17.7.2
+        version: 17.7.2
     publishDirectory: dist
 
   packages/commands/coverage:
     dependencies:
       '@graphql-inspector/commands':
         specifier: workspace:*
-        version: link:../commands
+        version: link:../commands/dist
       '@graphql-inspector/core':
         specifier: workspace:*
-        version: link:../../core
+        version: link:../../core/dist
       '@graphql-inspector/logger':
         specifier: workspace:*
-        version: link:../../logger
+        version: link:../../logger/dist
       '@graphql-tools/utils':
         specifier: 10.0.1
         version: 10.0.1(graphql@16.6.0)
@@ -337,13 +359,16 @@ importers:
     dependencies:
       '@graphql-inspector/commands':
         specifier: workspace:*
-        version: link:../commands
+        version: link:../commands/dist
       '@graphql-inspector/core':
         specifier: workspace:*
-        version: link:../../core
+        version: link:../../core/dist
       '@graphql-inspector/logger':
         specifier: workspace:*
-        version: link:../../logger
+        version: link:../../logger/dist
+      graphql:
+        specifier: ^14.0.0 || ^15.0.0 || ^16.0.0
+        version: 16.6.0
       tslib:
         specifier: 2.5.3
         version: 2.5.3
@@ -353,7 +378,10 @@ importers:
     dependencies:
       '@graphql-inspector/commands':
         specifier: workspace:*
-        version: link:../commands
+        version: link:../commands/dist
+      graphql:
+        specifier: ^14.0.0 || ^15.0.0 || ^16.0.0
+        version: 16.6.0
       open:
         specifier: 8.4.2
         version: 8.4.2
@@ -366,13 +394,16 @@ importers:
     dependencies:
       '@graphql-inspector/commands':
         specifier: workspace:*
-        version: link:../commands
+        version: link:../commands/dist
       '@graphql-inspector/core':
         specifier: workspace:*
-        version: link:../../core
+        version: link:../../core/dist
       '@graphql-inspector/logger':
         specifier: workspace:*
-        version: link:../../logger
+        version: link:../../logger/dist
+      graphql:
+        specifier: ^14.0.0 || ^15.0.0 || ^16.0.0
+        version: 16.6.0
       tslib:
         specifier: 2.5.3
         version: 2.5.3
@@ -382,10 +413,10 @@ importers:
     dependencies:
       '@graphql-inspector/commands':
         specifier: workspace:*
-        version: link:../commands
+        version: link:../commands/dist
       '@graphql-inspector/logger':
         specifier: workspace:*
-        version: link:../../logger
+        version: link:../../logger/dist
       graphql-yoga:
         specifier: 3.9.1
         version: 3.9.1(graphql@16.6.0)
@@ -405,13 +436,16 @@ importers:
     dependencies:
       '@graphql-inspector/commands':
         specifier: workspace:*
-        version: link:../commands
+        version: link:../commands/dist
       '@graphql-inspector/core':
         specifier: workspace:*
-        version: link:../../core
+        version: link:../../core/dist
       '@graphql-inspector/logger':
         specifier: workspace:*
-        version: link:../../logger
+        version: link:../../logger/dist
+      graphql:
+        specifier: ^14.0.0 || ^15.0.0 || ^16.0.0
+        version: 16.6.0
       tslib:
         specifier: 2.5.3
         version: 2.5.3
@@ -421,13 +455,13 @@ importers:
     dependencies:
       '@graphql-inspector/commands':
         specifier: workspace:*
-        version: link:../commands
+        version: link:../commands/dist
       '@graphql-inspector/core':
         specifier: workspace:*
-        version: link:../../core
+        version: link:../../core/dist
       '@graphql-inspector/logger':
         specifier: workspace:*
-        version: link:../../logger
+        version: link:../../logger/dist
       '@graphql-tools/utils':
         specifier: 10.0.1
         version: 10.0.1(graphql@16.6.0)
@@ -442,6 +476,9 @@ importers:
 
   packages/config:
     dependencies:
+      graphql:
+        specifier: ^14.0.0 || ^15.0.0 || ^16.0.0
+        version: 16.6.0
       tslib:
         specifier: 2.5.3
         version: 2.5.3
@@ -452,6 +489,9 @@ importers:
       dependency-graph:
         specifier: 0.11.0
         version: 0.11.0
+      graphql:
+        specifier: ^14.0.0 || ^15.0.0 || ^16.0.0
+        version: 16.6.0
       object-inspect:
         specifier: 1.12.3
         version: 1.12.3
@@ -468,13 +508,16 @@ importers:
     dependencies:
       '@graphql-inspector/core':
         specifier: workspace:*
-        version: link:../core
+        version: link:../core/dist
       '@whatwg-node/fetch':
         specifier: 0.9.6
         version: 0.9.6
       dataloader:
         specifier: 2.2.2
         version: 2.2.2
+      graphql:
+        specifier: ^14.0.0 || ^15.0.0 || ^16.0.0
+        version: 16.6.0
       js-yaml:
         specifier: 4.1.0
         version: 4.1.0
@@ -583,6 +626,9 @@ importers:
 
   packages/loaders/loaders:
     dependencies:
+      '@graphql-inspector/config':
+        specifier: 3.4.5
+        version: link:../../config/dist
       '@graphql-tools/code-file-loader':
         specifier: 8.0.1
         version: 8.0.1(@babel/core@7.22.1)(graphql@16.6.0)
@@ -644,13 +690,13 @@ importers:
     dependencies:
       '@graphql-inspector/core':
         specifier: workspace:*
-        version: link:../packages/core
+        version: link:../packages/core/dist
       '@graphql-inspector/github':
         specifier: workspace:*
-        version: link:../packages/github
+        version: link:../packages/github/dist
       '@monaco-editor/react':
         specifier: 4.5.1
-        version: 4.5.1(react-dom@18.2.0)(react@18.2.0)
+        version: 4.5.1(monaco-editor@0.39.0)(react-dom@18.2.0)(react@18.2.0)
       '@theguild/algolia':
         specifier: 1.1.7
         version: 1.1.7
@@ -2238,22 +2284,24 @@ packages:
       react: 18.2.0
     dev: false
 
-  /@monaco-editor/loader@1.3.3:
+  /@monaco-editor/loader@1.3.3(monaco-editor@0.39.0):
     resolution: {integrity: sha512-6KKF4CTzcJiS8BJwtxtfyYt9shBiEv32ateQ9T4UVogwn4HM/uPo9iJd2Dmbkpz8CM6Y0PDUpjnZzCwC+eYo2Q==}
     peerDependencies:
       monaco-editor: '>= 0.21.0 < 1'
     dependencies:
+      monaco-editor: 0.39.0
       state-local: 1.0.7
     dev: false
 
-  /@monaco-editor/react@4.5.1(react-dom@18.2.0)(react@18.2.0):
+  /@monaco-editor/react@4.5.1(monaco-editor@0.39.0)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-NNDFdP+2HojtNhCkRfE6/D6ro6pBNihaOzMbGK84lNWzRu+CfBjwzGt4jmnqimLuqp5yE5viHS2vi+QOAnD5FQ==}
     peerDependencies:
       monaco-editor: '>= 0.25.0 < 1'
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
     dependencies:
-      '@monaco-editor/loader': 1.3.3
+      '@monaco-editor/loader': 1.3.3(monaco-editor@0.39.0)
+      monaco-editor: 0.39.0
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     dev: false
@@ -3351,7 +3399,7 @@ packages:
       cssnano: 5.1.15(postcss@8.4.21)
       postcss: 8.4.21
       postcss-import: 15.1.0(postcss@8.4.21)
-      tailwindcss: 3.2.7
+      tailwindcss: 3.2.7(postcss@8.4.21)
     transitivePeerDependencies:
       - ts-node
     dev: true
@@ -3772,41 +3820,41 @@ packages:
       eslint-visitor-keys: 3.4.1
     dev: true
 
-  /@vitest/expect@0.31.4:
-    resolution: {integrity: sha512-tibyx8o7GUyGHZGyPgzwiaPaLDQ9MMuCOrc03BYT0nryUuhLbL7NV2r/q98iv5STlwMgaKuFJkgBW/8iPKwlSg==}
+  /@vitest/expect@0.32.1:
+    resolution: {integrity: sha512-Ca5AlxzyE7XoQULdtWcoxavYTcB42Y9XvaSg/JnFyU1nlR4+ouIY4lYpEXu2qY4xha8Q5jKgW/sH0yqXqCrm2w==}
     dependencies:
-      '@vitest/spy': 0.31.4
-      '@vitest/utils': 0.31.4
+      '@vitest/spy': 0.32.1
+      '@vitest/utils': 0.32.1
       chai: 4.3.7
     dev: true
 
-  /@vitest/runner@0.31.4:
-    resolution: {integrity: sha512-Wgm6UER+gwq6zkyrm5/wbpXGF+g+UBB78asJlFkIOwyse0pz8lZoiC6SW5i4gPnls/zUcPLWS7Zog0LVepXnpg==}
+  /@vitest/runner@0.32.1:
+    resolution: {integrity: sha512-KfinbkhyptHuzwJCuuCXWSU8E9UkQIMQUhDHFuufzmPKWiLFzIY3Z4MRsPu1qw1uSZX9ZUQ3PPIAyMO5e0Lq3A==}
     dependencies:
-      '@vitest/utils': 0.31.4
+      '@vitest/utils': 0.32.1
       concordance: 5.0.4
       p-limit: 4.0.0
       pathe: 1.1.0
     dev: true
 
-  /@vitest/snapshot@0.31.4:
-    resolution: {integrity: sha512-LemvNumL3NdWSmfVAMpXILGyaXPkZbG5tyl6+RQSdcHnTj6hvA49UAI8jzez9oQyE/FWLKRSNqTGzsHuk89LRA==}
+  /@vitest/snapshot@0.32.1:
+    resolution: {integrity: sha512-6QsxowDyv6Gm/McSD/6eXBgL3zMSIxBvxC50E7ZYJ+DNfJACJ1w6pykhbnBh9L8igwlFFUPNC1hj+3WD6xF4QQ==}
     dependencies:
       magic-string: 0.30.0
       pathe: 1.1.0
       pretty-format: 27.5.1
     dev: true
 
-  /@vitest/spy@0.31.4:
-    resolution: {integrity: sha512-3ei5ZH1s3aqbEyftPAzSuunGICRuhE+IXOmpURFdkm5ybUADk+viyQfejNk6q8M5QGX8/EVKw+QWMEP3DTJDag==}
+  /@vitest/spy@0.32.1:
+    resolution: {integrity: sha512-ibbPbGOvSP8Wce6hdv7BAIoVMweFDCPTvxitR7d6VtrR8n5SoPuvV93oi0WQRgJJ+ciUUI2UtUqRsQMU7+FIqQ==}
     dependencies:
       tinyspy: 2.1.0
     dev: true
 
-  /@vitest/utils@0.31.4:
-    resolution: {integrity: sha512-DobZbHacWznoGUfYU8XDPY78UubJxXfMNY1+SUdOp1NsI34eopSA6aZMeaGu10waSOeYwE8lxrd/pLfT0RMxjQ==}
+  /@vitest/utils@0.32.1:
+    resolution: {integrity: sha512-LPuk++ko9iYhG+Bh8WfgXkr+lXvZ1c8ThofZnO7UV5+N7XvnGMA6B4nqHAY1TeDorQTnsGD/5WHsyQBsbARYtg==}
     dependencies:
-      concordance: 5.0.4
+      diff-sequences: 29.4.3
       loupe: 2.3.6
       pretty-format: 27.5.1
     dev: true
@@ -5619,6 +5667,11 @@ packages:
 
   /didyoumean@1.2.2:
     resolution: {integrity: sha512-gxtyfqMg7GKyhQmb056K7M3xszy/myH8w+B4RT+QXBQsvAOdc3XymqDDPHx1BgPgsdAA5SIifona89YtRATDzw==}
+    dev: true
+
+  /diff-sequences@29.4.3:
+    resolution: {integrity: sha512-ofrBgwpPhCD85kMKtE9RYFFq6OC1A89oW2vvgWZNCwxrUpRUILopY7lsYyMDSjc8g6U6aiO0Qubg6r4Wgt5ZnA==}
+    engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
     dev: true
 
   /diff@5.1.0:
@@ -9028,6 +9081,10 @@ packages:
       ufo: 1.1.1
     dev: true
 
+  /monaco-editor@0.39.0:
+    resolution: {integrity: sha512-zhbZ2Nx93tLR8aJmL2zI1mhJpsl87HMebNBM6R8z4pLfs8pj604pIVIVwyF1TivcfNtIPpMXL+nb3DsBmE/x6Q==}
+    dev: false
+
   /morgan@1.10.0:
     resolution: {integrity: sha512-AbegBVI4sh6El+1gNwvD5YIck7nSA36weD7xvIxG4in80j/UoK8AEGaWnnz8v1GxonMCltmlNs5ZKbGvl9b1XQ==}
     engines: {node: '>= 0.8.0'}
@@ -11565,10 +11622,12 @@ packages:
     resolution: {integrity: sha512-qCN98uP7i9z0fIS4amQ5zbGBOq+OSigYeGvPy7NDk8Y9yncqDZ9pRPgfsc2PJIVM9RrJj7GIfuRgmjoUU9zTHQ==}
     dev: false
 
-  /tailwindcss@3.2.7:
+  /tailwindcss@3.2.7(postcss@8.4.21):
     resolution: {integrity: sha512-B6DLqJzc21x7wntlH/GsZwEXTBttVSl1FtCzC8WP4oBc/NKef7kaax5jeihkkCEWc831/5NDJ9gRNDK6NEioQQ==}
     engines: {node: '>=12.13.0'}
     hasBin: true
+    peerDependencies:
+      postcss: ^8.0.9
     dependencies:
       arg: 5.0.2
       chokidar: 3.5.3
@@ -12148,8 +12207,8 @@ packages:
       unist-util-stringify-position: 3.0.3
       vfile-message: 3.1.4
 
-  /vite-node@0.31.4(@types/node@20.2.5):
-    resolution: {integrity: sha512-uzL377GjJtTbuc5KQxVbDu2xfU/x0wVjUtXQR2ihS21q/NK6ROr4oG0rsSkBBddZUVCwzfx22in76/0ZZHXgkQ==}
+  /vite-node@0.32.1(@types/node@20.2.5):
+    resolution: {integrity: sha512-YfZ+8aDHjsAKCVGky6DB1pb3v25aMCXuXncdSUm1kZALdnHMH+k179el+fCRmSocHqzClvBfc4zlOiZ1sCyfQA==}
     engines: {node: '>=v14.18.0'}
     hasBin: true
     dependencies:
@@ -12203,8 +12262,8 @@ packages:
       fsevents: 2.3.2
     dev: true
 
-  /vitest@0.31.4:
-    resolution: {integrity: sha512-GoV0VQPmWrUFOZSg3RpQAPN+LPmHg2/gxlMNJlyxJihkz6qReHDV6b0pPDcqFLNEPya4tWJ1pgwUNP9MLmUfvQ==}
+  /vitest@0.32.1:
+    resolution: {integrity: sha512-WIJ/ikmGbvGrui2CMIZwl9MRrlzZZvbdsJA5pIkeG0U4RsIj3HsFETM5PXc0Ypp+R1TRtxghSct8MBxocYNPLA==}
     engines: {node: '>=v14.18.0'}
     hasBin: true
     peerDependencies:
@@ -12237,11 +12296,11 @@ packages:
       '@types/chai': 4.3.5
       '@types/chai-subset': 1.3.3
       '@types/node': 20.2.5
-      '@vitest/expect': 0.31.4
-      '@vitest/runner': 0.31.4
-      '@vitest/snapshot': 0.31.4
-      '@vitest/spy': 0.31.4
-      '@vitest/utils': 0.31.4
+      '@vitest/expect': 0.32.1
+      '@vitest/runner': 0.32.1
+      '@vitest/snapshot': 0.32.1
+      '@vitest/spy': 0.32.1
+      '@vitest/utils': 0.32.1
       acorn: 8.8.2
       acorn-walk: 8.2.0
       cac: 6.7.14
@@ -12257,7 +12316,7 @@ packages:
       tinybench: 2.5.0
       tinypool: 0.5.0
       vite: 4.2.1(@types/node@20.2.5)
-      vite-node: 0.31.4(@types/node@20.2.5)
+      vite-node: 0.32.1(@types/node@20.2.5)
       why-is-node-running: 2.2.2
     transitivePeerDependencies:
       - less
@@ -12630,7 +12689,3 @@ packages:
 
   /zwitch@2.0.4:
     resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
-
-settings:
-  autoInstallPeers: true
-  excludeLinksFromLockfile: false
