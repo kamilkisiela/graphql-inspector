@@ -69,7 +69,7 @@
   },
   "devDependencies": {
     "@babel/core": "7.22.1",
-    "graphql": "16.6.0"
+    "graphql": "16.7.0"
   },
   "publishConfig": {
     "directory": "dist",
