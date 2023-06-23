@@ -177,9 +177,15 @@ importers:
       '@graphql-inspector/core':
         specifier: workspace:*
         version: link:../core/dist
+<<<<<<< HEAD
       dataloader:
         specifier: 2.2.2
         version: 2.2.2
+=======
+      '@graphql-inspector/github':
+        specifier: workspace:*
+        version: link:../github/dist
+>>>>>>> 67b69cc5 (Support reading schema from workspace)
       js-yaml:
         specifier: 4.1.0
         version: 4.1.0
@@ -211,7 +217,11 @@ importers:
         version: link:../logger/dist
       graphql:
         specifier: ^14.0.0 || ^15.0.0 || ^16.0.0
+<<<<<<< HEAD
         version: 16.8.1
+=======
+        version: 16.6.0
+>>>>>>> 67b69cc5 (Support reading schema from workspace)
       tslib:
         specifier: 2.6.2
         version: 2.6.2
@@ -278,7 +288,11 @@ importers:
         version: link:../commands/validate/dist
       graphql:
         specifier: ^14.0.0 || ^15.0.0 || ^16.0.0
+<<<<<<< HEAD
         version: 16.8.1
+=======
+        version: 16.6.0
+>>>>>>> 67b69cc5 (Support reading schema from workspace)
       tslib:
         specifier: 2.6.2
         version: 2.6.2
@@ -316,6 +330,7 @@ importers:
   packages/commands/commands:
     dependencies:
       '@graphql-inspector/config':
+<<<<<<< HEAD
         specifier: 4.0.2
         version: link:../../config/dist
       '@graphql-inspector/loaders':
@@ -327,6 +342,19 @@ importers:
       tslib:
         specifier: 2.6.2
         version: 2.6.2
+=======
+        specifier: 3.4.5
+        version: link:../../config/dist
+      '@graphql-inspector/loaders':
+        specifier: 3.4.7
+        version: link:../../loaders/loaders/dist
+      graphql:
+        specifier: ^14.0.0 || ^15.0.0 || ^16.0.0
+        version: 16.6.0
+      tslib:
+        specifier: 2.5.3
+        version: 2.5.3
+>>>>>>> 67b69cc5 (Support reading schema from workspace)
       yargs:
         specifier: 17.7.2
         version: 17.7.2
@@ -368,7 +396,11 @@ importers:
         version: link:../../logger/dist
       graphql:
         specifier: ^14.0.0 || ^15.0.0 || ^16.0.0
+<<<<<<< HEAD
         version: 16.8.1
+=======
+        version: 16.6.0
+>>>>>>> 67b69cc5 (Support reading schema from workspace)
       tslib:
         specifier: 2.6.2
         version: 2.6.2
@@ -381,7 +413,11 @@ importers:
         version: link:../commands/dist
       graphql:
         specifier: ^14.0.0 || ^15.0.0 || ^16.0.0
+<<<<<<< HEAD
         version: 16.8.1
+=======
+        version: 16.6.0
+>>>>>>> 67b69cc5 (Support reading schema from workspace)
       open:
         specifier: 8.4.2
         version: 8.4.2
@@ -403,7 +439,11 @@ importers:
         version: link:../../logger/dist
       graphql:
         specifier: ^14.0.0 || ^15.0.0 || ^16.0.0
+<<<<<<< HEAD
         version: 16.8.1
+=======
+        version: 16.6.0
+>>>>>>> 67b69cc5 (Support reading schema from workspace)
       tslib:
         specifier: 2.6.2
         version: 2.6.2
@@ -445,7 +485,11 @@ importers:
         version: link:../../logger/dist
       graphql:
         specifier: ^14.0.0 || ^15.0.0 || ^16.0.0
+<<<<<<< HEAD
         version: 16.8.1
+=======
+        version: 16.6.0
+>>>>>>> 67b69cc5 (Support reading schema from workspace)
       tslib:
         specifier: 2.6.2
         version: 2.6.2
@@ -478,7 +522,11 @@ importers:
     dependencies:
       graphql:
         specifier: ^14.0.0 || ^15.0.0 || ^16.0.0
+<<<<<<< HEAD
         version: 16.8.1
+=======
+        version: 16.6.0
+>>>>>>> 67b69cc5 (Support reading schema from workspace)
       tslib:
         specifier: 2.6.2
         version: 2.6.2
@@ -491,7 +539,11 @@ importers:
         version: 0.11.0
       graphql:
         specifier: ^14.0.0 || ^15.0.0 || ^16.0.0
+<<<<<<< HEAD
         version: 16.8.1
+=======
+        version: 16.6.0
+>>>>>>> 67b69cc5 (Support reading schema from workspace)
       object-inspect:
         specifier: 1.12.3
         version: 1.12.3
@@ -504,6 +556,47 @@ importers:
         version: 1.8.1
     publishDirectory: dist
 
+<<<<<<< HEAD
+=======
+  packages/github:
+    dependencies:
+      '@graphql-inspector/core':
+        specifier: workspace:*
+        version: link:../core/dist
+      '@whatwg-node/fetch':
+        specifier: 0.9.6
+        version: 0.9.6
+      dataloader:
+        specifier: 2.2.2
+        version: 2.2.2
+      graphql:
+        specifier: ^14.0.0 || ^15.0.0 || ^16.0.0
+        version: 16.6.0
+      js-yaml:
+        specifier: 4.1.0
+        version: 4.1.0
+      tslib:
+        specifier: 2.5.3
+        version: 2.5.3
+    devDependencies:
+      '@types/express':
+        specifier: 4.17.17
+        version: 4.17.17
+      '@types/js-yaml':
+        specifier: 4.0.5
+        version: 4.0.5
+      '@types/node':
+        specifier: 20.2.5
+        version: 20.2.5
+      probot:
+        specifier: 11.4.1
+        version: 11.4.1
+      smee-client:
+        specifier: 1.2.3
+        version: 1.2.3
+    publishDirectory: dist
+
+>>>>>>> 67b69cc5 (Support reading schema from workspace)
   packages/loaders/code:
     dependencies:
       '@graphql-tools/code-file-loader':
@@ -589,7 +682,11 @@ importers:
   packages/loaders/loaders:
     dependencies:
       '@graphql-inspector/config':
+<<<<<<< HEAD
         specifier: 4.0.2
+=======
+        specifier: 3.4.5
+>>>>>>> 67b69cc5 (Support reading schema from workspace)
         version: link:../../config/dist
       '@graphql-tools/code-file-loader':
         specifier: 8.0.1
@@ -651,11 +748,25 @@ importers:
   website:
     dependencies:
       '@graphql-inspector/core':
+<<<<<<< HEAD
         specifier: ../packages/core/dist
         version: link:../packages/core/dist
       '@monaco-editor/react':
         specifier: ^4.6.0
         version: 4.6.0(monaco-editor@0.45.0)(react-dom@18.2.0)(react@18.2.0)
+=======
+        specifier: workspace:*
+        version: link:../packages/core/dist
+      '@graphql-inspector/github':
+        specifier: workspace:*
+        version: link:../packages/github/dist
+      '@monaco-editor/react':
+        specifier: 4.5.1
+        version: 4.5.1(monaco-editor@0.39.0)(react-dom@18.2.0)(react@18.2.0)
+      '@theguild/algolia':
+        specifier: 1.1.7
+        version: 1.1.7
+>>>>>>> 67b69cc5 (Support reading schema from workspace)
       '@theguild/components':
         specifier: ^6.0.1
         version: 6.0.1(@algolia/client-search@4.19.1)(@types/react@18.2.39)(next@13.5.4)(react-dom@18.2.0)(react@18.2.0)(webpack@4.47.0)
@@ -2108,6 +2219,7 @@ packages:
       react: 18.2.0
     dev: false
 
+<<<<<<< HEAD
   /@monaco-editor/loader@1.4.0(monaco-editor@0.45.0):
     resolution: {integrity: sha512-00ioBig0x642hytVspPl7DbQyaSWRaolYie/UFNjoTdvoKPzo6xrXLhTk9ixgIKcLH5b5vDOjVNiGyY+uDCUlg==}
     peerDependencies:
@@ -2119,13 +2231,31 @@ packages:
 
   /@monaco-editor/react@4.6.0(monaco-editor@0.45.0)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-RFkU9/i7cN2bsq/iTkurMWOEErmYcY6JiQI3Jn+WeR/FGISH8JbHERjpS9oRuSOPvDMJI0Z8nJeKkbOs9sBYQw==}
+=======
+  /@monaco-editor/loader@1.3.3(monaco-editor@0.39.0):
+    resolution: {integrity: sha512-6KKF4CTzcJiS8BJwtxtfyYt9shBiEv32ateQ9T4UVogwn4HM/uPo9iJd2Dmbkpz8CM6Y0PDUpjnZzCwC+eYo2Q==}
+    peerDependencies:
+      monaco-editor: '>= 0.21.0 < 1'
+    dependencies:
+      monaco-editor: 0.39.0
+      state-local: 1.0.7
+    dev: false
+
+  /@monaco-editor/react@4.5.1(monaco-editor@0.39.0)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-NNDFdP+2HojtNhCkRfE6/D6ro6pBNihaOzMbGK84lNWzRu+CfBjwzGt4jmnqimLuqp5yE5viHS2vi+QOAnD5FQ==}
+>>>>>>> 67b69cc5 (Support reading schema from workspace)
     peerDependencies:
       monaco-editor: '>= 0.25.0 < 1'
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
     dependencies:
+<<<<<<< HEAD
       '@monaco-editor/loader': 1.4.0(monaco-editor@0.45.0)
       monaco-editor: 0.45.0
+=======
+      '@monaco-editor/loader': 1.3.3(monaco-editor@0.39.0)
+      monaco-editor: 0.39.0
+>>>>>>> 67b69cc5 (Support reading schema from workspace)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     dev: false
@@ -3220,11 +3350,19 @@ packages:
   /@theguild/tailwind-config@0.3.0:
     resolution: {integrity: sha512-nTASKOdyyY5BlUsTaQrVL0cri2ZAG+6gHoOOurbFh4LLTwTYVILZVG/1k959QVoIAy1LCo7u4vQ8qFr/9eD4UQ==}
     dependencies:
+<<<<<<< HEAD
       autoprefixer: 10.4.14(postcss@8.4.31)
       cssnano: 6.0.1(postcss@8.4.31)
       postcss: 8.4.31
       postcss-import: 15.1.0(postcss@8.4.31)
       tailwindcss: 3.3.2
+=======
+      autoprefixer: 10.4.14(postcss@8.4.21)
+      cssnano: 5.1.15(postcss@8.4.21)
+      postcss: 8.4.21
+      postcss-import: 15.1.0(postcss@8.4.21)
+      tailwindcss: 3.2.7(postcss@8.4.21)
+>>>>>>> 67b69cc5 (Support reading schema from workspace)
     transitivePeerDependencies:
       - ts-node
     dev: true
@@ -3644,8 +3782,148 @@ packages:
       eslint-visitor-keys: 3.4.1
     dev: true
 
+<<<<<<< HEAD
   /@ungap/structured-clone@1.2.0:
     resolution: {integrity: sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==}
+=======
+  /@vercel/ncc@0.36.1:
+    resolution: {integrity: sha512-S4cL7Taa9yb5qbv+6wLgiKVZ03Qfkc4jGRuiUQMQ8HGBD5pcNRnHeYM33zBvJE4/zJGjJJ8GScB+WmTsn9mORw==}
+    hasBin: true
+    dev: true
+
+  /@vitest/expect@0.31.4:
+    resolution: {integrity: sha512-tibyx8o7GUyGHZGyPgzwiaPaLDQ9MMuCOrc03BYT0nryUuhLbL7NV2r/q98iv5STlwMgaKuFJkgBW/8iPKwlSg==}
+    dependencies:
+      '@vitest/spy': 0.31.4
+      '@vitest/utils': 0.31.4
+      chai: 4.3.7
+    dev: true
+
+  /@vitest/runner@0.31.4:
+    resolution: {integrity: sha512-Wgm6UER+gwq6zkyrm5/wbpXGF+g+UBB78asJlFkIOwyse0pz8lZoiC6SW5i4gPnls/zUcPLWS7Zog0LVepXnpg==}
+    dependencies:
+      '@vitest/utils': 0.31.4
+      concordance: 5.0.4
+      p-limit: 4.0.0
+      pathe: 1.1.0
+    dev: true
+
+  /@vitest/snapshot@0.31.4:
+    resolution: {integrity: sha512-LemvNumL3NdWSmfVAMpXILGyaXPkZbG5tyl6+RQSdcHnTj6hvA49UAI8jzez9oQyE/FWLKRSNqTGzsHuk89LRA==}
+    dependencies:
+      magic-string: 0.30.0
+      pathe: 1.1.0
+      pretty-format: 27.5.1
+    dev: true
+
+  /@vitest/spy@0.31.4:
+    resolution: {integrity: sha512-3ei5ZH1s3aqbEyftPAzSuunGICRuhE+IXOmpURFdkm5ybUADk+viyQfejNk6q8M5QGX8/EVKw+QWMEP3DTJDag==}
+    dependencies:
+      tinyspy: 2.1.0
+    dev: true
+
+  /@vitest/utils@0.31.4:
+    resolution: {integrity: sha512-DobZbHacWznoGUfYU8XDPY78UubJxXfMNY1+SUdOp1NsI34eopSA6aZMeaGu10waSOeYwE8lxrd/pLfT0RMxjQ==}
+    dependencies:
+      concordance: 5.0.4
+      loupe: 2.3.6
+      pretty-format: 27.5.1
+    dev: true
+
+  /@webassemblyjs/ast@1.11.5:
+    resolution: {integrity: sha512-LHY/GSAZZRpsNQH+/oHqhRQ5FT7eoULcBqgfyTB5nQHogFnK3/7QoN7dLnwSE/JkUAF0SrRuclT7ODqMFtWxxQ==}
+    dependencies:
+      '@webassemblyjs/helper-numbers': 1.11.5
+      '@webassemblyjs/helper-wasm-bytecode': 1.11.5
+
+  /@webassemblyjs/floating-point-hex-parser@1.11.5:
+    resolution: {integrity: sha512-1j1zTIC5EZOtCplMBG/IEwLtUojtwFVwdyVMbL/hwWqbzlQoJsWCOavrdnLkemwNoC/EOwtUFch3fuo+cbcXYQ==}
+
+  /@webassemblyjs/helper-api-error@1.11.5:
+    resolution: {integrity: sha512-L65bDPmfpY0+yFrsgz8b6LhXmbbs38OnwDCf6NpnMUYqa+ENfE5Dq9E42ny0qz/PdR0LJyq/T5YijPnU8AXEpA==}
+
+  /@webassemblyjs/helper-buffer@1.11.5:
+    resolution: {integrity: sha512-fDKo1gstwFFSfacIeH5KfwzjykIE6ldh1iH9Y/8YkAZrhmu4TctqYjSh7t0K2VyDSXOZJ1MLhht/k9IvYGcIxg==}
+
+  /@webassemblyjs/helper-numbers@1.11.5:
+    resolution: {integrity: sha512-DhykHXM0ZABqfIGYNv93A5KKDw/+ywBFnuWybZZWcuzWHfbp21wUfRkbtz7dMGwGgT4iXjWuhRMA2Mzod6W4WA==}
+    dependencies:
+      '@webassemblyjs/floating-point-hex-parser': 1.11.5
+      '@webassemblyjs/helper-api-error': 1.11.5
+      '@xtuc/long': 4.2.2
+
+  /@webassemblyjs/helper-wasm-bytecode@1.11.5:
+    resolution: {integrity: sha512-oC4Qa0bNcqnjAowFn7MPCETQgDYytpsfvz4ujZz63Zu/a/v71HeCAAmZsgZ3YVKec3zSPYytG3/PrRCqbtcAvA==}
+
+  /@webassemblyjs/helper-wasm-section@1.11.5:
+    resolution: {integrity: sha512-uEoThA1LN2NA+K3B9wDo3yKlBfVtC6rh0i4/6hvbz071E8gTNZD/pT0MsBf7MeD6KbApMSkaAK0XeKyOZC7CIA==}
+    dependencies:
+      '@webassemblyjs/ast': 1.11.5
+      '@webassemblyjs/helper-buffer': 1.11.5
+      '@webassemblyjs/helper-wasm-bytecode': 1.11.5
+      '@webassemblyjs/wasm-gen': 1.11.5
+
+  /@webassemblyjs/ieee754@1.11.5:
+    resolution: {integrity: sha512-37aGq6qVL8A8oPbPrSGMBcp38YZFXcHfiROflJn9jxSdSMMM5dS5P/9e2/TpaJuhE+wFrbukN2WI6Hw9MH5acg==}
+    dependencies:
+      '@xtuc/ieee754': 1.2.0
+
+  /@webassemblyjs/leb128@1.11.5:
+    resolution: {integrity: sha512-ajqrRSXaTJoPW+xmkfYN6l8VIeNnR4vBOTQO9HzR7IygoCcKWkICbKFbVTNMjMgMREqXEr0+2M6zukzM47ZUfQ==}
+    dependencies:
+      '@xtuc/long': 4.2.2
+
+  /@webassemblyjs/utf8@1.11.5:
+    resolution: {integrity: sha512-WiOhulHKTZU5UPlRl53gHR8OxdGsSOxqfpqWeA2FmcwBMaoEdz6b2x2si3IwC9/fSPLfe8pBMRTHVMk5nlwnFQ==}
+
+  /@webassemblyjs/wasm-edit@1.11.5:
+    resolution: {integrity: sha512-C0p9D2fAu3Twwqvygvf42iGCQ4av8MFBLiTb+08SZ4cEdwzWx9QeAHDo1E2k+9s/0w1DM40oflJOpkZ8jW4HCQ==}
+    dependencies:
+      '@webassemblyjs/ast': 1.11.5
+      '@webassemblyjs/helper-buffer': 1.11.5
+      '@webassemblyjs/helper-wasm-bytecode': 1.11.5
+      '@webassemblyjs/helper-wasm-section': 1.11.5
+      '@webassemblyjs/wasm-gen': 1.11.5
+      '@webassemblyjs/wasm-opt': 1.11.5
+      '@webassemblyjs/wasm-parser': 1.11.5
+      '@webassemblyjs/wast-printer': 1.11.5
+
+  /@webassemblyjs/wasm-gen@1.11.5:
+    resolution: {integrity: sha512-14vteRlRjxLK9eSyYFvw1K8Vv+iPdZU0Aebk3j6oB8TQiQYuO6hj9s4d7qf6f2HJr2khzvNldAFG13CgdkAIfA==}
+    dependencies:
+      '@webassemblyjs/ast': 1.11.5
+      '@webassemblyjs/helper-wasm-bytecode': 1.11.5
+      '@webassemblyjs/ieee754': 1.11.5
+      '@webassemblyjs/leb128': 1.11.5
+      '@webassemblyjs/utf8': 1.11.5
+
+  /@webassemblyjs/wasm-opt@1.11.5:
+    resolution: {integrity: sha512-tcKwlIXstBQgbKy1MlbDMlXaxpucn42eb17H29rawYLxm5+MsEmgPzeCP8B1Cl69hCice8LeKgZpRUAPtqYPgw==}
+    dependencies:
+      '@webassemblyjs/ast': 1.11.5
+      '@webassemblyjs/helper-buffer': 1.11.5
+      '@webassemblyjs/wasm-gen': 1.11.5
+      '@webassemblyjs/wasm-parser': 1.11.5
+
+  /@webassemblyjs/wasm-parser@1.11.5:
+    resolution: {integrity: sha512-SVXUIwsLQlc8srSD7jejsfTU83g7pIGr2YYNb9oHdtldSxaOhvA5xwvIiWIfcX8PlSakgqMXsLpLfbbJ4cBYew==}
+    dependencies:
+      '@webassemblyjs/ast': 1.11.5
+      '@webassemblyjs/helper-api-error': 1.11.5
+      '@webassemblyjs/helper-wasm-bytecode': 1.11.5
+      '@webassemblyjs/ieee754': 1.11.5
+      '@webassemblyjs/leb128': 1.11.5
+      '@webassemblyjs/utf8': 1.11.5
+
+  /@webassemblyjs/wast-printer@1.11.5:
+    resolution: {integrity: sha512-f7Pq3wvg3GSPUPzR0F6bmI89Hdb+u9WXrSKc4v+N0aV0q6r42WoF92Jp2jEorBEBRoRNXgjp53nBniDXcqZYPA==}
+    dependencies:
+      '@webassemblyjs/ast': 1.11.5
+      '@xtuc/long': 4.2.2
+
+  /@whatwg-node/events@0.0.2:
+    resolution: {integrity: sha512-WKj/lI4QjnLuPrim0cfO7i+HsDSXHxNv1y0CrJhdntuO3hxWZmnXCwNDnwOvry11OjRin6cgWNF+j/9Pn8TN4w==}
+>>>>>>> 67b69cc5 (Support reading schema from workspace)
     dev: false
 
   /@vitest/expect@0.34.6:
@@ -3869,6 +4147,7 @@ packages:
     resolution: {integrity: sha512-NuHqBY1PB/D8xU6s/thBgOAiAP7HOYDQ32+BFZILJ8ivkUkAHQnWfn6WhL79Owj1qmUnoN/YPhktdIoucipkAQ==}
     dev: false
 
+<<<<<<< HEAD
   /@zeit/ncc@0.22.3:
     resolution: {integrity: sha512-jnCLpLXWuw/PAiJiVbLjA8WBC0IJQbFeUwF4I9M+23MvIxTxk5pD4Q8byQBSPmHQjz5aBoA7AKAElQxMpjrCLQ==}
     deprecated: '@zeit/ncc is no longer maintained. Please use @vercel/ncc instead.'
@@ -3880,6 +4159,8 @@ packages:
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
     dev: true
 
+=======
+>>>>>>> 67b69cc5 (Support reading schema from workspace)
   /abort-controller@3.0.0:
     resolution: {integrity: sha512-h8lQ8tacZYnR3vNQTgibj+tODHI5/+l06Au2Pcriv/Gmet0eaj4TwWH41sO9wnHDiQsEj19q0drzdWdeAHtweg==}
     engines: {node: '>=6.5'}
@@ -9951,8 +10232,13 @@ packages:
       ufo: 1.1.2
     dev: true
 
+<<<<<<< HEAD
   /monaco-editor@0.45.0:
     resolution: {integrity: sha512-mjv1G1ZzfEE3k9HZN0dQ2olMdwIfaeAAjFiwNprLfYNRSz7ctv9XuCT7gPtBGrMUeV1/iZzYKj17Khu1hxoHOA==}
+=======
+  /monaco-editor@0.39.0:
+    resolution: {integrity: sha512-zhbZ2Nx93tLR8aJmL2zI1mhJpsl87HMebNBM6R8z4pLfs8pj604pIVIVwyF1TivcfNtIPpMXL+nb3DsBmE/x6Q==}
+>>>>>>> 67b69cc5 (Support reading schema from workspace)
     dev: false
 
   /morgan@1.10.0:
@@ -12803,10 +13089,22 @@ packages:
       tslib: 2.6.2
     dev: true
 
+<<<<<<< HEAD
   /tailwindcss@3.3.2:
     resolution: {integrity: sha512-9jPkMiIBXvPc2KywkraqsUfbfj+dHDb+JPWtSJa9MLFdrPyazI7q6WX2sUrm7R9eVR7qqv3Pas7EvQFzxKnI6w==}
     engines: {node: '>=14.0.0'}
+=======
+  /tabbable@6.1.2:
+    resolution: {integrity: sha512-qCN98uP7i9z0fIS4amQ5zbGBOq+OSigYeGvPy7NDk8Y9yncqDZ9pRPgfsc2PJIVM9RrJj7GIfuRgmjoUU9zTHQ==}
+    dev: false
+
+  /tailwindcss@3.2.7(postcss@8.4.21):
+    resolution: {integrity: sha512-B6DLqJzc21x7wntlH/GsZwEXTBttVSl1FtCzC8WP4oBc/NKef7kaax5jeihkkCEWc831/5NDJ9gRNDK6NEioQQ==}
+    engines: {node: '>=12.13.0'}
+>>>>>>> 67b69cc5 (Support reading schema from workspace)
     hasBin: true
+    peerDependencies:
+      postcss: ^8.0.9
     dependencies:
       '@alloc/quick-lru': 5.2.0
       arg: 5.0.2
