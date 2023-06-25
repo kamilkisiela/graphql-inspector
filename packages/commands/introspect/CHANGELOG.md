@@ -1,5 +1,14 @@
 # @graphql-inspector/introspect-command
 
+## 4.0.1
+
+### Patch Changes
+
+- Updated dependencies
+  [[`e448617f`](https://github.com/kamilkisiela/graphql-inspector/commit/e448617fdd60b89bac9ecde7db59cf5e4ce39d22),
+  [`733fec4a`](https://github.com/kamilkisiela/graphql-inspector/commit/733fec4a7ea56da379e56b57e3eaa26c05dc9db5)]:
+  - @graphql-inspector/commands@4.0.1
+
 ## 4.0.0
 
 ### Major Changes
