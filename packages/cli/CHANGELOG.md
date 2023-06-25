@@ -1,5 +1,71 @@
 # @graphql-inspector/cli
 
+## 4.0.0
+
+### Major Changes
+
+- [#2510](https://github.com/kamilkisiela/graphql-inspector/pull/2510)
+  [`7944118e`](https://github.com/kamilkisiela/graphql-inspector/commit/7944118e8497bf8d6aabc9c31e3ea329bdcf3236)
+  Thanks [@TuvalSimha](https://github.com/TuvalSimha)! - Update major dependcies & drop node 14
+
+### Patch Changes
+
+- [#2484](https://github.com/kamilkisiela/graphql-inspector/pull/2484)
+  [`81a1b57e`](https://github.com/kamilkisiela/graphql-inspector/commit/81a1b57e4f8112c9b71b35f81c6e99d4bda9c341)
+  Thanks [@renovate](https://github.com/apps/renovate)! - dependencies updates:
+
+  - Updated dependency [`@babel/core@7.21.8` ↗︎](https://www.npmjs.com/package/@babel/core/v/7.21.8)
+    (from `7.21.5`, in `dependencies`)
+
+- [#2510](https://github.com/kamilkisiela/graphql-inspector/pull/2510)
+  [`7944118e`](https://github.com/kamilkisiela/graphql-inspector/commit/7944118e8497bf8d6aabc9c31e3ea329bdcf3236)
+  Thanks [@TuvalSimha](https://github.com/TuvalSimha)! - dependencies updates:
+  - Updated dependency [`@babel/core@7.22.1` ↗︎](https://www.npmjs.com/package/@babel/core/v/7.22.1)
+    (from `7.21.8`, in `dependencies`)
+  - Updated dependency [`tslib@2.5.3` ↗︎](https://www.npmjs.com/package/tslib/v/2.5.3) (from
+    `2.5.0`, in `dependencies`)
+- Updated dependencies
+  [[`7944118e`](https://github.com/kamilkisiela/graphql-inspector/commit/7944118e8497bf8d6aabc9c31e3ea329bdcf3236),
+  [`f4b2b1dd`](https://github.com/kamilkisiela/graphql-inspector/commit/f4b2b1dd680b1520b75704f9c384fd0b248a88be),
+  [`7944118e`](https://github.com/kamilkisiela/graphql-inspector/commit/7944118e8497bf8d6aabc9c31e3ea329bdcf3236),
+  [`7944118e`](https://github.com/kamilkisiela/graphql-inspector/commit/7944118e8497bf8d6aabc9c31e3ea329bdcf3236),
+  [`7944118e`](https://github.com/kamilkisiela/graphql-inspector/commit/7944118e8497bf8d6aabc9c31e3ea329bdcf3236),
+  [`7944118e`](https://github.com/kamilkisiela/graphql-inspector/commit/7944118e8497bf8d6aabc9c31e3ea329bdcf3236),
+  [`f4b2b1dd`](https://github.com/kamilkisiela/graphql-inspector/commit/f4b2b1dd680b1520b75704f9c384fd0b248a88be),
+  [`7944118e`](https://github.com/kamilkisiela/graphql-inspector/commit/7944118e8497bf8d6aabc9c31e3ea329bdcf3236),
+  [`7944118e`](https://github.com/kamilkisiela/graphql-inspector/commit/7944118e8497bf8d6aabc9c31e3ea329bdcf3236),
+  [`6e9235d3`](https://github.com/kamilkisiela/graphql-inspector/commit/6e9235d3925979157d420996d358a14ab982edae),
+  [`7944118e`](https://github.com/kamilkisiela/graphql-inspector/commit/7944118e8497bf8d6aabc9c31e3ea329bdcf3236),
+  [`7944118e`](https://github.com/kamilkisiela/graphql-inspector/commit/7944118e8497bf8d6aabc9c31e3ea329bdcf3236),
+  [`7944118e`](https://github.com/kamilkisiela/graphql-inspector/commit/7944118e8497bf8d6aabc9c31e3ea329bdcf3236),
+  [`7944118e`](https://github.com/kamilkisiela/graphql-inspector/commit/7944118e8497bf8d6aabc9c31e3ea329bdcf3236),
+  [`7944118e`](https://github.com/kamilkisiela/graphql-inspector/commit/7944118e8497bf8d6aabc9c31e3ea329bdcf3236),
+  [`7944118e`](https://github.com/kamilkisiela/graphql-inspector/commit/7944118e8497bf8d6aabc9c31e3ea329bdcf3236),
+  [`f4b2b1dd`](https://github.com/kamilkisiela/graphql-inspector/commit/f4b2b1dd680b1520b75704f9c384fd0b248a88be),
+  [`7944118e`](https://github.com/kamilkisiela/graphql-inspector/commit/7944118e8497bf8d6aabc9c31e3ea329bdcf3236),
+  [`7944118e`](https://github.com/kamilkisiela/graphql-inspector/commit/7944118e8497bf8d6aabc9c31e3ea329bdcf3236),
+  [`7944118e`](https://github.com/kamilkisiela/graphql-inspector/commit/7944118e8497bf8d6aabc9c31e3ea329bdcf3236),
+  [`7944118e`](https://github.com/kamilkisiela/graphql-inspector/commit/7944118e8497bf8d6aabc9c31e3ea329bdcf3236),
+  [`f4b2b1dd`](https://github.com/kamilkisiela/graphql-inspector/commit/f4b2b1dd680b1520b75704f9c384fd0b248a88be),
+  [`7944118e`](https://github.com/kamilkisiela/graphql-inspector/commit/7944118e8497bf8d6aabc9c31e3ea329bdcf3236)]:
+  - @graphql-inspector/audit-command@4.0.0
+  - @graphql-inspector/code-loader@4.0.0
+  - @graphql-inspector/commands@4.0.0
+  - @graphql-inspector/config@4.0.0
+  - @graphql-inspector/coverage-command@5.0.0
+  - @graphql-inspector/diff-command@4.0.0
+  - @graphql-inspector/docs-command@4.0.0
+  - @graphql-inspector/git-loader@4.0.0
+  - @graphql-inspector/github-loader@4.0.0
+  - @graphql-inspector/graphql-loader@4.0.0
+  - @graphql-inspector/introspect-command@4.0.0
+  - @graphql-inspector/json-loader@4.0.0
+  - @graphql-inspector/loaders@4.0.0
+  - @graphql-inspector/serve-command@4.0.0
+  - @graphql-inspector/similar-command@4.0.0
+  - @graphql-inspector/url-loader@4.0.0
+  - @graphql-inspector/validate-command@4.0.0
+
 ## 3.4.19
 
 ### Patch Changes
