@@ -1,6 +1,6 @@
 {
   "name": "@graphql-inspector/loaders",
-  "version": "4.0.0",
+  "version": "4.0.1",
   "type": "module",
   "description": "Loaders in GraphQL Inspector",
   "repository": {
