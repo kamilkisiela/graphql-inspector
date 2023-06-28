@@ -16,8 +16,8 @@
     "theguild-nextra-algolia": "theguild-nextra-algolia"
   },
   "dependencies": {
-    "@graphql-inspector/core": "workspace:*",
-    "@graphql-inspector/github": "workspace:*",
+    "@graphql-inspector/core": "../packages/core/dist",
+    "@graphql-inspector/github": "../packages/github/dist",
     "@monaco-editor/react": "4.5.1",
     "@theguild/algolia": "1.1.7",
     "@theguild/components": "5.0.0",
