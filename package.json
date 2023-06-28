@@ -39,7 +39,7 @@
     "test": "vitest ."
   },
   "dependencies": {
-    "@sentry/node": "7.56.0",
+    "@sentry/node": "7.57.0",
     "@sentry/tracing": "7.56.0",
     "@whatwg-node/fetch": "0.9.7",
     "husky": "8.0.3",
@@ -79,7 +79,7 @@
     "@zeit/ncc": "0.22.3",
     "bob-the-bundler": "7.0.1",
     "eslint": "8.43.0",
-    "graphql": "16.7.1",
+    "graphql": "16.6.0",
     "graphql-config": "5.0.2",
     "jsesc": "3.0.2",
     "lint-staged": "13.2.3",
