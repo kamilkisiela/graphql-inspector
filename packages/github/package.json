@@ -85,7 +85,7 @@
     "@types/express": "4.17.17",
     "@types/js-yaml": "4.0.5",
     "@types/node": "20.3.3",
-    "probot": "11.4.1",
+    "probot": "12.3.1",
     "smee-client": "1.2.3"
   },
   "publishConfig": {
