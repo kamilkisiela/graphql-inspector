@@ -26,8 +26,8 @@ importers:
         specifier: 4.1.0
         version: 4.1.0
       probot:
-        specifier: 12.3.0
-        version: 12.3.0
+        specifier: 12.3.1
+        version: 12.3.1
       shelljs:
         specifier: 0.8.5
         version: 0.8.5
@@ -180,8 +180,8 @@ importers:
         specifier: 4.1.0
         version: 4.1.0
       probot:
-        specifier: 12.3.0
-        version: 12.3.0
+        specifier: 12.3.1
+        version: 12.3.1
       tslib:
         specifier: 2.5.3
         version: 2.5.3
@@ -6412,7 +6412,7 @@ packages:
     engines: {node: '>=v12.22.9'}
     dependencies:
       glob: 8.1.0
-      graceful-fs: 4.2.10
+      graceful-fs: 4.2.11
       handlebars: 4.7.7
     dev: false
 
@@ -6986,6 +6986,7 @@ packages:
 
   /graceful-fs@4.2.10:
     resolution: {integrity: sha512-9ByhssR2fPVsNZj478qUUbKfmL0+t5BDVyjShtyZZLiK7ZDAArFFfopyOTj0M05wE2tJPisA4iTnnXl2YoPvOA==}
+    dev: true
 
   /graceful-fs@4.2.11:
     resolution: {integrity: sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ==}
@@ -7542,7 +7543,6 @@ packages:
     resolution: {integrity: sha512-Q4ZuBAe2FUsKtyQJoQHlvP8OvBERxO3jEmy1I7hcRXcJBGGHFh/aJBswbXuS9sgrDH2QUO8ilkwNPHvHMd8clg==}
     dependencies:
       has: 1.0.3
-    dev: true
 
   /is-date-object@1.0.5:
     resolution: {integrity: sha512-9YQaSxsAiSwcvS33MBk3wTCVnWK+HhF8VZR2jRxehM16QcVOdHqPn4VPHmRK4lSr38n9JriurInLcP90xsYNfQ==}
@@ -10353,8 +10353,8 @@ packages:
       - supports-color
     dev: true
 
-  /probot@12.3.0:
-    resolution: {integrity: sha512-I7qpD6myIt5eEqAOv14mrbdh4HdLG1MQgCHGQJpIj6rdDeQaacQDL2THlMSqIU2VBcdIRpLqNv7D0z2NG0la3w==}
+  /probot@12.3.1:
+    resolution: {integrity: sha512-ECSgycmAC0ILEK6cOa+x3QPufP5JybsuohOFCYr3glQU5SkbmypZJE/Sfio9mxAFHK5LCXveIDsfZCxf6ck4JA==}
     engines: {node: '>=10.21'}
     hasBin: true
     dependencies:
@@ -10387,8 +10387,8 @@ packages:
       pino: 6.14.0
       pino-http: 5.8.0
       pkg-conf: 3.1.0
-      resolve: 1.22.1
-      semver: 7.3.8
+      resolve: 1.22.2
+      semver: 7.5.4
       update-dotenv: 1.1.1(dotenv@8.6.0)
       uuid: 8.3.2
     transitivePeerDependencies:
@@ -10879,10 +10879,9 @@ packages:
     resolution: {integrity: sha512-Sb+mjNHOULsBv818T40qSPeRiuWLyaGMa5ewydRLFimneixmVy2zdivRl+AF6jaYPC8ERxGDmFSiqui6SfPd+g==}
     hasBin: true
     dependencies:
-      is-core-module: 2.11.0
+      is-core-module: 2.12.1
       path-parse: 1.0.7
       supports-preserve-symlinks-flag: 1.0.0
-    dev: true
 
   /resolve@2.0.0-next.4:
     resolution: {integrity: sha512-iMDbmAWtfU+MHpxt/I5iWI7cY6YVEZUQ3MBgPQ++XD1PELuJHIl82xBmObyP2KyQmkNB2dsqF7seoQQiAn5yDQ==}
