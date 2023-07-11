@@ -1,5 +1,31 @@
 # @graphql-inspector/action
 
+## 4.0.2
+
+### Patch Changes
+
+- [#2569](https://github.com/kamilkisiela/graphql-inspector/pull/2569)
+  [`bed4c437`](https://github.com/kamilkisiela/graphql-inspector/commit/bed4c4375ce1b9012ee57cb56e5472df97ea8734)
+  Thanks [@TuvalSimha](https://github.com/TuvalSimha)! - dependencies updates:
+
+  - Updated dependency [`probot@12.3.1` ↗︎](https://www.npmjs.com/package/probot/v/12.3.1) (from
+    `12.3.0`, in `dependencies`)
+  - Updated dependency [`tslib@2.6.0` ↗︎](https://www.npmjs.com/package/tslib/v/2.6.0) (from
+    `2.5.3`, in `dependencies`)
+
+- [#2569](https://github.com/kamilkisiela/graphql-inspector/pull/2569)
+  [`bed4c437`](https://github.com/kamilkisiela/graphql-inspector/commit/bed4c4375ce1b9012ee57cb56e5472df97ea8734)
+  Thanks [@TuvalSimha](https://github.com/TuvalSimha)! - Update dependencies for all packages.
+
+- Updated dependencies
+  [[`bed4c437`](https://github.com/kamilkisiela/graphql-inspector/commit/bed4c4375ce1b9012ee57cb56e5472df97ea8734),
+  [`bed4c437`](https://github.com/kamilkisiela/graphql-inspector/commit/bed4c4375ce1b9012ee57cb56e5472df97ea8734),
+  [`bed4c437`](https://github.com/kamilkisiela/graphql-inspector/commit/bed4c4375ce1b9012ee57cb56e5472df97ea8734),
+  [`bed4c437`](https://github.com/kamilkisiela/graphql-inspector/commit/bed4c4375ce1b9012ee57cb56e5472df97ea8734)]:
+  - @graphql-inspector/commands@4.0.2
+  - @graphql-inspector/core@5.0.1
+  - @graphql-inspector/github@4.0.1
+
 ## 4.0.1
 
 ### Patch Changes
