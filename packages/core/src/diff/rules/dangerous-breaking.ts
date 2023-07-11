@@ -1,4 +1,4 @@
-import { CriticalityLevel } from "../changes/change.js";
+import { CriticalityLevel } from '../changes/change.js';
 import { Rule } from './types.js';
 
 export const dangerousBreaking: Rule = ({ changes }) => {
