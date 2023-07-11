@@ -89,7 +89,7 @@ describe('calculateDepth', () => {
       calculateDepth({
         node: doc,
         currentDepth: 0,
-        getFragment: () => ({} as any),
+        getFragment: () => ({}) as any,
       }),
     ).toEqual(2);
   });
@@ -113,7 +113,7 @@ describe('calculateDepth', () => {
         node: doc,
         currentDepth: 0,
         maxDepth: 1,
-        getFragment: () => ({} as any),
+        getFragment: () => ({}) as any,
       });
     }).toThrow();
   });

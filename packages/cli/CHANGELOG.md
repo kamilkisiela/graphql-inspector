@@ -34,14 +34,16 @@
   [`81a1b57e`](https://github.com/kamilkisiela/graphql-inspector/commit/81a1b57e4f8112c9b71b35f81c6e99d4bda9c341)
   Thanks [@renovate](https://github.com/apps/renovate)! - dependencies updates:
 
-  - Updated dependency [`@babel/core@7.21.8` ↗︎](https://www.npmjs.com/package/@babel/core/v/7.21.8)
-    (from `7.21.5`, in `dependencies`)
+  - Updated dependency
+    [`@babel/core@7.21.8` ↗︎](https://www.npmjs.com/package/@babel/core/v/7.21.8) (from `7.21.5`,
+    in `dependencies`)
 
 - [#2510](https://github.com/kamilkisiela/graphql-inspector/pull/2510)
   [`7944118e`](https://github.com/kamilkisiela/graphql-inspector/commit/7944118e8497bf8d6aabc9c31e3ea329bdcf3236)
   Thanks [@TuvalSimha](https://github.com/TuvalSimha)! - dependencies updates:
-  - Updated dependency [`@babel/core@7.22.1` ↗︎](https://www.npmjs.com/package/@babel/core/v/7.22.1)
-    (from `7.21.8`, in `dependencies`)
+  - Updated dependency
+    [`@babel/core@7.22.1` ↗︎](https://www.npmjs.com/package/@babel/core/v/7.22.1) (from `7.21.8`,
+    in `dependencies`)
   - Updated dependency [`tslib@2.5.3` ↗︎](https://www.npmjs.com/package/tslib/v/2.5.3) (from
     `2.5.0`, in `dependencies`)
 - Updated dependencies
@@ -100,8 +102,9 @@
 - [#2477](https://github.com/kamilkisiela/graphql-inspector/pull/2477)
   [`5aececfd`](https://github.com/kamilkisiela/graphql-inspector/commit/5aececfd2f5fc2c0a1f42666fc5d1764088a2da0)
   Thanks [@renovate](https://github.com/apps/renovate)! - dependencies updates:
-  - Updated dependency [`@babel/core@7.21.5` ↗︎](https://www.npmjs.com/package/@babel/core/v/7.21.5)
-    (from `7.21.4`, in `dependencies`)
+  - Updated dependency
+    [`@babel/core@7.21.5` ↗︎](https://www.npmjs.com/package/@babel/core/v/7.21.5) (from `7.21.4`,
+    in `dependencies`)
 - Updated dependencies
   [[`ccfecba2`](https://github.com/kamilkisiela/graphql-inspector/commit/ccfecba2ca619fb10bfbc5f69e4ad1952b3ea9cc)]:
   - @graphql-inspector/commands@3.4.8
