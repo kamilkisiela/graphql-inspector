@@ -84,20 +84,22 @@ describe('Inspector Action', () => {
         }
       });
 
-      mockLoadFile.mockResolvedValueOnce(/* GraphQL */ `
-        type Query {
-          oldQuery: OldType @deprecated(reason: "use newQuery")
-          newQuery: Int!
-        }
+      mockLoadFile
+        .mockResolvedValueOnce(/* GraphQL */ `
+          type Query {
+            oldQuery: OldType @deprecated(reason: "use newQuery")
+            newQuery: Int!
+          }
 
-        type OldType {
-          field: String!
-        }
-      `).mockResolvedValueOnce(/* GraphQL */ `
-        type Query {
-          newQuery: Int!
-        }
-      `);
+          type OldType {
+            field: String!
+          }
+        `)
+        .mockResolvedValueOnce(/* GraphQL */ `
+          type Query {
+            newQuery: Int!
+          }
+        `);
 
       await run();
 
@@ -145,20 +147,22 @@ describe('Inspector Action', () => {
         }
       });
 
-      mockLoadFile.mockResolvedValueOnce(/* GraphQL */ `
-        type Query {
-          oldQuery: OldType @deprecated(reason: "use newQuery")
-          newQuery: Int!
-        }
+      mockLoadFile
+        .mockResolvedValueOnce(/* GraphQL */ `
+          type Query {
+            oldQuery: OldType @deprecated(reason: "use newQuery")
+            newQuery: Int!
+          }
 
-        type OldType {
-          field: String!
-        }
-      `).mockResolvedValueOnce(/* GraphQL */ `
-        type Query {
-          newQuery: Int!
-        }
-      `);
+          type OldType {
+            field: String!
+          }
+        `)
+        .mockResolvedValueOnce(/* GraphQL */ `
+          type Query {
+            newQuery: Int!
+          }
+        `);
 
       await run();
 
@@ -206,20 +210,22 @@ describe('Inspector Action', () => {
         }
       });
 
-      mockLoadFile.mockResolvedValueOnce(/* GraphQL */ `
-        type Query {
-          oldQuery: OldType @deprecated(reason: "use newQuery")
-          newQuery: Int!
-        }
+      mockLoadFile
+        .mockResolvedValueOnce(/* GraphQL */ `
+          type Query {
+            oldQuery: OldType @deprecated(reason: "use newQuery")
+            newQuery: Int!
+          }
 
-        type OldType {
-          field: String!
-        }
-      `).mockResolvedValueOnce(/* GraphQL */ `
-        type Query {
-          newQuery: Int!
-        }
-      `);
+          type OldType {
+            field: String!
+          }
+        `)
+        .mockResolvedValueOnce(/* GraphQL */ `
+          type Query {
+            newQuery: Int!
+          }
+        `);
 
       await run();
 
