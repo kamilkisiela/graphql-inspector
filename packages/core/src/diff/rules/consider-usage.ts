@@ -1,5 +1,5 @@
 import { parsePath } from '../../utils/path.js';
-import { CriticalityLevel } from './../changes/change.js';
+import { CriticalityLevel } from "../changes/change.js";
 import { Rule } from './types.js';
 
 export type UsageHandler = (
