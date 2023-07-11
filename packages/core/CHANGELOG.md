@@ -90,20 +90,20 @@
 
   ```ts
   export type FieldDescriptionChangedChange = {
-    type: ChangeType.FieldDescriptionChanged;
+    type: ChangeType.FieldDescriptionChanged
     meta: {
-      typeName: string;
-      fieldName: string;
-      oldDescription: string;
-      newDescription: string;
-    };
-  };
+      typeName: string
+      fieldName: string
+      oldDescription: string
+      newDescription: string
+    }
+  }
   ```
 
   You can construct the full `Change` object from the `type` and `meta` properties.
 
   ```ts
-  import { ChangeType, fieldDescriptionChangedFromMeta } from '@graphql-inspector/core';
+  import { ChangeType, fieldDescriptionChangedFromMeta } from '@graphql-inspector/core'
 
   console.log(
     fieldDescriptionChangedFromMeta({
@@ -112,10 +112,10 @@
         typeName: 'Foo',
         fieldName: 'bar',
         oldDescription: 'This is the old description',
-        newDescription: 'This is the new description',
-      },
-    }),
-  );
+        newDescription: 'This is the new description'
+      }
+    })
+  )
   ```
 
   console.log output:

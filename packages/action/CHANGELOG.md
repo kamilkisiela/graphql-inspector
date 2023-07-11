@@ -237,8 +237,8 @@
   [`b940baa5`](https://github.com/kamilkisiela/graphql-inspector/commit/b940baa57c57b60ca135572b378954a8e58dfe50)
   Thanks [@renovate](https://github.com/apps/renovate)! - dependencies updates:
   - Updated dependency
-    [`@actions/core@1.10.0` ↗︎](https://www.npmjs.com/package/@actions/core/v/1.10.0) (from `1.9.1`,
-    in `dependencies`)
+    [`@actions/core@1.10.0` ↗︎](https://www.npmjs.com/package/@actions/core/v/1.10.0) (from
+    `1.9.1`, in `dependencies`)
 - Updated dependencies
   [[`dd840130`](https://github.com/kamilkisiela/graphql-inspector/commit/dd8401300512497adb4301e1f2004865941b132f),
   [`5147c450`](https://github.com/kamilkisiela/graphql-inspector/commit/5147c4501f75a99092c5e0799cc2cdeb9e77485d)]:

@@ -65,10 +65,10 @@
   },
   "dependencies": {
     "@graphql-tools/github-loader": "8.0.0",
-    "tslib": "2.5.3"
+    "tslib": "2.6.0"
   },
   "devDependencies": {
-    "@babel/core": "7.22.1",
+    "@babel/core": "7.22.8",
     "@types/node": "20.2.5",
     "graphql": "16.6.0"
   },
