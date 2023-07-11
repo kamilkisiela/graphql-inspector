@@ -76,7 +76,7 @@
   },
   "dependencies": {
     "@graphql-inspector/core": "workspace:*",
-    "@whatwg-node/fetch": "0.9.6",
+    "@whatwg-node/fetch": "0.9.8",
     "dataloader": "2.2.2",
     "js-yaml": "4.1.0",
     "tslib": "2.5.3"
