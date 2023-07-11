@@ -1,5 +1,20 @@
 # @graphql-inspector/code-loader
 
+## 4.0.1
+
+### Patch Changes
+
+- [#2569](https://github.com/kamilkisiela/graphql-inspector/pull/2569)
+  [`bed4c437`](https://github.com/kamilkisiela/graphql-inspector/commit/bed4c4375ce1b9012ee57cb56e5472df97ea8734)
+  Thanks [@TuvalSimha](https://github.com/TuvalSimha)! - dependencies updates:
+
+  - Updated dependency [`tslib@2.6.0` ↗︎](https://www.npmjs.com/package/tslib/v/2.6.0) (from
+    `2.5.3`, in `dependencies`)
+
+- [#2569](https://github.com/kamilkisiela/graphql-inspector/pull/2569)
+  [`bed4c437`](https://github.com/kamilkisiela/graphql-inspector/commit/bed4c4375ce1b9012ee57cb56e5472df97ea8734)
+  Thanks [@TuvalSimha](https://github.com/TuvalSimha)! - Update dependencies for all packages.
+
 ## 4.0.0
 
 ### Major Changes

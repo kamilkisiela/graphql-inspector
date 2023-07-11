@@ -1,5 +1,60 @@
 # @graphql-inspector/cli
 
+## 4.0.2
+
+### Patch Changes
+
+- [#2569](https://github.com/kamilkisiela/graphql-inspector/pull/2569)
+  [`bed4c437`](https://github.com/kamilkisiela/graphql-inspector/commit/bed4c4375ce1b9012ee57cb56e5472df97ea8734)
+  Thanks [@TuvalSimha](https://github.com/TuvalSimha)! - dependencies updates:
+
+  - Updated dependency
+    [`@babel/core@7.22.8` ↗︎](https://www.npmjs.com/package/@babel/core/v/7.22.8) (from `7.22.1`,
+    in `dependencies`)
+  - Updated dependency [`tslib@2.6.0` ↗︎](https://www.npmjs.com/package/tslib/v/2.6.0) (from
+    `2.5.3`, in `dependencies`)
+
+- [#2569](https://github.com/kamilkisiela/graphql-inspector/pull/2569)
+  [`bed4c437`](https://github.com/kamilkisiela/graphql-inspector/commit/bed4c4375ce1b9012ee57cb56e5472df97ea8734)
+  Thanks [@TuvalSimha](https://github.com/TuvalSimha)! - Update dependencies for all packages.
+
+- Updated dependencies
+  [[`bed4c437`](https://github.com/kamilkisiela/graphql-inspector/commit/bed4c4375ce1b9012ee57cb56e5472df97ea8734),
+  [`bed4c437`](https://github.com/kamilkisiela/graphql-inspector/commit/bed4c4375ce1b9012ee57cb56e5472df97ea8734),
+  [`bed4c437`](https://github.com/kamilkisiela/graphql-inspector/commit/bed4c4375ce1b9012ee57cb56e5472df97ea8734),
+  [`bed4c437`](https://github.com/kamilkisiela/graphql-inspector/commit/bed4c4375ce1b9012ee57cb56e5472df97ea8734),
+  [`bed4c437`](https://github.com/kamilkisiela/graphql-inspector/commit/bed4c4375ce1b9012ee57cb56e5472df97ea8734),
+  [`bed4c437`](https://github.com/kamilkisiela/graphql-inspector/commit/bed4c4375ce1b9012ee57cb56e5472df97ea8734),
+  [`bed4c437`](https://github.com/kamilkisiela/graphql-inspector/commit/bed4c4375ce1b9012ee57cb56e5472df97ea8734),
+  [`bed4c437`](https://github.com/kamilkisiela/graphql-inspector/commit/bed4c4375ce1b9012ee57cb56e5472df97ea8734),
+  [`bed4c437`](https://github.com/kamilkisiela/graphql-inspector/commit/bed4c4375ce1b9012ee57cb56e5472df97ea8734),
+  [`bed4c437`](https://github.com/kamilkisiela/graphql-inspector/commit/bed4c4375ce1b9012ee57cb56e5472df97ea8734),
+  [`bed4c437`](https://github.com/kamilkisiela/graphql-inspector/commit/bed4c4375ce1b9012ee57cb56e5472df97ea8734),
+  [`bed4c437`](https://github.com/kamilkisiela/graphql-inspector/commit/bed4c4375ce1b9012ee57cb56e5472df97ea8734),
+  [`bed4c437`](https://github.com/kamilkisiela/graphql-inspector/commit/bed4c4375ce1b9012ee57cb56e5472df97ea8734),
+  [`bed4c437`](https://github.com/kamilkisiela/graphql-inspector/commit/bed4c4375ce1b9012ee57cb56e5472df97ea8734),
+  [`bed4c437`](https://github.com/kamilkisiela/graphql-inspector/commit/bed4c4375ce1b9012ee57cb56e5472df97ea8734),
+  [`bed4c437`](https://github.com/kamilkisiela/graphql-inspector/commit/bed4c4375ce1b9012ee57cb56e5472df97ea8734),
+  [`bed4c437`](https://github.com/kamilkisiela/graphql-inspector/commit/bed4c4375ce1b9012ee57cb56e5472df97ea8734),
+  [`bed4c437`](https://github.com/kamilkisiela/graphql-inspector/commit/bed4c4375ce1b9012ee57cb56e5472df97ea8734)]:
+  - @graphql-inspector/audit-command@4.0.2
+  - @graphql-inspector/code-loader@4.0.1
+  - @graphql-inspector/commands@4.0.2
+  - @graphql-inspector/config@4.0.1
+  - @graphql-inspector/coverage-command@5.0.2
+  - @graphql-inspector/diff-command@4.0.2
+  - @graphql-inspector/docs-command@4.0.2
+  - @graphql-inspector/git-loader@4.0.1
+  - @graphql-inspector/github-loader@4.0.1
+  - @graphql-inspector/graphql-loader@4.0.1
+  - @graphql-inspector/introspect-command@4.0.2
+  - @graphql-inspector/json-loader@4.0.1
+  - @graphql-inspector/loaders@4.0.2
+  - @graphql-inspector/serve-command@4.0.2
+  - @graphql-inspector/similar-command@4.0.2
+  - @graphql-inspector/url-loader@4.0.1
+  - @graphql-inspector/validate-command@4.0.2
+
 ## 4.0.1
 
 ### Patch Changes
