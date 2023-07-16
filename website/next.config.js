@@ -15,6 +15,10 @@ export default withGuildDocs({
       '/docs/recipes': '/docs/recipes/environments',
       '/docs/recipes/github': '/docs/recipes/pull-requests',
       '/docs/essentials': '/docs/commands/diff',
+      '/docs/essentials/diff': '/docs/commands/diff',
+      '/docs/essentials/coverage': '/docs/commands/coverage',
+      '/docs/essentials/validate': '/docs/commands/validate',
+      '/docs/essentials/similar': '/docs/commands/similar',
     }).map(([from, to]) => ({
       source: from,
       destination: to,
