@@ -8,8 +8,6 @@ export default withGuildDocs({
     Object.entries({
       '/install': '/docs/installation',
       '/enterprise': '/docs',
-      '/docs/installation': '/docs/installation',
-      '/docs/introduction': '/docs',
       '/docs/index': '/docs',
       '/products': '/docs/products/ci',
       '/docs/recipies/github': '/docs/products/github',
