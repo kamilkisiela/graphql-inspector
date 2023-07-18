@@ -72,7 +72,7 @@
     "graphql": "^14.0.0 || ^15.0.0 || ^16.0.0"
   },
   "dependencies": {
-    "@babel/core": "7.22.8",
+    "@babel/core": "7.22.9",
     "@graphql-inspector/audit-command": "workspace:*",
     "@graphql-inspector/code-loader": "workspace:*",
     "@graphql-inspector/commands": "workspace:*",
