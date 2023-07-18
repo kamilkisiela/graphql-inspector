@@ -78,7 +78,7 @@
     "@types/yargs": "17.0.24",
     "@zeit/ncc": "0.22.3",
     "bob-the-bundler": "7.0.1",
-    "eslint": "8.44.0",
+    "eslint": "8.45.0",
     "graphql": "16.6.0",
     "graphql-config": "5.0.2",
     "jsesc": "3.0.2",
