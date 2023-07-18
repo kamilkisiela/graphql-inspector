@@ -67,7 +67,7 @@
     "@graphql-inspector/commands": "workspace:*",
     "@graphql-inspector/core": "workspace:*",
     "@graphql-inspector/logger": "workspace:*",
-    "@graphql-tools/utils": "10.0.1",
+    "@graphql-tools/utils": "10.0.3",
     "cli-table3": "0.6.3",
     "tslib": "2.6.0"
   },

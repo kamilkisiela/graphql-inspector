@@ -41,7 +41,7 @@
   "dependencies": {
     "@sentry/node": "7.57.0",
     "@sentry/tracing": "7.57.0",
-    "@whatwg-node/fetch": "0.9.8",
+    "@whatwg-node/fetch": "0.9.9",
     "husky": "8.0.3",
     "immer": "10.0.2",
     "js-yaml": "4.1.0",
