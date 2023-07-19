@@ -1,9 +1,10 @@
 #!/usr/bin/env node
-import yargs, { Argv } from 'yargs';
+import { Argv } from 'yargs';
 import { useCommands } from '@graphql-inspector/commands';
 import { useLoaders } from '@graphql-inspector/loaders';
 
 async function main() {
+  const yargs = require('yargs');
   const config = {
     loaders: ['code', 'git', 'github', 'graphql', 'json', 'url'],
     commands: ['docs', 'serve', 'diff', 'validate', 'coverage', 'introspect', 'similar', 'audit'],
