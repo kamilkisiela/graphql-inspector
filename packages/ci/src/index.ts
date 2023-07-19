@@ -1,9 +1,10 @@
 #!/usr/bin/env node
-import yargs, { Argv } from 'yargs';
+import { Argv } from 'yargs';
 import { useCommands } from '@graphql-inspector/commands';
 import { availableCommands, useConfig } from '@graphql-inspector/config';
 import { useLoaders } from '@graphql-inspector/loaders';
 import { Logger } from '@graphql-inspector/logger';
+const yargs = require('yargs');
 
 async function main() {
   const config = await useConfig();
