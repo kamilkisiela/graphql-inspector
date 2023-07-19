@@ -4,6 +4,7 @@ import { useCommands } from '@graphql-inspector/commands';
 import { availableCommands, useConfig } from '@graphql-inspector/config';
 import { useLoaders } from '@graphql-inspector/loaders';
 import { Logger } from '@graphql-inspector/logger';
+
 const yargs = require('yargs');
 
 async function main() {

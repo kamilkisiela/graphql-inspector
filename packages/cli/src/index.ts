@@ -2,6 +2,7 @@
 import { Argv } from 'yargs';
 import { useCommands } from '@graphql-inspector/commands';
 import { useLoaders } from '@graphql-inspector/loaders';
+
 const yargs = require('yargs');
 
 async function main() {
