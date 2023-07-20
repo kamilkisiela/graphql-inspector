@@ -71,6 +71,9 @@
     "access": "public"
   },
   "sideEffects": false,
+  "bob": {
+    "check": false
+  },
   "buildOptions": {
     "bin": {
       "graphql-inspector": {
