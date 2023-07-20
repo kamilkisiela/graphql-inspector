@@ -49,6 +49,9 @@ jobs:
       - name: Build
         run: pnpm build
 
+      - name: Bob check
+        run: pnpm bob check
+
       - name: Test
         run: pnpm test
 
