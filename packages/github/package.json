@@ -75,7 +75,7 @@
     "graphql": "^14.0.0 || ^15.0.0 || ^16.0.0"
   },
   "dependencies": {
-    "@graphql-inspector/core": "workspace:*",
+    "@graphql-inspector/core": "../packages/core/dist",
     "@whatwg-node/fetch": "0.9.9",
     "dataloader": "2.2.2",
     "js-yaml": "4.1.0",

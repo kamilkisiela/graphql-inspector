@@ -503,8 +503,8 @@ importers:
   packages/github:
     dependencies:
       '@graphql-inspector/core':
-        specifier: workspace:*
-        version: link:../core/dist
+        specifier: ../packages/core/dist
+        version: link:../packages/core/dist
       '@whatwg-node/fetch':
         specifier: 0.9.9
         version: 0.9.9
