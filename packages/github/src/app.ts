@@ -27,7 +27,7 @@ export default function handleProbot(app: probot.Probot) {
       const { owner, repo } = context.repo();
       const action = context.payload.action;
       const pullRequests = context.payload.check_run.pull_requests;
-      const before = context.payload.check_run.check_suite.before;
+      const before = context.payload.check_run.check_suite.before as string | undefined;
       const fullAction = 'check_run.' + action;
 
       if (allowedCheckActions.includes(action) === false) {
@@ -69,7 +69,7 @@ export default function handleProbot(app: probot.Probot) {
       const { owner, repo } = context.repo();
       const action = context.payload.action;
       const pullRequests = context.payload.check_suite.pull_requests;
-      const before = context.payload.check_suite.before;
+      const before = context.payload.check_suite.before as string | undefined;
       const fullAction = 'check_suite.' + action;
 
       if (allowedCheckActions.includes(action) === false) {

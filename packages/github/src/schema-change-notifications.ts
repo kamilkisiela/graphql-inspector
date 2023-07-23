@@ -37,6 +37,7 @@ export async function handleSchemaChangeNotifications({
 }): Promise<void> {
   const id = `${owner}/${repo}#${ref}`;
   const logger = createLogger('NOTIFICATIONS', context, release);
+  const { payload } = context;
 
   logger.info(`started - ${id}`);
   logger.info(`action - ${action}`);
@@ -120,7 +121,11 @@ export async function handleSchemaChangeNotifications({
 
   if (hasNotificationsEnabled(notifications)) {
     const actions: Array<Promise<void>> = [];
-    const commit: string | undefined = context.payload.commits?.[0]?.id;
+    let commit: string | undefined;
+    if ("commits" in payload) {
+      commit = payload.commits[0].id as string | undefined;
+    }
+
 
     if (notifications.slack) {
       actions.push(
