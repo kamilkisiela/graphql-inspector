@@ -8,9 +8,11 @@ const allowedCheckActions = ['rerequested'];
 
 export default function handleProbot(app: probot.Probot) {
   const { onError, release } = getDiagnostics(app);
+  console.log("app", app)
 
   function wrap<T>(runner: (ctx: T) => Promise<void>) {
     return async (ctx: T) => {
+      console.log("ctx", ctx)
       try {
         await runner(ctx);
       } catch (error) {
@@ -24,9 +26,14 @@ export default function handleProbot(app: probot.Probot) {
     'check_run',
     wrap(async context => {
       const ref = context.payload.check_run.head_sha;
+      console.log("ref", ref)
       const { owner, repo } = context.repo();
+      console.log("owner", owner)
+      console.log("repo", repo)
       const action = context.payload.action;
+      console.log("action", action)
       const pullRequests = context.payload.check_run.pull_requests;
+      console.log("pullRequests", pullRequests)
       const before = context.payload.check_run.check_suite.before as string | undefined;
       const fullAction = 'check_run.' + action;
 
@@ -41,10 +48,12 @@ export default function handleProbot(app: probot.Probot) {
         release,
         action: fullAction,
       });
+      console.log("loadFile", loadFile)
       const loadConfig = createConfigLoader(
         { context, owner, repo, ref, release, action: fullAction },
         loadFile,
       );
+      console.log("loadConfig", loadConfig)
 
       await handleSchemaDiff({
         release,
@@ -104,6 +113,49 @@ export default function handleProbot(app: probot.Probot) {
     }),
   );
 
+  app.on(
+    'pull_request.synchronize',
+    wrap(async context => {
+      const ref = context.payload.pull_request.head.sha;
+      const pullRequestNumber = context.payload.pull_request.number;
+      const { owner, repo } = context.repo();
+      const action = context.payload.action;
+      const pullRequests = [context.payload.pull_request];
+      const before = context.payload.pull_request.base.sha;
+      const fullAction = 'pull_request.' + action;
+
+      if (['opened', 'synchronize', 'edited', 'labeled', 'unlabeled'].includes(action) === false) {
+        return;
+      }
+
+      const loadFile = createFileLoader({
+        context,
+        owner,
+        repo,
+        release,
+        action: fullAction,
+      });
+      const loadConfig = createConfigLoader(
+        { context, owner, repo, ref, release, action: fullAction },
+        loadFile,
+      );
+
+      await handleSchemaDiff({
+        release,
+        action: fullAction,
+        context,
+        ref,
+        repo,
+        owner,
+        loadFile,
+        loadConfig,
+        before,
+        pullRequests,
+        pullRequestNumber,
+        onError,
+      });
+    }),
+  );
   app.on(
     'pull_request',
     wrap(async context => {

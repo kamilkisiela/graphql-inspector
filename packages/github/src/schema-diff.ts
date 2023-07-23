@@ -52,6 +52,7 @@ export async function handleSchemaDiff({
     sha: ref,
     logger,
   });
+  console.log("checkRunId", checkRunId)
 
   try {
     logger.info(`Looking for config`);
@@ -148,6 +149,7 @@ export async function handleSchemaDiff({
       old: produceSchema(sources.old),
       new: produceSchema(sources.new),
     };
+    console.log("schemas", schemas)
 
     logger.info(`built schemas`);
 
@@ -156,6 +158,7 @@ export async function handleSchemaDiff({
       schemas,
       sources,
     });
+    console.log("action", action)
 
     logger.info(`schema diff result is ready`);
 

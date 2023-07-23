@@ -77,10 +77,12 @@ export async function handleSchemaChangeNotifications({
     path: config.schema,
     ref: before,
   };
+  console.log("oldPointer", oldPointer)
   const newPointer: SchemaPointer = {
     path: config.schema,
     ref,
   };
+  console.log("newPointer", newPointer)
 
   const sources = await loadSources({
     config,
@@ -88,6 +90,7 @@ export async function handleSchemaChangeNotifications({
     newPointer,
     loadFile,
   });
+  console.log("sources", sources)
 
   const schemas = {
     old: buildSchema(sources.old, {
@@ -99,6 +102,7 @@ export async function handleSchemaChangeNotifications({
       assumeValidSDL: true,
     }),
   };
+  console.log("schemas", schemas)
 
   logger.info(`built schemas`);
 
@@ -121,6 +125,7 @@ export async function handleSchemaChangeNotifications({
 
   if (hasNotificationsEnabled(notifications)) {
     const actions: Array<Promise<void>> = [];
+    console.log("actions", actions)
     let commit: string | undefined;
     if ("commits" in payload) {
       commit = payload.commits[0].id as string | undefined;
@@ -156,6 +161,7 @@ export async function handleSchemaChangeNotifications({
         ),
       );
     }
+    console.log("notifications", notifications.webhook)
 
     if (notifications.webhook) {
       actions.push(
