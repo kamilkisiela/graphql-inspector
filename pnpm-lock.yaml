@@ -655,8 +655,8 @@ importers:
         specifier: 1.1.9
         version: 1.1.9
       '@theguild/components':
-        specifier: 5.1.1
-        version: 5.1.1(@algolia/client-search@4.18.0)(@types/react@18.2.15)(next@13.4.10)(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)(webpack@5.88.1)
+        specifier: 5.2.1
+        version: 5.2.1(@algolia/client-search@4.18.0)(@types/react@18.2.15)(next@13.4.10)(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)(webpack@5.88.1)
       '@whatwg-node/fetch':
         specifier: 0.9.9
         version: 0.9.9
@@ -3203,8 +3203,8 @@ packages:
       remove-markdown: 0.5.0
     dev: false
 
-  /@theguild/components@5.1.1(@algolia/client-search@4.18.0)(@types/react@18.2.15)(next@13.4.10)(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)(webpack@5.88.1):
-    resolution: {integrity: sha512-VPmnK7r5PYWemyYby/Xfxn9jv+nKDAZcW27hlKmiG8pVHe2q6HNjZvubZijmtl6r0WoiCdBnKJSDtaKDV5fbJQ==}
+  /@theguild/components@5.2.1(@algolia/client-search@4.18.0)(@types/react@18.2.15)(next@13.4.10)(prop-types@15.8.1)(react-dom@18.2.0)(react@18.2.0)(webpack@5.88.1):
+    resolution: {integrity: sha512-sEJMyyAuB7P1fdHewWfdy7CnXUSgR+mkVK74H2UWJWVVyydx4QZnrrefZEgDLyuea7V10a4zjNou1FwdJ+05Fg==}
     peerDependencies:
       next: ^12.3.1 || ^13.0.0
       react: ^18.2.0
@@ -5975,7 +5975,7 @@ packages:
       minimatch: 3.1.2
       object.values: 1.1.6
       resolve: 1.22.2
-      semver: 6.3.0
+      semver: 6.3.1
       tsconfig-paths: 3.14.2
     transitivePeerDependencies:
       - eslint-import-resolver-typescript
@@ -6017,7 +6017,7 @@ packages:
       minimatch: 3.1.2
       object.entries: 1.1.6
       object.fromentries: 2.0.6
-      semver: 6.3.0
+      semver: 6.3.1
     dev: true
 
   /eslint-plugin-markdown@3.0.0(eslint@8.45.0):
@@ -6106,7 +6106,7 @@ packages:
       object.values: 1.1.6
       prop-types: 15.8.1
       resolve: 2.0.0-next.4
-      semver: 6.3.0
+      semver: 6.3.1
       string.prototype.matchall: 4.0.8
     dev: true
 
@@ -8235,7 +8235,7 @@ packages:
     resolution: {integrity: sha512-g3FeP20LNwhALb/6Cz6Dd4F2ngze0jz7tbzrD2wAV+o9FeNHe4rL+yK2md0J/fiSf1sa1ADhXqi5+oVwOM/eGw==}
     engines: {node: '>=8'}
     dependencies:
-      semver: 6.3.0
+      semver: 6.3.1
     dev: true
 
   /map-obj@1.0.1:
@@ -9546,7 +9546,7 @@ packages:
       got: 9.6.0
       registry-auth-token: 4.2.2
       registry-url: 5.1.0
-      semver: 6.3.0
+      semver: 6.3.1
     dev: true
 
   /parent-module@1.0.1:
@@ -10970,16 +10970,11 @@ packages:
     resolution: {integrity: sha512-GX0Ix/CJcHyB8c4ykpHGIAvLyOwOobtM/8d+TQkAd81/bEjgPHrfba41Vpesr7jX/t8Uh+R3EX9eAS5be+jQYg==}
     engines: {node: '>=8'}
     dependencies:
-      semver: 6.3.0
+      semver: 6.3.1
     dev: true
 
   /semver@5.7.1:
     resolution: {integrity: sha512-sauaDf/PZdVgrLTNYHRtpXa1iRiKcaebiKQ1BJdpQlWH2lCvexQdX55snPFyK7QzpudqbCI0qXFfOasHdyNDGQ==}
-    hasBin: true
-    dev: true
-
-  /semver@6.3.0:
-    resolution: {integrity: sha512-b39TBaTSfV6yBrapU89p5fKekE2m/NwnDocOVruQFS1/veMgdzuPcnOM34M6CwxW8jH/lxEa5rBoDeUwu5HHTw==}
     hasBin: true
     dev: true
 
