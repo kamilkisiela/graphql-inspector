@@ -20,7 +20,7 @@
     "@graphql-inspector/github": "../packages/github/dist",
     "@monaco-editor/react": "4.5.1",
     "@theguild/algolia": "1.1.9",
-    "@theguild/components": "5.2.1",
+    "@theguild/components": "5.2.2",
     "@whatwg-node/fetch": "0.9.9",
     "next": "13.4.10",
     "react": "18.2.0",
