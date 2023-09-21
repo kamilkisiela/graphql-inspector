@@ -69,7 +69,7 @@
   },
   "devDependencies": {
     "@types/node": "20.2.5",
-    "graphql": "16.6.0"
+    "graphql": "16.8.1"
   },
   "publishConfig": {
     "directory": "dist",
