@@ -86,7 +86,7 @@
     "lodash": "4.17.21",
     "nock": "13.3.2",
     "prettier": "3.0.3",
-    "rimraf": "5.0.1",
+    "rimraf": "5.0.5",
     "smee-client": "1.2.3",
     "strip-ansi": "7.1.0",
     "typescript": "5.1.3",
