@@ -18,7 +18,7 @@
   "dependencies": {
     "@graphql-inspector/core": "../packages/core/dist",
     "@graphql-inspector/github": "../packages/github/dist",
-    "@monaco-editor/react": "4.5.1",
+    "@monaco-editor/react": "4.6.0",
     "@theguild/algolia": "1.1.9",
     "@theguild/components": "5.2.2",
     "@whatwg-node/fetch": "0.9.9",
