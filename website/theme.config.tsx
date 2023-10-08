@@ -1,5 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
-
 /* eslint sort-keys: error */
 import { useRouter } from 'next/router';
 import { defineConfig, Giscus, useTheme } from '@theguild/components';
