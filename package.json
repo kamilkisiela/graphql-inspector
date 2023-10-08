@@ -79,7 +79,7 @@
     "@zeit/ncc": "0.22.3",
     "bob-the-bundler": "7.0.1",
     "eslint": "8.45.0",
-    "graphql": "16.6.0",
+    "graphql": "16.8.1",
     "graphql-config": "5.0.2",
     "jsesc": "3.0.2",
     "lint-staged": "13.2.3",
