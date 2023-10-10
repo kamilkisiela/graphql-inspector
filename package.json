@@ -75,7 +75,7 @@
     "@types/cors": "2.8.13",
     "@types/express": "4.17.17",
     "@types/node": "20.2.5",
-    "@types/yargs": "17.0.24",
+    "@types/yargs": "17.0.28",
     "@zeit/ncc": "0.22.3",
     "bob-the-bundler": "7.0.1",
     "eslint": "8.45.0",
