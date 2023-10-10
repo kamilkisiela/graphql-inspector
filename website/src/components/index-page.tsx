@@ -12,7 +12,6 @@ import interceptImage from 'public/assets/img/ui/features/intercept.png';
 import notificationsImage from 'public/assets/img/ui/features/notifications.png';
 import schemaCheckImage from 'public/assets/img/ui/features/schema-check.png';
 
-
 const FEATURE_LIST = [
   {
     title: 'Works with GitHub',
