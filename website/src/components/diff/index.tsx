@@ -33,7 +33,7 @@ const NEW_SCHEMA = /* GraphQL */ `
 
 const oldSchema = buildSchema(OLD_SCHEMA);
 
-const Diff = (): ReactElement => {
+export const Diff = (): ReactElement => {
   const [code, setCode] = useState(NEW_SCHEMA);
   const [changes, setChanges] = useState<Change[]>([]);
 
