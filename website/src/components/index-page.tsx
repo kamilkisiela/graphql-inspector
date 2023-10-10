@@ -111,7 +111,7 @@ export function IndexPage(): ReactElement {
           src: hiveImage,
           alt: 'GraphQL Hive',
           loading: 'lazy',
-          className: 'rounded-xl'
+          className: 'rounded-xl',
         }}
         link={{
           href: 'https://graphql-hive.com',
