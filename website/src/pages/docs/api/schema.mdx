@@ -1,7 +1,7 @@
 ---
 description: GraphQL Inspector - There are a few options to provide your schema in GraphQL Inspector.
 ---
-import { Callout, Tabs, Tab } from '@theguild/components'
+import { Callout, Tabs } from '@theguild/components'
 
 # Providing Schema
 
@@ -12,7 +12,7 @@ There are a few options to provide your schema in GraphQL Inspector.
 GraphQL Inspector accepts CommonJS and ESModules
 
 <Tabs items={['CommonJS', 'ESM default export', 'ESM named export']}>
-<Tab>
+<Tabs.Tab>
 ```js
 // Example for loading and merging multiple .graphql files into a single schema
 const { makeExecutableSchema } = require('@graphql-tools/schema')
@@ -22,8 +22,8 @@ const typeDefs = loadFilesSync('**/*.graphql')
 
 module.exports = makeExecutableSchema({ typeDefs })
 ```
-</Tab>
-<Tab>
+</Tabs.Tab>
+<Tabs.Tab>
 ```ts
 import { makeExecutableSchema } from '@graphql-tools/schema'
 import { typeDefs } from './type-defs'
@@ -31,8 +31,8 @@ import { typeDefs } from './type-defs'
 // as `default`
 export default makeExecutableSchema({ typeDefs })
 ```
-</Tab>
-<Tab>
+</Tabs.Tab>
+<Tabs.Tab>
 ```ts
 import { makeExecutableSchema } from '@graphql-tools/schema'
 import { typeDefs } from './type-defs'
@@ -40,7 +40,7 @@ import { typeDefs } from './type-defs'
 // as `schema` variables
 export const schema = makeExecutableSchema({ typeDefs })
 ```
-</Tab>
+</Tabs.Tab>
 </Tabs>
 
 If you need to transpile a file, use `--require` option of the CLI:
