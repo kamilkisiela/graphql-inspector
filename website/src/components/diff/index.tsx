@@ -50,7 +50,6 @@ const Diff = (): ReactElement => {
   }, [code]);
 
   const onMount: OnMount = useCallback(value => {
-    // @ts-expect-error idk why it's complaining
     const editor = value.getModifiedEditor();
     editor.onKeyUp(() => {
       setCode(editor.getValue());
@@ -66,12 +65,10 @@ const Diff = (): ReactElement => {
           theme="vs-dark"
           original={OLD_SCHEMA}
           modified={code}
-          // @ts-expect-error idk why it's complaining
           onMount={onMount}
           options={{
             codeLens: false,
             lineNumbers: 'off',
-            // @ts-expect-error idk why it's complaining
             minimap: false,
             originalEditable: false,
           }}
