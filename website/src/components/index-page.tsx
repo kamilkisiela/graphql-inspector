@@ -1,20 +1,18 @@
 import { ReactElement } from 'react';
-import dynamic from 'next/dynamic';
 import { FeatureList, HeroGradient, HeroIllustration, NPMBadge } from '@theguild/components';
-import githubImage from '../../public/assets/img/illustrations/github.png';
-import hackerMindsetImage from '../../public/assets/img/illustrations/hacker-mindset.png';
-import hiveImage from '../../public/assets/img/illustrations/hive.png';
-import resultImage from '../../public/assets/img/illustrations/result.png';
-import typewritterImage from '../../public/assets/img/illustrations/typewriter.png';
-import coverImage from '../../public/assets/img/ui/cover.svg';
-import annotationsImage from '../../public/assets/img/ui/features/annotations.png';
-import interceptImage from '../../public/assets/img/ui/features/intercept.png';
-import notificationsImage from '../../public/assets/img/ui/features/notifications.png';
-import schemaCheckImage from '../../public/assets/img/ui/features/schema-check.png';
+import { Diff } from './diff';
+import githubImage from 'public/assets/img/illustrations/github.png';
+import hackerMindsetImage from 'public/assets/img/illustrations/hacker-mindset.png';
+import hiveImage from 'public/assets/img/illustrations/hive.png';
+import resultImage from 'public/assets/img/illustrations/result.png';
+import typewritterImage from 'public/assets/img/illustrations/typewriter.png';
+import coverImage from 'public/assets/img/ui/cover.svg';
+import annotationsImage from 'public/assets/img/ui/features/annotations.png';
+import interceptImage from 'public/assets/img/ui/features/intercept.png';
+import notificationsImage from 'public/assets/img/ui/features/notifications.png';
+import schemaCheckImage from 'public/assets/img/ui/features/schema-check.png';
 
-export const Diff = dynamic(() => import('./diff'));
-
-export const FEATURE_LIST = [
+const FEATURE_LIST = [
   {
     title: 'Works with GitHub',
     description:
@@ -86,7 +84,7 @@ export function IndexPage(): ReactElement {
           children: 'Get Started',
           title: 'Get started with GraphQL Inspector Docs',
         }}
-        colors={['#2e2e2e', '#fff']}
+        colors={['#333', '#555']}
         version={<NPMBadge name="@graphql-inspector/cli" />}
         image={{
           src: coverImage,
@@ -111,6 +109,7 @@ export function IndexPage(): ReactElement {
           src: hiveImage,
           alt: 'GraphQL Hive',
           loading: 'lazy',
+          className: 'rounded-xl',
         }}
         link={{
           href: 'https://graphql-hive.com',

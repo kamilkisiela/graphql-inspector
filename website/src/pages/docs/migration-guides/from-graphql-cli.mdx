@@ -4,7 +4,7 @@ description:
   unified experience. You can switch to using GraphQL-Inspector directly.
 ---
 
-import { Callout, Tab, Tabs } from '@theguild/components'
+import { Callout, Tabs } from '@theguild/components'
 
 # Migrating from GraphQL-CLI to Inspector CLI
 
@@ -53,91 +53,91 @@ Here are examples of how to perform some common actions with both GraphQL-CLI an
 ### Introspect
 
 <Tabs items={['Before (GraphQL - CLI)', 'After (GraphQL-Inspector)']}>
-<Tab>
+<Tabs.Tab>
 ```sh
 graphql get-schema --endpoint=https://api.example.com/graphql --header="Authorization: Bearer YOUR_TOKEN" > schema.graphql
 ```
-</Tab>
-<Tab>
+</Tabs.Tab>
+<Tabs.Tab>
 ```sh
 graphql-inspector introspect https://api.example.com/graphql --headers '{"Authorization": "Bearer YOUR_TOKEN"}' > schema.graphql
 ```
-</Tab>
+</Tabs.Tab>
 </Tabs>
 
 ### Validate
 
 <Tabs items={['Before (GraphQL - CLI)', 'After (GraphQL-Inspector)']}>
-<Tab>
+<Tabs.Tab>
 ```sh
 graphql validate './documents/*.graphql' http://localhost:3000/graphql
 ```
-</Tab>
-<Tab>
+</Tabs.Tab>
+<Tabs.Tab>
 ```sh
 graphql-inspector validate './documents/\*.graphql' http://localhost:3000/graphql
 ```
-</Tab>
+</Tabs.Tab>
 </Tabs>
 
 ### Diff
 
 <Tabs items={['Before (GraphQL - CLI)', 'After (GraphQL-Inspector)']}>
-<Tab>
+<Tabs.Tab>
 ```sh
 graphql diff schema.graphql schema2.graphql
 ```
-</Tab>
-<Tab>
+</Tabs.Tab>
+<Tabs.Tab>
 ```sh
 graphql-inspector diff schema.graphql schema2.graphql
 ```
-</Tab>
+</Tabs.Tab>
 </Tabs>
 
 ### Common
 
 <Tabs items={['Before (GraphQL - CLI)', 'After (GraphQL-Inspector)']}>
-<Tab>
+<Tabs.Tab>
 ```sh
 graphql common schema.graphql schema2.graphql
 ```
-</Tab>
-<Tab>
+</Tabs.Tab>
+<Tabs.Tab>
 ```sh
 graphql-inspector common schema.graphql schema2.graphql
 ```
-</Tab>
+</Tabs.Tab>
 </Tabs>
 
 ### Coverage
 
 <Tabs items={['Before (GraphQL - CLI)', 'After (GraphQL-Inspector)']}>
-<Tab>
+<Tabs.Tab>
 ```sh
 graphql coverage schema.graphql --queries="queries/**/*.graphql"
 ```
-</Tab>
-<Tab>
+</Tabs.Tab>
+<Tabs.Tab>
 ```sh
 graphql-inspector coverage schema.graphql --queries "queries/**/*.graphql"
 ```
-</Tab>
+</Tabs.Tab>
 </Tabs>
 
 ### Similar
 
 <Tabs items={['Before (GraphQL - CLI)', 'After (GraphQL-Inspector)']}>
-<Tab>
+<Tabs.Tab>
 ```sh
 graphql similar schema.graphql schema2.graphql
 ```
-</Tab>
-<Tab>
+</Tabs.Tab>
+<Tabs.Tab>
 ```sh
 graphql-inspector similar schema.graphql schema2.graphql
 ```
-</Tab>
+</Tabs.Tab>
 </Tabs>
 
 ## Conclusion
