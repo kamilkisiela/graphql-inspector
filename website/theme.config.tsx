@@ -4,7 +4,7 @@ import { defineConfig, Giscus, useTheme } from '@theguild/components';
 
 export default defineConfig({
   docsRepositoryBase: 'https://github.com/kamilkisiela/graphql-inspector/tree/master/website', // base URL for the docs repository
-  main({ children }) {
+  main: function Main({ children }) {
     const { resolvedTheme } = useTheme();
     const { route } = useRouter();
 
