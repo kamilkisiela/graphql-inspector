@@ -90,7 +90,7 @@
     "smee-client": "1.2.3",
     "strip-ansi": "7.1.0",
     "typescript": "5.2.2",
-    "vitest": "0.33.0"
+    "vitest": "0.34.6"
   },
   "sideEffects": false,
   "lint-staged": {
