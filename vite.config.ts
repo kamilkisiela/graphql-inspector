@@ -10,7 +10,6 @@ export default defineConfig({
       '@graphql-inspector/url-loader': 'packages/loaders/url/src/index.ts',
       '@graphql-inspector/testing': 'packages/testing/src/index.ts',
       '@graphql-inspector/core': 'packages/core/src/index.ts',
-      '@graphql-inspector/github': 'packages/github/src/index.ts',
     },
     deps: {
       // fixes `graphql` Duplicate "graphql" modules cannot be used at the same time since different
