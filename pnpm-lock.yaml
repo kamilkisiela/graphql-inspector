@@ -109,8 +109,8 @@ importers:
         specifier: 2.8.15
         version: 2.8.15
       '@types/express':
-        specifier: 4.17.17
-        version: 4.17.17
+        specifier: 4.17.20
+        version: 4.17.20
       '@types/node':
         specifier: 20.2.5
         version: 20.2.5
@@ -526,8 +526,8 @@ importers:
         version: 2.6.0
     devDependencies:
       '@types/express':
-        specifier: 4.17.17
-        version: 4.17.17
+        specifier: 4.17.20
+        version: 4.17.20
       '@types/js-yaml':
         specifier: 4.0.5
         version: 4.0.5
@@ -3257,6 +3257,7 @@ packages:
     dependencies:
       '@types/connect': 3.4.35
       '@types/node': 20.8.4
+    dev: false
 
   /@types/body-parser@1.19.4:
     resolution: {integrity: sha512-N7UDG0/xiPQa2D/XrVJXjkWbpqHCd2sBaB32ggRF2l83RhPfamgKGF8gwwqyksS95qUS5ZYF9aF+lLPRlwI2UA==}
@@ -3326,6 +3327,16 @@ packages:
       '@types/express-serve-static-core': 4.17.33
       '@types/qs': 6.9.7
       '@types/serve-static': 1.15.1
+    dev: false
+
+  /@types/express@4.17.20:
+    resolution: {integrity: sha512-rOaqlkgEvOW495xErXMsmyX3WKBInbhG5eqojXYi3cGUaLoRDlXa5d52fkfWZT963AZ3v2eZ4MbKE6WpDAGVsw==}
+    dependencies:
+      '@types/body-parser': 1.19.4
+      '@types/express-serve-static-core': 4.17.33
+      '@types/qs': 6.9.7
+      '@types/serve-static': 1.15.1
+    dev: true
 
   /@types/hast@2.3.4:
     resolution: {integrity: sha512-wLEm0QvaoawEDoTRwzTXp4b4jpwiJDvR5KMnFnVodm3scufTlBOWRD6N1OBf9TZMhjlNsSfcO5V+7AF4+Vy+9g==}
@@ -11529,7 +11540,7 @@ packages:
       '@probot/get-private-key': 1.1.1
       '@probot/octokit-plugin-config': 1.1.6(@octokit/core@3.6.0)
       '@probot/pino': 2.3.5
-      '@types/express': 4.17.17
+      '@types/express': 4.17.20
       '@types/ioredis': 4.28.10
       '@types/pino': 6.3.12
       '@types/pino-http': 5.8.1
