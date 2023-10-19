@@ -68,7 +68,7 @@
     "@graphql-inspector/logger": "workspace:*",
     "graphql-yoga": "4.0.3",
     "open": "8.4.2",
-    "tslib": "2.6.0"
+    "tslib": "2.6.2"
   },
   "devDependencies": {
     "graphql": "16.8.1"

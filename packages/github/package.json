@@ -79,7 +79,7 @@
     "@whatwg-node/fetch": "0.9.13",
     "dataloader": "2.2.2",
     "js-yaml": "4.1.0",
-    "tslib": "2.6.0"
+    "tslib": "2.6.2"
   },
   "devDependencies": {
     "@types/express": "4.17.20",
