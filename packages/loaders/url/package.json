@@ -65,10 +65,10 @@
   },
   "dependencies": {
     "@graphql-tools/url-loader": "8.0.0",
-    "tslib": "2.6.0"
+    "tslib": "2.6.2"
   },
   "devDependencies": {
-    "@types/node": "20.2.5",
+    "@types/node": "20.8.7",
     "graphql": "16.8.1"
   },
   "publishConfig": {
