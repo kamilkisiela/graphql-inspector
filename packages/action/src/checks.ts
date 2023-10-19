@@ -1,6 +1,6 @@
 import * as core from '@actions/core';
 import * as github from '@actions/github';
-import { CheckConclusion } from '@graphql-inspector/github';
+import { CheckConclusion } from '../helpers/types.js';
 import { OctokitInstance } from './types.js';
 import { batch } from './utils.js';
 

@@ -3,13 +3,18 @@ import { buildClientSchema, buildSchema, GraphQLSchema, printSchema, Source } fr
 import * as core from '@actions/core';
 import * as github from '@actions/github';
 import { Rule } from '@graphql-inspector/core';
-import {
-  CheckConclusion,
-  createSummary,
-  diff,
-  printSchemaFromEndpoint,
-  produceSchema,
-} from '@graphql-inspector/github';
+import { diff } from '../helpers/diff.js';
+import { printSchemaFromEndpoint } from '../helpers/loaders.js';
+import { produceSchema } from '../helpers/schema.js';
+import { CheckConclusion } from '../helpers/types.js';
+import { createSummary } from '../helpers/utils.js';
+// import {
+//   CheckConclusion,
+//   createSummary,
+//   diff,
+//   printSchemaFromEndpoint,
+//   produceSchema,
+// } from '@graphql-inspector/github';
 import { updateCheckRun } from './checks.js';
 import { fileLoader } from './files.js';
 import { getAssociatedPullRequest, getCurrentCommitSha } from './git.js';
