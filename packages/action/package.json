@@ -75,7 +75,7 @@
     "@actions/github": "4.0.0",
     "@graphql-inspector/commands": "workspace:*",
     "@graphql-inspector/core": "workspace:*",
-    "@graphql-inspector/github": "workspace:*",
+    "dataloader": "2.2.2",
     "js-yaml": "4.1.0",
     "probot": "12.3.1",
     "tslib": "2.6.2"
