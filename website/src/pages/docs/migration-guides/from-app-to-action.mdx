@@ -1,0 +1,151 @@
+---
+description:
+  Migrate from GraphQL Inspector App to GraphQL Inspector Action for enhanced schema validation.
+---
+
+import { Callout, Tabs } from '@theguild/components'
+
+# Migrating from GraphQL Inspector App to GraphQL Inspector Action
+
+GraphQL Inspector App is no longer available. To continue validating your GraphQL Schema against
+your `master` branch, we recommend switching to the GraphQL Inspector Action. The GraphQL Inspector
+Action provides similar functionality and is actively maintained.
+
+<Callout type="warning">The GraphQL Inspector App has been deprecated!</Callout>
+<Callout type="info">
+  You can [visit the issue](https://github.com/kamilkisiela/graphql-inspector/issues/2648) about the
+  deprecation of the GraphQL Inspector App on GitHub
+</Callout>
+
+## Introduction
+
+The GraphQL Inspector App was used to check your Pull Requests for breaking changes in a GraphQL
+Schema. With its deprecation, you can now use the GraphQL Inspector Action to achieve the same
+results.
+
+## Migration Steps
+
+Migrating from the GraphQL Inspector App to the GraphQL Inspector Action is a straightforward
+process. Follow these steps:
+
+1. If you've been using a `.github/graphql-inspector.yaml` configuration or `package.json`
+   configuration for GraphQL Inspector and want to migrate to GitHub Actions, follow these steps.
+
+```yaml
+branch: master
+schema: schema.graphql # an output of `$ graphql-inspector introspect ...`
+```
+
+It's also possible to setup everything in `package.json` (it must be placed in the root directory).
+
+```jsonc
+{
+  // ...
+  "graphql-inspector": {
+    "branch": "master",
+    "schema": "schema.graphql"
+  }
+}
+```
+
+### 1. Create a New GitHub Action Workflow
+
+Start by creating a new GitHub Action workflow or modifying an existing one. You can create a new
+workflow file in your repository under the `.github/workflows` directory. For example, create a file
+named `graphql-inspector.yml`.
+
+### 2. Define the Workflow
+
+Define the GitHub Action workflow with the desired events that should trigger schema checks. In this
+example, we'll use a simple workflow that triggers on every push.
+
+```yaml
+name: GraphQL Inspector Check
+
+on:
+  push:
+    branches:
+      - main
+```
+
+This configuration sets up the workflow to trigger when there's a push event to the `main` branch.
+You can customize this based on your needs.
+
+### 3. Set Up the Workflow Job
+
+Inside your workflow file, add a job that checks your GraphQL schema using GraphQL Inspector. You
+can use the `kamilkisiela/graphql-inspector` action. Here's an example:
+
+```yaml
+jobs:
+  check-schema:
+    name: Check GraphQL Schema
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run GraphQL Inspector
+        uses: kamilkisiela/graphql-inspector@v2
+        with:
+          schema: schema.graphql
+          # Additional action inputs as needed
+```
+
+In this job:
+
+- We check out the code from the repository.
+- Install any dependencies you might need.
+- Run the GraphQL Inspector Action, providing the `schema` path, which should point to the GraphQL
+  schema file within your repository.
+
+### 4. Commit and Push Your Workflow
+
+Commit the changes you've made to your GitHub Action workflow file and push it to your repository.
+This will trigger the GitHub Action based on the configured events (in this case, a push to the
+`main` branch).
+
+### 5. Review and Customize
+
+Review the workflow run in your GitHub repository to ensure that it's working as expected. You can
+customize the workflow further by adding more steps, setting up environment variables, or adjusting
+the trigger conditions to meet your specific requirements.
+
+With this new GitHub Action workflow, you can easily check your GraphQL schema for breaking changes
+in an automated and efficient way.
+
+### 6. Remove Previous Configuration (Optional)
+
+Once you've verified that the GitHub Action workflow is working correctly, you can consider removing
+the previous configuration files (`.github/graphql-inspector.yaml` or `package.json` configuration)
+that you no longer need.
+
+That's it! You've successfully migrated your GraphQL Inspector configuration from the previous setup
+to GitHub Actions, allowing you to easily check your schema for breaking changes in an automated and
+efficient manner.
+
+## **Customize Inputs (Optional)**:
+
+The GraphQL Inspector Action allows you to customize inputs based on your specific requirements. You
+can configure options such as `name`, `annotations`, `fail-on-breaking`, `approve-label`,
+`endpoint`, `rules`, and `onUsage`.
+
+Refer to the official
+[GitHub Actions documentation](https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions)
+for details on customizing your workflow.
+
+## Conclusion
+
+Migrating from the GraphQL Inspector App to the GraphQL Inspector Action is a simple and necessary
+step. By following this guide, you can continue validating your GraphQL schemas effectively.
+
+The GraphQL Inspector Action offers powerful features, including schema validation, coverage
+analysis, and change detection. We recommend migrating as soon as possible to benefit from these
+capabilities and ensure a smooth workflow.
+
+If you have any questions or need assistance with the migration process, feel free to reach out for
+support.
