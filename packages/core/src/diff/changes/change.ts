@@ -370,6 +370,24 @@ export type FieldTypeChangedChange = {
   };
 };
 
+export type DirectiveUsageUnionMemberAddedChange = {
+  type: ChangeType.DirectiveUsageUnionMemberAdded;
+  meta: {
+    unionName: string;
+    addedUnionMemberTypeName: string;
+    addedDirectiveName: string;
+  };
+};
+
+export type DirectiveUsageUnionMemberRemovedChange = {
+  type: ChangeType.DirectiveUsageUnionMemberRemoved;
+  meta: {
+    unionName: string;
+    removedUnionMemberTypeName: string;
+    removedDirectiveName: string;
+  };
+};
+
 export type FieldArgumentAddedChange = {
   type: typeof ChangeType.FieldArgumentAdded;
   meta: {
@@ -574,6 +592,202 @@ export type UnionMemberAddedChange = {
   };
 };
 
+// Directive Usage
+
+export type DirectiveUsageEnumAddedChange = {
+  type: ChangeType.DirectiveUsageEnumAdded;
+  meta: {
+    enumName: string;
+    addedDirectiveName: string;
+  };
+};
+
+export type DirectiveUsageEnumRemovedChange = {
+  type: ChangeType.DirectiveUsageEnumRemoved;
+  meta: {
+    enumName: string;
+    removedDirectiveName: string;
+  };
+};
+
+export type DirectiveUsageEnumValueAddedChange = {
+  type: ChangeType.DirectiveUsageEnumValueAdded;
+  meta: {
+    enumName: string;
+    enumValueName: string;
+    addedDirectiveName: string;
+  };
+};
+
+export type DirectiveUsageEnumValueRemovedChange = {
+  type: ChangeType.DirectiveUsageEnumValueRemoved;
+  meta: {
+    enumName: string;
+    enumValueName: string;
+    removedDirectiveName: string;
+  };
+};
+
+export type DirectiveUsageInputObjectdRemovedChange = {
+  type: ChangeType.DirectiveUsageInputObjectRemoved;
+  meta: {
+    inputObjectName: string;
+    removedInputFieldName: string;
+    isRemovedInputFieldTypeNullable: boolean;
+    removedInputFieldType: string;
+    removedDirectiveName: string;
+  };
+};
+
+export type DirectiveUsageInputObjectAddedChange = {
+  type: ChangeType.DirectiveUsageInputObjectAdded;
+  meta: {
+    inputObjectName: string;
+    addedInputFieldName: string;
+    isAddedInputFieldTypeNullable: boolean;
+    addedInputFieldType: string;
+    addedDirectiveName: string;
+  };
+};
+
+export type DirectiveUsageInputFieldDefinitionAddedChange = {
+  type: ChangeType.DirectiveUsageInputFieldDefinitionAdded;
+  meta: {
+    inputObjectName: string;
+    inputFieldName: string;
+    addedDirectiveName: string;
+  };
+};
+
+export type DirectiveUsageInputFieldDefinitionRemovedChange = {
+  type: ChangeType.DirectiveUsageInputFieldDefinitionRemoved;
+  meta: {
+    inputObjectName: string;
+    inputFieldName: string;
+    removedDirectiveName: string;
+  };
+};
+
+export type DirectiveUsageFieldAddedChange = {
+  type: ChangeType.DirectiveUsageFieldAdded;
+  meta: {
+    typeName: string;
+    fieldName: string;
+    addedDirectiveName: string;
+  };
+};
+
+export type DirectiveUsageFieldRemovedChange = {
+  type: ChangeType.DirectiveUsageFieldRemoved;
+  meta: {
+    typeName: string;
+    fieldName: string;
+    removedDirectiveName: string;
+  };
+};
+
+export type DirectiveUsageScalarAddedChange = {
+  type: ChangeType.DirectiveUsageScalarAdded;
+  meta: {
+    scalarName: string;
+    addedDirectiveName: string;
+  };
+};
+
+export type DirectiveUsageScalarRemovedChange = {
+  type: ChangeType.DirectiveUsageScalarRemoved;
+  meta: {
+    scalarName: string;
+    removedDirectiveName: string;
+  };
+};
+
+export type DirectiveUsageObjectAddedChange = {
+  type: ChangeType.DirectiveUsageObjectAdded;
+  meta: {
+    objectName: string;
+    addedDirectiveName: string;
+  };
+};
+
+export type DirectiveUsageObjectRemovedChange = {
+  type: ChangeType.DirectiveUsageObjectRemoved;
+  meta: {
+    objectName: string;
+    removedDirectiveName: string;
+  };
+};
+
+export type DirectiveUsageInterfaceAddedChange = {
+  type: ChangeType.DirectiveUsageInterfaceAdded;
+  meta: {
+    interfaceName: string;
+    addedDirectiveName: string;
+  };
+};
+
+export type DirectiveUsageSchemaAddedChange = {
+  type: ChangeType.DirectiveUsageSchemaAdded;
+  meta: {
+    addedDirectiveName: string;
+    schemaTypeName: string;
+  };
+};
+
+export type DirectiveUsageSchemaRemovedChange = {
+  type: ChangeType.DirectiveUsageSchemaRemoved;
+  meta: {
+    removedDirectiveName: string;
+    schemaTypeName: string;
+  };
+};
+
+export type DirectiveUsageFieldDefinitionAddedChange = {
+  type: ChangeType.DirectiveUsageFieldDefinitionAdded;
+  meta: {
+    typeName: string;
+    fieldName: string;
+    addedDirectiveName: string;
+  };
+};
+
+export type DirectiveUsageFieldDefinitionRemovedChange = {
+  type: ChangeType.DirectiveUsageFieldDefinitionRemoved;
+  meta: {
+    typeName: string;
+    fieldName: string;
+    removedDirectiveName: string;
+  };
+};
+
+export type DirectiveUsageArgumentDefinitionChange = {
+  type: ChangeType.DirectiveUsageArgumentDefinitionAdded;
+  meta: {
+    typeName: string;
+    fieldName: string;
+    argumentName: string;
+    addedDirectiveName: string;
+  };
+};
+
+export type DirectiveUsageArgumentDefinitionRemovedChange = {
+  type: ChangeType.DirectiveUsageArgumentDefinitionRemoved;
+  meta: {
+    typeName: string;
+    fieldName: string;
+    argumentName: string;
+    removedDirectiveName: string;
+  };
+};
+
+export type DirectiveUsageInterfaceRemovedChange = {
+  type: ChangeType.DirectiveUsageInterfaceRemoved;
+  meta: {
+    interfaceName: string;
+    removedDirectiveName: string;
+  };
+};
+
 type Changes = {
   [ChangeType.TypeAdded]: TypeAddedChange;
   [ChangeType.TypeRemoved]: TypeRemovedChange;
@@ -647,6 +861,28 @@ type Changes = {
   [ChangeType.FieldDeprecationReasonAdded]: FieldDeprecationReasonAddedChange;
   [ChangeType.FieldDeprecationReasonRemoved]: FieldDeprecationReasonRemovedChange;
   [ChangeType.FieldTypeChanged]: FieldTypeChangedChange;
+  [ChangeType.DirectiveUsageUnionMemberAdded]: DirectiveUsageUnionMemberAddedChange;
+  [ChangeType.DirectiveUsageUnionMemberRemoved]: DirectiveUsageUnionMemberRemovedChange;
+  [ChangeType.DirectiveUsageEnumAdded]: DirectiveUsageEnumAddedChange;
+  [ChangeType.DirectiveUsageEnumRemoved]: DirectiveUsageEnumRemovedChange;
+  [ChangeType.DirectiveUsageEnumValueAdded]: DirectiveUsageEnumValueAddedChange;
+  [ChangeType.DirectiveUsageEnumValueRemoved]: DirectiveUsageEnumValueRemovedChange;
+  [ChangeType.DirectiveUsageInputObjectAdded]: DirectiveUsageInputObjectAddedChange;
+  [ChangeType.DirectiveUsageInputObjectRemoved]: DirectiveUsageInputObjectdRemovedChange;
+  [ChangeType.DirectiveUsageFieldAdded]: DirectiveUsageFieldAddedChange;
+  [ChangeType.DirectiveUsageFieldRemoved]: DirectiveUsageFieldRemovedChange;
+  [ChangeType.DirectiveUsageScalarAdded]: DirectiveUsageScalarAddedChange;
+  [ChangeType.DirectiveUsageScalarRemoved]: DirectiveUsageScalarRemovedChange;
+  [ChangeType.DirectiveUsageObjectAdded]: DirectiveUsageObjectAddedChange;
+  [ChangeType.DirectiveUsageObjectRemoved]: DirectiveUsageObjectRemovedChange;
+  [ChangeType.DirectiveUsageInterfaceAdded]: DirectiveUsageInterfaceAddedChange;
+  [ChangeType.DirectiveUsageInterfaceRemoved]: DirectiveUsageInterfaceRemovedChange;
+  [ChangeType.DirectiveUsageArgumentDefinitionAdded]: DirectiveUsageArgumentDefinitionChange;
+  [ChangeType.DirectiveUsageArgumentDefinitionRemoved]: DirectiveUsageArgumentDefinitionRemovedChange;
+  [ChangeType.DirectiveUsageSchemaAdded]: DirectiveUsageSchemaAddedChange;
+  [ChangeType.DirectiveUsageSchemaRemoved]: DirectiveUsageSchemaRemovedChange;
+  [ChangeType.DirectiveUsageFieldDefinitionAdded]: DirectiveUsageFieldDefinitionAddedChange;
+  [ChangeType.DirectiveUsageFieldDefinitionRemoved]: DirectiveUsageFieldDefinitionRemovedChange;
 };
 
 export type SerializableChange = Changes[keyof Changes];

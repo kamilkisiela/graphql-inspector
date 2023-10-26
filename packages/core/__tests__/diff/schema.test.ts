@@ -799,7 +799,7 @@ test('should work with with missing directive definitions', async () => {
 
   const changes = await diff(schemaA, schemaB);
 
-  expect(changes).toHaveLength(1);
+  expect(changes).toHaveLength(2);
 });
 
 test('adding root type should not be breaking', async () => {

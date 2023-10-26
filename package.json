@@ -38,7 +38,7 @@
     "prettier": "pnpm lint:prettier --write",
     "release": "pnpm build && pnpm changeset publish",
     "release:canary": "npm run release -- canary",
-    "test": "vitest ."
+    "test": "vitest"
   },
   "dependencies": {
     "@sentry/node": "7.74.1",

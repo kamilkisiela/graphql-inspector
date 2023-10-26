@@ -8,10 +8,12 @@ import {
   isObjectType,
   isScalarType,
   isUnionType,
+  Kind,
 } from 'graphql';
 import { compareLists, isNotEqual, isVoid } from '../utils/compare.js';
 import { isPrimitive } from '../utils/graphql.js';
 import { Change } from './changes/change.js';
+import { directiveUsageAdded, directiveUsageRemoved } from './changes/directive-usage.js';
 import { directiveAdded, directiveRemoved } from './changes/directive.js';
 import {
   schemaMutationTypeChanged,
@@ -31,6 +33,7 @@ import { changesInEnum } from './enum.js';
 import { changesInInputObject } from './input.js';
 import { changesInInterface } from './interface.js';
 import { changesInObject } from './object.js';
+import { changesInScalar } from './scalar.js';
 import { changesInUnion } from './union.js';
 
 export type AddChange = (change: Change) => void;
@@ -69,6 +72,15 @@ export function diffSchema(oldSchema: GraphQLSchema, newSchema: GraphQLSchema): 
     },
     onMutual(directive) {
       changesInDirective(directive.oldVersion, directive.newVersion, addChange);
+    },
+  });
+
+  compareLists(oldSchema.astNode?.directives || [], newSchema.astNode?.directives || [], {
+    onAdded(directive) {
+      addChange(directiveUsageAdded(Kind.SCHEMA_DEFINITION, directive, newSchema));
+    },
+    onRemoved(directive) {
+      addChange(directiveUsageRemoved(Kind.SCHEMA_DEFINITION, directive, oldSchema));
     },
   });
 
@@ -123,7 +135,7 @@ function changesInType(oldType: GraphQLNamedType, newType: GraphQLNamedType, add
   } else if (isInterfaceType(oldType) && isInterfaceType(newType)) {
     changesInInterface(oldType, newType, addChange);
   } else if (isScalarType(oldType) && isScalarType(newType)) {
-    // what to do with scalar types?
+    changesInScalar(oldType, newType, addChange);
   } else {
     addChange(typeKindChanged(oldType, newType));
   }
