@@ -17,7 +17,6 @@
 '@graphql-inspector/url-loader': patch
 '@graphql-inspector/action': patch
 '@graphql-inspector/config': patch
-'@graphql-inspector/github': patch
 '@graphql-inspector/logger': patch
 '@graphql-inspector/core': patch
 '@graphql-inspector/cli': patch
