@@ -111,8 +111,8 @@ importers:
         specifier: 20.8.7
         version: 20.8.7
       '@types/yargs':
-        specifier: 17.0.29
-        version: 17.0.29
+        specifier: 17.0.32
+        version: 17.0.32
       '@zeit/ncc':
         specifier: 0.22.3
         version: 0.22.3
@@ -3459,8 +3459,8 @@ packages:
     resolution: {integrity: sha512-iO9ZQHkZxHn4mSakYV0vFHAVDyEOIJQrV2uZ06HxEPcx+mt8swXoZHIbaaJ2crJYFfErySgktuTZ3BeLz+XmFA==}
     dev: true
 
-  /@types/yargs@17.0.29:
-    resolution: {integrity: sha512-nacjqA3ee9zRF/++a3FUY1suHTFKZeHba2n8WeDw9cCVdmzmHpIxyzOJBcpHvvEmS8E9KqWlSnWHUkOrkhWcvA==}
+  /@types/yargs@17.0.32:
+    resolution: {integrity: sha512-xQ67Yc/laOG5uMfX/093MRlGGCIBzZMarVa+gfNKJxWAIgykYpVGkBdbqEzGDDfCrVUj6Hiff4mTZ5BA6TmAog==}
     dependencies:
       '@types/yargs-parser': 21.0.0
     dev: true
