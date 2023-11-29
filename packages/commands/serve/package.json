@@ -1,6 +1,6 @@
 {
   "name": "@graphql-inspector/serve-command",
-  "version": "4.0.2",
+  "version": "4.0.3",
   "type": "module",
   "description": "Serves GraphQL Schemma",
   "repository": {
