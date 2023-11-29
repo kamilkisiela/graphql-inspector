@@ -14,3 +14,5 @@ website/algolia-lockfile.json
 .changeset/*.md
 pnpm-lock.yaml
 website/src/pages/docs/migration-guides/from-graphql-cli.mdx
+packages/core/CHANGELOG.md
+packages/**/*.md
