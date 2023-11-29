@@ -30,7 +30,6 @@
       "@graphql-inspector/config": ["packages/config/src/index.ts"],
       "@graphql-inspector/commands": ["packages/commands/commands/src/index.ts"],
       "@graphql-inspector/loaders": ["packages/loaders/loaders/src/index.ts"],
-      "@graphql-inspector/github": ["packages/github/src/index.ts"],
       "@graphql-inspector/action": ["packages/action/src/index.ts"],
       "@graphql-inspector/code-loader": ["packages/loaders/code/src/index.ts"],
       "@graphql-inspector/git-loader": ["packages/loaders/git/src/index.ts"],
