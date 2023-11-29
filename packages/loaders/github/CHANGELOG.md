@@ -1,5 +1,13 @@
 # @graphql-inspector/github-loader
 
+## 4.0.2
+
+### Patch Changes
+
+- [#2638](https://github.com/kamilkisiela/graphql-inspector/pull/2638)
+  [`533ebfd4`](https://github.com/kamilkisiela/graphql-inspector/commit/533ebfd43a3b66dc55ff0789ae5b574e3802de11)
+  Thanks [@TuvalSimha](https://github.com/TuvalSimha)! - Patch update - dependencies
+
 ## 4.0.1
 
 ### Patch Changes
