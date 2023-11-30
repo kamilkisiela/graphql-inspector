@@ -1,5 +1,5 @@
 ---
-'@graphql-inspector/core': patch
+'@graphql-inspector/core': minor
 ---
 
 Replace ChangeType enum with const strings
