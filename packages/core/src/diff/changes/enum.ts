@@ -36,7 +36,7 @@ export function enumValueRemovedFromMeta(args: EnumValueRemovedChange) {
 export function enumValueRemoved(
   oldEnum: GraphQLEnumType,
   value: GraphQLEnumValue,
-): Change<ChangeType.EnumValueRemoved> {
+): Change<typeof ChangeType.EnumValueRemoved> {
   return enumValueRemovedFromMeta({
     type: ChangeType.EnumValueRemoved,
     meta: {
@@ -69,7 +69,7 @@ export function enumValueAddedFromMeta(args: EnumValueAddedChange) {
 export function enumValueAdded(
   newEnum: GraphQLEnumType,
   value: GraphQLEnumValue,
-): Change<ChangeType.EnumValueAdded> {
+): Change<typeof ChangeType.EnumValueAdded> {
   return enumValueAddedFromMeta({
     type: ChangeType.EnumValueAdded,
     meta: {
@@ -91,7 +91,7 @@ function buildEnumValueDescriptionChangedMessage(args: EnumValueDescriptionChang
 
 export function enumValueDescriptionChangedFromMeta(
   args: EnumValueDescriptionChangedChange,
-): Change<ChangeType.EnumValueDescriptionChanged> {
+): Change<typeof ChangeType.EnumValueDescriptionChanged> {
   return {
     criticality: {
       level: CriticalityLevel.NonBreaking,
@@ -107,7 +107,7 @@ export function enumValueDescriptionChanged(
   newEnum: GraphQLEnumType,
   oldValue: GraphQLEnumValue,
   newValue: GraphQLEnumValue,
-): Change<ChangeType.EnumValueDescriptionChanged> {
+): Change<typeof ChangeType.EnumValueDescriptionChanged> {
   return enumValueDescriptionChangedFromMeta({
     type: ChangeType.EnumValueDescriptionChanged,
     meta: {
@@ -143,7 +143,7 @@ export function enumValueDeprecationReasonChanged(
   newEnum: GraphQLEnumType,
   oldValue: GraphQLEnumValue,
   newValue: GraphQLEnumValue,
-): Change<ChangeType.EnumValueDeprecationReasonChanged> {
+): Change<typeof ChangeType.EnumValueDeprecationReasonChanged> {
   return enumValueDeprecationReasonChangedFromMeta({
     type: ChangeType.EnumValueDeprecationReasonChanged,
     meta: {
@@ -179,7 +179,7 @@ export function enumValueDeprecationReasonAdded(
   newEnum: GraphQLEnumType,
   oldValue: GraphQLEnumValue,
   newValue: GraphQLEnumValue,
-): Change<ChangeType.EnumValueDeprecationReasonAdded> {
+): Change<typeof ChangeType.EnumValueDeprecationReasonAdded> {
   return enumValueDeprecationReasonAddedFromMeta({
     type: ChangeType.EnumValueDeprecationReasonAdded,
     meta: {
@@ -214,7 +214,7 @@ export function enumValueDeprecationReasonRemoved(
   newEnum: GraphQLEnumType,
   oldValue: GraphQLEnumValue,
   _newValue: GraphQLEnumValue,
-): Change<ChangeType.EnumValueDeprecationReasonRemoved> {
+): Change<typeof ChangeType.EnumValueDeprecationReasonRemoved> {
   return enumValueDeprecationReasonRemovedFromMeta({
     type: ChangeType.EnumValueDeprecationReasonRemoved,
     meta: {

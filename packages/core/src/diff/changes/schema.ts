@@ -26,7 +26,7 @@ export function schemaQueryTypeChangedFromMeta(args: SchemaQueryTypeChangedChang
 export function schemaQueryTypeChanged(
   oldSchema: GraphQLSchema,
   newSchema: GraphQLSchema,
-): Change<ChangeType.SchemaQueryTypeChanged> {
+): Change<typeof ChangeType.SchemaQueryTypeChanged> {
   const oldName = (oldSchema.getQueryType() || ({} as any)).name || 'unknown';
   const newName = (newSchema.getQueryType() || ({} as any)).name || 'unknown';
 
@@ -59,7 +59,7 @@ export function schemaMutationTypeChangedFromMeta(args: SchemaMutationTypeChange
 export function schemaMutationTypeChanged(
   oldSchema: GraphQLSchema,
   newSchema: GraphQLSchema,
-): Change<ChangeType.SchemaMutationTypeChanged> {
+): Change<typeof ChangeType.SchemaMutationTypeChanged> {
   const oldName = (oldSchema.getMutationType() || ({} as any)).name || 'unknown';
   const newName = (newSchema.getMutationType() || ({} as any)).name || 'unknown';
 
@@ -92,7 +92,7 @@ export function schemaSubscriptionTypeChangedFromMeta(args: SchemaSubscriptionTy
 export function schemaSubscriptionTypeChanged(
   oldSchema: GraphQLSchema,
   newSchema: GraphQLSchema,
-): Change<ChangeType.SchemaSubscriptionTypeChanged> {
+): Change<typeof ChangeType.SchemaSubscriptionTypeChanged> {
   const oldName = (oldSchema.getSubscriptionType() || ({} as any)).name || 'unknown';
   const newName = (newSchema.getSubscriptionType() || ({} as any)).name || 'unknown';
 

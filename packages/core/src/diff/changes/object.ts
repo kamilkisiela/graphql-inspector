@@ -28,7 +28,7 @@ export function objectTypeInterfaceAddedFromMeta(args: ObjectTypeInterfaceAddedC
 export function objectTypeInterfaceAdded(
   iface: GraphQLInterfaceType,
   type: GraphQLObjectType,
-): Change<ChangeType.ObjectTypeInterfaceAdded> {
+): Change<typeof ChangeType.ObjectTypeInterfaceAdded> {
   return objectTypeInterfaceAddedFromMeta({
     type: ChangeType.ObjectTypeInterfaceAdded,
     meta: {
@@ -59,7 +59,7 @@ export function objectTypeInterfaceRemovedFromMeta(args: ObjectTypeInterfaceRemo
 export function objectTypeInterfaceRemoved(
   iface: GraphQLInterfaceType,
   type: GraphQLObjectType,
-): Change<ChangeType.ObjectTypeInterfaceRemoved> {
+): Change<typeof ChangeType.ObjectTypeInterfaceRemoved> {
   return objectTypeInterfaceRemovedFromMeta({
     type: ChangeType.ObjectTypeInterfaceRemoved,
     meta: {

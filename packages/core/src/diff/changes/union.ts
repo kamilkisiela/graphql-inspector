@@ -28,7 +28,7 @@ export function unionMemberRemovedFromMeta(args: UnionMemberRemovedChange) {
 export function unionMemberRemoved(
   union: GraphQLUnionType,
   type: GraphQLObjectType,
-): Change<ChangeType.UnionMemberRemoved> {
+): Change<typeof ChangeType.UnionMemberRemoved> {
   return unionMemberRemovedFromMeta({
     type: ChangeType.UnionMemberRemoved,
     meta: {
@@ -59,7 +59,7 @@ export function buildUnionMemberAddedMessageFromMeta(args: UnionMemberAddedChang
 export function unionMemberAdded(
   union: GraphQLUnionType,
   type: GraphQLObjectType,
-): Change<ChangeType.UnionMemberAdded> {
+): Change<typeof ChangeType.UnionMemberAdded> {
   return buildUnionMemberAddedMessageFromMeta({
     type: ChangeType.UnionMemberAdded,
     meta: {
