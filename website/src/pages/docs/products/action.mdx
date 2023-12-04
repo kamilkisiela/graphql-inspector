@@ -4,6 +4,8 @@ description:
   GraphQL Schema, against your `master` branch.
 ---
 
+import { Callout } from '@theguild/components'
+
 # GitHub Action
 
 [GraphQL Inspector Action](https://github.com/marketplace/actions/graphql-inspector) is a GitHub
@@ -37,6 +39,10 @@ jobs:
 
 Now on every commit or every Pull Request, the GraphQL Inspector App will annotate every change,
 next to the line in the code where it happened.
+
+<Callout type="info">
+  Checks permission needs to be set to write access while running GitHub action.
+</Callout>
 
 ## Inputs
 
