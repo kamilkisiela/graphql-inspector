@@ -102,8 +102,8 @@ importers:
         specifier: 1.19.4
         version: 1.19.4
       '@types/cors':
-        specifier: 2.8.15
-        version: 2.8.15
+        specifier: 2.8.17
+        version: 2.8.17
       '@types/express':
         specifier: 4.17.20
         version: 4.17.20
@@ -3229,8 +3229,8 @@ packages:
     dependencies:
       '@types/node': 20.8.7
 
-  /@types/cors@2.8.15:
-    resolution: {integrity: sha512-n91JxbNLD8eQIuXDIChAN1tCKNWCEgpceU9b7ZMbFA+P+Q4yIeh80jizFLEvolRPc1ES0VdwFlGv+kJTSirogw==}
+  /@types/cors@2.8.17:
+    resolution: {integrity: sha512-8CGDvrBj1zgo2qE+oS3pOCyYNqCPryMWY2bGfwA0dcfopWGgxs+78df0Rs3rc9THP4JkOhLsAa+15VdpAqkcUA==}
     dependencies:
       '@types/node': 20.8.7
     dev: true
