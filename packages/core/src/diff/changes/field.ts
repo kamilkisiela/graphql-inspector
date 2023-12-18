@@ -50,7 +50,7 @@ export function fieldRemovedFromMeta(args: FieldRemovedChange) {
 export function fieldRemoved(
   type: GraphQLObjectType | GraphQLInterfaceType,
   field: GraphQLField<any, any, any>,
-): Change<ChangeType.FieldRemoved> {
+): Change<typeof ChangeType.FieldRemoved> {
   const entity = isInterfaceType(type) ? 'interface' : 'object type';
   return fieldRemovedFromMeta({
     type: ChangeType.FieldRemoved,
@@ -82,7 +82,7 @@ export function fieldAddedFromMeta(args: FieldAddedChange) {
 export function fieldAdded(
   type: GraphQLObjectType | GraphQLInterfaceType,
   field: GraphQLField<any, any, any>,
-): Change<ChangeType.FieldAdded> {
+): Change<typeof ChangeType.FieldAdded> {
   const entity = isInterfaceType(type) ? 'interface' : 'object type';
   return fieldAddedFromMeta({
     type: ChangeType.FieldAdded,
@@ -114,7 +114,7 @@ export function fieldDescriptionChanged(
   type: GraphQLObjectType | GraphQLInterfaceType,
   oldField: GraphQLField<any, any>,
   newField: GraphQLField<any, any>,
-): Change<ChangeType.FieldDescriptionChanged> {
+): Change<typeof ChangeType.FieldDescriptionChanged> {
   return fieldDescriptionChangedFromMeta({
     type: ChangeType.FieldDescriptionChanged,
     meta: {
@@ -145,7 +145,7 @@ export function fieldDescriptionAddedFromMeta(args: FieldDescriptionAddedChange)
 export function fieldDescriptionAdded(
   type: GraphQLObjectType | GraphQLInterfaceType,
   field: GraphQLField<any, any>,
-): Change<ChangeType.FieldDescriptionAdded> {
+): Change<typeof ChangeType.FieldDescriptionAdded> {
   return fieldDescriptionAddedFromMeta({
     type: ChangeType.FieldDescriptionAdded,
     meta: {
@@ -175,7 +175,7 @@ export function fieldDescriptionRemovedFromMeta(args: FieldDescriptionRemovedCha
 export function fieldDescriptionRemoved(
   type: GraphQLObjectType | GraphQLInterfaceType,
   field: GraphQLField<any, any>,
-): Change<ChangeType.FieldDescriptionRemoved> {
+): Change<typeof ChangeType.FieldDescriptionRemoved> {
   return fieldDescriptionRemovedFromMeta({
     type: ChangeType.FieldDescriptionRemoved,
     meta: {
@@ -204,7 +204,7 @@ export function fieldDeprecationAddedFromMeta(args: FieldDeprecationAddedChange)
 export function fieldDeprecationAdded(
   type: GraphQLObjectType | GraphQLInterfaceType,
   field: GraphQLField<any, any>,
-): Change<ChangeType.FieldDeprecationAdded> {
+): Change<typeof ChangeType.FieldDeprecationAdded> {
   return fieldDeprecationAddedFromMeta({
     type: ChangeType.FieldDeprecationAdded,
     meta: {
@@ -229,7 +229,7 @@ export function fieldDeprecationRemovedFromMeta(args: FieldDeprecationRemovedCha
 export function fieldDeprecationRemoved(
   type: GraphQLObjectType | GraphQLInterfaceType,
   field: GraphQLField<any, any>,
-): Change<ChangeType.FieldDeprecationRemoved> {
+): Change<typeof ChangeType.FieldDeprecationRemoved> {
   return fieldDeprecationRemovedFromMeta({
     type: ChangeType.FieldDeprecationRemoved,
     meta: {
@@ -261,7 +261,7 @@ export function fieldDeprecationReasonChanged(
   type: GraphQLObjectType | GraphQLInterfaceType,
   oldField: GraphQLField<any, any>,
   newField: GraphQLField<any, any>,
-): Change<ChangeType.FieldDeprecationReasonChanged> {
+): Change<typeof ChangeType.FieldDeprecationReasonChanged> {
   return fieldDeprecationReasonChangedFromMeta({
     type: ChangeType.FieldDeprecationReasonChanged,
     meta: {
@@ -292,7 +292,7 @@ export function fieldDeprecationReasonAddedFromMeta(args: FieldDeprecationReason
 export function fieldDeprecationReasonAdded(
   type: GraphQLObjectType | GraphQLInterfaceType,
   field: GraphQLField<any, any>,
-): Change<ChangeType.FieldDeprecationReasonAdded> {
+): Change<typeof ChangeType.FieldDeprecationReasonAdded> {
   return fieldDeprecationReasonAddedFromMeta({
     type: ChangeType.FieldDeprecationReasonAdded,
     meta: {
@@ -318,7 +318,7 @@ export function fieldDeprecationReasonRemovedFromMeta(args: FieldDeprecationReas
 export function fieldDeprecationReasonRemoved(
   type: GraphQLObjectType | GraphQLInterfaceType,
   field: GraphQLField<any, any>,
-): Change<ChangeType.FieldDeprecationReasonRemoved> {
+): Change<typeof ChangeType.FieldDeprecationReasonRemoved> {
   return fieldDeprecationReasonRemovedFromMeta({
     type: ChangeType.FieldDeprecationReasonRemoved,
     meta: {
@@ -350,7 +350,7 @@ export function fieldTypeChanged(
   type: GraphQLObjectType | GraphQLInterfaceType,
   oldField: GraphQLField<any, any, any>,
   newField: GraphQLField<any, any, any>,
-): Change<ChangeType.FieldTypeChanged> {
+): Change<typeof ChangeType.FieldTypeChanged> {
   return fieldTypeChangedFromMeta({
     type: ChangeType.FieldTypeChanged,
     meta: {
@@ -387,7 +387,7 @@ export function fieldArgumentAdded(
   type: GraphQLObjectType | GraphQLInterfaceType,
   field: GraphQLField<any, any, any>,
   arg: GraphQLArgument,
-): Change<ChangeType.FieldArgumentAdded> {
+): Change<typeof ChangeType.FieldArgumentAdded> {
   const isBreaking = isNonNullType(arg.type) && typeof arg.defaultValue === 'undefined';
 
   return fieldArgumentAddedFromMeta({
@@ -423,7 +423,7 @@ export function fieldArgumentRemoved(
   type: GraphQLObjectType | GraphQLInterfaceType,
   field: GraphQLField<any, any, any>,
   arg: GraphQLArgument,
-): Change<ChangeType.FieldArgumentRemoved> {
+): Change<typeof ChangeType.FieldArgumentRemoved> {
   return fieldArgumentRemovedFromMeta({
     type: ChangeType.FieldArgumentRemoved,
     meta: {

@@ -28,7 +28,7 @@ export function typeRemovedFromMeta(args: TypeRemovedChange) {
   } as const;
 }
 
-export function typeRemoved(type: GraphQLNamedType): Change<ChangeType.TypeRemoved> {
+export function typeRemoved(type: GraphQLNamedType): Change<typeof ChangeType.TypeRemoved> {
   return typeRemovedFromMeta({
     type: ChangeType.TypeRemoved,
     meta: {
@@ -53,7 +53,7 @@ export function typeAddedFromMeta(args: TypeAddedChange) {
   } as const;
 }
 
-export function typeAdded(type: GraphQLNamedType): Change<ChangeType.TypeAdded> {
+export function typeAdded(type: GraphQLNamedType): Change<typeof ChangeType.TypeAdded> {
   return typeAddedFromMeta({
     type: ChangeType.TypeAdded,
     meta: {
@@ -82,7 +82,7 @@ export function typeKindChangedFromMeta(args: TypeKindChangedChange) {
 export function typeKindChanged(
   oldType: GraphQLNamedType,
   newType: GraphQLNamedType,
-): Change<ChangeType.TypeKindChanged> {
+): Change<typeof ChangeType.TypeKindChanged> {
   return typeKindChangedFromMeta({
     type: ChangeType.TypeKindChanged,
     meta: {
@@ -112,7 +112,7 @@ export function typeDescriptionChangedFromMeta(args: TypeDescriptionChangedChang
 export function typeDescriptionChanged(
   oldType: GraphQLNamedType,
   newType: GraphQLNamedType,
-): Change<ChangeType.TypeDescriptionChanged> {
+): Change<typeof ChangeType.TypeDescriptionChanged> {
   return typeDescriptionChangedFromMeta({
     type: ChangeType.TypeDescriptionChanged,
     meta: {
@@ -141,7 +141,7 @@ export function typeDescriptionRemovedFromMeta(args: TypeDescriptionRemovedChang
 
 export function typeDescriptionRemoved(
   type: GraphQLNamedType,
-): Change<ChangeType.TypeDescriptionRemoved> {
+): Change<typeof ChangeType.TypeDescriptionRemoved> {
   return typeDescriptionRemovedFromMeta({
     type: ChangeType.TypeDescriptionRemoved,
     meta: {
@@ -169,7 +169,7 @@ export function typeDescriptionAddedFromMeta(args: TypeDescriptionAddedChange) {
 
 export function typeDescriptionAdded(
   type: GraphQLNamedType,
-): Change<ChangeType.TypeDescriptionAdded> {
+): Change<typeof ChangeType.TypeDescriptionAdded> {
   return typeDescriptionAddedFromMeta({
     type: ChangeType.TypeDescriptionAdded,
     meta: {

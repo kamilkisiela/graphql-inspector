@@ -38,7 +38,7 @@ export function inputFieldRemovedFromMeta(args: InputFieldRemovedChange) {
 export function inputFieldRemoved(
   input: GraphQLInputObjectType,
   field: GraphQLInputField,
-): Change<ChangeType.InputFieldRemoved> {
+): Change<typeof ChangeType.InputFieldRemoved> {
   return inputFieldRemovedFromMeta({
     type: ChangeType.InputFieldRemoved,
     meta: {
@@ -74,7 +74,7 @@ export function inputFieldAddedFromMeta(args: InputFieldAddedChange) {
 export function inputFieldAdded(
   input: GraphQLInputObjectType,
   field: GraphQLInputField,
-): Change<ChangeType.InputFieldAdded> {
+): Change<typeof ChangeType.InputFieldAdded> {
   return inputFieldAddedFromMeta({
     type: ChangeType.InputFieldAdded,
     meta: {
@@ -105,7 +105,7 @@ export function inputFieldDescriptionAddedFromMeta(args: InputFieldDescriptionAd
 export function inputFieldDescriptionAdded(
   type: GraphQLInputObjectType,
   field: GraphQLInputField,
-): Change<ChangeType.InputFieldDescriptionAdded> {
+): Change<typeof ChangeType.InputFieldDescriptionAdded> {
   return inputFieldDescriptionAddedFromMeta({
     type: ChangeType.InputFieldDescriptionAdded,
     meta: {
@@ -137,7 +137,7 @@ export function inputFieldDescriptionRemovedFromMeta(args: InputFieldDescription
 export function inputFieldDescriptionRemoved(
   type: GraphQLInputObjectType,
   field: GraphQLInputField,
-): Change<ChangeType.InputFieldDescriptionRemoved> {
+): Change<typeof ChangeType.InputFieldDescriptionRemoved> {
   return inputFieldDescriptionRemovedFromMeta({
     type: ChangeType.InputFieldDescriptionRemoved,
     meta: {
@@ -170,7 +170,7 @@ export function inputFieldDescriptionChanged(
   input: GraphQLInputObjectType,
   oldField: GraphQLInputField,
   newField: GraphQLInputField,
-): Change<ChangeType.InputFieldDescriptionChanged> {
+): Change<typeof ChangeType.InputFieldDescriptionChanged> {
   return inputFieldDescriptionChangedFromMeta({
     type: ChangeType.InputFieldDescriptionChanged,
     meta: {
@@ -206,7 +206,7 @@ export function inputFieldDefaultValueChanged(
   input: GraphQLInputObjectType,
   oldField: GraphQLInputField,
   newField: GraphQLInputField,
-): Change<ChangeType.InputFieldDefaultValueChanged> {
+): Change<typeof ChangeType.InputFieldDefaultValueChanged> {
   const meta: InputFieldDefaultValueChangedChange['meta'] = {
     inputName: input.name,
     inputFieldName: oldField.name,
@@ -251,7 +251,7 @@ export function inputFieldTypeChanged(
   input: GraphQLInputObjectType,
   oldField: GraphQLInputField,
   newField: GraphQLInputField,
-): Change<ChangeType.InputFieldTypeChanged> {
+): Change<typeof ChangeType.InputFieldTypeChanged> {
   return inputFieldTypeChangedFromMeta({
     type: ChangeType.InputFieldTypeChanged,
     meta: {

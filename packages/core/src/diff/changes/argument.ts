@@ -35,7 +35,7 @@ export function fieldArgumentDescriptionChanged(
   field: GraphQLField<any, any, any>,
   oldArg: GraphQLArgument,
   newArg: GraphQLArgument,
-): Change<ChangeType.FieldArgumentDescriptionChanged> {
+): Change<typeof ChangeType.FieldArgumentDescriptionChanged> {
   return fieldArgumentDescriptionChangedFromMeta({
     type: ChangeType.FieldArgumentDescriptionChanged,
     meta: {
@@ -77,7 +77,7 @@ export function fieldArgumentDefaultChanged(
   field: GraphQLField<any, any, any>,
   oldArg: GraphQLArgument,
   newArg: GraphQLArgument,
-): Change<ChangeType.FieldArgumentDefaultChanged> {
+): Change<typeof ChangeType.FieldArgumentDefaultChanged> {
   const meta: FieldArgumentDefaultChangedChange['meta'] = {
     typeName: type.name,
     fieldName: field.name,
@@ -129,7 +129,7 @@ export function fieldArgumentTypeChanged(
   field: GraphQLField<any, any, any>,
   oldArg: GraphQLArgument,
   newArg: GraphQLArgument,
-): Change<ChangeType.FieldArgumentTypeChanged> {
+): Change<typeof ChangeType.FieldArgumentTypeChanged> {
   return fieldArgumentTypeChangedFromMeta({
     type: ChangeType.FieldArgumentTypeChanged,
     meta: {

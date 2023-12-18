@@ -36,7 +36,9 @@ export function directiveRemovedFromMeta(args: DirectiveRemovedChange) {
   } as const;
 }
 
-export function directiveRemoved(directive: GraphQLDirective): Change<ChangeType.DirectiveRemoved> {
+export function directiveRemoved(
+  directive: GraphQLDirective,
+): Change<typeof ChangeType.DirectiveRemoved> {
   return directiveRemovedFromMeta({
     type: ChangeType.DirectiveRemoved,
     meta: {
@@ -61,7 +63,9 @@ export function directiveAddedFromMeta(args: DirectiveAddedChange) {
   } as const;
 }
 
-export function directiveAdded(directive: GraphQLDirective): Change<ChangeType.DirectiveAdded> {
+export function directiveAdded(
+  directive: GraphQLDirective,
+): Change<typeof ChangeType.DirectiveAdded> {
   return directiveAddedFromMeta({
     type: ChangeType.DirectiveAdded,
     meta: {
@@ -93,7 +97,7 @@ export function directiveDescriptionChangedFromMeta(args: DirectiveDescriptionCh
 export function directiveDescriptionChanged(
   oldDirective: GraphQLDirective,
   newDirective: GraphQLDirective,
-): Change<ChangeType.DirectiveDescriptionChanged> {
+): Change<typeof ChangeType.DirectiveDescriptionChanged> {
   return directiveDescriptionChangedFromMeta({
     type: ChangeType.DirectiveDescriptionChanged,
     meta: {
@@ -123,7 +127,7 @@ export function directiveLocationAddedFromMeta(args: DirectiveLocationAddedChang
 export function directiveLocationAdded(
   directive: GraphQLDirective,
   location: DirectiveLocationEnum,
-): Change<ChangeType.DirectiveLocationAdded> {
+): Change<typeof ChangeType.DirectiveLocationAdded> {
   return directiveLocationAddedFromMeta({
     type: ChangeType.DirectiveLocationAdded,
     meta: {
@@ -157,7 +161,7 @@ export function directiveLocationRemovedFromMeta(args: DirectiveLocationRemovedC
 export function directiveLocationRemoved(
   directive: GraphQLDirective,
   location: DirectiveLocationEnum,
-): Change<ChangeType.DirectiveLocationRemoved> {
+): Change<typeof ChangeType.DirectiveLocationRemoved> {
   return directiveLocationRemovedFromMeta({
     type: ChangeType.DirectiveLocationRemoved,
     meta: {
@@ -191,7 +195,7 @@ export function directiveArgumentAddedFromMeta(args: DirectiveArgumentAddedChang
 export function directiveArgumentAdded(
   directive: GraphQLDirective,
   arg: GraphQLArgument,
-): Change<ChangeType.DirectiveArgumentAdded> {
+): Change<typeof ChangeType.DirectiveArgumentAdded> {
   return directiveArgumentAddedFromMeta({
     type: ChangeType.DirectiveArgumentAdded,
     meta: {
@@ -226,7 +230,7 @@ export function directiveArgumentRemovedFromMeta(args: DirectiveArgumentRemovedC
 export function directiveArgumentRemoved(
   directive: GraphQLDirective,
   arg: GraphQLArgument,
-): Change<ChangeType.DirectiveArgumentRemoved> {
+): Change<typeof ChangeType.DirectiveArgumentRemoved> {
   return directiveArgumentRemovedFromMeta({
     type: ChangeType.DirectiveArgumentRemoved,
     meta: {
@@ -260,7 +264,7 @@ export function directiveArgumentDescriptionChanged(
   directive: GraphQLDirective,
   oldArg: GraphQLArgument,
   newArg: GraphQLArgument,
-): Change<ChangeType.DirectiveArgumentDescriptionChanged> {
+): Change<typeof ChangeType.DirectiveArgumentDescriptionChanged> {
   return directiveArgumentDescriptionChangedFromMeta({
     type: ChangeType.DirectiveArgumentDescriptionChanged,
     meta: {
@@ -302,7 +306,7 @@ export function directiveArgumentDefaultValueChanged(
   directive: GraphQLDirective,
   oldArg: GraphQLArgument,
   newArg: GraphQLArgument,
-): Change<ChangeType.DirectiveArgumentDefaultValueChanged> {
+): Change<typeof ChangeType.DirectiveArgumentDefaultValueChanged> {
   const meta: DirectiveArgumentDefaultValueChangedChange['meta'] = {
     directiveName: directive.name,
     directiveArgumentName: oldArg.name,
@@ -350,7 +354,7 @@ export function directiveArgumentTypeChanged(
   directive: GraphQLDirective,
   oldArg: GraphQLArgument,
   newArg: GraphQLArgument,
-): Change<ChangeType.DirectiveArgumentTypeChanged> {
+): Change<typeof ChangeType.DirectiveArgumentTypeChanged> {
   return directiveArgumentTypeChangedFromMeta({
     type: ChangeType.DirectiveArgumentTypeChanged,
     meta: {
