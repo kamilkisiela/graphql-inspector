@@ -1,9 +1,13 @@
 import { parsePath } from '../../utils/path.js';
-import { CriticalityLevel } from '../changes/change.js';
+import { Change, CriticalityLevel } from '../changes/change.js';
 import { Rule } from './types.js';
 
+interface Meta {
+  change: Change;
+}
+
 export type UsageHandler = (
-  input: Array<{ type: string; field?: string; argument?: string }>,
+  input: Array<{ type: string; field?: string; argument?: string; meta: Meta }>,
 ) => Promise<boolean[]>;
 
 export interface ConsiderUsageConfig {
@@ -16,7 +20,7 @@ export interface ConsiderUsageConfig {
    *
    * In the CLI we use a GraphQL endpoint with a query
    * that checks the usage and returns stats like:
-   * min/max count and min/max precentage
+   * min/max count and min/max percentage
    * So we know when to allow for a breaking change.
    *
    * Because it returns a boolean,
@@ -38,6 +42,7 @@ export const considerUsage: Rule<ConsiderUsageConfig> = async ({ changes, config
     type: string;
     field: string;
     argument?: string;
+    meta: Meta;
   }> = [];
 
   for (const change of changes) {
@@ -48,6 +53,9 @@ export const considerUsage: Rule<ConsiderUsageConfig> = async ({ changes, config
         type: typeName,
         field: fieldName,
         argument: argumentName,
+        meta: {
+          change,
+        },
       });
     }
   }
