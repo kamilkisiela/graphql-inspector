@@ -1,3 +1,5 @@
+import { NameNode } from 'graphql';
+
 export function keyMap<T>(list: readonly T[], keyFn: (item: T) => string): Record<string, T> {
   return list.reduce((map, item) => {
     map[keyFn(item)] = item;
@@ -51,7 +53,15 @@ export function diffArrays<T>(a: T[] | readonly T[], b: T[] | readonly T[]): T[]
   return a.filter(c => !b.some(d => isEqual(d, c)));
 }
 
-export function compareLists<T extends { name: string }>(
+function extractName(name: string | NameNode): string {
+  if (typeof name === 'string') {
+    return name;
+  }
+
+  return name.value;
+}
+
+export function compareLists<T extends { name: string | NameNode }>(
   oldList: readonly T[],
   newList: readonly T[],
   callbacks?: {
@@ -60,15 +70,15 @@ export function compareLists<T extends { name: string }>(
     onMutual?(t: { newVersion: T; oldVersion: T }): void;
   },
 ) {
-  const oldMap = keyMap(oldList, ({ name }) => name);
-  const newMap = keyMap(newList, ({ name }) => name);
+  const oldMap = keyMap(oldList, ({ name }) => extractName(name));
+  const newMap = keyMap(newList, ({ name }) => extractName(name));
 
   const added: T[] = [];
   const removed: T[] = [];
   const mutual: Array<{ newVersion: T; oldVersion: T }> = [];
 
   for (const oldItem of oldList) {
-    const newItem = newMap[oldItem.name];
+    const newItem = newMap[extractName(oldItem.name)];
     if (newItem === undefined) {
       removed.push(oldItem);
     } else {
@@ -80,7 +90,7 @@ export function compareLists<T extends { name: string }>(
   }
 
   for (const newItem of newList) {
-    if (oldMap[newItem.name] === undefined) {
+    if (oldMap[extractName(newItem.name)] === undefined) {
       added.push(newItem);
     }
   }

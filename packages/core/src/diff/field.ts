@@ -1,7 +1,8 @@
-import { GraphQLField, GraphQLInterfaceType, GraphQLObjectType } from 'graphql';
+import { GraphQLField, GraphQLInterfaceType, GraphQLObjectType, Kind } from 'graphql';
 import { compareLists, isNotEqual, isVoid } from '../utils/compare.js';
 import { isDeprecated } from '../utils/is-deprecated.js';
 import { changesInArgument } from './argument.js';
+import { directiveUsageAdded, directiveUsageRemoved } from './changes/directive-usage.js';
 import {
   fieldArgumentAdded,
   fieldArgumentRemoved,
@@ -64,6 +65,25 @@ export function changesInField(
     },
     onMutual(arg) {
       changesInArgument(type, oldField, arg.oldVersion, arg.newVersion, addChange);
+    },
+  });
+
+  compareLists(oldField.astNode?.directives || [], newField.astNode?.directives || [], {
+    onAdded(directive) {
+      addChange(
+        directiveUsageAdded(Kind.FIELD_DEFINITION, directive, {
+          parentType: type,
+          field: newField,
+        }),
+      );
+    },
+    onRemoved(arg) {
+      addChange(
+        directiveUsageRemoved(Kind.FIELD_DEFINITION, arg, {
+          parentType: type,
+          field: oldField,
+        }),
+      );
     },
   });
 }

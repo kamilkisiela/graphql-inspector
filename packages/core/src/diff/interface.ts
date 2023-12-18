@@ -1,5 +1,6 @@
-import { GraphQLInterfaceType } from 'graphql';
+import { GraphQLInterfaceType, Kind } from 'graphql';
 import { compareLists } from '../utils/compare.js';
+import { directiveUsageAdded, directiveUsageRemoved } from './changes/directive-usage.js';
 import { fieldAdded, fieldRemoved } from './changes/field.js';
 import { changesInField } from './field.js';
 import { AddChange } from './schema.js';
@@ -18,6 +19,14 @@ export function changesInInterface(
     },
     onMutual(field) {
       changesInField(oldInterface, field.oldVersion, field.newVersion, addChange);
+    },
+  });
+  compareLists(oldInterface.astNode?.directives || [], newInterface.astNode?.directives || [], {
+    onAdded(directive) {
+      addChange(directiveUsageAdded(Kind.INTERFACE_TYPE_DEFINITION, directive, newInterface));
+    },
+    onRemoved(directive) {
+      addChange(directiveUsageRemoved(Kind.INTERFACE_TYPE_DEFINITION, directive, oldInterface));
     },
   });
 }

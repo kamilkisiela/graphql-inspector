@@ -1,5 +1,6 @@
-import { GraphQLEnumType } from 'graphql';
+import { GraphQLEnumType, Kind } from 'graphql';
 import { compareLists, isNotEqual, isVoid } from '../utils/compare.js';
+import { directiveUsageAdded, directiveUsageRemoved } from './changes/directive-usage.js';
 import {
   enumValueAdded,
   enumValueDeprecationReasonAdded,
@@ -39,6 +40,34 @@ export function changesInEnum(
           addChange(enumValueDeprecationReasonChanged(newEnum, oldValue, newValue));
         }
       }
+
+      compareLists(oldValue.astNode?.directives || [], newValue.astNode?.directives || [], {
+        onAdded(directive) {
+          addChange(
+            directiveUsageAdded(Kind.ENUM_VALUE_DEFINITION, directive, {
+              type: newEnum,
+              value: newValue,
+            }),
+          );
+        },
+        onRemoved(directive) {
+          addChange(
+            directiveUsageRemoved(Kind.ENUM_VALUE_DEFINITION, directive, {
+              type: oldEnum,
+              value: oldValue,
+            }),
+          );
+        },
+      });
+    },
+  });
+
+  compareLists(oldEnum.astNode?.directives || [], newEnum.astNode?.directives || [], {
+    onAdded(directive) {
+      addChange(directiveUsageAdded(Kind.ENUM_TYPE_DEFINITION, directive, newEnum));
+    },
+    onRemoved(directive) {
+      addChange(directiveUsageRemoved(Kind.ENUM_TYPE_DEFINITION, directive, newEnum));
     },
   });
 }

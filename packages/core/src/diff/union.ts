@@ -1,5 +1,6 @@
-import { GraphQLUnionType } from 'graphql';
+import { GraphQLUnionType, Kind } from 'graphql';
 import { compareLists } from '../utils/compare.js';
+import { directiveUsageAdded, directiveUsageRemoved } from './changes/directive-usage.js';
 import { unionMemberAdded, unionMemberRemoved } from './changes/union.js';
 import { AddChange } from './schema.js';
 
@@ -17,6 +18,15 @@ export function changesInUnion(
     },
     onRemoved(t) {
       addChange(unionMemberRemoved(oldUnion, t));
+    },
+  });
+
+  compareLists(oldUnion.astNode?.directives || [], newUnion.astNode?.directives || [], {
+    onAdded(directive) {
+      addChange(directiveUsageAdded(Kind.UNION_TYPE_DEFINITION, directive, newUnion));
+    },
+    onRemoved(directive) {
+      addChange(directiveUsageRemoved(Kind.UNION_TYPE_DEFINITION, directive, oldUnion));
     },
   });
 }
