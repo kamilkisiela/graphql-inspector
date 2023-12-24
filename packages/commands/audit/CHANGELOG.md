@@ -1,5 +1,14 @@
 # @graphql-inspector/audit-command
 
+## 4.0.4
+
+### Patch Changes
+
+- Updated dependencies
+  [[`831703cc`](https://github.com/kamilkisiela/graphql-inspector/commit/831703cc503bb91972776fb888db60911da3eb99),
+  [`06581e0d`](https://github.com/kamilkisiela/graphql-inspector/commit/06581e0d0e992f09c5f321adb73a30fe9b378f34)]:
+  - @graphql-inspector/core@5.1.0
+
 ## 4.0.3
 
 ### Patch Changes

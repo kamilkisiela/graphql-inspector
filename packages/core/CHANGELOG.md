@@ -1,5 +1,18 @@
 # @graphql-inspector/core
 
+## 5.1.0
+
+### Minor Changes
+
+- [#2673](https://github.com/kamilkisiela/graphql-inspector/pull/2673)
+  [`831703cc`](https://github.com/kamilkisiela/graphql-inspector/commit/831703cc503bb91972776fb888db60911da3eb99)
+  Thanks [@kamilkisiela](https://github.com/kamilkisiela)! - Add metadata (with change field in it)
+  to checkUsage function of ConsiderUsage rule
+
+- [#2667](https://github.com/kamilkisiela/graphql-inspector/pull/2667)
+  [`06581e0d`](https://github.com/kamilkisiela/graphql-inspector/commit/06581e0d0e992f09c5f321adb73a30fe9b378f34)
+  Thanks [@TuvalSimha](https://github.com/TuvalSimha)! - Replace ChangeType enum with const strings
+
 ## 5.0.2
 
 ### Patch Changes
