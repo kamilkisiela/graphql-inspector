@@ -40,7 +40,7 @@ export async function run() {
   const endpoint: string = core.getInput('endpoint');
   const approveLabel: string = core.getInput('approve-label') || 'approved-breaking-change';
   const rulesList = getInputAsArray('rules') || [];
-  const onUsage = core.getInput('getUsage');
+  const onUsage = core.getInput('onUsage');
 
   const octokit = github.getOctokit(token);
 
