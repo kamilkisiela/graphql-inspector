@@ -110,7 +110,8 @@ export async function run() {
 
   if (useMerge && pullRequest?.state === 'open') {
     ref = `refs/pull/${pullRequest.number}/merge`;
-    workspace = undefined;
+    // workspace = undefined; // don't clear workspace, we want to load from
+    // filesystem
     core.info(`EXPERIMENTAL - Using Pull Request ${ref}`);
 
     const baseRef = pullRequest.base?.ref;
