@@ -2,7 +2,7 @@ import { ReactElement, useCallback, useEffect, useState } from 'react';
 import { buildSchema } from 'graphql';
 import FlipMove from 'react-flip-move';
 import { Change, diff } from '@graphql-inspector/core';
-import { DiffEditor, OnMount } from '@monaco-editor/react';
+import { DiffEditor, DiffOnMount } from '@monaco-editor/react';
 import ChangeComponent from './change';
 
 const OLD_SCHEMA = /* GraphQL */ `
@@ -49,8 +49,8 @@ export const Diff = (): ReactElement => {
     run();
   }, [code]);
 
-  const onMount: OnMount = useCallback(value => {
-    const editor = value.getModifiedEditor();
+  const onDiffOnMount: DiffOnMount = useCallback(diffEditor => {
+    const editor = diffEditor.getModifiedEditor();
     editor.onKeyUp(() => {
       setCode(editor.getValue());
     });
@@ -65,11 +65,10 @@ export const Diff = (): ReactElement => {
           theme="vs-dark"
           original={OLD_SCHEMA}
           modified={code}
-          onMount={onMount}
+          onMount={onDiffOnMount}
           options={{
             codeLens: false,
             lineNumbers: 'off',
-            minimap: false,
             originalEditable: false,
           }}
         />
