@@ -654,8 +654,8 @@ importers:
         specifier: ../packages/core/dist
         version: link:../packages/core/dist
       '@monaco-editor/react':
-        specifier: ^4.6.0
-        version: 4.6.0(monaco-editor@0.45.0)(react-dom@18.2.0)(react@18.2.0)
+        specifier: 4.0.0
+        version: 4.0.0(monaco-editor@0.21.3)(react-dom@18.2.0)(react@18.2.0)
       '@theguild/components':
         specifier: ^6.0.1
         version: 6.0.1(@algolia/client-search@4.19.1)(@types/react@18.2.39)(next@13.5.4)(react-dom@18.2.0)(react@18.2.0)(webpack@4.47.0)
@@ -2108,26 +2108,28 @@ packages:
       react: 18.2.0
     dev: false
 
-  /@monaco-editor/loader@1.4.0(monaco-editor@0.45.0):
+  /@monaco-editor/loader@1.4.0(monaco-editor@0.21.3):
     resolution: {integrity: sha512-00ioBig0x642hytVspPl7DbQyaSWRaolYie/UFNjoTdvoKPzo6xrXLhTk9ixgIKcLH5b5vDOjVNiGyY+uDCUlg==}
     peerDependencies:
       monaco-editor: '>= 0.21.0 < 1'
     dependencies:
-      monaco-editor: 0.45.0
+      monaco-editor: 0.21.3
       state-local: 1.0.7
     dev: false
 
-  /@monaco-editor/react@4.6.0(monaco-editor@0.45.0)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-RFkU9/i7cN2bsq/iTkurMWOEErmYcY6JiQI3Jn+WeR/FGISH8JbHERjpS9oRuSOPvDMJI0Z8nJeKkbOs9sBYQw==}
+  /@monaco-editor/react@4.0.0(monaco-editor@0.21.3)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-klshdVp4vS9CiwH6piOxPFzGgrEM5rMegQEKo0677r/eojTwg4yLv4BdOWBJRBHd4cywQW/UGxskVXGSnBmS4Q==}
     peerDependencies:
-      monaco-editor: '>= 0.25.0 < 1'
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0
-      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+      monaco-editor: ^0.21.2
+      react: ^16.8.0 || ^17.0.0
+      react-dom: ^16.8.0 || ^17.0.0
     dependencies:
-      '@monaco-editor/loader': 1.4.0(monaco-editor@0.45.0)
-      monaco-editor: 0.45.0
+      '@monaco-editor/loader': 1.4.0(monaco-editor@0.21.3)
+      monaco-editor: 0.21.3
+      prop-types: 15.8.1
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
+      state-local: 1.0.7
     dev: false
 
   /@napi-rs/simple-git-android-arm-eabi@0.1.9:
@@ -9951,8 +9953,8 @@ packages:
       ufo: 1.1.2
     dev: true
 
-  /monaco-editor@0.45.0:
-    resolution: {integrity: sha512-mjv1G1ZzfEE3k9HZN0dQ2olMdwIfaeAAjFiwNprLfYNRSz7ctv9XuCT7gPtBGrMUeV1/iZzYKj17Khu1hxoHOA==}
+  /monaco-editor@0.21.3:
+    resolution: {integrity: sha512-9N7wATLpi+googstvtm6IKg97vPQ77FDYEpkow5tLriM/VJ0DaTRyUP4UVzcoH7KlPDX+e/rE7/imcOUeGkT6g==}
     dev: false
 
   /morgan@1.10.0:
