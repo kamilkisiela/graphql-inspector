@@ -110,9 +110,11 @@ export async function run() {
   }
 
 
-  let schemaRef, schemaPath, newSchemaPath;
+  let schemaRef, schemaPath;
   if (schemaPointer) {
     [schemaRef, schemaPath]  = schemaPointer.split(':');
+  } else {
+    schemaPath = newSchemaPointer;
   }
 
   if (useMerge && pullRequest?.state === 'open') {
@@ -151,7 +153,7 @@ export async function run() {
             workspace,
           }),
     ]);
-  }else {
+  } else {
     // read from local file path oldSchemaPointer and newSchemaPointer into strings [oldFile, newFile]
     [oldFile, newFile] = await Promise.all([
       loadFile({
