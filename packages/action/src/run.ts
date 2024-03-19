@@ -64,7 +64,10 @@ export async function run() {
 
   core.info(`Check ID: ${checkId}`);
 
-  const schemaPointer = core.getInput('schema', { required: true });
+  const oldSchemaPointer = core.getInput('old-schema-path');
+  const newSchemaPointer = core.getInput('new-schema-path');
+
+  const schemaPointer = core.getInput('schema');
 
   const loadFile = fileLoader({
     octokit,
@@ -72,9 +75,9 @@ export async function run() {
     repo,
   });
 
-  if (!schemaPointer) {
-    core.error('No `schema` variable');
-    return core.setFailed('Failed to find `schema` variable');
+  if (!schemaPointer || (!oldSchemaPointer && !newSchemaPointer)) {
+    core.error('No `schema` or `old-schema-path` and `new-schema-path` provided');
+    return core.setFailed('Failed to find `schema` or `old-schema-path` and `new-schema-path`');
   }
 
   const rules = rulesList
@@ -106,7 +109,11 @@ export async function run() {
     }
   }
 
-  let [schemaRef, schemaPath] = schemaPointer.split(':');
+
+  let schemaRef, schemaPath, newSchemaPath;
+  if (schemaPointer) {
+    [schemaRef, schemaPath]  = schemaPointer.split(':');
+  }
 
   if (useMerge && pullRequest?.state === 'open') {
     ref = `refs/pull/${pullRequest.number}/merge`;
@@ -127,21 +134,39 @@ export async function run() {
 
   const isNewSchemaUrl = endpoint && schemaPath.startsWith('http');
 
-  const [oldFile, newFile] = await Promise.all([
-    endpoint
-      ? printSchemaFromEndpoint(endpoint)
-      : loadFile({
-          ref: schemaRef,
-          path: schemaPath,
-        }),
-    isNewSchemaUrl
-      ? printSchemaFromEndpoint(schemaPath)
-      : loadFile({
-          path: schemaPath,
-          ref,
-          workspace,
-        }),
-  ]);
+  let oldFile, newFile 
+  if(schemaPointer){
+    [oldFile, newFile] = await Promise.all([
+      endpoint
+        ? printSchemaFromEndpoint(endpoint)
+        : loadFile({
+            ref: schemaRef,
+            path: schemaPath,
+          }),
+      isNewSchemaUrl
+        ? printSchemaFromEndpoint(schemaPath)
+        : loadFile({
+            path: schemaPath,
+            ref,
+            workspace,
+          }),
+    ]);
+  }else {
+    // read from local file path oldSchemaPointer and newSchemaPointer into strings [oldFile, newFile]
+    [oldFile, newFile] = await Promise.all([
+      loadFile({
+        ref: schemaRef,
+        path: oldSchemaPointer,
+        workspace,
+      }),
+      loadFile({
+        ref: ref,
+        path: newSchemaPointer,
+        workspace,
+      }),
+    ]);
+  }
+
 
   core.info('Got both sources');
 
