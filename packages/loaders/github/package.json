@@ -69,7 +69,7 @@
   },
   "devDependencies": {
     "@babel/core": "7.22.9",
-    "@types/node": "20.8.7",
+    "@types/node": "20.11.30",
     "graphql": "16.8.1"
   },
   "publishConfig": {
