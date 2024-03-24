@@ -8,16 +8,10 @@ export default {
     },
   },
   docs: {
-    title: 'Docs',
+    title: 'Documentation',
     type: 'page',
     theme: {
       toc: true,
     },
-  },
-  hive: {
-    title: 'Enterprise',
-    type: 'page',
-    href: 'https://graphql-hive.com',
-    newWindow: true,
   },
 };
