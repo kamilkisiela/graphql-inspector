@@ -641,8 +641,8 @@ importers:
         specifier: 4.1.0
         version: 4.1.0
       std-env:
-        specifier: 3.3.3
-        version: 3.3.3
+        specifier: 3.4.3
+        version: 3.4.3
       tslib:
         specifier: 2.6.2
         version: 2.6.2
@@ -12616,8 +12616,8 @@ packages:
     engines: {node: '>= 0.8'}
     dev: false
 
-  /std-env@3.3.3:
-    resolution: {integrity: sha512-Rz6yejtVyWnVjC1RFvNmYL10kgjC49EOghxWn0RFqlCHGFpQx+Xe7yW3I4ceK1SGrWIGMjD5Kbue8W/udkbMJg==}
+  /std-env@3.4.3:
+    resolution: {integrity: sha512-f9aPhy8fYBuMN+sNfakZV18U39PbalgjXG3lLB9WkaYTxijru61wb57V9wxxNthXM5Sd88ETBWi29qLAsHO52Q==}
 
   /stop-iteration-iterator@1.0.0:
     resolution: {integrity: sha512-iCGQj+0l0HOdZ2AEeBADlsRC+vsnDsZsbdSiH1yNSjcfKM7fdpCMfqAL/dwF5BLiw/XhRft/Wax6zQbhq2BcjQ==}
@@ -13870,7 +13870,7 @@ packages:
       magic-string: 0.30.1
       pathe: 1.1.1
       picocolors: 1.0.0
-      std-env: 3.3.3
+      std-env: 3.4.3
       strip-literal: 1.0.1
       tinybench: 2.5.0
       tinypool: 0.7.0
