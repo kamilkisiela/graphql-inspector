@@ -142,8 +142,8 @@ importers:
         specifier: 4.17.21
         version: 4.17.21
       nock:
-        specifier: 13.3.4
-        version: 13.3.4
+        specifier: 13.4.0
+        version: 13.4.0
       prettier:
         specifier: 3.0.3
         version: 3.0.3
@@ -10186,13 +10186,12 @@ packages:
       '@types/nlcst': 1.0.4
     dev: false
 
-  /nock@13.3.4:
-    resolution: {integrity: sha512-DDpmn5oLEdCTclEqweOT4U7bEpuoifBMFUXem9sA4turDAZ5tlbrEoWqCorwXey8CaAw44mst5JOQeVNiwtkhw==}
+  /nock@13.4.0:
+    resolution: {integrity: sha512-W8NVHjO/LCTNA64yxAPHV/K47LpGYcVzgKd3Q0n6owhwvD0Dgoterc25R4rnZbckJEb6Loxz1f5QMuJpJnbSyQ==}
     engines: {node: '>= 10.13'}
     dependencies:
       debug: 4.3.4
       json-stringify-safe: 5.0.1
-      lodash: 4.17.21
       propagate: 2.0.1
     transitivePeerDependencies:
       - supports-color
