@@ -62,6 +62,8 @@ export async function run() {
 
   const checkId = check.data.id;
 
+  core.info(`Schema 1: Test`);
+
   core.info(`Check ID: ${checkId}`);
 
   const schemaPointer = core.getInput('schema', { required: true });
