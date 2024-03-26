@@ -110,7 +110,7 @@ export async function run() {
 
   if (useMerge && pullRequest?.state === 'open') {
     ref = `refs/pull/${pullRequest.number}/merge`;
-    workspace = undefined;
+    // workspace = undefined;
     core.info(`EXPERIMENTAL - Using Pull Request ${ref}`);
 
     const baseRef = pullRequest.base?.ref;
@@ -131,16 +131,16 @@ export async function run() {
     endpoint
       ? printSchemaFromEndpoint(endpoint)
       : loadFile({
-          ref: schemaRef,
-          path: schemaPath,
-        }),
+        ref: schemaRef,
+        path: schemaPath,
+      }),
     isNewSchemaUrl
       ? printSchemaFromEndpoint(schemaPath)
       : loadFile({
-          path: schemaPath,
-          ref,
-          workspace,
-        }),
+        path: schemaPath,
+        ref,
+        workspace,
+      }),
   ]);
 
   core.info('Got both sources');
