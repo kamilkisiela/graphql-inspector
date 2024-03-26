@@ -126,13 +126,15 @@ export async function run() {
   }
 
   const isNewSchemaUrl = endpoint && schemaPath.startsWith('http');
+  const isOldSchemaUrl = endpoint && endpoint.startsWith('http');
 
   const [oldFile, newFile] = await Promise.all([
-    endpoint
+    isOldSchemaUrl
       ? printSchemaFromEndpoint(endpoint)
       : loadFile({
-        ref: schemaRef,
-        path: schemaPath,
+        path: endpoint,
+        ref,
+        workspace,
       }),
     isNewSchemaUrl
       ? printSchemaFromEndpoint(schemaPath)
