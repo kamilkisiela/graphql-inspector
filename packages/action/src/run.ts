@@ -110,7 +110,7 @@ export async function run() {
 
   if (useMerge && pullRequest?.state === 'open') {
     ref = `refs/pull/${pullRequest.number}/merge`;
-    workspace = undefined;
+    // workspace = undefined;
     core.info(`EXPERIMENTAL - Using Pull Request ${ref}`);
 
     const baseRef = pullRequest.base?.ref;
@@ -126,21 +126,26 @@ export async function run() {
   }
 
   const isNewSchemaUrl = endpoint && schemaPath.startsWith('http');
+  const isOldSchemaUrl = endpoint && endpoint.startsWith('http');
+
+  core.info(`Endpoint: ${endpoint}`);
+  core.info(`isOldSchemaUrl: ${isOldSchemaUrl}`);
 
   const [oldFile, newFile] = await Promise.all([
-    endpoint
+    isOldSchemaUrl
       ? printSchemaFromEndpoint(endpoint)
       : loadFile({
-          ref: schemaRef,
-          path: schemaPath,
-        }),
+        path: endpoint,
+        ref,
+        workspace,
+      }),
     isNewSchemaUrl
       ? printSchemaFromEndpoint(schemaPath)
       : loadFile({
-          path: schemaPath,
-          ref,
-          workspace,
-        }),
+        path: schemaPath,
+        ref,
+        workspace,
+      }),
   ]);
 
   core.info('Got both sources');
