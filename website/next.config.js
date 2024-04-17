@@ -21,6 +21,7 @@ export default withGuildDocs({
       '/docs/essentials/validate': '/docs/commands/validate',
       '/docs/essentials/similar': '/docs/commands/similar',
       '/docs/essentials/audit': '/docs/commands/audit',
+      '/docs/essentials/introspect': '/docs/commands/introspect',
     }).map(([from, to]) => ({
       source: from,
       destination: to,
