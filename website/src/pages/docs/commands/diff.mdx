@@ -200,3 +200,69 @@ where `--left-header` will get passed to `http://your-schema-1/graphql` and `--r
 get passed to `http://your-schema-2/graphql`.
 
 <Callout>Note: `--left-header` and `--right-header` overrides the `--header` flags.</Callout>
+
+## Support for Custom Directives
+
+GraphQL Inspector offers enhanced support for custom directives, allowing users to easily detect
+changes in directive usage within GraphQL schemas. This feature greatly improves the capabilities of
+schema diffing, enabling comprehensive tracking of modifications related to custom directives across
+different schema versions.
+
+### How to Use
+
+1. **Define Custom Directives:** Begin by defining custom directives within your GraphQL schemas.
+   Specify their usage on various schema elements such as types, fields, arguments, and more.
+
+```graphql
+directive @customDirective on FIELD_DEFINITION
+```
+
+2. **Run Schema Diff:** Utilize the diff command provided by GraphQL Inspector. Specify the paths or
+   URLs to the old and new schema files. Make sure that both schemas include the custom directives
+   you want to track.
+
+```bash
+graphql-inspector diff OLD_SCHEMA NEW_SCHEMA
+```
+
+Replace `OLD_SCHEMA` and `NEW_SCHEMA` with the paths or URLs pointing to your old and new schemas
+respectively.
+
+3. **Review Changes:** After executing the diff command, GraphQL Inspector will analyze the schemas
+   and identify any modifications related to custom directive usage. The output will provide
+   detailed information about the detected changes, categorized based on their impact.
+
+![Result](/assets/img/diff-result.png)
+
+### Example
+
+```graphql filename="OLD_SCHEMA"
+input Foo {
+  a: String
+  b: String
+}
+```
+
+```graphql filename="NEW_SCHEMA"
+directive @foo on INPUT_FIELD_DEFINITION
+input Foo {
+  a: String @foo
+  b: String
+}
+```
+
+### Rules for Custom Directives
+
+GraphQL Inspector's support for custom directives covers various schema elements, including:
+
+- SCHEMA
+- SCALAR
+- OBJECT
+- FIELD_DEFINITION
+- ARGUMENT_DEFINITION
+- INTERFACE
+- UNION
+- ENUM
+- ENUM_VALUE
+- INPUT_OBJECT
+- INPUT_FIELD_DEFINITION
