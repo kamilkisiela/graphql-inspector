@@ -14,7 +14,7 @@
   "private": true,
   "packageManager": "pnpm@9.0.6",
   "engines": {
-    "node": ">=16.0.0",
+    "node": ">=18.0.0",
     "pnpm": ">=9.0.6"
   },
   "keywords": [

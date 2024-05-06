@@ -57,5 +57,5 @@ outputs:
   changes:
     description: Total number of changes
 runs:
-  using: node16
+  using: node18
   main: action/index.js
