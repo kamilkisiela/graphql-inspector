@@ -29,7 +29,7 @@ jobs:
       - name: Install pnpm
         uses: pnpm/action-setup@v2.4.0
         with:
-          version: 8.9.2
+          version: 9.0.6
 
       - name: Get pnpm cache - Set output
         id: pnpm-cache
