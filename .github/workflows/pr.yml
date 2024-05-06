@@ -7,21 +7,52 @@ on:
 
 jobs:
   release:
-    uses: the-guild-org/shared-config/.github/workflows/release-snapshot.yml@main
-    with:
-      npmTag: alpha
-      buildScript: build
-      nodeVersion: 18
-      packageManager: pnpm
-    secrets:
-      githubToken: ${{ secrets.GITHUB_TOKEN }}
-      npmToken: ${{ secrets.NPM_TOKEN }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Run release workflow
+        uses: the-guild-org/shared-config/.github/workflows/release-snapshot.yml@main
+        with:
+          npmTag: alpha
+          buildScript: build
+          nodeVersion: 18
+          packageManager: pnpm
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Debug Paths
+        run: |
+          echo "Working Directory: $PWD"
+          ls -la
+          # Add more commands here to debug paths as needed
+          # For example:
+          # echo "Contents of specific directory:"
+          # ls -la path/to/directory
 
   dependencies:
-    uses: the-guild-org/shared-config/.github/workflows/changesets-dependencies.yaml@main
-    secrets:
-      githubToken: ${{ secrets.GITHUB_TOKEN }}
-    with:
-      installDependencies: true
-      packageManager: pnpm
-      nodeVersion: 18
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Install dependencies using changesets workflow
+        uses: the-guild-org/shared-config/.github/workflows/changesets-dependencies.yaml@main
+        with:
+          installDependencies: true
+          packageManager: pnpm
+          nodeVersion: 18
+
+      - name: Debug Paths
+        run: |
+          echo "Working Directory: $PWD"
+          ls -la
+          # Add more commands here to debug paths as needed
+          # For example:
+          # echo "Contents of specific directory:"
+          # ls -la path/to/directory
+
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
