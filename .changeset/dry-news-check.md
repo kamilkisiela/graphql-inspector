@@ -23,4 +23,4 @@
 '@graphql-inspector/ci': patch
 ---
 
-Patch update - dependencies
+Update Yoga version for V5, and make sure we use minimum node 18
