@@ -14,9 +14,6 @@
     "url": "https://github.com/kamilkisiela"
   },
   "license": "MIT",
-  "engines": {
-    "node": ">=16.0.0"
-  },
   "bin": {
     "graphql-inspector-github": "dist/cjs/index.js"
   },
