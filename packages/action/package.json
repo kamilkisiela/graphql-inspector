@@ -8,15 +8,15 @@
     "url": "kamilkisiela/graphql-inspector",
     "directory": "packages/action"
   },
-  "engines": {
-    "node": ">=18.0.0"
-  },
   "author": {
     "name": "Kamil Kisiela",
     "email": "kamil.kisiela@gmail.com",
     "url": "https://github.com/kamilkisiela"
   },
   "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "bin": {
     "graphql-inspector-github": "dist/cjs/index.js"
   },
