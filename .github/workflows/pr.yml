@@ -24,4 +24,4 @@ jobs:
     with:
       installDependencies: true
       packageManager: pnpm
-      nodeVersion: 20
+      nodeVersion: 18
