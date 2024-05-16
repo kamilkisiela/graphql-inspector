@@ -23,4 +23,4 @@
 '@graphql-inspector/ci': major
 ---
 
-Upgrade pnpm, bump Node engine and Yoga to version 5
+Upgrade the Node version from 16 to 18, as the minimum required version is now 18. Additionally, ensure that GraphQL Yoga is upgraded to version 5.
