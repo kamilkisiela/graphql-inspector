@@ -1,5 +1,38 @@
 # @graphql-inspector/cli
 
+## 5.0.0
+
+### Major Changes
+
+- [#2719](https://github.com/kamilkisiela/graphql-inspector/pull/2719)
+  [`50874f2`](https://github.com/kamilkisiela/graphql-inspector/commit/50874f2d35d0d5ffda133bb35bb7ce0f8cdb64c3)
+  Thanks [@TuvalSimha](https://github.com/TuvalSimha)! - Upgrade the Node version from 16 to 18, as
+  the minimum required version is now 18. Additionally, ensure that GraphQL Yoga is upgraded to
+  version 5.
+
+### Patch Changes
+
+- Updated dependencies
+  [[`50874f2`](https://github.com/kamilkisiela/graphql-inspector/commit/50874f2d35d0d5ffda133bb35bb7ce0f8cdb64c3),
+  [`50874f2`](https://github.com/kamilkisiela/graphql-inspector/commit/50874f2d35d0d5ffda133bb35bb7ce0f8cdb64c3)]:
+  - @graphql-inspector/serve-command@5.0.0
+  - @graphql-inspector/introspect-command@5.0.0
+  - @graphql-inspector/commands@5.0.0
+  - @graphql-inspector/coverage-command@6.0.0
+  - @graphql-inspector/validate-command@5.0.0
+  - @graphql-inspector/similar-command@5.0.0
+  - @graphql-inspector/graphql-loader@5.0.0
+  - @graphql-inspector/loaders@5.0.0
+  - @graphql-inspector/audit-command@5.0.0
+  - @graphql-inspector/github-loader@5.0.0
+  - @graphql-inspector/diff-command@5.0.0
+  - @graphql-inspector/docs-command@5.0.0
+  - @graphql-inspector/code-loader@5.0.0
+  - @graphql-inspector/json-loader@5.0.0
+  - @graphql-inspector/git-loader@5.0.0
+  - @graphql-inspector/url-loader@5.0.0
+  - @graphql-inspector/config@5.0.0
+
 ## 4.0.4
 
 ### Patch Changes
