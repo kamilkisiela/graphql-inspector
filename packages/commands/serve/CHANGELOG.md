@@ -1,5 +1,28 @@
 # @graphql-inspector/serve-command
 
+## 5.0.0
+
+### Major Changes
+
+- [#2719](https://github.com/kamilkisiela/graphql-inspector/pull/2719)
+  [`50874f2`](https://github.com/kamilkisiela/graphql-inspector/commit/50874f2d35d0d5ffda133bb35bb7ce0f8cdb64c3)
+  Thanks [@TuvalSimha](https://github.com/TuvalSimha)! - Upgrade the Node version from 16 to 18, as
+  the minimum required version is now 18. Additionally, ensure that GraphQL Yoga is upgraded to
+  version 5.
+
+### Patch Changes
+
+- [#2719](https://github.com/kamilkisiela/graphql-inspector/pull/2719)
+  [`50874f2`](https://github.com/kamilkisiela/graphql-inspector/commit/50874f2d35d0d5ffda133bb35bb7ce0f8cdb64c3)
+  Thanks [@TuvalSimha](https://github.com/TuvalSimha)! - dependencies updates:
+  - Updated dependency
+    [`graphql-yoga@5.3.0` ↗︎](https://www.npmjs.com/package/graphql-yoga/v/5.3.0) (from `4.0.3`, in
+    `dependencies`)
+- Updated dependencies
+  [[`50874f2`](https://github.com/kamilkisiela/graphql-inspector/commit/50874f2d35d0d5ffda133bb35bb7ce0f8cdb64c3)]:
+  - @graphql-inspector/commands@5.0.0
+  - @graphql-inspector/logger@5.0.0
+
 ## 4.0.3
 
 ### Patch Changes

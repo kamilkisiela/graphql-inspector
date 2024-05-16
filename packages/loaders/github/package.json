@@ -1,6 +1,6 @@
 {
   "name": "@graphql-inspector/github-loader",
-  "version": "4.0.2",
+  "version": "5.0.0",
   "type": "module",
   "description": "Load GraphQL Schema and Documents from GitHub repository",
   "repository": {
