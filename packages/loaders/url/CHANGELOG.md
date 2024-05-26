@@ -1,5 +1,16 @@
 # @graphql-inspector/url-loader
 
+## 5.0.1
+
+### Patch Changes
+
+- [#2742](https://github.com/kamilkisiela/graphql-inspector/pull/2742)
+  [`77b3a2e`](https://github.com/kamilkisiela/graphql-inspector/commit/77b3a2e630505ea66b26fde45b22fc10392ca108)
+  Thanks [@renovate](https://github.com/apps/renovate)! - dependencies updates:
+  - Updated dependency
+    [`@graphql-tools/url-loader@8.0.2` ↗︎](https://www.npmjs.com/package/@graphql-tools/url-loader/v/8.0.2)
+    (from `8.0.0`, in `dependencies`)
+
 ## 5.0.0
 
 ### Major Changes
