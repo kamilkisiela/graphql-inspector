@@ -4,6 +4,17 @@
 
 ### Patch Changes
 
+- [#2738](https://github.com/kamilkisiela/graphql-inspector/pull/2738)
+  [`1600e72`](https://github.com/kamilkisiela/graphql-inspector/commit/1600e723a3bfb9941674d31b49da90e98463b20f)
+  Thanks [@TuvalSimha](https://github.com/TuvalSimha)! - dependencies updates:
+  - Updated dependency
+    [`@graphql-inspector/config@^4.0.0` ↗︎](https://www.npmjs.com/package/@graphql-inspector/config/v/4.0.0)
+    (from `^4.0.2`, in `peerDependencies`)
+
+## 4.0.4
+
+### Patch Changes
+
 - [#2736](https://github.com/kamilkisiela/graphql-inspector/pull/2736)
   [`87b25d3`](https://github.com/kamilkisiela/graphql-inspector/commit/87b25d32b298efb91213f593ea3fd98f9f4992c4)
   Thanks [@TuvalSimha](https://github.com/TuvalSimha)! - dependencies updates:
