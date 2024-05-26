@@ -418,8 +418,8 @@ importers:
         specifier: workspace:*
         version: link:../../logger/dist
       graphql-yoga:
-        specifier: 5.3.0
-        version: 5.3.0(graphql@16.8.1)
+        specifier: 5.3.1
+        version: 5.3.1(graphql@16.8.1)
       open:
         specifier: 8.4.2
         version: 8.4.2
@@ -4251,8 +4251,8 @@ packages:
     peerDependencies:
       graphql: '>=0.11 <=16'
 
-  graphql-yoga@5.3.0:
-    resolution: {integrity: sha512-6mXoGE5AMN6YNugJvjBFIQ0dFUiOMloN0dAzLL8GFt4iJ5WlWRgjdzGHod2zZz7yWQokEVD42DHgrc7NY3Dm0w==}
+  graphql-yoga@5.3.1:
+    resolution: {integrity: sha512-n918QV6TF7xTjb9ASnozgsr4ydMc08c+x4eRAWKxxWVwSnzdP2xeN2zw1ljIzRD0ccSCNoBajGDKwcZkJDitPA==}
     engines: {node: '>=18.0.0'}
     peerDependencies:
       graphql: ^15.2.0 || ^16.0.0
@@ -12530,11 +12530,11 @@ snapshots:
     dependencies:
       graphql: 16.8.1
 
-  graphql-yoga@5.3.0(graphql@16.8.1):
+  graphql-yoga@5.3.1(graphql@16.8.1):
     dependencies:
       '@envelop/core': 5.0.0
       '@graphql-tools/executor': 1.2.6(graphql@16.8.1)
-      '@graphql-tools/schema': 10.0.0(graphql@16.8.1)
+      '@graphql-tools/schema': 10.0.3(graphql@16.8.1)
       '@graphql-tools/utils': 10.2.0(graphql@16.8.1)
       '@graphql-yoga/logger': 2.0.0
       '@graphql-yoga/subscription': 5.0.0
