@@ -4,6 +4,23 @@
 
 ### Patch Changes
 
+- [#2742](https://github.com/kamilkisiela/graphql-inspector/pull/2742)
+  [`77b3a2e`](https://github.com/kamilkisiela/graphql-inspector/commit/77b3a2e630505ea66b26fde45b22fc10392ca108)
+  Thanks [@renovate](https://github.com/apps/renovate)! - dependencies updates:
+  - Updated dependency
+    [`@graphql-tools/code-file-loader@8.1.2` ↗︎](https://www.npmjs.com/package/@graphql-tools/code-file-loader/v/8.1.2)
+    (from `8.0.1`, in `dependencies`)
+  - Updated dependency
+    [`@graphql-tools/load@8.0.2` ↗︎](https://www.npmjs.com/package/@graphql-tools/load/v/8.0.2)
+    (from `8.0.0`, in `dependencies`)
+  - Updated dependency
+    [`@graphql-tools/utils@10.2.0` ↗︎](https://www.npmjs.com/package/@graphql-tools/utils/v/10.2.0)
+    (from `10.0.3`, in `dependencies`)
+
+## 4.0.4
+
+### Patch Changes
+
 - [#2738](https://github.com/kamilkisiela/graphql-inspector/pull/2738)
   [`1600e72`](https://github.com/kamilkisiela/graphql-inspector/commit/1600e723a3bfb9941674d31b49da90e98463b20f)
   Thanks [@TuvalSimha](https://github.com/TuvalSimha)! - dependencies updates:

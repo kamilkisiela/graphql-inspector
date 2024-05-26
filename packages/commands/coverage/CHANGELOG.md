@@ -1,5 +1,21 @@
 # @graphql-inspector/coverage-command
 
+## 6.0.5
+
+### Patch Changes
+
+- [#2742](https://github.com/kamilkisiela/graphql-inspector/pull/2742)
+  [`77b3a2e`](https://github.com/kamilkisiela/graphql-inspector/commit/77b3a2e630505ea66b26fde45b22fc10392ca108)
+  Thanks [@renovate](https://github.com/apps/renovate)! - dependencies updates:
+  - Updated dependency
+    [`@graphql-tools/utils@10.2.0` ↗︎](https://www.npmjs.com/package/@graphql-tools/utils/v/10.2.0)
+    (from `10.0.3`, in `dependencies`)
+- Updated dependencies
+  [[`9c36138`](https://github.com/kamilkisiela/graphql-inspector/commit/9c3613806803343af8e3081ffc6fea243cea72b2),
+  [`9c36138`](https://github.com/kamilkisiela/graphql-inspector/commit/9c3613806803343af8e3081ffc6fea243cea72b2)]:
+  - @graphql-inspector/core@6.0.1
+  - @graphql-inspector/logger@5.0.1
+
 ## 6.0.4
 
 ### Patch Changes

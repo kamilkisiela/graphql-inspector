@@ -1,5 +1,16 @@
 # @graphql-inspector/git-loader
 
+## 5.0.1
+
+### Patch Changes
+
+- [#2742](https://github.com/kamilkisiela/graphql-inspector/pull/2742)
+  [`77b3a2e`](https://github.com/kamilkisiela/graphql-inspector/commit/77b3a2e630505ea66b26fde45b22fc10392ca108)
+  Thanks [@renovate](https://github.com/apps/renovate)! - dependencies updates:
+  - Updated dependency
+    [`@graphql-tools/git-loader@8.0.6` ↗︎](https://www.npmjs.com/package/@graphql-tools/git-loader/v/8.0.6)
+    (from `8.0.1`, in `dependencies`)
+
 ## 5.0.0
 
 ### Major Changes
