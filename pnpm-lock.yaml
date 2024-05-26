@@ -161,7 +161,7 @@ importers:
         version: 5.2.2
       vitest:
         specifier: 0.34.6
-        version: 0.34.6(terser@4.8.1)
+        version: 0.34.6
 
   packages/action:
     dependencies:
@@ -316,10 +316,10 @@ importers:
   packages/commands/commands:
     dependencies:
       '@graphql-inspector/config':
-        specifier: 4.0.2
+        specifier: ^4.0.0
         version: 4.0.2(graphql@16.8.1)
       '@graphql-inspector/loaders':
-        specifier: 4.0.3
+        specifier: ^4.0.0
         version: 4.0.3(@babel/core@7.22.9)(@graphql-inspector/config@4.0.2(graphql@16.8.1))(graphql@16.8.1)
       graphql:
         specifier: ^14.0.0 || ^15.0.0 || ^16.0.0
@@ -589,7 +589,7 @@ importers:
   packages/loaders/loaders:
     dependencies:
       '@graphql-inspector/config':
-        specifier: 4.0.2
+        specifier: ^4.0.0
         version: 4.0.2(graphql@16.8.1)
       '@graphql-tools/code-file-loader':
         specifier: 8.0.1
@@ -2712,6 +2712,7 @@ packages:
 
   copy-concurrently@1.0.5:
     resolution: {integrity: sha512-f2domd9fsVDFtaFcbaRZuYXwtdmnzqbADSwhSWYxYB/Q8zsdUUFMXVRwXGDMWmbEzAn1kdRrtI1T/KTFOL4X2A==}
+    deprecated: This package is no longer supported.
 
   copy-descriptor@0.1.1:
     resolution: {integrity: sha512-XgZ0pFcakEUlbwQEVNg3+QAis1FyTL3Qel9FYy8pSkQqoG3PNoT0bOCQtOXcOkur21r2Eq2kI+IE+gsmAEVlYw==}
@@ -3725,6 +3726,7 @@ packages:
 
   fs-write-stream-atomic@1.0.10:
     resolution: {integrity: sha512-gehEzmPn2nAwr39eay+x3X34Ra+M2QlVUTLhkXPjWdeO8RF9kszk116avgBJM3ZyNHgHXBNx+VmPaFC36k0PzA==}
+    deprecated: This package is no longer supported.
 
   fs.realpath@1.0.0:
     resolution: {integrity: sha512-OO0pH2lK6a0hZnAdau5ItzHPI6pUlvI7jMVnxUQRtw4owF2wk8lOSabtGDCTP4Ggrg2MbGnWO9X8K1t4+fGMDw==}
@@ -5147,6 +5149,7 @@ packages:
 
   move-concurrently@1.0.1:
     resolution: {integrity: sha512-hdrFxZOycD/g6A6SoI2bB5NA/5NEqD0569+S47WZhPvm46sD50ZHdYaFmnua5lndde9rCHGjmfK7Z8BuCt/PcQ==}
+    deprecated: This package is no longer supported.
 
   mri@1.1.4:
     resolution: {integrity: sha512-6y7IjGPm8AzlvoUrwAaw1tLnUBudaS3752vcd8JtrpGGQn+rXIe63LFVHm/YMwtqAuh+LJPCFdlLYPWM1nYn6w==}
@@ -6245,6 +6248,7 @@ packages:
 
   rimraf@2.7.1:
     resolution: {integrity: sha512-uWjbaKIK3T1OSVptzX7Nl6PvQ3qAGtKEtVRjRuazjfL3Bx5eI409VZSqgND+4UNnmzLVdPj9FqFJNPqBZFve4w==}
+    deprecated: Rimraf versions prior to v4 are no longer supported
     hasBin: true
 
   rimraf@3.0.2:
@@ -11450,7 +11454,7 @@ snapshots:
     dependencies:
       array-union: 2.1.0
       dir-glob: 3.0.1
-      fast-glob: 3.2.12
+      fast-glob: 3.3.2
       ignore: 5.2.4
       merge2: 1.4.1
       slash: 3.0.0
@@ -15758,14 +15762,14 @@ snapshots:
       unist-util-stringify-position: 4.0.0
       vfile-message: 4.0.2
 
-  vite-node@0.34.6(@types/node@20.8.7)(terser@4.8.1):
+  vite-node@0.34.6(@types/node@20.8.7):
     dependencies:
       cac: 6.7.14
       debug: 4.3.4
       mlly: 1.4.0
       pathe: 1.1.1
       picocolors: 1.0.0
-      vite: 4.2.1(@types/node@20.8.7)(terser@4.8.1)
+      vite: 4.2.1(@types/node@20.8.7)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -15775,7 +15779,7 @@ snapshots:
       - supports-color
       - terser
 
-  vite@4.2.1(@types/node@20.8.7)(terser@4.8.1):
+  vite@4.2.1(@types/node@20.8.7):
     dependencies:
       esbuild: 0.17.12
       postcss: 8.4.31
@@ -15784,9 +15788,8 @@ snapshots:
     optionalDependencies:
       '@types/node': 20.8.7
       fsevents: 2.3.2
-      terser: 4.8.1
 
-  vitest@0.34.6(terser@4.8.1):
+  vitest@0.34.6:
     dependencies:
       '@types/chai': 4.3.5
       '@types/chai-subset': 1.3.3
@@ -15809,8 +15812,8 @@ snapshots:
       strip-literal: 1.0.1
       tinybench: 2.5.0
       tinypool: 0.7.0
-      vite: 4.2.1(@types/node@20.8.7)(terser@4.8.1)
-      vite-node: 0.34.6(@types/node@20.8.7)(terser@4.8.1)
+      vite: 4.2.1(@types/node@20.8.7)
+      vite-node: 0.34.6(@types/node@20.8.7)
       why-is-node-running: 2.2.2
     transitivePeerDependencies:
       - less
