@@ -9,7 +9,7 @@ import {
   parseGlobalArgs,
 } from '@graphql-inspector/commands';
 import { similar as findSimilar, getTypePrefix, Rating, SimilarMap } from '@graphql-inspector/core';
-import { chalk, figures, Logger } from '@graphql-inspector/logger';
+import { chalk, fallbackSymbols, Logger } from '@graphql-inspector/logger';
 
 export { CommandFactory };
 
@@ -194,7 +194,7 @@ function printScale(ratio: number): string {
 
   return levels
     .map(level => percentage >= level)
-    .map(enabled => (enabled ? figures.bullet : chalk.gray(figures.bullet)))
+    .map(enabled => (enabled ? fallbackSymbols.bullet : chalk.gray(fallbackSymbols.bullet)))
     .join('');
 }
 
