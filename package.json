@@ -45,7 +45,7 @@
     "@sentry/tracing": "7.114.0",
     "@whatwg-node/fetch": "0.9.17",
     "husky": "8.0.3",
-    "immer": "10.0.2",
+    "immer": "10.1.1",
     "js-yaml": "4.1.0",
     "probot": "12.3.3",
     "shelljs": "0.8.5",

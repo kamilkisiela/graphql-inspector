@@ -24,8 +24,8 @@ importers:
         specifier: 8.0.3
         version: 8.0.3
       immer:
-        specifier: 10.0.2
-        version: 10.0.2
+        specifier: 10.1.1
+        version: 10.1.1
       js-yaml:
         specifier: 4.1.0
         version: 4.1.0
@@ -493,15 +493,15 @@ importers:
         specifier: ^14.0.0 || ^15.0.0 || ^16.0.0
         version: 16.8.1
       object-inspect:
-        specifier: 1.12.3
-        version: 1.12.3
+        specifier: 1.13.1
+        version: 1.13.1
       tslib:
         specifier: 2.6.2
         version: 2.6.2
     devDependencies:
       '@types/object-inspect':
-        specifier: 1.8.1
-        version: 1.8.1
+        specifier: 1.13.0
+        version: 1.13.0
     publishDirectory: dist
 
   packages/loaders/code:
@@ -2138,8 +2138,8 @@ packages:
   '@types/normalize-package-data@2.4.1':
     resolution: {integrity: sha512-Gj7cI7z+98M282Tqmp2K5EIsoouUEzbBJhQQzDE3jSIRk6r9gsz0oUokqIUR4u1R3dMHo0pDHM7sNOHyhulypw==}
 
-  '@types/object-inspect@1.8.1':
-    resolution: {integrity: sha512-0JTdf3CGV0oWzE6Wa40Ayv2e2GhpP3pEJMcrlM74vBSJPuuNkVwfDnl0SZxyFCXETcB4oKA/MpTVfuYSMOelBg==}
+  '@types/object-inspect@1.13.0':
+    resolution: {integrity: sha512-lwGTVESDDV+XsQ1pH4UifpJ1f7OtXzQ6QBOX2Afq2bM/T3oOt8hF6exJMjjIjtEWeAN2YAo25J7HxWh97CCz9w==}
 
   '@types/pg-pool@2.0.4':
     resolution: {integrity: sha512-qZAvkv1K3QbmHHFYSNRYPkRjOWRLBYrL4B9c+wG0GSVGBw0NtJwPcgx/DSddeDJvRGMHCEQ4VMEVfuJ/0gZ3XQ==}
@@ -4530,8 +4530,8 @@ packages:
     resolution: {integrity: sha512-5Fytz/IraMjqpwfd34ke28PTVMjZjJG2MPn5t7OE4eUCUNf8BAa7b5WUS9/Qvr6mwOQS7Mk6vdsMno5he+T8Xw==}
     engines: {node: '>= 4'}
 
-  immer@10.0.2:
-    resolution: {integrity: sha512-Rx3CqeqQ19sxUtYV9CU911Vhy8/721wRFnJv3REVGWUmoAcIwzifTsdmJte/MV+0/XpM35LZdQMBGkRIoLPwQA==}
+  immer@10.1.1:
+    resolution: {integrity: sha512-s2MPrmjovJcoMaHtx6K11Ra7oD05NT97w1IC5zpMkT6Atjr7H8LjaDd81iIxUYpMKSRRNMJE703M1Fhr/TctHw==}
 
   import-fresh@3.3.0:
     resolution: {integrity: sha512-veYYhQa+D1QBKznvhUHxb8faxlrwUnxseDAbAp457E0wLNio2bOSKnjYDhMj+YiAq61xrMGhQk9iXVk5FzgQMw==}
@@ -5802,9 +5802,6 @@ packages:
   object-hash@3.0.0:
     resolution: {integrity: sha512-RSn9F68PjH9HqtltsSnqYC1XXoWe9Bju5+213R98cNGttag9q9yAOTzdbsqvIa7aNm5WffBZFpWYr2aWrklWAw==}
     engines: {node: '>= 6'}
-
-  object-inspect@1.12.3:
-    resolution: {integrity: sha512-geUvdk7c+eizMNUDkRpW1wJwgfOiOeHbxBR/hLXK1aT6zmVSO0jsQcs7fj6MGw89jC/cjGfLcNOrtMYtGqm81g==}
 
   object-inspect@1.13.1:
     resolution: {integrity: sha512-5qoj1RUiKOMsCCNLV1CBiPYE10sziTsnmNxkAI/rZhiD63CF7IqdFGC/XzjWjpSgLf0LxXX3bDFIh0E18f6UhQ==}
@@ -9975,7 +9972,7 @@ snapshots:
 
   '@types/normalize-package-data@2.4.1': {}
 
-  '@types/object-inspect@1.8.1': {}
+  '@types/object-inspect@1.13.0': {}
 
   '@types/pg-pool@2.0.4':
     dependencies:
@@ -11701,7 +11698,7 @@ snapshots:
       is-string: 1.0.7
       is-typed-array: 1.1.10
       is-weakref: 1.0.2
-      object-inspect: 1.12.3
+      object-inspect: 1.13.1
       object-keys: 1.1.1
       object.assign: 4.1.4
       regexp.prototype.flags: 1.4.3
@@ -13031,7 +13028,7 @@ snapshots:
 
   ignore@5.3.1: {}
 
-  immer@10.0.2: {}
+  immer@10.1.1: {}
 
   import-fresh@3.3.0:
     dependencies:
@@ -14783,8 +14780,6 @@ snapshots:
 
   object-hash@3.0.0: {}
 
-  object-inspect@1.12.3: {}
-
   object-inspect@1.13.1: {}
 
   object-keys@1.1.1: {}
@@ -16094,7 +16089,7 @@ snapshots:
     dependencies:
       call-bind: 1.0.2
       get-intrinsic: 1.2.0
-      object-inspect: 1.12.3
+      object-inspect: 1.13.1
 
   side-channel@1.0.6:
     dependencies:
