@@ -3,7 +3,7 @@ import { Transform } from 'node:stream';
 import chalk from 'chalk';
 import * as env from 'std-env';
 
-export { Options, fallbackSymbols, mainSymbols, replaceSymbols } from 'figures';
+export { default as figures } from 'figures';
 export { default as symbols } from 'log-symbols';
 export { chalk };
 
