@@ -61,8 +61,8 @@
     "prepack": "bob prepack"
   },
   "peerDependencies": {
-    "@graphql-inspector/config": "5.0.0",
-    "@graphql-inspector/loaders": "5.0.0",
+    "@graphql-inspector/config": "^4.0.0",
+    "@graphql-inspector/loaders": "^4.0.0",
     "graphql": "^14.0.0 || ^15.0.0 || ^16.0.0",
     "yargs": "17.7.2"
   },
