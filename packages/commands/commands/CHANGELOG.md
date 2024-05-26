@@ -1,5 +1,16 @@
 # @graphql-inspector/commands
 
+## 5.0.4
+
+### Patch Changes
+
+- [#2740](https://github.com/kamilkisiela/graphql-inspector/pull/2740)
+  [`12a2208`](https://github.com/kamilkisiela/graphql-inspector/commit/12a2208748d3ef987400e298eb796e9139357a53)
+  Thanks [@TuvalSimha](https://github.com/TuvalSimha)! - dependencies updates:
+  - Updated dependency
+    [`@graphql-inspector/loaders@^4.0.0` ↗︎](https://www.npmjs.com/package/@graphql-inspector/loaders/v/4.0.0)
+    (from `^4.0.4`, in `peerDependencies`)
+
 ## 5.0.3
 
 ### Patch Changes

@@ -1,6 +1,6 @@
 {
   "name": "@graphql-inspector/validate-command",
-  "version": "5.0.3",
+  "version": "5.0.4",
   "type": "module",
   "description": "Validate Documents in GraphQL Inspector",
   "repository": {
