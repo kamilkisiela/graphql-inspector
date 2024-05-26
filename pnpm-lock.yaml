@@ -103,8 +103,8 @@ importers:
         specifier: 2.0.1
         version: 2.0.1(prettier@3.0.3)
       '@types/body-parser':
-        specifier: 1.19.4
-        version: 1.19.4
+        specifier: 1.19.5
+        version: 1.19.5
       '@types/cors':
         specifier: 2.8.17
         version: 2.8.17
@@ -1723,8 +1723,8 @@ packages:
   '@types/acorn@4.0.6':
     resolution: {integrity: sha512-veQTnWP+1D/xbxVrPC3zHnCZRjSrKfhbMUlEA43iMZLu7EsnTtkJklIuwrCPbOi8YkvDQAiW05VQQFvvz9oieQ==}
 
-  '@types/body-parser@1.19.4':
-    resolution: {integrity: sha512-N7UDG0/xiPQa2D/XrVJXjkWbpqHCd2sBaB32ggRF2l83RhPfamgKGF8gwwqyksS95qUS5ZYF9aF+lLPRlwI2UA==}
+  '@types/body-parser@1.19.5':
+    resolution: {integrity: sha512-fB3Zu92ucau0iQ0JMCFQE7b/dv8Ot07NI3KaZIkIUNXq82k4eBAqUaneXfleGY9JWskeS9y+u0nXMyspcuQrCg==}
 
   '@types/btoa-lite@1.0.0':
     resolution: {integrity: sha512-wJsiX1tosQ+J5+bY5LrSahHxr2wT+uME5UDwdN1kg4frt40euqA+wzECkmq4t5QbveHiJepfdThgQrPw6KiSlg==}
@@ -8855,7 +8855,7 @@ snapshots:
     dependencies:
       '@types/estree': 1.0.0
 
-  '@types/body-parser@1.19.4':
+  '@types/body-parser@1.19.5':
     dependencies:
       '@types/connect': 3.4.35
       '@types/node': 20.12.12
@@ -8898,7 +8898,7 @@ snapshots:
 
   '@types/express@4.17.20':
     dependencies:
-      '@types/body-parser': 1.19.4
+      '@types/body-parser': 1.19.5
       '@types/express-serve-static-core': 4.17.33
       '@types/qs': 6.9.7
       '@types/serve-static': 1.15.1
