@@ -641,8 +641,8 @@ importers:
         specifier: 4.1.0
         version: 4.1.0
       std-env:
-        specifier: 3.3.3
-        version: 3.3.3
+        specifier: 3.7.0
+        version: 3.7.0
       tslib:
         specifier: 2.6.2
         version: 2.6.2
@@ -7084,8 +7084,8 @@ packages:
     resolution: {integrity: sha512-RwNA9Z/7PrK06rYLIzFMlaF+l73iwpzsqRIFgbMLbTcLD6cOao82TaWefPXQvB2fOC4AjuYSEndS7N/mTCbkdQ==}
     engines: {node: '>= 0.8'}
 
-  std-env@3.3.3:
-    resolution: {integrity: sha512-Rz6yejtVyWnVjC1RFvNmYL10kgjC49EOghxWn0RFqlCHGFpQx+Xe7yW3I4ceK1SGrWIGMjD5Kbue8W/udkbMJg==}
+  std-env@3.7.0:
+    resolution: {integrity: sha512-JPbdCEQLj1w5GilpiHAx3qJvFndqybBysA3qUOnznweH4QbNYUsW/ea8QzSrnh0vNsezMMw5bcVool8lM0gwzg==}
 
   stream-browserify@2.0.2:
     resolution: {integrity: sha512-nX6hmklHs/gr2FuxYDltq8fJA1GDlxKQCz8O/IM4atRqBH8OORmBNgfvW5gG10GT/qQ9u0CzIvr2X5Pkt6ntqg==}
@@ -16262,7 +16262,7 @@ snapshots:
 
   statuses@2.0.1: {}
 
-  std-env@3.3.3: {}
+  std-env@3.7.0: {}
 
   stream-browserify@2.0.2:
     dependencies:
@@ -17066,7 +17066,7 @@ snapshots:
       magic-string: 0.30.1
       pathe: 1.1.1
       picocolors: 1.0.0
-      std-env: 3.3.3
+      std-env: 3.7.0
       strip-literal: 1.0.1
       tinybench: 2.5.0
       tinypool: 0.7.0
