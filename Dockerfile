@@ -6,7 +6,7 @@ WORKDIR /app
 
 COPY . .
 
-RUN npm install -g pnpm
+RUN npm install -g pnpm@9.1.1
 RUN pnpm install
 RUN pnpm build
 
@@ -19,7 +19,7 @@ COPY --from=build /app/package.json ${DISTDIR}
 RUN mkdir /app
 WORKDIR /app
 
-RUN npm install -g pnpm
+RUN npm install -g pnpm@9.1.1
 
 RUN echo ${DISTDIR} \ cd ${DISTDIR} \
   && pnpm install \
