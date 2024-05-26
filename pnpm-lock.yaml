@@ -316,10 +316,10 @@ importers:
   packages/commands/commands:
     dependencies:
       '@graphql-inspector/config':
-        specifier: ^4.0.2
+        specifier: ^4.0.0
         version: 4.0.2(graphql@16.8.1)
       '@graphql-inspector/loaders':
-        specifier: ^4.0.3
+        specifier: ^4.0.0
         version: 4.0.3(@babel/core@7.22.9)(@graphql-inspector/config@4.0.2(graphql@16.8.1))(graphql@16.8.1)
       graphql:
         specifier: ^14.0.0 || ^15.0.0 || ^16.0.0
@@ -589,7 +589,7 @@ importers:
   packages/loaders/loaders:
     dependencies:
       '@graphql-inspector/config':
-        specifier: ^4.0.2
+        specifier: ^4.0.0
         version: 4.0.2(graphql@16.8.1)
       '@graphql-tools/code-file-loader':
         specifier: 8.0.1
