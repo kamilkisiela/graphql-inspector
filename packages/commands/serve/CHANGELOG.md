@@ -1,5 +1,19 @@
 # @graphql-inspector/serve-command
 
+## 5.0.5
+
+### Patch Changes
+
+- [#2747](https://github.com/kamilkisiela/graphql-inspector/pull/2747)
+  [`9c36138`](https://github.com/kamilkisiela/graphql-inspector/commit/9c3613806803343af8e3081ffc6fea243cea72b2)
+  Thanks [@TuvalSimha](https://github.com/TuvalSimha)! - dependencies updates:
+  - Updated dependency
+    [`graphql-yoga@5.3.1` ↗︎](https://www.npmjs.com/package/graphql-yoga/v/5.3.1) (from `5.3.0`, in
+    `dependencies`)
+- Updated dependencies
+  [[`9c36138`](https://github.com/kamilkisiela/graphql-inspector/commit/9c3613806803343af8e3081ffc6fea243cea72b2)]:
+  - @graphql-inspector/logger@5.0.1
+
 ## 5.0.4
 
 ### Patch Changes

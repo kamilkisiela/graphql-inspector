@@ -1,5 +1,42 @@
 # @graphql-inspector/cli
 
+## 5.0.5
+
+### Patch Changes
+
+- [#2747](https://github.com/kamilkisiela/graphql-inspector/pull/2747)
+  [`9c36138`](https://github.com/kamilkisiela/graphql-inspector/commit/9c3613806803343af8e3081ffc6fea243cea72b2)
+  Thanks [@TuvalSimha](https://github.com/TuvalSimha)! - dependencies updates:
+  - Updated dependency
+    [`@babel/core@7.24.6` ↗︎](https://www.npmjs.com/package/@babel/core/v/7.24.6) (from `7.22.9`,
+    in `dependencies`)
+- Updated dependencies
+  [[`77b3a2e`](https://github.com/kamilkisiela/graphql-inspector/commit/77b3a2e630505ea66b26fde45b22fc10392ca108),
+  [`77b3a2e`](https://github.com/kamilkisiela/graphql-inspector/commit/77b3a2e630505ea66b26fde45b22fc10392ca108),
+  [`77b3a2e`](https://github.com/kamilkisiela/graphql-inspector/commit/77b3a2e630505ea66b26fde45b22fc10392ca108),
+  [`77b3a2e`](https://github.com/kamilkisiela/graphql-inspector/commit/77b3a2e630505ea66b26fde45b22fc10392ca108),
+  [`77b3a2e`](https://github.com/kamilkisiela/graphql-inspector/commit/77b3a2e630505ea66b26fde45b22fc10392ca108),
+  [`77b3a2e`](https://github.com/kamilkisiela/graphql-inspector/commit/77b3a2e630505ea66b26fde45b22fc10392ca108),
+  [`77b3a2e`](https://github.com/kamilkisiela/graphql-inspector/commit/77b3a2e630505ea66b26fde45b22fc10392ca108),
+  [`77b3a2e`](https://github.com/kamilkisiela/graphql-inspector/commit/77b3a2e630505ea66b26fde45b22fc10392ca108),
+  [`9c36138`](https://github.com/kamilkisiela/graphql-inspector/commit/9c3613806803343af8e3081ffc6fea243cea72b2),
+  [`77b3a2e`](https://github.com/kamilkisiela/graphql-inspector/commit/77b3a2e630505ea66b26fde45b22fc10392ca108),
+  [`77b3a2e`](https://github.com/kamilkisiela/graphql-inspector/commit/77b3a2e630505ea66b26fde45b22fc10392ca108)]:
+  - @graphql-inspector/audit-command@5.0.5
+  - @graphql-inspector/code-loader@5.0.1
+  - @graphql-inspector/coverage-command@6.0.5
+  - @graphql-inspector/git-loader@5.0.1
+  - @graphql-inspector/github-loader@5.0.1
+  - @graphql-inspector/graphql-loader@5.0.1
+  - @graphql-inspector/json-loader@5.0.1
+  - @graphql-inspector/loaders@4.0.4
+  - @graphql-inspector/serve-command@5.0.5
+  - @graphql-inspector/url-loader@5.0.1
+  - @graphql-inspector/validate-command@5.0.5
+  - @graphql-inspector/diff-command@5.0.5
+  - @graphql-inspector/introspect-command@5.0.5
+  - @graphql-inspector/similar-command@5.0.5
+
 ## 5.0.4
 
 ### Patch Changes

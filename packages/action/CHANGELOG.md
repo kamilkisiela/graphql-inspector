@@ -1,5 +1,26 @@
 # @graphql-inspector/action
 
+## 5.0.5
+
+### Patch Changes
+
+- [#2675](https://github.com/kamilkisiela/graphql-inspector/pull/2675)
+  [`7cf5b11`](https://github.com/kamilkisiela/graphql-inspector/commit/7cf5b110891f6d5a0630da9df7cf1ceeb66473ef)
+  Thanks [@renovate](https://github.com/apps/renovate)! - dependencies updates:
+
+  - Updated dependency [`probot@12.3.3` ↗︎](https://www.npmjs.com/package/probot/v/12.3.3) (from
+    `12.3.1`, in `dependencies`)
+
+- [#2747](https://github.com/kamilkisiela/graphql-inspector/pull/2747)
+  [`9c36138`](https://github.com/kamilkisiela/graphql-inspector/commit/9c3613806803343af8e3081ffc6fea243cea72b2)
+  Thanks [@TuvalSimha](https://github.com/TuvalSimha)! - dependencies updates:
+  - Updated dependency
+    [`@actions/core@1.10.1` ↗︎](https://www.npmjs.com/package/@actions/core/v/1.10.1) (from
+    `1.10.0`, in `dependencies`)
+- Updated dependencies
+  [[`9c36138`](https://github.com/kamilkisiela/graphql-inspector/commit/9c3613806803343af8e3081ffc6fea243cea72b2)]:
+  - @graphql-inspector/core@6.0.1
+
 ## 5.0.4
 
 ### Patch Changes

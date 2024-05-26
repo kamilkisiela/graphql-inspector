@@ -1,5 +1,15 @@
 # @graphql-inspector/logger
 
+## 5.0.1
+
+### Patch Changes
+
+- [#2747](https://github.com/kamilkisiela/graphql-inspector/pull/2747)
+  [`9c36138`](https://github.com/kamilkisiela/graphql-inspector/commit/9c3613806803343af8e3081ffc6fea243cea72b2)
+  Thanks [@TuvalSimha](https://github.com/TuvalSimha)! - dependencies updates:
+  - Updated dependency [`std-env@3.7.0` ↗︎](https://www.npmjs.com/package/std-env/v/3.7.0) (from
+    `3.3.3`, in `dependencies`)
+
 ## 5.0.0
 
 ### Major Changes
