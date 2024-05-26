@@ -1,22 +1,52 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="140" height="140" viewBox="0 0 140 140">
-    <defs>
-        <rect id="b" width="86" height="86" x="31.811" y="31.811" rx="19"/>
-        <filter id="a" width="162.8%" height="162.8%" x="-31.4%" y="-17.4%" filterUnits="objectBoundingBox">
-            <feOffset dy="12" in="SourceAlpha" result="shadowOffsetOuter1"/>
-            <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="7"/>
-            <feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.03 0"/>
-        </filter>
-    </defs>
-    <g fill="none" fill-rule="evenodd" transform="translate(0 -10)">
-        <g fill-rule="nonzero" transform="rotate(45 74.811 74.811)">
-            <use fill="#000" filter="url(#a)" xlink:href="#b"/>
-            <use fill="#FFF" xlink:href="#b"/>
-        </g>
-        <rect width="105" height="105" x="22.453" y="22.453" stroke="#979797" opacity=".112" rx="26" transform="rotate(45 74.953 74.953)"/>
-        <g fill="#000">
-            <path fill-rule="nonzero" d="M86.203 51.008H62.734v15.59h23.47v-15.59zM82.292 62.7H66.646v-7.795h15.646V62.7z"/>
-            <path d="M58.823 74.392h13.69v3.898h3.912v-3.898h13.69v3.898h3.911v-7.795H54.912v7.795h3.91z"/>
-            <path fill-rule="nonzero" d="M86.203 80.238v11.693h11.735V80.238H86.203zm7.823 7.795h-3.911v-3.897h3.911v3.897zM68.602 91.93h11.734V80.238H68.602V91.93zm3.911-7.794h3.912v3.897h-3.912v-3.897zM51 91.93h11.734V80.238H51V91.93zm3.912-7.794h3.911v3.897h-3.911v-3.897z"/>
-        </g>
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  width="140"
+  height="140"
+  viewBox="0 0 140 140"
+>
+  <defs>
+    <rect id="b" width="86" height="86" x="31.811" y="31.811" rx="19" />
+    <filter
+      id="a"
+      width="162.8%"
+      height="162.8%"
+      x="-31.4%"
+      y="-17.4%"
+      filterUnits="objectBoundingBox"
+    >
+      <feOffset dy="12" in="SourceAlpha" result="shadowOffsetOuter1" />
+      <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="7" />
+      <feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.03 0" />
+    </filter>
+  </defs>
+  <g fill="none" fill-rule="evenodd" transform="translate(0 -10)">
+    <g fill-rule="nonzero" transform="rotate(45 74.811 74.811)">
+      <use fill="#000" filter="url(#a)" xlink:href="#b" />
+      <use fill="#FFF" xlink:href="#b" />
     </g>
+    <rect
+      width="105"
+      height="105"
+      x="22.453"
+      y="22.453"
+      stroke="#979797"
+      opacity=".112"
+      rx="26"
+      transform="rotate(45 74.953 74.953)"
+    />
+    <g fill="#000">
+      <path
+        fill-rule="nonzero"
+        d="M86.203 51.008H62.734v15.59h23.47v-15.59zM82.292 62.7H66.646v-7.795h15.646V62.7z"
+      />
+      <path
+        d="M58.823 74.392h13.69v3.898h3.912v-3.898h13.69v3.898h3.911v-7.795H54.912v7.795h3.91z"
+      />
+      <path
+        fill-rule="nonzero"
+        d="M86.203 80.238v11.693h11.735V80.238H86.203zm7.823 7.795h-3.911v-3.897h3.911v3.897zM68.602 91.93h11.734V80.238H68.602V91.93zm3.911-7.794h3.912v3.897h-3.912v-3.897zM51 91.93h11.734V80.238H51V91.93zm3.912-7.794h3.911v3.897h-3.911v-3.897z"
+      />
+    </g>
+  </g>
 </svg>
