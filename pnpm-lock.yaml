@@ -18,8 +18,8 @@ importers:
         specifier: 7.74.1
         version: 7.74.1
       '@whatwg-node/fetch':
-        specifier: 0.9.13
-        version: 0.9.13
+        specifier: 0.9.17
+        version: 0.9.17
       husky:
         specifier: 8.0.3
         version: 8.0.3
@@ -7981,7 +7981,7 @@ snapshots:
     dependencies:
       '@graphql-tools/utils': 10.2.0(graphql@16.8.1)
       '@repeaterjs/repeater': 3.0.4
-      '@whatwg-node/fetch': 0.9.13
+      '@whatwg-node/fetch': 0.9.17
       extract-files: 11.0.0
       graphql: 16.8.1
       meros: 1.2.1(@types/node@20.12.12)
@@ -8908,7 +8908,7 @@ snapshots:
 
   '@types/express@4.17.21':
     dependencies:
-      '@types/body-parser': 1.19.4
+      '@types/body-parser': 1.19.5
       '@types/express-serve-static-core': 4.17.33
       '@types/qs': 6.9.7
       '@types/serve-static': 1.15.1
