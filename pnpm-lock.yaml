@@ -635,8 +635,8 @@ importers:
         specifier: 4.1.2
         version: 4.1.2
       figures:
-        specifier: 3.2.0
-        version: 3.2.0
+        specifier: 6.1.0
+        version: 6.1.0
       log-symbols:
         specifier: 4.1.0
         version: 4.1.0
@@ -3800,9 +3800,9 @@ packages:
     resolution: {integrity: sha512-0btnI/H8f2pavGMN8w40mlSKOfTK2SVJmBfBeVIj3kNw0swwgzyRq0d5TJVOwodFmtvpPeWPN/MCcfuWF0Ezbw==}
     deprecated: This module is no longer supported.
 
-  figures@3.2.0:
-    resolution: {integrity: sha512-yaduQFRKLXYOGgEn6AZau90j3ggSOyiqXU0F9JZfeXYhNa+Jk4X+s45A2zg5jns87GAFa34BBm2kXw4XpNcbdg==}
-    engines: {node: '>=8'}
+  figures@6.1.0:
+    resolution: {integrity: sha512-d+l3qxjSesT4V7v2fh+QnmFnUWv9lSpjarhShNTgBOfA0ttejbQUAlHLitbjkoRiDulW0OPoQPYIGhIC8ohejg==}
+    engines: {node: '>=18'}
 
   file-entry-cache@6.0.1:
     resolution: {integrity: sha512-7Gps/XWymbLk2QLYK4NzpMOrYjMhdIxXuIvy2QBsLE6ljuodKvdkWs/cpyJJ3CVIVpH0Oi1Hvg1ovbMzLdFBBg==}
@@ -4592,6 +4592,10 @@ packages:
   is-unicode-supported@0.1.0:
     resolution: {integrity: sha512-knxG2q4UC3u8stRGyAVJCOdxFmv5DZiRcdlIaAQXAbSfJya+OhopNotLQrstBhququ4ZpuKbDc/8S6mgXgPFPw==}
     engines: {node: '>=10'}
+
+  is-unicode-supported@2.0.0:
+    resolution: {integrity: sha512-FRdAyx5lusK1iHG0TWpVtk9+1i+GjrzRffhDg4ovQ7mcidMQ6mj+MhKPmvh7Xwyv5gIS06ns49CA7Sqg7lC22Q==}
+    engines: {node: '>=18'}
 
   is-weakmap@2.0.1:
     resolution: {integrity: sha512-NSBR4kH5oVj1Uwvv970ruUkCV7O1mzgVFO4/rev2cLRda9Tm9HrL70ZPut4rOHgY0FNrUu9BCbXA2sdQ+x0chA==}
@@ -9922,7 +9926,7 @@ snapshots:
 
   assert@1.5.1:
     dependencies:
-      object.assign: 4.1.4
+      object.assign: 4.1.5
       util: 0.10.4
 
   assertion-error@1.1.0: {}
@@ -11778,9 +11782,9 @@ snapshots:
 
   figgy-pudding@3.5.2: {}
 
-  figures@3.2.0:
+  figures@6.1.0:
     dependencies:
-      escape-string-regexp: 1.0.5
+      is-unicode-supported: 2.0.0
 
   file-entry-cache@6.0.1:
     dependencies:
@@ -12473,7 +12477,7 @@ snapshots:
 
   is-accessor-descriptor@1.0.1:
     dependencies:
-      hasown: 2.0.0
+      hasown: 2.0.2
 
   is-alphabetical@1.0.4: {}
 
@@ -12546,7 +12550,7 @@ snapshots:
 
   is-data-descriptor@1.0.1:
     dependencies:
-      hasown: 2.0.0
+      hasown: 2.0.2
 
   is-data-view@1.0.1:
     dependencies:
@@ -12685,6 +12689,8 @@ snapshots:
       which-typed-array: 1.1.15
 
   is-unicode-supported@0.1.0: {}
+
+  is-unicode-supported@2.0.0: {}
 
   is-weakmap@2.0.1: {}
 
@@ -14841,7 +14847,7 @@ snapshots:
 
   qs@6.11.2:
     dependencies:
-      side-channel: 1.0.4
+      side-channel: 1.0.6
 
   querystring-es3@0.2.1: {}
 
@@ -15849,7 +15855,7 @@ snapshots:
 
   terser@4.8.1:
     dependencies:
-      acorn: 8.10.0
+      acorn: 8.11.3
       commander: 2.20.3
       source-map: 0.6.1
       source-map-support: 0.5.21
