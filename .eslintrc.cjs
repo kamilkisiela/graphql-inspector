@@ -18,7 +18,9 @@ module.exports = {
         '@typescript-eslint/ban-types': 'off',
         '@typescript-eslint/no-var-requires': 'off',
         'n/no-restricted-import': 'off',
+        '@typescript-eslint/prefer-optional-chain': 'off',
         'yml/no-empty-mapping-value': 'off',
+        '@typescript-eslint/parser': 'off',
         'no-undef': 'off',
         'unicorn/prefer-node-protocol': 'off',
         'no-console': 'off',
@@ -44,10 +46,4 @@ module.exports = {
       },
     },
   ],
-  parser: '@typescript-eslint/parser',
-  parserOptions: {
-    project: './tsconfig.json',
-    tsconfigRootDir: __dirname,
-    sourceType: 'module',
-  },
 };
