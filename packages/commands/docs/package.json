@@ -65,7 +65,7 @@
   },
   "dependencies": {
     "@graphql-inspector/commands": "workspace:*",
-    "open": "8.4.2",
+    "open": "10.1.0",
     "tslib": "2.6.2"
   },
   "publishConfig": {
