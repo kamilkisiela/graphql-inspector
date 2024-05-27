@@ -57,7 +57,7 @@ describe('coverage', () => {
           id
         }
       }
-      
+
       mutation removePost {
         removePost(id: 1)
       }

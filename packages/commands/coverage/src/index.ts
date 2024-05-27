@@ -202,7 +202,9 @@ function renderCoverage(coverage: SchemaCoverage) {
     },
     {
       method: 'Covered Mutations',
-      result: String(coverage.stats.numCoveredMutations > 0 ? coverage.stats.numCoveredMutations : '0'),
+      result: String(
+        coverage.stats.numCoveredMutations > 0 ? coverage.stats.numCoveredMutations : '0',
+      ),
     },
     {
       method: 'Total Subscriptions',
@@ -210,7 +212,9 @@ function renderCoverage(coverage: SchemaCoverage) {
     },
     {
       method: 'Covered Subscriptions',
-      result: String(coverage.stats.numCoveredSubscriptions > 0 ? coverage.stats.numCoveredSubscriptions : '0'),
+      result: String(
+        coverage.stats.numCoveredSubscriptions > 0 ? coverage.stats.numCoveredSubscriptions : '0',
+      ),
     },
   ];
   Logger.table(logStatsResult);
