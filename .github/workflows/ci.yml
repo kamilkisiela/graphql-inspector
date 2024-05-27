@@ -34,7 +34,7 @@ jobs:
         run: echo "{dir}={pnpm cache dir}" >> $GITHUB_OUTPUT
 
       - name: Cache pnpm
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ${ env.dir }
           key: ${{ runner.os }}-pnpm-${{ hashFiles('pnpm-lock.yaml') }}
