@@ -63,7 +63,7 @@
     "graphql": "^14.0.0 || ^15.0.0 || ^16.0.0"
   },
   "dependencies": {
-    "dependency-graph": "0.11.0",
+    "dependency-graph": "1.0.0",
     "object-inspect": "1.13.1",
     "tslib": "2.6.2"
   },
