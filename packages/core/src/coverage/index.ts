@@ -109,22 +109,21 @@ export function coverage(schema: GraphQLSchema, sources: Source[]): SchemaCovera
         fieldDef.name !== '__typename' &&
         fieldDef.name !== '__schema'
       ) {
-
         const sourceName = source.name;
         const typeCoverage = coverage.types[parent.name];
         const fieldCoverage = typeCoverage.children[fieldDef.name];
         const locations = fieldCoverage.locations[sourceName];
 
         switch (typeCoverage.type.name) {
-            case 'Query':
-                coverage.stats.numCoveredQueries++;
-                break;
-            case 'Mutation':
-                coverage.stats.numCoveredMutations++;
-                break;
-            case 'Subscription':
-                coverage.stats.numCoveredSubscriptions++;
-                break;
+          case 'Query':
+            coverage.stats.numCoveredQueries++;
+            break;
+          case 'Mutation':
+            coverage.stats.numCoveredMutations++;
+            break;
+          case 'Subscription':
+            coverage.stats.numCoveredSubscriptions++;
+            break;
         }
 
         typeCoverage.hits++;
@@ -169,17 +168,17 @@ export function coverage(schema: GraphQLSchema, sources: Source[]): SchemaCovera
 
         for (const fieldname in fieldMap) {
           if (isObjectType(type) || isInterfaceType(type)) {
-              switch (type.name) {
-                  case 'Query':
-                      coverage.stats.numQueries++;
-                      break;
-                  case 'Mutation':
-                      coverage.stats.numMutations++;
-                      break;
-                  case 'Subscription':
-                      coverage.stats.numSubscriptions++;
-                      break;
-              }
+            switch (type.name) {
+              case 'Query':
+                coverage.stats.numQueries++;
+                break;
+              case 'Mutation':
+                coverage.stats.numMutations++;
+                break;
+              case 'Subscription':
+                coverage.stats.numSubscriptions++;
+                break;
+            }
           }
 
           const field = fieldMap[fieldname];
