@@ -7,7 +7,13 @@ export {
   Rule,
   UsageHandler,
 } from './diff/index.js';
-export { Change, ChangeType, Criticality, CriticalityLevel } from './diff/changes/change.js';
+export {
+  Change,
+  ChangeType,
+  TypeOfChangeType,
+  Criticality,
+  CriticalityLevel,
+} from './diff/changes/change.js';
 export { similar, SimilarMap } from './similar/index.js';
 export { getTypePrefix } from './utils/graphql.js';
 export { BestMatch, Rating, Target } from './utils/string.js';
