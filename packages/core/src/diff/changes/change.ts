@@ -110,7 +110,7 @@ export const ChangeType = {
   DirectiveUsageInputFieldDefinitionRemoved: 'DIRECTIVE_USAGE_INPUT_FIELD_DEFINITION_REMOVED',
 } as const;
 
-export type ChangeType = (typeof ChangeType)[keyof typeof ChangeType];
+export type TypeOfChangeType = (typeof ChangeType)[keyof typeof ChangeType];
 
 // Directive
 
