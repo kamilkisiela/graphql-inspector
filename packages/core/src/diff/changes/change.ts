@@ -19,7 +19,7 @@ export interface Change<TChange extends keyof Changes = any> {
   criticality: Criticality;
 }
 
-export const ChangeType = {
+const ChangeTypeConstans = {
   // Argument
   FieldArgumentDescriptionChanged: 'FIELD_ARGUMENT_DESCRIPTION_CHANGED',
   FieldArgumentDefaultChanged: 'FIELD_ARGUMENT_DEFAULT_CHANGED',
@@ -110,12 +110,12 @@ export const ChangeType = {
   DirectiveUsageInputFieldDefinitionRemoved: 'DIRECTIVE_USAGE_INPUT_FIELD_DEFINITION_REMOVED',
 } as const;
 
-export type ChangeType = (typeof ChangeType)[keyof typeof ChangeType];
+export type ChangeType = (typeof ChangeTypeConstans)[keyof typeof ChangeTypeConstans];
 
 // Directive
 
 export type FieldArgumentDescriptionChangedChange = {
-  type: typeof ChangeType.FieldArgumentDescriptionChanged;
+  type: typeof ChangeTypeConstans.FieldArgumentDescriptionChanged;
   meta: {
     typeName: string;
     fieldName: string;
@@ -126,7 +126,7 @@ export type FieldArgumentDescriptionChangedChange = {
 };
 
 export type FieldArgumentDefaultChangedChange = {
-  type: typeof ChangeType.FieldArgumentDefaultChanged;
+  type: typeof ChangeTypeConstans.FieldArgumentDefaultChanged;
   meta: {
     typeName: string;
     fieldName: string;
@@ -137,7 +137,7 @@ export type FieldArgumentDefaultChangedChange = {
 };
 
 export type FieldArgumentTypeChangedChange = {
-  type: typeof ChangeType.FieldArgumentTypeChanged;
+  type: typeof ChangeTypeConstans.FieldArgumentTypeChanged;
   meta: {
     typeName: string;
     fieldName: string;
@@ -149,21 +149,21 @@ export type FieldArgumentTypeChangedChange = {
 };
 
 export type DirectiveRemovedChange = {
-  type: typeof ChangeType.DirectiveRemoved;
+  type: typeof ChangeTypeConstans.DirectiveRemoved;
   meta: {
     removedDirectiveName: string;
   };
 };
 
 export type DirectiveAddedChange = {
-  type: typeof ChangeType.DirectiveAdded;
+  type: typeof ChangeTypeConstans.DirectiveAdded;
   meta: {
     addedDirectiveName: string;
   };
 };
 
 export type DirectiveDescriptionChangedChange = {
-  type: typeof ChangeType.DirectiveDescriptionChanged;
+  type: typeof ChangeTypeConstans.DirectiveDescriptionChanged;
   meta: {
     directiveName: string;
     oldDirectiveDescription: string | null;
@@ -172,7 +172,7 @@ export type DirectiveDescriptionChangedChange = {
 };
 
 export type DirectiveLocationAddedChange = {
-  type: typeof ChangeType.DirectiveLocationAdded;
+  type: typeof ChangeTypeConstans.DirectiveLocationAdded;
   meta: {
     directiveName: string;
     addedDirectiveLocation: string;
@@ -180,7 +180,7 @@ export type DirectiveLocationAddedChange = {
 };
 
 export type DirectiveLocationRemovedChange = {
-  type: typeof ChangeType.DirectiveLocationRemoved;
+  type: typeof ChangeTypeConstans.DirectiveLocationRemoved;
   meta: {
     directiveName: string;
     removedDirectiveLocation: string;
@@ -188,7 +188,7 @@ export type DirectiveLocationRemovedChange = {
 };
 
 export type DirectiveArgumentAddedChange = {
-  type: typeof ChangeType.DirectiveArgumentAdded;
+  type: typeof ChangeTypeConstans.DirectiveArgumentAdded;
   meta: {
     directiveName: string;
     addedDirectiveArgumentName: string;
@@ -197,7 +197,7 @@ export type DirectiveArgumentAddedChange = {
 };
 
 export type DirectiveArgumentRemovedChange = {
-  type: typeof ChangeType.DirectiveArgumentRemoved;
+  type: typeof ChangeTypeConstans.DirectiveArgumentRemoved;
   meta: {
     directiveName: string;
     removedDirectiveArgumentName: string;
@@ -205,7 +205,7 @@ export type DirectiveArgumentRemovedChange = {
 };
 
 export type DirectiveArgumentDescriptionChangedChange = {
-  type: typeof ChangeType.DirectiveArgumentDescriptionChanged;
+  type: typeof ChangeTypeConstans.DirectiveArgumentDescriptionChanged;
   meta: {
     directiveName: string;
     directiveArgumentName: string;
@@ -215,7 +215,7 @@ export type DirectiveArgumentDescriptionChangedChange = {
 };
 
 export type DirectiveArgumentDefaultValueChangedChange = {
-  type: typeof ChangeType.DirectiveArgumentDefaultValueChanged;
+  type: typeof ChangeTypeConstans.DirectiveArgumentDefaultValueChanged;
   meta: {
     directiveName: string;
     directiveArgumentName: string;
@@ -225,7 +225,7 @@ export type DirectiveArgumentDefaultValueChangedChange = {
 };
 
 export type DirectiveArgumentTypeChangedChange = {
-  type: typeof ChangeType.DirectiveArgumentTypeChanged;
+  type: typeof ChangeTypeConstans.DirectiveArgumentTypeChanged;
   meta: {
     directiveName: string;
     directiveArgumentName: string;
@@ -239,7 +239,7 @@ export type DirectiveArgumentTypeChangedChange = {
 // Enum
 
 export type EnumValueRemovedChange = {
-  type: typeof ChangeType.EnumValueRemoved;
+  type: typeof ChangeTypeConstans.EnumValueRemoved;
   meta: {
     enumName: string;
     removedEnumValueName: string;
@@ -248,7 +248,7 @@ export type EnumValueRemovedChange = {
 };
 
 export type EnumValueAddedChange = {
-  type: typeof ChangeType.EnumValueAdded;
+  type: typeof ChangeTypeConstans.EnumValueAdded;
   meta: {
     enumName: string;
     addedEnumValueName: string;
@@ -256,7 +256,7 @@ export type EnumValueAddedChange = {
 };
 
 export type EnumValueDescriptionChangedChange = {
-  type: typeof ChangeType.EnumValueDescriptionChanged;
+  type: typeof ChangeTypeConstans.EnumValueDescriptionChanged;
   meta: {
     enumName: string;
     enumValueName: string;
@@ -266,7 +266,7 @@ export type EnumValueDescriptionChangedChange = {
 };
 
 export type EnumValueDeprecationReasonChangedChange = {
-  type: typeof ChangeType.EnumValueDeprecationReasonChanged;
+  type: typeof ChangeTypeConstans.EnumValueDeprecationReasonChanged;
   meta: {
     enumName: string;
     enumValueName: string;
@@ -276,7 +276,7 @@ export type EnumValueDeprecationReasonChangedChange = {
 };
 
 export type EnumValueDeprecationReasonAddedChange = {
-  type: typeof ChangeType.EnumValueDeprecationReasonAdded;
+  type: typeof ChangeTypeConstans.EnumValueDeprecationReasonAdded;
   meta: {
     enumName: string;
     enumValueName: string;
@@ -285,7 +285,7 @@ export type EnumValueDeprecationReasonAddedChange = {
 };
 
 export type EnumValueDeprecationReasonRemovedChange = {
-  type: typeof ChangeType.EnumValueDeprecationReasonRemoved;
+  type: typeof ChangeTypeConstans.EnumValueDeprecationReasonRemoved;
   meta: {
     enumName: string;
     enumValueName: string;
@@ -296,7 +296,7 @@ export type EnumValueDeprecationReasonRemovedChange = {
 // Field
 
 export type FieldRemovedChange = {
-  type: typeof ChangeType.FieldRemoved;
+  type: typeof ChangeTypeConstans.FieldRemoved;
   meta: {
     typeName: string;
     removedFieldName: string;
@@ -306,7 +306,7 @@ export type FieldRemovedChange = {
 };
 
 export type FieldAddedChange = {
-  type: typeof ChangeType.FieldAdded;
+  type: typeof ChangeTypeConstans.FieldAdded;
   meta: {
     typeName: string;
     addedFieldName: string;
@@ -315,7 +315,7 @@ export type FieldAddedChange = {
 };
 
 export type FieldDescriptionChangedChange = {
-  type: typeof ChangeType.FieldDescriptionChanged;
+  type: typeof ChangeTypeConstans.FieldDescriptionChanged;
   meta: {
     typeName: string;
     fieldName: string;
@@ -325,7 +325,7 @@ export type FieldDescriptionChangedChange = {
 };
 
 export type FieldDescriptionAddedChange = {
-  type: typeof ChangeType.FieldDescriptionAdded;
+  type: typeof ChangeTypeConstans.FieldDescriptionAdded;
   meta: {
     typeName: string;
     fieldName: string;
@@ -334,7 +334,7 @@ export type FieldDescriptionAddedChange = {
 };
 
 export type FieldDescriptionRemovedChange = {
-  type: typeof ChangeType.FieldDescriptionRemoved;
+  type: typeof ChangeTypeConstans.FieldDescriptionRemoved;
   meta: {
     typeName: string;
     fieldName: string;
@@ -342,7 +342,7 @@ export type FieldDescriptionRemovedChange = {
 };
 
 export type FieldDeprecationAddedChange = {
-  type: typeof ChangeType.FieldDeprecationAdded;
+  type: typeof ChangeTypeConstans.FieldDeprecationAdded;
   meta: {
     typeName: string;
     fieldName: string;
@@ -350,7 +350,7 @@ export type FieldDeprecationAddedChange = {
 };
 
 export type FieldDeprecationRemovedChange = {
-  type: typeof ChangeType.FieldDeprecationRemoved;
+  type: typeof ChangeTypeConstans.FieldDeprecationRemoved;
   meta: {
     typeName: string;
     fieldName: string;
@@ -358,7 +358,7 @@ export type FieldDeprecationRemovedChange = {
 };
 
 export type FieldDeprecationReasonChangedChange = {
-  type: typeof ChangeType.FieldDeprecationReasonChanged;
+  type: typeof ChangeTypeConstans.FieldDeprecationReasonChanged;
   meta: {
     typeName: string;
     fieldName: string;
@@ -368,7 +368,7 @@ export type FieldDeprecationReasonChangedChange = {
 };
 
 export type FieldDeprecationReasonAddedChange = {
-  type: typeof ChangeType.FieldDeprecationReasonAdded;
+  type: typeof ChangeTypeConstans.FieldDeprecationReasonAdded;
   meta: {
     typeName: string;
     fieldName: string;
@@ -377,7 +377,7 @@ export type FieldDeprecationReasonAddedChange = {
 };
 
 export type FieldDeprecationReasonRemovedChange = {
-  type: typeof ChangeType.FieldDeprecationReasonRemoved;
+  type: typeof ChangeTypeConstans.FieldDeprecationReasonRemoved;
   meta: {
     typeName: string;
     fieldName: string;
@@ -385,7 +385,7 @@ export type FieldDeprecationReasonRemovedChange = {
 };
 
 export type FieldTypeChangedChange = {
-  type: typeof ChangeType.FieldTypeChanged;
+  type: typeof ChangeTypeConstans.FieldTypeChanged;
   meta: {
     typeName: string;
     fieldName: string;
@@ -396,7 +396,7 @@ export type FieldTypeChangedChange = {
 };
 
 export type DirectiveUsageUnionMemberAddedChange = {
-  type: typeof ChangeType.DirectiveUsageUnionMemberAdded;
+  type: typeof ChangeTypeConstans.DirectiveUsageUnionMemberAdded;
   meta: {
     unionName: string;
     addedUnionMemberTypeName: string;
@@ -405,7 +405,7 @@ export type DirectiveUsageUnionMemberAddedChange = {
 };
 
 export type DirectiveUsageUnionMemberRemovedChange = {
-  type: typeof ChangeType.DirectiveUsageUnionMemberRemoved;
+  type: typeof ChangeTypeConstans.DirectiveUsageUnionMemberRemoved;
   meta: {
     unionName: string;
     removedUnionMemberTypeName: string;
@@ -414,7 +414,7 @@ export type DirectiveUsageUnionMemberRemovedChange = {
 };
 
 export type FieldArgumentAddedChange = {
-  type: typeof ChangeType.FieldArgumentAdded;
+  type: typeof ChangeTypeConstans.FieldArgumentAdded;
   meta: {
     typeName: string;
     fieldName: string;
@@ -426,7 +426,7 @@ export type FieldArgumentAddedChange = {
 };
 
 export type FieldArgumentRemovedChange = {
-  type: typeof ChangeType.FieldArgumentRemoved;
+  type: typeof ChangeTypeConstans.FieldArgumentRemoved;
   meta: {
     typeName: string;
     fieldName: string;
@@ -438,7 +438,7 @@ export type FieldArgumentRemovedChange = {
 // Input
 
 export type InputFieldRemovedChange = {
-  type: typeof ChangeType.InputFieldRemoved;
+  type: typeof ChangeTypeConstans.InputFieldRemoved;
   meta: {
     inputName: string;
     removedFieldName: string;
@@ -447,7 +447,7 @@ export type InputFieldRemovedChange = {
 };
 
 export type InputFieldAddedChange = {
-  type: typeof ChangeType.InputFieldAdded;
+  type: typeof ChangeTypeConstans.InputFieldAdded;
   meta: {
     inputName: string;
     addedInputFieldName: string;
@@ -457,7 +457,7 @@ export type InputFieldAddedChange = {
 };
 
 export type InputFieldDescriptionAddedChange = {
-  type: typeof ChangeType.InputFieldDescriptionAdded;
+  type: typeof ChangeTypeConstans.InputFieldDescriptionAdded;
   meta: {
     inputName: string;
     inputFieldName: string;
@@ -466,7 +466,7 @@ export type InputFieldDescriptionAddedChange = {
 };
 
 export type InputFieldDescriptionRemovedChange = {
-  type: typeof ChangeType.InputFieldDescriptionRemoved;
+  type: typeof ChangeTypeConstans.InputFieldDescriptionRemoved;
   meta: {
     inputName: string;
     inputFieldName: string;
@@ -475,7 +475,7 @@ export type InputFieldDescriptionRemovedChange = {
 };
 
 export type InputFieldDescriptionChangedChange = {
-  type: typeof ChangeType.InputFieldDescriptionChanged;
+  type: typeof ChangeTypeConstans.InputFieldDescriptionChanged;
   meta: {
     inputName: string;
     inputFieldName: string;
@@ -485,7 +485,7 @@ export type InputFieldDescriptionChangedChange = {
 };
 
 export type InputFieldDefaultValueChangedChange = {
-  type: typeof ChangeType.InputFieldDefaultValueChanged;
+  type: typeof ChangeTypeConstans.InputFieldDefaultValueChanged;
   meta: {
     inputName: string;
     inputFieldName: string;
@@ -495,7 +495,7 @@ export type InputFieldDefaultValueChangedChange = {
 };
 
 export type InputFieldTypeChangedChange = {
-  type: typeof ChangeType.InputFieldTypeChanged;
+  type: typeof ChangeTypeConstans.InputFieldTypeChanged;
   meta: {
     inputName: string;
     inputFieldName: string;
@@ -508,7 +508,7 @@ export type InputFieldTypeChangedChange = {
 // Type
 
 export type ObjectTypeInterfaceAddedChange = {
-  type: typeof ChangeType.ObjectTypeInterfaceAdded;
+  type: typeof ChangeTypeConstans.ObjectTypeInterfaceAdded;
   meta: {
     objectTypeName: string;
     addedInterfaceName: string;
@@ -516,7 +516,7 @@ export type ObjectTypeInterfaceAddedChange = {
 };
 
 export type ObjectTypeInterfaceRemovedChange = {
-  type: typeof ChangeType.ObjectTypeInterfaceRemoved;
+  type: typeof ChangeTypeConstans.ObjectTypeInterfaceRemoved;
   meta: {
     objectTypeName: string;
     removedInterfaceName: string;
@@ -526,7 +526,7 @@ export type ObjectTypeInterfaceRemovedChange = {
 // Schema
 
 export type SchemaQueryTypeChangedChange = {
-  type: typeof ChangeType.SchemaQueryTypeChanged;
+  type: typeof ChangeTypeConstans.SchemaQueryTypeChanged;
   meta: {
     oldQueryTypeName: string;
     newQueryTypeName: string;
@@ -534,7 +534,7 @@ export type SchemaQueryTypeChangedChange = {
 };
 
 export type SchemaMutationTypeChangedChange = {
-  type: typeof ChangeType.SchemaMutationTypeChanged;
+  type: typeof ChangeTypeConstans.SchemaMutationTypeChanged;
   meta: {
     oldMutationTypeName: string;
     newMutationTypeName: string;
@@ -542,7 +542,7 @@ export type SchemaMutationTypeChangedChange = {
 };
 
 export type SchemaSubscriptionTypeChangedChange = {
-  type: typeof ChangeType.SchemaSubscriptionTypeChanged;
+  type: typeof ChangeTypeConstans.SchemaSubscriptionTypeChanged;
   meta: {
     oldSubscriptionTypeName: string;
     newSubscriptionTypeName: string;
@@ -552,21 +552,21 @@ export type SchemaSubscriptionTypeChangedChange = {
 // Type
 
 export type TypeRemovedChange = {
-  type: typeof ChangeType.TypeRemoved;
+  type: typeof ChangeTypeConstans.TypeRemoved;
   meta: {
     removedTypeName: string;
   };
 };
 
 export type TypeAddedChange = {
-  type: typeof ChangeType.TypeAdded;
+  type: typeof ChangeTypeConstans.TypeAdded;
   meta: {
     addedTypeName: string;
   };
 };
 
 export type TypeKindChangedChange = {
-  type: typeof ChangeType.TypeKindChanged;
+  type: typeof ChangeTypeConstans.TypeKindChanged;
   meta: {
     typeName: string;
     oldTypeKind: string;
@@ -575,7 +575,7 @@ export type TypeKindChangedChange = {
 };
 
 export type TypeDescriptionChangedChange = {
-  type: typeof ChangeType.TypeDescriptionChanged;
+  type: typeof ChangeTypeConstans.TypeDescriptionChanged;
   meta: {
     typeName: string;
     oldTypeDescription: string;
@@ -584,7 +584,7 @@ export type TypeDescriptionChangedChange = {
 };
 
 export type TypeDescriptionAddedChange = {
-  type: typeof ChangeType.TypeDescriptionAdded;
+  type: typeof ChangeTypeConstans.TypeDescriptionAdded;
   meta: {
     typeName: string;
     addedTypeDescription: string;
@@ -592,7 +592,7 @@ export type TypeDescriptionAddedChange = {
 };
 
 export type TypeDescriptionRemovedChange = {
-  type: typeof ChangeType.TypeDescriptionRemoved;
+  type: typeof ChangeTypeConstans.TypeDescriptionRemoved;
   meta: {
     typeName: string;
     removedTypeDescription: string;
@@ -602,7 +602,7 @@ export type TypeDescriptionRemovedChange = {
 // Union
 
 export type UnionMemberRemovedChange = {
-  type: typeof ChangeType.UnionMemberRemoved;
+  type: typeof ChangeTypeConstans.UnionMemberRemoved;
   meta: {
     unionName: string;
     removedUnionMemberTypeName: string;
@@ -610,7 +610,7 @@ export type UnionMemberRemovedChange = {
 };
 
 export type UnionMemberAddedChange = {
-  type: typeof ChangeType.UnionMemberAdded;
+  type: typeof ChangeTypeConstans.UnionMemberAdded;
   meta: {
     unionName: string;
     addedUnionMemberTypeName: string;
@@ -620,7 +620,7 @@ export type UnionMemberAddedChange = {
 // Directive Usage
 
 export type DirectiveUsageEnumAddedChange = {
-  type: typeof ChangeType.DirectiveUsageEnumAdded;
+  type: typeof ChangeTypeConstans.DirectiveUsageEnumAdded;
   meta: {
     enumName: string;
     addedDirectiveName: string;
@@ -628,7 +628,7 @@ export type DirectiveUsageEnumAddedChange = {
 };
 
 export type DirectiveUsageEnumRemovedChange = {
-  type: typeof ChangeType.DirectiveUsageEnumRemoved;
+  type: typeof ChangeTypeConstans.DirectiveUsageEnumRemoved;
   meta: {
     enumName: string;
     removedDirectiveName: string;
@@ -636,7 +636,7 @@ export type DirectiveUsageEnumRemovedChange = {
 };
 
 export type DirectiveUsageEnumValueAddedChange = {
-  type: typeof ChangeType.DirectiveUsageEnumValueAdded;
+  type: typeof ChangeTypeConstans.DirectiveUsageEnumValueAdded;
   meta: {
     enumName: string;
     enumValueName: string;
@@ -645,7 +645,7 @@ export type DirectiveUsageEnumValueAddedChange = {
 };
 
 export type DirectiveUsageEnumValueRemovedChange = {
-  type: typeof ChangeType.DirectiveUsageEnumValueRemoved;
+  type: typeof ChangeTypeConstans.DirectiveUsageEnumValueRemoved;
   meta: {
     enumName: string;
     enumValueName: string;
@@ -654,7 +654,7 @@ export type DirectiveUsageEnumValueRemovedChange = {
 };
 
 export type DirectiveUsageInputObjectdRemovedChange = {
-  type: typeof ChangeType.DirectiveUsageInputObjectRemoved;
+  type: typeof ChangeTypeConstans.DirectiveUsageInputObjectRemoved;
   meta: {
     inputObjectName: string;
     removedInputFieldName: string;
@@ -665,7 +665,7 @@ export type DirectiveUsageInputObjectdRemovedChange = {
 };
 
 export type DirectiveUsageInputObjectAddedChange = {
-  type: typeof ChangeType.DirectiveUsageInputObjectAdded;
+  type: typeof ChangeTypeConstans.DirectiveUsageInputObjectAdded;
   meta: {
     inputObjectName: string;
     addedInputFieldName: string;
@@ -676,7 +676,7 @@ export type DirectiveUsageInputObjectAddedChange = {
 };
 
 export type DirectiveUsageInputFieldDefinitionAddedChange = {
-  type: typeof ChangeType.DirectiveUsageInputFieldDefinitionAdded;
+  type: typeof ChangeTypeConstans.DirectiveUsageInputFieldDefinitionAdded;
   meta: {
     inputObjectName: string;
     inputFieldName: string;
@@ -685,7 +685,7 @@ export type DirectiveUsageInputFieldDefinitionAddedChange = {
 };
 
 export type DirectiveUsageInputFieldDefinitionRemovedChange = {
-  type: typeof ChangeType.DirectiveUsageInputFieldDefinitionRemoved;
+  type: typeof ChangeTypeConstans.DirectiveUsageInputFieldDefinitionRemoved;
   meta: {
     inputObjectName: string;
     inputFieldName: string;
@@ -694,7 +694,7 @@ export type DirectiveUsageInputFieldDefinitionRemovedChange = {
 };
 
 export type DirectiveUsageFieldAddedChange = {
-  type: typeof ChangeType.DirectiveUsageFieldAdded;
+  type: typeof ChangeTypeConstans.DirectiveUsageFieldAdded;
   meta: {
     typeName: string;
     fieldName: string;
@@ -703,7 +703,7 @@ export type DirectiveUsageFieldAddedChange = {
 };
 
 export type DirectiveUsageFieldRemovedChange = {
-  type: typeof ChangeType.DirectiveUsageFieldRemoved;
+  type: typeof ChangeTypeConstans.DirectiveUsageFieldRemoved;
   meta: {
     typeName: string;
     fieldName: string;
@@ -712,7 +712,7 @@ export type DirectiveUsageFieldRemovedChange = {
 };
 
 export type DirectiveUsageScalarAddedChange = {
-  type: typeof ChangeType.DirectiveUsageScalarAdded;
+  type: typeof ChangeTypeConstans.DirectiveUsageScalarAdded;
   meta: {
     scalarName: string;
     addedDirectiveName: string;
@@ -720,7 +720,7 @@ export type DirectiveUsageScalarAddedChange = {
 };
 
 export type DirectiveUsageScalarRemovedChange = {
-  type: typeof ChangeType.DirectiveUsageScalarRemoved;
+  type: typeof ChangeTypeConstans.DirectiveUsageScalarRemoved;
   meta: {
     scalarName: string;
     removedDirectiveName: string;
@@ -728,7 +728,7 @@ export type DirectiveUsageScalarRemovedChange = {
 };
 
 export type DirectiveUsageObjectAddedChange = {
-  type: typeof ChangeType.DirectiveUsageObjectAdded;
+  type: typeof ChangeTypeConstans.DirectiveUsageObjectAdded;
   meta: {
     objectName: string;
     addedDirectiveName: string;
@@ -736,7 +736,7 @@ export type DirectiveUsageObjectAddedChange = {
 };
 
 export type DirectiveUsageObjectRemovedChange = {
-  type: typeof ChangeType.DirectiveUsageObjectRemoved;
+  type: typeof ChangeTypeConstans.DirectiveUsageObjectRemoved;
   meta: {
     objectName: string;
     removedDirectiveName: string;
@@ -744,7 +744,7 @@ export type DirectiveUsageObjectRemovedChange = {
 };
 
 export type DirectiveUsageInterfaceAddedChange = {
-  type: typeof ChangeType.DirectiveUsageInterfaceAdded;
+  type: typeof ChangeTypeConstans.DirectiveUsageInterfaceAdded;
   meta: {
     interfaceName: string;
     addedDirectiveName: string;
@@ -752,7 +752,7 @@ export type DirectiveUsageInterfaceAddedChange = {
 };
 
 export type DirectiveUsageSchemaAddedChange = {
-  type: typeof ChangeType.DirectiveUsageSchemaAdded;
+  type: typeof ChangeTypeConstans.DirectiveUsageSchemaAdded;
   meta: {
     addedDirectiveName: string;
     schemaTypeName: string;
@@ -760,7 +760,7 @@ export type DirectiveUsageSchemaAddedChange = {
 };
 
 export type DirectiveUsageSchemaRemovedChange = {
-  type: typeof ChangeType.DirectiveUsageSchemaRemoved;
+  type: typeof ChangeTypeConstans.DirectiveUsageSchemaRemoved;
   meta: {
     removedDirectiveName: string;
     schemaTypeName: string;
@@ -768,7 +768,7 @@ export type DirectiveUsageSchemaRemovedChange = {
 };
 
 export type DirectiveUsageFieldDefinitionAddedChange = {
-  type: typeof ChangeType.DirectiveUsageFieldDefinitionAdded;
+  type: typeof ChangeTypeConstans.DirectiveUsageFieldDefinitionAdded;
   meta: {
     typeName: string;
     fieldName: string;
@@ -777,7 +777,7 @@ export type DirectiveUsageFieldDefinitionAddedChange = {
 };
 
 export type DirectiveUsageFieldDefinitionRemovedChange = {
-  type: typeof ChangeType.DirectiveUsageFieldDefinitionRemoved;
+  type: typeof ChangeTypeConstans.DirectiveUsageFieldDefinitionRemoved;
   meta: {
     typeName: string;
     fieldName: string;
@@ -786,7 +786,7 @@ export type DirectiveUsageFieldDefinitionRemovedChange = {
 };
 
 export type DirectiveUsageArgumentDefinitionChange = {
-  type: typeof ChangeType.DirectiveUsageArgumentDefinitionAdded;
+  type: typeof ChangeTypeConstans.DirectiveUsageArgumentDefinitionAdded;
   meta: {
     typeName: string;
     fieldName: string;
@@ -796,7 +796,7 @@ export type DirectiveUsageArgumentDefinitionChange = {
 };
 
 export type DirectiveUsageArgumentDefinitionRemovedChange = {
-  type: typeof ChangeType.DirectiveUsageArgumentDefinitionRemoved;
+  type: typeof ChangeTypeConstans.DirectiveUsageArgumentDefinitionRemoved;
   meta: {
     typeName: string;
     fieldName: string;
@@ -806,107 +806,107 @@ export type DirectiveUsageArgumentDefinitionRemovedChange = {
 };
 
 export type DirectiveUsageInterfaceRemovedChange = {
-  type: typeof ChangeType.DirectiveUsageInterfaceRemoved;
+  type: typeof ChangeTypeConstans.DirectiveUsageInterfaceRemoved;
   meta: {
     interfaceName: string;
     removedDirectiveName: string;
   };
 };
 type Changes = {
-  [ChangeType.TypeAdded]: TypeAddedChange;
-  [ChangeType.TypeRemoved]: TypeRemovedChange;
-  [ChangeType.TypeKindChanged]: TypeKindChangedChange;
-  [ChangeType.TypeDescriptionChanged]: TypeDescriptionChangedChange;
-  [ChangeType.TypeDescriptionAdded]: TypeDescriptionAddedChange;
-  [ChangeType.TypeDescriptionRemoved]: TypeDescriptionRemovedChange;
-  [ChangeType.UnionMemberRemoved]: UnionMemberRemovedChange;
-  [ChangeType.UnionMemberAdded]: UnionMemberAddedChange;
-  [ChangeType.SchemaQueryTypeChanged]: SchemaQueryTypeChangedChange;
-  [ChangeType.SchemaMutationTypeChanged]: SchemaMutationTypeChangedChange;
-  [ChangeType.SchemaSubscriptionTypeChanged]: SchemaSubscriptionTypeChangedChange;
-  [ChangeType.ObjectTypeInterfaceAdded]: ObjectTypeInterfaceAddedChange;
-  [ChangeType.ObjectTypeInterfaceRemoved]: ObjectTypeInterfaceRemovedChange;
-  [ChangeType.InputFieldRemoved]: InputFieldRemovedChange;
-  [ChangeType.InputFieldAdded]: InputFieldAddedChange;
-  [ChangeType.InputFieldDescriptionAdded]: InputFieldDescriptionAddedChange;
-  [ChangeType.InputFieldDescriptionRemoved]: InputFieldDescriptionRemovedChange;
-  [ChangeType.InputFieldDescriptionChanged]: InputFieldDescriptionChangedChange;
-  [ChangeType.InputFieldDefaultValueChanged]: InputFieldDefaultValueChangedChange;
-  [ChangeType.InputFieldTypeChanged]: InputFieldTypeChangedChange;
-  [ChangeType.FieldRemoved]: FieldRemovedChange;
-  [ChangeType.FieldAdded]: FieldAddedChange;
-  [ChangeType.FieldDescriptionAdded]: FieldDescriptionAddedChange;
-  [ChangeType.FieldDescriptionRemoved]: FieldDescriptionRemovedChange;
-  [ChangeType.FieldDescriptionChanged]: FieldDescriptionChangedChange;
-  [ChangeType.FieldArgumentAdded]: FieldArgumentAddedChange;
-  [ChangeType.FieldArgumentRemoved]: FieldArgumentRemovedChange;
-  [ChangeType.InputFieldRemoved]: InputFieldRemovedChange;
-  [ChangeType.InputFieldAdded]: InputFieldAddedChange;
-  [ChangeType.InputFieldDescriptionAdded]: InputFieldDescriptionAddedChange;
-  [ChangeType.InputFieldDescriptionRemoved]: InputFieldDescriptionRemovedChange;
-  [ChangeType.InputFieldDescriptionChanged]: InputFieldDescriptionChangedChange;
-  [ChangeType.InputFieldDefaultValueChanged]: InputFieldDefaultValueChangedChange;
-  [ChangeType.InputFieldTypeChanged]: InputFieldTypeChangedChange;
-  [ChangeType.ObjectTypeInterfaceAdded]: ObjectTypeInterfaceAddedChange;
-  [ChangeType.ObjectTypeInterfaceRemoved]: ObjectTypeInterfaceRemovedChange;
-  [ChangeType.SchemaQueryTypeChanged]: SchemaQueryTypeChangedChange;
-  [ChangeType.SchemaMutationTypeChanged]: SchemaMutationTypeChangedChange;
-  [ChangeType.SchemaSubscriptionTypeChanged]: SchemaSubscriptionTypeChangedChange;
-  [ChangeType.TypeAdded]: TypeAddedChange;
-  [ChangeType.TypeRemoved]: TypeRemovedChange;
-  [ChangeType.TypeKindChanged]: TypeKindChangedChange;
-  [ChangeType.TypeDescriptionChanged]: TypeDescriptionChangedChange;
-  [ChangeType.TypeDescriptionRemoved]: TypeDescriptionRemovedChange;
-  [ChangeType.TypeDescriptionAdded]: TypeDescriptionAddedChange;
-  [ChangeType.UnionMemberAdded]: UnionMemberAddedChange;
-  [ChangeType.UnionMemberRemoved]: UnionMemberRemovedChange;
-  [ChangeType.DirectiveRemoved]: DirectiveRemovedChange;
-  [ChangeType.DirectiveAdded]: DirectiveAddedChange;
-  [ChangeType.DirectiveArgumentAdded]: DirectiveArgumentAddedChange;
-  [ChangeType.DirectiveArgumentRemoved]: DirectiveArgumentRemovedChange;
-  [ChangeType.DirectiveArgumentDescriptionChanged]: DirectiveArgumentDescriptionChangedChange;
-  [ChangeType.DirectiveArgumentDefaultValueChanged]: DirectiveArgumentDefaultValueChangedChange;
-  [ChangeType.DirectiveArgumentTypeChanged]: DirectiveArgumentTypeChangedChange;
-  [ChangeType.DirectiveDescriptionChanged]: DirectiveDescriptionChangedChange;
-  [ChangeType.FieldArgumentDescriptionChanged]: FieldArgumentDescriptionChangedChange;
-  [ChangeType.FieldArgumentDefaultChanged]: FieldArgumentDefaultChangedChange;
-  [ChangeType.FieldArgumentTypeChanged]: FieldArgumentTypeChangedChange;
-  [ChangeType.DirectiveLocationAdded]: DirectiveLocationAddedChange;
-  [ChangeType.DirectiveLocationRemoved]: DirectiveLocationRemovedChange;
-  [ChangeType.EnumValueRemoved]: EnumValueRemovedChange;
-  [ChangeType.EnumValueDescriptionChanged]: EnumValueDescriptionChangedChange;
-  [ChangeType.EnumValueDeprecationReasonChanged]: EnumValueDeprecationReasonChangedChange;
-  [ChangeType.EnumValueDeprecationReasonAdded]: EnumValueDeprecationReasonAddedChange;
-  [ChangeType.EnumValueDeprecationReasonRemoved]: EnumValueDeprecationReasonRemovedChange;
-  [ChangeType.EnumValueAdded]: EnumValueAddedChange;
-  [ChangeType.FieldDeprecationAdded]: FieldDeprecationAddedChange;
-  [ChangeType.FieldDeprecationRemoved]: FieldDeprecationRemovedChange;
-  [ChangeType.FieldDeprecationReasonChanged]: FieldDeprecationReasonChangedChange;
-  [ChangeType.FieldDeprecationReasonAdded]: FieldDeprecationReasonAddedChange;
-  [ChangeType.FieldDeprecationReasonRemoved]: FieldDeprecationReasonRemovedChange;
-  [ChangeType.FieldTypeChanged]: FieldTypeChangedChange;
-  [ChangeType.DirectiveUsageUnionMemberAdded]: DirectiveUsageUnionMemberAddedChange;
-  [ChangeType.DirectiveUsageUnionMemberRemoved]: DirectiveUsageUnionMemberRemovedChange;
-  [ChangeType.DirectiveUsageEnumAdded]: DirectiveUsageEnumAddedChange;
-  [ChangeType.DirectiveUsageEnumRemoved]: DirectiveUsageEnumRemovedChange;
-  [ChangeType.DirectiveUsageEnumValueAdded]: DirectiveUsageEnumValueAddedChange;
-  [ChangeType.DirectiveUsageEnumValueRemoved]: DirectiveUsageEnumValueRemovedChange;
-  [ChangeType.DirectiveUsageInputObjectAdded]: DirectiveUsageInputObjectAddedChange;
-  [ChangeType.DirectiveUsageInputObjectRemoved]: DirectiveUsageInputObjectdRemovedChange;
-  [ChangeType.DirectiveUsageFieldAdded]: DirectiveUsageFieldAddedChange;
-  [ChangeType.DirectiveUsageFieldRemoved]: DirectiveUsageFieldRemovedChange;
-  [ChangeType.DirectiveUsageScalarAdded]: DirectiveUsageScalarAddedChange;
-  [ChangeType.DirectiveUsageScalarRemoved]: DirectiveUsageScalarRemovedChange;
-  [ChangeType.DirectiveUsageObjectAdded]: DirectiveUsageObjectAddedChange;
-  [ChangeType.DirectiveUsageObjectRemoved]: DirectiveUsageObjectRemovedChange;
-  [ChangeType.DirectiveUsageInterfaceAdded]: DirectiveUsageInterfaceAddedChange;
-  [ChangeType.DirectiveUsageInterfaceRemoved]: DirectiveUsageInterfaceRemovedChange;
-  [ChangeType.DirectiveUsageArgumentDefinitionAdded]: DirectiveUsageArgumentDefinitionChange;
-  [ChangeType.DirectiveUsageArgumentDefinitionRemoved]: DirectiveUsageArgumentDefinitionRemovedChange;
-  [ChangeType.DirectiveUsageSchemaAdded]: DirectiveUsageSchemaAddedChange;
-  [ChangeType.DirectiveUsageSchemaRemoved]: DirectiveUsageSchemaRemovedChange;
-  [ChangeType.DirectiveUsageFieldDefinitionAdded]: DirectiveUsageFieldDefinitionAddedChange;
-  [ChangeType.DirectiveUsageFieldDefinitionRemoved]: DirectiveUsageFieldDefinitionRemovedChange;
+  [ChangeTypeConstans.TypeAdded]: TypeAddedChange;
+  [ChangeTypeConstans.TypeRemoved]: TypeRemovedChange;
+  [ChangeTypeConstans.TypeKindChanged]: TypeKindChangedChange;
+  [ChangeTypeConstans.TypeDescriptionChanged]: TypeDescriptionChangedChange;
+  [ChangeTypeConstans.TypeDescriptionAdded]: TypeDescriptionAddedChange;
+  [ChangeTypeConstans.TypeDescriptionRemoved]: TypeDescriptionRemovedChange;
+  [ChangeTypeConstans.UnionMemberRemoved]: UnionMemberRemovedChange;
+  [ChangeTypeConstans.UnionMemberAdded]: UnionMemberAddedChange;
+  [ChangeTypeConstans.SchemaQueryTypeChanged]: SchemaQueryTypeChangedChange;
+  [ChangeTypeConstans.SchemaMutationTypeChanged]: SchemaMutationTypeChangedChange;
+  [ChangeTypeConstans.SchemaSubscriptionTypeChanged]: SchemaSubscriptionTypeChangedChange;
+  [ChangeTypeConstans.ObjectTypeInterfaceAdded]: ObjectTypeInterfaceAddedChange;
+  [ChangeTypeConstans.ObjectTypeInterfaceRemoved]: ObjectTypeInterfaceRemovedChange;
+  [ChangeTypeConstans.InputFieldRemoved]: InputFieldRemovedChange;
+  [ChangeTypeConstans.InputFieldAdded]: InputFieldAddedChange;
+  [ChangeTypeConstans.InputFieldDescriptionAdded]: InputFieldDescriptionAddedChange;
+  [ChangeTypeConstans.InputFieldDescriptionRemoved]: InputFieldDescriptionRemovedChange;
+  [ChangeTypeConstans.InputFieldDescriptionChanged]: InputFieldDescriptionChangedChange;
+  [ChangeTypeConstans.InputFieldDefaultValueChanged]: InputFieldDefaultValueChangedChange;
+  [ChangeTypeConstans.InputFieldTypeChanged]: InputFieldTypeChangedChange;
+  [ChangeTypeConstans.FieldRemoved]: FieldRemovedChange;
+  [ChangeTypeConstans.FieldAdded]: FieldAddedChange;
+  [ChangeTypeConstans.FieldDescriptionAdded]: FieldDescriptionAddedChange;
+  [ChangeTypeConstans.FieldDescriptionRemoved]: FieldDescriptionRemovedChange;
+  [ChangeTypeConstans.FieldDescriptionChanged]: FieldDescriptionChangedChange;
+  [ChangeTypeConstans.FieldArgumentAdded]: FieldArgumentAddedChange;
+  [ChangeTypeConstans.FieldArgumentRemoved]: FieldArgumentRemovedChange;
+  [ChangeTypeConstans.InputFieldRemoved]: InputFieldRemovedChange;
+  [ChangeTypeConstans.InputFieldAdded]: InputFieldAddedChange;
+  [ChangeTypeConstans.InputFieldDescriptionAdded]: InputFieldDescriptionAddedChange;
+  [ChangeTypeConstans.InputFieldDescriptionRemoved]: InputFieldDescriptionRemovedChange;
+  [ChangeTypeConstans.InputFieldDescriptionChanged]: InputFieldDescriptionChangedChange;
+  [ChangeTypeConstans.InputFieldDefaultValueChanged]: InputFieldDefaultValueChangedChange;
+  [ChangeTypeConstans.InputFieldTypeChanged]: InputFieldTypeChangedChange;
+  [ChangeTypeConstans.ObjectTypeInterfaceAdded]: ObjectTypeInterfaceAddedChange;
+  [ChangeTypeConstans.ObjectTypeInterfaceRemoved]: ObjectTypeInterfaceRemovedChange;
+  [ChangeTypeConstans.SchemaQueryTypeChanged]: SchemaQueryTypeChangedChange;
+  [ChangeTypeConstans.SchemaMutationTypeChanged]: SchemaMutationTypeChangedChange;
+  [ChangeTypeConstans.SchemaSubscriptionTypeChanged]: SchemaSubscriptionTypeChangedChange;
+  [ChangeTypeConstans.TypeAdded]: TypeAddedChange;
+  [ChangeTypeConstans.TypeRemoved]: TypeRemovedChange;
+  [ChangeTypeConstans.TypeKindChanged]: TypeKindChangedChange;
+  [ChangeTypeConstans.TypeDescriptionChanged]: TypeDescriptionChangedChange;
+  [ChangeTypeConstans.TypeDescriptionRemoved]: TypeDescriptionRemovedChange;
+  [ChangeTypeConstans.TypeDescriptionAdded]: TypeDescriptionAddedChange;
+  [ChangeTypeConstans.UnionMemberAdded]: UnionMemberAddedChange;
+  [ChangeTypeConstans.UnionMemberRemoved]: UnionMemberRemovedChange;
+  [ChangeTypeConstans.DirectiveRemoved]: DirectiveRemovedChange;
+  [ChangeTypeConstans.DirectiveAdded]: DirectiveAddedChange;
+  [ChangeTypeConstans.DirectiveArgumentAdded]: DirectiveArgumentAddedChange;
+  [ChangeTypeConstans.DirectiveArgumentRemoved]: DirectiveArgumentRemovedChange;
+  [ChangeTypeConstans.DirectiveArgumentDescriptionChanged]: DirectiveArgumentDescriptionChangedChange;
+  [ChangeTypeConstans.DirectiveArgumentDefaultValueChanged]: DirectiveArgumentDefaultValueChangedChange;
+  [ChangeTypeConstans.DirectiveArgumentTypeChanged]: DirectiveArgumentTypeChangedChange;
+  [ChangeTypeConstans.DirectiveDescriptionChanged]: DirectiveDescriptionChangedChange;
+  [ChangeTypeConstans.FieldArgumentDescriptionChanged]: FieldArgumentDescriptionChangedChange;
+  [ChangeTypeConstans.FieldArgumentDefaultChanged]: FieldArgumentDefaultChangedChange;
+  [ChangeTypeConstans.FieldArgumentTypeChanged]: FieldArgumentTypeChangedChange;
+  [ChangeTypeConstans.DirectiveLocationAdded]: DirectiveLocationAddedChange;
+  [ChangeTypeConstans.DirectiveLocationRemoved]: DirectiveLocationRemovedChange;
+  [ChangeTypeConstans.EnumValueRemoved]: EnumValueRemovedChange;
+  [ChangeTypeConstans.EnumValueDescriptionChanged]: EnumValueDescriptionChangedChange;
+  [ChangeTypeConstans.EnumValueDeprecationReasonChanged]: EnumValueDeprecationReasonChangedChange;
+  [ChangeTypeConstans.EnumValueDeprecationReasonAdded]: EnumValueDeprecationReasonAddedChange;
+  [ChangeTypeConstans.EnumValueDeprecationReasonRemoved]: EnumValueDeprecationReasonRemovedChange;
+  [ChangeTypeConstans.EnumValueAdded]: EnumValueAddedChange;
+  [ChangeTypeConstans.FieldDeprecationAdded]: FieldDeprecationAddedChange;
+  [ChangeTypeConstans.FieldDeprecationRemoved]: FieldDeprecationRemovedChange;
+  [ChangeTypeConstans.FieldDeprecationReasonChanged]: FieldDeprecationReasonChangedChange;
+  [ChangeTypeConstans.FieldDeprecationReasonAdded]: FieldDeprecationReasonAddedChange;
+  [ChangeTypeConstans.FieldDeprecationReasonRemoved]: FieldDeprecationReasonRemovedChange;
+  [ChangeTypeConstans.FieldTypeChanged]: FieldTypeChangedChange;
+  [ChangeTypeConstans.DirectiveUsageUnionMemberAdded]: DirectiveUsageUnionMemberAddedChange;
+  [ChangeTypeConstans.DirectiveUsageUnionMemberRemoved]: DirectiveUsageUnionMemberRemovedChange;
+  [ChangeTypeConstans.DirectiveUsageEnumAdded]: DirectiveUsageEnumAddedChange;
+  [ChangeTypeConstans.DirectiveUsageEnumRemoved]: DirectiveUsageEnumRemovedChange;
+  [ChangeTypeConstans.DirectiveUsageEnumValueAdded]: DirectiveUsageEnumValueAddedChange;
+  [ChangeTypeConstans.DirectiveUsageEnumValueRemoved]: DirectiveUsageEnumValueRemovedChange;
+  [ChangeTypeConstans.DirectiveUsageInputObjectAdded]: DirectiveUsageInputObjectAddedChange;
+  [ChangeTypeConstans.DirectiveUsageInputObjectRemoved]: DirectiveUsageInputObjectdRemovedChange;
+  [ChangeTypeConstans.DirectiveUsageFieldAdded]: DirectiveUsageFieldAddedChange;
+  [ChangeTypeConstans.DirectiveUsageFieldRemoved]: DirectiveUsageFieldRemovedChange;
+  [ChangeTypeConstans.DirectiveUsageScalarAdded]: DirectiveUsageScalarAddedChange;
+  [ChangeTypeConstans.DirectiveUsageScalarRemoved]: DirectiveUsageScalarRemovedChange;
+  [ChangeTypeConstans.DirectiveUsageObjectAdded]: DirectiveUsageObjectAddedChange;
+  [ChangeTypeConstans.DirectiveUsageObjectRemoved]: DirectiveUsageObjectRemovedChange;
+  [ChangeTypeConstans.DirectiveUsageInterfaceAdded]: DirectiveUsageInterfaceAddedChange;
+  [ChangeTypeConstans.DirectiveUsageInterfaceRemoved]: DirectiveUsageInterfaceRemovedChange;
+  [ChangeTypeConstans.DirectiveUsageArgumentDefinitionAdded]: DirectiveUsageArgumentDefinitionChange;
+  [ChangeTypeConstans.DirectiveUsageArgumentDefinitionRemoved]: DirectiveUsageArgumentDefinitionRemovedChange;
+  [ChangeTypeConstans.DirectiveUsageSchemaAdded]: DirectiveUsageSchemaAddedChange;
+  [ChangeTypeConstans.DirectiveUsageSchemaRemoved]: DirectiveUsageSchemaRemovedChange;
+  [ChangeTypeConstans.DirectiveUsageFieldDefinitionAdded]: DirectiveUsageFieldDefinitionAddedChange;
+  [ChangeTypeConstans.DirectiveUsageFieldDefinitionRemoved]: DirectiveUsageFieldDefinitionRemovedChange;
 };
 
 export type SerializableChange = Changes[keyof Changes];
