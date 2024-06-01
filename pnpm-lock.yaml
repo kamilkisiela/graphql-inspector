@@ -18,8 +18,8 @@ importers:
         specifier: 7.114.0
         version: 7.114.0
       '@whatwg-node/fetch':
-        specifier: 0.9.17
-        version: 0.9.17
+        specifier: 0.9.18
+        version: 0.9.18
       husky:
         specifier: 9.0.11
         version: 9.0.11
@@ -2284,6 +2284,10 @@ packages:
 
   '@whatwg-node/fetch@0.9.17':
     resolution: {integrity: sha512-TDYP3CpCrxwxpiNY0UMNf096H5Ihf67BK1iKGegQl5u9SlpEDYrvnV71gWBGJm+Xm31qOy8ATgma9rm8Pe7/5Q==}
+    engines: {node: '>=16.0.0'}
+
+  '@whatwg-node/fetch@0.9.18':
+    resolution: {integrity: sha512-hqoz6StCW+AjV/3N+vg0s1ah82ptdVUb9nH2ttj3UbySOXUvytWw2yqy8c1cKzyRk6mDD00G47qS3fZI9/gMjg==}
     engines: {node: '>=16.0.0'}
 
   '@whatwg-node/node-fetch@0.4.19':
@@ -8478,7 +8482,7 @@ snapshots:
     dependencies:
       '@graphql-tools/utils': 10.2.1(graphql@16.8.1)
       '@repeaterjs/repeater': 3.0.4
-      '@whatwg-node/fetch': 0.9.17
+      '@whatwg-node/fetch': 0.9.18
       extract-files: 11.0.0
       graphql: 16.8.1
       meros: 1.2.1(@types/node@20.12.13)
@@ -10056,6 +10060,11 @@ snapshots:
       '@whatwg-node/node-fetch': 0.5.11
       urlpattern-polyfill: 10.0.0
 
+  '@whatwg-node/fetch@0.9.18':
+    dependencies:
+      '@whatwg-node/node-fetch': 0.5.11
+      urlpattern-polyfill: 10.0.0
+
   '@whatwg-node/node-fetch@0.4.19':
     dependencies:
       '@whatwg-node/events': 0.1.1
@@ -10074,7 +10083,7 @@ snapshots:
 
   '@whatwg-node/server@0.9.34':
     dependencies:
-      '@whatwg-node/fetch': 0.9.17
+      '@whatwg-node/fetch': 0.9.18
       tslib: 2.6.2
 
   '@xtuc/ieee754@1.2.0': {}
