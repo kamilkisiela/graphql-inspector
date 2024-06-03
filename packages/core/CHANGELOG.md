@@ -1,5 +1,27 @@
 # @graphql-inspector/core
 
+## 6.1.0
+
+### Minor Changes
+
+- [#2775](https://github.com/kamilkisiela/graphql-inspector/pull/2775)
+  [`0e40ebd`](https://github.com/kamilkisiela/graphql-inspector/commit/0e40ebd046dafa2d4542b837c69ba221c73cf873)
+  Thanks [@DanteUkraine](https://github.com/DanteUkraine)! - Fix: coverage calculation improvements:
+  Covered Queries & Covered Mutations & Covered Subscriptions
+
+- [#2773](https://github.com/kamilkisiela/graphql-inspector/pull/2773)
+  [`6e3ccc9`](https://github.com/kamilkisiela/graphql-inspector/commit/6e3ccc900c4589025e3b77079b828ea5a725a33b)
+  Thanks [@TuvalSimha](https://github.com/TuvalSimha)! - Fix export `ChangeType` from core package.
+
+### Patch Changes
+
+- [#2765](https://github.com/kamilkisiela/graphql-inspector/pull/2765)
+  [`27edee1`](https://github.com/kamilkisiela/graphql-inspector/commit/27edee15d838856228855fb5e481149aa27b3de9)
+  Thanks [@renovate](https://github.com/apps/renovate)! - dependencies updates:
+  - Updated dependency
+    [`dependency-graph@1.0.0` ↗︎](https://www.npmjs.com/package/dependency-graph/v/1.0.0) (from
+    `0.11.0`, in `dependencies`)
+
 ## 6.0.1
 
 ### Patch Changes
