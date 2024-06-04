@@ -78,7 +78,7 @@
     "dataloader": "2.2.2",
     "js-yaml": "4.1.0",
     "probot": "12.3.3",
-    "tslib": "2.6.2"
+    "tslib": "2.6.3"
   },
   "devDependencies": {
     "@types/js-yaml": "4.0.9"
