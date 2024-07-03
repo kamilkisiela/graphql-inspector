@@ -26,7 +26,7 @@ import {
   DirectiveUsageFieldDefinitionAddedChange,
   DirectiveUsageFieldDefinitionRemovedChange,
   DirectiveUsageInputObjectAddedChange,
-  DirectiveUsageInputObjectdRemovedChange,
+  DirectiveUsageInputObjectRemovedChange,
   DirectiveUsageInterfaceAddedChange,
   DirectiveUsageInterfaceRemovedChange,
   DirectiveUsageObjectAddedChange,
@@ -100,7 +100,7 @@ type KindToPayload = {
   };
   [Kind.INPUT_OBJECT_TYPE_DEFINITION]: {
     input: GraphQLInputObjectType;
-    change: DirectiveUsageInputObjectAddedChange | DirectiveUsageInputObjectdRemovedChange;
+    change: DirectiveUsageInputObjectAddedChange | DirectiveUsageInputObjectRemovedChange;
   };
   [Kind.INPUT_VALUE_DEFINITION]: {
     input: {
