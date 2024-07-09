@@ -14,6 +14,30 @@ export {
   Criticality,
   CriticalityLevel,
 } from './diff/changes/change.js';
+export {
+  directiveUsageFieldDefinitionAddedFromMeta,
+  directiveUsageFieldDefinitionRemovedFromMeta,
+  directiveUsageArgumentDefinitionAddedFromMeta,
+  directiveUsageArgumentDefinitionRemovedFromMeta,
+  directiveUsageEnumAddedFromMeta,
+  directiveUsageEnumRemovedFromMeta,
+  directiveUsageEnumValueAddedFromMeta,
+  directiveUsageEnumValueRemovedFromMeta,
+  directiveUsageInputObjectAddedFromMeta,
+  directiveUsageInputObjectRemovedFromMeta,
+  directiveUsageInterfaceAddedFromMeta,
+  directiveUsageInterfaceRemovedFromMeta,
+  directiveUsageObjectAddedFromMeta,
+  directiveUsageObjectRemovedFromMeta,
+  directiveUsageScalarAddedFromMeta,
+  directiveUsageScalarRemovedFromMeta,
+  directiveUsageSchemaAddedFromMeta,
+  directiveUsageSchemaRemovedFromMeta,
+  directiveUsageUnionMemberAddedFromMeta,
+  directiveUsageUnionMemberRemovedFromMeta,
+  directiveUsageArgumentInputValueDefinitionAddedFromMeta,
+  directiveUsageArgumentInputValueDefinitionRemovedFromMeta,
+} from './diff/changes/directive-usage.js';
 export { similar, SimilarMap } from './similar/index.js';
 export { getTypePrefix } from './utils/graphql.js';
 export { BestMatch, Rating, Target } from './utils/string.js';
