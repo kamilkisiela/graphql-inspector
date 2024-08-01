@@ -100,8 +100,8 @@ importers:
         specifier: 0.11.9
         version: 0.11.9(eslint@8.57.0)(typescript@5.4.5)
       '@theguild/prettier-config':
-        specifier: 2.0.6
-        version: 2.0.6(prettier@3.2.5)
+        specifier: 2.0.7
+        version: 2.0.7(prettier@3.3.3)
       '@types/body-parser':
         specifier: 1.19.5
         version: 1.19.5
@@ -145,8 +145,8 @@ importers:
         specifier: 13.5.4
         version: 13.5.4
       prettier:
-        specifier: 3.2.5
-        version: 3.2.5
+        specifier: 3.3.3
+        version: 3.3.3
       rimraf:
         specifier: 5.0.7
         version: 5.0.7
@@ -1287,6 +1287,7 @@ packages:
   '@humanwhocodes/config-array@0.11.14':
     resolution: {integrity: sha512-3T8LkOmg45BV5FICb15QQMsyUSWrQ8AygVfC7ZG32zOalnqrilm018ZVCw0eapXux8FtA33q8PSRSstjee3jSg==}
     engines: {node: '>=10.10.0'}
+    deprecated: Use @eslint/config-array instead
 
   '@humanwhocodes/module-importer@1.0.1':
     resolution: {integrity: sha512-bxveV4V8v5Yb4ncFTT3rPSgZBOpCkjfK0y4oVVVJwIuDVBRMDXrPyXRL988i5ap9m9bnyEEjWfm5WkBmtffLfA==}
@@ -1294,9 +1295,10 @@ packages:
 
   '@humanwhocodes/object-schema@2.0.3':
     resolution: {integrity: sha512-93zYdMES/c1D69yZiKDBj0V24vqNzB/koF26KPaagAfd3P/4gUlh3Dys5ogAK+Exi9QyzlD8x/08Zt7wIKcDcA==}
+    deprecated: Use @eslint/object-schema instead
 
-  '@ianvs/prettier-plugin-sort-imports@4.2.1':
-    resolution: {integrity: sha512-NKN1LVFWUDGDGr3vt+6Ey3qPeN/163uR1pOPAlkWpgvAqgxQ6kSdUf1F0it8aHUtKRUzEGcK38Wxd07O61d7+Q==}
+  '@ianvs/prettier-plugin-sort-imports@4.3.1':
+    resolution: {integrity: sha512-ZHwbyjkANZOjaBm3ZosADD2OUYGFzQGxfy67HmGZU94mHqe7g1LCMA7YYKB1Cq+UTPCBqlAYapY0KXAjKEw8Sg==}
     peerDependencies:
       '@vue/compiler-sfc': 2.7.x || 3.x
       prettier: 2 || 3
@@ -1332,14 +1334,8 @@ packages:
     resolution: {integrity: sha512-R8gLRTZeyp03ymzP/6Lil/28tGeGEzhx1q2k703KGWRAI1VdvPIXdG70VJc2pAMw3NA6JKL5hhFu1sJX0Mnn/A==}
     engines: {node: '>=6.0.0'}
 
-  '@jridgewell/sourcemap-codec@1.4.14':
-    resolution: {integrity: sha512-XPSJHWmi394fuUuzDnGz1wiKqWfo1yXecHQMRf2l6hztTO+nPru658AyDngaBe7isIxEkRsPR3FZh+s7iVa4Uw==}
-
   '@jridgewell/sourcemap-codec@1.4.15':
     resolution: {integrity: sha512-eF2rxCRulEKXHTRiDrDy6erMYWqNw4LPdQ8UQA4huuxaQsVeRPFl2oM8oDGxMFhJUWZf9McpLtJasDDZb/Bpeg==}
-
-  '@jridgewell/trace-mapping@0.3.17':
-    resolution: {integrity: sha512-MCNzAp77qzKca9+W/+I0+sEpaUnZoeasnghNeVc41VZCEKaCH73Vq3BZZ/SzWIgrqE4H4ceI+p+b6C0mHf9T4g==}
 
   '@jridgewell/trace-mapping@0.3.25':
     resolution: {integrity: sha512-vNk6aEwybGtawWmy/PzwnGDOjCkLWSD2wqvjGGAgOAwCGWySYXfYoxt00IJkTF+8Lb57DwOb3Aa0o9CApepiYQ==}
@@ -1918,8 +1914,8 @@ packages:
       eslint: ^8
       typescript: ^5
 
-  '@theguild/prettier-config@2.0.6':
-    resolution: {integrity: sha512-aEWJ422Ro9IIC+2FGEO8kgJdq6DiwafgCOLVjW6b0mgWKHgdH6VReGck6Jv+9jsa4CBh/rpRuu40uIf0KGDtEg==}
+  '@theguild/prettier-config@2.0.7':
+    resolution: {integrity: sha512-FqpgGAaAFbYHFQmkWEZjIhqmk+Oow82/t+0k408qoBd9RsB4QTwSQSDDbNSgFa/K7c8Dcwau5z3XbHUR/ksKqw==}
     peerDependencies:
       prettier: ^3
 
@@ -6313,8 +6309,8 @@ packages:
     engines: {node: '>=10.13.0'}
     hasBin: true
 
-  prettier@3.2.5:
-    resolution: {integrity: sha512-3/GWa9aOC0YeD7LUfvOG2NiDyhOWRvt1k+rcKhOuYnMY24iiCphgneUfJDyFXd6rZCAnuLBv6UeAULtrhT/F4A==}
+  prettier@3.3.3:
+    resolution: {integrity: sha512-i2tDNA0O5IrMO757lfrdQZCc2jPNDVntV0m/+4whiDfWaTKfMNgR7Qz0NAeGz/nRqF4m5/6CLzbP4/liHt12Ew==}
     engines: {node: '>=14'}
     hasBin: true
 
@@ -8716,14 +8712,14 @@ snapshots:
 
   '@humanwhocodes/object-schema@2.0.3': {}
 
-  '@ianvs/prettier-plugin-sort-imports@4.2.1(prettier@3.2.5)':
+  '@ianvs/prettier-plugin-sort-imports@4.3.1(prettier@3.3.3)':
     dependencies:
       '@babel/core': 7.24.6
       '@babel/generator': 7.24.6
       '@babel/parser': 7.24.6
       '@babel/traverse': 7.24.6
       '@babel/types': 7.24.6
-      prettier: 3.2.5
+      prettier: 3.3.3
       semver: 7.6.2
     transitivePeerDependencies:
       - supports-color
@@ -8745,7 +8741,7 @@ snapshots:
     dependencies:
       '@jridgewell/set-array': 1.1.2
       '@jridgewell/sourcemap-codec': 1.4.15
-      '@jridgewell/trace-mapping': 0.3.17
+      '@jridgewell/trace-mapping': 0.3.25
 
   '@jridgewell/gen-mapping@0.3.5':
     dependencies:
@@ -8759,14 +8755,7 @@ snapshots:
 
   '@jridgewell/set-array@1.2.1': {}
 
-  '@jridgewell/sourcemap-codec@1.4.14': {}
-
   '@jridgewell/sourcemap-codec@1.4.15': {}
-
-  '@jridgewell/trace-mapping@0.3.17':
-    dependencies:
-      '@jridgewell/resolve-uri': 3.1.0
-      '@jridgewell/sourcemap-codec': 1.4.14
 
   '@jridgewell/trace-mapping@0.3.25':
     dependencies:
@@ -9569,12 +9558,12 @@ snapshots:
       - eslint-import-resolver-webpack
       - supports-color
 
-  '@theguild/prettier-config@2.0.6(prettier@3.2.5)':
+  '@theguild/prettier-config@2.0.7(prettier@3.3.3)':
     dependencies:
-      '@ianvs/prettier-plugin-sort-imports': 4.2.1(prettier@3.2.5)
-      prettier: 3.2.5
-      prettier-plugin-pkg: 0.18.0(prettier@3.2.5)
-      prettier-plugin-sh: 0.14.0(prettier@3.2.5)
+      '@ianvs/prettier-plugin-sort-imports': 4.3.1(prettier@3.3.3)
+      prettier: 3.3.3
+      prettier-plugin-pkg: 0.18.0(prettier@3.3.3)
+      prettier-plugin-sh: 0.14.0(prettier@3.3.3)
     transitivePeerDependencies:
       - '@vue/compiler-sfc'
       - supports-color
@@ -15175,19 +15164,19 @@ snapshots:
 
   prelude-ls@1.2.1: {}
 
-  prettier-plugin-pkg@0.18.0(prettier@3.2.5):
+  prettier-plugin-pkg@0.18.0(prettier@3.3.3):
     dependencies:
-      prettier: 3.2.5
+      prettier: 3.3.3
 
-  prettier-plugin-sh@0.14.0(prettier@3.2.5):
+  prettier-plugin-sh@0.14.0(prettier@3.3.3):
     dependencies:
       mvdan-sh: 0.10.1
-      prettier: 3.2.5
+      prettier: 3.3.3
       sh-syntax: 0.4.1
 
   prettier@2.8.8: {}
 
-  prettier@3.2.5: {}
+  prettier@3.3.3: {}
 
   pretty-format@29.6.1:
     dependencies:
