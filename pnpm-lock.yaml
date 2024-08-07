@@ -18,8 +18,8 @@ importers:
         specifier: 7.114.0
         version: 7.114.0
       '@whatwg-node/fetch':
-        specifier: 0.9.17
-        version: 0.9.17
+        specifier: 0.9.19
+        version: 0.9.19
       husky:
         specifier: 9.0.11
         version: 9.0.11
@@ -1287,6 +1287,7 @@ packages:
   '@humanwhocodes/config-array@0.11.14':
     resolution: {integrity: sha512-3T8LkOmg45BV5FICb15QQMsyUSWrQ8AygVfC7ZG32zOalnqrilm018ZVCw0eapXux8FtA33q8PSRSstjee3jSg==}
     engines: {node: '>=10.10.0'}
+    deprecated: Use @eslint/config-array instead
 
   '@humanwhocodes/module-importer@1.0.1':
     resolution: {integrity: sha512-bxveV4V8v5Yb4ncFTT3rPSgZBOpCkjfK0y4oVVVJwIuDVBRMDXrPyXRL988i5ap9m9bnyEEjWfm5WkBmtffLfA==}
@@ -1294,6 +1295,7 @@ packages:
 
   '@humanwhocodes/object-schema@2.0.3':
     resolution: {integrity: sha512-93zYdMES/c1D69yZiKDBj0V24vqNzB/koF26KPaagAfd3P/4gUlh3Dys5ogAK+Exi9QyzlD8x/08Zt7wIKcDcA==}
+    deprecated: Use @eslint/object-schema instead
 
   '@ianvs/prettier-plugin-sort-imports@4.2.1':
     resolution: {integrity: sha512-NKN1LVFWUDGDGr3vt+6Ey3qPeN/163uR1pOPAlkWpgvAqgxQ6kSdUf1F0it8aHUtKRUzEGcK38Wxd07O61d7+Q==}
@@ -2286,12 +2288,20 @@ packages:
     resolution: {integrity: sha512-TDYP3CpCrxwxpiNY0UMNf096H5Ihf67BK1iKGegQl5u9SlpEDYrvnV71gWBGJm+Xm31qOy8ATgma9rm8Pe7/5Q==}
     engines: {node: '>=16.0.0'}
 
+  '@whatwg-node/fetch@0.9.19':
+    resolution: {integrity: sha512-J+zopRcUVOhkiQYlHpxOEZuOgZtqW9xMaNQFDjESm9vRcyATms+E2/p2mZiVQGllPqWflkA3SzoJC1MxV4Pf9g==}
+    engines: {node: '>=16.0.0'}
+
   '@whatwg-node/node-fetch@0.4.19':
     resolution: {integrity: sha512-AW7/m2AuweAoSXmESrYQr/KBafueScNbn2iNO0u6xFr2JZdPmYsSm5yvAXYk6yDLv+eDmSSKrf7JnFZ0CsJIdA==}
     engines: {node: '>=16.0.0'}
 
   '@whatwg-node/node-fetch@0.5.11':
     resolution: {integrity: sha512-LS8tSomZa3YHnntpWt3PP43iFEEl6YeIsvDakczHBKlay5LdkXFr8w7v8H6akpG5nRrzydyB0k1iE2eoL6aKIQ==}
+    engines: {node: '>=16.0.0'}
+
+  '@whatwg-node/node-fetch@0.5.16':
+    resolution: {integrity: sha512-BmwxxGZTI8IDSiocYyb2sWMlHpa4Jq2NZ4BOuvmODgL2pqjgcFfLBuEnpX2xLscQHmmTnk+gKh0EShfRAGn3Pw==}
     engines: {node: '>=16.0.0'}
 
   '@whatwg-node/server@0.9.34':
@@ -7313,6 +7323,9 @@ packages:
   tslib@2.6.2:
     resolution: {integrity: sha512-AEYxH93jGFPn/a2iVAwW87VuUIkR1FVUKB77NwMF7nBTDkDrrT/Hpt/IrCJ0QXhW27jTBDcf5ZY7w6RiqTMw2Q==}
 
+  tslib@2.6.3:
+    resolution: {integrity: sha512-xNvxJEOUiWPGhUuUdQgAJPKOOJfGnIyKySOc09XkKsgdUV/3E2zvwZYdejjmRgPCgcym1juLH3226yA7sEFJKQ==}
+
   tty-browserify@0.0.0:
     resolution: {integrity: sha512-JVa5ijo+j/sOoHGjw0sxw734b1LhBkQ3bvUGNdxnVXDCX81Yx7TFgnZygxrIIWn23hbfTaMYLwRmAxFyDuFmIw==}
 
@@ -8478,7 +8491,7 @@ snapshots:
     dependencies:
       '@graphql-tools/utils': 10.2.1(graphql@16.8.1)
       '@repeaterjs/repeater': 3.0.4
-      '@whatwg-node/fetch': 0.9.17
+      '@whatwg-node/fetch': 0.9.19
       extract-files: 11.0.0
       graphql: 16.8.1
       meros: 1.2.1(@types/node@20.12.13)
@@ -10056,6 +10069,11 @@ snapshots:
       '@whatwg-node/node-fetch': 0.5.11
       urlpattern-polyfill: 10.0.0
 
+  '@whatwg-node/fetch@0.9.19':
+    dependencies:
+      '@whatwg-node/node-fetch': 0.5.16
+      urlpattern-polyfill: 10.0.0
+
   '@whatwg-node/node-fetch@0.4.19':
     dependencies:
       '@whatwg-node/events': 0.1.1
@@ -10072,9 +10090,17 @@ snapshots:
       fast-querystring: 1.1.1
       tslib: 2.6.2
 
+  '@whatwg-node/node-fetch@0.5.16':
+    dependencies:
+      '@kamilkisiela/fast-url-parser': 1.1.4
+      '@whatwg-node/events': 0.1.1
+      busboy: 1.6.0
+      fast-querystring: 1.1.1
+      tslib: 2.6.3
+
   '@whatwg-node/server@0.9.34':
     dependencies:
-      '@whatwg-node/fetch': 0.9.17
+      '@whatwg-node/fetch': 0.9.19
       tslib: 2.6.2
 
   '@xtuc/ieee754@1.2.0': {}
@@ -16408,6 +16434,8 @@ snapshots:
   tslib@1.14.1: {}
 
   tslib@2.6.2: {}
+
+  tslib@2.6.3: {}
 
   tty-browserify@0.0.0: {}
 
