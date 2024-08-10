@@ -64,7 +64,7 @@
   },
   "dependencies": {
     "dependency-graph": "1.0.0",
-    "object-inspect": "1.13.1",
+    "object-inspect": "1.13.2",
     "tslib": "2.6.2"
   },
   "devDependencies": {
