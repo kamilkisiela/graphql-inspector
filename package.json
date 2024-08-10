@@ -91,7 +91,7 @@
     "rimraf": "5.0.10",
     "smee-client": "2.0.2",
     "strip-ansi": "7.1.0",
-    "typescript": "5.4.5",
+    "typescript": "5.5.4",
     "vitest": "0.34.6"
   },
   "sideEffects": false,
