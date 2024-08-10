@@ -66,7 +66,7 @@
   "dependencies": {
     "@graphql-inspector/commands": "workspace:*",
     "@graphql-inspector/logger": "workspace:*",
-    "graphql-yoga": "5.3.1",
+    "graphql-yoga": "5.6.3",
     "open": "8.4.2",
     "tslib": "2.6.2"
   },
