@@ -27,7 +27,7 @@ jobs:
           node-version: ${{ matrix.node_version }}
 
       - name: Install pnpm
-        uses: pnpm/action-setup@v2.4.0
+        uses: pnpm/action-setup@v2.4.1
 
       - name: Get pnpm cache - Set output
         id: pnpm-cache
