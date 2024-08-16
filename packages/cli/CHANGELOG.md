@@ -1,5 +1,13 @@
 # @graphql-inspector/cli
 
+## 5.0.7
+
+### Patch Changes
+
+- Updated dependencies
+  [[`eba0184`](https://github.com/kamilkisiela/graphql-inspector/commit/eba01849686f6e2f86e4767c36ed397638d869c5)]:
+  - @graphql-inspector/serve-command@5.0.6
+
 ## 5.0.6
 
 ### Patch Changes
