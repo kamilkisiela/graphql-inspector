@@ -18,8 +18,8 @@ importers:
         specifier: 7.114.0
         version: 7.114.0
       '@whatwg-node/fetch':
-        specifier: 0.9.19
-        version: 0.9.19
+        specifier: 0.9.21
+        version: 0.9.21
       husky:
         specifier: 9.0.11
         version: 9.0.11
@@ -2290,6 +2290,10 @@ packages:
     resolution: {integrity: sha512-J+zopRcUVOhkiQYlHpxOEZuOgZtqW9xMaNQFDjESm9vRcyATms+E2/p2mZiVQGllPqWflkA3SzoJC1MxV4Pf9g==}
     engines: {node: '>=16.0.0'}
 
+  '@whatwg-node/fetch@0.9.21':
+    resolution: {integrity: sha512-Wt0jPb+04JjobK0pAAN7mEHxVHcGA9HoP3OyCsZtyAecNQeADXCZ1MihFwVwjsgaRYuGVmNlsCmLxlG6mor8Gw==}
+    engines: {node: '>=18.0.0'}
+
   '@whatwg-node/node-fetch@0.4.19':
     resolution: {integrity: sha512-AW7/m2AuweAoSXmESrYQr/KBafueScNbn2iNO0u6xFr2JZdPmYsSm5yvAXYk6yDLv+eDmSSKrf7JnFZ0CsJIdA==}
     engines: {node: '>=16.0.0'}
@@ -2297,6 +2301,10 @@ packages:
   '@whatwg-node/node-fetch@0.5.16':
     resolution: {integrity: sha512-BmwxxGZTI8IDSiocYyb2sWMlHpa4Jq2NZ4BOuvmODgL2pqjgcFfLBuEnpX2xLscQHmmTnk+gKh0EShfRAGn3Pw==}
     engines: {node: '>=16.0.0'}
+
+  '@whatwg-node/node-fetch@0.5.23':
+    resolution: {integrity: sha512-t+FYRiw+UYi1mfcFzGnFCqS0c5RPZs9zmnq4sIu9DJvEp/IYjwutajz91Tn+YntZP1uYq0a3sNBmXoJ5f1pXoQ==}
+    engines: {node: '>=18.0.0'}
 
   '@whatwg-node/server@0.9.46':
     resolution: {integrity: sha512-vUKCMPP6f2BLtOxnK2c98QmK0rb24RlmXb2enbEg8nXttQLvlKfMOfaY7uNAtaMXejjR2ku/ww9EEeiWXV3Q9A==}
@@ -8265,7 +8273,7 @@ snapshots:
     dependencies:
       '@graphql-tools/utils': 10.2.1(graphql@16.9.0)
       '@repeaterjs/repeater': 3.0.4
-      '@whatwg-node/fetch': 0.9.19
+      '@whatwg-node/fetch': 0.9.21
       extract-files: 11.0.0
       graphql: 16.9.0
       meros: 1.2.1(@types/node@20.14.15)
@@ -9859,6 +9867,11 @@ snapshots:
       '@whatwg-node/node-fetch': 0.5.16
       urlpattern-polyfill: 10.0.0
 
+  '@whatwg-node/fetch@0.9.21':
+    dependencies:
+      '@whatwg-node/node-fetch': 0.5.23
+      urlpattern-polyfill: 10.0.0
+
   '@whatwg-node/node-fetch@0.4.19':
     dependencies:
       '@whatwg-node/events': 0.1.1
@@ -9875,9 +9888,16 @@ snapshots:
       fast-querystring: 1.1.1
       tslib: 2.6.3
 
+  '@whatwg-node/node-fetch@0.5.23':
+    dependencies:
+      '@kamilkisiela/fast-url-parser': 1.1.4
+      busboy: 1.6.0
+      fast-querystring: 1.1.1
+      tslib: 2.6.3
+
   '@whatwg-node/server@0.9.46':
     dependencies:
-      '@whatwg-node/fetch': 0.9.19
+      '@whatwg-node/fetch': 0.9.21
       tslib: 2.6.3
 
   '@xtuc/ieee754@1.2.0': {}
