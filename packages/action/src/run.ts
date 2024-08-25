@@ -10,7 +10,7 @@ import { CheckConclusion } from '../helpers/types.js';
 import { createSummary } from '../helpers/utils.js';
 import { updateCheckRun } from './checks.js';
 import { fileLoader } from './files.js';
-import { getAssociatedPullRequest, getCurrentCommitSha } from './git.js';
+import { getCurrentCommitSha } from './git.js';
 import { castToBoolean, getInputAsArray, resolveRule } from './utils.js';
 
 const CHECK_NAME = 'GraphQL Inspector';
@@ -47,8 +47,8 @@ export async function run() {
   // repo
   const { owner, repo } = github.context.repo;
 
-  // pull request
-  const pullRequest = await getAssociatedPullRequest(octokit, commitSha);
+  const pullRequest = github.context.payload.pull_request
+  // const pullRequest = await getAssociatedPullRequest(octokit, commitSha);
 
   core.info(`Creating a check named "${checkName}"`);
 
