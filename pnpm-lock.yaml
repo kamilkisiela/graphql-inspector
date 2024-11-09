@@ -18,8 +18,8 @@ importers:
         specifier: 7.114.0
         version: 7.114.0
       '@whatwg-node/fetch':
-        specifier: 0.9.19
-        version: 0.9.19
+        specifier: 0.10.1
+        version: 0.10.1
       husky:
         specifier: 9.0.11
         version: 9.0.11
@@ -2282,6 +2282,10 @@ packages:
     resolution: {integrity: sha512-AyQEn5hIPV7Ze+xFoXVU3QTHXVbWPrzaOkxtENMPMuNL6VVHrp4hHfDt9nrQpjO7BgvuM95dMtkycX5M/DZR3w==}
     engines: {node: '>=16.0.0'}
 
+  '@whatwg-node/fetch@0.10.1':
+    resolution: {integrity: sha512-gmPOLrsjSZWEZlr9Oe5+wWFBq3CG6fN13rGlM91Jsj/vZ95G9CCvrORGBAxMXy0AJGiC83aYiHXn3JzTzXQmbA==}
+    engines: {node: '>=18.0.0'}
+
   '@whatwg-node/fetch@0.9.13':
     resolution: {integrity: sha512-PPtMwhjtS96XROnSpowCQM85gCUG2m7AXZFw0PZlGbhzx2GK7f2iOXilfgIJ0uSlCuuGbOIzfouISkA7C4FJOw==}
     engines: {node: '>=16.0.0'}
@@ -2297,6 +2301,10 @@ packages:
   '@whatwg-node/node-fetch@0.5.16':
     resolution: {integrity: sha512-BmwxxGZTI8IDSiocYyb2sWMlHpa4Jq2NZ4BOuvmODgL2pqjgcFfLBuEnpX2xLscQHmmTnk+gKh0EShfRAGn3Pw==}
     engines: {node: '>=16.0.0'}
+
+  '@whatwg-node/node-fetch@0.7.1':
+    resolution: {integrity: sha512-+IVKtQhHnaOS39ErbdeQUh+pVKqCJxO0OokBxCo7SNtTHOZB2Tb+YN+YWwp4WizXwTWy85tsEv1AAprugpxNmg==}
+    engines: {node: '>=18.0.0'}
 
   '@whatwg-node/server@0.9.46':
     resolution: {integrity: sha512-vUKCMPP6f2BLtOxnK2c98QmK0rb24RlmXb2enbEg8nXttQLvlKfMOfaY7uNAtaMXejjR2ku/ww9EEeiWXV3Q9A==}
@@ -2327,6 +2335,7 @@ packages:
 
   acorn-import-assertions@1.9.0:
     resolution: {integrity: sha512-cmMwop9x+8KFhxvKrKfPYmN6/pKTYYHBqLa0DfvVZcKMJWNyWLnaqND7dx/qn66R7ewM1UX5XMaDVP5wlVTaVA==}
+    deprecated: package has been renamed to acorn-import-attributes
     peerDependencies:
       acorn: ^8
 
@@ -2788,7 +2797,6 @@ packages:
 
   chokidar@2.1.8:
     resolution: {integrity: sha512-ZmZUazfOzf0Nve7duiCKD23PFSCs4JPoYyccjUFF3aQkQadqBhfzhjkwBH2mNOG9cTBwhamM37EIsIkZw3nRgg==}
-    deprecated: Chokidar 2 does not receive security updates since 2019. Upgrade to chokidar 3 with 15x fewer dependencies
 
   chokidar@3.5.3:
     resolution: {integrity: sha512-Dr3sfKRP6oTcjf2JmUmFJfeVMvXBdegxB0iVQ5eb2V10uFJUCAS8OByZdVAyVb8xXNz3GjjTgj9kLWsZTqE6kw==}
@@ -3697,6 +3705,7 @@ packages:
   eslint@8.57.0:
     resolution: {integrity: sha512-dZ6+mexnaTIbSBZWgou51U6OmzIhYM2VcNdtiTtI7qPNZm35Akpr0f6vtw3w1Kmn5PYo+tZVfh13WrhpS6oLqQ==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    deprecated: This version is no longer supported. Please see https://eslint.org/version-support for other options.
     hasBin: true
 
   esm@3.2.25:
@@ -4006,7 +4015,7 @@ packages:
     resolution: {integrity: sha512-oWb1Z6mkHIskLzEJ/XWX0srkpkTQ7vaopMQkyaEIoq0fmtFVxOthb8cCxeT+p3ynTdkk/RZwbgG4brR5BeWECw==}
     engines: {node: '>= 4.0'}
     os: [darwin]
-    deprecated: The v1 package contains DANGEROUS / INSECURE binaries. Upgrade to safe fsevents v2
+    deprecated: Upgrade to fsevents v2 to mitigate potential security issues
 
   fsevents@2.3.2:
     resolution: {integrity: sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==}
@@ -9849,6 +9858,11 @@ snapshots:
 
   '@whatwg-node/events@0.1.1': {}
 
+  '@whatwg-node/fetch@0.10.1':
+    dependencies:
+      '@whatwg-node/node-fetch': 0.7.1
+      urlpattern-polyfill: 10.0.0
+
   '@whatwg-node/fetch@0.9.13':
     dependencies:
       '@whatwg-node/node-fetch': 0.4.19
@@ -9871,6 +9885,13 @@ snapshots:
     dependencies:
       '@kamilkisiela/fast-url-parser': 1.1.4
       '@whatwg-node/events': 0.1.1
+      busboy: 1.6.0
+      fast-querystring: 1.1.1
+      tslib: 2.6.3
+
+  '@whatwg-node/node-fetch@0.7.1':
+    dependencies:
+      '@kamilkisiela/fast-url-parser': 1.1.4
       busboy: 1.6.0
       fast-querystring: 1.1.1
       tslib: 2.6.3
