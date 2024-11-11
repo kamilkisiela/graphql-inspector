@@ -59,6 +59,9 @@
   "dependencies": {
     "tslib": "2.6.2"
   },
+  "devDependencies": {
+    "graphql": "16.9.0"
+  },
   "publishConfig": {
     "directory": "dist",
     "access": "public"
