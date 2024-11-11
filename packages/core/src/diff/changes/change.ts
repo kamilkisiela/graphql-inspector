@@ -823,7 +823,6 @@ export type DirectiveUsageArgumentDefinitionAddedChange = {
   };
 };
 
-
 type Changes = {
   [ChangeType.TypeAdded]: TypeAddedChange;
   [ChangeType.TypeRemoved]: TypeRemovedChange;
@@ -922,6 +921,5 @@ type Changes = {
   [ChangeType.DirectiveUsageInputFieldDefinitionAdded]: DirectiveUsageInputFieldDefinitionAddedChange;
   [ChangeType.DirectiveUsageInputFieldDefinitionRemoved]: DirectiveUsageInputFieldDefinitionRemovedChange;
 };
-
 
 export type SerializableChange = Changes[keyof Changes];
