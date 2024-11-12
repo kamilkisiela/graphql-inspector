@@ -41,7 +41,10 @@ import {
   DirectiveUsageUnionMemberRemovedChange,
 } from './change.js';
 
-function addedSpecialDirective(directiveName: string, forceReturn: CriticalityLevel) {
+function addedSpecialDirective(
+  directiveName: string,
+  forceReturn: CriticalityLevel,
+): CriticalityLevel {
   if (directiveName === 'deprecated') {
     return CriticalityLevel.NonBreaking;
   }
@@ -51,7 +54,10 @@ function addedSpecialDirective(directiveName: string, forceReturn: CriticalityLe
   return forceReturn;
 }
 
-function removedSpecialDirective(directiveName: string, forceReturn: CriticalityLevel) {
+function removedSpecialDirective(
+  directiveName: string,
+  forceReturn: CriticalityLevel,
+): CriticalityLevel {
   if (directiveName === 'deprecated') {
     return CriticalityLevel.NonBreaking;
   }
@@ -251,7 +257,6 @@ export function directiveUsageInterfaceRemovedFromMeta(args: DirectiveUsageInter
   } as const;
 }
 
-// ChangeType.DirectiveUsageInputFieldDefinitionAdded
 function buildDirectiveUsageInputFieldDefinitionAddedMessage(
   args: DirectiveUsageInputFieldDefinitionAddedChange['meta'],
 ): string {
@@ -275,7 +280,6 @@ export function directiveUsageInputFieldDefinitionAddedFromMeta(
   } as const;
 }
 
-// ChangeType.DirectiveUsageInputFieldDefinitionRemoved
 function buildDirectiveUsageInputFieldDefinitionRemovedMessage(
   args: DirectiveUsageInputFieldDefinitionRemovedChange['meta'],
 ): string {
@@ -339,7 +343,6 @@ export function directiveUsageObjectRemovedFromMeta(args: DirectiveUsageObjectRe
   } as const;
 }
 
-// ChangeType.DirectiveUsageEnumAdded
 function buildDirectiveUsageEnumAddedMessage(args: DirectiveUsageEnumAddedChange['meta']): string {
   return `Directive '${args.addedDirectiveName}' was added to enum '${args.enumName}'`;
 }
@@ -357,7 +360,6 @@ export function directiveUsageEnumAddedFromMeta(args: DirectiveUsageEnumAddedCha
   } as const;
 }
 
-// ChangeType.DirectiveUsageEnumRemoved
 function buildDirectiveUsageEnumRemovedMessage(
   args: DirectiveUsageEnumRemovedChange['meta'],
 ): string {
@@ -377,11 +379,10 @@ export function directiveUsageEnumRemovedFromMeta(args: DirectiveUsageEnumRemove
   } as const;
 }
 
-// ChangeType.DirectiveUsageFieldDefinitionAdded
 function buildDirectiveUsageFieldDefinitionAddedMessage(
   args: DirectiveUsageFieldDefinitionAddedChange['meta'],
 ): string {
-  return `Directive '${args.addedDirectiveName}' was added to field '${args.fieldName}' in type '${args.typeName}'`;
+  return `Directive '${args.addedDirectiveName}' was added to field '${args.typeName}.${args.fieldName}'`;
 }
 
 export function directiveUsageFieldDefinitionAddedFromMeta(
@@ -399,11 +400,10 @@ export function directiveUsageFieldDefinitionAddedFromMeta(
   } as const;
 }
 
-// ChangeType.DirectiveUsageFieldDefinitionRemoved
 function buildDirectiveUsageFieldDefinitionRemovedMessage(
   args: DirectiveUsageFieldDefinitionRemovedChange['meta'],
 ): string {
-  return `Directive '${args.removedDirectiveName}' was removed from field '${args.fieldName}' in type '${args.typeName}'`;
+  return `Directive '${args.removedDirectiveName}' was removed from field '${args.typeName}.${args.fieldName}'`;
 }
 
 export function directiveUsageFieldDefinitionRemovedFromMeta(
@@ -421,57 +421,6 @@ export function directiveUsageFieldDefinitionRemovedFromMeta(
   } as const;
 }
 
-// ChangeType.DirectiveUsageUnionMemberAdded
-function buildDirectiveUsageUnionMemberAddedMessage(
-  args: DirectiveUsageUnionMemberAddedChange['meta'],
-): string {
-  return `Directive '${args.addedDirectiveName}' was added to union member '${args.addedUnionMemberTypeName}' in union '${args.unionName}'`;
-}
-
-export function directiveUsageUnionMemberAddedFromMeta(args: DirectiveUsageUnionMemberAddedChange) {
-  return {
-    criticality: {
-      level: addedSpecialDirective(args.meta.addedDirectiveName, CriticalityLevel.Dangerous),
-      reason: `Directive '${args.meta.addedDirectiveName}' was added to union member '${args.meta.addedUnionMemberTypeName}'`,
-    },
-    type: ChangeType.DirectiveUsageUnionMemberAdded,
-    message: buildDirectiveUsageUnionMemberAddedMessage(args.meta),
-    path: [
-      args.meta.unionName,
-      args.meta.addedUnionMemberTypeName,
-      args.meta.addedDirectiveName,
-    ].join('.'),
-    meta: args.meta,
-  } as const;
-}
-
-// ChangeType.DirectiveUsageUnionMemberRemoved
-function buildDirectiveUsageUnionMemberRemovedMessage(
-  args: DirectiveUsageUnionMemberRemovedChange['meta'],
-): string {
-  return `Directive '${args.removedDirectiveName}' was removed from union member '${args.removedUnionMemberTypeName}' in union '${args.unionName}'`;
-}
-
-export function directiveUsageUnionMemberRemovedFromMeta(
-  args: DirectiveUsageUnionMemberRemovedChange,
-) {
-  return {
-    criticality: {
-      level: removedSpecialDirective(args.meta.removedDirectiveName, CriticalityLevel.Dangerous),
-      reason: `Directive '${args.meta.removedDirectiveName}' was removed from union member '${args.meta.removedUnionMemberTypeName}'`,
-    },
-    type: ChangeType.DirectiveUsageUnionMemberRemoved,
-    message: buildDirectiveUsageUnionMemberRemovedMessage(args.meta),
-    path: [
-      args.meta.unionName,
-      args.meta.removedUnionMemberTypeName,
-      args.meta.removedDirectiveName,
-    ].join('.'),
-    meta: args.meta,
-  } as const;
-}
-
-// ChangeType.DirectiveUsageEnumValueAdded
 function buildDirectiveUsageEnumValueAddedMessage(
   args: DirectiveUsageEnumValueAddedChange['meta'],
 ): string {
@@ -491,7 +440,6 @@ export function directiveUsageEnumValueAddedFromMeta(args: DirectiveUsageEnumVal
   } as const;
 }
 
-// ChangeType.DirectiveUsageEnumValueRemoved
 function buildDirectiveUsageEnumValueRemovedMessage(
   args: DirectiveUsageEnumValueRemovedChange['meta'],
 ): string {
@@ -511,7 +459,6 @@ export function directiveUsageEnumValueRemovedFromMeta(args: DirectiveUsageEnumV
   } as const;
 }
 
-// ChangeType.DirectiveUsageSchemaAdded
 function buildDirectiveUsageSchemaAddedMessage(
   args: DirectiveUsageSchemaAddedChange['meta'],
 ): string {
@@ -531,7 +478,6 @@ export function directiveUsageSchemaAddedFromMeta(args: DirectiveUsageSchemaAdde
   } as const;
 }
 
-// ChangeType.DirectiveUsageSchemaRemoved
 function buildDirectiveUsageSchemaRemovedMessage(
   args: DirectiveUsageSchemaRemovedChange['meta'],
 ): string {
@@ -551,7 +497,6 @@ export function directiveUsageSchemaRemovedFromMeta(args: DirectiveUsageSchemaRe
   } as const;
 }
 
-// ChangeType.DirectiveUsageScalarAdded
 function buildDirectiveUsageScalarAddedMessage(
   args: DirectiveUsageScalarAddedChange['meta'],
 ): string {
@@ -571,7 +516,6 @@ export function directiveUsageScalarAddedFromMeta(args: DirectiveUsageScalarAdde
   } as const;
 }
 
-// ChangeType.DirectiveUsageScalarRemoved
 function buildDirectiveUsageScalarRemovedMessage(
   args: DirectiveUsageScalarRemovedChange['meta'],
 ): string {
@@ -587,6 +531,46 @@ export function directiveUsageScalarRemovedFromMeta(args: DirectiveUsageScalarRe
     type: ChangeType.DirectiveUsageScalarRemoved,
     message: buildDirectiveUsageScalarRemovedMessage(args.meta),
     path: [args.meta.scalarName, args.meta.removedDirectiveName].join('.'),
+    meta: args.meta,
+  } as const;
+}
+
+function buildDirectiveUsageUnionMemberAddedMessage(
+  args: DirectiveUsageUnionMemberAddedChange['meta'],
+): string {
+  return `Directive '${args.addedDirectiveName}' was added to union member '${args.unionName}'`;
+}
+
+export function directiveUsageUnionMemberAddedFromMeta(args: DirectiveUsageUnionMemberAddedChange) {
+  return {
+    criticality: {
+      level: addedSpecialDirective(args.meta.addedDirectiveName, CriticalityLevel.Dangerous),
+      reason: `Directive '${args.meta.addedDirectiveName}' was added to union member '${args.meta.unionName}.${args.meta.addedUnionMemberTypeName}'`,
+    },
+    type: ChangeType.DirectiveUsageUnionMemberAdded,
+    message: buildDirectiveUsageUnionMemberAddedMessage(args.meta),
+    path: [args.meta.unionName, args.meta.addedDirectiveName].join('.'),
+    meta: args.meta,
+  } as const;
+}
+
+function buildDirectiveUsageUnionMemberRemovedMessage(
+  args: DirectiveUsageUnionMemberRemovedChange['meta'],
+): string {
+  return `Directive '${args.removedDirectiveName}' was removed from union member '${args.unionName}'`;
+}
+
+export function directiveUsageUnionMemberRemovedFromMeta(
+  args: DirectiveUsageUnionMemberRemovedChange,
+) {
+  return {
+    criticality: {
+      level: removedSpecialDirective(args.meta.removedDirectiveName, CriticalityLevel.Dangerous),
+      reason: `Directive '${args.meta.removedDirectiveName}' was removed from union member '${args.meta.unionName}.${args.meta.removedUnionMemberTypeName}'`,
+    },
+    type: ChangeType.DirectiveUsageUnionMemberRemoved,
+    message: buildDirectiveUsageUnionMemberRemovedMessage(args.meta),
+    path: [args.meta.unionName, args.meta.removedDirectiveName].join('.'),
     meta: args.meta,
   } as const;
 }
@@ -622,7 +606,7 @@ export function directiveUsageAdded<K extends keyof KindToPayload>(
       type: ChangeType.DirectiveUsageInputObjectAdded,
       meta: {
         addedDirectiveName: directive.name.value,
-        addedInputFieldName: payload.getFields()[0].name,
+        addedInputFieldName: directive.name.value,
         addedInputFieldType: payload.name,
         inputObjectName: payload.name,
         isAddedInputFieldTypeNullable: kind === Kind.INPUT_VALUE_DEFINITION,
@@ -739,7 +723,7 @@ export function directiveUsageRemoved<K extends keyof KindToPayload>(
       type: ChangeType.DirectiveUsageInputObjectRemoved,
       meta: {
         removedDirectiveName: directive.name.value,
-        removedInputFieldName: payload.getFields()[0].name,
+        removedInputFieldName: directive.name.value,
         removedInputFieldType: payload.name,
         inputObjectName: payload.name,
         isRemovedInputFieldTypeNullable: kind === Kind.INPUT_VALUE_DEFINITION,
