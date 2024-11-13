@@ -1,5 +1,13 @@
 # @graphql-inspector/similar-command
 
+## 5.0.7
+
+### Patch Changes
+
+- Updated dependencies
+  [[`60d674d`](https://github.com/kamilkisiela/graphql-inspector/commit/60d674d1a72ed61cfc5ffbd44d46f87e54ddb858)]:
+  - @graphql-inspector/core@6.2.0
+
 ## 5.0.6
 
 ### Patch Changes
