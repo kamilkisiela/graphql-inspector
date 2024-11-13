@@ -1,5 +1,14 @@
 # @graphql-inspector/core
 
+## 6.2.0
+
+### Minor Changes
+
+- [#2827](https://github.com/kamilkisiela/graphql-inspector/pull/2827)
+  [`60d674d`](https://github.com/kamilkisiela/graphql-inspector/commit/60d674d1a72ed61cfc5ffbd44d46f87e54ddb858)
+  Thanks [@TuvalSimha](https://github.com/TuvalSimha)! - Added missing types to Change type and fix
+  typo "DirectiveUsageInputObjectdRemovedChange" to "DirectiveUsageInputObjectRemovedChange"
+
 ## 6.1.0
 
 ### Minor Changes
