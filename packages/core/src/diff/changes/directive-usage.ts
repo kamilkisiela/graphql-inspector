@@ -25,8 +25,10 @@ import {
   DirectiveUsageEnumValueRemovedChange,
   DirectiveUsageFieldDefinitionAddedChange,
   DirectiveUsageFieldDefinitionRemovedChange,
+  DirectiveUsageInputFieldDefinitionAddedChange,
+  DirectiveUsageInputFieldDefinitionRemovedChange,
   DirectiveUsageInputObjectAddedChange,
-  DirectiveUsageInputObjectdRemovedChange,
+  DirectiveUsageInputObjectRemovedChange,
   DirectiveUsageInterfaceAddedChange,
   DirectiveUsageInterfaceRemovedChange,
   DirectiveUsageObjectAddedChange,
@@ -39,7 +41,10 @@ import {
   DirectiveUsageUnionMemberRemovedChange,
 } from './change.js';
 
-function addedSpecialDirective(directiveName: string, forceReturn: CriticalityLevel) {
+function addedSpecialDirective(
+  directiveName: string,
+  forceReturn: CriticalityLevel,
+): CriticalityLevel {
   if (directiveName === 'deprecated') {
     return CriticalityLevel.NonBreaking;
   }
@@ -49,7 +54,10 @@ function addedSpecialDirective(directiveName: string, forceReturn: CriticalityLe
   return forceReturn;
 }
 
-function removedSpecialDirective(directiveName: string, forceReturn: CriticalityLevel) {
+function removedSpecialDirective(
+  directiveName: string,
+  forceReturn: CriticalityLevel,
+): CriticalityLevel {
   if (directiveName === 'deprecated') {
     return CriticalityLevel.NonBreaking;
   }
@@ -100,7 +108,7 @@ type KindToPayload = {
   };
   [Kind.INPUT_OBJECT_TYPE_DEFINITION]: {
     input: GraphQLInputObjectType;
-    change: DirectiveUsageInputObjectAddedChange | DirectiveUsageInputObjectdRemovedChange;
+    change: DirectiveUsageInputObjectAddedChange | DirectiveUsageInputObjectRemovedChange;
   };
   [Kind.INPUT_VALUE_DEFINITION]: {
     input: {
@@ -119,187 +127,566 @@ type KindToPayload = {
   };
 };
 
+function buildDirectiveUsageArgumentDefinitionAddedMessage(
+  args: DirectiveUsageArgumentDefinitionChange['meta'],
+): string {
+  return `Directive '${args.addedDirectiveName}' was added to argument '${args.argumentName}' of field '${args.fieldName}' in type '${args.typeName}'`;
+}
+
+export function directiveUsageArgumentDefinitionAddedFromMeta(
+  args: DirectiveUsageArgumentDefinitionChange,
+) {
+  return {
+    criticality: {
+      level: addedSpecialDirective(args.meta.addedDirectiveName, CriticalityLevel.Dangerous),
+      reason: `Directive '${args.meta.addedDirectiveName}' was added to argument '${args.meta.argumentName}'`,
+    },
+    type: ChangeType.DirectiveUsageArgumentDefinitionAdded,
+    message: buildDirectiveUsageArgumentDefinitionAddedMessage(args.meta),
+    path: [
+      args.meta.typeName,
+      args.meta.fieldName,
+      args.meta.argumentName,
+      args.meta.addedDirectiveName,
+    ].join('.'),
+    meta: args.meta,
+  } as const;
+}
+
+function buildDirectiveUsageArgumentDefinitionRemovedMessage(
+  args: DirectiveUsageArgumentDefinitionRemovedChange['meta'],
+): string {
+  return `Directive '${args.removedDirectiveName}' was removed from argument '${args.argumentName}' of field '${args.fieldName}' in type '${args.typeName}'`;
+}
+
+export function directiveUsageArgumentDefinitionRemovedFromMeta(
+  args: DirectiveUsageArgumentDefinitionRemovedChange,
+) {
+  return {
+    criticality: {
+      level: removedSpecialDirective(args.meta.removedDirectiveName, CriticalityLevel.Dangerous),
+      reason: `Directive '${args.meta.removedDirectiveName}' was removed from argument '${args.meta.argumentName}'`,
+    },
+    type: ChangeType.DirectiveUsageArgumentDefinitionRemoved,
+    message: buildDirectiveUsageArgumentDefinitionRemovedMessage(args.meta),
+    path: [
+      args.meta.typeName,
+      args.meta.fieldName,
+      args.meta.argumentName,
+      args.meta.removedDirectiveName,
+    ].join('.'),
+    meta: args.meta,
+  } as const;
+}
+
+function buildDirectiveUsageInputObjectAddedMessage(
+  args: DirectiveUsageInputObjectAddedChange['meta'],
+): string {
+  return `Directive '${args.addedDirectiveName}' was added to input object '${args.inputObjectName}'`;
+}
+
+export function directiveUsageInputObjectAddedFromMeta(args: DirectiveUsageInputObjectAddedChange) {
+  return {
+    criticality: {
+      level: addedSpecialDirective(args.meta.addedDirectiveName, CriticalityLevel.Dangerous),
+      reason: `Directive '${args.meta.addedDirectiveName}' was added to input object '${args.meta.inputObjectName}'`,
+    },
+    type: ChangeType.DirectiveUsageInputObjectAdded,
+    message: buildDirectiveUsageInputObjectAddedMessage(args.meta),
+    path: [args.meta.inputObjectName, args.meta.addedDirectiveName].join('.'),
+    meta: args.meta,
+  } as const;
+}
+
+function buildDirectiveUsageInputObjectRemovedMessage(
+  args: DirectiveUsageInputObjectRemovedChange['meta'],
+): string {
+  return `Directive '${args.removedDirectiveName}' was removed from input object '${args.inputObjectName}'`;
+}
+
+export function directiveUsageInputObjectRemovedFromMeta(
+  args: DirectiveUsageInputObjectRemovedChange,
+) {
+  return {
+    criticality: {
+      level: removedSpecialDirective(args.meta.removedDirectiveName, CriticalityLevel.Dangerous),
+      reason: `Directive '${args.meta.removedDirectiveName}' was removed from input object '${args.meta.inputObjectName}'`,
+    },
+    type: ChangeType.DirectiveUsageInputObjectRemoved,
+    message: buildDirectiveUsageInputObjectRemovedMessage(args.meta),
+    path: [args.meta.inputObjectName, args.meta.removedDirectiveName].join('.'),
+    meta: args.meta,
+  } as const;
+}
+
+function buildDirectiveUsageInterfaceAddedMessage(
+  args: DirectiveUsageInterfaceAddedChange['meta'],
+): string {
+  return `Directive '${args.addedDirectiveName}' was added to interface '${args.interfaceName}'`;
+}
+
+export function directiveUsageInterfaceAddedFromMeta(args: DirectiveUsageInterfaceAddedChange) {
+  return {
+    criticality: {
+      level: addedSpecialDirective(args.meta.addedDirectiveName, CriticalityLevel.Dangerous),
+      reason: `Directive '${args.meta.addedDirectiveName}' was added to interface '${args.meta.interfaceName}'`,
+    },
+    type: ChangeType.DirectiveUsageInterfaceAdded,
+    message: buildDirectiveUsageInterfaceAddedMessage(args.meta),
+    path: [args.meta.interfaceName, args.meta.addedDirectiveName].join('.'),
+    meta: args.meta,
+  } as const;
+}
+
+function buildDirectiveUsageInterfaceRemovedMessage(
+  args: DirectiveUsageInterfaceRemovedChange['meta'],
+): string {
+  return `Directive '${args.removedDirectiveName}' was removed from interface '${args.interfaceName}'`;
+}
+
+export function directiveUsageInterfaceRemovedFromMeta(args: DirectiveUsageInterfaceRemovedChange) {
+  return {
+    criticality: {
+      level: removedSpecialDirective(args.meta.removedDirectiveName, CriticalityLevel.Breaking),
+      reason: `Directive '${args.meta.removedDirectiveName}' was removed from interface '${args.meta.interfaceName}'`,
+    },
+    type: ChangeType.DirectiveUsageInterfaceRemoved,
+    message: buildDirectiveUsageInterfaceRemovedMessage(args.meta),
+    path: [args.meta.interfaceName, args.meta.removedDirectiveName].join('.'),
+    meta: args.meta,
+  } as const;
+}
+
+function buildDirectiveUsageInputFieldDefinitionAddedMessage(
+  args: DirectiveUsageInputFieldDefinitionAddedChange['meta'],
+): string {
+  return `Directive '${args.addedDirectiveName}' was added to input field '${args.inputFieldName}' in input object '${args.inputObjectName}'`;
+}
+
+export function directiveUsageInputFieldDefinitionAddedFromMeta(
+  args: DirectiveUsageInputFieldDefinitionAddedChange,
+) {
+  return {
+    criticality: {
+      level: addedSpecialDirective(args.meta.addedDirectiveName, CriticalityLevel.Dangerous),
+      reason: `Directive '${args.meta.addedDirectiveName}' was added to input field '${args.meta.inputFieldName}'`,
+    },
+    type: ChangeType.DirectiveUsageInputFieldDefinitionAdded,
+    message: buildDirectiveUsageInputFieldDefinitionAddedMessage(args.meta),
+    path: [args.meta.inputObjectName, args.meta.inputFieldName, args.meta.addedDirectiveName].join(
+      '.',
+    ),
+    meta: args.meta,
+  } as const;
+}
+
+function buildDirectiveUsageInputFieldDefinitionRemovedMessage(
+  args: DirectiveUsageInputFieldDefinitionRemovedChange['meta'],
+): string {
+  return `Directive '${args.removedDirectiveName}' was removed from input field '${args.inputFieldName}' in input object '${args.inputObjectName}'`;
+}
+
+export function directiveUsageInputFieldDefinitionRemovedFromMeta(
+  args: DirectiveUsageInputFieldDefinitionRemovedChange,
+) {
+  return {
+    criticality: {
+      level: removedSpecialDirective(args.meta.removedDirectiveName, CriticalityLevel.Dangerous),
+      reason: `Directive '${args.meta.removedDirectiveName}' was removed from input field '${args.meta.inputFieldName}'`,
+    },
+    type: ChangeType.DirectiveUsageInputFieldDefinitionRemoved,
+    message: buildDirectiveUsageInputFieldDefinitionRemovedMessage(args.meta),
+    path: [
+      args.meta.inputObjectName,
+      args.meta.inputFieldName,
+      args.meta.removedDirectiveName,
+    ].join('.'),
+    meta: args.meta,
+  } as const;
+}
+
+function buildDirectiveUsageObjectAddedMessage(
+  args: DirectiveUsageObjectAddedChange['meta'],
+): string {
+  return `Directive '${args.addedDirectiveName}' was added to object '${args.objectName}'`;
+}
+
+export function directiveUsageObjectAddedFromMeta(args: DirectiveUsageObjectAddedChange) {
+  return {
+    criticality: {
+      level: addedSpecialDirective(args.meta.addedDirectiveName, CriticalityLevel.Dangerous),
+      reason: `Directive '${args.meta.addedDirectiveName}' was added to object '${args.meta.objectName}'`,
+    },
+    type: ChangeType.DirectiveUsageObjectAdded,
+    message: buildDirectiveUsageObjectAddedMessage(args.meta),
+    path: [args.meta.objectName, args.meta.addedDirectiveName].join('.'),
+    meta: args.meta,
+  } as const;
+}
+
+function buildDirectiveUsageObjectRemovedMessage(
+  args: DirectiveUsageObjectRemovedChange['meta'],
+): string {
+  return `Directive '${args.removedDirectiveName}' was removed from object '${args.objectName}'`;
+}
+
+export function directiveUsageObjectRemovedFromMeta(args: DirectiveUsageObjectRemovedChange) {
+  return {
+    criticality: {
+      level: removedSpecialDirective(args.meta.removedDirectiveName, CriticalityLevel.Dangerous),
+      reason: `Directive '${args.meta.removedDirectiveName}' was removed from object '${args.meta.objectName}'`,
+    },
+    type: ChangeType.DirectiveUsageObjectRemoved,
+    message: buildDirectiveUsageObjectRemovedMessage(args.meta),
+    path: [args.meta.objectName, args.meta.removedDirectiveName].join('.'),
+    meta: args.meta,
+  } as const;
+}
+
+function buildDirectiveUsageEnumAddedMessage(args: DirectiveUsageEnumAddedChange['meta']): string {
+  return `Directive '${args.addedDirectiveName}' was added to enum '${args.enumName}'`;
+}
+
+export function directiveUsageEnumAddedFromMeta(args: DirectiveUsageEnumAddedChange) {
+  return {
+    criticality: {
+      level: addedSpecialDirective(args.meta.addedDirectiveName, CriticalityLevel.Dangerous),
+      reason: `Directive '${args.meta.addedDirectiveName}' was added to enum '${args.meta.enumName}'`,
+    },
+    type: ChangeType.DirectiveUsageEnumAdded,
+    message: buildDirectiveUsageEnumAddedMessage(args.meta),
+    path: [args.meta.enumName, args.meta.addedDirectiveName].join('.'),
+    meta: args.meta,
+  } as const;
+}
+
+function buildDirectiveUsageEnumRemovedMessage(
+  args: DirectiveUsageEnumRemovedChange['meta'],
+): string {
+  return `Directive '${args.removedDirectiveName}' was removed from enum '${args.enumName}'`;
+}
+
+export function directiveUsageEnumRemovedFromMeta(args: DirectiveUsageEnumRemovedChange) {
+  return {
+    criticality: {
+      level: removedSpecialDirective(args.meta.removedDirectiveName, CriticalityLevel.Dangerous),
+      reason: `Directive '${args.meta.removedDirectiveName}' was removed from enum '${args.meta.enumName}'`,
+    },
+    type: ChangeType.DirectiveUsageEnumRemoved,
+    message: buildDirectiveUsageEnumRemovedMessage(args.meta),
+    path: [args.meta.enumName, args.meta.removedDirectiveName].join('.'),
+    meta: args.meta,
+  } as const;
+}
+
+function buildDirectiveUsageFieldDefinitionAddedMessage(
+  args: DirectiveUsageFieldDefinitionAddedChange['meta'],
+): string {
+  return `Directive '${args.addedDirectiveName}' was added to field '${args.typeName}.${args.fieldName}'`;
+}
+
+export function directiveUsageFieldDefinitionAddedFromMeta(
+  args: DirectiveUsageFieldDefinitionAddedChange,
+) {
+  return {
+    criticality: {
+      level: addedSpecialDirective(args.meta.addedDirectiveName, CriticalityLevel.Dangerous),
+      reason: `Directive '${args.meta.addedDirectiveName}' was added to field '${args.meta.fieldName}'`,
+    },
+    type: ChangeType.DirectiveUsageFieldDefinitionAdded,
+    message: buildDirectiveUsageFieldDefinitionAddedMessage(args.meta),
+    path: [args.meta.typeName, args.meta.fieldName, args.meta.addedDirectiveName].join('.'),
+    meta: args.meta,
+  } as const;
+}
+
+function buildDirectiveUsageFieldDefinitionRemovedMessage(
+  args: DirectiveUsageFieldDefinitionRemovedChange['meta'],
+): string {
+  return `Directive '${args.removedDirectiveName}' was removed from field '${args.typeName}.${args.fieldName}'`;
+}
+
+export function directiveUsageFieldDefinitionRemovedFromMeta(
+  args: DirectiveUsageFieldDefinitionRemovedChange,
+) {
+  return {
+    criticality: {
+      level: removedSpecialDirective(args.meta.removedDirectiveName, CriticalityLevel.Dangerous),
+      reason: `Directive '${args.meta.removedDirectiveName}' was removed from field '${args.meta.fieldName}'`,
+    },
+    type: ChangeType.DirectiveUsageFieldDefinitionRemoved,
+    message: buildDirectiveUsageFieldDefinitionRemovedMessage(args.meta),
+    path: [args.meta.typeName, args.meta.fieldName, args.meta.removedDirectiveName].join('.'),
+    meta: args.meta,
+  } as const;
+}
+
+function buildDirectiveUsageEnumValueAddedMessage(
+  args: DirectiveUsageEnumValueAddedChange['meta'],
+): string {
+  return `Directive '${args.addedDirectiveName}' was added to enum value '${args.enumName}.${args.enumValueName}'`;
+}
+
+export function directiveUsageEnumValueAddedFromMeta(args: DirectiveUsageEnumValueAddedChange) {
+  return {
+    criticality: {
+      level: addedSpecialDirective(args.meta.addedDirectiveName, CriticalityLevel.Dangerous),
+      reason: `Directive '${args.meta.addedDirectiveName}' was added to enum value '${args.meta.enumName}.${args.meta.enumValueName}'`,
+    },
+    type: ChangeType.DirectiveUsageEnumValueAdded,
+    message: buildDirectiveUsageEnumValueAddedMessage(args.meta),
+    path: [args.meta.enumName, args.meta.enumValueName, args.meta.addedDirectiveName].join('.'),
+    meta: args.meta,
+  } as const;
+}
+
+function buildDirectiveUsageEnumValueRemovedMessage(
+  args: DirectiveUsageEnumValueRemovedChange['meta'],
+): string {
+  return `Directive '${args.removedDirectiveName}' was removed from enum value '${args.enumName}.${args.enumValueName}'`;
+}
+
+export function directiveUsageEnumValueRemovedFromMeta(args: DirectiveUsageEnumValueRemovedChange) {
+  return {
+    criticality: {
+      level: removedSpecialDirective(args.meta.removedDirectiveName, CriticalityLevel.Dangerous),
+      reason: `Directive '${args.meta.removedDirectiveName}' was removed from enum value '${args.meta.enumName}.${args.meta.enumValueName}'`,
+    },
+    type: ChangeType.DirectiveUsageEnumValueRemoved,
+    message: buildDirectiveUsageEnumValueRemovedMessage(args.meta),
+    path: [args.meta.enumName, args.meta.enumValueName, args.meta.removedDirectiveName].join('.'),
+    meta: args.meta,
+  } as const;
+}
+
+function buildDirectiveUsageSchemaAddedMessage(
+  args: DirectiveUsageSchemaAddedChange['meta'],
+): string {
+  return `Directive '${args.addedDirectiveName}' was added to schema '${args.schemaTypeName}'`;
+}
+
+export function directiveUsageSchemaAddedFromMeta(args: DirectiveUsageSchemaAddedChange) {
+  return {
+    criticality: {
+      level: addedSpecialDirective(args.meta.addedDirectiveName, CriticalityLevel.Dangerous),
+      reason: `Directive '${args.meta.addedDirectiveName}' was added to schema '${args.meta.schemaTypeName}'`,
+    },
+    type: ChangeType.DirectiveUsageSchemaAdded,
+    message: buildDirectiveUsageSchemaAddedMessage(args.meta),
+    path: [args.meta.schemaTypeName, args.meta.addedDirectiveName].join('.'),
+    meta: args.meta,
+  } as const;
+}
+
+function buildDirectiveUsageSchemaRemovedMessage(
+  args: DirectiveUsageSchemaRemovedChange['meta'],
+): string {
+  return `Directive '${args.removedDirectiveName}' was removed from schema '${args.schemaTypeName}'`;
+}
+
+export function directiveUsageSchemaRemovedFromMeta(args: DirectiveUsageSchemaRemovedChange) {
+  return {
+    criticality: {
+      level: removedSpecialDirective(args.meta.removedDirectiveName, CriticalityLevel.Dangerous),
+      reason: `Directive '${args.meta.removedDirectiveName}' was removed from schema '${args.meta.schemaTypeName}'`,
+    },
+    type: ChangeType.DirectiveUsageSchemaRemoved,
+    message: buildDirectiveUsageSchemaRemovedMessage(args.meta),
+    path: [args.meta.schemaTypeName, args.meta.removedDirectiveName].join('.'),
+    meta: args.meta,
+  } as const;
+}
+
+function buildDirectiveUsageScalarAddedMessage(
+  args: DirectiveUsageScalarAddedChange['meta'],
+): string {
+  return `Directive '${args.addedDirectiveName}' was added to scalar '${args.scalarName}'`;
+}
+
+export function directiveUsageScalarAddedFromMeta(args: DirectiveUsageScalarAddedChange) {
+  return {
+    criticality: {
+      level: addedSpecialDirective(args.meta.addedDirectiveName, CriticalityLevel.Dangerous),
+      reason: `Directive '${args.meta.addedDirectiveName}' was added to scalar '${args.meta.scalarName}'`,
+    },
+    type: ChangeType.DirectiveUsageScalarAdded,
+    message: buildDirectiveUsageScalarAddedMessage(args.meta),
+    path: [args.meta.scalarName, args.meta.addedDirectiveName].join('.'),
+    meta: args.meta,
+  } as const;
+}
+
+function buildDirectiveUsageScalarRemovedMessage(
+  args: DirectiveUsageScalarRemovedChange['meta'],
+): string {
+  return `Directive '${args.removedDirectiveName}' was removed from scalar '${args.scalarName}'`;
+}
+
+export function directiveUsageScalarRemovedFromMeta(args: DirectiveUsageScalarRemovedChange) {
+  return {
+    criticality: {
+      level: removedSpecialDirective(args.meta.removedDirectiveName, CriticalityLevel.Breaking),
+      reason: `Directive '${args.meta.removedDirectiveName}' was removed from scalar '${args.meta.scalarName}'`,
+    },
+    type: ChangeType.DirectiveUsageScalarRemoved,
+    message: buildDirectiveUsageScalarRemovedMessage(args.meta),
+    path: [args.meta.scalarName, args.meta.removedDirectiveName].join('.'),
+    meta: args.meta,
+  } as const;
+}
+
+function buildDirectiveUsageUnionMemberAddedMessage(
+  args: DirectiveUsageUnionMemberAddedChange['meta'],
+): string {
+  return `Directive '${args.addedDirectiveName}' was added to union member '${args.unionName}'`;
+}
+
+export function directiveUsageUnionMemberAddedFromMeta(args: DirectiveUsageUnionMemberAddedChange) {
+  return {
+    criticality: {
+      level: addedSpecialDirective(args.meta.addedDirectiveName, CriticalityLevel.Dangerous),
+      reason: `Directive '${args.meta.addedDirectiveName}' was added to union member '${args.meta.unionName}.${args.meta.addedUnionMemberTypeName}'`,
+    },
+    type: ChangeType.DirectiveUsageUnionMemberAdded,
+    message: buildDirectiveUsageUnionMemberAddedMessage(args.meta),
+    path: [args.meta.unionName, args.meta.addedDirectiveName].join('.'),
+    meta: args.meta,
+  } as const;
+}
+
+function buildDirectiveUsageUnionMemberRemovedMessage(
+  args: DirectiveUsageUnionMemberRemovedChange['meta'],
+): string {
+  return `Directive '${args.removedDirectiveName}' was removed from union member '${args.unionName}'`;
+}
+
+export function directiveUsageUnionMemberRemovedFromMeta(
+  args: DirectiveUsageUnionMemberRemovedChange,
+) {
+  return {
+    criticality: {
+      level: removedSpecialDirective(args.meta.removedDirectiveName, CriticalityLevel.Dangerous),
+      reason: `Directive '${args.meta.removedDirectiveName}' was removed from union member '${args.meta.unionName}.${args.meta.removedUnionMemberTypeName}'`,
+    },
+    type: ChangeType.DirectiveUsageUnionMemberRemoved,
+    message: buildDirectiveUsageUnionMemberRemovedMessage(args.meta),
+    path: [args.meta.unionName, args.meta.removedDirectiveName].join('.'),
+    meta: args.meta,
+  } as const;
+}
+
 export function directiveUsageAdded<K extends keyof KindToPayload>(
   kind: K,
   directive: ConstDirectiveNode,
   payload: KindToPayload[K]['input'],
 ): Change {
   if (isOfKind(kind, Kind.ARGUMENT, payload)) {
-    return {
+    return directiveUsageArgumentDefinitionAddedFromMeta({
       type: ChangeType.DirectiveUsageArgumentDefinitionAdded,
-      criticality: {
-        level: addedSpecialDirective(directive.name.value, CriticalityLevel.Dangerous),
-        reason: `Directive '${directive.name.value}' was added to argument '${payload.argument.name}'`,
-      },
-      message: `Directive '${directive.name.value}' was added to argument '${payload.argument.name}'`,
       meta: {
-        argumentName: payload.argument.name,
         addedDirectiveName: directive.name.value,
+        argumentName: payload.argument.name,
         fieldName: payload.field.name,
         typeName: payload.type.name,
       },
-      path: [
-        payload.type.name,
-        payload.field.name,
-        payload.argument.name,
-        directive.name.value,
-      ].join('.'),
-    } as const;
+    });
   }
   if (isOfKind(kind, Kind.INPUT_VALUE_DEFINITION, payload)) {
-    return {
-      type: ChangeType.DirectiveUsageArgumentDefinitionAdded,
-      criticality: {
-        level: addedSpecialDirective(directive.name.value, CriticalityLevel.Dangerous),
-        reason: `Directive '${directive.name.value}' was added to argument '${payload.field.name}'`,
-      },
-      message: `Directive '${directive.name.value}' was added to argument '${payload.field.name}'`,
+    return directiveUsageInputFieldDefinitionAddedFromMeta({
+      type: ChangeType.DirectiveUsageInputFieldDefinitionAdded,
       meta: {
-        argumentName: payload.field.name,
         addedDirectiveName: directive.name.value,
-        fieldName: payload.type.name,
-        typeName: payload.type.name,
+        inputFieldName: payload.field.name,
+        inputObjectName: payload.type.name,
       },
-      path: [payload.type.name, payload.field.name, directive.name.value].join('.'),
-    } as const;
+    });
   }
   if (isOfKind(kind, Kind.INPUT_OBJECT_TYPE_DEFINITION, payload)) {
-    return {
+    return directiveUsageInputObjectAddedFromMeta({
       type: ChangeType.DirectiveUsageInputObjectAdded,
-      criticality: {
-        level: addedSpecialDirective(directive.name.value, CriticalityLevel.Dangerous),
-        reason: `Directive '${directive.name.value}' was added to input object '${payload.name}'`,
-      },
-      message: `Directive '${directive.name.value}' was added to input object '${payload.name}'`,
       meta: {
-        inputObjectName: payload.name,
         addedDirectiveName: directive.name.value,
+        addedInputFieldName: directive.name.value,
+        addedInputFieldType: payload.name,
+        inputObjectName: payload.name,
+        isAddedInputFieldTypeNullable: kind === Kind.INPUT_VALUE_DEFINITION,
       },
-      path: [payload.name, directive.name.value].join('.'),
-    } as const;
+    });
   }
   if (isOfKind(kind, Kind.INTERFACE_TYPE_DEFINITION, payload)) {
-    return {
+    return directiveUsageInterfaceAddedFromMeta({
       type: ChangeType.DirectiveUsageInterfaceAdded,
-      criticality: {
-        level: addedSpecialDirective(directive.name.value, CriticalityLevel.Dangerous),
-        reason: `Directive '${directive.name.value}' was added to interface '${payload.name}'`,
-      },
-      message: `Directive '${directive.name.value}' was added to interface '${payload.name}'`,
       meta: {
-        interfaceName: payload.name,
         addedDirectiveName: directive.name.value,
+        interfaceName: payload.name,
       },
-      path: [payload.name, directive.name.value].join('.'),
-    } as const;
+    });
   }
   if (isOfKind(kind, Kind.OBJECT, payload)) {
-    return {
+    return directiveUsageObjectAddedFromMeta({
       type: ChangeType.DirectiveUsageObjectAdded,
-      criticality: {
-        level: addedSpecialDirective(directive.name.value, CriticalityLevel.Dangerous),
-        reason: `Directive '${directive.name.value}' was added to object '${payload.name}'`,
-      },
-      message: `Directive '${directive.name.value}' was added to object '${payload.name}'`,
       meta: {
         objectName: payload.name,
         addedDirectiveName: directive.name.value,
       },
-      path: [payload.name, directive.name.value].join('.'),
-    } as const;
+    });
   }
   if (isOfKind(kind, Kind.ENUM_TYPE_DEFINITION, payload)) {
-    return {
+    return directiveUsageEnumAddedFromMeta({
       type: ChangeType.DirectiveUsageEnumAdded,
-      criticality: {
-        level: addedSpecialDirective(directive.name.value, CriticalityLevel.Dangerous),
-        reason: `Directive '${directive.name.value}' was added to enum '${payload.name}'`,
-      },
-      message: `Directive '${directive.name.value}' was added to enum '${payload.name}'`,
       meta: {
         enumName: payload.name,
         addedDirectiveName: directive.name.value,
       },
-      path: [payload.name, directive.name.value].join('.'),
-    } as const;
+    });
   }
   if (isOfKind(kind, Kind.FIELD_DEFINITION, payload)) {
-    return {
+    return directiveUsageFieldDefinitionAddedFromMeta({
       type: ChangeType.DirectiveUsageFieldDefinitionAdded,
-      criticality: {
-        level: addedSpecialDirective(directive.name.value, CriticalityLevel.Dangerous),
-        reason: `Directive '${directive.name.value}' was added to field '${payload.parentType.name}.${payload.field.name}'`,
-      },
-      message: `Directive '${directive.name.value}' was added to field '${payload.parentType.name}.${payload.field.name}'`,
       meta: {
-        typeName: payload.parentType.name,
-        fieldName: payload.field.name,
         addedDirectiveName: directive.name.value,
+        fieldName: payload.field.name,
+        typeName: payload.parentType.name,
       },
-      path: [payload.parentType.name, payload.field.name, directive.name.value].join('.'),
-    } as const;
+    });
   }
   if (isOfKind(kind, Kind.UNION_TYPE_DEFINITION, payload)) {
-    return {
+    return directiveUsageUnionMemberAddedFromMeta({
       type: ChangeType.DirectiveUsageUnionMemberAdded,
-      criticality: {
-        level: addedSpecialDirective(directive.name.value, CriticalityLevel.Dangerous),
-        reason: `Directive '${directive.name.value}' was added to union member '${payload.name}'`,
-      },
-      message: `Directive '${directive.name.value}' was added to union member '${payload.name}'`,
       meta: {
-        unionName: payload.name,
         addedDirectiveName: directive.name.value,
         addedUnionMemberTypeName: payload.name,
+        unionName: payload.name,
       },
-      path: [payload.name, directive.name.value].join('.'),
-    } as const;
+    });
   }
   if (isOfKind(kind, Kind.ENUM_VALUE_DEFINITION, payload)) {
-    return {
+    return directiveUsageEnumValueAddedFromMeta({
       type: ChangeType.DirectiveUsageEnumValueAdded,
-      criticality: {
-        level: addedSpecialDirective(directive.name.value, CriticalityLevel.Dangerous),
-        reason: `Directive '${directive.name.value}' was added to enum value '${payload.type.name}.${payload.value.name}'`,
-      },
-      message: `Directive '${directive.name.value}' was added to enum value '${payload.type.name}.${payload.value.name}'`,
       meta: {
         enumName: payload.type.name,
         enumValueName: payload.value.name,
         addedDirectiveName: directive.name.value,
       },
-      path: [payload.type.name, payload.value.name, directive.name.value].join('.'),
-    } as const;
+    });
   }
   if (isOfKind(kind, Kind.SCHEMA_DEFINITION, payload)) {
-    return {
+    return directiveUsageSchemaAddedFromMeta({
       type: ChangeType.DirectiveUsageSchemaAdded,
-      criticality: {
-        level: addedSpecialDirective(directive.name.value, CriticalityLevel.Dangerous),
-        reason: `Directive '${directive.name.value}' was added to schema`,
-      },
-      message: `Directive '${directive.name.value}' was added to schema`,
       meta: {
         addedDirectiveName: directive.name.value,
         schemaTypeName: payload.getQueryType()?.name || '',
       },
-      path: [payload.getQueryType()?.name || '', directive.name.value].join('.'),
-    } as const;
+    });
   }
   if (isOfKind(kind, Kind.SCALAR_TYPE_DEFINITION, payload)) {
-    return {
+    return directiveUsageScalarAddedFromMeta({
       type: ChangeType.DirectiveUsageScalarAdded,
-      criticality: {
-        level: addedSpecialDirective(directive.name.value, CriticalityLevel.Dangerous),
-        reason: `Directive '${directive.name.value}' was added to scalar '${payload.name}'`,
-      },
-      message: `Directive '${directive.name.value}' was added to scalar '${payload.name}'`,
       meta: {
         scalarName: payload.name,
         addedDirectiveName: directive.name.value,
       },
-      path: [payload.name, directive.name.value].join('.'),
-    } as const;
+    });
   }
 
   return {} as any;
@@ -311,181 +698,112 @@ export function directiveUsageRemoved<K extends keyof KindToPayload>(
   payload: KindToPayload[K]['input'],
 ): Change {
   if (isOfKind(kind, Kind.ARGUMENT, payload)) {
-    return {
+    return directiveUsageArgumentDefinitionRemovedFromMeta({
       type: ChangeType.DirectiveUsageArgumentDefinitionRemoved,
-      criticality: {
-        level: removedSpecialDirective(directive.name.value, CriticalityLevel.Dangerous),
-        reason: `Directive '${directive.name.value}' was removed from argument '${payload.type.name}.${payload.field.name}'`,
-      },
-      message: `Directive '${directive.name.value}' was removed from argument '${payload.type.name}.${payload.field.name}'`,
       meta: {
-        argumentName: payload.argument.name,
         removedDirectiveName: directive.name.value,
+        argumentName: payload.argument.name,
         fieldName: payload.field.name,
         typeName: payload.type.name,
       },
-      path: [
-        payload.type.name,
-        payload.field.name,
-        payload.argument.name,
-        directive.name.value,
-      ].join('.'),
-    } as const;
+    });
   }
   if (isOfKind(kind, Kind.INPUT_VALUE_DEFINITION, payload)) {
-    return {
-      type: ChangeType.DirectiveUsageArgumentDefinitionRemoved,
-      criticality: {
-        level: removedSpecialDirective(directive.name.value, CriticalityLevel.Dangerous),
-        reason: `Directive '${directive.name.value}' was removed from input value '${payload.type.name}.${payload.field.name}'`,
-      },
-      message: `Directive '${directive.name.value}' was removed from input value '${payload.type.name}.${payload.field.name}'`,
+    return directiveUsageInputFieldDefinitionRemovedFromMeta({
+      type: ChangeType.DirectiveUsageInputFieldDefinitionRemoved,
       meta: {
-        argumentName: payload.field.name,
         removedDirectiveName: directive.name.value,
-        fieldName: payload.type.name,
-        typeName: payload.type.name,
+        inputFieldName: payload.field.name,
+        inputObjectName: payload.type.name,
       },
-      path: [payload.type.name, payload.field.name, directive.name.value].join('.'),
-    } as const;
+    });
   }
   if (isOfKind(kind, Kind.INPUT_OBJECT_TYPE_DEFINITION, payload)) {
-    return {
+    return directiveUsageInputObjectRemovedFromMeta({
       type: ChangeType.DirectiveUsageInputObjectRemoved,
-      criticality: {
-        level: removedSpecialDirective(directive.name.value, CriticalityLevel.Dangerous),
-        reason: `Directive '${directive.name.value}' was removed from input object '${payload.name}'`,
-      },
-      message: `Directive '${directive.name.value}' was removed from input object '${payload.name}'`,
       meta: {
-        inputObjectName: payload.name,
         removedDirectiveName: directive.name.value,
+        removedInputFieldName: directive.name.value,
+        removedInputFieldType: payload.name,
+        inputObjectName: payload.name,
+        isRemovedInputFieldTypeNullable: kind === Kind.INPUT_VALUE_DEFINITION,
       },
-      path: [payload.name, directive.name.value].join('.'),
-    } as const;
+    });
   }
   if (isOfKind(kind, Kind.INTERFACE_TYPE_DEFINITION, payload)) {
-    return {
+    return directiveUsageInterfaceRemovedFromMeta({
       type: ChangeType.DirectiveUsageInterfaceRemoved,
-      criticality: {
-        level: removedSpecialDirective(directive.name.value, CriticalityLevel.Breaking),
-        reason: `Directive '${directive.name.value}' was removed from interface '${payload.name}'`,
-      },
-      message: `Directive '${directive.name.value}' was removed from interface '${payload.name}'`,
       meta: {
-        interfaceName: payload.name,
         removedDirectiveName: directive.name.value,
+        interfaceName: payload.name,
       },
-      path: [payload.name, directive.name.value].join('.'),
-    } as const;
+    });
   }
   if (isOfKind(kind, Kind.OBJECT, payload)) {
-    return {
+    return directiveUsageObjectRemovedFromMeta({
       type: ChangeType.DirectiveUsageObjectRemoved,
-      criticality: {
-        level: removedSpecialDirective(directive.name.value, CriticalityLevel.Dangerous),
-        reason: `Directive '${directive.name.value}' was removed from object '${payload.name}'`,
-      },
-      message: `Directive '${directive.name.value}' was removed from object '${payload.name}'`,
       meta: {
         objectName: payload.name,
         removedDirectiveName: directive.name.value,
       },
-      path: [payload.name, directive.name.value].join('.'),
-    } as const;
+    });
   }
   if (isOfKind(kind, Kind.ENUM_TYPE_DEFINITION, payload)) {
-    return {
+    return directiveUsageEnumRemovedFromMeta({
       type: ChangeType.DirectiveUsageEnumRemoved,
-      criticality: {
-        level: removedSpecialDirective(directive.name.value, CriticalityLevel.Dangerous),
-        reason: `Directive '${directive.name.value}' was removed from enum '${payload.name}'`,
-      },
-      message: `Directive '${directive.name.value}' was removed from enum '${payload.name}'`,
       meta: {
         enumName: payload.name,
         removedDirectiveName: directive.name.value,
       },
-      path: [payload.name, directive.name.value].join('.'),
-    } as const;
+    });
   }
   if (isOfKind(kind, Kind.FIELD_DEFINITION, payload)) {
-    return {
+    return directiveUsageFieldDefinitionRemovedFromMeta({
       type: ChangeType.DirectiveUsageFieldDefinitionRemoved,
-      criticality: {
-        level: removedSpecialDirective(directive.name.value, CriticalityLevel.Dangerous),
-        reason: `Directive '${directive.name.value}' was removed from field '${payload.parentType.name}.${payload.field.name}'`,
-      },
-      message: `Directive '${directive.name.value}' was removed from field '${payload.parentType.name}.${payload.field.name}'`,
       meta: {
-        typeName: payload.parentType.name,
-        fieldName: payload.field.name,
         removedDirectiveName: directive.name.value,
+        fieldName: payload.field.name,
+        typeName: payload.parentType.name,
       },
-      path: [payload.parentType.name, payload.field.name, directive.name.value].join('.'),
-    } as const;
+    });
   }
   if (isOfKind(kind, Kind.UNION_TYPE_DEFINITION, payload)) {
-    return {
+    return directiveUsageUnionMemberRemovedFromMeta({
       type: ChangeType.DirectiveUsageUnionMemberRemoved,
-      criticality: {
-        level: removedSpecialDirective(directive.name.value, CriticalityLevel.Dangerous),
-        reason: `Directive '${directive.name.value}' was removed from union member '${payload.name}'`,
-      },
-      message: `Directive '${directive.name.value}' was removed from union member '${payload.name}'`,
       meta: {
-        unionName: payload.name,
         removedDirectiveName: directive.name.value,
         removedUnionMemberTypeName: payload.name,
+        unionName: payload.name,
       },
-      path: [payload.name, directive.name.value].join('.'),
-    } as const;
+    });
   }
   if (isOfKind(kind, Kind.ENUM_VALUE_DEFINITION, payload)) {
-    return {
+    return directiveUsageEnumValueRemovedFromMeta({
       type: ChangeType.DirectiveUsageEnumValueRemoved,
-      criticality: {
-        level: removedSpecialDirective(directive.name.value, CriticalityLevel.Dangerous),
-        reason: `Directive '${directive.name.value}' was removed from enum value '${payload.type.name}.${payload.value.name}'`,
-      },
-      message: `Directive '${directive.name.value}' was removed from enum value '${payload.type.name}.${payload.value.name}'`,
       meta: {
         enumName: payload.type.name,
         enumValueName: payload.value.name,
         removedDirectiveName: directive.name.value,
       },
-      path: [payload.type.name, payload.value.name, directive.name.value].join('.'),
-    } as const;
+    });
   }
   if (isOfKind(kind, Kind.SCHEMA_DEFINITION, payload)) {
-    return {
+    return directiveUsageSchemaRemovedFromMeta({
       type: ChangeType.DirectiveUsageSchemaRemoved,
-      criticality: {
-        level: removedSpecialDirective(directive.name.value, CriticalityLevel.Dangerous),
-        reason: `Directive '${directive.name.value}' was removed from schema`,
-      },
-      message: `Directive '${directive.name.value}' was removed from schema`,
       meta: {
         removedDirectiveName: directive.name.value,
         schemaTypeName: payload.getQueryType()?.name || '',
       },
-      path: [payload.getQueryType()?.name || '', directive.name.value].join('.'),
-    } as const;
+    });
   }
   if (isOfKind(kind, Kind.SCALAR_TYPE_DEFINITION, payload)) {
-    return {
+    return directiveUsageScalarRemovedFromMeta({
       type: ChangeType.DirectiveUsageScalarRemoved,
-      criticality: {
-        level: removedSpecialDirective(directive.name.value, CriticalityLevel.Breaking),
-        reason: `Directive '${directive.name.value}' was removed from scalar '${payload.name}'`,
-      },
-      message: `Directive '${directive.name.value}' was removed from scalar '${payload.name}'`,
       meta: {
         scalarName: payload.name,
         removedDirectiveName: directive.name.value,
       },
-      path: [payload.name, directive.name.value].join('.'),
-    } as const;
+    });
   }
 
   return {} as any;
