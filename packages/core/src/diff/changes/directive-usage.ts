@@ -247,7 +247,7 @@ function buildDirectiveUsageInterfaceRemovedMessage(
 export function directiveUsageInterfaceRemovedFromMeta(args: DirectiveUsageInterfaceRemovedChange) {
   return {
     criticality: {
-      level: removedSpecialDirective(args.meta.removedDirectiveName, CriticalityLevel.Breaking),
+      level: removedSpecialDirective(args.meta.removedDirectiveName, CriticalityLevel.Dangerous),
       reason: `Directive '${args.meta.removedDirectiveName}' was removed from interface '${args.meta.interfaceName}'`,
     },
     type: ChangeType.DirectiveUsageInterfaceRemoved,
@@ -525,7 +525,7 @@ function buildDirectiveUsageScalarRemovedMessage(
 export function directiveUsageScalarRemovedFromMeta(args: DirectiveUsageScalarRemovedChange) {
   return {
     criticality: {
-      level: removedSpecialDirective(args.meta.removedDirectiveName, CriticalityLevel.Breaking),
+      level: removedSpecialDirective(args.meta.removedDirectiveName, CriticalityLevel.Dangerous),
       reason: `Directive '${args.meta.removedDirectiveName}' was removed from scalar '${args.meta.scalarName}'`,
     },
     type: ChangeType.DirectiveUsageScalarRemoved,
