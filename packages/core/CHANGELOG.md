@@ -1,5 +1,14 @@
 # @graphql-inspector/core
 
+## 6.2.1
+
+### Patch Changes
+
+- [#2831](https://github.com/kamilkisiela/graphql-inspector/pull/2831)
+  [`5854b64`](https://github.com/kamilkisiela/graphql-inspector/commit/5854b64ca37e3aace4f831d28e8ce19e018bab99)
+  Thanks [@TuvalSimha](https://github.com/TuvalSimha)! - Change CriticalityLevel to Dangerous when
+  directive removed
+
 ## 6.2.0
 
 ### Minor Changes
