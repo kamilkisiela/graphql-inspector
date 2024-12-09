@@ -521,7 +521,7 @@ describe('directive-usage', () => {
       const change = findFirstChangeByPath(changes, 'Foo.external');
 
       expect(changes.length).toEqual(1);
-      expect(change.criticality.level).toEqual(CriticalityLevel.Breaking);
+      expect(change.criticality.level).toEqual(CriticalityLevel.Dangerous);
       expect(change.type).toEqual('DIRECTIVE_USAGE_SCALAR_REMOVED');
       expect(change.message).toEqual("Directive 'external' was removed from scalar 'Foo'");
     });
@@ -612,7 +612,7 @@ describe('directive-usage', () => {
       const changes = await diff(a, b);
       const change = findFirstChangeByPath(changes, 'Foo.external');
 
-      expect(change.criticality.level).toEqual(CriticalityLevel.Breaking);
+      expect(change.criticality.level).toEqual(CriticalityLevel.Dangerous);
       expect(change.type).toEqual('DIRECTIVE_USAGE_INTERFACE_REMOVED');
       expect(change.message).toEqual("Directive 'external' was removed from interface 'Foo'");
     });
