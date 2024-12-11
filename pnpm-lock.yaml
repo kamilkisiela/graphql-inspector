@@ -112,8 +112,8 @@ importers:
         specifier: 4.17.21
         version: 4.17.21
       '@types/node':
-        specifier: 20.14.15
-        version: 20.14.15
+        specifier: 20.17.10
+        version: 20.17.10
       '@types/yargs':
         specifier: 17.0.33
         version: 17.0.33
@@ -131,7 +131,7 @@ importers:
         version: 16.9.0
       graphql-config:
         specifier: 5.1.0
-        version: 5.1.0(@types/node@20.14.15)(graphql@16.9.0)
+        version: 5.1.0(@types/node@20.17.10)(graphql@16.9.0)
       jsesc:
         specifier: 3.0.2
         version: 3.0.2
@@ -542,7 +542,7 @@ importers:
     dependencies:
       '@graphql-tools/github-loader':
         specifier: 8.0.1
-        version: 8.0.1(@babel/core@7.24.6)(@types/node@20.14.15)(graphql@16.9.0)
+        version: 8.0.1(@babel/core@7.24.6)(@types/node@20.17.10)(graphql@16.9.0)
       tslib:
         specifier: 2.6.2
         version: 2.6.2
@@ -551,8 +551,8 @@ importers:
         specifier: 7.24.6
         version: 7.24.6
       '@types/node':
-        specifier: 20.14.15
-        version: 20.14.15
+        specifier: 20.17.10
+        version: 20.17.10
       graphql:
         specifier: 16.9.0
         version: 16.9.0
@@ -616,14 +616,14 @@ importers:
     dependencies:
       '@graphql-tools/url-loader':
         specifier: 8.0.2
-        version: 8.0.2(@types/node@20.14.15)(graphql@16.9.0)
+        version: 8.0.2(@types/node@20.17.10)(graphql@16.9.0)
       tslib:
         specifier: 2.6.2
         version: 2.6.2
     devDependencies:
       '@types/node':
-        specifier: 20.14.15
-        version: 20.14.15
+        specifier: 20.17.10
+        version: 20.17.10
       graphql:
         specifier: 16.9.0
         version: 16.9.0
@@ -676,8 +676,8 @@ importers:
         specifier: 0.4.2
         version: 0.4.2
       '@types/node':
-        specifier: 20.14.15
-        version: 20.14.15
+        specifier: 20.17.10
+        version: 20.17.10
       '@types/react':
         specifier: 18.3.3
         version: 18.3.3
@@ -2074,8 +2074,8 @@ packages:
   '@types/node@12.20.55':
     resolution: {integrity: sha512-J8xLz7q2OFulZ2cyGTLE1TbbZcjpno7FaN6zdJNrgAdrJ+DZzh/uFR6YrTb4C+nXakvud8Q4+rbhoIWlYQbUFQ==}
 
-  '@types/node@20.14.15':
-    resolution: {integrity: sha512-Fz1xDMCF/B00/tYSVMlmK7hVeLh7jE5f3B7X1/hmV0MJBwE27KlS7EvD/Yp+z1lm8mVhwV5w+n8jOZG8AfTlKw==}
+  '@types/node@20.17.10':
+    resolution: {integrity: sha512-/jrvh5h6NXhEauFFexRin69nA0uHJ5gwk4iDivp/DeoEua3uwCUto6PC86IpRITBOs4+6i2I56K5x5b6WYGXHA==}
 
   '@types/normalize-package-data@2.4.1':
     resolution: {integrity: sha512-Gj7cI7z+98M282Tqmp2K5EIsoouUEzbBJhQQzDE3jSIRk6r9gsz0oUokqIUR4u1R3dMHo0pDHM7sNOHyhulypw==}
@@ -2327,6 +2327,7 @@ packages:
 
   acorn-import-assertions@1.9.0:
     resolution: {integrity: sha512-cmMwop9x+8KFhxvKrKfPYmN6/pKTYYHBqLa0DfvVZcKMJWNyWLnaqND7dx/qn66R7ewM1UX5XMaDVP5wlVTaVA==}
+    deprecated: package has been renamed to acorn-import-attributes
     peerDependencies:
       acorn: ^8
 
@@ -3696,6 +3697,7 @@ packages:
   eslint@8.57.0:
     resolution: {integrity: sha512-dZ6+mexnaTIbSBZWgou51U6OmzIhYM2VcNdtiTtI7qPNZm35Akpr0f6vtw3w1Kmn5PYo+tZVfh13WrhpS6oLqQ==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    deprecated: This version is no longer supported. Please see https://eslint.org/version-support for other options.
     hasBin: true
 
   esm@3.2.25:
@@ -7203,8 +7205,8 @@ packages:
   unbox-primitive@1.0.2:
     resolution: {integrity: sha512-61pPlCD9h51VoreyJ0BReideM3MDKMKnh6+V9L08331ipq6Q8OFXZYiqP6n/tbHx4s5I9uRhcye6BrbkizkBDw==}
 
-  undici-types@5.26.5:
-    resolution: {integrity: sha512-JlCMO+ehdEIKqlFxk6IfVoAUVmgz7cU7zD/h9XZ0qzeosSHmUJVOzSQvvYSYWXkFXC+IfLKSIffhv0sVZup6pA==}
+  undici-types@6.19.8:
+    resolution: {integrity: sha512-ve2KP6f/JnbPBFyobGHuerC9g1FYGn/F8n1LWTwNxCEzd6IfqTwUQcNXgEtmmQ6DlRrC1hrSrBnCZPokRrDHjw==}
 
   unified-engine@11.2.1:
     resolution: {integrity: sha512-xBAdZ8UY2X4R9Hm6X6kMne4Nz0PlpOc1oE6DPeqJnewr5Imkb8uT5Eyvy1h7xNekPL3PSWh3ZJyNrMW6jnNQBg==}
@@ -8251,14 +8253,14 @@ snapshots:
       - bufferutil
       - utf-8-validate
 
-  '@graphql-tools/executor-http@1.0.9(@types/node@20.14.15)(graphql@16.9.0)':
+  '@graphql-tools/executor-http@1.0.9(@types/node@20.17.10)(graphql@16.9.0)':
     dependencies:
       '@graphql-tools/utils': 10.2.1(graphql@16.9.0)
       '@repeaterjs/repeater': 3.0.4
       '@whatwg-node/fetch': 0.9.19
       extract-files: 11.0.0
       graphql: 16.9.0
-      meros: 1.2.1(@types/node@20.14.15)
+      meros: 1.2.1(@types/node@20.17.10)
       tslib: 2.6.2
       value-or-promise: 1.0.12
     transitivePeerDependencies:
@@ -8297,10 +8299,10 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@graphql-tools/github-loader@8.0.1(@babel/core@7.24.6)(@types/node@20.14.15)(graphql@16.9.0)':
+  '@graphql-tools/github-loader@8.0.1(@babel/core@7.24.6)(@types/node@20.17.10)(graphql@16.9.0)':
     dependencies:
       '@ardatan/sync-fetch': 0.0.1
-      '@graphql-tools/executor-http': 1.0.9(@types/node@20.14.15)(graphql@16.9.0)
+      '@graphql-tools/executor-http': 1.0.9(@types/node@20.17.10)(graphql@16.9.0)
       '@graphql-tools/graphql-tag-pluck': 8.0.1(@babel/core@7.24.6)(graphql@16.9.0)
       '@graphql-tools/utils': 10.2.1(graphql@16.9.0)
       '@whatwg-node/fetch': 0.9.13
@@ -8415,12 +8417,12 @@ snapshots:
       tslib: 2.6.2
       value-or-promise: 1.0.12
 
-  '@graphql-tools/url-loader@8.0.2(@types/node@20.14.15)(graphql@16.9.0)':
+  '@graphql-tools/url-loader@8.0.2(@types/node@20.17.10)(graphql@16.9.0)':
     dependencies:
       '@ardatan/sync-fetch': 0.0.1
       '@graphql-tools/delegate': 10.0.10(graphql@16.9.0)
       '@graphql-tools/executor-graphql-ws': 1.1.2(graphql@16.9.0)
-      '@graphql-tools/executor-http': 1.0.9(@types/node@20.14.15)(graphql@16.9.0)
+      '@graphql-tools/executor-http': 1.0.9(@types/node@20.17.10)(graphql@16.9.0)
       '@graphql-tools/executor-legacy-ws': 1.0.6(graphql@16.9.0)
       '@graphql-tools/utils': 10.2.1(graphql@16.9.0)
       '@graphql-tools/wrap': 10.0.5(graphql@16.9.0)
@@ -8919,7 +8921,7 @@ snapshots:
 
   '@octokit/types@5.5.0':
     dependencies:
-      '@types/node': 20.14.15
+      '@types/node': 20.17.10
 
   '@octokit/webhooks-methods@2.0.0': {}
 
@@ -9419,7 +9421,7 @@ snapshots:
   '@types/body-parser@1.19.5':
     dependencies:
       '@types/connect': 3.4.35
-      '@types/node': 20.14.15
+      '@types/node': 20.17.10
 
   '@types/btoa-lite@1.0.0': {}
 
@@ -9431,19 +9433,19 @@ snapshots:
 
   '@types/concat-stream@2.0.0':
     dependencies:
-      '@types/node': 20.14.15
+      '@types/node': 20.17.10
 
   '@types/connect@3.4.35':
     dependencies:
-      '@types/node': 20.14.15
+      '@types/node': 20.17.10
 
   '@types/connect@3.4.36':
     dependencies:
-      '@types/node': 20.14.15
+      '@types/node': 20.17.10
 
   '@types/cors@2.8.17':
     dependencies:
-      '@types/node': 20.14.15
+      '@types/node': 20.17.10
 
   '@types/debug@4.1.7':
     dependencies:
@@ -9457,7 +9459,7 @@ snapshots:
 
   '@types/express-serve-static-core@4.17.33':
     dependencies:
-      '@types/node': 20.14.15
+      '@types/node': 20.17.10
       '@types/qs': 6.9.7
       '@types/range-parser': 1.2.4
 
@@ -9485,7 +9487,7 @@ snapshots:
 
   '@types/ioredis@4.28.10':
     dependencies:
-      '@types/node': 20.14.15
+      '@types/node': 20.17.10
 
   '@types/is-base64@1.1.1': {}
 
@@ -9499,7 +9501,7 @@ snapshots:
 
   '@types/jsonwebtoken@9.0.1':
     dependencies:
-      '@types/node': 20.14.15
+      '@types/node': 20.17.10
 
   '@types/katex@0.16.3': {}
 
@@ -9521,7 +9523,7 @@ snapshots:
 
   '@types/mysql@2.15.22':
     dependencies:
-      '@types/node': 20.14.15
+      '@types/node': 20.17.10
 
   '@types/nlcst@2.0.3':
     dependencies:
@@ -9529,9 +9531,9 @@ snapshots:
 
   '@types/node@12.20.55': {}
 
-  '@types/node@20.14.15':
+  '@types/node@20.17.10':
     dependencies:
-      undici-types: 5.26.5
+      undici-types: 6.19.8
 
   '@types/normalize-package-data@2.4.1': {}
 
@@ -9543,7 +9545,7 @@ snapshots:
 
   '@types/pg@8.6.1':
     dependencies:
-      '@types/node': 20.14.15
+      '@types/node': 20.17.10
       pg-protocol: 1.6.1
       pg-types: 2.2.0
 
@@ -9561,7 +9563,7 @@ snapshots:
 
   '@types/pino@6.3.12':
     dependencies:
-      '@types/node': 20.14.15
+      '@types/node': 20.17.10
       '@types/pino-pretty': 5.0.0
       '@types/pino-std-serializers': 4.0.0
       sonic-boom: 2.8.0
@@ -9582,7 +9584,7 @@ snapshots:
   '@types/serve-static@1.15.1':
     dependencies:
       '@types/mime': 3.0.1
-      '@types/node': 20.14.15
+      '@types/node': 20.17.10
 
   '@types/shimmer@1.0.5': {}
 
@@ -9596,7 +9598,7 @@ snapshots:
 
   '@types/ws@8.5.4':
     dependencies:
-      '@types/node': 20.14.15
+      '@types/node': 20.17.10
 
   '@types/yargs-parser@21.0.0': {}
 
@@ -12134,13 +12136,13 @@ snapshots:
 
   graphemer@1.4.0: {}
 
-  graphql-config@5.1.0(@types/node@20.14.15)(graphql@16.9.0):
+  graphql-config@5.1.0(@types/node@20.17.10)(graphql@16.9.0):
     dependencies:
       '@graphql-tools/graphql-file-loader': 8.0.1(graphql@16.9.0)
       '@graphql-tools/json-file-loader': 8.0.1(graphql@16.9.0)
       '@graphql-tools/load': 8.0.2(graphql@16.9.0)
       '@graphql-tools/merge': 9.0.4(graphql@16.9.0)
-      '@graphql-tools/url-loader': 8.0.2(@types/node@20.14.15)(graphql@16.9.0)
+      '@graphql-tools/url-loader': 8.0.2(@types/node@20.17.10)(graphql@16.9.0)
       '@graphql-tools/utils': 10.2.1(graphql@16.9.0)
       cosmiconfig: 8.1.3
       graphql: 16.9.0
@@ -13345,9 +13347,9 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  meros@1.2.1(@types/node@20.14.15):
+  meros@1.2.1(@types/node@20.17.10):
     optionalDependencies:
-      '@types/node': 20.14.15
+      '@types/node': 20.17.10
 
   methods@1.1.2: {}
 
@@ -15991,14 +15993,14 @@ snapshots:
       has-symbols: 1.0.3
       which-boxed-primitive: 1.0.2
 
-  undici-types@5.26.5: {}
+  undici-types@6.19.8: {}
 
   unified-engine@11.2.1:
     dependencies:
       '@types/concat-stream': 2.0.0
       '@types/debug': 4.1.7
       '@types/is-empty': 1.2.1
-      '@types/node': 20.14.15
+      '@types/node': 20.17.10
       '@types/unist': 3.0.0
       concat-stream: 2.0.0
       debug: 4.3.6
@@ -16279,14 +16281,14 @@ snapshots:
       unist-util-stringify-position: 4.0.0
       vfile-message: 4.0.2
 
-  vite-node@0.34.6(@types/node@20.14.15):
+  vite-node@0.34.6(@types/node@20.17.10):
     dependencies:
       cac: 6.7.14
       debug: 4.3.4
       mlly: 1.4.0
       pathe: 1.1.1
       picocolors: 1.0.0
-      vite: 4.2.1(@types/node@20.14.15)
+      vite: 4.2.1(@types/node@20.17.10)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -16296,21 +16298,21 @@ snapshots:
       - supports-color
       - terser
 
-  vite@4.2.1(@types/node@20.14.15):
+  vite@4.2.1(@types/node@20.17.10):
     dependencies:
       esbuild: 0.17.12
       postcss: 8.4.38
       resolve: 1.22.2
       rollup: 3.20.1
     optionalDependencies:
-      '@types/node': 20.14.15
+      '@types/node': 20.17.10
       fsevents: 2.3.2
 
   vitest@0.34.6:
     dependencies:
       '@types/chai': 4.3.5
       '@types/chai-subset': 1.3.3
-      '@types/node': 20.14.15
+      '@types/node': 20.17.10
       '@vitest/expect': 0.34.6
       '@vitest/runner': 0.34.6
       '@vitest/snapshot': 0.34.6
@@ -16329,8 +16331,8 @@ snapshots:
       strip-literal: 1.0.1
       tinybench: 2.5.0
       tinypool: 0.7.0
-      vite: 4.2.1(@types/node@20.14.15)
-      vite-node: 0.34.6(@types/node@20.14.15)
+      vite: 4.2.1(@types/node@20.17.10)
+      vite-node: 0.34.6(@types/node@20.17.10)
       why-is-node-running: 2.2.2
     transitivePeerDependencies:
       - less
