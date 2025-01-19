@@ -61,8 +61,11 @@ export interface SchemaCoverage {
     numTypesCovered: number;
     numFields: number;
     numQueries: number;
+    numCoveredQueries: number;
     numMutations: number;
+    numCoveredMutations: number;
     numSubscriptions: number;
+    numCoveredSubscriptions: number;
     numFieldsCovered: number;
     numFiledsCovered: number; // @deprecated will be removed in next major version
   };
@@ -85,8 +88,11 @@ export function coverage(schema: GraphQLSchema, sources: Source[]): SchemaCovera
       numFieldsCovered: 0,
       numFiledsCovered: 0,
       numQueries: 0,
+      numCoveredQueries: 0,
       numMutations: 0,
+      numCoveredMutations: 0,
       numSubscriptions: 0,
+      numCoveredSubscriptions: 0,
     },
   };
   const typeMap = schema.getTypeMap();
@@ -107,6 +113,18 @@ export function coverage(schema: GraphQLSchema, sources: Source[]): SchemaCovera
         const typeCoverage = coverage.types[parent.name];
         const fieldCoverage = typeCoverage.children[fieldDef.name];
         const locations = fieldCoverage.locations[sourceName];
+
+        switch (typeCoverage.type.name) {
+          case 'Query':
+            coverage.stats.numCoveredQueries++;
+            break;
+          case 'Mutation':
+            coverage.stats.numCoveredMutations++;
+            break;
+          case 'Subscription':
+            coverage.stats.numCoveredSubscriptions++;
+            break;
+        }
 
         typeCoverage.hits++;
         fieldCoverage.hits++;
@@ -146,23 +164,23 @@ export function coverage(schema: GraphQLSchema, sources: Source[]): SchemaCovera
           children: {},
         };
 
-        if (isObjectType(type) || isInterfaceType(type)) {
-          switch (type.name) {
-            case 'Query':
-              coverage.stats.numQueries++;
-              break;
-            case 'Mutation':
-              coverage.stats.numMutations++;
-              break;
-            case 'Subscription':
-              coverage.stats.numSubscriptions++;
-              break;
-          }
-        }
-
         const fieldMap = type.getFields();
 
         for (const fieldname in fieldMap) {
+          if (isObjectType(type) || isInterfaceType(type)) {
+            switch (type.name) {
+              case 'Query':
+                coverage.stats.numQueries++;
+                break;
+              case 'Mutation':
+                coverage.stats.numMutations++;
+                break;
+              case 'Subscription':
+                coverage.stats.numSubscriptions++;
+                break;
+            }
+          }
+
           const field = fieldMap[fieldname];
 
           typeCoverage.children[field.name] = {

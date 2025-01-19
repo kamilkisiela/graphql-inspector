@@ -40,5 +40,5 @@ jobs:
           projectName: graphql-inspector
           prId: ${{ github.event.pull_request.number }}
           websiteDirectory: ./
-          buildScript: pnpm build && cd website && pnpm build && pnpm export
+          buildScript: pnpm build && cd website && pnpm build
           artifactDir: website/out

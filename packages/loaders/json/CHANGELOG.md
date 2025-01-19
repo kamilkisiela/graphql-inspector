@@ -1,5 +1,26 @@
 # @graphql-inspector/json-loader
 
+## 5.0.1
+
+### Patch Changes
+
+- [#2742](https://github.com/kamilkisiela/graphql-inspector/pull/2742)
+  [`77b3a2e`](https://github.com/kamilkisiela/graphql-inspector/commit/77b3a2e630505ea66b26fde45b22fc10392ca108)
+  Thanks [@renovate](https://github.com/apps/renovate)! - dependencies updates:
+  - Updated dependency
+    [`@graphql-tools/json-file-loader@8.0.1` ↗︎](https://www.npmjs.com/package/@graphql-tools/json-file-loader/v/8.0.1)
+    (from `8.0.0`, in `dependencies`)
+
+## 5.0.0
+
+### Major Changes
+
+- [#2719](https://github.com/kamilkisiela/graphql-inspector/pull/2719)
+  [`50874f2`](https://github.com/kamilkisiela/graphql-inspector/commit/50874f2d35d0d5ffda133bb35bb7ce0f8cdb64c3)
+  Thanks [@TuvalSimha](https://github.com/TuvalSimha)! - Upgrade the Node version from 16 to 18, as
+  the minimum required version is now 18. Additionally, ensure that GraphQL Yoga is upgraded to
+  version 5.
+
 ## 4.0.2
 
 ### Patch Changes

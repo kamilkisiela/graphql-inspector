@@ -1,6 +1,6 @@
 {
   "name": "@graphql-inspector/ci",
-  "version": "4.0.3",
+  "version": "5.0.6",
   "type": "module",
   "description": "Tooling for GraphQL. Compare GraphQL Schemas, check documents, find breaking changes, find similar types.",
   "repository": {
@@ -15,7 +15,7 @@
   },
   "license": "MIT",
   "engines": {
-    "node": ">=16.0.0"
+    "node": ">=18.0.0"
   },
   "bin": {
     "graphql-inspector": "dist/cjs/index.js"

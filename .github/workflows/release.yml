@@ -2,7 +2,7 @@ name: release
 on:
   push:
     branches:
-      - master
+      - 'master'
 
 jobs:
   stable:
@@ -10,16 +10,7 @@ jobs:
     with:
       releaseScript: release
       nodeVersion: 18
+      packageManager: pnpm
     secrets:
       githubToken: ${{ secrets.GITHUB_TOKEN }}
       npmToken: ${{ secrets.NPM_TOKEN }}
-
-  algolia-publish:
-    uses: the-guild-org/shared-config/.github/workflows/algolia-publish.yml@main
-    secrets:
-      githubToken: ${{ secrets.GUILD_BOT_TOKEN }}
-      algoliaAdminApiKey: ${{ secrets.ALGOLIA_ADMIN_API_KEY }}
-    with:
-      packageManager: pnpm
-      domain: https://www.the-guild.dev/graphql/inspector/
-      source: 'Inspector'

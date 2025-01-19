@@ -1,6 +1,6 @@
 {
   "name": "@graphql-inspector/core",
-  "version": "5.1.0",
+  "version": "6.2.1",
   "type": "module",
   "description": "Tooling for GraphQL. Compare GraphQL Schemas, check documents, find breaking changes, find similar types.",
   "repository": {
@@ -15,7 +15,7 @@
   },
   "license": "MIT",
   "engines": {
-    "node": ">=16.0.0"
+    "node": ">=18.0.0"
   },
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -63,12 +63,12 @@
     "graphql": "^14.0.0 || ^15.0.0 || ^16.0.0"
   },
   "dependencies": {
-    "dependency-graph": "0.11.0",
-    "object-inspect": "1.12.3",
+    "dependency-graph": "1.0.0",
+    "object-inspect": "1.13.2",
     "tslib": "2.6.2"
   },
   "devDependencies": {
-    "@types/object-inspect": "1.8.1"
+    "@types/object-inspect": "1.13.0"
   },
   "publishConfig": {
     "directory": "dist",

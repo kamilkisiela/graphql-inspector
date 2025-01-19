@@ -455,8 +455,10 @@ describe('directive-usage', () => {
 
       expect(changes.length).toEqual(1);
       expect(change.criticality.level).toEqual(CriticalityLevel.Dangerous);
-      expect(change.type).toEqual('DIRECTIVE_USAGE_ARGUMENT_DEFINITION_ADDED');
-      expect(change.message).toEqual("Directive 'external' was added to argument 'a'");
+      expect(change.type).toEqual('DIRECTIVE_USAGE_INPUT_FIELD_DEFINITION_ADDED');
+      expect(change.message).toEqual(
+        "Directive 'external' was added to input field 'a' in input object 'Foo'",
+      );
     });
     test('removed directive', async () => {
       const a = buildSchema(/* GraphQL */ `
@@ -479,8 +481,10 @@ describe('directive-usage', () => {
 
       expect(changes.length).toEqual(1);
       expect(change.criticality.level).toEqual(CriticalityLevel.Dangerous);
-      expect(change.type).toEqual('DIRECTIVE_USAGE_ARGUMENT_DEFINITION_REMOVED');
-      expect(change.message).toEqual("Directive 'external' was removed from input value 'Foo.a'");
+      expect(change.type).toEqual('DIRECTIVE_USAGE_INPUT_FIELD_DEFINITION_REMOVED');
+      expect(change.message).toEqual(
+        "Directive 'external' was removed from input field 'a' in input object 'Foo'",
+      );
     });
   });
 
@@ -517,7 +521,7 @@ describe('directive-usage', () => {
       const change = findFirstChangeByPath(changes, 'Foo.external');
 
       expect(changes.length).toEqual(1);
-      expect(change.criticality.level).toEqual(CriticalityLevel.Breaking);
+      expect(change.criticality.level).toEqual(CriticalityLevel.Dangerous);
       expect(change.type).toEqual('DIRECTIVE_USAGE_SCALAR_REMOVED');
       expect(change.message).toEqual("Directive 'external' was removed from scalar 'Foo'");
     });
@@ -608,7 +612,7 @@ describe('directive-usage', () => {
       const changes = await diff(a, b);
       const change = findFirstChangeByPath(changes, 'Foo.external');
 
-      expect(change.criticality.level).toEqual(CriticalityLevel.Breaking);
+      expect(change.criticality.level).toEqual(CriticalityLevel.Dangerous);
       expect(change.type).toEqual('DIRECTIVE_USAGE_INTERFACE_REMOVED');
       expect(change.message).toEqual("Directive 'external' was removed from interface 'Foo'");
     });
@@ -634,7 +638,9 @@ describe('directive-usage', () => {
 
       expect(change.criticality.level).toEqual(CriticalityLevel.Dangerous);
       expect(change.type).toEqual('DIRECTIVE_USAGE_ARGUMENT_DEFINITION_ADDED');
-      expect(change.message).toEqual("Directive 'external' was added to argument 'a'");
+      expect(change.message).toEqual(
+        "Directive 'external' was added to argument 'a' of field 'a' in type 'Foo'",
+      );
     });
 
     test('removed directive', async () => {
@@ -656,7 +662,9 @@ describe('directive-usage', () => {
 
       expect(change.criticality.level).toEqual(CriticalityLevel.Dangerous);
       expect(change.type).toEqual('DIRECTIVE_USAGE_ARGUMENT_DEFINITION_REMOVED');
-      expect(change.message).toEqual("Directive 'external' was removed from argument 'Foo.a'");
+      expect(change.message).toEqual(
+        "Directive 'external' was removed from argument 'a' of field 'a' in type 'Foo'",
+      );
     });
   });
 
@@ -686,7 +694,7 @@ describe('directive-usage', () => {
 
       expect(change.criticality.level).toEqual(CriticalityLevel.Dangerous);
       expect(change.type).toEqual('DIRECTIVE_USAGE_SCHEMA_ADDED');
-      expect(change.message).toEqual("Directive 'external' was added to schema");
+      expect(change.message).toEqual("Directive 'external' was added to schema 'Foo'");
     });
     test('removed directive', async () => {
       const a = buildSchema(/* GraphQL */ `
@@ -713,7 +721,7 @@ describe('directive-usage', () => {
 
       expect(change.criticality.level).toEqual(CriticalityLevel.Dangerous);
       expect(change.type).toEqual('DIRECTIVE_USAGE_SCHEMA_REMOVED');
-      expect(change.message).toEqual("Directive 'external' was removed from schema");
+      expect(change.message).toEqual("Directive 'external' was removed from schema 'Foo'");
     });
   });
 });

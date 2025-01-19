@@ -1,9 +1,11 @@
 /* eslint sort-keys: error */
 import { useRouter } from 'next/router';
-import { defineConfig, Giscus, useTheme } from '@theguild/components';
+import { defineConfig, Giscus, PRODUCTS, useTheme } from '@theguild/components';
 
 export default defineConfig({
+  description: 'GraphQL schema management and evolution tools',
   docsRepositoryBase: 'https://github.com/kamilkisiela/graphql-inspector/tree/master/website', // base URL for the docs repository
+  logo: PRODUCTS.INSPECTOR.logo({ className: 'w-9' }),
   main: function Main({ children }) {
     const { resolvedTheme } = useTheme();
     const { route } = useRouter();
@@ -27,5 +29,5 @@ export default defineConfig({
       </>
     );
   },
-  siteName: 'INSPECTOR',
+  websiteName: 'GraphQL-Inspector',
 });

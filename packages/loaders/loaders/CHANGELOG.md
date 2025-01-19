@@ -1,5 +1,92 @@
 # @graphql-inspector/loaders
 
+## 4.0.5
+
+### Patch Changes
+
+- [#2769](https://github.com/kamilkisiela/graphql-inspector/pull/2769)
+  [`8df7cd6`](https://github.com/kamilkisiela/graphql-inspector/commit/8df7cd6969c28d1c15eccc1231fd67983db0cded)
+  Thanks [@renovate](https://github.com/apps/renovate)! - dependencies updates:
+  - Updated dependency
+    [`@graphql-tools/utils@10.2.1` ↗︎](https://www.npmjs.com/package/@graphql-tools/utils/v/10.2.1)
+    (from `10.2.0`, in `dependencies`)
+
+## 4.0.4
+
+### Patch Changes
+
+- [#2742](https://github.com/kamilkisiela/graphql-inspector/pull/2742)
+  [`77b3a2e`](https://github.com/kamilkisiela/graphql-inspector/commit/77b3a2e630505ea66b26fde45b22fc10392ca108)
+  Thanks [@renovate](https://github.com/apps/renovate)! - dependencies updates:
+  - Updated dependency
+    [`@graphql-tools/code-file-loader@8.1.2` ↗︎](https://www.npmjs.com/package/@graphql-tools/code-file-loader/v/8.1.2)
+    (from `8.0.1`, in `dependencies`)
+  - Updated dependency
+    [`@graphql-tools/load@8.0.2` ↗︎](https://www.npmjs.com/package/@graphql-tools/load/v/8.0.2)
+    (from `8.0.0`, in `dependencies`)
+  - Updated dependency
+    [`@graphql-tools/utils@10.2.0` ↗︎](https://www.npmjs.com/package/@graphql-tools/utils/v/10.2.0)
+    (from `10.0.3`, in `dependencies`)
+
+## 4.0.4
+
+### Patch Changes
+
+- [#2738](https://github.com/kamilkisiela/graphql-inspector/pull/2738)
+  [`1600e72`](https://github.com/kamilkisiela/graphql-inspector/commit/1600e723a3bfb9941674d31b49da90e98463b20f)
+  Thanks [@TuvalSimha](https://github.com/TuvalSimha)! - dependencies updates:
+  - Updated dependency
+    [`@graphql-inspector/config@^4.0.0` ↗︎](https://www.npmjs.com/package/@graphql-inspector/config/v/4.0.0)
+    (from `^4.0.2`, in `peerDependencies`)
+
+## 4.0.4
+
+### Patch Changes
+
+- [#2736](https://github.com/kamilkisiela/graphql-inspector/pull/2736)
+  [`87b25d3`](https://github.com/kamilkisiela/graphql-inspector/commit/87b25d32b298efb91213f593ea3fd98f9f4992c4)
+  Thanks [@TuvalSimha](https://github.com/TuvalSimha)! - dependencies updates:
+  - Updated dependency
+    [`@graphql-inspector/config@^4.0.2` ↗︎](https://www.npmjs.com/package/@graphql-inspector/config/v/4.0.2)
+    (from `^5.0.1`, in `peerDependencies`)
+
+## 5.0.1
+
+### Patch Changes
+
+- [#2733](https://github.com/kamilkisiela/graphql-inspector/pull/2733)
+  [`087d3ec`](https://github.com/kamilkisiela/graphql-inspector/commit/087d3ec2056812ee3682e8398d3d255bd7255f5f)
+  Thanks [@TuvalSimha](https://github.com/TuvalSimha)! - dependencies updates:
+
+  - Updated dependency
+    [`@graphql-inspector/config@^4.0.0` ↗︎](https://www.npmjs.com/package/@graphql-inspector/config/v/4.0.0)
+    (from `5.0.0`, in `peerDependencies`)
+
+- [#2733](https://github.com/kamilkisiela/graphql-inspector/pull/2733)
+  [`087d3ec`](https://github.com/kamilkisiela/graphql-inspector/commit/087d3ec2056812ee3682e8398d3d255bd7255f5f)
+  Thanks [@TuvalSimha](https://github.com/TuvalSimha)! - Fix release version for Loaders and Config
+  packages.
+
+- Updated dependencies
+  [[`087d3ec`](https://github.com/kamilkisiela/graphql-inspector/commit/087d3ec2056812ee3682e8398d3d255bd7255f5f)]:
+  - @graphql-inspector/config@5.0.1
+
+## 5.0.0
+
+### Major Changes
+
+- [#2719](https://github.com/kamilkisiela/graphql-inspector/pull/2719)
+  [`50874f2`](https://github.com/kamilkisiela/graphql-inspector/commit/50874f2d35d0d5ffda133bb35bb7ce0f8cdb64c3)
+  Thanks [@TuvalSimha](https://github.com/TuvalSimha)! - Upgrade the Node version from 16 to 18, as
+  the minimum required version is now 18. Additionally, ensure that GraphQL Yoga is upgraded to
+  version 5.
+
+### Patch Changes
+
+- Updated dependencies
+  [[`50874f2`](https://github.com/kamilkisiela/graphql-inspector/commit/50874f2d35d0d5ffda133bb35bb7ce0f8cdb64c3)]:
+  - @graphql-inspector/config@5.0.0
+
 ## 4.0.3
 
 ### Patch Changes

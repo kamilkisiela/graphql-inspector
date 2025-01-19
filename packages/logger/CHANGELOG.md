@@ -1,5 +1,25 @@
 # @graphql-inspector/logger
 
+## 5.0.1
+
+### Patch Changes
+
+- [#2747](https://github.com/kamilkisiela/graphql-inspector/pull/2747)
+  [`9c36138`](https://github.com/kamilkisiela/graphql-inspector/commit/9c3613806803343af8e3081ffc6fea243cea72b2)
+  Thanks [@TuvalSimha](https://github.com/TuvalSimha)! - dependencies updates:
+  - Updated dependency [`std-env@3.7.0` ↗︎](https://www.npmjs.com/package/std-env/v/3.7.0) (from
+    `3.3.3`, in `dependencies`)
+
+## 5.0.0
+
+### Major Changes
+
+- [#2719](https://github.com/kamilkisiela/graphql-inspector/pull/2719)
+  [`50874f2`](https://github.com/kamilkisiela/graphql-inspector/commit/50874f2d35d0d5ffda133bb35bb7ce0f8cdb64c3)
+  Thanks [@TuvalSimha](https://github.com/TuvalSimha)! - Upgrade the Node version from 16 to 18, as
+  the minimum required version is now 18. Additionally, ensure that GraphQL Yoga is upgraded to
+  version 5.
+
 ## 4.0.2
 
 ### Patch Changes

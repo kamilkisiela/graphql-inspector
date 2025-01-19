@@ -1,5 +1,103 @@
 # @graphql-inspector/validate-command
 
+## 5.0.8
+
+### Patch Changes
+
+- Updated dependencies
+  [[`5854b64`](https://github.com/kamilkisiela/graphql-inspector/commit/5854b64ca37e3aace4f831d28e8ce19e018bab99)]:
+  - @graphql-inspector/core@6.2.1
+
+## 5.0.7
+
+### Patch Changes
+
+- Updated dependencies
+  [[`60d674d`](https://github.com/kamilkisiela/graphql-inspector/commit/60d674d1a72ed61cfc5ffbd44d46f87e54ddb858)]:
+  - @graphql-inspector/core@6.2.0
+
+## 5.0.6
+
+### Patch Changes
+
+- [#2769](https://github.com/kamilkisiela/graphql-inspector/pull/2769)
+  [`8df7cd6`](https://github.com/kamilkisiela/graphql-inspector/commit/8df7cd6969c28d1c15eccc1231fd67983db0cded)
+  Thanks [@renovate](https://github.com/apps/renovate)! - dependencies updates:
+  - Updated dependency
+    [`@graphql-tools/utils@10.2.1` ↗︎](https://www.npmjs.com/package/@graphql-tools/utils/v/10.2.1)
+    (from `10.2.0`, in `dependencies`)
+- Updated dependencies
+  [[`27edee1`](https://github.com/kamilkisiela/graphql-inspector/commit/27edee15d838856228855fb5e481149aa27b3de9),
+  [`0e40ebd`](https://github.com/kamilkisiela/graphql-inspector/commit/0e40ebd046dafa2d4542b837c69ba221c73cf873),
+  [`6e3ccc9`](https://github.com/kamilkisiela/graphql-inspector/commit/6e3ccc900c4589025e3b77079b828ea5a725a33b)]:
+  - @graphql-inspector/core@6.1.0
+
+## 5.0.5
+
+### Patch Changes
+
+- [#2742](https://github.com/kamilkisiela/graphql-inspector/pull/2742)
+  [`77b3a2e`](https://github.com/kamilkisiela/graphql-inspector/commit/77b3a2e630505ea66b26fde45b22fc10392ca108)
+  Thanks [@renovate](https://github.com/apps/renovate)! - dependencies updates:
+  - Updated dependency
+    [`@graphql-tools/utils@10.2.0` ↗︎](https://www.npmjs.com/package/@graphql-tools/utils/v/10.2.0)
+    (from `10.0.3`, in `dependencies`)
+- Updated dependencies
+  [[`9c36138`](https://github.com/kamilkisiela/graphql-inspector/commit/9c3613806803343af8e3081ffc6fea243cea72b2),
+  [`9c36138`](https://github.com/kamilkisiela/graphql-inspector/commit/9c3613806803343af8e3081ffc6fea243cea72b2)]:
+  - @graphql-inspector/core@6.0.1
+  - @graphql-inspector/logger@5.0.1
+
+## 5.0.4
+
+### Patch Changes
+
+- Updated dependencies
+  [[`12a2208`](https://github.com/kamilkisiela/graphql-inspector/commit/12a2208748d3ef987400e298eb796e9139357a53)]:
+  - @graphql-inspector/commands@5.0.4
+
+## 5.0.3
+
+### Patch Changes
+
+- Updated dependencies
+  [[`1600e72`](https://github.com/kamilkisiela/graphql-inspector/commit/1600e723a3bfb9941674d31b49da90e98463b20f)]:
+  - @graphql-inspector/commands@5.0.3
+
+## 5.0.2
+
+### Patch Changes
+
+- Updated dependencies
+  [[`87b25d3`](https://github.com/kamilkisiela/graphql-inspector/commit/87b25d32b298efb91213f593ea3fd98f9f4992c4)]:
+  - @graphql-inspector/commands@5.0.2
+
+## 5.0.1
+
+### Patch Changes
+
+- Updated dependencies
+  [[`087d3ec`](https://github.com/kamilkisiela/graphql-inspector/commit/087d3ec2056812ee3682e8398d3d255bd7255f5f)]:
+  - @graphql-inspector/commands@5.0.1
+
+## 5.0.0
+
+### Major Changes
+
+- [#2719](https://github.com/kamilkisiela/graphql-inspector/pull/2719)
+  [`50874f2`](https://github.com/kamilkisiela/graphql-inspector/commit/50874f2d35d0d5ffda133bb35bb7ce0f8cdb64c3)
+  Thanks [@TuvalSimha](https://github.com/TuvalSimha)! - Upgrade the Node version from 16 to 18, as
+  the minimum required version is now 18. Additionally, ensure that GraphQL Yoga is upgraded to
+  version 5.
+
+### Patch Changes
+
+- Updated dependencies
+  [[`50874f2`](https://github.com/kamilkisiela/graphql-inspector/commit/50874f2d35d0d5ffda133bb35bb7ce0f8cdb64c3)]:
+  - @graphql-inspector/commands@5.0.0
+  - @graphql-inspector/logger@5.0.0
+  - @graphql-inspector/core@6.0.0
+
 ## 4.0.4
 
 ### Patch Changes

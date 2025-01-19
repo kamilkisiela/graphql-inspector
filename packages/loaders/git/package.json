@@ -1,6 +1,6 @@
 {
   "name": "@graphql-inspector/git-loader",
-  "version": "4.0.2",
+  "version": "5.0.1",
   "type": "module",
   "description": "Load GraphQL Schema and Documents from Git repository",
   "repository": {
@@ -15,7 +15,7 @@
   },
   "license": "MIT",
   "engines": {
-    "node": ">=16.0.0"
+    "node": ">=18.0.0"
   },
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -64,12 +64,12 @@
     "graphql": "^14.0.0 || ^15.0.0 || ^16.0.0"
   },
   "dependencies": {
-    "@graphql-tools/git-loader": "8.0.1",
+    "@graphql-tools/git-loader": "8.0.6",
     "tslib": "2.6.2"
   },
   "devDependencies": {
-    "@babel/core": "7.22.9",
-    "graphql": "16.8.1"
+    "@babel/core": "7.24.6",
+    "graphql": "16.9.0"
   },
   "publishConfig": {
     "directory": "dist",

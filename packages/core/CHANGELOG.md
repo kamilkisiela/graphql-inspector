@@ -1,5 +1,66 @@
 # @graphql-inspector/core
 
+## 6.2.1
+
+### Patch Changes
+
+- [#2831](https://github.com/kamilkisiela/graphql-inspector/pull/2831)
+  [`5854b64`](https://github.com/kamilkisiela/graphql-inspector/commit/5854b64ca37e3aace4f831d28e8ce19e018bab99)
+  Thanks [@TuvalSimha](https://github.com/TuvalSimha)! - Change CriticalityLevel to Dangerous when
+  directive removed
+
+## 6.2.0
+
+### Minor Changes
+
+- [#2827](https://github.com/kamilkisiela/graphql-inspector/pull/2827)
+  [`60d674d`](https://github.com/kamilkisiela/graphql-inspector/commit/60d674d1a72ed61cfc5ffbd44d46f87e54ddb858)
+  Thanks [@TuvalSimha](https://github.com/TuvalSimha)! - Added missing types to Change type and fix
+  typo "DirectiveUsageInputObjectdRemovedChange" to "DirectiveUsageInputObjectRemovedChange"
+
+## 6.1.0
+
+### Minor Changes
+
+- [#2775](https://github.com/kamilkisiela/graphql-inspector/pull/2775)
+  [`0e40ebd`](https://github.com/kamilkisiela/graphql-inspector/commit/0e40ebd046dafa2d4542b837c69ba221c73cf873)
+  Thanks [@DanteUkraine](https://github.com/DanteUkraine)! - Fix: coverage calculation improvements:
+  Covered Queries & Covered Mutations & Covered Subscriptions
+
+- [#2773](https://github.com/kamilkisiela/graphql-inspector/pull/2773)
+  [`6e3ccc9`](https://github.com/kamilkisiela/graphql-inspector/commit/6e3ccc900c4589025e3b77079b828ea5a725a33b)
+  Thanks [@TuvalSimha](https://github.com/TuvalSimha)! - Fix export `ChangeType` from core package.
+
+### Patch Changes
+
+- [#2765](https://github.com/kamilkisiela/graphql-inspector/pull/2765)
+  [`27edee1`](https://github.com/kamilkisiela/graphql-inspector/commit/27edee15d838856228855fb5e481149aa27b3de9)
+  Thanks [@renovate](https://github.com/apps/renovate)! - dependencies updates:
+  - Updated dependency
+    [`dependency-graph@1.0.0` ↗︎](https://www.npmjs.com/package/dependency-graph/v/1.0.0) (from
+    `0.11.0`, in `dependencies`)
+
+## 6.0.1
+
+### Patch Changes
+
+- [#2747](https://github.com/kamilkisiela/graphql-inspector/pull/2747)
+  [`9c36138`](https://github.com/kamilkisiela/graphql-inspector/commit/9c3613806803343af8e3081ffc6fea243cea72b2)
+  Thanks [@TuvalSimha](https://github.com/TuvalSimha)! - dependencies updates:
+  - Updated dependency
+    [`object-inspect@1.13.1` ↗︎](https://www.npmjs.com/package/object-inspect/v/1.13.1) (from
+    `1.12.3`, in `dependencies`)
+
+## 6.0.0
+
+### Major Changes
+
+- [#2719](https://github.com/kamilkisiela/graphql-inspector/pull/2719)
+  [`50874f2`](https://github.com/kamilkisiela/graphql-inspector/commit/50874f2d35d0d5ffda133bb35bb7ce0f8cdb64c3)
+  Thanks [@TuvalSimha](https://github.com/TuvalSimha)! - Upgrade the Node version from 16 to 18, as
+  the minimum required version is now 18. Additionally, ensure that GraphQL Yoga is upgraded to
+  version 5.
+
 ## 5.1.0
 
 ### Minor Changes
@@ -133,20 +194,20 @@
 
   ```ts
   export type FieldDescriptionChangedChange = {
-    type: ChangeType.FieldDescriptionChanged;
+    type: ChangeType.FieldDescriptionChanged
     meta: {
-      typeName: string;
-      fieldName: string;
-      oldDescription: string;
-      newDescription: string;
-    };
-  };
+      typeName: string
+      fieldName: string
+      oldDescription: string
+      newDescription: string
+    }
+  }
   ```
 
   You can construct the full `Change` object from the `type` and `meta` properties.
 
   ```ts
-  import { ChangeType, fieldDescriptionChangedFromMeta } from '@graphql-inspector/core';
+  import { ChangeType, fieldDescriptionChangedFromMeta } from '@graphql-inspector/core'
 
   console.log(
     fieldDescriptionChangedFromMeta({
@@ -155,10 +216,10 @@
         typeName: 'Foo',
         fieldName: 'bar',
         oldDescription: 'This is the old description',
-        newDescription: 'This is the new description',
-      },
-    }),
-  );
+        newDescription: 'This is the new description'
+      }
+    })
+  )
   ```
 
   console.log output:

@@ -1,7 +1,7 @@
-import { ChangeType } from '../changes/change.js';
+import { ChangeType, TypeOfChangeType } from '../changes/change.js';
 import { Rule } from './types.js';
 
-const descriptionChangeTypes: ChangeType[] = [
+const descriptionChangeTypes: TypeOfChangeType[] = [
   ChangeType.FieldArgumentDescriptionChanged,
   ChangeType.DirectiveDescriptionChanged,
   ChangeType.DirectiveArgumentDescriptionChanged,

@@ -1,6 +1,6 @@
 {
   "name": "@graphql-inspector/commands",
-  "version": "4.0.3",
+  "version": "5.0.4",
   "type": "module",
   "description": "Plugin system for commands in GraphQL Inspector",
   "repository": {
@@ -15,7 +15,7 @@
   },
   "license": "MIT",
   "engines": {
-    "node": ">=16.0.0"
+    "node": ">=18.0.0"
   },
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -61,8 +61,8 @@
     "prepack": "bob prepack"
   },
   "peerDependencies": {
-    "@graphql-inspector/config": "4.0.2",
-    "@graphql-inspector/loaders": "4.0.3",
+    "@graphql-inspector/config": "^4.0.0",
+    "@graphql-inspector/loaders": "^4.0.0",
     "graphql": "^14.0.0 || ^15.0.0 || ^16.0.0",
     "yargs": "17.7.2"
   },

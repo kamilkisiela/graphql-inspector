@@ -1,5 +1,82 @@
 # @graphql-inspector/ci
 
+## 5.0.6
+
+### Patch Changes
+
+- Updated dependencies
+  [[`8df7cd6`](https://github.com/kamilkisiela/graphql-inspector/commit/8df7cd6969c28d1c15eccc1231fd67983db0cded)]:
+  - @graphql-inspector/loaders@4.0.5
+
+## 5.0.5
+
+### Patch Changes
+
+- Updated dependencies
+  [[`77b3a2e`](https://github.com/kamilkisiela/graphql-inspector/commit/77b3a2e630505ea66b26fde45b22fc10392ca108),
+  [`9c36138`](https://github.com/kamilkisiela/graphql-inspector/commit/9c3613806803343af8e3081ffc6fea243cea72b2)]:
+  - @graphql-inspector/loaders@4.0.4
+  - @graphql-inspector/logger@5.0.1
+
+## 5.0.4
+
+### Patch Changes
+
+- Updated dependencies
+  [[`12a2208`](https://github.com/kamilkisiela/graphql-inspector/commit/12a2208748d3ef987400e298eb796e9139357a53)]:
+  - @graphql-inspector/commands@5.0.4
+
+## 5.0.3
+
+### Patch Changes
+
+- Updated dependencies
+  [[`1600e72`](https://github.com/kamilkisiela/graphql-inspector/commit/1600e723a3bfb9941674d31b49da90e98463b20f),
+  [`1600e72`](https://github.com/kamilkisiela/graphql-inspector/commit/1600e723a3bfb9941674d31b49da90e98463b20f)]:
+  - @graphql-inspector/commands@5.0.3
+  - @graphql-inspector/loaders@4.0.4
+
+## 5.0.2
+
+### Patch Changes
+
+- Updated dependencies
+  [[`87b25d3`](https://github.com/kamilkisiela/graphql-inspector/commit/87b25d32b298efb91213f593ea3fd98f9f4992c4),
+  [`87b25d3`](https://github.com/kamilkisiela/graphql-inspector/commit/87b25d32b298efb91213f593ea3fd98f9f4992c4)]:
+  - @graphql-inspector/commands@5.0.2
+  - @graphql-inspector/loaders@4.0.4
+
+## 5.0.1
+
+### Patch Changes
+
+- Updated dependencies
+  [[`087d3ec`](https://github.com/kamilkisiela/graphql-inspector/commit/087d3ec2056812ee3682e8398d3d255bd7255f5f),
+  [`087d3ec`](https://github.com/kamilkisiela/graphql-inspector/commit/087d3ec2056812ee3682e8398d3d255bd7255f5f),
+  [`087d3ec`](https://github.com/kamilkisiela/graphql-inspector/commit/087d3ec2056812ee3682e8398d3d255bd7255f5f)]:
+  - @graphql-inspector/commands@5.0.1
+  - @graphql-inspector/loaders@5.0.1
+  - @graphql-inspector/config@5.0.1
+
+## 5.0.0
+
+### Major Changes
+
+- [#2719](https://github.com/kamilkisiela/graphql-inspector/pull/2719)
+  [`50874f2`](https://github.com/kamilkisiela/graphql-inspector/commit/50874f2d35d0d5ffda133bb35bb7ce0f8cdb64c3)
+  Thanks [@TuvalSimha](https://github.com/TuvalSimha)! - Upgrade the Node version from 16 to 18, as
+  the minimum required version is now 18. Additionally, ensure that GraphQL Yoga is upgraded to
+  version 5.
+
+### Patch Changes
+
+- Updated dependencies
+  [[`50874f2`](https://github.com/kamilkisiela/graphql-inspector/commit/50874f2d35d0d5ffda133bb35bb7ce0f8cdb64c3)]:
+  - @graphql-inspector/commands@5.0.0
+  - @graphql-inspector/loaders@5.0.0
+  - @graphql-inspector/config@5.0.0
+  - @graphql-inspector/logger@5.0.0
+
 ## 4.0.3
 
 ### Patch Changes

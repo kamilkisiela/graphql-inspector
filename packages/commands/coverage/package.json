@@ -1,6 +1,6 @@
 {
   "name": "@graphql-inspector/coverage-command",
-  "version": "5.0.4",
+  "version": "6.1.2",
   "type": "module",
   "description": "Schema Coverage in GraphQL Inspector",
   "repository": {
@@ -15,7 +15,7 @@
   },
   "license": "MIT",
   "engines": {
-    "node": ">=16.0.0"
+    "node": ">=18.0.0"
   },
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -67,11 +67,11 @@
     "@graphql-inspector/commands": "workspace:*",
     "@graphql-inspector/core": "workspace:*",
     "@graphql-inspector/logger": "workspace:*",
-    "@graphql-tools/utils": "10.0.3",
+    "@graphql-tools/utils": "10.2.1",
     "tslib": "2.6.2"
   },
   "devDependencies": {
-    "graphql": "16.8.1"
+    "graphql": "16.9.0"
   },
   "publishConfig": {
     "directory": "dist",

@@ -7,7 +7,13 @@ export {
   Rule,
   UsageHandler,
 } from './diff/index.js';
-export { Change, ChangeType, Criticality, CriticalityLevel } from './diff/changes/change.js';
+export {
+  Change,
+  ChangeType,
+  TypeOfChangeType,
+  Criticality,
+  CriticalityLevel,
+} from './diff/changes/change.js';
 export { similar, SimilarMap } from './similar/index.js';
 export { getTypePrefix } from './utils/graphql.js';
 export { BestMatch, Rating, Target } from './utils/string.js';
@@ -25,6 +31,32 @@ export {
   fieldArgumentDefaultChangedFromMeta,
   fieldArgumentTypeChangedFromMeta,
 } from './diff/changes/argument.js';
+export {
+  directiveUsageArgumentDefinitionAddedFromMeta,
+  directiveUsageEnumAddedFromMeta,
+  directiveUsageEnumRemovedFromMeta,
+  directiveUsageArgumentDefinitionRemovedFromMeta,
+  directiveUsageEnumValueAddedFromMeta,
+  directiveUsageEnumValueRemovedFromMeta,
+  directiveUsageFieldDefinitionAddedFromMeta,
+  directiveUsageAdded,
+  directiveUsageFieldDefinitionRemovedFromMeta,
+  directiveUsageInputFieldDefinitionAddedFromMeta,
+  directiveUsageInputFieldDefinitionRemovedFromMeta,
+  directiveUsageInputObjectAddedFromMeta,
+  directiveUsageInputObjectRemovedFromMeta,
+  directiveUsageInterfaceAddedFromMeta,
+  directiveUsageInterfaceRemovedFromMeta,
+  directiveUsageObjectAddedFromMeta,
+  directiveUsageObjectRemovedFromMeta,
+  directiveUsageRemoved,
+  directiveUsageScalarAddedFromMeta,
+  directiveUsageScalarRemovedFromMeta,
+  directiveUsageSchemaAddedFromMeta,
+  directiveUsageSchemaRemovedFromMeta,
+  directiveUsageUnionMemberAddedFromMeta,
+  directiveUsageUnionMemberRemovedFromMeta,
+} from './diff/changes/directive-usage.js';
 export {
   directiveRemovedFromMeta,
   directiveAddedFromMeta,
@@ -144,4 +176,29 @@ export {
   UnionMemberRemovedChange,
   UnionMemberAddedChange,
   SerializableChange,
+  DirectiveUsageArgumentDefinitionAddedChange,
+  DirectiveUsageArgumentDefinitionRemovedChange,
+  DirectiveUsageArgumentDefinitionChange,
+  DirectiveUsageEnumAddedChange,
+  DirectiveUsageEnumRemovedChange,
+  DirectiveUsageEnumValueAddedChange,
+  DirectiveUsageEnumValueRemovedChange,
+  DirectiveUsageFieldAddedChange,
+  DirectiveUsageFieldDefinitionAddedChange,
+  DirectiveUsageFieldDefinitionRemovedChange,
+  DirectiveUsageFieldRemovedChange,
+  DirectiveUsageInputFieldDefinitionAddedChange,
+  DirectiveUsageInputFieldDefinitionRemovedChange,
+  DirectiveUsageInputObjectAddedChange,
+  DirectiveUsageInputObjectRemovedChange,
+  DirectiveUsageInterfaceAddedChange,
+  DirectiveUsageInterfaceRemovedChange,
+  DirectiveUsageObjectAddedChange,
+  DirectiveUsageObjectRemovedChange,
+  DirectiveUsageScalarAddedChange,
+  DirectiveUsageScalarRemovedChange,
+  DirectiveUsageSchemaAddedChange,
+  DirectiveUsageSchemaRemovedChange,
+  DirectiveUsageUnionMemberAddedChange,
+  DirectiveUsageUnionMemberRemovedChange,
 } from './diff/changes/change.js';

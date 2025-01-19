@@ -1,6 +1,6 @@
 {
   "name": "@graphql-inspector/loaders",
-  "version": "4.0.3",
+  "version": "4.0.5",
   "type": "module",
   "description": "Loaders in GraphQL Inspector",
   "repository": {
@@ -15,7 +15,7 @@
   },
   "license": "MIT",
   "engines": {
-    "node": ">=16.0.0"
+    "node": ">=18.0.0"
   },
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -61,18 +61,18 @@
     "prepack": "bob prepack"
   },
   "peerDependencies": {
-    "@graphql-inspector/config": "4.0.2",
+    "@graphql-inspector/config": "^4.0.0",
     "graphql": "^14.0.0 || ^15.0.0 || ^16.0.0"
   },
   "dependencies": {
-    "@graphql-tools/code-file-loader": "8.0.1",
-    "@graphql-tools/load": "8.0.0",
-    "@graphql-tools/utils": "10.0.3",
+    "@graphql-tools/code-file-loader": "8.1.2",
+    "@graphql-tools/load": "8.0.2",
+    "@graphql-tools/utils": "10.2.1",
     "tslib": "2.6.2"
   },
   "devDependencies": {
-    "@babel/core": "7.22.9",
-    "graphql": "16.8.1"
+    "@babel/core": "7.24.6",
+    "graphql": "16.9.0"
   },
   "publishConfig": {
     "directory": "dist",

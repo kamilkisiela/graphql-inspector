@@ -110,7 +110,7 @@ export const ChangeType = {
   DirectiveUsageInputFieldDefinitionRemoved: 'DIRECTIVE_USAGE_INPUT_FIELD_DEFINITION_REMOVED',
 } as const;
 
-export type ChangeType = (typeof ChangeType)[keyof typeof ChangeType];
+export type TypeOfChangeType = (typeof ChangeType)[keyof typeof ChangeType];
 
 // Directive
 
@@ -653,7 +653,7 @@ export type DirectiveUsageEnumValueRemovedChange = {
   };
 };
 
-export type DirectiveUsageInputObjectdRemovedChange = {
+export type DirectiveUsageInputObjectRemovedChange = {
   type: typeof ChangeType.DirectiveUsageInputObjectRemoved;
   meta: {
     inputObjectName: string;
@@ -812,6 +812,17 @@ export type DirectiveUsageInterfaceRemovedChange = {
     removedDirectiveName: string;
   };
 };
+
+export type DirectiveUsageArgumentDefinitionAddedChange = {
+  type: typeof ChangeType.DirectiveUsageArgumentDefinitionAdded;
+  meta: {
+    typeName: string;
+    fieldName: string;
+    argumentName: string;
+    addedDirectiveName: string;
+  };
+};
+
 type Changes = {
   [ChangeType.TypeAdded]: TypeAddedChange;
   [ChangeType.TypeRemoved]: TypeRemovedChange;
@@ -892,7 +903,7 @@ type Changes = {
   [ChangeType.DirectiveUsageEnumValueAdded]: DirectiveUsageEnumValueAddedChange;
   [ChangeType.DirectiveUsageEnumValueRemoved]: DirectiveUsageEnumValueRemovedChange;
   [ChangeType.DirectiveUsageInputObjectAdded]: DirectiveUsageInputObjectAddedChange;
-  [ChangeType.DirectiveUsageInputObjectRemoved]: DirectiveUsageInputObjectdRemovedChange;
+  [ChangeType.DirectiveUsageInputObjectRemoved]: DirectiveUsageInputObjectRemovedChange;
   [ChangeType.DirectiveUsageFieldAdded]: DirectiveUsageFieldAddedChange;
   [ChangeType.DirectiveUsageFieldRemoved]: DirectiveUsageFieldRemovedChange;
   [ChangeType.DirectiveUsageScalarAdded]: DirectiveUsageScalarAddedChange;
@@ -901,12 +912,14 @@ type Changes = {
   [ChangeType.DirectiveUsageObjectRemoved]: DirectiveUsageObjectRemovedChange;
   [ChangeType.DirectiveUsageInterfaceAdded]: DirectiveUsageInterfaceAddedChange;
   [ChangeType.DirectiveUsageInterfaceRemoved]: DirectiveUsageInterfaceRemovedChange;
-  [ChangeType.DirectiveUsageArgumentDefinitionAdded]: DirectiveUsageArgumentDefinitionChange;
+  [ChangeType.DirectiveUsageArgumentDefinitionAdded]: DirectiveUsageArgumentDefinitionAddedChange;
   [ChangeType.DirectiveUsageArgumentDefinitionRemoved]: DirectiveUsageArgumentDefinitionRemovedChange;
   [ChangeType.DirectiveUsageSchemaAdded]: DirectiveUsageSchemaAddedChange;
   [ChangeType.DirectiveUsageSchemaRemoved]: DirectiveUsageSchemaRemovedChange;
   [ChangeType.DirectiveUsageFieldDefinitionAdded]: DirectiveUsageFieldDefinitionAddedChange;
   [ChangeType.DirectiveUsageFieldDefinitionRemoved]: DirectiveUsageFieldDefinitionRemovedChange;
+  [ChangeType.DirectiveUsageInputFieldDefinitionAdded]: DirectiveUsageInputFieldDefinitionAddedChange;
+  [ChangeType.DirectiveUsageInputFieldDefinitionRemoved]: DirectiveUsageInputFieldDefinitionRemovedChange;
 };
 
 export type SerializableChange = Changes[keyof Changes];

@@ -1,5 +1,24 @@
 # @graphql-inspector/config
 
+## 5.0.1
+
+### Patch Changes
+
+- [#2733](https://github.com/kamilkisiela/graphql-inspector/pull/2733)
+  [`087d3ec`](https://github.com/kamilkisiela/graphql-inspector/commit/087d3ec2056812ee3682e8398d3d255bd7255f5f)
+  Thanks [@TuvalSimha](https://github.com/TuvalSimha)! - Fix release version for Loaders and Config
+  packages.
+
+## 5.0.0
+
+### Major Changes
+
+- [#2719](https://github.com/kamilkisiela/graphql-inspector/pull/2719)
+  [`50874f2`](https://github.com/kamilkisiela/graphql-inspector/commit/50874f2d35d0d5ffda133bb35bb7ce0f8cdb64c3)
+  Thanks [@TuvalSimha](https://github.com/TuvalSimha)! - Upgrade the Node version from 16 to 18, as
+  the minimum required version is now 18. Additionally, ensure that GraphQL Yoga is upgraded to
+  version 5.
+
 ## 4.0.2
 
 ### Patch Changes

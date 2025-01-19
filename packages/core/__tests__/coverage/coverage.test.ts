@@ -23,6 +23,7 @@ describe('coverage', () => {
 
     type Mutation {
       submitPost(title: String!, author: String!): Post!
+      removePost(id: Int!): Post!
     }
 
     schema {
@@ -56,6 +57,10 @@ describe('coverage', () => {
           id
         }
       }
+
+      mutation removePost {
+        removePost(id: 1)
+      }
     `);
 
     const results = coverage(schema, [new Source(print(doc))]);
@@ -78,7 +83,7 @@ describe('coverage', () => {
     expect(results.types.Identifiable.children.id.hits).toEqual(1);
     expect(results.types.Identifiable.children.createdAt.hits).toEqual(0);
     // Mutation
-    expect(results.types.Mutation.hits).toEqual(1);
+    expect(results.types.Mutation.hits).toEqual(2);
     expect(results.types.Mutation.children.submitPost.hits).toEqual(1);
     expect(results.types.Mutation.children.submitPost.children.title.hits).toEqual(1);
     expect(results.types.Mutation.children.submitPost.children.author.hits).toEqual(1);
@@ -87,8 +92,12 @@ describe('coverage', () => {
     expect(results.stats.numTypes).toEqual(4);
     expect(results.stats.numTypesCovered).toEqual(4);
     expect(results.stats.numTypesCoveredFully).toEqual(1);
-    expect(results.stats.numFields).toEqual(14);
-    expect(results.stats.numFiledsCovered).toEqual(10);
+    expect(results.stats.numFields).toEqual(16);
+    expect(results.stats.numFiledsCovered).toEqual(12);
+    expect(results.stats.numQueries).toEqual(3);
+    expect(results.stats.numCoveredQueries).toEqual(2);
+    expect(results.stats.numMutations).toEqual(2);
+    expect(results.stats.numCoveredMutations).toEqual(2);
   });
 
   test('no coverage', () => {
@@ -121,11 +130,14 @@ describe('coverage', () => {
     expect(results.stats.numTypes).toEqual(4);
     expect(results.stats.numTypesCovered).toEqual(0);
     expect(results.stats.numTypesCoveredFully).toEqual(0);
-    expect(results.stats.numFields).toEqual(14);
+    expect(results.stats.numFields).toEqual(16);
     expect(results.stats.numFiledsCovered).toEqual(0);
-    expect(results.stats.numQueries).toEqual(1);
+    expect(results.stats.numQueries).toEqual(3);
+    expect(results.stats.numCoveredQueries).toEqual(0);
     expect(results.stats.numSubscriptions).toEqual(0);
-    expect(results.stats.numMutations).toEqual(1);
+    expect(results.stats.numCoveredSubscriptions).toEqual(0);
+    expect(results.stats.numMutations).toEqual(2);
+    expect(results.stats.numCoveredMutations).toEqual(0);
   });
 
   test('introspection', () => {

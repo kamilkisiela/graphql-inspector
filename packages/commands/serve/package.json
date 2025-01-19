@@ -1,6 +1,6 @@
 {
   "name": "@graphql-inspector/serve-command",
-  "version": "4.0.3",
+  "version": "5.0.6",
   "type": "module",
   "description": "Serves GraphQL Schemma",
   "repository": {
@@ -15,7 +15,7 @@
   },
   "license": "MIT",
   "engines": {
-    "node": ">=16.0.0"
+    "node": ">=18.0.0"
   },
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -66,12 +66,12 @@
   "dependencies": {
     "@graphql-inspector/commands": "workspace:*",
     "@graphql-inspector/logger": "workspace:*",
-    "graphql-yoga": "4.0.3",
+    "graphql-yoga": "5.7.0",
     "open": "8.4.2",
     "tslib": "2.6.2"
   },
   "devDependencies": {
-    "graphql": "16.8.1"
+    "graphql": "16.9.0"
   },
   "publishConfig": {
     "directory": "dist",

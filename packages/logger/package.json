@@ -1,6 +1,6 @@
 {
   "name": "@graphql-inspector/logger",
-  "version": "4.0.2",
+  "version": "5.0.1",
   "type": "module",
   "description": "Logger for GraphQL Inspector",
   "repository": {
@@ -15,7 +15,7 @@
   },
   "license": "MIT",
   "engines": {
-    "node": ">=16.0.0"
+    "node": ">=18.0.0"
   },
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -58,7 +58,7 @@
     "chalk": "4.1.2",
     "figures": "3.2.0",
     "log-symbols": "4.1.0",
-    "std-env": "3.3.3",
+    "std-env": "3.7.0",
     "tslib": "2.6.2"
   },
   "publishConfig": {
