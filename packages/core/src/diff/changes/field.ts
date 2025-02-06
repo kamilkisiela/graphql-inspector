@@ -39,7 +39,11 @@ export function fieldRemovedFromMeta(args: FieldRemovedChange) {
       level: CriticalityLevel.Breaking,
       reason: args.meta.isRemovedFieldDeprecated
         ? `Removing a deprecated field is a breaking change. Before removing it, you may want to look at the field's usage to see the impact of removing the field.`
+<<<<<<< Updated upstream
         : `Removing a field is a breaking change. It is preferable to deprecate the field before removing it. This applies removed union fields as well as it affects the __typename field which can break your GraphQL consumers.`,
+=======
+        : `Removing a field is a breaking change. It is preferable to deprecate the field before removing it. This applies to removed union fields as well, since removal breaks client operations that contain fragments that reference the removed type through direct (... on RemovedType) or indirect means such as __typename in the consumers.`,
+>>>>>>> Stashed changes
     },
     message: buildFieldRemovedMessage(args.meta),
     meta: args.meta,
