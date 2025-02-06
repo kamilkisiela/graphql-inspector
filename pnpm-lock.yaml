@@ -18,8 +18,8 @@ importers:
         specifier: 7.114.0
         version: 7.114.0
       '@whatwg-node/fetch':
-        specifier: 0.9.19
-        version: 0.9.19
+        specifier: 0.10.3
+        version: 0.10.3
       husky:
         specifier: 9.0.11
         version: 9.0.11
@@ -2278,9 +2278,17 @@ packages:
   '@webassemblyjs/wast-printer@1.9.0':
     resolution: {integrity: sha512-2J0nE95rHXHyQ24cWjMKJ1tqB/ds8z/cyeOZxJhcb+rW+SQASVjuznUSmdz5GpVJTzU8JkhYut0D3siFDD6wsA==}
 
+  '@whatwg-node/disposablestack@0.0.5':
+    resolution: {integrity: sha512-9lXugdknoIequO4OYvIjhygvfSEgnO8oASLqLelnDhkRjgBZhc39shC3QSlZuyDO9bgYSIVa2cHAiN+St3ty4w==}
+    engines: {node: '>=18.0.0'}
+
   '@whatwg-node/events@0.1.1':
     resolution: {integrity: sha512-AyQEn5hIPV7Ze+xFoXVU3QTHXVbWPrzaOkxtENMPMuNL6VVHrp4hHfDt9nrQpjO7BgvuM95dMtkycX5M/DZR3w==}
     engines: {node: '>=16.0.0'}
+
+  '@whatwg-node/fetch@0.10.3':
+    resolution: {integrity: sha512-jCTL/qYcIW2GihbBRHypQ/Us7saWMNZ5fsumsta+qPY0Pmi1ccba/KRQvgctmQsbP69FWemJSs8zVcFaNwdL0w==}
+    engines: {node: '>=18.0.0'}
 
   '@whatwg-node/fetch@0.9.13':
     resolution: {integrity: sha512-PPtMwhjtS96XROnSpowCQM85gCUG2m7AXZFw0PZlGbhzx2GK7f2iOXilfgIJ0uSlCuuGbOIzfouISkA7C4FJOw==}
@@ -2297,6 +2305,10 @@ packages:
   '@whatwg-node/node-fetch@0.5.16':
     resolution: {integrity: sha512-BmwxxGZTI8IDSiocYyb2sWMlHpa4Jq2NZ4BOuvmODgL2pqjgcFfLBuEnpX2xLscQHmmTnk+gKh0EShfRAGn3Pw==}
     engines: {node: '>=16.0.0'}
+
+  '@whatwg-node/node-fetch@0.7.7':
+    resolution: {integrity: sha512-BDbIMOenThOTFDBLh1WscgBNAxfDAdAdd9sMG8Ff83hYxApJVbqEct38bUAj+zn8bTsfBx/lyfnVOTyq5xUlvg==}
+    engines: {node: '>=18.0.0'}
 
   '@whatwg-node/server@0.9.46':
     resolution: {integrity: sha512-vUKCMPP6f2BLtOxnK2c98QmK0rb24RlmXb2enbEg8nXttQLvlKfMOfaY7uNAtaMXejjR2ku/ww9EEeiWXV3Q9A==}
@@ -2327,6 +2339,7 @@ packages:
 
   acorn-import-assertions@1.9.0:
     resolution: {integrity: sha512-cmMwop9x+8KFhxvKrKfPYmN6/pKTYYHBqLa0DfvVZcKMJWNyWLnaqND7dx/qn66R7ewM1UX5XMaDVP5wlVTaVA==}
+    deprecated: package has been renamed to acorn-import-attributes
     peerDependencies:
       acorn: ^8
 
@@ -3696,6 +3709,7 @@ packages:
   eslint@8.57.0:
     resolution: {integrity: sha512-dZ6+mexnaTIbSBZWgou51U6OmzIhYM2VcNdtiTtI7qPNZm35Akpr0f6vtw3w1Kmn5PYo+tZVfh13WrhpS6oLqQ==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    deprecated: This version is no longer supported. Please see https://eslint.org/version-support for other options.
     hasBin: true
 
   esm@3.2.25:
@@ -9812,7 +9826,16 @@ snapshots:
       '@webassemblyjs/wast-parser': 1.9.0
       '@xtuc/long': 4.2.2
 
+  '@whatwg-node/disposablestack@0.0.5':
+    dependencies:
+      tslib: 2.6.3
+
   '@whatwg-node/events@0.1.1': {}
+
+  '@whatwg-node/fetch@0.10.3':
+    dependencies:
+      '@whatwg-node/node-fetch': 0.7.7
+      urlpattern-polyfill: 10.0.0
 
   '@whatwg-node/fetch@0.9.13':
     dependencies:
@@ -9838,6 +9861,12 @@ snapshots:
       '@whatwg-node/events': 0.1.1
       busboy: 1.6.0
       fast-querystring: 1.1.1
+      tslib: 2.6.3
+
+  '@whatwg-node/node-fetch@0.7.7':
+    dependencies:
+      '@whatwg-node/disposablestack': 0.0.5
+      busboy: 1.6.0
       tslib: 2.6.3
 
   '@whatwg-node/server@0.9.46':
