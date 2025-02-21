@@ -151,8 +151,8 @@ importers:
         specifier: 5.0.10
         version: 5.0.10
       smee-client:
-        specifier: 2.0.2
-        version: 2.0.2
+        specifier: 2.0.4
+        version: 2.0.4
       strip-ansi:
         specifier: 7.1.0
         version: 7.1.0
@@ -6724,8 +6724,8 @@ packages:
     resolution: {integrity: sha512-bSiSngZ/jWeX93BqeIAbImyTbEihizcwNjFoRUIY/T1wWQsfsm2Vw1agPKylXvQTU7iASGdHhyqRlqQzfz+Htg==}
     engines: {node: '>=18'}
 
-  smee-client@2.0.2:
-    resolution: {integrity: sha512-5j7tlxKnHzZomJ1iK6QYiWK+3g6xPnisHyln1NcNvvoRbVeY7FstYonNkCsUMSnC3pYUE/mfV8OJ8SFiSjBCpA==}
+  smee-client@2.0.4:
+    resolution: {integrity: sha512-RxXCs0mfaxpI8JF4SeTM51XtRiprzW5g20HVt4aTQ36EB+RaN0aj0m/4EbXLGdfPlqahQ09d3UnJYmALN2CbYw==}
     hasBin: true
 
   snapdragon-node@2.1.1:
@@ -15477,7 +15477,7 @@ snapshots:
       ansi-styles: 6.2.1
       is-fullwidth-code-point: 5.0.0
 
-  smee-client@2.0.2:
+  smee-client@2.0.4:
     dependencies:
       commander: 12.1.0
       eventsource: 2.0.2
