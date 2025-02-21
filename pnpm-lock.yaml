@@ -30,8 +30,8 @@ importers:
         specifier: 4.1.0
         version: 4.1.0
       probot:
-        specifier: 12.3.3
-        version: 12.3.3
+        specifier: 12.4.0
+        version: 12.4.0
       shelljs:
         specifier: 0.8.5
         version: 0.8.5
@@ -184,8 +184,8 @@ importers:
         specifier: 4.1.0
         version: 4.1.0
       probot:
-        specifier: 12.3.3
-        version: 12.3.3
+        specifier: 12.4.0
+        version: 12.4.0
       tslib:
         specifier: 2.6.2
         version: 2.6.2
@@ -2011,9 +2011,6 @@ packages:
   '@types/express-serve-static-core@4.17.33':
     resolution: {integrity: sha512-TPBqmR/HRYI3eC2E5hmiivIzv+bidAfXofM+sbonAGvyDhySGw9/PQZFt2BLOrjUUR++4eJVpx6KnLQK1Fk9tA==}
 
-  '@types/express@4.17.20':
-    resolution: {integrity: sha512-rOaqlkgEvOW495xErXMsmyX3WKBInbhG5eqojXYi3cGUaLoRDlXa5d52fkfWZT963AZ3v2eZ4MbKE6WpDAGVsw==}
-
   '@types/express@4.17.21':
     resolution: {integrity: sha512-ejlPM315qwLpaQlQDTjPdsUFSc6ZsP4AN6AlWnogPjQ7CVi7PYF3YVz+CY3jE2pwYf7E/7HlDAN0rV2GxTG0HQ==}
 
@@ -2723,9 +2720,6 @@ packages:
   cache-base@1.0.1:
     resolution: {integrity: sha512-AKcdTnFSWATd5/GCPRxr2ChwIJ85CeyrEyjRHlKxQ56d4XJMGym0uAiKn0xbLOGOl3+yRpOTi484dVCEc5AUzQ==}
     engines: {node: '>=0.10.0'}
-
-  call-bind@1.0.2:
-    resolution: {integrity: sha512-7O+FbCihrB5WGbFYesctwmTKae6rOiIzmz1icreWJ+0aA7LJfuqhEso2T9ncpcFtzMQtzXf2QGGueWJGTYsqrA==}
 
   call-bind@1.0.7:
     resolution: {integrity: sha512-GHTSNSYICQ7scH7sZ+M2rFopRoLh8t2bLSW6BbgrtLsahOIB5iyAVJf9GjWK3cYTDaMj4XdBpM1cA6pIS0Kv2w==}
@@ -4059,9 +4053,6 @@ packages:
 
   get-func-name@2.0.2:
     resolution: {integrity: sha512-8vXOvuE167CtIc3OyItco7N/dpRtBbYOsPsXCz7X/PMnlGjYjSGuZJgM1Y7mmew7BKf9BqvLX2tnOVy1BBUsxQ==}
-
-  get-intrinsic@1.2.0:
-    resolution: {integrity: sha512-L049y6nFOuom5wGyRc3/gdTLO94dySVKRACj1RmJZBQXlbTMhtNIgkWkUHq+jYmZvKf14EW1EoJnnjbmoHij0Q==}
 
   get-intrinsic@1.2.4:
     resolution: {integrity: sha512-5uYhsJH8VJBTv7oslg4BznJYhDoRI6waYCxMmCdnTrcCrHA/fCFKoTFz2JKKE0HdDFUF7/oQuhzumXJK7paBRQ==}
@@ -6185,8 +6176,8 @@ packages:
     resolution: {integrity: sha512-7jRj+yXO0W7e4/tSJKoR7HRIHLPPjtNaUGG2xxKQnGvPNRkgWcQ0AZX6P4KBRJN4FcTBWb3sa7DVUJmocYuoog==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
 
-  probot@12.3.3:
-    resolution: {integrity: sha512-cdtKd+xISzi8sw6++BYBXleRknCA6hqUMoHj/sJqQBrjbNxQLhfeFCq9O2d0Z4eShsy5YFRR3MWwDKJ9uAE0CA==}
+  probot@12.4.0:
+    resolution: {integrity: sha512-DbW4ME9rzGVwnsFjoWWxKtRvnxPlFaCg726ge1sYHwZ3UzMlcF3B8Qf7MptfhGRyFw8sSCqsbgzb0E5d/BrQEA==}
     engines: {node: '>=10.21'}
     hasBin: true
 
@@ -6516,9 +6507,6 @@ packages:
     resolution: {integrity: sha512-U9nH88a3fc/ekCF1l0/UP1IosiuIjyTh7hBvXVMHYgVcfGvt897Xguj2UOLDeI5BG2m7/uwyaLVT6fbtCwTyzw==}
     engines: {iojs: '>=1.0.0', node: '>=0.10.0'}
 
-  rfdc@1.3.0:
-    resolution: {integrity: sha512-V2hovdzFbOi77/WajaSMXk2OLm+xNIeQdMMuB7icj7bk6zi2F8GGAxigcnDFpJHbNyNcgyJDiP+8nOrY5cZGrA==}
-
   rfdc@1.4.1:
     resolution: {integrity: sha512-q1b3N5QkRUWUl7iyylaaj3kOpIT0N2i9MqIEQXP73GVsN9cw3fdx8X63cEmWhJGi2PPCF23Ijp7ktmd39rawIA==}
 
@@ -6609,11 +6597,6 @@ packages:
     resolution: {integrity: sha512-BR7VvDCVHO+q2xBEWskxS6DJE1qRnb7DxzUrogb71CWoSficBxYsiAGd+Kl0mmq/MprG9yArRkyrQxTO6XjMzA==}
     hasBin: true
 
-  semver@7.5.4:
-    resolution: {integrity: sha512-1bCSESV6Pv+i21Hvpxp3Dx+pSD8lIPt8uVjRrxAUt/nbswYc+tK6Y2btiULjd4+fnq15PX+nqQDC7Oft7WkwcA==}
-    engines: {node: '>=10'}
-    hasBin: true
-
   semver@7.6.2:
     resolution: {integrity: sha512-FNAIBWCx9qcRhoHcgcJ0gvU7SN1lYU2ZXuSfl04bSC5OpvDHFyJCjdNHomPXxjQlCBU67YW64PzY7/VIEH7F2w==}
     engines: {node: '>=10'}
@@ -6682,9 +6665,6 @@ packages:
 
   shimmer@1.2.1:
     resolution: {integrity: sha512-sQTKC1Re/rM6XyFM6fIAGHRPVGvyXfgzIDvzoq608vM+jeyVD0Tu1E6Np0Kc2zAIFWIj963V2800iF/9LPieQw==}
-
-  side-channel@1.0.4:
-    resolution: {integrity: sha512-q5XPytqFEIKHkGdiMIrY10mvLRvnQh42/+GoBlFW3b2LXLE2xxJpZFdm94we0BaoV3RwJyGqg5wS7epxTv0Zvw==}
 
   side-channel@1.0.6:
     resolution: {integrity: sha512-fDW/EZ6Q9RiO8eFG8Hj+7u/oW+XrPTIChwCOM2+th2A6OblDtYYIpve9m+KvI9Z4C9qSEXlaGR6bTEYHReuglA==}
@@ -9475,13 +9455,6 @@ snapshots:
       '@types/qs': 6.9.7
       '@types/range-parser': 1.2.4
 
-  '@types/express@4.17.20':
-    dependencies:
-      '@types/body-parser': 1.19.5
-      '@types/express-serve-static-core': 4.17.33
-      '@types/qs': 6.9.7
-      '@types/serve-static': 1.15.1
-
   '@types/express@4.17.21':
     dependencies:
       '@types/body-parser': 1.19.5
@@ -10358,11 +10331,6 @@ snapshots:
       to-object-path: 0.3.0
       union-value: 1.0.1
       unset-value: 1.0.0
-
-  call-bind@1.0.2:
-    dependencies:
-      function-bind: 1.1.2
-      get-intrinsic: 1.2.0
 
   call-bind@1.0.7:
     dependencies:
@@ -12038,12 +12006,6 @@ snapshots:
 
   get-func-name@2.0.2: {}
 
-  get-intrinsic@1.2.0:
-    dependencies:
-      function-bind: 1.1.2
-      has: 1.0.3
-      has-symbols: 1.0.3
-
   get-intrinsic@1.2.4:
     dependencies:
       es-errors: 1.3.0
@@ -12450,7 +12412,7 @@ snapshots:
   https-proxy-agent@5.0.1:
     dependencies:
       agent-base: 6.0.2
-      debug: 4.3.4
+      debug: 4.3.6
     transitivePeerDependencies:
       - supports-color
 
@@ -12538,7 +12500,7 @@ snapshots:
   ioredis@4.28.5:
     dependencies:
       cluster-key-slot: 1.1.2
-      debug: 4.3.4
+      debug: 4.3.6
       denque: 1.5.1
       lodash.defaults: 4.2.0
       lodash.flatten: 4.4.0
@@ -14497,7 +14459,7 @@ snapshots:
       joycon: 3.1.1
       pump: 3.0.0
       readable-stream: 3.6.2
-      rfdc: 1.3.0
+      rfdc: 1.4.1
       split2: 3.2.2
       strip-json-comments: 3.1.1
 
@@ -14585,7 +14547,7 @@ snapshots:
       postcss: 8.4.38
       postcss-value-parser: 4.2.0
       read-cache: 1.0.0
-      resolve: 1.22.2
+      resolve: 1.22.8
 
   postcss-import@16.1.0(postcss@8.4.38):
     dependencies:
@@ -14780,7 +14742,7 @@ snapshots:
       ansi-styles: 5.2.0
       react-is: 18.2.0
 
-  probot@12.3.3:
+  probot@12.4.0:
     dependencies:
       '@octokit/core': 3.6.0
       '@octokit/plugin-enterprise-compatibility': 1.3.0
@@ -14793,7 +14755,7 @@ snapshots:
       '@probot/get-private-key': 1.1.1
       '@probot/octokit-plugin-config': 1.1.6(@octokit/core@3.6.0)
       '@probot/pino': 2.3.5
-      '@types/express': 4.17.20
+      '@types/express': 4.17.21
       '@types/ioredis': 4.28.10
       '@types/pino': 6.3.12
       '@types/pino-http': 5.8.1
@@ -14811,8 +14773,8 @@ snapshots:
       pino: 6.14.0
       pino-http: 5.8.0
       pkg-conf: 3.1.0
-      resolve: 1.22.2
-      semver: 7.5.4
+      resolve: 1.22.8
+      semver: 7.6.2
       update-dotenv: 1.1.1(dotenv@8.6.0)
       uuid: 8.3.2
     transitivePeerDependencies:
@@ -14881,7 +14843,7 @@ snapshots:
 
   qs@6.11.0:
     dependencies:
-      side-channel: 1.0.4
+      side-channel: 1.0.6
 
   qs@6.12.1:
     dependencies:
@@ -15015,7 +14977,7 @@ snapshots:
 
   rechoir@0.6.2:
     dependencies:
-      resolve: 1.22.2
+      resolve: 1.22.8
 
   redis-commands@1.7.0: {}
 
@@ -15244,8 +15206,6 @@ snapshots:
 
   reusify@1.0.4: {}
 
-  rfdc@1.3.0: {}
-
   rfdc@1.4.1: {}
 
   rimraf@2.7.1:
@@ -15339,10 +15299,6 @@ snapshots:
 
   semver@6.3.1: {}
 
-  semver@7.5.4:
-    dependencies:
-      lru-cache: 6.0.0
-
   semver@7.6.2: {}
 
   send@0.18.0:
@@ -15435,12 +15391,6 @@ snapshots:
       '@shikijs/core': 1.2.0
 
   shimmer@1.2.1: {}
-
-  side-channel@1.0.4:
-    dependencies:
-      call-bind: 1.0.2
-      get-intrinsic: 1.2.0
-      object-inspect: 1.13.2
 
   side-channel@1.0.6:
     dependencies:
@@ -16329,7 +16279,7 @@ snapshots:
     dependencies:
       esbuild: 0.17.12
       postcss: 8.4.38
-      resolve: 1.22.2
+      resolve: 1.22.8
       rollup: 3.20.1
     optionalDependencies:
       '@types/node': 20.14.15
