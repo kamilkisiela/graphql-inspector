@@ -103,7 +103,7 @@
   },
   "pnpm": {
     "overrides": {
-      "@octokit/types": "5.5.0"
+      "@octokit/types": "13.8.0"
     }
   }
 }
