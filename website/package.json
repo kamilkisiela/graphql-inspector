@@ -15,14 +15,14 @@
   "dependencies": {
     "@graphql-inspector/core": "../packages/core/dist",
     "@monaco-editor/react": "4.6.0",
-    "@theguild/components": "6.6.3",
+    "@theguild/components": "6.6.6",
     "next": "14.2.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-flip-move": "^3.0.5"
   },
   "devDependencies": {
-    "@theguild/tailwind-config": "0.4.2",
+    "@theguild/tailwind-config": "0.6.3",
     "@types/node": "20.14.15",
     "@types/react": "18.3.3",
     "cross-env": "7.0.3",
