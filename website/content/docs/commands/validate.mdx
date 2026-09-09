@@ -1,0 +1,72 @@
+---
+description:
+  Validate Documents - Validate documents against a schema and looks for deprecated usage.
+title: Validate (Documents)
+sidebarTitle: Validate
+---
+
+Validate documents against a schema and looks for deprecated usage.
+
+![Validate](/assets/img/cli/validate.jpg)
+
+## Validate - Usage
+
+Run the following command:
+
+```sh
+graphql-inspector validate DOCUMENTS SCHEMA
+```
+
+## Arguments
+
+- [`DOCUMENTS`](../api/documents) - a glob pattern that points to GraphQL Documents / Operations
+- [`SCHEMA`](../api/schema) - point to a schema
+
+## Flags
+
+- `-d, --deprecated` - Fail on deprecated usage (default: `false`)
+- `--noStrictFragments` - Do not fail on duplicated fragment names (default: `false`)
+- `--apollo` - Support Apollo directives (`@client` and `@connection`) (default: `false`)
+- `--keepClientFields <b>` - Keeps the fields with `@client`, but removes `@client` directive from
+  them - works only with combination of `--apollo` (default: `false`)
+- `--method` - method on url schema pointers (default: `POST`)
+- `--federation` - Support Apollo Federation V1 directives (default: `false`)
+- `--federationV2` - Support Apollo Federation V2 directives (default: `false`)
+- `--aws` - Support AWS Appsync directives and scalar types (default: `false`)
+- `--maxDepth <n>` - Fail when operation depth exceeds maximum depth (default: `false`)
+- `--maxAliasCount <n>` - Fail when alias count (including the referenced fragments) exceeds maximum
+  alias count (default: `false`)
+- `--maxDirectiveCount <n>` - Fail when directive count in a operation (including the referenced
+  fragments) exceeds maximum directive count (default: `false`)
+- `--maxTokenCount <n>` - Fail when token count (including the referenced fragments) exceeds maximum
+  token count (default: `false`)
+- `--maxComplexityScore <n>` - Fails when complexity score exceeds maximum complexity score
+  (default: `false`)
+- `--complexityScalarCost <n>` - Scalar cost config to use with maxComplexityScore (default: `1`)
+- `--complexityObjectCost <n>` - Object cost config to use with maxComplexityScore (default: `2`)
+- `--complexityDepthCostFactor <n>` - Depth cost factor config to use with maxComplexityScore
+  (default: `1.5`)
+- `--filter <s>` - show warnings and errors only for a file (or a list of files)
+- `--ignore <s>` - ignore and do not load these files (supports glob)
+- `--silent` - silent mode
+- `--output <s>` - writes errors to a file
+- `--onlyErrors` - shows only errors
+- `--relativePaths` - displays file paths relative to process cwd
+- `-r, --require <s>` - require a module
+- `-t, --token <s>` - an access token
+- `-h, --header <s>` - set http header (`--header 'Auth: Basic 123'`)
+
+## Output
+
+A list of errors found in documents. A second list with every deprecated usage.
+
+When there's at least one error or a deprecated usage (when `--deprecated` flag is enabled), the
+process fails.
+
+## Example
+
+```sh
+graphql-inspector validate './documents/*.graphql' http://localhost:3000/graphql
+```
+
+<Callout type="warning">Make sure to wrap the document in quotes.</Callout>

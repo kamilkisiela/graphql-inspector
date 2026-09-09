@@ -1,0 +1,4 @@
+{
+  "pages": ["environments", "endpoints", "intercept", "annotations", "pull-requests"],
+  "title": "Recipes"
+}

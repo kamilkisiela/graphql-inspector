@@ -2,4 +2,3 @@ packages:
   - packages/*
   - packages/commands/*
   - packages/loaders/*
-  - website
