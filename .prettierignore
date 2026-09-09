@@ -8,11 +8,9 @@ action/
 !packages/action
 
 # remove when prettier will support MDX (v3)
-website/src/pages/docs/api/schema.mdx
 .bob/
 .changeset/*.md
 pnpm-lock.yaml
-website/src/pages/docs/migration-guides/from-graphql-cli.mdx
 packages/core/CHANGELOG.md
 packages/**/*.md
 .husky/

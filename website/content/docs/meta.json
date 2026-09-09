@@ -1,0 +1,12 @@
+{
+  "pages": [
+    "index",
+    "installation",
+    "commands",
+    "notifications",
+    "recipes",
+    "products",
+    "api",
+    "migration-guides"
+  ]
+}

@@ -1,0 +1,54 @@
+---
+description: Find Similar Types - Get a list of similar types to find duplicates.
+title: Similar (Schema)
+sidebarTitle: Similar
+---
+
+Get a list of similar types to find duplicates.
+
+![Similar](/assets/img/cli/similar.jpg)
+
+## Similar - Usage
+
+Run the following command:
+
+```sh
+graphql-inspector similar SCHEMA
+```
+
+## Arguments
+
+- [`SCHEMA`](../api/schema) - point to a schema
+
+## Flags
+
+- `-n, --type <s>` - Check only a single type (_checks all types by default_)
+- `-t, --threshold <n>` - Threshold of similarity ratio (default: `0.4`)
+- `-w, --write <s>` - Write a file with results
+- `-r, --require <s>` - require a module
+- `-t, --token <s>` - an access token
+- `-h, --header <s>` - set HTTP header (`--header 'Auth: Basic 123'`)
+- `--method` - method on URL schema pointers (default: `POST`)
+- `--federation` - Support Apollo Federation V1 directives (default: `false`)
+- `--federationV2` - Support Apollo Federation V2 directives (default: `false`)
+- `--aws` - Support AWS Appsync directives and scalar types (default: `false`)
+
+## Output
+
+A list of similar types with the rating, grouped by a name.
+
+The process always succeeds:
+
+- When no similar types are found, the output is:
+
+```
+info No similar types found
+```
+
+- When similar types are found, the output is: ![similar-output](/assets/img/similar-output.png)
+
+## Examples
+
+```sh
+graphql-inspector similar example/schemas/deep.graphql
+```
